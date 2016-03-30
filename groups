@@ -1,0 +1,3 @@
+# UUID                                                               	Group Name
+#
+ldap:cn=gerrit-infrautils-committers,ou=Groups,dc=opendaylight,dc=org	ldap/gerrit-infrautils-committers
