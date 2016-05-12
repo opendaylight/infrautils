@@ -10,24 +10,17 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <parent>
-        <groupId>org.opendaylight.infrautils</groupId>
-        <artifactId>infrautils-parent</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
-        <relativePath>/../../common/parent/pom.xml</relativePath>
+        <groupId>org.opendaylight.controller</groupId>
+        <artifactId>config-parent</artifactId>
+        <version>0.5.0-SNAPSHOT</version>
+        <relativePath />
     </parent>
+
+    <groupId>org.opendaylight.infrautils</groupId>
     <packaging>bundle</packaging>
+    <version>1.0.0-SNAPSHOT</version>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>infrautils-types</artifactId>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.felix</groupId>
-                <artifactId>maven-bundle-plugin</artifactId>
-                <extensions>true</extensions>
-            </plugin>
-        </plugins>
-    </build>
 
   <!--
       Maven Site Configuration
