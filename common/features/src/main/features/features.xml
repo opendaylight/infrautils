@@ -11,8 +11,8 @@
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xsi:schemaLocation="http://karaf.apache.org/xmlns/features/v1.2.0 http://karaf.apache.org/xmlns/features/v1.2.0">
     
-    <feature name='odl-infrautils-common' version='${project.version}' description='OpenDaylight :: Infrautils :: Common'>
-        <bundle>mvn:org.opendaylight.infrautils/infrautils-types/{{VERSION}}</bundle>
-    </feature>
+<!--    <feature name='odl-infrautils-counters' version='${project.version}' description='OpenDaylight :: Infrautils :: Counters'>
+        <bundle>mvn:org.opendaylight.infrautils/infrautils-counters/{{VERSION}}</bundle>
+    </feature>-->
 
 </features>
