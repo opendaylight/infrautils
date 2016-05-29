@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<features name="org.ops4j.pax.web-3.2.6" xmlns="http://karaf.apache.org/xmlns/features/v1.0.0">
+
+	<feature name="pax-jetty" description="Provide Jetty engine support" version="8.1.17.v20150415" resolver="(obr)">
+        <bundle dependency="true" start-level="30">mvn:org.apache.servicemix.specs/org.apache.servicemix.specs.activation-api-1.1/2.5.0</bundle>
+        <bundle dependency="false" start-level="30">mvn:org.apache.geronimo.specs/geronimo-servlet_3.0_spec/1.0</bundle>
+        <bundle dependency="true" start-level="30">mvn:javax.mail/mail/1.4.7</bundle>
+        <bundle dependency="true" start-level="30">mvn:org.apache.geronimo.specs/geronimo-jta_1.1_spec/1.1.1</bundle>
+        <bundle dependency="true" start-level="30">mvn:org.apache.geronimo.specs/geronimo-annotation_1.1_spec/1.0.1</bundle>
+        <bundle dependency="true" start-level="30">mvn:org.apache.geronimo.specs/geronimo-jaspic_1.0_spec/1.1</bundle>
+        <bundle dependency="true" start-level="30">mvn:org.ow2.asm/asm-all/5.0.3</bundle>
+        <bundle start-level="30">mvn:org.eclipse.jetty.aggregate/jetty-all-server/8.1.17.v20150415</bundle>
+    </feature>
+
+    <feature name="pax-tomcat" description="Provide Tomcat engine support" version="7.0.27.1" resolver="(obr)">
+        <bundle start-level="30">mvn:org.apache.geronimo.ext.tomcat/catalina/7.0.27.1</bundle>
+        <bundle start-level="30">mvn:org.apache.geronimo.ext.tomcat/shared/7.0.27.1</bundle>
+        <bundle start-level="30">mvn:org.apache.geronimo.ext.tomcat/util/7.0.27.1</bundle>
+        <bundle dependency="true" start-level="30">mvn:org.apache.servicemix.specs/org.apache.servicemix.specs.java-persistence-api-2.0/2.5.0</bundle>
+        <bundle dependency="true" start-level="30">mvn:org.apache.servicemix.specs/org.apache.servicemix.specs.javamail-api-1.4/2.5.0</bundle>
+        <bundle dependency="true" start-level="30">mvn:org.apache.geronimo.specs/geronimo-servlet_3.0_spec/1.0</bundle>
+        <bundle dependency="true" start-level="30">mvn:org.apache.geronimo.specs/geronimo-ejb_3.1_spec/1.0</bundle>
+        <bundle dependency="true" start-level="30">mvn:org.apache.geronimo.specs/geronimo-jta_1.1_spec/1.1.1</bundle>
+        <bundle dependency="true" start-level="30">mvn:org.apache.geronimo.specs/geronimo-annotation_1.1_spec/1.0.1</bundle>
+        <bundle dependency="true" start-level="30">mvn:org.apache.geronimo.specs/geronimo-jaxrpc_1.1_spec/2.1</bundle>
+        <bundle dependency="true" start-level="30">wrap:mvn:javax.servlet.jsp/jsp-api/2.1</bundle>
+    </feature>
+
+	<feature name="pax-http" version="3.2.6" resolver="(obr)" description="Implementation of the OSGI HTTP Service">
+        <details>Allows to publish servlets using pax web and jetty</details>
+        <configfile finalname="/etc/jetty.xml">mvn:org.ops4j.pax.web/pax-web-features/3.2.6/xml/jettyconfig</configfile>
+        <config name="org.ops4j.pax.web">
+            org.osgi.service.http.port=8181
+            javax.servlet.context.tempdir=${karaf.data}/pax-web-jsp
+            org.ops4j.pax.web.config.file=${karaf.base}/etc/jetty.xml
+        </config>
+        <feature version="[7.0,9.0)">pax-jetty</feature>
+        <bundle dependency="true" start-level="30">mvn:org.ops4j.base/ops4j-base-lang/1.5.0</bundle>
+    	<bundle dependency="true" start-level="30">mvn:org.ops4j.pax.swissbox/pax-swissbox-core/1.8.2</bundle>
+        <bundle dependency="true" start-level="20">mvn:org.ow2.asm/asm-all/5.0.3</bundle>
+        <bundle dependency="true" start-level="20">mvn:org.apache.xbean/xbean-bundleutils/3.18</bundle>
+        <bundle dependency="true" start-level="20">mvn:org.apache.xbean/xbean-reflect/3.18</bundle>
+        <bundle dependency="true" start-level="20">mvn:org.apache.xbean/xbean-finder/3.18</bundle>
+		<bundle start-level="30">mvn:org.ops4j.pax.web/pax-web-api/3.2.6</bundle>
+        <bundle start-level="30">mvn:org.ops4j.pax.web/pax-web-spi/3.2.6</bundle>
+        <bundle start-level="30">mvn:org.ops4j.pax.web/pax-web-runtime/3.2.6</bundle>
+        <bundle start-level="30">mvn:org.ops4j.pax.web/pax-web-jetty/3.2.6</bundle>
+    </feature>
+    
+    <feature name="pax-http-whiteboard" description="Provide HTTP Whiteboard pattern support" version="3.2.6" resolver="(obr)">
+        <feature>pax-http</feature>
+        <bundle start-level="30">mvn:org.ops4j.pax.web/pax-web-jsp/3.2.6</bundle>
+        <bundle start-level="30">mvn:org.ops4j.pax.web/pax-web-extender-whiteboard/3.2.6</bundle>
+    </feature>
+
+    <feature name="pax-war" description="Provide support of a full WebContainer" version="3.2.6" resolver="(obr)">
+        <config name="org.ops4j.pax.url.war">
+            org.ops4j.pax.url.war.importPaxLoggingPackages=true
+        </config>
+        <feature>pax-http-whiteboard</feature>
+        <bundle start-level="30">mvn:org.ops4j.pax.web/pax-web-jsp/3.2.6</bundle>
+        <bundle start-level="30">mvn:org.ops4j.pax.web/pax-web-extender-war/3.2.6</bundle>
+        <bundle start-level="30">mvn:org.ops4j.pax.web/pax-web-extender-whiteboard/3.2.6</bundle>
+        <bundle start-level="30">mvn:org.ops4j.pax.web/pax-web-deployer/3.2.6</bundle>
+        <bundle dependency="true" start-level="30">mvn:org.ops4j.pax.url/pax-url-war/2.4.2</bundle>
+        <bundle dependency="true" start-level="30">mvn:org.ops4j.pax.url/pax-url-commons/2.4.2</bundle>
+        <bundle dependency="true" start-level="30">mvn:org.ops4j.pax.swissbox/pax-swissbox-bnd/1.8.2</bundle>
+        <bundle dependency="true" start-level="30">mvn:org.ops4j.pax.swissbox/pax-swissbox-property/1.8.2</bundle>
+        <bundle dependency="true" start-level="30">mvn:org.ops4j.base/ops4j-base-net/1.5.0</bundle>
+        <bundle dependency="true" start-level="30">mvn:org.ops4j.base/ops4j-base-lang/1.5.0</bundle>
+        <bundle dependency="true" start-level="30">mvn:org.ops4j.base/ops4j-base-monitors/1.5.0</bundle>
+        <bundle dependency="true" start-level="30">mvn:org.ops4j.base/ops4j-base-util-property/1.5.0</bundle>
+        <bundle dependency="true" start-level="30">mvn:biz.aQute.bnd/bndlib/2.4.0</bundle>
+    </feature>
+
+</features>

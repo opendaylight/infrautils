@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="maven-antrun-" default="main"  >
+<target name="main">
+  <chmod perm="755">
+    <fileset dir="/home/guys/sources/infrautils/common/karaf/target/assembly/bin">
+      <include name="karaf"/>
+      <include name="instance"/>
+      <include name="start"/>
+      <include name="stop"/>
+      <include name="status"/>
+      <include name="client"/>
+      <include name="shell"/>
+    </fileset>
+  </chmod>
+  <replace dir="/home/guys/sources/infrautils/common/karaf/target/assembly/etc" value="org.apache.aries.proxy.impl/1.0.5" token="org.apache.aries.proxy.impl/1.0.4">
+    <include name="startup.properties"/>
+  </replace>
+  <replace dir="/home/guys/sources/infrautils/common/karaf/target/assembly/etc" value="# BUG-5943: javax.xml.parsers.DocumentBuilderFactory=" token="javax.xml.parsers.DocumentBuilderFactory=">
+    <include name="system.properties"/>
+  </replace>
+  <replace dir="/home/guys/sources/infrautils/common/karaf/target/assembly/etc" value="# BUG-5917: javax.xml.transform.TransformerFactory=" token="javax.xml.transform.TransformerFactory=">
+    <include name="system.properties"/>
+  </replace>
+  <jar destfile="/home/guys/sources/infrautils/common/karaf/target/assembly/lib/endorsed/odl-org.apache.servicemix.bundles.xalan-2.7.2_2_odl.jar">
+    <zipfileset excludes="META-INF/services/javax.xml.*" src="/home/guys/sources/infrautils/common/karaf/target/assembly/lib/endorsed/org.apache.servicemix.bundles.xalan-2.7.2_2.jar" erroronmissingarchive="false"/>
+  </jar>
+  <delete file="/home/guys/sources/infrautils/common/karaf/target/assembly/lib/endorsed/org.apache.servicemix.bundles.xalan-2.7.2_2.jar"/>
+</target>
+</project>

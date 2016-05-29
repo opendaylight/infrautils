@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<features xmlns="http://karaf.apache.org/xmlns/features/v1.2.1" name="standard-3.0.6">
+    <repository>mvn:org.ops4j.pax.web/pax-web-features/3.2.6/xml/features</repository>
+    <feature name="framework-security" version="3.0.6" description="OSGi Security for Karaf">
+        <bundle start-level="1" start="false">mvn:org.apache.felix/org.apache.felix.framework.security/2.2.0</bundle>
+    </feature>
+    <feature name="standard" version="3.0.6" description="Karaf standard feature">
+        <details>Standard providing core Karaf features</details>
+        <bundle start-level="30">mvn:org.apache.karaf.shell/org.apache.karaf.shell.console/3.0.6</bundle>
+        <bundle start-level="30">mvn:org.apache.karaf.features/org.apache.karaf.features.core/3.0.6</bundle>
+        <bundle start-level="30">mvn:org.apache.karaf.features/org.apache.karaf.features.command/3.0.6</bundle>
+        <bundle start-level="30">mvn:org.apache.karaf.instance/org.apache.karaf.instance.core/3.0.6</bundle>
+        <bundle start-level="30">mvn:org.apache.karaf.instance/org.apache.karaf.instance.command/3.0.6</bundle>
+        <bundle start-level="30">mvn:org.apache.karaf.jaas/org.apache.karaf.jaas.modules/3.0.6</bundle>
+        <bundle start-level="30">mvn:org.apache.karaf.jaas/org.apache.karaf.jaas.config/3.0.6</bundle>
+        <bundle start-level="30">mvn:org.apache.karaf.jaas/org.apache.karaf.jaas.command/3.0.6</bundle>
+        <bundle start-level="30">mvn:org.apache.karaf.diagnostic/org.apache.karaf.diagnostic.core/3.0.6</bundle>
+        <bundle start-level="30">mvn:org.apache.karaf.diagnostic/org.apache.karaf.diagnostic.command/3.0.6</bundle>
+        <bundle start-level="30">mvn:org.apache.karaf.log/org.apache.karaf.log.core/3.0.6</bundle>
+        <bundle start-level="30">mvn:org.apache.karaf.log/org.apache.karaf.log.command/3.0.6</bundle>
+        <bundle start-level="30">mvn:org.apache.karaf.service/org.apache.karaf.service.core/3.0.6</bundle>
+        <bundle start-level="30">mvn:org.apache.karaf.service/org.apache.karaf.service.command/3.0.6</bundle>
+        <conditional>
+            <condition>webconsole</condition>
+            <bundle start-level="30">mvn:org.apache.karaf.webconsole/org.apache.karaf.webconsole.instance/3.0.6</bundle>
+            <bundle start-level="30">mvn:org.apache.karaf.webconsole/org.apache.karaf.webconsole.features/3.0.6</bundle>
+            <bundle start-level="30">mvn:org.apache.karaf.webconsole/org.apache.karaf.webconsole.gogo/3.0.6</bundle>
+            <bundle start-level="30">mvn:org.apache.karaf.webconsole/org.apache.karaf.webconsole.http/3.0.6</bundle>
+        </conditional>
+    </feature>
+    <feature name="aries-annotation" version="3.0.6" description="Aries Annotations">
+        <bundle start-level="20" dependency="true">mvn:org.apache.commons/commons-jexl/2.1.1</bundle>
+        <bundle start-level="20" dependency="true">mvn:org.ow2.asm/asm-all/5.0.3</bundle>
+        <bundle start-level="20" dependency="true">mvn:org.apache.xbean/xbean-bundleutils/3.18</bundle>
+        <bundle start-level="20" dependency="true">mvn:org.apache.xbean/xbean-asm5-shaded/3.18</bundle>
+        <bundle start-level="20" dependency="true">mvn:org.apache.xbean/xbean-reflect/3.18</bundle>
+        <bundle start-level="20" dependency="true">mvn:org.apache.xbean/xbean-finder-shaded/3.18</bundle>
+        <bundle start-level="20">mvn:org.apache.aries.blueprint/org.apache.aries.blueprint.annotation.api/1.0.1</bundle>
+        <bundle start-level="20">mvn:org.apache.aries.blueprint/org.apache.aries.blueprint.annotation.impl/1.0.1</bundle>
+        <bundle start-level="20">mvn:org.apache.aries.blueprint/org.apache.aries.blueprint.jexl.evaluator/1.0.0</bundle>
+    </feature>
+    <feature name="wrapper" version="3.0.6" description="Provide OS integration">
+        <bundle start-level="30">mvn:org.apache.karaf.wrapper/org.apache.karaf.wrapper.core/3.0.6</bundle>
+        <bundle start-level="30">mvn:org.apache.karaf.wrapper/org.apache.karaf.wrapper.command/3.0.6</bundle>
+    </feature>
+    <feature name="service-wrapper" version="3.0.6" description="Provide OS integration (alias to wrapper feature)">
+        <feature version="3.0.6">wrapper</feature>
+    </feature>
+    <feature name="obr" version="3.0.6" description="Provide OSGi Bundle Repository (OBR) support">
+        <bundle start-level="30">mvn:org.apache.felix/org.osgi.service.obr/1.0.2</bundle>
+        <bundle start-level="30">mvn:org.apache.felix/org.apache.felix.bundlerepository/2.0.2</bundle>
+        <bundle start-level="30">mvn:org.apache.karaf.obr/org.apache.karaf.obr.core/3.0.6</bundle>
+        <bundle start-level="30">mvn:org.apache.karaf.obr/org.apache.karaf.obr.command/3.0.6</bundle>
+        <bundle start-level="30">mvn:org.ops4j.pax.url/pax-url-obr/2.4.5/jar/uber</bundle>
+        <bundle start-level="31">mvn:org.apache.karaf.features/org.apache.karaf.features.obr/3.0.6</bundle>
+    </feature>
+    <feature name="config" version="3.0.6" description="Provide OSGi ConfigAdmin support">
+        <bundle start-level="30" start="true">mvn:org.apache.karaf.config/org.apache.karaf.config.core/3.0.6</bundle>
+        <bundle start-level="30" start="true">mvn:org.apache.karaf.config/org.apache.karaf.config.command/3.0.6</bundle>
+    </feature>
+    <feature name="region" version="3.0.6" description="Provide Region Support">
+        <bundle start-level="30">mvn:org.eclipse.equinox/region/1.0.0.v20110506</bundle>
+        <bundle start-level="30">mvn:org.apache.karaf.region/org.apache.karaf.region.persist/3.0.6</bundle>
+        <bundle start-level="30">mvn:org.apache.karaf.region/org.apache.karaf.region.command/3.0.6</bundle>
+    </feature>
+    <feature name="package" version="3.0.6" description="Package commands and mbeans" resolver="(obr)">
+        <bundle start-level="30">mvn:org.apache.karaf.package/org.apache.karaf.package.core/3.0.6</bundle>
+        <bundle start-level="30">mvn:org.apache.karaf.package/org.apache.karaf.package.command/3.0.6</bundle>
+    </feature>
+    <feature name="http" version="3.0.6" description="Implementation of the OSGI HTTP Service" resolver="(obr)">
+        <feature version="[3.2.6,5)">pax-http</feature>
+        <bundle start-level="30">mvn:org.apache.karaf.http/org.apache.karaf.http.core/3.0.6</bundle>
+        <bundle start-level="30">mvn:org.apache.karaf.http/org.apache.karaf.http.command/3.0.6</bundle>
+    </feature>
+    <feature name="http-whiteboard" version="3.0.6" description="Provide HTTP Whiteboard pattern support" resolver="(obr)">
+        <feature>http</feature>
+        <feature version="[3.2.6,5)">pax-http-whiteboard</feature>
+    </feature>
+    <feature name="war" version="3.0.6" description="Turn Karaf as a full WebContainer" resolver="(obr)">
+        <feature>http</feature>
+        <feature version="[3.2.6,5)">pax-war</feature>
+        <bundle start-level="30">mvn:org.apache.karaf.web/org.apache.karaf.web.core/3.0.6</bundle>
+        <bundle start-level="30">mvn:org.apache.karaf.web/org.apache.karaf.web.command/3.0.6</bundle>
+    </feature>
+    <feature name="jetty" version="8.1.15.v20140411" resolver="(obr)">
+        <feature>pax-jetty</feature>
+    </feature>
+    <feature name="kar" version="3.0.6" description="Provide KAR (KARaf archive) support" resolver="(obr)">
+        <bundle start-level="30">mvn:org.apache.karaf.kar/org.apache.karaf.kar.core/3.0.6</bundle>
+        <bundle start-level="30">mvn:org.apache.karaf.kar/org.apache.karaf.kar.command/3.0.6</bundle>
+        <bundle start-level="30">mvn:org.apache.karaf.deployer/org.apache.karaf.deployer.kar/3.0.6</bundle>
+    </feature>
+    <feature name="webconsole" version="3.0.6" description="Base support of the Karaf WebConsole" resolver="(obr)">
+        <config name="org.apache.karaf.webconsole" append="false">
+            realm=karaf
+        </config>
+        <feature>http</feature>
+        <bundle start-level="30">mvn:org.apache.felix/org.apache.felix.metatype/1.0.12</bundle>
+        <bundle start-level="30">mvn:org.apache.karaf.webconsole/org.apache.karaf.webconsole.branding/3.0.6</bundle>
+        <bundle start-level="30">mvn:org.apache.karaf.webconsole/org.apache.karaf.webconsole.console/3.0.6</bundle>
+        <conditional>
+            <condition>eventadmin</condition>
+            <bundle start-level="30">mvn:org.apache.felix/org.apache.felix.webconsole.plugins.event/1.1.2</bundle>
+        </conditional>
+        <conditional>
+            <condition>scr</condition>
+            <bundle start-level="30">mvn:org.apache.felix/org.apache.felix.webconsole.plugins.ds/1.0.0</bundle>
+        </conditional>
+    </feature>
+    <feature name="ssh" version="3.0.6" description="Provide a SSHd server on Karaf">
+        <config name="org.apache.karaf.shell" append="false">
+            sshPort=8101
+            sshHost=0.0.0.0
+            sshRealm=karaf
+            hostKey=${karaf.etc}/host.key
+        </config>
+        <bundle start-level="30" start="true">mvn:org.apache.mina/mina-core/2.0.7</bundle>
+        <bundle start-level="30" start="true">mvn:org.apache.sshd/sshd-core/0.14.0</bundle>
+        <bundle start-level="30" start="true">mvn:org.apache.karaf.shell/org.apache.karaf.shell.ssh/3.0.6</bundle>
+    </feature>
+    <feature name="management" version="3.0.6" description="Provide a JMX MBeanServer and a set of MBeans in Karaf">
+        <bundle start-level="30">mvn:org.apache.karaf.management/org.apache.karaf.management.server/3.0.6</bundle>
+        <bundle start-level="30">mvn:org.apache.aries.jmx/org.apache.aries.jmx.api/1.1.1</bundle>
+        <bundle start-level="30">mvn:org.apache.aries.jmx/org.apache.aries.jmx.core/1.1.3</bundle>
+        <bundle start-level="30">mvn:org.apache.aries.jmx/org.apache.aries.jmx.blueprint.api/1.1.0</bundle>
+        <bundle start-level="30">mvn:org.apache.aries.jmx/org.apache.aries.jmx.blueprint.core/1.1.0</bundle>
+        <bundle start-level="30">mvn:org.apache.aries.jmx/org.apache.aries.jmx.whiteboard/1.0.0</bundle>
+    </feature>
+    <feature name="scheduler" version="3.0.6" description="Provide a scheduler service in Karaf to fire events" resolver="(obr)">
+        <bundle start-level="30">mvn:org.apache.karaf.scheduler/org.apache.karaf.scheduler.core/3.0.6</bundle>
+    </feature>
+    <feature name="eventadmin" version="3.0.6" description="OSGi Event Admin service specification for event-based communication" resolver="(obr)">
+        <bundle start-level="30">mvn:org.apache.felix/org.apache.felix.eventadmin/1.4.6</bundle>
+        <conditional>
+            <condition>webconsole</condition>
+            <bundle start-level="30">mvn:org.apache.felix/org.apache.felix.webconsole.plugins.event/1.1.2</bundle>
+        </conditional>
+    </feature>
+    <feature name="jasypt-encryption" version="3.0.6" description="Advanced encryption support for Karaf security" resolver="(obr)">
+        <bundle start-level="30" dependency="true">mvn:commons-codec/commons-codec/1.10</bundle>
+        <bundle start-level="30" dependency="true">mvn:commons-lang/commons-lang/2.6</bundle>
+        <bundle start-level="30" dependency="true">mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.jasypt/1.9.2_1</bundle>
+        <bundle start-level="30">mvn:org.apache.karaf.jaas/org.apache.karaf.jaas.jasypt/3.0.6</bundle>
+        <conditional>
+            <condition>spring</condition>
+            <bundle start-level="30" dependency="true">mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.jasypt-spring31/1.9.2_1</bundle>
+        </conditional>
+    </feature>
+    <feature name="scr" version="3.0.6" description="Declarative Service support" resolver="(obr)">
+        <bundle start-level="30" dependency="true">mvn:org.apache.felix/org.apache.felix.metatype/1.0.12</bundle>
+        <bundle start-level="30" dependency="true">mvn:org.apache.felix/org.apache.felix.scr/1.8.2</bundle>
+        <bundle start-level="30">mvn:org.apache.karaf.scr/org.apache.karaf.scr.command/3.0.6</bundle>
+        <conditional>
+            <condition>management</condition>
+            <bundle start-level="30">mvn:org.apache.karaf.scr/org.apache.karaf.scr.management/3.0.6</bundle>
+        </conditional>
+        <conditional>
+            <condition>webconsole</condition>
+            <bundle start-level="30">mvn:org.apache.felix/org.apache.felix.webconsole.plugins.ds/1.0.0</bundle>
+        </conditional>
+    </feature>
+    <feature name="blueprint-web" version="3.0.6" description="Provides an OSGI-aware Servlet ContextListener for bootstrapping         blueprint inside web-bundle containers" resolver="(obr)">
+        <feature>war</feature>
+        <bundle>mvn:org.apache.aries.blueprint/org.apache.aries.blueprint.webosgi/1.0.1</bundle>
+    </feature>
+    <feature name="jolokia" version="1.3.0" description="Jolokia monitoring support">
+        <config name="org.jolokia.osgi" append="false">
+            org.jolokia.user=karaf
+            org.jolokia.realm=karaf
+            org.jolokia.authMode=jaas
+        </config>
+        <feature>http</feature>
+        <bundle>mvn:org.jolokia/jolokia-osgi/1.3.0</bundle>
+    </feature>
+</features>

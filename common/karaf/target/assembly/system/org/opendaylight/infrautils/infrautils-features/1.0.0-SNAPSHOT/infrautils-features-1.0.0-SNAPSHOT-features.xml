@@ -1,0 +1,7 @@
+<features xmlns="http://karaf.apache.org/xmlns/features/v1.2.0" name="odl-infrautils-1.0.0-SNAPSHOT" xsi:schemaLocation="http://karaf.apache.org/xmlns/features/v1.2.0 http://karaf.apache.org/xmlns/features/v1.2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <feature name="odl-infrautils-counters" version="1.0.0-SNAPSHOT" description="OpenDaylight :: Infrautils :: Counters">
+    <bundle>mvn:org.opendaylight.infrautils/counters-impl/1.0.0-SNAPSHOT</bundle>
+    <bundle>mvn:org.opendaylight.infrautils/util/1.0.0-SNAPSHOT</bundle>
+    <bundle>mvn:org.apache.commons/commons-lang3/3.1</bundle>
+  </feature>
+</features>

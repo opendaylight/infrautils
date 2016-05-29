@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Licensed to the Apache Software Foundation (ASF) under one
+ or more contributor license agreements.  See the NOTICE file
+ distributed with this work for additional information
+ regarding copyright ownership.  The ASF licenses this file
+ to you under the Apache License, Version 2.0 (the
+ "License"); you may not use this file except in compliance
+ with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing,
+ software distributed under the License is distributed on an
+ "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ KIND, either express or implied.  See the License for the
+ specific language governing permissions and limitations
+ under the License.
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.apache.aries</groupId>
+        <artifactId>parent</artifactId>
+        <version>2.0.0</version>
+        <relativePath>../../parent/pom.xml</relativePath>
+    </parent>
+
+    <groupId>org.apache.aries.blueprint</groupId>
+    <artifactId>org.apache.aries.blueprint.core</artifactId>
+    <packaging>bundle</packaging>
+    <name>Apache Aries Blueprint Core</name>
+    <version>1.4.2</version>
+    <description>
+        This bundle contains the core implementation of Blueprint
+        along with the "ext" namespace handler.
+    </description>
+
+    <scm>
+        <connection>scm:svn:http://svn.apache.org/repos/asf/aries/tags/org.apache.aries.blueprint.core-1.4.2-SNAPSHOT</connection>
+        <developerConnection>scm:svn:https://svn.apache.org/repos/asf/aries/tags/org.apache.aries.blueprint.core-1.4.2-SNAPSHOT</developerConnection>
+        <url>http://svn.apache.org/viewvc/aries/tags/org.apache.aries.blueprint.core-1.4.2-SNAPSHOT</url>
+    </scm>
+
+    <properties>
+        <aries.osgi.activator>
+            org.apache.aries.blueprint.container.BlueprintExtender
+        </aries.osgi.activator>
+        <!-- Export package versions are maintained in packageinfo files -->
+        <aries.osgi.export.pkg>
+            !org.apache.aries.blueprint.annotation*,
+            org.apache.aries.blueprint;-split-package:=merge-first,
+            org.apache.aries.blueprint.mutable,
+            org.apache.aries.blueprint.ext,
+            org.apache.aries.blueprint.ext.evaluator,
+            org.apache.aries.blueprint.services,
+            org.apache.aries.blueprint.utils,
+            org.osgi.service.blueprint;version=1.0.0
+        </aries.osgi.export.pkg>
+        <aries.osgi.import>
+            !org.apache.aries.blueprint*,
+            org.apache.aries.quiesce.manager;provide:=true;resolution:=optional,
+            org.apache.aries.quiesce.participant;provide:=true;resolution:=optional,
+            org.apache.aries.blueprint.annotation.service,
+            org.osgi.service.blueprint.*;provide:=true,
+            org.osgi.service.event*;resolution:=optional,
+            org.osgi.service.framework;resolution:=optional,
+            org.apache.aries.proxy;provide:=true,
+            *
+        </aries.osgi.import>
+        <aries.osgi.private.pkg>
+            org.apache.aries.blueprint.parser,
+            org.apache.aries.blueprint.container,
+            org.apache.aries.blueprint.di,
+            org.apache.aries.blueprint.utils,
+            org.apache.aries.blueprint.reflect,
+            org.apache.aries.blueprint.ext.impl,
+            org.apache.aries.blueprint.namespace,
+            org.apache.aries.blueprint.proxy,
+            org.apache.aries.blueprint.services,
+            org.apache.aries.blueprint.utils.*
+        </aries.osgi.private.pkg>
+        <aries.osgi.export.service>
+            org.apache.aries.blueprint.services.ParserService
+        </aries.osgi.export.service>
+        <aries.osgi.include.resource>
+            {maven-resources},
+            org/apache/aries/blueprint/blueprint.xsd=${project.build.directory}/sources/org/osgi/service/blueprint/blueprint.xsd
+        </aries.osgi.include.resource>
+        <blueprint.annotation.api.version>1.0.0</blueprint.annotation.api.version>
+        <blueprint.api.version>1.0.0</blueprint.api.version>
+        <blueprint.parser.version>1.3.0</blueprint.parser.version>
+        <proxy.api.version>1.0.0</proxy.api.version>
+        <proxy.impl.version>1.0.3</proxy.impl.version>
+        <quiesce.api.version>1.0.0</quiesce.api.version>
+        <util.version>1.0.0</util.version>
+        <lastReleaseVersion>1.4.0</lastReleaseVersion>
+    </properties>
+
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <blueprint.annotation.api.version>1.0.1-SNAPSHOT</blueprint.annotation.api.version>
+                <blueprint.api.version>1.0.1-SNAPSHOT</blueprint.api.version>
+                <blueprint.parser.version>1.2.1-SNAPSHOT</blueprint.parser.version>
+                <proxy.api.version>1.0.0</proxy.api.version>
+                <proxy.impl.version>1.0.0</proxy.impl.version>
+                <quiesce.api.version>1.0.0</quiesce.api.version>
+                <util.version>1.0.0</util.version>
+            </properties>
+        </profile>
+    </profiles>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.aries.blueprint</groupId>
+            <artifactId>org.apache.aries.blueprint.api</artifactId>
+            <version>${blueprint.api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.aries.blueprint</groupId>
+            <artifactId>org.apache.aries.blueprint.annotation.api</artifactId>
+            <optional>true</optional>
+            <version>${blueprint.annotation.api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.aries.blueprint</groupId>
+            <artifactId>blueprint-parser</artifactId>
+            <version>${blueprint.parser.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.aries</groupId>
+            <artifactId>org.apache.aries.util</artifactId>
+            <version>${util.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>org.osgi.core</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>org.osgi.compendium</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.ow2.asm</groupId>
+            <artifactId>asm-debug-all</artifactId>
+            <optional>true</optional>
+            <version>5.0.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.aries.quiesce</groupId>
+            <artifactId>org.apache.aries.quiesce.api</artifactId>
+            <version>${quiesce.api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.aries.testsupport</groupId>
+            <artifactId>org.apache.aries.testsupport.unit</artifactId>
+            <version>1.0.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.aries.proxy</groupId>
+            <artifactId>org.apache.aries.proxy.api</artifactId>
+            <version>${proxy.api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.aries.proxy</groupId>
+            <artifactId>org.apache.aries.proxy.impl</artifactId>
+            <version>${proxy.impl.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+            <resource>
+                <directory>${project.build.sourceDirectory}</directory>
+                <includes>
+                    <include>**/packageinfo</include>
+                </includes>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>unpack-sources</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>org.apache.aries.blueprint</groupId>
+                                    <artifactId>org.apache.aries.blueprint.api</artifactId>
+                                    <includes>**/blueprint.xsd</includes>
+                                </artifactItem>
+                            </artifactItems>
+                            <outputDirectory>${project.build.directory}/sources</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            
+            <plugin>
+                <groupId>org.apache.aries.versioning</groupId>
+                <artifactId>org.apache.aries.versioning.plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>default-verify</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>version-check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <configuration>
+                    <instructions>
+                        <Import-Service>
+                            org.apache.aries.proxy.ProxyManager
+                        </Import-Service>
+                        <Provide-Capability>
+                            osgi.extender;
+                            osgi.extender="osgi.blueprint";
+                            uses:=
+                            "org.osgi.service.blueprint.container,org.osgi.service.blueprint.reflect";
+                            version:Version="1.0"
+                        </Provide-Capability>
+                    </instructions>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+        
+</project>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>org.opendaylight.infrautils</groupId>
+  <artifactId>util</artifactId>
+  <versioning>
+    <versions>
+      <version>1.0.0-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20160529072729</lastUpdated>
+  </versioning>
+</metadata>

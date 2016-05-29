@@ -23,8 +23,9 @@
     <modules>
         <module>artifacts</module>
         <module>parent</module>
-        <module>types</module> 
+        <module>util</module> 
         <module>features</module>
+        <module>karaf</module>
     </modules>
 
   <!--
