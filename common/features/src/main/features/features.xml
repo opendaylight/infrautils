@@ -16,5 +16,8 @@
         <bundle>mvn:org.opendaylight.infrautils/util/{{VERSION}}</bundle>
         <bundle>mvn:org.apache.commons/commons-lang3/3.1</bundle>
     </feature>
-
+    <feature name='odl-infrautils-async' version='${project.version}' description='OpenDaylight :: Infrautils :: Async'>
+        <bundle>mvn:org.opendaylight.infrautils/util/{{VERSION}}</bundle>
+        <bundle>mvn:org.apache.commons/commons-lang3/3.1</bundle>
+    </feature>
 </features>
