@@ -35,6 +35,7 @@
     <modules>
         <module>common</module>
         <module>counters</module>
+        <module>async</module>
     </modules>
 
     <profiles>

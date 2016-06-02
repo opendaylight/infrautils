@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<parent>
+		<groupId>org.opendaylight.infrautils</groupId>
+		<artifactId>infrautils-parent</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+		<relativePath>../../common/parent/pom.xml</relativePath>
+	</parent>
+	<artifactId>async-impl</artifactId>
+	<packaging>bundle</packaging>
+	<modelVersion>4.0.0</modelVersion>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<extensions>true</extensions>
+				<configuration>
+					<manifestLocation>${project.basedir}/src/main/resources/META-INF</manifestLocation>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<dependencies>
+		<dependency>
+			<groupId>org.opendaylight.infrautils</groupId>
+			<version>1.0.0-SNAPSHOT</version>
+			<artifactId>util</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.osgi</groupId>
+			<artifactId>org.osgi.core</artifactId>
+			<version>5.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.osgi</groupId>
+			<artifactId>org.osgi.enterprise</artifactId>
+			<version>5.0.0</version>
+		</dependency>
+	</dependencies>
+</project>
