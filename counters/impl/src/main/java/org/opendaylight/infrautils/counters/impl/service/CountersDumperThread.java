@@ -7,7 +7,6 @@
  */
 package org.opendaylight.infrautils.counters.impl.service;
 
-import java.io.File;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 
@@ -15,19 +14,17 @@ import org.opendaylight.infrautils.counters.impl.OccurenceCounter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-class CountersDumperThread implements Runnable {
+public class CountersDumperThread implements Runnable {
 	private Object blockResetCounters = new Object();
 	private volatile boolean keepRunning = true;
 	private volatile int countersDumpInterval;
-	private HashSet<OccurenceCounterEntry> counters = new HashSet<OccurenceCounterEntry>();
-	private LinkedHashSet<OccurenceCounterEntry> printCounters = new LinkedHashSet<OccurenceCounterEntry>();
-	protected final Logger logger = LoggerFactory.getLogger(CountersDumperThread.class);
+	private static HashSet<OccurenceCounterEntry> counters = new HashSet<OccurenceCounterEntry>();
+	private static LinkedHashSet<OccurenceCounterEntry> printCounters = new LinkedHashSet<OccurenceCounterEntry>();
+	protected static final Logger logger = LoggerFactory.getLogger(CountersDumperThread.class);
 
 	public CountersDumperThread(int countersDumpInterval) throws Exception {
-
 		this.countersDumpInterval = countersDumpInterval;
-
-		updateCounters();
+			updateCounters();
 	}
 
 	public void clearAllCounters(String[] filterGroupNames, String[] filterCounterNames) {
@@ -84,27 +81,24 @@ class CountersDumperThread implements Runnable {
 			if (sb.length() > 0) {
 				sb.delete(sb.length() - 2, sb.length());
 				logger.info(sb.toString());
-				System.out.println(sb.toString());
 			}
 		}
 	}
 
 	public void run() {
-		// TODO FIXME as part of CXTCON-2395
-		logger.info("Starting counters dump thread with counters interval of: {}",
-				countersDumpInterval);
-
-		runCounterDump();
-
+		logger.info("Starting counters thread with interval of: {}", countersDumpInterval);
 		while (keepRunning) {
-
 			try {
-
-				Thread.sleep(countersDumpInterval);
-				runCounterDump();
-			} catch (InterruptedException e) {
+				try {
+					runCounterDump();
+					Thread.sleep(countersDumpInterval);
+				} catch (InterruptedException e) {
+				}
+			} catch (Throwable t) {
+				logger.error(t.getMessage(), t);
 			}
 		}
+		logger.info("Killed counters thread");
 	}
 
 	private void alignToMaxWidth(OccurenceCounterEntry entry, long difference, StringBuilder sb) {

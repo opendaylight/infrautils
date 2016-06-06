@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+	xmlns:cm="http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.1.0">
+ 	<cm:property-placeholder persistent-id="org.opendaylight.counters">
+		<cm:default-properties>
+			<cm:property name="interval" value="10000" />
+		</cm:default-properties>
+	</cm:property-placeholder>
+	<bean id="mainclass" init-method="initialize" destroy-method="clean"
+		class="org.opendaylight.infrautils.counters.impl.CountersMain">
+		<cm:managed-properties
+			persistent-id="org.opendaylight.counters"
+			update-strategy="container-managed" />
+	</bean>
+</blueprint>

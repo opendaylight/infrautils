@@ -13,7 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
-class OccurenceCounterEntry {
+public class OccurenceCounterEntry {
     public OccurenceCounter counter;
     public long lastVal;
     public long maxWidth = 0;
