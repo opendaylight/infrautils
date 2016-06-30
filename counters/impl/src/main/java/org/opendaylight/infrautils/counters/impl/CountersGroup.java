@@ -16,9 +16,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
-
 import org.opendaylight.infrautils.utils.types.UnsignedLong;
-
 
 @SuppressWarnings("serial")
 public class CountersGroup implements Serializable {
