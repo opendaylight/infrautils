@@ -1,0 +1,42 @@
+module rpcsample {
+
+    namespace "urn:opendaylight:infrautils:rpcsample";
+    prefix rpcsample;
+
+
+    revision "2016-07-03" {
+        description "Sample for MDSAL RPCs using async infrastructure";
+    }
+    
+    rpc sync-rpc-call {
+        output {
+            leaf sync-value {
+                type string;
+                description "The value of the Sync RPC result";
+            }
+        }
+    }
+    
+    rpc async-rpc-call {
+        output {
+            leaf async-value {
+                type string;
+                description "The value of the Async RPC result";
+            }
+        }
+    }
+    
+    notification sync-notification-example {
+        leaf sync-value {
+            type string;
+            description "The value of the result.";
+        }
+    }
+    
+    notification async-notification-example {
+        leaf async-value {
+            type string;
+            description "The value of the result.";
+        }
+    }
+}

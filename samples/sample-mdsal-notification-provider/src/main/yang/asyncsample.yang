@@ -1,0 +1,24 @@
+module asyncsample {
+
+    namespace "urn:opendaylight:infrautils:asyncsample";
+    prefix async;
+
+
+    revision "2016-07-03" {
+        description "Sample for async infrastructure using MDSAL";
+    }
+    
+    notification sync-notification-example {
+        leaf sync-value {
+            type string;
+            description "The value of the result.";
+        }
+    }
+    
+    notification async-notification-example {
+        leaf async-value {
+            type string;
+            description "The value of the result.";
+        }
+    }
+}

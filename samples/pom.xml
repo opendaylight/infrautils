@@ -23,6 +23,8 @@
     <modules>
         <module>sample-counters</module>
         <module>sample-async</module>
+        <module>sample-mdsal-notification-provider</module>
+        <module>sample-mdsal-notification-consumer</module>
     </modules>
 
   <!--
