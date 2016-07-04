@@ -31,11 +31,6 @@ public class AsyncMain {
     }
 
     public void initialize() {
-        try {
-            System.out.println("Async init called");
-        } catch (Exception e) {
-            logger.error(e.getMessage(), e);
-        }
     }
 
     public void clean() {

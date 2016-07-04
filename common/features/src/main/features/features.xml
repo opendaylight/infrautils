@@ -5,15 +5,17 @@
 <features name="odl-infrautils-${project.version}" xmlns="http://karaf.apache.org/xmlns/features/v1.2.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://karaf.apache.org/xmlns/features/v1.2.0 http://karaf.apache.org/xmlns/features/v1.2.0">
-    <feature name='odl-infrautils-all-with-samples' version='${project.version}'
-        description='OpenDaylight :: Infrautils :: All with Samples'>
-        <feature version='${project.version}'>odl-infrautils-all</feature>
-        <feature version='${project.version}'>odl-infrautils-counters-sample</feature>
-        <feature version='${project.version}'>odl-infrautils-async-sample</feature>
-    </feature>
+     <repository>mvn:org.opendaylight.controller/features-mdsal/{{VERSION}}/xml/features</repository>
+    <repository>mvn:org.opendaylight.mdsal.model/features-mdsal-model/{{VERSION}}/xml/features</repository>
     <feature name='odl-infrautils-all' version='${project.version}' description='OpenDaylight :: Infrautils :: All'>
         <feature version='${project.version}'>odl-infrautils-async</feature>
         <feature version='${project.version}'>odl-infrautils-inject</feature>
+    </feature>
+    <feature name='odl-infrautils-all-with-samples' version='${project.version}' description='OpenDaylight :: Infrautils :: All with Samples'>
+        <feature version='${project.version}'>odl-infrautils-all</feature>
+        <feature version='${project.version}'>odl-infrautils-counters-sample</feature>
+        <feature version='${project.version}'>odl-infrautils-async-sample</feature>
+        <feature version='${project.version}'>odl-infrautils-async-mdsal-sample</feature>
     </feature>
     <feature name='odl-infrautils-counters' version='${project.version}'
         description='OpenDaylight :: Infrautils :: Counters'>
@@ -21,6 +23,7 @@
         <bundle>mvn:org.opendaylight.infrautils/counters-impl/{{VERSION}}</bundle>
         <bundle>mvn:org.opendaylight.infrautils/infrautils-util/{{VERSION}}</bundle>
         <bundle>mvn:org.apache.commons/commons-lang3/3.1</bundle>
+        <bundle>mvn:com.google.guava/guava/18.0</bundle>
         <configfile finalname="etc/org.opendaylight.counters.cfg">mvn:org.opendaylight.infrautils/counters-impl/{{VERSION}}/cfg/countersconf/</configfile>
     </feature>
     <feature name='odl-infrautils-async' version='${project.version}'
@@ -35,8 +38,8 @@
         <feature version='${project.version}'>odl-infrautils-counters</feature>
         <bundle>mvn:org.opendaylight.infrautils/samples-counters-impl/{{VERSION}}</bundle>
     </feature>
-        <feature name='odl-infrautils-async-sample' version='${project.version}'
-        description='OpenDaylight :: Infrautils :: Async Infrasturcture Sample'>
+    <feature name='odl-infrautils-async-sample' version='${project.version}'
+        description='OpenDaylight :: Infrautils :: Async Basic Infrasturcture Sample'>
         <feature version='${project.version}'>odl-infrautils-async</feature>
         <bundle>mvn:org.opendaylight.infrautils/samples-async-impl/{{VERSION}}</bundle>
     </feature>
@@ -44,5 +47,12 @@
         description='OpenDaylight :: Infrautils :: @Inject'>
         <bundle>mvn:org.opendaylight.infrautils/inject/{{VERSION}}</bundle>
         <bundle>wrap:mvn:javax.inject/javax.inject/{{VERSION}}</bundle>
+    </feature>
+    <feature name='odl-infrautils-async-mdsal-sample' version='${project.version}'
+        description='OpenDaylight :: Infrautils :: Async MD-SAL Infrasturcture Sample'>
+        <feature version='${mdsal.version}'>odl-mdsal-broker</feature>
+        <feature version='${project.version}'>odl-infrautils-async</feature>
+        <bundle>mvn:org.opendaylight.infrautils/samples-async-mdsal-consumer/{{VERSION}}</bundle>
+        <bundle>mvn:org.opendaylight.infrautils/samples-async-mdsal-provider/{{VERSION}}</bundle>
     </feature>
 </features>
