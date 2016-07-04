@@ -8,24 +8,21 @@
 
 package org.opendaylight.infrautils.async.impl;
 
+import com.google.common.util.concurrent.SettableFuture;
 import java.lang.reflect.Method;
+import java.util.concurrent.Future;
 
 public class MethodCallMessage {
     Method method;
     Object[] args;
+    SettableFuture<Object> result;
 
     public MethodCallMessage(Method method, Object... args) {
         this.method = method;
         this.args = args;
+
+        if (method.getReturnType().equals(Future.class)) {
+            result = SettableFuture.create();
+        }
     }
-
-    public Method getMethod() {
-        return method;
-    }
-
-    public Object[] getArgs() {
-        return args;
-    }
-
-
 }

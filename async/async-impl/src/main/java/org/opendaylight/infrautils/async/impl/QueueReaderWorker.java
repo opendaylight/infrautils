@@ -10,10 +10,11 @@ package org.opendaylight.infrautils.async.impl;
 
 import java.util.Arrays;
 import java.util.Queue;
-
-import org.opendaylight.infrautils.async.api.IWorker;
+import java.util.concurrent.Future;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.opendaylight.infrautils.async.api.IWorker;
+
 
 public class QueueReaderWorker implements IWorker {
     protected static final Logger logger = LoggerFactory.getLogger(QueueReaderWorker.class);
@@ -26,6 +27,7 @@ public class QueueReaderWorker implements IWorker {
         this.theInstance = theInstance;
     }
 
+    @SuppressWarnings("rawtypes")
     public void work() {
         MethodCallMessage msg = null;
         msg = queue.poll();
@@ -39,7 +41,10 @@ public class QueueReaderWorker implements IWorker {
         }
 
         try {
-            msg.method.invoke(theInstance, msg.args);
+            Object retVal = msg.method.invoke(theInstance, msg.args);
+            if (retVal != null && retVal instanceof Future) {
+                msg.result.set(((Future) retVal).get());
+            }
         } catch (Throwable t) {
             logger.error(t.getMessage() + " while executing " + msg.method + " on "
                     + theInstance.getClass().getSimpleName());
