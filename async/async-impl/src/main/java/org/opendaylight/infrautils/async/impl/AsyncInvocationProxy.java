@@ -116,7 +116,7 @@ public class AsyncInvocationProxy extends AbstractInvocationHandler {
         addMessageToQueue(msg);
 
         schedulerService.triggerExecution(classType.getCanonicalName());
-        return null;
+        return msg.result;
     }
 
     private void addMessageToQueue(MethodCallMessage msg) {
