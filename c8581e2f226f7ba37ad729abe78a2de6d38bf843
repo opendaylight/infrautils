@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a561d44_ebaa30d3",
+        "filename": "async/impl/src/main/java/org/opendaylight/infrautils/async/impl/QueueReaderWorker.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2016-07-05T09:42:52Z",
+      "side": 1,
+      "message": "redundant null check",
+      "revId": "c8581e2f226f7ba37ad729abe78a2de6d38bf843",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a561d44_abd5d844",
+        "filename": "common/features/src/main/features/features.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2016-07-05T09:42:52Z",
+      "side": 1,
+      "message": "this version should be moved to somewhere common",
+      "revId": "c8581e2f226f7ba37ad729abe78a2de6d38bf843",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
