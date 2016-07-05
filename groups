@@ -1,4 +1,5 @@
 # UUID                                                               	Group Name
 #
 c9025ab9ddc1e3171919e085449f22c54f8f7b54                             	GitHub Replication
+ldap:cn=ci-infrautils,ou=Groups,dc=opendaylight,dc=org               	ldap/ci-infrautils
 ldap:cn=gerrit-infrautils-committers,ou=Groups,dc=opendaylight,dc=org	ldap/gerrit-infrautils-committers
