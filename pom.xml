@@ -10,6 +10,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
+
+da
+
     <parent>
       <groupId>org.opendaylight.odlparent</groupId>
    <!--   <artifactId>odlparent-lite</artifactId>-->
@@ -26,6 +29,7 @@
     <packaging>pom</packaging>
 
     <scm>
+
         <connection>scm:git:ssh://git.opendaylight.org:29418/infrautils.git</connection>
         <developerConnection>scm:git:ssh://git.opendaylight.org:29418/infrautils.git</developerConnection>
         <url>https://wiki.opendaylight.org/view/Infrastructure_Utilities:Main</url>
