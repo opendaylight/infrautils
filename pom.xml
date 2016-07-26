@@ -15,7 +15,7 @@ da
 
     <parent>
       <groupId>org.opendaylight.odlparent</groupId>
-   <!--   <artifactId>odlparent-lite</artifactId>-->
+   <!-- another change  <artifactId>odlparent-lite</artifactId>-->
         <artifactId>odlparent-lite</artifactId>
       <version>1.7.0-SNAPSHOT</version>
       <relativePath/>
