@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9a561d44_0991f9f0",
+        "filename": "common/parent/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 6248
+      },
+      "writtenOn": "2016-07-28T12:17:33Z",
+      "side": 1,
+      "message": "Yes, but out parent is odlparent-lite that doesn\u0027t not include it.",
+      "parentUuid": "9a561d44_09745934",
+      "range": {
+        "startLine": 26,
+        "startChar": 2,
+        "endLine": 26,
+        "endChar": 36
+      },
+      "revId": "1e1a0924b6eda28ef0720e6b634d894990b3e2aa",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a561d44_e9700542",
         "filename": "counters/counters-api/.classpath",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2016-07-28T11:42:45Z",
       "side": 1,
       "message": "remove this file - add to .gitignore",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 1
+      },
+      "revId": "1e1a0924b6eda28ef0720e6b634d894990b3e2aa",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a561d44_491ad17d",
+        "filename": "counters/counters-api/.classpath",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 6248
+      },
+      "writtenOn": "2016-07-28T12:17:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a561d44_e9700542",
       "range": {
         "startLine": 1,
         "startChar": 0,
@@ -65,6 +113,24 @@
     },
     {
       "key": {
+        "uuid": "9a561d44_a95c4d4c",
+        "filename": "counters/counters-api/.settings/org.eclipse.core.resources.prefs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 6248
+      },
+      "writtenOn": "2016-07-28T12:17:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a561d44_8997c939",
+      "revId": "1e1a0924b6eda28ef0720e6b634d894990b3e2aa",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a561d44_699cf55d",
         "filename": "counters/counters-api/.settings/org.eclipse.jdt.core.prefs",
         "patchSetId": 1
@@ -76,6 +142,24 @@
       "writtenOn": "2016-07-28T11:42:45Z",
       "side": 1,
       "message": "same as previous file",
+      "revId": "1e1a0924b6eda28ef0720e6b634d894990b3e2aa",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a561d44_893989f4",
+        "filename": "counters/counters-api/.settings/org.eclipse.jdt.core.prefs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 6248
+      },
+      "writtenOn": "2016-07-28T12:17:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a561d44_699cf55d",
       "revId": "1e1a0924b6eda28ef0720e6b634d894990b3e2aa",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -99,6 +183,24 @@
     },
     {
       "key": {
+        "uuid": "9a561d44_a923adbb",
+        "filename": "counters/counters-api/.settings/org.eclipse.m2e.core.prefs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 6248
+      },
+      "writtenOn": "2016-07-28T12:17:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a561d44_a9a1ed95",
+      "revId": "1e1a0924b6eda28ef0720e6b634d894990b3e2aa",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a561d44_c9d261ff",
         "filename": "counters/counters-api/pom.xml",
         "patchSetId": 1
@@ -110,6 +212,24 @@
       "writtenOn": "2016-07-28T11:42:45Z",
       "side": 1,
       "message": "please check tabbing",
+      "revId": "1e1a0924b6eda28ef0720e6b634d894990b3e2aa",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a561d44_2c54cbfd",
+        "filename": "counters/counters-api/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 6248
+      },
+      "writtenOn": "2016-07-28T12:17:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a561d44_c9d261ff",
       "revId": "1e1a0924b6eda28ef0720e6b634d894990b3e2aa",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
