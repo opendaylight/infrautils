@@ -16,6 +16,7 @@
     </feature>
     <feature name='odl-infrautils-counters' version='${project.version}'
         description='OpenDaylight :: Infrautils :: Counters'>
+        <bundle>mvn:org.opendaylight.infrautils/counters-api/{{VERSION}}</bundle>
         <bundle>mvn:org.opendaylight.infrautils/counters-impl/{{VERSION}}</bundle>
         <bundle>mvn:org.opendaylight.infrautils/infrautils-util/{{VERSION}}</bundle>
         <bundle>mvn:org.apache.commons/commons-lang3/3.1</bundle>

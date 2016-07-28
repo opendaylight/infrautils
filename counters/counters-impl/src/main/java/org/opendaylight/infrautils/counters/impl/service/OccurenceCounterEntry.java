@@ -8,7 +8,7 @@
 
 package org.opendaylight.infrautils.counters.impl.service;
 
-import org.opendaylight.infrautils.counters.impl.OccurenceCounter;
+import org.opendaylight.infrautils.counters.api.OccurenceCounter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

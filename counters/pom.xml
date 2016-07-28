@@ -21,7 +21,8 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>impl</module>
+        <module>counters-impl</module>
+        <module>counters-api</module>
     </modules>
 
   <!--

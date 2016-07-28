@@ -34,41 +34,46 @@
 		<dependency>
 			<groupId>org.opendaylight.infrautils</groupId>
 			<artifactId>async-impl</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
+			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.opendaylight.infrautils</groupId>
 			<artifactId>infrautils-util</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.opendaylight.infrautils</groupId>
+			<artifactId>counters-api</artifactId>
+			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.opendaylight.infrautils</groupId>
 			<artifactId>counters-impl</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
+			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.opendaylight.infrautils</groupId>
 			<artifactId>counters-impl</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
+			<version>${project.version}</version>
 			<type>cfg</type>
 			<classifier>countersconf</classifier>
 		</dependency>
 		<dependency>
 			<groupId>org.opendaylight.infrautils</groupId>
 			<artifactId>async-impl</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
+			<version>${project.version}</version>
 			<type>cfg</type>
 			<classifier>asyncconf</classifier>
 		</dependency>
         <dependency>
             <groupId>org.opendaylight.infrautils</groupId>
             <artifactId>samples-counters-impl</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.opendaylight.infrautils</groupId>
             <artifactId>samples-async-impl</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
 	</dependencies>
 
