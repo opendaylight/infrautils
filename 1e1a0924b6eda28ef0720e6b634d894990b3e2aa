@@ -1,0 +1,141 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a561d44_09745934",
+        "filename": "common/parent/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 4039
+      },
+      "writtenOn": "2016-07-28T11:42:45Z",
+      "side": 1,
+      "message": "Does odlparent contain this version/property?",
+      "range": {
+        "startLine": 26,
+        "startChar": 2,
+        "endLine": 26,
+        "endChar": 36
+      },
+      "revId": "1e1a0924b6eda28ef0720e6b634d894990b3e2aa",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a561d44_e9700542",
+        "filename": "counters/counters-api/.classpath",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 4039
+      },
+      "writtenOn": "2016-07-28T11:42:45Z",
+      "side": 1,
+      "message": "remove this file - add to .gitignore",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 1
+      },
+      "revId": "1e1a0924b6eda28ef0720e6b634d894990b3e2aa",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a561d44_8997c939",
+        "filename": "counters/counters-api/.settings/org.eclipse.core.resources.prefs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 4039
+      },
+      "writtenOn": "2016-07-28T11:42:45Z",
+      "side": 1,
+      "message": "same as previous file",
+      "revId": "1e1a0924b6eda28ef0720e6b634d894990b3e2aa",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a561d44_699cf55d",
+        "filename": "counters/counters-api/.settings/org.eclipse.jdt.core.prefs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 4039
+      },
+      "writtenOn": "2016-07-28T11:42:45Z",
+      "side": 1,
+      "message": "same as previous file",
+      "revId": "1e1a0924b6eda28ef0720e6b634d894990b3e2aa",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a561d44_a9a1ed95",
+        "filename": "counters/counters-api/.settings/org.eclipse.m2e.core.prefs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 4039
+      },
+      "writtenOn": "2016-07-28T11:42:45Z",
+      "side": 1,
+      "message": "same as previous file",
+      "revId": "1e1a0924b6eda28ef0720e6b634d894990b3e2aa",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a561d44_c9d261ff",
+        "filename": "counters/counters-api/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 4039
+      },
+      "writtenOn": "2016-07-28T11:42:45Z",
+      "side": 1,
+      "message": "please check tabbing",
+      "revId": "1e1a0924b6eda28ef0720e6b634d894990b3e2aa",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a561d44_c940a1a7",
+        "filename": "samples/sample-counters/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 4039
+      },
+      "writtenOn": "2016-07-28T11:42:45Z",
+      "side": 1,
+      "message": "replace order",
+      "range": {
+        "startLine": 39,
+        "startChar": 7,
+        "endLine": 43,
+        "endChar": 21
+      },
+      "revId": "1e1a0924b6eda28ef0720e6b634d894990b3e2aa",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
