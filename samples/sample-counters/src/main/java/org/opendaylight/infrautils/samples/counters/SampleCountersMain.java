@@ -1,6 +1,6 @@
 package org.opendaylight.infrautils.samples.counters;
 
-import org.opendaylight.infrautils.counters.impl.OccurenceCounter;
+import org.opendaylight.infrautils.counters.api.OccurenceCounter;
 
 public class SampleCountersMain {
 

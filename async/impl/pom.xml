@@ -61,23 +61,23 @@
     <dependencies>
         <dependency>
             <groupId>org.opendaylight.infrautils</groupId>
-            <version>1.0.0-SNAPSHOT</version>
             <artifactId>infrautils-util</artifactId>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.opendaylight.infrautils</groupId>
-            <version>1.0.0-SNAPSHOT</version>
-            <artifactId>counters-impl</artifactId>
+            <artifactId>counters-api</artifactId>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.osgi</groupId>
             <artifactId>org.osgi.core</artifactId>
-            <version>5.0.0</version>
+            <version>${osgi.version}</version>
         </dependency>
         <dependency>
             <groupId>org.osgi</groupId>
             <artifactId>org.osgi.enterprise</artifactId>
-            <version>5.0.0</version>
+            <version>${osgi.version}</version>
         </dependency>
     </dependencies>
 </project>
