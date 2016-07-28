@@ -5,7 +5,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
-import org.opendaylight.infrautils.counters.impl.OccurenceCounter;
+import org.opendaylight.infrautils.counters.api.OccurenceCounter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

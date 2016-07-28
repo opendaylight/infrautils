@@ -1,1 +1,7 @@
 target/
+*.class
+.settings
+.project
+.classpath
+.checkstyle
+MANIFEST.MF
