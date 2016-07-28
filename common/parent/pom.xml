@@ -23,6 +23,7 @@
 	<name>infrautils</name> <!-- Used by Sonar to set project name -->
 	<properties>
 		<junit.version>4.11</junit.version>
+		<osgi.core.version>5.0.0</osgi.core.version>
 	</properties>
 	<scm>
 		<connection>scm:git:ssh://git.opendaylight.org:29418/infrautils.git</connection>

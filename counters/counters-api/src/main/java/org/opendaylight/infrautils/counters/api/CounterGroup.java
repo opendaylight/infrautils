@@ -6,7 +6,7 @@
  * and is available at http://www.eclipse.org/legal/epl-v10.html
  */
 
-package org.opendaylight.infrautils.counters.impl;
+package org.opendaylight.infrautils.counters.api;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
