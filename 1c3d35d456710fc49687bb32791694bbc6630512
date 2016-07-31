@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9a561d44_31bed765",
+        "filename": "async/async-impl/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 4039
+      },
+      "writtenOn": "2016-07-31T15:04:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a561d44_11bd93b7",
+      "range": {
+        "startLine": 81,
+        "startChar": 3,
+        "endLine": 81,
+        "endChar": 41
+      },
+      "revId": "1c3d35d456710fc49687bb32791694bbc6630512",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a561d44_d1be7bad",
         "filename": "counters/counters-api/pom.xml",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2016-07-31T14:06:55Z",
       "side": 1,
       "message": "should add ${osgi.core.version}",
+      "range": {
+        "startLine": 40,
+        "startChar": 3,
+        "endLine": 40,
+        "endChar": 41
+      },
+      "revId": "1c3d35d456710fc49687bb32791694bbc6630512",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a561d44_11c3d3ed",
+        "filename": "counters/counters-api/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 4039
+      },
+      "writtenOn": "2016-07-31T15:04:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a561d44_d1be7bad",
       "range": {
         "startLine": 40,
         "startChar": 3,
