@@ -2,6 +2,8 @@ package org.opendaylight.infrautils.async.impl;
 
 import java.util.Arrays;
 import java.util.Queue;
+
+import org.opendaylight.infrautils.async.api.IWorker;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

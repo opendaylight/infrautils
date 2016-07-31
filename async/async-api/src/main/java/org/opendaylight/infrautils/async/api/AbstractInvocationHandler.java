@@ -1,4 +1,4 @@
-package org.opendaylight.infrautils.async.impl;
+package org.opendaylight.infrautils.async.api;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -13,7 +13,7 @@ public abstract class AbstractInvocationHandler implements InvocationHandler {
         hashValue = hashCodeCounter.getAndIncrement();
     }
 
-    abstract Object doInvoke(Object proxy, Method method, Object[] args) throws Throwable;
+    public abstract Object doInvoke(Object proxy, Method method, Object[] args) throws Throwable;
 
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         if ("hashCode".equals(method.getName())) {

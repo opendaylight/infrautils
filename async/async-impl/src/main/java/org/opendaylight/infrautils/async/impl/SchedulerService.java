@@ -5,6 +5,10 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
+
+import org.opendaylight.infrautils.async.api.IAsyncConfig;
+import org.opendaylight.infrautils.async.api.ISchedulerService;
+import org.opendaylight.infrautils.async.api.IWorker;
 import org.opendaylight.infrautils.counters.api.OccurenceCounter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,9 +24,9 @@ public class SchedulerService implements ISchedulerService {
     private final Map<String, ScheduledThreadPoolExecutor> poolNameToExecutor;
     private final Map<String, PoolData> identifierToPoolData;
     private final Map<String, ScheduledFuture<?>> identifierToTaskReference;
-    private AsyncConfig config;
+    private IAsyncConfig config;
 
-    public SchedulerService(AsyncConfig config) {
+    public SchedulerService(IAsyncConfig config) {
         poolNameToExecutor = new ConcurrentHashMap<>();
         identifierToPoolData = new ConcurrentHashMap<>();
         identifierToTaskReference = new ConcurrentHashMap<>();

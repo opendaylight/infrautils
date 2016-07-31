@@ -1,4 +1,4 @@
-package org.opendaylight.infrautils.async.impl;
+package org.opendaylight.infrautils.async.api;
 
 public interface IAsyncConfig {
     public static final String CONFIG_POOL_NAME = "pool.name";

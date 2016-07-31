@@ -1,5 +1,6 @@
 package org.opendaylight.infrautils.async.impl;
 
+import org.opendaylight.infrautils.async.api.IAsyncConfig;
 import org.osgi.framework.BundleContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,7 +9,7 @@ public class AsyncMain {
     protected static final Logger logger = LoggerFactory.getLogger(AsyncMain.class);
 
     private SchedulerService schedulerService;
-    private AsyncConfig config;
+    private IAsyncConfig config;
 
     public AsyncMain() {
         config = new AsyncConfig();
