@@ -5,10 +5,10 @@
         <groupId>org.opendaylight.odlparent</groupId>
         <artifactId>odlparent</artifactId>
         <version>1.7.0-SNAPSHOT</version>
-        <relativePath/>
+    <relativePath/>
     </parent>
-    <artifactId>async-impl</artifactId>
     <groupId>org.opendaylight.infrautils</groupId>
+    <artifactId>async-impl</artifactId>
     <packaging>bundle</packaging>
     <modelVersion>4.0.0</modelVersion>
     <version>1.0.0-SNAPSHOT</version>
@@ -63,6 +63,11 @@
     <dependencies>
         <dependency>
             <groupId>org.opendaylight.infrautils</groupId>
+            <artifactId>async-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.opendaylight.infrautils</groupId>
             <artifactId>infrautils-util</artifactId>
             <version>${project.version}</version>
         </dependency>
@@ -74,7 +79,6 @@
         <dependency>
             <groupId>org.osgi</groupId>
             <artifactId>org.osgi.core</artifactId>
-            <version>${osgi.core.version}</version>
         </dependency>
         <dependency>
             <groupId>org.osgi</groupId>

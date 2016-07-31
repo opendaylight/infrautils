@@ -6,7 +6,7 @@
  * and is available at http://www.eclipse.org/legal/epl-v10.html
  */
 
-package org.opendaylight.infrautils.async.impl;
+package org.opendaylight.infrautils.async.api;
 
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
