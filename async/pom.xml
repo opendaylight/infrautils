@@ -21,7 +21,8 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>impl</module>
+        <module>async-api</module>
+        <module>async-impl</module>
     </modules>
 
   <!--

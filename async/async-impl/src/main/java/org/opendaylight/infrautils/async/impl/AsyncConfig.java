@@ -11,6 +11,7 @@ package org.opendaylight.infrautils.async.impl;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
+import org.opendaylight.infrautils.async.api.IAsyncConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
