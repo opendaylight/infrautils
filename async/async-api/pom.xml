@@ -8,7 +8,7 @@
         <relativePath/>
     </parent>
     <groupId>org.opendaylight.infrautils</groupId>
-    <artifactId>samples-async-impl</artifactId>
+    <artifactId>async-api</artifactId>
     <packaging>bundle</packaging>
     <modelVersion>4.0.0</modelVersion>
     <version>1.0.0-SNAPSHOT</version>
@@ -19,6 +19,11 @@
                 <artifactId>maven-bundle-plugin</artifactId>
                 <extensions>true</extensions>
                 <configuration>
+                    <instructions>
+                        <Export-Package>
+                            org.opendaylight.infrautils.async.api
+                        </Export-Package>
+                    </instructions>
                     <manifestLocation>${project.basedir}/src/main/resources/META-INF</manifestLocation>
                 </configuration>
             </plugin>
@@ -35,16 +40,6 @@
     <dependencies>
         <dependency>
             <groupId>org.opendaylight.infrautils</groupId>
-            <artifactId>async-api</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.opendaylight.infrautils</groupId>
-            <artifactId>async-impl</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.opendaylight.infrautils</groupId>
             <artifactId>infrautils-util</artifactId>
             <version>${project.version}</version>
         </dependency>
@@ -56,6 +51,7 @@
         <dependency>
             <groupId>org.osgi</groupId>
             <artifactId>org.osgi.core</artifactId>
+            <version>${osgi.core.version}</version>
         </dependency>
         <dependency>
             <groupId>org.osgi</groupId>
