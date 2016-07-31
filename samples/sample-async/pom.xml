@@ -35,6 +35,16 @@
     <dependencies>
         <dependency>
             <groupId>org.opendaylight.infrautils</groupId>
+            <artifactId>async-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.opendaylight.infrautils</groupId>
+            <artifactId>async-impl</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.opendaylight.infrautils</groupId>
             <artifactId>infrautils-util</artifactId>
             <version>${project.version}</version>
         </dependency>
@@ -44,14 +54,8 @@
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.opendaylight.infrautils</groupId>
-            <artifactId>async-impl</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
             <groupId>org.osgi</groupId>
             <artifactId>org.osgi.core</artifactId>
-            <version>${osgi.core.version}</version>
         </dependency>
         <dependency>
             <groupId>org.osgi</groupId>
