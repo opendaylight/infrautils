@@ -15,6 +15,10 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
+
+import org.opendaylight.infrautils.async.api.AbstractInvocationHandler;
+import org.opendaylight.infrautils.async.api.IAsyncConfig;
+import org.opendaylight.infrautils.async.api.ISchedulerService;
 import org.opendaylight.infrautils.counters.api.OccurenceCounter;
 import org.osgi.framework.BundleContext;
 import org.slf4j.Logger;
