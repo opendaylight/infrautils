@@ -7,7 +7,8 @@
                 <version>1.7.0-SNAPSHOT</version>
                 <relativePath/>
         </parent>
-        <artifactId>counters-api</artifactId>
+	<groupId>org.opendaylight.infrautils</groupId>
+	<artifactId>counters-api</artifactId>
         <packaging>bundle</packaging>
         <modelVersion>4.0.0</modelVersion>
         <version>1.0.0-SNAPSHOT</version>
@@ -36,13 +37,13 @@
                 </dependency>
                 <dependency>
                         <groupId>org.osgi</groupId>
-                        <artifactId>org.osgi.core</artifactId>
-                        <version>${osgi.core.version}</version>
+			<artifactId>org.osgi.core</artifactId>
+			<version>${osgi.core.version}</version>
                 </dependency>
                 <dependency>
                         <groupId>org.osgi</groupId>
-                        <artifactId>org.osgi.enterprise</artifactId>
-                        <version>${osgi.core.version}</version>
-                </dependency>
+			<artifactId>org.osgi.enterprise</artifactId>
+			<version>${osgi.core.version}</version>
+		</dependency>
         </dependencies>
 </project>

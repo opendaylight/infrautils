@@ -17,6 +17,7 @@
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
+    <groupId>org.opendaylight.infrautils</groupId>
     <artifactId>infrautils-samples</artifactId>
     <packaging>pom</packaging>
 

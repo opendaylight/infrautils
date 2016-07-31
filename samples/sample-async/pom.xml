@@ -7,6 +7,7 @@
         <version>1.7.0-SNAPSHOT</version>
         <relativePath/>
     </parent>
+    <groupId>org.opendaylight.infrautils</groupId>
     <artifactId>samples-async-impl</artifactId>
     <packaging>bundle</packaging>
     <modelVersion>4.0.0</modelVersion>
