@@ -42,6 +42,30 @@
     },
     {
       "key": {
+        "uuid": "7a6b29fe_df2bd792",
+        "filename": "common/features/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 4039
+      },
+      "writtenOn": "2016-08-01T14:38:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a561d44_d67b11bc",
+      "range": {
+        "startLine": 5,
+        "startChar": 4,
+        "endLine": 5,
+        "endChar": 12
+      },
+      "revId": "c8581e2f226f7ba37ad729abe78a2de6d38bf843",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a561d44_364c0d9e",
         "filename": "common/features/src/main/features/features.xml",
         "patchSetId": 2
@@ -53,6 +77,30 @@
       "writtenOn": "2016-07-31T11:21:46Z",
       "side": 1,
       "message": "in general, not sure why counters and async are contained in a single feature. I would expect two separated features or at least give the single feature a more general name",
+      "range": {
+        "startLine": 21,
+        "startChar": 4,
+        "endLine": 21,
+        "endChar": 68
+      },
+      "revId": "c8581e2f226f7ba37ad729abe78a2de6d38bf843",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a6b29fe_1f1d4f74",
+        "filename": "common/features/src/main/features/features.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 4039
+      },
+      "writtenOn": "2016-08-01T14:38:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a561d44_364c0d9e",
       "range": {
         "startLine": 21,
         "startChar": 4,
@@ -82,6 +130,24 @@
     },
     {
       "key": {
+        "uuid": "7a6b29fe_7f128363",
+        "filename": "common/features/src/main/features/features.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 4039
+      },
+      "writtenOn": "2016-08-01T14:38:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a561d44_abd5d844",
+      "revId": "c8581e2f226f7ba37ad729abe78a2de6d38bf843",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a561d44_d652f133",
         "filename": "common/karaf/pom.xml",
         "patchSetId": 2
@@ -93,6 +159,30 @@
       "writtenOn": "2016-07-31T11:21:46Z",
       "side": 1,
       "message": "...",
+      "range": {
+        "startLine": 3,
+        "startChar": 19,
+        "endLine": 3,
+        "endChar": 55
+      },
+      "revId": "c8581e2f226f7ba37ad729abe78a2de6d38bf843",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a6b29fe_9f083f2f",
+        "filename": "common/karaf/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 4039
+      },
+      "writtenOn": "2016-08-01T14:38:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a561d44_d652f133",
       "range": {
         "startLine": 3,
         "startChar": 19,
@@ -128,6 +218,30 @@
     },
     {
       "key": {
+        "uuid": "7a6b29fe_4aff0302",
+        "filename": "samples/sample-mdsal-notification-consumer/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 4039
+      },
+      "writtenOn": "2016-08-01T14:38:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a561d44_16510936",
+      "range": {
+        "startLine": 38,
+        "startChar": 12,
+        "endLine": 38,
+        "endChar": 45
+      },
+      "revId": "c8581e2f226f7ba37ad729abe78a2de6d38bf843",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a561d44_76420569",
         "filename": "samples/sample-mdsal-notification-consumer/src/main/java/org/opendaylight/infrautils/samples/asyncmdsal/consumer/SampleMdsalAsyncNotificationConsumerMain.java",
         "patchSetId": 2
@@ -151,6 +265,30 @@
     },
     {
       "key": {
+        "uuid": "7a6b29fe_8a091b2f",
+        "filename": "samples/sample-mdsal-notification-consumer/src/main/java/org/opendaylight/infrautils/samples/asyncmdsal/consumer/SampleMdsalAsyncNotificationConsumerMain.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 4039
+      },
+      "writtenOn": "2016-08-01T14:38:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a561d44_76420569",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 3
+      },
+      "revId": "c8581e2f226f7ba37ad729abe78a2de6d38bf843",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a561d44_1638e9ed",
         "filename": "samples/sample-mdsal-notification-provider/src/main/yang/asyncsample.yang",
         "patchSetId": 2
@@ -162,6 +300,30 @@
       "writtenOn": "2016-07-31T11:21:46Z",
       "side": 1,
       "message": "should add copyrights\nin order to avoid these issues, I added checkstyle verification in our builds",
+      "range": {
+        "startLine": 8,
+        "startChar": 20,
+        "endLine": 8,
+        "endChar": 65
+      },
+      "revId": "c8581e2f226f7ba37ad729abe78a2de6d38bf843",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a6b29fe_6a0e3f36",
+        "filename": "samples/sample-mdsal-notification-provider/src/main/yang/asyncsample.yang",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 4039
+      },
+      "writtenOn": "2016-08-01T14:38:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a561d44_1638e9ed",
       "range": {
         "startLine": 8,
         "startChar": 20,
