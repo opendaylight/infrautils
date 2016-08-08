@@ -25,12 +25,14 @@
     <name>infrautils</name> <!-- Used by Sonar to set project name -->
     <packaging>pom</packaging>
 
+
     <scm>
         <connection>scm:git:ssh://git.opendaylight.org:29418/infrautils.git</connection>
         <developerConnection>scm:git:ssh://git.opendaylight.org:29418/infrautils.git</developerConnection>
         <url>https://wiki.opendaylight.org/view/Infrastructure_Utilities:Main</url>
         <tag>HEAD</tag>
     </scm>
+
 
     <modules>
         <module>common</module>
