@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "7a6b29fe_5769f9bc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2016-08-23T16:37:27Z",
+      "side": 1,
+      "message": "It\u0027s fine - I just wasn\u0027t familiar with the purpose of infrautils. Sounds like it\u0027s intended for general, reusable util code? Prior, we\u0027ve been using yang tools for that but this seems better.",
+      "parentUuid": "7a6b29fe_258526d0",
+      "revId": "e39948de9730214c22b26cb5a5b05558ed1da4ea",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a6b29fe_456e6297",
         "filename": "common/features/src/main/features/features.xml",
         "patchSetId": 1
