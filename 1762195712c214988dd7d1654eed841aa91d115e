@@ -16,6 +16,24 @@
       "revId": "1762195712c214988dd7d1654eed841aa91d115e",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a6b29fe_f75c85ef",
+        "filename": "inject/inject/src/main/java/org/opendaylight/infrautils/inject/LifecycleSupport.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2016-08-23T17:11:20Z",
+      "side": 1,
+      "message": "Right. (Does this sort of stuff just jump out at you, or do you use any tools which we shold propagate more? Can FindBugs spot this??) It be OK to make isRunning() sychronized as well, right?  Is one approache better than the other? Just trying to learning something myself as well.. ;-)",
+      "parentUuid": "7a6b29fe_17a7810d",
+      "revId": "1762195712c214988dd7d1654eed841aa91d115e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
