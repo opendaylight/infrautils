@@ -44,6 +44,11 @@
         </dependency>
         <dependency>
             <groupId>org.opendaylight.infrautils</groupId>
+            <artifactId>inject</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.opendaylight.infrautils</groupId>
             <artifactId>counters-api</artifactId>
             <version>${project.version}</version>
         </dependency>
