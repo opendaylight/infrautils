@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "7a6b29fe_258526d0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2016-08-23T14:52:43Z",
+      "side": 1,
+      "message": "Longer description added now, works for you?  Also check out the linked Same Topic other Gerrits - hopefully together this will make sense? \n\nPropose to the infrautils projects because... skitt suggested it here ;) and we can\u0027t think of a better place.  Note that this is technically not related to blueprint as such (there is no compile time dependency from there to anything BP related...), thus we didn\u0027t want to mix it in there, although of course we use it with BP.",
+      "parentUuid": "7a6b29fe_c508b293",
+      "revId": "e39948de9730214c22b26cb5a5b05558ed1da4ea",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a6b29fe_456e6297",
         "filename": "common/features/src/main/features/features.xml",
         "patchSetId": 1
