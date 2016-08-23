@@ -115,6 +115,24 @@
       "revId": "e39948de9730214c22b26cb5a5b05558ed1da4ea",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a6b29fe_2537e64f",
+        "filename": "inject/inject/src/main/java/org/opendaylight/infrautils/inject/Lifecycle.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2016-08-23T14:45:48Z",
+      "side": 1,
+      "message": "I\u0027ve thought about that as well before just reading your feedback here, and had already made them \"synchronized\" in Patch Set 4 (and latest/current) - does that work for you?",
+      "parentUuid": "7a6b29fe_45cdc25c",
+      "revId": "e39948de9730214c22b26cb5a5b05558ed1da4ea",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
