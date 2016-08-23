@@ -34,6 +34,24 @@
       "revId": "1762195712c214988dd7d1654eed841aa91d115e",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a6b29fe_774515b2",
+        "filename": "inject/inject/src/main/java/org/opendaylight/infrautils/inject/LifecycleSupport.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2016-08-23T18:32:43Z",
+      "side": 1,
+      "message": "I have years of experience with Java threading and concurrency - I just know what to look for - a lot of it learned the hard way :)  synchronized incurs an exclusive lock so is much more expensive than a volatile read. You can use an Atomic instead of synchronized in start/stop, either AtomicReference\u003cState\u003e or simplify to AtomicBoolean since there\u0027s only 2 states. \n\nIn the start method:\n\n  if(started.compareAndSet(false, true)) {\n      startWithException();\n      ...\n  } else {\n      LOG.warn(\"Lifecycled object already started; ignoring start()\");\n  }\n\nSimilar for stop.",
+      "parentUuid": "7a6b29fe_f75c85ef",
+      "revId": "1762195712c214988dd7d1654eed841aa91d115e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
