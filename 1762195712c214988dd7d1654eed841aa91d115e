@@ -108,6 +108,24 @@
     },
     {
       "key": {
+        "uuid": "7a6b29fe_7054fb20",
+        "filename": "inject/inject/src/main/java/org/opendaylight/infrautils/inject/LifecycleSupport.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2016-08-24T11:30:09Z",
+      "side": 1,
+      "message": "How about internalStart/internalStop? Also you probably should make start/stop final to avoid them being overridden.",
+      "parentUuid": "7a6b29fe_10df873c",
+      "revId": "1762195712c214988dd7d1654eed841aa91d115e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a6b29fe_8dab801c",
         "filename": "inject/inject/src/main/java/org/opendaylight/infrautils/inject/SingletonWithLifecycle.java",
         "patchSetId": 8
