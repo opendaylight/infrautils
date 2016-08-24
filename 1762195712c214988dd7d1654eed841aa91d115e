@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "7a6b29fe_1084a70a",
+        "filename": "inject/inject/src/main/java/org/opendaylight/infrautils/inject/LifecycleSupport.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2016-08-24T09:52:31Z",
+      "side": 1,
+      "message": "Done in Patch Set 9, can you look it over and +1 if OK?  (I went for AtomicReference instead of AtomicBoolean just on the off chance that there may be more states in the future here, or in another class inspired by this.)",
+      "parentUuid": "7a6b29fe_774515b2",
+      "revId": "1762195712c214988dd7d1654eed841aa91d115e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a6b29fe_cdbd786a",
         "filename": "inject/inject/src/main/java/org/opendaylight/infrautils/inject/LifecycleSupport.java",
         "patchSetId": 8
@@ -72,6 +90,24 @@
     },
     {
       "key": {
+        "uuid": "7a6b29fe_10df873c",
+        "filename": "inject/inject/src/main/java/org/opendaylight/infrautils/inject/LifecycleSupport.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2016-08-24T09:52:31Z",
+      "side": 1,
+      "message": "Guy, totally agree it\u0027s not optimal - do you have a concrete counter proposal suggestion how you would you name it?",
+      "parentUuid": "7a6b29fe_cdbd786a",
+      "revId": "1762195712c214988dd7d1654eed841aa91d115e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a6b29fe_8dab801c",
         "filename": "inject/inject/src/main/java/org/opendaylight/infrautils/inject/SingletonWithLifecycle.java",
         "patchSetId": 8
@@ -83,6 +119,24 @@
       "writtenOn": "2016-08-24T07:04:09Z",
       "side": 1,
       "message": "Did you verify that if you extend this class, and add @Inject on your constructor, everything still works as expected? I have some bad experience doing these things in JBoss, so it\u0027s important to verify.",
+      "revId": "1762195712c214988dd7d1654eed841aa91d115e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a6b29fe_f0e12bff",
+        "filename": "inject/inject/src/main/java/org/opendaylight/infrautils/inject/SingletonWithLifecycle.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2016-08-24T09:52:31Z",
+      "side": 1,
+      "message": "Nope, not yet.  I\u0027ll do this test ASAP as part of the https://git.opendaylight.org/gerrit/#/c/44412/ work.",
+      "parentUuid": "7a6b29fe_8dab801c",
       "revId": "1762195712c214988dd7d1654eed841aa91d115e",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
