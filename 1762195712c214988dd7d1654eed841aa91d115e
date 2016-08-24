@@ -126,6 +126,24 @@
     },
     {
       "key": {
+        "uuid": "7a6b29fe_50261fcf",
+        "filename": "inject/inject/src/main/java/org/opendaylight/infrautils/inject/LifecycleSupport.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 5703
+      },
+      "writtenOn": "2016-08-24T11:33:41Z",
+      "side": 1,
+      "message": "If the start() and stop() names are not mandatory, as they are called because of the annotations: PostConstruct, PreConstruct, you can change their names to whatever: initLifecycle/startLifecycle/infrastructureStart, and then change the current startWithException() to start().",
+      "parentUuid": "7a6b29fe_7054fb20",
+      "revId": "1762195712c214988dd7d1654eed841aa91d115e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a6b29fe_8dab801c",
         "filename": "inject/inject/src/main/java/org/opendaylight/infrautils/inject/SingletonWithLifecycle.java",
         "patchSetId": 8
