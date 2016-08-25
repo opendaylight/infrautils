@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a6b29fe_ec078f16",
+        "filename": "inject/inject/src/main/java/org/opendaylight/infrautils/inject/AbstractLifecycle.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 5703
+      },
+      "writtenOn": "2016-08-25T13:50:51Z",
+      "side": 1,
+      "message": "fix the comment, there is not more startWithException(), and you don\u0027t really have to write this because the extendor MUST implement those methods now.",
+      "revId": "2db77b0fdaa268deae7c7423c8b7712b42efba95",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
