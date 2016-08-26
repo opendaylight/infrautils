@@ -16,6 +16,24 @@
       "revId": "2db77b0fdaa268deae7c7423c8b7712b42efba95",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a6b29fe_55bf26aa",
+        "filename": "inject/inject/src/main/java/org/opendaylight/infrautils/inject/AbstractLifecycle.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2016-08-26T14:46:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a6b29fe_ec078f16",
+      "revId": "2db77b0fdaa268deae7c7423c8b7712b42efba95",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
