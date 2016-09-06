@@ -8,6 +8,8 @@
 package org.opendaylight.infrautils.inject;
 
 import java.util.concurrent.atomic.AtomicReference;
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -36,6 +38,7 @@ public abstract class AbstractLifecycle implements Lifecycle {
      * Please implement {@link #start()} instead of overriding this (here intentionally final) method.
      */
     @Override
+    @PostConstruct // NOTE: @PostConstruct is *NOT* inherited from interface, so must be here
     @SuppressWarnings("checkstyle:IllegalCatch")
     public final void init() throws ModuleSetupRuntimeException {
         if (state.compareAndSet(State.STOPPED, State.STARTED)) {
@@ -53,6 +56,7 @@ public abstract class AbstractLifecycle implements Lifecycle {
      * Please implement {@link #stop()} instead of overriding this (here intentionally final) method.
      */
     @Override
+    @PreDestroy // NOTE: @PostConstruct is *NOT* inherited from interface, so must be here
     @SuppressWarnings("checkstyle:IllegalCatch")
     public final void destroy() throws ModuleSetupRuntimeException {
         if (state.compareAndSet(State.STARTED, State.STOPPED)) {
