@@ -7,25 +7,19 @@
  */
 package org.opendaylight.infrautils.inject;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
-
 /**
  * Something which can be {@link #init()}-ialized and {@link #destroy()}-d.
  *
  * <p>Annotated so that Dependency Injection Frameworks (whichever) automatically call these methods during wiring.
  *
  * @see AbstractLifecycle
- * @see SingletonWithLifecycle
  *
  * @author Michael Vorburger
  */
 public interface Lifecycle {
 
-    @PostConstruct
     void init() throws ModuleSetupRuntimeException;
 
-    @PreDestroy
     void destroy() throws ModuleSetupRuntimeException;
 
     boolean isRunning();
