@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a6b29fe_ed23d7ba",
+        "filename": "inject/inject/src/main/java/org/opendaylight/infrautils/inject/AbstractLifecycle.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 2046
+      },
+      "writtenOn": "2016-09-09T12:52:47Z",
+      "side": 1,
+      "message": "Synchronize with https://wiki.opendaylight.org/view/BestPractices/Coding_Guidelines#IllegalThrows",
+      "range": {
+        "startLine": 31,
+        "startChar": 43,
+        "endLine": 31,
+        "endChar": 52
+      },
+      "revId": "00a6d0e2b43cdda22d18fa66c7e7a6d1a95cb463",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a6b29fe_4d2daba7",
+        "filename": "inject/inject/src/main/java/org/opendaylight/infrautils/inject/AbstractLifecycle.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 2046
+      },
+      "writtenOn": "2016-09-09T12:52:47Z",
+      "side": 1,
+      "message": "Synchronize with https://wiki.opendaylight.org/view/BestPractices/Coding_Guidelines#IllegalCatch",
+      "range": {
+        "startLine": 44,
+        "startChar": 21,
+        "endLine": 44,
+        "endChar": 30
+      },
+      "revId": "00a6d0e2b43cdda22d18fa66c7e7a6d1a95cb463",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
