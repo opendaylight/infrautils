@@ -45,6 +45,30 @@
       "revId": "00a6d0e2b43cdda22d18fa66c7e7a6d1a95cb463",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a6b29fe_ffb1be8f",
+        "filename": "inject/inject/src/main/java/org/opendaylight/infrautils/inject/AbstractLifecycle.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2016-09-19T21:04:07Z",
+      "side": 1,
+      "message": "there is already a line \"Only in lower-level \"Framework\" kind of code, catch (Exception e) is sometimes justified / required, and thus @SuppressWarnings(\"checkstyle:IllegalCatch\") acceptable.\" - fine for you?",
+      "parentUuid": "7a6b29fe_4d2daba7",
+      "range": {
+        "startLine": 44,
+        "startChar": 21,
+        "endLine": 44,
+        "endChar": 30
+      },
+      "revId": "00a6d0e2b43cdda22d18fa66c7e7a6d1a95cb463",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
