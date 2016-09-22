@@ -6,13 +6,12 @@
     <groupId>org.opendaylight.odlparent</groupId>
     <artifactId>odlparent</artifactId>
     <version>1.8.0-SNAPSHOT</version>
-    <relativePath />
+    <relativePath/>
   </parent>
 
   <groupId>org.opendaylight.infrautils</groupId>
-  <artifactId>inject</artifactId>
+  <artifactId>inject.guice.testutils</artifactId>
   <version>1.1.0-SNAPSHOT</version>
-  <packaging>bundle</packaging>
 
   <build>
     <plugins>
@@ -23,18 +22,6 @@
           <propertyExpansion>checkstyle.violationSeverity=error</propertyExpansion>
         </configuration>
       </plugin>
-      <plugin>
-        <groupId>org.apache.felix</groupId>
-        <artifactId>maven-bundle-plugin</artifactId>
-        <extensions>true</extensions>
-        <configuration>
-          <instructions>
-            <Export-Package>
-              org.opendaylight.infrautils.inject
-            </Export-Package>
-          </instructions>
-        </configuration>
-      </plugin>
     </plugins>
   </build>
 
@@ -43,15 +30,19 @@
       <groupId>javax.inject</groupId>
       <artifactId>javax.inject</artifactId>
     </dependency>
-
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.mycila.guice.extensions</groupId>
+      <artifactId>mycila-guice-jsr250</artifactId>
+      <scope>compile</scope>
     </dependency>
     <dependency>
         <groupId>com.google.truth</groupId>
         <artifactId>truth</artifactId>
     </dependency>
   </dependencies>
-
 </project>

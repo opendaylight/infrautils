@@ -24,6 +24,7 @@
 
   <modules>
     <module>inject</module>
+    <module>inject-guice-testutils</module>
   </modules>
 
   <!--
