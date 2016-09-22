@@ -69,6 +69,30 @@
       "revId": "00a6d0e2b43cdda22d18fa66c7e7a6d1a95cb463",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a6b29fe_467b9ebd",
+        "filename": "inject/inject/src/main/java/org/opendaylight/infrautils/inject/AbstractLifecycle.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 2046
+      },
+      "writtenOn": "2016-09-22T14:20:26Z",
+      "side": 1,
+      "message": "I am not an expert, but I imagine \"lower-level framework\" means something like \"a generic framework with pluggable low-level implementations, where unconditional Exception translation is less evil that requiring every plugin to translate their Exceptions by itself\".\nThe original line could be more verbose, is what I am saying.\n\nBut in this case, I am not sure implementations of start() and stop() are really so precious they cannot be bothered to catch their OwnExceptions and throw ModuleSetupRuntimeException.\n\nOr is the intent to assure no Exception has worse consequences than ModuleSetupRuntimeException?",
+      "parentUuid": "7a6b29fe_ffb1be8f",
+      "range": {
+        "startLine": 44,
+        "startChar": 21,
+        "endLine": 44,
+        "endChar": 30
+      },
+      "revId": "00a6d0e2b43cdda22d18fa66c7e7a6d1a95cb463",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
