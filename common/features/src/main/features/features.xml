@@ -11,6 +11,12 @@
         <feature version='${project.version}'>odl-infrautils-async</feature>
         <feature version='${project.version}'>odl-infrautils-inject</feature>
     </feature>
+    <feature name='odl-infrautils-all-with-samples' version='${project.version}' description='OpenDaylight :: Infrautils :: All with Samples'>
+        <feature version='${project.version}'>odl-infrautils-all</feature>
+        <feature version='${project.version}'>odl-infrautils-counters-sample</feature>
+        <feature version='${project.version}'>odl-infrautils-async-sample</feature>
+        <feature version='${project.version}'>odl-infrautils-async-mdsal-sample</feature>
+    </feature>
     <feature name='odl-infrautils-counters' version='${project.version}'
         description='OpenDaylight :: Infrautils :: Counters'>
         <bundle>mvn:org.opendaylight.infrautils/counters-api/{{VERSION}}</bundle>
@@ -44,7 +50,7 @@
     </feature>
     <feature name='odl-infrautils-async-mdsal-sample' version='${project.version}'
         description='OpenDaylight :: Infrautils :: Async MD-SAL Infrasturcture Sample'>
-        <feature version='1.4.0-SNAPSHOT'>odl-mdsal-broker</feature>
+        <feature version='${mdsal.version}'>odl-mdsal-broker</feature>
         <feature version='${project.version}'>odl-infrautils-async</feature>
         <bundle>mvn:org.opendaylight.infrautils/samples-async-mdsal-consumer/{{VERSION}}</bundle>
         <bundle>mvn:org.opendaylight.infrautils/samples-async-mdsal-provider/{{VERSION}}</bundle>
