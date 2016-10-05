@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a6b29fe_561169ae",
+        "filename": "inject/inject-guice-testutils/src/main/java/org/opendaylight/infrautils/inject/guice/testutils/GuiceRule.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 5703
+      },
+      "writtenOn": "2016-10-05T15:50:39Z",
+      "side": 1,
+      "message": "Do we want the tearDown to run in finally? And wrap the preceding code with try?\nLike this example: http://www.benmccann.com/injecting-junit-tests-with-guice-rule/",
+      "revId": "9a765c694067876be20d9861a1b2206899d33393",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
