@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "7a6b29fe_56304907",
+        "filename": "common/artifacts/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 4540
+      },
+      "writtenOn": "2016-10-05T16:21:10Z",
+      "side": 1,
+      "message": "It seems a shame to me to tie this to Guice; would it make sense to think of this as a general DI-based test infrastructure module?",
+      "revId": "763a20f69ef89ad99f543ccaab417e16e156a066",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a6b29fe_3635cdf7",
         "filename": "inject/inject-guice-testutils/pom.xml",
         "patchSetId": 2
@@ -30,6 +47,23 @@
       "writtenOn": "2016-10-05T16:20:07Z",
       "side": 1,
       "message": "shouldn\u0027t you have  \u003cpackaging\u003epom\u003c/packaging\u003e",
+      "revId": "763a20f69ef89ad99f543ccaab417e16e156a066",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a6b29fe_b620bdb1",
+        "filename": "inject/inject-guice-testutils/src/main/java/org/opendaylight/infrautils/inject/guice/testutils/GuiceRule.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 4540
+      },
+      "writtenOn": "2016-10-05T16:21:10Z",
+      "side": 1,
+      "message": "Same as for the artifactId, as a user I don\u0027t care that this is Guice-based.",
       "revId": "763a20f69ef89ad99f543ccaab417e16e156a066",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
