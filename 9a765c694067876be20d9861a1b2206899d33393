@@ -16,6 +16,24 @@
       "revId": "9a765c694067876be20d9861a1b2206899d33393",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a6b29fe_f64995b8",
+        "filename": "inject/inject-guice-testutils/src/main/java/org/opendaylight/infrautils/inject/guice/testutils/GuiceRule.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2016-10-05T16:02:49Z",
+      "side": 1,
+      "message": "Yup, totally agree, that seems very sensible - done.",
+      "parentUuid": "7a6b29fe_561169ae",
+      "revId": "9a765c694067876be20d9861a1b2206899d33393",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
