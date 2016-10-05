@@ -54,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "7a6b29fe_d1d8e381",
+        "filename": "inject/inject-guice-testutils/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 3675
+      },
+      "writtenOn": "2016-10-05T16:56:40Z",
+      "side": 1,
+      "message": "Good to know about that opened ticket. TBH I doubt we will contribute this upstream maven-checkstyle-pluing. I (mis-)thought it was already there.",
+      "parentUuid": "7a6b29fe_b16d67cf",
+      "revId": "763a20f69ef89ad99f543ccaab417e16e156a066",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a6b29fe_763f45d7",
         "filename": "inject/inject-guice-testutils/pom.xml",
         "patchSetId": 2
