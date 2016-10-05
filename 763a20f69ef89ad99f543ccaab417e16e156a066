@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a6b29fe_3635cdf7",
+        "filename": "inject/inject-guice-testutils/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 3675
+      },
+      "writtenOn": "2016-10-05T16:20:07Z",
+      "side": 1,
+      "message": "missing copyright header. Could you enforce this through checkstyle? :)",
+      "revId": "763a20f69ef89ad99f543ccaab417e16e156a066",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a6b29fe_763f45d7",
+        "filename": "inject/inject-guice-testutils/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 3675
+      },
+      "writtenOn": "2016-10-05T16:20:07Z",
+      "side": 1,
+      "message": "shouldn\u0027t you have  \u003cpackaging\u003epom\u003c/packaging\u003e",
+      "revId": "763a20f69ef89ad99f543ccaab417e16e156a066",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
