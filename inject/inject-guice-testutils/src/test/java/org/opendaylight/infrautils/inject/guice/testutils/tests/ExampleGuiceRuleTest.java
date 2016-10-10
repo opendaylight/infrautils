@@ -12,11 +12,11 @@ import static com.google.common.truth.Truth.assertThat;
 import javax.inject.Inject;
 import org.junit.Rule;
 import org.junit.Test;
-import org.opendaylight.infrautils.inject.guice.testutils.GuiceModule;
+import org.opendaylight.infrautils.inject.guice.testutils.AbstractGuiceJsr250Module;
 import org.opendaylight.infrautils.inject.guice.testutils.GuiceRule;
 
 /**
- * Example Guice Test using the {@link GuiceRule} & {@link GuiceModule}.
+ * Example Guice Test using the {@link GuiceRule} & {@link AbstractGuiceJsr250Module}.
  *
  * @author Michael Vorburger
  */
@@ -24,16 +24,16 @@ public class ExampleGuiceRuleTest {
 
     public @Rule GuiceRule guice = new GuiceRule(TestModule.class);
 
-    @Inject SomeClassWithPostConstruct someClass;
+    @Inject SomeInterfaceWithPostConstruct someService;
 
     @Test public void testGuiceWithRule() {
-        assertThat(someClass.isInit).named("isInit").isTrue();
+        assertThat(someService.isInit()).named("isInit()").isTrue();
     }
 
-    public static class TestModule extends GuiceModule {
+    public static class TestModule extends AbstractGuiceJsr250Module {
         @Override
         protected void configureBindings() {
-            bind(SomeClassWithPostConstruct.class);
+            bind(SomeInterfaceWithPostConstruct.class).to(SomeClassWithPostConstruct.class);
         }
     }
 }

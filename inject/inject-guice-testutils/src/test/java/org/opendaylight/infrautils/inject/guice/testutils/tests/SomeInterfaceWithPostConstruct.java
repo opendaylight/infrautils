@@ -7,20 +7,10 @@
  */
 package org.opendaylight.infrautils.inject.guice.testutils.tests;
 
-import javax.annotation.PostConstruct;
+interface SomeInterfaceWithPostConstruct {
 
-class SomeClassWithPostConstruct implements SomeInterfaceWithPostConstruct {
+    void init();
 
-    boolean isInit = false;
+    boolean isInit();
 
-    @Override
-    @PostConstruct
-    public void init() {
-        isInit = true;
-    }
-
-    @Override
-    public boolean isInit() {
-        return isInit;
-    }
 }

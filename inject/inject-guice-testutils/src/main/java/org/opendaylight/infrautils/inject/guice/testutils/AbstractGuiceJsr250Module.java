@@ -17,12 +17,13 @@ import com.mycila.guice.ext.jsr250.Jsr250Module;
  *
  * @author Michael Vorburger
  */
-public abstract class GuiceModule extends AbstractModule {
+public abstract class AbstractGuiceJsr250Module extends AbstractModule {
 
     @Override
     protected final void configure() {
         install(new CloseableModule());
         install(new Jsr250Module());
+        configureBindings();
     }
 
     protected abstract void configureBindings();
