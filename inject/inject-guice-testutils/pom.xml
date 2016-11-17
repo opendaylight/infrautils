@@ -48,6 +48,11 @@
       <scope>compile</scope>
     </dependency>
     <dependency>
+      <groupId>com.google.inject</groupId>
+      <artifactId>guice</artifactId>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
         <groupId>com.google.truth</groupId>
         <artifactId>truth</artifactId>
     </dependency>
