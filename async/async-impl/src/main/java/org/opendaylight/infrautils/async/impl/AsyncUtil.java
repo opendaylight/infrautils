@@ -36,7 +36,9 @@ public class AsyncUtil {
             }
         }
         if (loadClass == null) {
-            logger.error("Searched all bundles but class wasn't found: " + ifaces[0].getName());
+            final String msg = "Searched all bundles but class wasn't found: " + ifaces[0].getName();
+            logger.error(msg);
+            throw new IllegalArgumentException(msg);
         }
         AsyncInvocationProxy invocationHandler = new AsyncInvocationProxy(instance);
         if (invocationHandler.getWorkMode() == AsyncInvocationProxy.WORK_MODE_IMMEDIATE) {
