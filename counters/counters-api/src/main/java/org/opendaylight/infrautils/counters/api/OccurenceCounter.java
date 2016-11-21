@@ -88,7 +88,7 @@ public class OccurenceCounter implements Comparable<OccurenceCounter> {
     public OccurenceCounter(String group, String name, String description, boolean isErasable, OccurenceCounter parent,
             boolean isLoggable, boolean isState) {
         // Adds group acronym; removes all lower case characters from group name and changes the upper case characters to lower case
-        this(group, group.replaceAll("[^A-Z]", "").toLowerCase(), name, description, isErasable, parent, true, false);
+        this(group, group.replaceAll("[^A-Z]", "").toLowerCase(), name, description, isErasable, parent, isLoggable, isState);
     }
     
     public OccurenceCounter(String group, String groupAcronym, String name, String description, boolean isErasable, OccurenceCounter parent, //
