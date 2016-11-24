@@ -10,6 +10,7 @@ package org.opendaylight.infrautils.inject.guice.testutils;
 import com.google.inject.AbstractModule;
 import com.mycila.guice.ext.closeable.CloseableModule;
 import com.mycila.guice.ext.jsr250.Jsr250Module;
+import org.opendaylight.infrautils.inject.ModuleSetupRuntimeException;
 
 /**
  * Guice module with built-in Mycila Guice Extensions for JSR-250 &amp;
@@ -20,12 +21,17 @@ import com.mycila.guice.ext.jsr250.Jsr250Module;
 public abstract class AbstractGuiceJsr250Module extends AbstractModule {
 
     @Override
+    @SuppressWarnings("checkstyle:IllegalCatch")
     protected final void configure() {
         install(new CloseableModule());
         install(new Jsr250Module());
-        configureBindings();
+        try {
+            configureBindings();
+        } catch (Exception e) {
+            throw new ModuleSetupRuntimeException(e);
+        }
     }
 
-    protected abstract void configureBindings();
+    protected abstract void configureBindings() throws Exception;
 
 }
