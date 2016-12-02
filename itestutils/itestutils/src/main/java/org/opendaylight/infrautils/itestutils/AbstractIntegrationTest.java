@@ -135,7 +135,7 @@ public abstract class AbstractIntegrationTest {
             // mavenBundle(maven("com.google.guava", "guava").versionAsInProject()),
 
             // TODO don't specify this here like this, but in pom.xml and read from there (veithen/alta ?)
-            // features(maven("org.opendaylight.infrautils","infrautils-features", "1.2.0-SNAPSHOT")
+            // features(maven("org.opendaylight.infrautils","infrautils-features", "1.3.0-SNAPSHOT")
             //        .classifier("features").type("xml"), "odl-infrautils-caches-sample"),
 
             // TODO why does this, intentionally with a bad feature name, not fail the test???
