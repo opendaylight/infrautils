@@ -1,5 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- vi: set et smarttab sw=2 tabstop=2: -->
 <!--
- Copyright (c) 2016 Red Hat, Inc. and others. All rights reserved.
+ Copyright © 2017 Red Hat, Inc. and others. All rights reserved.
 
  This program and the accompanying materials are made available under the
  terms of the Eclipse Public License v1.0 which accompanies this distribution,
@@ -13,26 +15,33 @@
     <groupId>org.opendaylight.odlparent</groupId>
     <artifactId>odlparent</artifactId>
     <version>1.8.0-SNAPSHOT</version>
-    <relativePath />
+    <relativePath>../odlparent</relativePath>
   </parent>
 
   <groupId>org.opendaylight.infrautils</groupId>
-  <artifactId>infrautils-testutils</artifactId>
+  <artifactId>caches-test</artifactId>
   <version>1.1.0-SNAPSHOT</version>
 
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-checkstyle-plugin</artifactId>
-        <configuration>
-          <propertyExpansion>checkstyle.violationSeverity=error</propertyExpansion>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
-
   <dependencies>
+    <dependency>
+      <groupId>org.opendaylight.infrautils</groupId>
+      <artifactId>caches-api</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.opendaylight.infrautils</groupId>
+      <artifactId>caches-noop-impl</artifactId>
+      <version>${project.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.opendaylight.infrautils</groupId>
+      <artifactId>infrautils-testutils</artifactId>
+      <version>${project.version}</version>
+      <scope>compile</scope>
+    </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -44,4 +53,5 @@
       <scope>compile</scope>
     </dependency>
   </dependencies>
+
 </project>
