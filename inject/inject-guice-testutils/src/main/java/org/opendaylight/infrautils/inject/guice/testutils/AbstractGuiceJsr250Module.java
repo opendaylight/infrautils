@@ -7,29 +7,20 @@
  */
 package org.opendaylight.infrautils.inject.guice.testutils;
 
-import com.google.inject.AbstractModule;
-import com.mycila.guice.ext.closeable.CloseableModule;
-import com.mycila.guice.ext.jsr250.Jsr250Module;
-import org.opendaylight.infrautils.inject.ModuleSetupRuntimeException;
-
 /**
- * Guice module with built-in Mycila Guice Extensions for JSR-250 &amp;
- * Closeable support for {@literal @}PreDestroy &amp; {@literal @}PostConstruct.
+ * Convenience Guice module support class, which installs the
+ * {@link AnnotationsModule}, and handles exceptions as the
+ * {@link AbstractCheckedModule} does.
  *
- * @author Michael Vorburger
+ * @author Michael Vorburger.ch
  */
-public abstract class AbstractGuiceJsr250Module extends AbstractModule {
+public abstract class AbstractGuiceJsr250Module extends AbstractCheckedModule {
 
     @Override
     @SuppressWarnings("checkstyle:IllegalCatch")
-    protected final void configure() throws ModuleSetupRuntimeException {
-        install(new CloseableModule());
-        install(new Jsr250Module());
-        try {
-            configureBindings();
-        } catch (Exception e) {
-            throw new ModuleSetupRuntimeException(e);
-        }
+    protected final void checkedConfigure() throws Exception {
+        install(new AnnotationsModule());
+        configureBindings();
     }
 
     protected abstract void configureBindings() throws Exception;

@@ -37,6 +37,7 @@
         <module>counters</module>
         <module>jobcoordinator</module>
         <module>inject</module>
+        <module>caches</module>
         <module>samples</module>
         <module>ready</module>
         <module>diagstatus</module>

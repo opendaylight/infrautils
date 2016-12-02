@@ -1,0 +1,25 @@
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
+
+  <!-- TODO Remove this file when migrating fully to (only) Karaf 4 -->
+
+  <reference id="cacheManagers" interface="org.opendaylight.infrautils.caches.CacheManagers"/>
+
+  <command-bundle xmlns="http://karaf.apache.org/xmlns/shell/v1.1.0">
+    <command>
+      <action class="org.opendaylight.infrautils.caches.cli.CacheListCommand" >
+        <argument ref="cacheManagers" />
+      </action>
+    </command>
+    <command>
+      <action class="org.opendaylight.infrautils.caches.cli.CacheClearCommand" >
+        <argument ref="cacheManagers" />
+      </action>
+    </command>
+    <command>
+      <action class="org.opendaylight.infrautils.caches.cli.CachePolicyCommand" >
+        <argument ref="cacheManagers" />
+      </action>
+    </command>
+  </command-bundle>
+
+</blueprint>
