@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0" xmlns:ext="http://aries.apache.org/blueprint/xmlns/blueprint-ext/v1.0.0" xmlns:tx="http://aries.apache.org/xmlns/transactions/v2.0.0" xmlns:jpa="http://aries.apache.org/xmlns/jpa/v2.0.0">
+
+  <reference id="cacheProvider" interface="org.opendaylight.infrautils.caches.CacheProvider"/>
+
+  <bean id="sampleServiceWithCachingImpl" class="org.opendaylight.infrautils.caches.sample.SampleServiceWithCachingImpl" ext:field-injection="true">
+      <argument ref="cacheProvider"/>
+  </bean>
+
+  <service ref="sampleServiceWithCachingImpl" interface="org.opendaylight.infrautils.caches.sample.SampleService"/>
+
+</blueprint>
