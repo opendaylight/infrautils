@@ -9,3 +9,5 @@ target-ide/
 MANIFEST.MF
 *.iml
 .idea
+.fbExcludeFilterFile
+.vscode/
