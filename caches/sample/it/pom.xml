@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- vi: set et smarttab sw=2 tabstop=2: -->
+<!--
+ Copyright © 2017 Red Hat, Inc. and others. All rights reserved.
+
+ This program and the accompanying materials are made available under the
+ terms of the Eclipse Public License v1.0 which accompanies this distribution,
+ and is available at http://www.eclipse.org/legal/epl-v10.html
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.opendaylight.odlparent</groupId>
+    <artifactId>bundle-parent</artifactId>
+    <version>1.8.0-SNAPSHOT</version>
+    <relativePath />
+  </parent>
+
+  <groupId>org.opendaylight.infrautils</groupId>
+  <artifactId>caches-sample-it</artifactId>
+  <version>1.1.0-SNAPSHOT</version>
+  <packaging>bundle</packaging>
+
+  <dependencies>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>caches-sample</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+<!--    
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>infrautils-features</artifactId>
+      <version>${project.version}</version>
+      <classifier>features</classifier>
+      <type>xml</type>
+    </dependency>
+ -->
+ 
+    <!-- TODO Move most of what follows into a new infrautils.testutils.it artifact we can depend on -->
+    
+    <!-- Dependencies for PAX Exam karaf container -->
+    <dependency>
+      <groupId>javax.inject</groupId>
+      <artifactId>javax.inject</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.ops4j.pax.exam</groupId>
+      <artifactId>pax-exam-container-karaf</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.ops4j.pax.exam</groupId>
+      <artifactId>pax-exam-junit4</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.ops4j.pax.url</groupId>
+      <artifactId>pax-url-aether</artifactId>
+    </dependency>
+ <!--
+    <dependency>
+        <groupId>org.apache.karaf.features</groupId>
+        <artifactId>org.apache.karaf.features.core</artifactId>
+        <version>${karaf.version}</version>
+    </dependency>
+ -->
+ 
+    <!-- Do *NOT* add a <dependency> to a Karaf distribution ZIP!!!
+         This is unnecessary, because PAX Exam anyway loads it from Maven (via PAX URL);
+         it has absolutely no value/advantage having this here; on the contrary, the disadvantages include:
+            * conceptually wrong in OSGi, the tests classpath should not have the container's code
+            * practically wrong, and screws up the test's classpath, which e.g. breaks the logging in the console/surefire
+            * every build re-downloads this huge SNAPSHOT artifact unncessarily, even if you're not running the IT
+         Thus test enforces that this is not present on the classpath:
+    <dependency>
+      <groupId>org.opendaylight.odlparent</groupId>
+      <artifactId>opendaylight-karaf-empty</artifactId>
+      <version>1.8.0-SNAPSHOT</version>
+      <type>zip</type>
+    </dependency>
+     -->
+     
+    <dependency>
+      <groupId>com.google.truth</groupId>
+      <artifactId>truth</artifactId>
+    </dependency>
+    
+    <!-- TODO remove this again, it was temporary for a quick hack / test: -->     
+    <dependency>
+      <groupId>org.apache.karaf.features</groupId>
+      <artifactId>standard</artifactId>
+      <version>4.0.7</version>
+      <classifier>features</classifier>
+      <type>xml</type>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <!-- Needed if you use versionAsInProject() -->
+        <groupId>org.apache.servicemix.tooling</groupId>
+        <artifactId>depends-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <configuration>
+          <propertyExpansion>checkstyle.violationSeverity=error</propertyExpansion>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>findbugs-maven-plugin</artifactId>
+        <configuration>
+          <failOnError>true</failOnError>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>

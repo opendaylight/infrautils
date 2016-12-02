@@ -32,6 +32,8 @@
         <module>odl-infrautils-jobcoordinator</module>
         <module>odl-infrautils-counters-sample</module>
         <module>odl-infrautils-inject</module>
+        <module>odl-infrautils-caches</module>
+        <module>odl-infrautils-caches-sample</module>
     </modules>
 
     <url>${odl.site.url}/${project.groupId}/${stream}/${project.artifactId}/</url>
