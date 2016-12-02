@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- vi: set et smarttab sw=2 tabstop=2: -->
 <!--
- Copyright © 2016 Red Hat, Inc. and others. All rights reserved.
+ Copyright © 2017 Red Hat, Inc. and others. All rights reserved.
 
  This program and the accompanying materials are made available under the
  terms of the Eclipse Public License v1.0 which accompanies this distribution,
@@ -19,15 +19,20 @@
   </parent>
 
   <groupId>org.opendaylight.infrautils</groupId>
-  <artifactId>inject-aggregator</artifactId>
+  <artifactId>caches-aggregator</artifactId>
   <packaging>pom</packaging>
-  <!-- <name> formatting is used by autorelease to parse and notify projects on
-       build failure. Please do not modify this unless you have a good reason. -->
-  <name>ODL :: infrautils :: ${project.artifactId}</name>
 
   <modules>
-    <module>inject</module>
-    <module>inject-guice-testutils</module>
+    <module>api</module>
+    <module>impl/base</module>
+    <module>impl/standard</module>
+    <module>impl/noop</module>
+    <module>impl/guava</module>
+    <!-- <module>impl/caffeine</module> -->
+    <!-- <module>impl/infinispan</module> -->
+    <module>test</module>
+    <!-- <module>cli</module> -->
+    <module>sample/impl</module>
   </modules>
 
   <!--
