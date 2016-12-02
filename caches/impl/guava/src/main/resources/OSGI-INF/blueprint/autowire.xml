@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
+
+  <reference id="cacheManagersRegistry" interface="org.opendaylight.infrautils.caches.baseimpl.CacheManagersRegistry"/>
+
+  <bean id="guavaCacheProvider" class="org.opendaylight.infrautils.caches.guava.internal.GuavaCacheProvider">
+      <argument ref="cacheManagersRegistry"/>
+  </bean>
+
+  <service ref="guavaCacheProvider"
+    interface="org.opendaylight.infrautils.caches.CacheProvider" />
+  
+</blueprint>
+

@@ -33,6 +33,16 @@
     <dependencies>
         <dependency>
             <groupId>org.opendaylight.infrautils</groupId>
+            <artifactId>caches-cli</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.opendaylight.infrautils</groupId>
+            <artifactId>caches-guava-impl</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.opendaylight.infrautils</groupId>
             <artifactId>jobcoordinator-api</artifactId>
             <version>${project.version}</version>
         </dependency>
