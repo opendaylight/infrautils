@@ -1,5 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- vi: set et smarttab sw=2 tabstop=2: -->
 <!--
- Copyright (c) 2016 Red Hat, Inc. and others. All rights reserved.
+ Copyright © 2017 Red Hat, Inc. and others. All rights reserved.
 
  This program and the accompanying materials are made available under the
  terms of the Eclipse Public License v1.0 which accompanies this distribution,
@@ -11,37 +13,38 @@
 
   <parent>
     <groupId>org.opendaylight.odlparent</groupId>
-    <artifactId>odlparent</artifactId>
+    <artifactId>bundle-parent</artifactId>
     <version>1.8.0-SNAPSHOT</version>
-    <relativePath />
+    <relativePath>../odlparent</relativePath>
   </parent>
 
   <groupId>org.opendaylight.infrautils</groupId>
-  <artifactId>infrautils-testutils</artifactId>
+  <artifactId>caches-guava-impl</artifactId>
   <version>1.1.0-SNAPSHOT</version>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.opendaylight.infrautils</groupId>
+      <artifactId>caches-api</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+    </dependency>
+  </dependencies>
 
   <build>
     <plugins>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-checkstyle-plugin</artifactId>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>findbugs-maven-plugin</artifactId>
         <configuration>
-          <propertyExpansion>checkstyle.violationSeverity=error</propertyExpansion>
+          <failOnError>true</failOnError>
         </configuration>
       </plugin>
     </plugins>
   </build>
 
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.google.truth</groupId>
-      <artifactId>truth</artifactId>
-      <scope>compile</scope>
-    </dependency>
-  </dependencies>
 </project>
