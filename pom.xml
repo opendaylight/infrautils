@@ -36,6 +36,7 @@
         <module>counters</module>
         <module>async</module>
         <module>inject</module>
+        <module>caches</module>
         <module>samples</module>
     </modules>
 
