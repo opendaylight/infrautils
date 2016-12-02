@@ -1,5 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- vi: set et smarttab sw=2 tabstop=2: -->
 <!--
- Copyright (c) 2016 Red Hat, Inc. and others. All rights reserved.
+ Copyright © 2017 Red Hat, Inc. and others. All rights reserved.
 
  This program and the accompanying materials are made available under the
  terms of the Eclipse Public License v1.0 which accompanies this distribution,
@@ -17,12 +19,17 @@
   </parent>
 
   <groupId>org.opendaylight.infrautils</groupId>
-  <artifactId>inject</artifactId>
+  <artifactId>caches-impl-base</artifactId>
   <version>1.1.0-SNAPSHOT</version>
   <packaging>bundle</packaging>
-  <!-- <name> formatting is used by autorelease to parse and notify projects on
-       build failure. Please do not modify this unless you have a good reason. -->
-  <name>ODL :: infrautils :: ${project.artifactId}</name>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.opendaylight.infrautils</groupId>
+      <artifactId>caches-api</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+  </dependencies>
 
   <build>
     <plugins>
@@ -34,34 +41,13 @@
         </configuration>
       </plugin>
       <plugin>
-        <groupId>org.apache.felix</groupId>
-        <artifactId>maven-bundle-plugin</artifactId>
-        <extensions>true</extensions>
-        <configuration>
-          <instructions>
-            <Export-Package>
-              org.opendaylight.infrautils.inject
-            </Export-Package>
-          </instructions>
-        </configuration>
-      </plugin>
+       <groupId>org.codehaus.mojo</groupId>
+       <artifactId>findbugs-maven-plugin</artifactId>
+       <configuration>
+         <failOnError>true</failOnError>
+       </configuration>
+     </plugin>
     </plugins>
   </build>
-
-  <dependencies>
-    <dependency>
-      <groupId>javax.inject</groupId>
-      <artifactId>javax.inject</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>com.google.truth</groupId>
-        <artifactId>truth</artifactId>
-    </dependency>
-  </dependencies>
 
 </project>
