@@ -7,6 +7,7 @@
  */
 package org.opendaylight.infrautils.inject.guice.testutils;
 
+import com.google.inject.ConfigurationException;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Module;
@@ -96,7 +97,13 @@ public class GuiceRule implements MethodRule {
     protected void tearDownGuice() {
         if (injector != null) {
             // http://code.mycila.com/guice/#3-jsr-250
-            injector.getInstance(CloseableInjector.class).close();
+            try {
+                injector.getInstance(CloseableInjector.class).close();
+            } catch (ConfigurationException e) {
+                throw new IllegalStateException("You forgot to either add GuiceRule(..., AnnotationsModule.class), "
+                        + "or in your Module use an install(new AnnotationsModule()) with "
+                        + AnnotationsModule.class.getName(), e);
+            }
         }
     }
 
