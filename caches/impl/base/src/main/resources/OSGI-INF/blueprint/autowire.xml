@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
+
+  <bean id="cacheManagersRegistry" class="org.opendaylight.infrautils.caches.baseimpl.internal.CacheManagersRegistryImpl">
+  </bean>
+
+  <service ref="cacheManagersRegistry" 
+    interface="org.opendaylight.infrautils.caches.baseimpl.CacheManagersRegistry" />
+  
+</blueprint>
+
