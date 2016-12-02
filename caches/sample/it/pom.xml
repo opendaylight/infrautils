@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- vi: set et smarttab sw=2 tabstop=2: -->
+<!--
+ Copyright © 2017 Red Hat, Inc. and others. All rights reserved.
+
+ This program and the accompanying materials are made available under the
+ terms of the Eclipse Public License v1.0 which accompanies this distribution,
+ and is available at http://www.eclipse.org/legal/epl-v10.html
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.opendaylight.odlparent</groupId>
+    <artifactId>bundle-parent</artifactId>
+    <version>1.9.0-SNAPSHOT</version>
+    <relativePath />
+  </parent>
+
+  <groupId>org.opendaylight.infrautils</groupId>
+  <artifactId>caches-sample-it</artifactId>
+  <version>1.2.0-SNAPSHOT</version>
+  <packaging>bundle</packaging>
+
+  <dependencies>
+    <!-- TODO now that we're feature based, this can probably just be removed? -->
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>caches-sample</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+<!--    
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>infrautils-features</artifactId>
+      <version>${project.version}</version>
+      <classifier>features</classifier>
+      <type>xml</type>
+    </dependency>
+ -->
+ 
+    <!-- TODO Move most of what follows into a new infrautils.testutils.it artifact we can depend on -->
+    
+    <!-- Dependencies for PAX Exam karaf container -->
+    <dependency>
+      <groupId>javax.inject</groupId>
+      <artifactId>javax.inject</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.ops4j.pax.exam</groupId>
+      <artifactId>pax-exam-container-karaf</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.ops4j.pax.exam</groupId>
+      <artifactId>pax-exam-junit4</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.ops4j.pax.url</groupId>
+      <artifactId>pax-url-link</artifactId>
+      <!-- TODO remove the version an scope when https://git.opendaylight.org/gerrit/#/c/54889/ is merged -->
+      <version>2.5.1</version>
+      <scope>test</scope>
+    </dependency>
+<!-- 
+    <dependency>
+        <groupId>org.ops4j.pax.exam</groupId>
+        <artifactId>pax-exam-link-assembly</artifactId>
+        < ! - - TODO remove the version an scope when https://git.opendaylight.org/gerrit/#/c/54889/ is merged - - >
+        <version>${exam.version}</version>
+        <scope>test</scope>
+    </dependency>
+ -->    
+    <!-- TODO Remove pax-url-aether once alta-maven-plugin switch is completed -->
+    <dependency>
+      <groupId>org.ops4j.pax.url</groupId>
+      <artifactId>pax-url-aether</artifactId>
+    </dependency>
+ <!--
+    <dependency>
+        <groupId>org.apache.karaf.features</groupId>
+        <artifactId>org.apache.karaf.features.core</artifactId>
+        <version>${karaf.version}</version>
+    </dependency>
+ -->
+ 
+    <dependency>
+      <groupId>org.opendaylight.odlparent</groupId>
+      <artifactId>opendaylight-karaf4-empty</artifactId>
+      <version>1.9.0-SNAPSHOT</version>
+      <type>tar.gz</type>
+      <exclusions>
+        <!-- The transitive dependencies are unnecessary, because PAX Exam uses the distribution.
+             it has absolutely no value/advantage having this here; on the contrary, the disadvantages include:
+                * conceptually wrong in OSGi, the tests classpath should not have the container's code
+                * practically wrong, and screws up the test's classpath, which e.g. breaks the logging in the console/surefire
+                * every build re-downloads this huge SNAPSHOT artifact unncessarily, even if you're not running the IT
+             The test enforces that this is not present on the classpath, and fails if Karaf's main is on the CP!
+         -->
+        <exclusion>
+          <groupId>*</groupId>
+          <artifactId>*</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+     
+    <!-- TODO remove this when use of the 'wrap' feature for "com.google.truth" removed -->     
+    <dependency>
+      <groupId>com.google.truth</groupId>
+      <artifactId>truth</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.karaf.features</groupId>
+      <artifactId>standard</artifactId>
+      <version>4.0.7</version>
+      <classifier>features</classifier>
+      <type>xml</type>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <!-- Needed if you use versionAsInProject() -->
+        <groupId>org.apache.servicemix.tooling</groupId>
+        <artifactId>depends-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <configuration>
+          <propertyExpansion>checkstyle.violationSeverity=error</propertyExpansion>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>findbugs-maven-plugin</artifactId>
+        <configuration>
+          <failOnError>true</failOnError>
+        </configuration>
+      </plugin>
+      
+      <plugin>
+        <groupId>com.github.veithen.alta</groupId>
+        <artifactId>alta-maven-plugin</artifactId>
+        <version>0.5</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>generate-test-resources</goal>
+            </goals>
+            <configuration>
+              <name>%artifactId%.link</name>
+<!--             
+              <name>%bundle.symbolicName%.link</name>
+ -->              
+              <value>%url%</value>
+<!--               
+              <dependencySet>
+                <scope>test</scope>
+              </dependencySet>
+ -->              
+              <artifacts>
+                <artifact>
+                  <groupId>org.opendaylight.odlparent</groupId>
+                  <!-- Pending https://ops4j1.jira.com/browse/PAXEXAM-813, this doesn't actually work, yet -->
+                  <artifactId>opendaylight-karaf4-empty</artifactId>
+                  <version>1.9.0-SNAPSHOT</version>
+                  <!-- NB the tar.gz is almost half the size of the zip, so use that, even for Windows (works fine) -->
+                  <type>tar.gz</type>
+                </artifact>
+              </artifacts>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>

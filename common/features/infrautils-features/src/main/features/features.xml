@@ -44,4 +44,14 @@
         <bundle>mvn:org.opendaylight.infrautils/infrautils-util/{{VERSION}}</bundle>
         <bundle>wrap:mvn:org.apache.commons/commons-lang3/{{VERSION}}</bundle>
     </feature>
+    <feature name='odl-infrautils-caches' version='${project.version}'
+        description='OpenDaylight :: Infrautils :: Caches'>
+        <bundle>mvn:org.opendaylight.infrautils/caches-api/{{VERSION}}</bundle>
+        <bundle>mvn:org.opendaylight.infrautils/caches-cli/{{VERSION}}</bundle>
+        <bundle>mvn:org.opendaylight.infrautils/caches-impl-base/{{VERSION}}</bundle>
+        <bundle>mvn:org.opendaylight.infrautils/caches-guava-impl/{{VERSION}}</bundle>
+        <!-- <bundle>mvn:com.google.guava/guava/18.0</bundle>  -->
+        <!-- <feature version='1.8.0-SNAPSHOT'>org.opendaylight.odlparent</feature> -->
+        <bundle>wrap:mvn:javax.inject/javax.inject/{{VERSION}}</bundle>
+    </feature>
 </features>
