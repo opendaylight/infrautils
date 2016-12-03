@@ -5,4 +5,5 @@ target-ide/
 .project
 .classpath
 .checkstyle
+.tox
 MANIFEST.MF
