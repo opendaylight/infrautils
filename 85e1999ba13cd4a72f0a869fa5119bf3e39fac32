@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a622d24_8468ddf6",
+        "filename": "docs/index.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 4039
+      },
+      "writtenOn": "2016-12-05T17:16:53Z",
+      "side": 1,
+      "message": "please remove trailing space",
+      "range": {
+        "startLine": 9,
+        "startChar": 78,
+        "endLine": 9,
+        "endChar": 79
+      },
+      "revId": "85e1999ba13cd4a72f0a869fa5119bf3e39fac32",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
