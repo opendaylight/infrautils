@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a622d24_3d2621b8",
+        "filename": "caches/caches-api/src/main/java/org/opendaylight/infrautils/caches/Cache.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 5278
+      },
+      "writtenOn": "2016-12-12T10:15:00Z",
+      "side": 1,
+      "message": "Is this interface exposed to outside world (or) just get used inside caches-impl ?\n\nSince CachedDataBroker implementation internally maintains infinispan cache and we have to only expose APIs like registerDataChangeListener, newWriteOnlyTransaction etc.\n\nThe new tx reference returned by cachedDataBroker.newWriteOnlyTransaction() composes both infinispan and MD-SAL tx.",
+      "revId": "24198056069e456c8e1bcbe50baf9881e931442c",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a622d24_dd344de0",
+        "filename": "caches/caches-api/src/main/java/org/opendaylight/infrautils/caches/CacheProvider.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 5278
+      },
+      "writtenOn": "2016-12-12T10:15:00Z",
+      "side": 1,
+      "message": "How this is going to get used by applications ? Is it during registering for DCN notification via cachedDataBroker ? Is it needed now ?\n\nTo start with we can just use infinispan transactional cache. \n\nWhen data is written into MD-SAL datastore successfully after tx.submit(), then we can simply use infinispan tx manager to perform transaction put\u0027s for the data.",
+      "revId": "24198056069e456c8e1bcbe50baf9881e931442c",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
