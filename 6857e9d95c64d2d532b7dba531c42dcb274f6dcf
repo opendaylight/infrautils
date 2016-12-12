@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1a622d24_ddc8cd76",
+        "filename": "docs/specs/specs-template.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2016-12-12T10:04:05Z",
+      "side": 1,
+      "message": "Currently it is the same for genius/netvirt..it is a TODO..so kept it like that, once Phil gives confirmation, vishal is planning to correct it in one shot",
+      "parentUuid": "1a622d24_3dbaa1de",
+      "range": {
+        "startLine": 2,
+        "startChar": 1,
+        "endLine": 3,
+        "endChar": 17
+      },
+      "revId": "6857e9d95c64d2d532b7dba531c42dcb274f6dcf",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a622d24_5d595dfd",
         "filename": "docs/specs/specs-template.rst",
         "patchSetId": 4
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "1a622d24_5dacbda0",
+        "filename": "docs/specs/specs-template.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2016-12-12T10:04:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a622d24_5d595dfd",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 68
+      },
+      "revId": "6857e9d95c64d2d532b7dba531c42dcb274f6dcf",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a622d24_3d5e21e7",
         "filename": "docs/specs/specs-template.rst",
         "patchSetId": 4
@@ -59,6 +107,30 @@
       "writtenOn": "2016-12-12T09:57:55Z",
       "side": 1,
       "message": "please remove, irrelevant for infrautils",
+      "range": {
+        "startLine": 154,
+        "startChar": 0,
+        "endLine": 155,
+        "endChar": 4
+      },
+      "revId": "6857e9d95c64d2d532b7dba531c42dcb274f6dcf",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a622d24_fda669c0",
+        "filename": "docs/specs/specs-template.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2016-12-12T10:04:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a622d24_3d5e21e7",
       "range": {
         "startLine": 154,
         "startChar": 0,
