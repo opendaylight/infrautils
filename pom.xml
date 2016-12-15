@@ -13,13 +13,13 @@
     <parent>
       <groupId>org.opendaylight.odlparent</groupId>
       <artifactId>odlparent-lite</artifactId>
-      <version>1.7.2-SNAPSHOT</version>
+      <version>1.7.2-Boron-SR2</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.opendaylight.infrautils</groupId>
     <artifactId>infrautils</artifactId>
-    <version>1.0.2-SNAPSHOT</version>
+    <version>1.0.2-Boron-SR2</version>
     <name>infrautils</name> <!-- Used by Sonar to set project name -->
     <packaging>pom</packaging>
 

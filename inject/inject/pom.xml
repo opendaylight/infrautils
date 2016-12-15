@@ -5,13 +5,13 @@
   <parent>
     <groupId>org.opendaylight.odlparent</groupId>
     <artifactId>odlparent</artifactId>
-    <version>1.7.2-SNAPSHOT</version>
+    <version>1.7.2-Boron-SR2</version>
     <relativePath />
   </parent>
 
   <groupId>org.opendaylight.infrautils</groupId>
   <artifactId>inject</artifactId>
-  <version>1.0.2-SNAPSHOT</version>
+  <version>1.0.2-Boron-SR2</version>
   <packaging>bundle</packaging>
 
   <build>
