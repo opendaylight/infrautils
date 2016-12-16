@@ -32,6 +32,7 @@
 
     <modules>
         <module>common</module>
+        <module>testutils</module>
         <module>counters</module>
         <module>async</module>
         <module>inject</module>
