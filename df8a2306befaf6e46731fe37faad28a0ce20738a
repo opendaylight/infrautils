@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a622d24_361c6477",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 4039
+      },
+      "writtenOn": "2016-12-19T16:30:57Z",
+      "side": 1,
+      "message": "trailing space",
+      "range": {
+        "startLine": 15,
+        "startChar": 54,
+        "endLine": 15,
+        "endChar": 55
+      },
+      "revId": "df8a2306befaf6e46731fe37faad28a0ce20738a",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a622d24_56192087",
+        "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/RunUntilFailureRule.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 4039
+      },
+      "writtenOn": "2016-12-19T16:30:57Z",
+      "side": 1,
+      "message": "If I understood correctly, this is useful for local testing only. Is there a way to add a checkstyle rule that would fail if such row exists?",
+      "range": {
+        "startLine": 19,
+        "startChar": 1,
+        "endLine": 21,
+        "endChar": 17
+      },
+      "revId": "df8a2306befaf6e46731fe37faad28a0ce20738a",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a622d24_7616dc56",
+        "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/RunUntilFailureRule.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 4039
+      },
+      "writtenOn": "2016-12-19T16:30:57Z",
+      "side": 1,
+      "message": "shouldn\u0027t there be a timeout, even if it\u0027s a large one?",
+      "range": {
+        "startLine": 54,
+        "startChar": 12,
+        "endLine": 58,
+        "endChar": 25
+      },
+      "revId": "df8a2306befaf6e46731fe37faad28a0ce20738a",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
