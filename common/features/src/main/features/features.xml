@@ -21,6 +21,7 @@
         <bundle>mvn:org.opendaylight.infrautils/counters-impl/{{VERSION}}</bundle>
         <bundle>mvn:org.opendaylight.infrautils/infrautils-util/{{VERSION}}</bundle>
         <bundle>mvn:org.apache.commons/commons-lang3/3.1</bundle>
+	<bundle>mvn:io.dropwizard.metrics/metrics-core/{{VERSION}}</bundle>
         <configfile finalname="etc/org.opendaylight.counters.cfg">mvn:org.opendaylight.infrautils/counters-impl/{{VERSION}}/cfg/countersconf/</configfile>
     </feature>
     <feature name='odl-infrautils-async' version='${project.version}'
