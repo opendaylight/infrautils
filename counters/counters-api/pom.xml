@@ -44,5 +44,9 @@
             <artifactId>org.osgi.enterprise</artifactId>
             <version>${osgi.core.version}</version>
         </dependency>
+        <dependency>
+            <groupId>io.dropwizard.metrics</groupId>
+            <artifactId>metrics-core</artifactId>
+        </dependency>
     </dependencies>
 </project>
