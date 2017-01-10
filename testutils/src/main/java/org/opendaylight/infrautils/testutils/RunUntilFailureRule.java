@@ -10,28 +10,34 @@ package org.opendaylight.infrautils.testutils;
 import org.junit.rules.TestRule;
 import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * JUnit Rule which allows to keep running tests indefinitely.
  *
  * <p>This is useful to add locally, never commit, if you would like to
  * keep running a "flaky" (sometimes passing, sometimes failing) test
- * until it fails.
- *
- * <p>
- * Usage (NB the use of {@literal @}ClassRule instead of {@literal @}Rule):
+ * until it fails. Usage:
  *
  * <pre>
- *   public static {@literal @}ClassRule RunUntilFailureRule repeater = new RunUntilFailureRule();
+ *   public static {@literal @}ClassRule RunUntilFailureClassRule classRepeater = new RunUntilFailureClassRule();
+ *   public {@literal @}Rule RunUntilFailureRule repeater = new RunUntilFailureRule(classRepeater);
  *
- *   {@literal @}Test ...
- * </pre>
+ *   {@literal @}Test ...</pre>
+ *
+ * <p>The two rules are necessary because a ClassRule alone cannot stop the test on a failure,
+ * and a normal Rule alone cannot keep running all {@literal @}Test (it would indefinitely run
+ * only the first test). Alternatives to two rules would be to use a {@literal @}RunWith
+ * with a custom TestRunner, or writing a test suite each time.
  *
  * @author Michael Vorburger
  */
 public class RunUntilFailureRule implements TestRule {
+
+    private final RunUntilFailureClassRule classRepeaterRule;
+
+    public RunUntilFailureRule(RunUntilFailureClassRule classRepeaterRule) {
+        this.classRepeaterRule = classRepeaterRule;
+    }
 
     @Override
     public Statement apply(Statement statement, Description description) {
@@ -41,21 +47,20 @@ public class RunUntilFailureRule implements TestRule {
     private class RunUntilFailureStatement extends Statement {
 
         final Statement statement;
-        final Logger testLog;
 
         RunUntilFailureStatement(Statement statement, Description description) {
             this.statement = statement;
-            testLog = LoggerFactory.getLogger(description.getTestClass());
         }
 
         @Override
+        @SuppressWarnings("checkstyle:IllegalCatch")
         public void evaluate() throws Throwable {
-            int runNumber = 1;
-            do {
-                testLog.info("RunUntilFailureRule #{}/∞", runNumber++);
+            try {
                 statement.evaluate();
+            } catch (Throwable throwable) {
+                classRepeaterRule.isRunning = false;
+                throw throwable;
             }
-            while (true);
         }
 
     }

@@ -22,7 +22,9 @@ public class ExampleTest {
 
     private static final Logger LOG = LoggerFactory.getLogger(ExampleTest.class);
 
-    // public static @ClassRule RunUntilFailureRule repeater = new RunUntilFailureRule();
+    // public static @ClassRule RunUntilFailureClassRule classRepeater = new RunUntilFailureClassRule();
+    // public @Rule RunUntilFailureRule repeater = new RunUntilFailureRule(classRepeater);
+
     public @Rule LogRule logRule = new LogRule();
 
     @Test
@@ -35,7 +37,7 @@ public class ExampleTest {
     public void testB() throws Exception {
         LOG.info("doin' stuff in testB...");
         Thread.sleep(100);
-        //fail("failure");
+        // fail("failure");
     }
 
 }
