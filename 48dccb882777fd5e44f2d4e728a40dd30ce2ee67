@@ -1,0 +1,98 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a622d24_00eba7b0",
+        "filename": "counters/counters-api/pom.xml",
+        "patchSetId": 8
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 4039
+      },
+      "writtenOn": "2017-01-09T14:33:37Z",
+      "side": 1,
+      "message": "why not add a version here - perhaps this is already defined in controller\u0027s pom? (should be 3.1.0)",
+      "range": {
+        "startLine": 47,
+        "startChar": 8,
+        "endLine": 50,
+        "endChar": 21
+      },
+      "revId": "48dccb882777fd5e44f2d4e728a40dd30ce2ee67",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a622d24_e9976fea",
+        "filename": "counters/counters-api/pom.xml",
+        "patchSetId": 8
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 4039
+      },
+      "writtenOn": "2017-01-10T15:16:06Z",
+      "side": 1,
+      "message": "I didn\u0027t see any version in controller actually.. \nLet\u0027s leave it this way for now.",
+      "parentUuid": "1a622d24_d8899f76",
+      "range": {
+        "startLine": 47,
+        "startChar": 8,
+        "endLine": 50,
+        "endChar": 21
+      },
+      "revId": "48dccb882777fd5e44f2d4e728a40dd30ce2ee67",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a622d24_e0066b85",
+        "filename": "counters/counters-api/src/main/java/org/opendaylight/infrautils/counters/api/Metrics.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 4039
+      },
+      "writtenOn": "2017-01-09T14:33:37Z",
+      "side": 1,
+      "message": "why is this needed?",
+      "range": {
+        "startLine": 17,
+        "startChar": 4,
+        "endLine": 17,
+        "endChar": 46
+      },
+      "revId": "48dccb882777fd5e44f2d4e728a40dd30ce2ee67",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a622d24_69799fc7",
+        "filename": "counters/counters-api/src/main/java/org/opendaylight/infrautils/counters/api/Metrics.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 4039
+      },
+      "writtenOn": "2017-01-10T15:16:06Z",
+      "side": 1,
+      "message": "ok. We should think of a better place for these generic methods under infrautils.\nPerhaps we need to add a new bundle - metrics and add this API there:\norg.opendaylight.infrautils.metrics",
+      "parentUuid": "1a622d24_78984bc0",
+      "range": {
+        "startLine": 17,
+        "startChar": 4,
+        "endLine": 17,
+        "endChar": 46
+      },
+      "revId": "48dccb882777fd5e44f2d4e728a40dd30ce2ee67",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
