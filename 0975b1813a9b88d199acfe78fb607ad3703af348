@@ -1,0 +1,51 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a622d24_4514baf4",
+        "filename": "counters/counters-api/src/main/java/org/opendaylight/infrautils/counters/api/Metrics.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 4039
+      },
+      "writtenOn": "2016-12-22T07:07:12Z",
+      "side": 1,
+      "message": "In order to have the \"using code\" more readable, how about wrapping the MetricRegistry as a singleton (to be used in all odl) and expose only a selection of its API?\n\nThen, we can use the \"regular\" classes out of the box as follows:\n\nprivate final Counter pendingJobs \u003d infrautils.MetricRegistery.counter(name(QueueManager.class, \"pending-jobs\"));\n\npublic void addJob(Job job) {\n    pendingJobs.inc();\n    queue.offer(job);\n}\n\n\nThis way we should still have control on the MetricRegistry instantiation but the usage will be completely straight forward.",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 1
+      },
+      "revId": "0975b1813a9b88d199acfe78fb607ad3703af348",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a622d24_a8babe07",
+        "filename": "counters/counters-api/src/main/java/org/opendaylight/infrautils/counters/api/Metrics.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 4039
+      },
+      "writtenOn": "2016-12-25T07:23:36Z",
+      "side": 1,
+      "message": "that was my suggestion. We cab start with reviewing all API and decide which methods/prop\u0027 we like to keep out (for instance, set name)",
+      "parentUuid": "1a622d24_94e39e04",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 1
+      },
+      "revId": "0975b1813a9b88d199acfe78fb607ad3703af348",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
