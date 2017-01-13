@@ -30,6 +30,7 @@ import org.slf4j.LoggerFactory;
 public class LogRule implements TestRule {
 
     private static final String HEADER = header(120);
+    private static final String MESSAGE = "{} ({}ms) @Test {}() in {}";
 
     @Override
     public Statement apply(Statement statement, Description description) {
@@ -37,17 +38,25 @@ public class LogRule implements TestRule {
         return new Statement() {
 
             @Override
+            @SuppressWarnings("checkstyle:IllegalCatch")
             public void evaluate() throws Throwable {
                 testLog.info("BEGIN @Test {}()", description.getMethodName());
                 long startTimeInMS = System.currentTimeMillis();
-                boolean failed = true;
+                Throwable caughtThrowable = null;
                 try {
                     statement.evaluate();
-                    failed = false;
+                } catch (Throwable throwable) {
+                    caughtThrowable = throwable;
+                    throw throwable;
                 } finally {
                     long durationInMS = System.currentTimeMillis() - startTimeInMS;
-                    testLog.info("{} ({}ms) @Test {}() in {}", failed ? "FAILED" : "END",
-                            durationInMS, description.getMethodName(), description.getClassName());
+                    if (caughtThrowable == null) {
+                        testLog.info(MESSAGE, "ENDED", durationInMS, description.getMethodName(),
+                                description.getClassName());
+                    } else {
+                        testLog.error(MESSAGE, "FAILED", durationInMS, description.getMethodName(),
+                                description.getClassName(), caughtThrowable);
+                    }
                     testLog.info(HEADER);
                 }
             }
