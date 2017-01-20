@@ -1,0 +1,8 @@
+Verified+1: jenkins-releng <jenkins-releng@opendaylight.org>
+Code-Review+1: David Suarez <david.suarez.fuentes@ericsson.com>
+Code-Review+2: Guy Sela <guy.sela@hpe.com>
+Submitted-by: Michael Vorburger <vorburger@redhat.com>
+Submitted-at: Fri, 20 Jan 2017 17:36:47 +0000
+Reviewed-on: https://git.opendaylight.org/gerrit/50453
+Project: infrautils
+Branch: refs/heads/master
