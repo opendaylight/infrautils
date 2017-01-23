@@ -7,8 +7,10 @@
  */
 package org.opendaylight.infrautils.testutils.tests;
 
+import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
+import org.opendaylight.infrautils.testutils.ClasspathHellDuplicatesCheckRule;
 import org.opendaylight.infrautils.testutils.LogRule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,6 +28,8 @@ public class ExampleTest {
     // public @Rule RunUntilFailureRule repeater = new RunUntilFailureRule(classRepeater);
 
     public @Rule LogRule logRule = new LogRule();
+
+    public static @ClassRule ClasspathHellDuplicatesCheckRule jHades = new ClasspathHellDuplicatesCheckRule();
 
     @Test
     public void testA() throws Exception {
