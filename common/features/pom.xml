@@ -1,87 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright © 2017 Red Hat, Inc. and others.  All rights reserved.
+
+ This program and the accompanying materials are made available under the
+ terms of the Eclipse Public License v1.0 which accompanies this distribution,
+ and is available at http://www.eclipse.org/legal/epl-v10.html
+ -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.opendaylight.odlparent</groupId>
-        <artifactId>features-parent</artifactId>
+        <artifactId>odlparent-lite</artifactId>
         <version>1.8.0-SNAPSHOT</version>
         <relativePath/>
     </parent>
     <groupId>org.opendaylight.infrautils</groupId>
-    <artifactId>infrautils-features</artifactId>
+    <artifactId>features</artifactId>
     <version>1.1.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
-    <properties>
-        <config.counters.configfile>org.opendaylight.counters.cfg</config.counters.configfile>
-    </properties>
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.opendaylight.infrautils</groupId>
-                <artifactId>infrautils-artifacts</artifactId>
-                <version>${project.version}</version>
-                <scope>import</scope>
-                <type>pom</type>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-    <dependencies>
-        <dependency>
-            <groupId>org.opendaylight.infrautils</groupId>
-            <artifactId>async-api</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.opendaylight.infrautils</groupId>
-            <artifactId>async-impl</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.opendaylight.infrautils</groupId>
-            <artifactId>infrautils-util</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.opendaylight.infrautils</groupId>
-            <artifactId>inject</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.opendaylight.infrautils</groupId>
-            <artifactId>counters-api</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.opendaylight.infrautils</groupId>
-            <artifactId>counters-impl</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.opendaylight.infrautils</groupId>
-            <artifactId>counters-impl</artifactId>
-            <version>${project.version}</version>
-            <type>cfg</type>
-            <classifier>countersconf</classifier>
-        </dependency>
-        <dependency>
-            <groupId>org.opendaylight.infrautils</groupId>
-            <artifactId>async-impl</artifactId>
-            <version>${project.version}</version>
-            <type>cfg</type>
-            <classifier>asyncconf</classifier>
-        </dependency>
-        <dependency>
-            <groupId>org.opendaylight.infrautils</groupId>
-            <artifactId>samples-counters-impl</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.opendaylight.infrautils</groupId>
-            <artifactId>samples-async-impl</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-    </dependencies>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>infrautils-features</module>
+        <module>infrautils-features4</module>
+        <module>odl-infrautils-all-with-samples</module>
+        <module>odl-infrautils-all</module>
+        <module>odl-infrautils-counters</module>
+        <module>odl-infrautils-async</module>
+        <module>odl-infrautils-counters-sample</module>
+        <module>odl-infrautils-async-sample</module>
+        <module>odl-infrautils-inject</module>
+    </modules>
+
     <url>${odl.site.url}/${project.groupId}/${stream}/${project.artifactId}/</url>
     <distributionManagement>
         <site>
