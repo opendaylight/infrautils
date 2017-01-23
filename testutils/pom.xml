@@ -71,5 +71,10 @@
       <artifactId>slf4j-simple</artifactId>
       <scope>compile</scope>
     </dependency>
+    <dependency>
+      <groupId>org.jhades</groupId>
+      <artifactId>jhades</artifactId>
+      <version>1.0.4</version>
+    </dependency>
   </dependencies>
 </project>
