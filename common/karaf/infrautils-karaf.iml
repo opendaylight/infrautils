@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8" inherit-compiler-output="false">
+    <output url="file://$MODULE_DIR$/target/classes" />
+    <output-test url="file://$MODULE_DIR$/target/test-classes" />
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/target" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: org.apache.karaf:org.apache.karaf.main:3.0.8" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: org.apache.karaf:org.apache.karaf.util:3.0.8" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: org.apache.felix:org.apache.felix.utils:1.8.2" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: org.apache.karaf:org.apache.karaf.exception:3.0.8" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: org.apache.karaf:org.apache.karaf.client:3.0.8" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: org.apache.karaf.jaas:org.apache.karaf.jaas.boot:3.0.8" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: org.eclipse:org.eclipse.osgi:3.8.2.v20130124-134944" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: org.apache.felix:org.apache.felix.framework:4.2.1" level="project" />
+    <orderEntry type="library" name="Maven: jline:jline:2.13" level="project" />
+    <orderEntry type="library" name="Maven: org.jledit:core:0.2.1" level="project" />
+    <orderEntry type="library" name="Maven: org.ops4j.pax.logging:pax-logging-api:1.8.4" level="project" />
+    <orderEntry type="library" name="Maven: org.ops4j.pax.logging:pax-logging-service:1.8.4" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.ops4j.pax.url:pax-url-aether:2.5.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.ops4j.pax.url:pax-url-aether-support:2.5.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.eclipse.aether:aether-impl:1.0.2.v20150114" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.eclipse.aether:aether-api:1.0.2.v20150114" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.eclipse.aether:aether-spi:1.0.2.v20150114" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.eclipse.aether:aether-util:1.0.2.v20150114" level="project" />
+    <orderEntry type="library" name="Maven: org.ops4j.pax.url:pax-url-wrap:uber:2.4.7" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.karaf.features:org.apache.karaf.features.command:3.0.8" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.karaf.features:org.apache.karaf.features.core:3.0.8" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.karaf.bundle:org.apache.karaf.bundle.core:3.0.8" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.karaf.bundle:org.apache.karaf.bundle.command:3.0.8" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.karaf.shell:org.apache.karaf.shell.console:3.0.8" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.karaf.jaas:org.apache.karaf.jaas.modules:3.0.8" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.karaf.jaas:org.apache.karaf.jaas.config:3.0.8" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.karaf.shell:org.apache.karaf.shell.help:3.0.8" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.karaf.shell:org.apache.karaf.shell.table:3.0.8" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.karaf.system:org.apache.karaf.system.core:3.0.8" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.karaf.system:org.apache.karaf.system.command:3.0.8" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.karaf.shell:org.apache.karaf.shell.commands:3.0.8" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.felix:org.apache.felix.fileinstall:3.5.4" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.felix:org.apache.felix.configadmin:1.8.4" level="project" />
+    <orderEntry type="library" name="Maven: org.ow2.asm:asm-all:5.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.aries.blueprint:org.apache.aries.blueprint.api:1.0.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.aries.blueprint:org.apache.aries.blueprint.cm:1.0.8" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.aries.blueprint:org.apache.aries.blueprint.core.compatibility:1.0.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.aries.blueprint:org.apache.aries.blueprint.core:1.4.2" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.aries.quiesce:org.apache.aries.quiesce.api:1.0.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.aries.proxy:org.apache.aries.proxy.api:1.0.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.aries:org.apache.aries.util:1.1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.karaf.region:org.apache.karaf.region.core:3.0.8" level="project" />
+    <orderEntry type="module" module-name="async-api" scope="RUNTIME" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: org.osgi:org.osgi.enterprise:5.0.0" level="project" />
+    <orderEntry type="module" module-name="async-impl" scope="RUNTIME" />
+    <orderEntry type="module" module-name="infrautils-util" scope="RUNTIME" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: com.google.guava:guava:18.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: org.apache.commons:commons-lang3:3.5" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: org.apache.geronimo.specs:geronimo-jpa_2.0_spec:1.1" level="project" />
+    <orderEntry type="module" module-name="inject" scope="RUNTIME" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: javax.inject:javax.inject:1" level="project" />
+    <orderEntry type="module" module-name="counters-api" scope="RUNTIME" />
+    <orderEntry type="module" module-name="counters-impl" scope="RUNTIME" />
+    <orderEntry type="module" module-name="samples-counters-impl" scope="RUNTIME" />
+    <orderEntry type="module" module-name="samples-async-impl" scope="RUNTIME" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: org.apache.karaf.region:org.apache.karaf.region.persist:3.0.8" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: org.eclipse.equinox:region:1.0.0.v20110506" level="project" />
+    <orderEntry type="library" name="Maven: org.opendaylight.odlparent:karaf.branding:1.8.0-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="Maven: org.opendaylight.odlparent:opendaylight-karaf-resources:1.8.0-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.aries.proxy:org.apache.aries.proxy.impl:1.0.5" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: org.slf4j:slf4j-api:1.7.21" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.slf4j:slf4j-simple:1.7.21" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: com.google.code.findbugs:annotations:3.0.0" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: com.google.code.findbugs:jsr305:3.0.0" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: org.eclipse.jdt:org.eclipse.jdt.annotation:2.0.0" level="project" />
+  </component>
+</module>

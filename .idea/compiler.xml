@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <wildcardResourcePatterns>
+      <entry name="!?*.java" />
+      <entry name="!?*.form" />
+      <entry name="!?*.class" />
+      <entry name="!?*.groovy" />
+      <entry name="!?*.scala" />
+      <entry name="!?*.flex" />
+      <entry name="!?*.kt" />
+      <entry name="!?*.clj" />
+      <entry name="!?*.aj" />
+      <entry name="!?*.ceylon" />
+    </wildcardResourcePatterns>
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="async-api" />
+        <module name="async-impl" />
+        <module name="counters-api" />
+        <module name="counters-impl" />
+        <module name="infrautils-features" />
+        <module name="infrautils-features4" />
+        <module name="infrautils-karaf" />
+        <module name="infrautils-testutils" />
+        <module name="infrautils-util" />
+        <module name="inject" />
+        <module name="inject.guice.testutils" />
+        <module name="odl-infrautils-all" />
+        <module name="odl-infrautils-all-with-samples" />
+        <module name="odl-infrautils-async" />
+        <module name="odl-infrautils-async-sample" />
+        <module name="odl-infrautils-counters" />
+        <module name="odl-infrautils-counters-sample" />
+        <module name="odl-infrautils-inject" />
+        <module name="samples-async-impl" />
+        <module name="samples-counters-impl" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="async-api" target="1.8" />
+      <module name="async-impl" target="1.8" />
+      <module name="counters-api" target="1.8" />
+      <module name="counters-impl" target="1.8" />
+      <module name="features" target="1.5" />
+      <module name="infrautils" target="1.5" />
+      <module name="infrautils-artifacts" target="1.5" />
+      <module name="infrautils-async" target="1.8" />
+      <module name="infrautils-common" target="1.5" />
+      <module name="infrautils-counters" target="1.5" />
+      <module name="infrautils-features" target="1.8" />
+      <module name="infrautils-features (1)" target="1.5" />
+      <module name="infrautils-features4" target="1.8" />
+      <module name="infrautils-karaf" target="1.8" />
+      <module name="infrautils-samples" target="1.5" />
+      <module name="infrautils-testutils" target="1.8" />
+      <module name="infrautils-util" target="1.8" />
+      <module name="inject" target="1.8" />
+      <module name="inject-aggregator" target="1.8" />
+      <module name="inject.guice.testutils" target="1.8" />
+      <module name="odl-infrautils-all" target="1.8" />
+      <module name="odl-infrautils-all-with-samples" target="1.8" />
+      <module name="odl-infrautils-async" target="1.8" />
+      <module name="odl-infrautils-async-sample" target="1.8" />
+      <module name="odl-infrautils-counters" target="1.8" />
+      <module name="odl-infrautils-counters-sample" target="1.8" />
+      <module name="odl-infrautils-inject" target="1.8" />
+      <module name="samples-async-impl" target="1.8" />
+      <module name="samples-counters-impl" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

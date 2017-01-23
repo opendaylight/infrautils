@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/async/async-api/async-api.iml" filepath="$PROJECT_DIR$/async/async-api/async-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/async/async-impl/async-impl.iml" filepath="$PROJECT_DIR$/async/async-impl/async-impl.iml" />
+      <module fileurl="file://$PROJECT_DIR$/counters/counters-api/counters-api.iml" filepath="$PROJECT_DIR$/counters/counters-api/counters-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/counters/counters-impl/counters-impl.iml" filepath="$PROJECT_DIR$/counters/counters-impl/counters-impl.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common/features/features.iml" filepath="$PROJECT_DIR$/common/features/features.iml" />
+      <module fileurl="file://$PROJECT_DIR$/infrautils.iml" filepath="$PROJECT_DIR$/infrautils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common/artifacts/infrautils-artifacts.iml" filepath="$PROJECT_DIR$/common/artifacts/infrautils-artifacts.iml" />
+      <module fileurl="file://$PROJECT_DIR$/async/infrautils-async.iml" filepath="$PROJECT_DIR$/async/infrautils-async.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common/infrautils-common.iml" filepath="$PROJECT_DIR$/common/infrautils-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/counters/infrautils-counters.iml" filepath="$PROJECT_DIR$/counters/infrautils-counters.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common/features/infrautils-features/infrautils-features.iml" filepath="$PROJECT_DIR$/common/features/infrautils-features/infrautils-features.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common/features/infrautils-features4/infrautils-features4.iml" filepath="$PROJECT_DIR$/common/features/infrautils-features4/infrautils-features4.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common/karaf/infrautils-karaf.iml" filepath="$PROJECT_DIR$/common/karaf/infrautils-karaf.iml" />
+      <module fileurl="file://$PROJECT_DIR$/samples/infrautils-samples.iml" filepath="$PROJECT_DIR$/samples/infrautils-samples.iml" />
+      <module fileurl="file://$PROJECT_DIR$/testutils/infrautils-testutils.iml" filepath="$PROJECT_DIR$/testutils/infrautils-testutils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common/util/infrautils-util.iml" filepath="$PROJECT_DIR$/common/util/infrautils-util.iml" />
+      <module fileurl="file://$PROJECT_DIR$/inject/inject/inject.iml" filepath="$PROJECT_DIR$/inject/inject/inject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/inject/inject-aggregator.iml" filepath="$PROJECT_DIR$/inject/inject-aggregator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/inject/inject-guice-testutils/inject.guice.testutils.iml" filepath="$PROJECT_DIR$/inject/inject-guice-testutils/inject.guice.testutils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common/features/odl-infrautils-all/odl-infrautils-all.iml" filepath="$PROJECT_DIR$/common/features/odl-infrautils-all/odl-infrautils-all.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common/features/odl-infrautils-all-with-samples/odl-infrautils-all-with-samples.iml" filepath="$PROJECT_DIR$/common/features/odl-infrautils-all-with-samples/odl-infrautils-all-with-samples.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common/features/odl-infrautils-async/odl-infrautils-async.iml" filepath="$PROJECT_DIR$/common/features/odl-infrautils-async/odl-infrautils-async.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common/features/odl-infrautils-async-sample/odl-infrautils-async-sample.iml" filepath="$PROJECT_DIR$/common/features/odl-infrautils-async-sample/odl-infrautils-async-sample.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common/features/odl-infrautils-counters/odl-infrautils-counters.iml" filepath="$PROJECT_DIR$/common/features/odl-infrautils-counters/odl-infrautils-counters.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common/features/odl-infrautils-counters-sample/odl-infrautils-counters-sample.iml" filepath="$PROJECT_DIR$/common/features/odl-infrautils-counters-sample/odl-infrautils-counters-sample.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common/features/odl-infrautils-inject/odl-infrautils-inject.iml" filepath="$PROJECT_DIR$/common/features/odl-infrautils-inject/odl-infrautils-inject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/samples/sample-async/samples-async-impl.iml" filepath="$PROJECT_DIR$/samples/sample-async/samples-async-impl.iml" />
+      <module fileurl="file://$PROJECT_DIR$/samples/sample-counters/samples-counters-impl.iml" filepath="$PROJECT_DIR$/samples/sample-counters/samples-counters-impl.iml" />
+    </modules>
+  </component>
+</project>

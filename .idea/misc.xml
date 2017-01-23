@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="Osmorc" url="file://$PROJECT_DIR$/async/async-api" />
+    <file type="Osmorc" url="file://$PROJECT_DIR$/async/async-impl" />
+    <file type="Osmorc" url="file://$PROJECT_DIR$/common/util" />
+    <file type="Osmorc" url="file://$PROJECT_DIR$/counters/counters-api" />
+    <file type="Osmorc" url="file://$PROJECT_DIR$/counters/counters-impl" />
+    <file type="Osmorc" url="file://$PROJECT_DIR$/inject/inject" />
+    <file type="Osmorc" url="file://$PROJECT_DIR$/samples/sample-async" />
+    <file type="Osmorc" url="file://$PROJECT_DIR$/samples/sample-counters" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/classes" />
+  </component>
+</project>
