@@ -42,5 +42,10 @@
       <groupId>com.google.truth</groupId>
       <artifactId>truth</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.jhades</groupId>
+      <artifactId>jhades</artifactId>
+      <version>1.0.4</version>
+    </dependency>
   </dependencies>
 </project>
