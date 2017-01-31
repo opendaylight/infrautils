@@ -47,7 +47,6 @@
                             org.opendaylight.infrautils.async.impl
                         </Export-Package>
                     </instructions>
-                    <manifestLocation>${project.basedir}/src/main/resources/META-INF</manifestLocation>
                 </configuration>
             </plugin>
             <plugin>
