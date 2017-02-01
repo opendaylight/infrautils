@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fafc7978_56b152e0",
+        "filename": "common/features/infrautils-features/pom.xml",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-02-01T21:04:51Z",
+      "side": 1,
+      "message": "NB: This isn\u0027t actually a new file, contrary to how it appears in Gerrit, but just moved what currently is at  infrautils/common/features/pom.xml; Git just doesn\u0027t get it.",
+      "revId": "fc0395222f283a273f62708cdda1507377ce3477",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
