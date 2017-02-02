@@ -29,7 +29,6 @@
         <module>util</module>
         <module>features</module>
         <module>karaf</module>
-        <module>karaf4</module>
     </modules>
 
   <!--
