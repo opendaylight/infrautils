@@ -41,6 +41,7 @@
         <module>samples</module>
         <!-- This needs a newer version of odlparent than 1.8.0-Carbon -->
         <!--module>ready</module-->
+        <module>diagstatus</module>
     </modules>
 
     <profiles>
