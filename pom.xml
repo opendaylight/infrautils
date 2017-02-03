@@ -39,6 +39,7 @@
         <module>inject</module>
         <module>samples</module>
         <module>ready</module>
+        <module>diagstatus</module>
     </modules>
 
     <profiles>
