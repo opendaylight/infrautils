@@ -37,6 +37,7 @@
         <module>async</module>
         <module>inject</module>
         <module>samples</module>
+        <module>diagstatus</module>
     </modules>
 
     <profiles>
