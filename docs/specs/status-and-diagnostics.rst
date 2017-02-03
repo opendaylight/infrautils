@@ -39,11 +39,11 @@ This feature will support following use cases:
 
 * Use case 1: status-and-diag module exposes a config file which user can update.
   This file will include a set of core networking services, that are necessary to
-  declare the system as UP, and a set of actions to perform when such a state is
-  achieved or not achieved.
+  declare the system as UP.
 * Use case 2: Core services can include existing netvirt and genius services like
   ELAN, L3VPN, ITM, interface-manager, and additional services may be ACL, QoS etc
-  as needed. Actions can include OpenFlow port open, OVSDB port open, and S&D status
+  as needed. Applications can take necessary actions based on the aggregate system status,
+  for eg: OpenFlow port open, OVSDB port open, and S&D status
   update(for consumption by other NBs such as ODL Mechanism Driver)
 * Use case 3: Registered Service Modules should expose their status to status-and-diag
   module which inturn will use this information to expose the service status to others.
@@ -142,6 +142,9 @@ exposed by Genius - ITM and interfacemanager modules can be as below:
 
 ITM=org.opendaylight.genius.itm.status:type=SvcItmService
 INTERFACE_SERVICE=org.opendaylight.genius.interfacemanager.status:type=SvcInterfaceService
+
+There is an implicit assumption that the content of the file is correct, if at all
+is not correct, the corresponding service will be shown in ERROR state.
 
 Load Configuration file on startup
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
