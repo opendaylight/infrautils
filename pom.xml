@@ -36,6 +36,7 @@
         <module>counters</module>
         <module>inject</module>
         <module>samples</module>
+        <module>diagstatus</module>
     </modules>
 
     <profiles>

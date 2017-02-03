@@ -1,0 +1,14 @@
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
+    <command-bundle xmlns="http://karaf.apache.org/xmlns/shell/v1.0.0">
+        <command name="sdnc/showstatus">
+            <action
+                class="org.opendaylight.infrautils.diagstatus.shell.DiagStatusShell">
+            </action>
+        </command>
+        <command name="sdnc/showSvcStatus">
+            <action
+                class="org.opendaylight.infrautils.diagstatus.shell.DiagStatusShowSvcStatusShell">
+            </action>
+        </command>
+    </command-bundle>
+</blueprint>
