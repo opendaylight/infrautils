@@ -30,6 +30,7 @@
         <module>odl-infrautils-all</module>
         <module>odl-infrautils-counters</module>
         <module>odl-infrautils-async</module>
+        <module>odl-infrautils-jobcoordinator</module>
         <module>odl-infrautils-counters-sample</module>
         <module>odl-infrautils-async-sample</module>
         <module>odl-infrautils-inject</module>
