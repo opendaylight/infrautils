@@ -34,6 +34,7 @@
         <module>common</module>
         <module>counters</module>
         <module>async</module>
+        <module>asyncutils</module>
         <module>inject</module>
         <module>samples</module>
     </modules>
