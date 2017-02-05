@@ -29,6 +29,7 @@
         <module>odl-infrautils-all-with-samples</module>
         <module>odl-infrautils-all</module>
         <module>odl-infrautils-counters</module>
+        <module>odl-infrautils-jobcoordinator</module>
         <module>odl-infrautils-counters-sample</module>
         <module>odl-infrautils-inject</module>
     </modules>
