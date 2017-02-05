@@ -29,6 +29,16 @@
     <dependencies>
         <dependency>
             <groupId>org.opendaylight.infrautils</groupId>
+            <artifactId>datastoreutils-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.opendaylight.infrautils</groupId>
+            <artifactId>datastoreutils-impl</artifactId>
+            <version>${project.version}</version>
+        </dependency>	
+        <dependency>
+            <groupId>org.opendaylight.infrautils</groupId>
             <artifactId>async-api</artifactId>
             <version>${project.version}</version>
         </dependency>

@@ -13,6 +13,7 @@
     </feature>
     <feature name='odl-infrautils-all' version='${project.version}' description='OpenDaylight :: Infrautils :: All'>
         <feature version='${project.version}'>odl-infrautils-async</feature>
+		<feature version='${project.version}'>odl-infrautils-datastoreutils</feature>
         <feature version='${project.version}'>odl-infrautils-inject</feature>
     </feature>
     <feature name='odl-infrautils-counters' version='${project.version}'
@@ -39,6 +40,12 @@
         description='OpenDaylight :: Infrautils :: Async Infrasturcture Sample'>
         <feature version='${project.version}'>odl-infrautils-async</feature>
         <bundle>mvn:org.opendaylight.infrautils/samples-async-impl/{{VERSION}}</bundle>
+    </feature>
+    <feature name='odl-infrautils-datastoreutils' version='${project.version}'
+        description='OpenDaylight :: Infrautils :: DataStoreUtils'>
+        <feature version='${project.version}'>odl-infrautils-datastoreutils</feature>
+        <bundle>mvn:org.opendaylight.infrautils/datastoreutils-api/{{VERSION}}</bundle>
+        <bundle>mvn:org.opendaylight.infrautils/datastoreutils-impl/{{VERSION}}</bundle>
     </feature>
     <feature name='odl-infrautils-inject' version='${project.version}'
         description='OpenDaylight :: Infrautils :: @Inject'>
