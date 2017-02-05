@@ -35,6 +35,7 @@
         <module>testutils</module>
         <module>counters</module>
         <module>async</module>
+        <module>datastoreutils</module>
         <module>inject</module>
         <module>samples</module>
     </modules>
