@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fafc7978_b69d055c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-02-07T15:42:05Z",
+      "side": 1,
+      "message": "Can you prefix the summary with the bug ID? e.g. \"Bug 7662: Intro. new ClasspathHellDuplicatesCheckRule\".  This is the convention.  Also please add explanation of this rule here. The more info you provide in the commit message, the easier it is to review.",
+      "revId": "cf61ff6b707503a4c24da6f35a9ce09e81d9f54e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
