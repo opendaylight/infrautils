@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fafc7978_9c544622",
+        "filename": "docs/specs/datastore-job-coordinator.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 3511
+      },
+      "writtenOn": "2017-02-14T14:46:33Z",
+      "side": 1,
+      "message": "why is the name relates to datastore? isn\u0027t that more of jobcordinator that one of its usages is to coordinate between datastore operations?\naccording to the use cases mentioned below it has nothing to do with datastore\n\nwould you consider changing the name?",
+      "revId": "ccb98a95a32b059bd4f402edcb85b053a1084a39",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_372293a4",
+        "filename": "docs/specs/datastore-job-coordinator.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 3511
+      },
+      "writtenOn": "2017-02-14T14:46:33Z",
+      "side": 1,
+      "message": "how will it handle a large amount of jobs? wouldn\u0027t it make the system work slower (due to a limit number of thread in the threadpool executor)?\nis the number of executor configurable?\nshould we have more then one instance of DSJC to parallel non dependent jobs?",
+      "revId": "ccb98a95a32b059bd4f402edcb85b053a1084a39",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
