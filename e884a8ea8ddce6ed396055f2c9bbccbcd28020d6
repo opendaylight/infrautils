@@ -1,0 +1,157 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fafc7978_4edcd9e4",
+        "filename": "diagstatus/diagstatus-api/src/main/java/org/opendaylight/infrautils/diagstatus/api/ServiceStatus.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-02-15T23:31:45Z",
+      "side": 1,
+      "message": "I would keep Date not String, and format the Date to String where needed.  It better to keep it strongly date, as that would allow you to e.g. correctly sort a list of these in the future, or something like that.",
+      "revId": "e884a8ea8ddce6ed396055f2c9bbccbcd28020d6",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_aecbc51c",
+        "filename": "diagstatus/diagstatus-api/src/main/java/org/opendaylight/infrautils/diagstatus/api/ServiceStatus.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-02-15T23:31:45Z",
+      "side": 1,
+      "message": "final (all x4)",
+      "revId": "e884a8ea8ddce6ed396055f2c9bbccbcd28020d6",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_2ed7d5c0",
+        "filename": "diagstatus/diagstatus-impl/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-02-15T23:31:45Z",
+      "side": 1,
+      "message": "use space instead of tab",
+      "revId": "e884a8ea8ddce6ed396055f2c9bbccbcd28020d6",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_8ee6c1b2",
+        "filename": "diagstatus/diagstatus-impl/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-02-15T23:31:45Z",
+      "side": 1,
+      "message": "no!! mockito-core, not mockito-all ... ;-) see also https://wiki.opendaylight.org/view/Weather#odlparent_maven-enforcer-plugin_to_forbid_use_of_mockito-all",
+      "revId": "e884a8ea8ddce6ed396055f2c9bbccbcd28020d6",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_6ee1dd99",
+        "filename": "diagstatus/diagstatus-impl/src/main/java/org/opendaylight/infrautils/diagstatus/DiagStatusManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-02-15T23:31:45Z",
+      "side": 1,
+      "message": "move this method up to be after start().  If you don\u0027t need to call it from anywhere else, just fold this into start() ? If you have no particular reason to have a separate @Inject constructor and a @PostConstruct, then even just put it into the constructor itself - and save 2 methods.  Easier to read.",
+      "revId": "e884a8ea8ddce6ed396055f2c9bbccbcd28020d6",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_aef2a56c",
+        "filename": "diagstatus/diagstatus-impl/src/main/java/org/opendaylight/infrautils/diagstatus/MBeanService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-02-15T23:31:45Z",
+      "side": 1,
+      "message": "I haven\u0027t understood yet when this service would have to access \"any MBean service\" (for what?), but I may be missing something..",
+      "revId": "e884a8ea8ddce6ed396055f2c9bbccbcd28020d6",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_0eead174",
+        "filename": "diagstatus/diagstatus-impl/src/main/java/org/opendaylight/infrautils/diagstatus/MBeanService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-02-15T23:31:45Z",
+      "side": 1,
+      "message": "see above, this is surprising - could it not use the strongly typed interface of whatever it wants to call?",
+      "revId": "e884a8ea8ddce6ed396055f2c9bbccbcd28020d6",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_eeecad91",
+        "filename": "diagstatus/diagstatus-impl/src/main/java/org/opendaylight/infrautils/diagstatus/MBeanService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-02-15T23:31:45Z",
+      "side": 1,
+      "message": "see above, this is surprising - could it not use the strongly typed interface of whatever it wants to call?",
+      "revId": "e884a8ea8ddce6ed396055f2c9bbccbcd28020d6",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_ceef2986",
+        "filename": "diagstatus/diagstatus-impl/src/main/resources/diagstatusservice.properties",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-02-15T23:31:45Z",
+      "side": 1,
+      "message": "no no no... we\u0027re not going to have a properties file in infrautils that refers, hard-coded, to some services in genius.  What if I want to monitor another one in another project?  What if depending on the installed features it differs?  This would have to be done extensibly, via a proper OSGi service architecture, not like this...",
+      "revId": "e884a8ea8ddce6ed396055f2c9bbccbcd28020d6",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
