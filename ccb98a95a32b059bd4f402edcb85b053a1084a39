@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "fafc7978_94941ae3",
+        "filename": "docs/specs/datastore-job-coordinator.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 5278
+      },
+      "writtenOn": "2017-02-15T05:25:12Z",
+      "side": 1,
+      "message": "Yes, you are correct. The jobs executed by this can do anything. Let us just change it to jobcordinator.",
+      "parentUuid": "fafc7978_9c544622",
+      "revId": "ccb98a95a32b059bd4f402edcb85b053a1084a39",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fafc7978_372293a4",
         "filename": "docs/specs/datastore-job-coordinator.rst",
         "patchSetId": 4
@@ -30,6 +48,24 @@
       "writtenOn": "2017-02-14T14:46:33Z",
       "side": 1,
       "message": "how will it handle a large amount of jobs? wouldn\u0027t it make the system work slower (due to a limit number of thread in the threadpool executor)?\nis the number of executor configurable?\nshould we have more then one instance of DSJC to parallel non dependent jobs?",
+      "revId": "ccb98a95a32b059bd4f402edcb85b053a1084a39",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_f4bac66c",
+        "filename": "docs/specs/datastore-job-coordinator.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 5278
+      },
+      "writtenOn": "2017-02-15T05:25:12Z",
+      "side": 1,
+      "message": "We already use forkjoin pool and its parallelism is equal to Runtime.availableProcessors(). I hope this is sufficient.\nBut we can still look at how to parallelize dequeue the jobs from jobQueueMap (right now only one thread is used to dequeue job from it and submitting it into fjpool).",
+      "parentUuid": "fafc7978_372293a4",
       "revId": "ccb98a95a32b059bd4f402edcb85b053a1084a39",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
