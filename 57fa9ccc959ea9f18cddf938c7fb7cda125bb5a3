@@ -138,6 +138,24 @@
     },
     {
       "key": {
+        "uuid": "fafc7978_c95f23e4",
+        "filename": "datastoreutils/datastoreutils-api/src/main/java/org/opendaylight/infrautils/datastoreutils/api/AbstractDataStoreJob.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 5278
+      },
+      "writtenOn": "2017-02-16T06:17:07Z",
+      "side": 1,
+      "message": "I see the main purpose of AbstractDataStoreJob is to get task status by the caller who is enqueuing the job (or) observers of the AbstractDataStoreJob. I agree this is not heavily used in genius (or) netvirt.\nAlso job state has to be set inside DJC accordingly to its status. But this is not handled and we need to make state as volatile for memory visibility.\n\nI feel this is nice to have feature in infrautils with fixing above issues appropriately.",
+      "parentUuid": "fafc7978_0e113105",
+      "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fafc7978_2ef515cb",
         "filename": "datastoreutils/datastoreutils-api/src/main/java/org/opendaylight/infrautils/datastoreutils/api/DataStoreJobCoordinatorCounters.java",
         "patchSetId": 6
@@ -149,6 +167,24 @@
       "writtenOn": "2017-02-15T21:25:28Z",
       "side": 1,
       "message": "Having this in the now clearly separated API like this but with inc() used in the impl seems a non-optimal design to me... ideally, the API would only have get exposed for these counters, and the impl would have hide the internal inc().  Perhaps you could just have 4 get methods in the interface DataStoreJobCoordinator instead of exposing this enum in the API?  There already is a getIncompleteTaskCount anyway - why not have 3 more, and move this as an implementation detail?",
+      "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_896d1b9b",
+        "filename": "datastoreutils/datastoreutils-api/src/main/java/org/opendaylight/infrautils/datastoreutils/api/DataStoreJobCoordinatorCounters.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 5278
+      },
+      "writtenOn": "2017-02-16T06:17:07Z",
+      "side": 1,
+      "message": "+1. we could have jobcoordinator-api and jobcoordinator-impl bundles to expose djc and its counter services.",
+      "parentUuid": "fafc7978_2ef515cb",
       "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -206,6 +242,24 @@
     },
     {
       "key": {
+        "uuid": "fafc7978_09112b05",
+        "filename": "datastoreutils/datastoreutils-api/src/main/java/org/opendaylight/infrautils/datastoreutils/api/JobEntry.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 5278
+      },
+      "writtenOn": "2017-02-16T06:17:07Z",
+      "side": 1,
+      "message": "Yes, we have to make both mainWorker and futures as thread safe one.",
+      "parentUuid": "fafc7978_0e84910a",
+      "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fafc7978_ae8c6536",
         "filename": "datastoreutils/datastoreutils-api/src/main/java/org/opendaylight/infrautils/datastoreutils/api/JobQueue.java",
         "patchSetId": 6
@@ -223,6 +277,24 @@
     },
     {
       "key": {
+        "uuid": "fafc7978_8904fbc0",
+        "filename": "datastoreutils/datastoreutils-api/src/main/java/org/opendaylight/infrautils/datastoreutils/api/JobQueue.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 5278
+      },
+      "writtenOn": "2017-02-16T06:17:07Z",
+      "side": 1,
+      "message": "Yes, we should make relevant classes in djc to be thread safe.",
+      "parentUuid": "fafc7978_ae8c6536",
+      "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fafc7978_0eadb19c",
         "filename": "datastoreutils/datastoreutils-api/src/main/java/org/opendaylight/infrautils/datastoreutils/api/JobQueue.java",
         "patchSetId": 6
@@ -234,6 +306,23 @@
       "writtenOn": "2017-02-15T21:25:28Z",
       "side": 1,
       "message": "final",
+      "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_29f50fcb",
+        "filename": "datastoreutils/datastoreutils-api/src/main/java/org/opendaylight/infrautils/datastoreutils/api/JobQueue.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 5278
+      },
+      "writtenOn": "2017-02-16T06:17:07Z",
+      "side": 1,
+      "message": "it should be volatile.",
       "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -274,6 +363,24 @@
     },
     {
       "key": {
+        "uuid": "fafc7978_49fa13be",
+        "filename": "datastoreutils/datastoreutils-api/src/main/java/org/opendaylight/infrautils/datastoreutils/api/JobQueue.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 5278
+      },
+      "writtenOn": "2017-02-16T06:17:07Z",
+      "side": 1,
+      "message": ":)",
+      "parentUuid": "fafc7978_4e96994d",
+      "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fafc7978_ce2d6948",
         "filename": "datastoreutils/datastoreutils-api/src/main/java/org/opendaylight/infrautils/datastoreutils/api/RollbackCallable.java",
         "patchSetId": 6
@@ -285,6 +392,24 @@
       "writtenOn": "2017-02-15T21:25:28Z",
       "side": 1,
       "message": "Quick grep across all of ODL gives me the strong impression that no \"client\" uses this, so I suggest that we make an internal implementation details, and do not expose this in the API.  If it\u0027s even required at all to have this conceptually?  The fact that there is no use of it whatsever anywhere, exception in the DataStoreJobCoordinator implementation, is interesting.",
+      "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_291cef12",
+        "filename": "datastoreutils/datastoreutils-api/src/main/java/org/opendaylight/infrautils/datastoreutils/api/RollbackCallable.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 5278
+      },
+      "writtenOn": "2017-02-16T06:17:07Z",
+      "side": 1,
+      "message": "The intent of having rollbackWorker is to roll back the tasks done by mainWorker (which failed abruptly in the middle) to make enqueueJob as Tx agnostic. This is being done in JobCallback#onFailure method.",
+      "parentUuid": "fafc7978_ce2d6948",
       "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -506,6 +631,24 @@
       "writtenOn": "2017-02-15T21:25:28Z",
       "side": 1,
       "message": "this is wrong; now that you\u0027ve cleanly separate API and impl, this shouldn\u0027t be a static with getInstance() anymore, but a real Service, exposed via Blueprint, and @Inject\u0027d into code requiring it.  If you don\u0027t do that, then the split of api \u0026 impl is pointless - because all code using it would have to depend on the impl.  I think the split of api/impl is Good Thing, so would keep that, but remove this, and make this a real BP service.",
+      "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_69ed57ef",
+        "filename": "datastoreutils/datastoreutils-impl/src/main/java/org/opendaylight/infrautils/datastoreutils/impl/DataStoreJobCoordinator.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 5278
+      },
+      "writtenOn": "2017-02-16T06:17:07Z",
+      "side": 1,
+      "message": "+1",
+      "parentUuid": "fafc7978_4ee859e2",
       "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
