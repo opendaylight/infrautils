@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fafc7978_5e5128d7",
+        "filename": "docs/specs/status-and-diagnostics.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 3511
+      },
+      "writtenOn": "2017-02-16T10:56:02Z",
+      "side": 1,
+      "message": "is there an assumption that the content of this file is correct? \nin a case that the file will contains more bundles that are actually installed we will never reach the \"ready\" state.\nis there a timeout for this process?",
+      "revId": "a4d87fefc9dcff305e2908a5aaf437e74ab9bd7c",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_5eb5a82f",
+        "filename": "docs/specs/status-and-diagnostics.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 3511
+      },
+      "writtenOn": "2017-02-16T10:56:02Z",
+      "side": 1,
+      "message": "* you mentioned that this file may contain a set of actions. please provide an example.\n* which thread will run this action?",
+      "revId": "a4d87fefc9dcff305e2908a5aaf437e74ab9bd7c",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_7ee86c10",
+        "filename": "docs/specs/status-and-diagnostics.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 3511
+      },
+      "writtenOn": "2017-02-16T10:56:02Z",
+      "side": 1,
+      "message": "what should happen in case the bundle that should wait for other services will finish loading before diagnostic bundle loaded?",
+      "revId": "a4d87fefc9dcff305e2908a5aaf437e74ab9bd7c",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
