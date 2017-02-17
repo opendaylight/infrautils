@@ -156,6 +156,24 @@
     },
     {
       "key": {
+        "uuid": "fafc7978_207d191d",
+        "filename": "datastoreutils/datastoreutils-api/src/main/java/org/opendaylight/infrautils/datastoreutils/api/AbstractDataStoreJob.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-02-17T11:26:36Z",
+      "side": 1,
+      "message": "\u003e purpose of AbstractDataStoreJob is to get task status by the caller who is enqueuing the job (or) observers of the AbstractDataStoreJob\n\nHow about instead of this using the standard and well-known com.google.common.util.concurrent.ListenableFuture\u003cV\u003e interface as return value of enqueueJob() methods?  This would be very interesting because this would then allow code using the DataStoreJobCoordinator to in turn returned chained Futures of work they submitted e.g. the DataBroker, which returns Future already, and the DataStoreJobCoordinator..",
+      "parentUuid": "fafc7978_c95f23e4",
+      "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fafc7978_2ef515cb",
         "filename": "datastoreutils/datastoreutils-api/src/main/java/org/opendaylight/infrautils/datastoreutils/api/DataStoreJobCoordinatorCounters.java",
         "patchSetId": 6
