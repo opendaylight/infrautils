@@ -152,6 +152,24 @@
       "revId": "e884a8ea8ddce6ed396055f2c9bbccbcd28020d6",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_057bc47b",
+        "filename": "diagstatus/diagstatus-impl/src/main/resources/diagstatusservice.properties",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2017-02-17T17:21:19Z",
+      "side": 1,
+      "message": "Michael, me and Muthu were discussing on this, how about having a level of indirection between them? Basically there will be a root JMX category by name org.opendaylight.infrautils.diagstatus, and all modules who want advertise their status can add them under this root. diagstaus module will parse all available service statuses under this root, and report the same.",
+      "parentUuid": "fafc7978_69d717ee",
+      "revId": "e884a8ea8ddce6ed396055f2c9bbccbcd28020d6",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
