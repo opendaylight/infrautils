@@ -458,6 +458,24 @@
     },
     {
       "key": {
+        "uuid": "fafc7978_f3df5f0b",
+        "filename": "datastoreutils/datastoreutils-api/src/main/java/org/opendaylight/infrautils/datastoreutils/api/JobEntry.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2017-02-21T17:57:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fafc7978_09112b05",
+      "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fafc7978_ae8c6536",
         "filename": "datastoreutils/datastoreutils-api/src/main/java/org/opendaylight/infrautils/datastoreutils/api/JobQueue.java",
         "patchSetId": 6
@@ -486,6 +504,42 @@
       "writtenOn": "2017-02-16T06:17:07Z",
       "side": 1,
       "message": "Yes, we should make relevant classes in djc to be thread safe.",
+      "parentUuid": "fafc7978_ae8c6536",
+      "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_b81e56b9",
+        "filename": "datastoreutils/datastoreutils-api/src/main/java/org/opendaylight/infrautils/datastoreutils/api/JobQueue.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2017-02-21T17:57:13Z",
+      "side": 1,
+      "message": "We should indeed (for example by following your suggestion below to use volatile). However, although thread safety issues should be undoubtedly addressed in this change, I would prefer not to redesign the DSJC at this stage as I understand it\u0027s working. A redesign can come in a later change.",
+      "parentUuid": "fafc7978_8904fbc0",
+      "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_f87bbef2",
+        "filename": "datastoreutils/datastoreutils-api/src/main/java/org/opendaylight/infrautils/datastoreutils/api/JobQueue.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2017-02-21T17:57:13Z",
+      "side": 1,
+      "message": "Done",
       "parentUuid": "fafc7978_ae8c6536",
       "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
@@ -539,6 +593,24 @@
       "writtenOn": "2017-02-16T06:17:07Z",
       "side": 1,
       "message": "it should be volatile.",
+      "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_78418ea8",
+        "filename": "datastoreutils/datastoreutils-api/src/main/java/org/opendaylight/infrautils/datastoreutils/api/JobQueue.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2017-02-21T17:57:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fafc7978_29f50fcb",
       "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
