@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "fafc7978_7fe21830",
+        "filename": "docs/specs/status-and-diagnostics.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2017-02-21T07:27:20Z",
+      "side": 1,
+      "message": "There is a discussion on-going whether this file needs to be inside infrautils, or shpuld be in a generic place.\nWherever it is, there is an assumption that the content of the file is correct. if at all the content is not correct, the corresponding service will be shown in ERROR state.",
+      "parentUuid": "fafc7978_5e5128d7",
+      "revId": "a4d87fefc9dcff305e2908a5aaf437e74ab9bd7c",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fafc7978_5eb5a82f",
         "filename": "docs/specs/status-and-diagnostics.rst",
         "patchSetId": 4
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "fafc7978_5f747467",
+        "filename": "docs/specs/status-and-diagnostics.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2017-02-21T07:27:20Z",
+      "side": 1,
+      "message": "i think this was a confusion. i will reword the initial section to clarify it",
+      "parentUuid": "fafc7978_5eb5a82f",
+      "revId": "a4d87fefc9dcff305e2908a5aaf437e74ab9bd7c",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fafc7978_7ee86c10",
         "filename": "docs/specs/status-and-diagnostics.rst",
         "patchSetId": 4
@@ -47,6 +83,24 @@
       "writtenOn": "2017-02-16T10:56:02Z",
       "side": 1,
       "message": "what should happen in case the bundle that should wait for other services will finish loading before diagnostic bundle loaded?",
+      "revId": "a4d87fefc9dcff305e2908a5aaf437e74ab9bd7c",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_9fbc1c08",
+        "filename": "docs/specs/status-and-diagnostics.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2017-02-21T07:27:20Z",
+      "side": 1,
+      "message": "currently, we provide only CLI to fetch the status of the services. this is just on demand basis. There is no time based polling to continuously monitor the service status. We do have exposed MBeans for the final status, which applications can query to decide on their set if actions",
+      "parentUuid": "fafc7978_7ee86c10",
       "revId": "a4d87fefc9dcff305e2908a5aaf437e74ab9bd7c",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
