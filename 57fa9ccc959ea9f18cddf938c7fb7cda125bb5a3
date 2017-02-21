@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "fafc7978_a24743bb",
+        "filename": "datastoreutils/datastoreutils-api/pom.xml",
+        "patchSetId": 6
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2017-02-21T14:46:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fafc7978_aed46547",
+      "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fafc7978_2ed99583",
         "filename": "datastoreutils/datastoreutils-api/pom.xml",
         "patchSetId": 6
@@ -30,6 +48,24 @@
       "writtenOn": "2017-02-15T21:25:28Z",
       "side": 1,
       "message": "his happens by default, and should not be required",
+      "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_0239ef40",
+        "filename": "datastoreutils/datastoreutils-api/pom.xml",
+        "patchSetId": 6
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2017-02-21T14:46:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fafc7978_2ed99583",
       "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "fafc7978_423e5729",
+        "filename": "datastoreutils/datastoreutils-api/pom.xml",
+        "patchSetId": 6
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2017-02-21T14:46:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fafc7978_4ede996e",
+      "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fafc7978_6e8c3d80",
         "filename": "datastoreutils/datastoreutils-api/pom.xml",
         "patchSetId": 6
@@ -64,6 +118,24 @@
       "writtenOn": "2017-02-15T21:25:28Z",
       "side": 1,
       "message": "please remove this, this is not required; oldparent provides",
+      "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_c980b2c2",
+        "filename": "datastoreutils/datastoreutils-api/pom.xml",
+        "patchSetId": 6
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2017-02-21T14:46:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fafc7978_6e8c3d80",
       "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "fafc7978_892a2a8e",
+        "filename": "datastoreutils/datastoreutils-api/pom.xml",
+        "patchSetId": 6
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2017-02-21T14:46:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fafc7978_8e91a19b",
+      "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fafc7978_0e43f114",
         "filename": "datastoreutils/datastoreutils-api/pom.xml",
         "patchSetId": 6
@@ -104,6 +194,24 @@
     },
     {
       "key": {
+        "uuid": "fafc7978_e91ad67b",
+        "filename": "datastoreutils/datastoreutils-api/pom.xml",
+        "patchSetId": 6
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2017-02-21T14:46:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fafc7978_0e43f114",
+      "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fafc7978_0ecc91bb",
         "filename": "datastoreutils/datastoreutils-api/pom.xml",
         "patchSetId": 6
@@ -115,6 +223,24 @@
       "writtenOn": "2017-02-15T21:25:28Z",
       "side": 1,
       "message": "is this dependency really needed here? In the API?? What for?",
+      "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_c91f126b",
+        "filename": "datastoreutils/datastoreutils-api/pom.xml",
+        "patchSetId": 6
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2017-02-21T14:46:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fafc7978_0ecc91bb",
       "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -209,6 +335,42 @@
     },
     {
       "key": {
+        "uuid": "fafc7978_c2bd27b9",
+        "filename": "datastoreutils/datastoreutils-api/src/main/java/org/opendaylight/infrautils/datastoreutils/api/DataStoreJobCoordinatorCounters.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2017-02-21T14:46:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fafc7978_896d1b9b",
+      "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_e2b82bca",
+        "filename": "datastoreutils/datastoreutils-api/src/main/java/org/opendaylight/infrautils/datastoreutils/api/DataStoreJobCoordinatorCounters.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2017-02-21T14:46:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fafc7978_2ef515cb",
+      "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fafc7978_4e4cd942",
         "filename": "datastoreutils/datastoreutils-api/src/main/java/org/opendaylight/infrautils/datastoreutils/api/IDataStoreJobCoordinator.java",
         "patchSetId": 6
@@ -220,6 +382,24 @@
       "writtenOn": "2017-02-15T21:25:28Z",
       "side": 1,
       "message": "we normally don\u0027t use the I* convention elsewhere in ODL, so how about just naming this interface DataStoreJobCoordinator, and the implementation class DataStoreJobCoordinatorImpl?",
+      "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_4925e207",
+        "filename": "datastoreutils/datastoreutils-api/src/main/java/org/opendaylight/infrautils/datastoreutils/api/IDataStoreJobCoordinator.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2017-02-21T14:46:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fafc7978_4e4cd942",
       "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -330,6 +510,24 @@
     },
     {
       "key": {
+        "uuid": "fafc7978_099d9a59",
+        "filename": "datastoreutils/datastoreutils-api/src/main/java/org/opendaylight/infrautils/datastoreutils/api/JobQueue.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2017-02-21T14:46:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fafc7978_0eadb19c",
+      "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fafc7978_29f50fcb",
         "filename": "datastoreutils/datastoreutils-api/src/main/java/org/opendaylight/infrautils/datastoreutils/api/JobQueue.java",
         "patchSetId": 6
@@ -358,6 +556,24 @@
       "writtenOn": "2017-02-15T21:25:28Z",
       "side": 1,
       "message": "clearer to just put this initialization into the field line 14, and remove the constructor",
+      "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_89a86a78",
+        "filename": "datastoreutils/datastoreutils-api/src/main/java/org/opendaylight/infrautils/datastoreutils/api/JobQueue.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2017-02-21T14:46:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fafc7978_eeaf8d92",
       "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -393,6 +609,42 @@
       "side": 1,
       "message": ":)",
       "parentUuid": "fafc7978_4e96994d",
+      "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_69a546a1",
+        "filename": "datastoreutils/datastoreutils-api/src/main/java/org/opendaylight/infrautils/datastoreutils/api/JobQueue.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2017-02-21T14:46:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fafc7978_4e96994d",
+      "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_49a2029a",
+        "filename": "datastoreutils/datastoreutils-api/src/main/java/org/opendaylight/infrautils/datastoreutils/api/JobQueue.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2017-02-21T14:46:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fafc7978_49fa13be",
       "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -519,6 +771,24 @@
     },
     {
       "key": {
+        "uuid": "fafc7978_1db834e4",
+        "filename": "datastoreutils/datastoreutils-impl/pom.xml",
+        "patchSetId": 6
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2017-02-21T14:46:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fafc7978_eef78df3",
+      "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fafc7978_4e97b990",
         "filename": "datastoreutils/datastoreutils-impl/pom.xml",
         "patchSetId": 6
@@ -530,6 +800,24 @@
       "writtenOn": "2017-02-15T21:25:28Z",
       "side": 1,
       "message": "please add Checkstyle enforcement here",
+      "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_3db3780b",
+        "filename": "datastoreutils/datastoreutils-impl/pom.xml",
+        "patchSetId": 6
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2017-02-21T14:46:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fafc7978_4e97b990",
       "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -553,6 +841,24 @@
     },
     {
       "key": {
+        "uuid": "fafc7978_fdbc50de",
+        "filename": "datastoreutils/datastoreutils-impl/pom.xml",
+        "patchSetId": 6
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2017-02-21T14:46:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fafc7978_ee45cd17",
+      "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fafc7978_8ebfe1fa",
         "filename": "datastoreutils/datastoreutils-impl/pom.xml",
         "patchSetId": 6
@@ -564,6 +870,24 @@
       "writtenOn": "2017-02-15T21:25:28Z",
       "side": 1,
       "message": "this dependency is not used, so can/should be removed",
+      "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_ddc18c55",
+        "filename": "datastoreutils/datastoreutils-impl/pom.xml",
+        "patchSetId": 6
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2017-02-21T14:46:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fafc7978_8ebfe1fa",
       "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -587,6 +911,24 @@
     },
     {
       "key": {
+        "uuid": "fafc7978_9dec24f5",
+        "filename": "datastoreutils/datastoreutils-impl/pom.xml",
+        "patchSetId": 6
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2017-02-21T14:46:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fafc7978_4ec5f98c",
+      "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fafc7978_6e9b9d72",
         "filename": "datastoreutils/datastoreutils-impl/src/main/java/org/opendaylight/infrautils/datastoreutils/impl/DataStoreJobCoordinator.java",
         "patchSetId": 6
@@ -598,6 +940,24 @@
       "writtenOn": "2017-02-15T21:25:28Z",
       "side": 1,
       "message": "I would use the package name \"internal\" instead of \"impl\". This is a convention which makes the maven-bundle-plugin autoamtically not export-package in MANIFEST.MF, which is what you would want for an impl.",
+      "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_62fa7b76",
+        "filename": "datastoreutils/datastoreutils-impl/src/main/java/org/opendaylight/infrautils/datastoreutils/impl/DataStoreJobCoordinator.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2017-02-21T14:46:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fafc7978_6e9b9d72",
       "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -621,6 +981,24 @@
     },
     {
       "key": {
+        "uuid": "fafc7978_290e9ee5",
+        "filename": "datastoreutils/datastoreutils-impl/src/main/java/org/opendaylight/infrautils/datastoreutils/impl/DataStoreJobCoordinator.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2017-02-21T14:46:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fafc7978_0edf713c",
+      "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fafc7978_eee14dff",
         "filename": "datastoreutils/datastoreutils-impl/src/main/java/org/opendaylight/infrautils/datastoreutils/impl/DataStoreJobCoordinator.java",
         "patchSetId": 6
@@ -632,6 +1010,24 @@
       "writtenOn": "2017-02-15T21:25:28Z",
       "side": 1,
       "message": "make this private again",
+      "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_69fb86c1",
+        "filename": "datastoreutils/datastoreutils-impl/src/main/java/org/opendaylight/infrautils/datastoreutils/impl/DataStoreJobCoordinator.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2017-02-21T14:46:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fafc7978_eee14dff",
       "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -673,6 +1069,42 @@
     },
     {
       "key": {
+        "uuid": "fafc7978_49f842c3",
+        "filename": "datastoreutils/datastoreutils-impl/src/main/java/org/opendaylight/infrautils/datastoreutils/impl/DataStoreJobCoordinator.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2017-02-21T14:46:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fafc7978_4ee859e2",
+      "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_82eddfb9",
+        "filename": "datastoreutils/datastoreutils-impl/src/main/java/org/opendaylight/infrautils/datastoreutils/impl/DataStoreJobCoordinator.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2017-02-21T14:46:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fafc7978_69ed57ef",
+      "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fafc7978_2ee35506",
         "filename": "datastoreutils/datastoreutils-impl/src/main/java/org/opendaylight/infrautils/datastoreutils/impl/DataStoreJobCoordinator.java",
         "patchSetId": 6
@@ -684,6 +1116,24 @@
       "writtenOn": "2017-02-15T21:25:28Z",
       "side": 1,
       "message": "remove this, it\u0027s only clutter when reading the code, and doesn\u0027t add any value, JavaDoc does this itself",
+      "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_491fa208",
+        "filename": "datastoreutils/datastoreutils-impl/src/main/java/org/opendaylight/infrautils/datastoreutils/impl/DataStoreJobCoordinator.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2017-02-21T14:46:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fafc7978_2ee35506",
       "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -707,6 +1157,24 @@
     },
     {
       "key": {
+        "uuid": "fafc7978_e92e5642",
+        "filename": "datastoreutils/datastoreutils-impl/src/main/java/org/opendaylight/infrautils/datastoreutils/impl/DataStoreJobCoordinator.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2017-02-21T14:46:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fafc7978_8ef241d0",
+      "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fafc7978_cebba9e3",
         "filename": "datastoreutils/datastoreutils-impl/src/main/java/org/opendaylight/infrautils/datastoreutils/impl/DataStoreJobCoordinator.java",
         "patchSetId": 6
@@ -718,6 +1186,24 @@
       "writtenOn": "2017-02-15T21:25:28Z",
       "side": 1,
       "message": "remove this, it\u0027s only clutter when reading the code, and doesn\u0027t add any value, JavaDoc does this itself",
+      "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_e22dcbff",
+        "filename": "datastoreutils/datastoreutils-impl/src/main/java/org/opendaylight/infrautils/datastoreutils/impl/DataStoreJobCoordinator.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2017-02-21T14:46:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fafc7978_cebba9e3",
       "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -741,6 +1227,24 @@
     },
     {
       "key": {
+        "uuid": "fafc7978_2925fe5b",
+        "filename": "datastoreutils/datastoreutils-impl/src/main/java/org/opendaylight/infrautils/datastoreutils/impl/DataStoreJobCoordinator.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2017-02-21T14:46:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fafc7978_aebe25d2",
+      "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fafc7978_0eb651fa",
         "filename": "datastoreutils/datastoreutils-impl/src/main/java/org/opendaylight/infrautils/datastoreutils/impl/DataStoreJobCoordinator.java",
         "patchSetId": 6
@@ -758,6 +1262,24 @@
     },
     {
       "key": {
+        "uuid": "fafc7978_c93392a9",
+        "filename": "datastoreutils/datastoreutils-impl/src/main/java/org/opendaylight/infrautils/datastoreutils/impl/DataStoreJobCoordinator.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2017-02-21T14:46:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fafc7978_0eb651fa",
+      "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fafc7978_eeb82de7",
         "filename": "datastoreutils/datastoreutils-impl/src/main/java/org/opendaylight/infrautils/datastoreutils/impl/DataStoreJobCoordinator.java",
         "patchSetId": 6
@@ -769,6 +1291,24 @@
       "writtenOn": "2017-02-15T21:25:28Z",
       "side": 1,
       "message": "remove this, it\u0027s only clutter when reading the code, and doesn\u0027t add any value, JavaDoc does this itself",
+      "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_092aba2b",
+        "filename": "datastoreutils/datastoreutils-impl/src/main/java/org/opendaylight/infrautils/datastoreutils/impl/DataStoreJobCoordinator.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2017-02-21T14:46:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fafc7978_eeb82de7",
       "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -809,6 +1349,24 @@
     },
     {
       "key": {
+        "uuid": "fafc7978_49716275",
+        "filename": "datastoreutils/datastoreutils-impl/src/test/java/org/opendaylight/infrautils/datastoreutils/impl/TestDataStoreJobCoordinator.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2017-02-21T14:46:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fafc7978_4e21794c",
+      "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fafc7978_ee2aed2a",
         "filename": "datastoreutils/datastoreutils-impl/src/test/java/org/opendaylight/infrautils/datastoreutils/tests/DataStoreJobCoordinatorTest.java",
         "patchSetId": 6
@@ -843,6 +1401,24 @@
     },
     {
       "key": {
+        "uuid": "fafc7978_095c7aec",
+        "filename": "datastoreutils/datastoreutils-impl/src/test/java/org/opendaylight/infrautils/datastoreutils/tests/DataStoreJobCoordinatorTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2017-02-21T14:46:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fafc7978_ced44922",
+      "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fafc7978_aed74522",
         "filename": "datastoreutils/datastoreutils-impl/src/test/java/org/opendaylight/infrautils/datastoreutils/tests/DataStoreJobCoordinatorTest.java",
         "patchSetId": 6
@@ -860,6 +1436,24 @@
     },
     {
       "key": {
+        "uuid": "fafc7978_69742668",
+        "filename": "datastoreutils/datastoreutils-impl/src/test/java/org/opendaylight/infrautils/datastoreutils/tests/DataStoreJobCoordinatorTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2017-02-21T14:46:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fafc7978_aed74522",
+      "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fafc7978_8ea081a0",
         "filename": "datastoreutils/pom.xml",
         "patchSetId": 6
@@ -871,6 +1465,24 @@
       "writtenOn": "2017-02-15T21:25:28Z",
       "side": 1,
       "message": "we usually call these projects with \u003cmodules\u003e -aggregator",
+      "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_c96552b6",
+        "filename": "datastoreutils/pom.xml",
+        "patchSetId": 6
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2017-02-21T14:46:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fafc7978_8ea081a0",
       "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
