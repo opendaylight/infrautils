@@ -300,6 +300,24 @@
     },
     {
       "key": {
+        "uuid": "fafc7978_b646624d",
+        "filename": "datastoreutils/datastoreutils-api/src/main/java/org/opendaylight/infrautils/datastoreutils/api/AbstractDataStoreJob.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 5278
+      },
+      "writtenOn": "2017-02-22T11:11:49Z",
+      "side": 1,
+      "message": "I hope this leads to wrapping mainWorker argument (which is of type Callable) into ListenableFutureTask and making enqueueJob to return ListenableFuture of it. But the problem happens while executing this future task in jc\u0027s MainTask#run method. So if we try to use ListenableFutureTask#run inside MainTask, then we loose out retries if there failures while executing the task. So wrapping mainWorker with ListenableFutureTask should be ruled out.\nor Shall we have new ListenableFutureTask for each JobEntry and which can be run after successful run (or) failure after multiple attempts of the job.\n\nPlease let us know.",
+      "parentUuid": "fafc7978_207d191d",
+      "revId": "57fa9ccc959ea9f18cddf938c7fb7cda125bb5a3",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fafc7978_2ef515cb",
         "filename": "datastoreutils/datastoreutils-api/src/main/java/org/opendaylight/infrautils/datastoreutils/api/DataStoreJobCoordinatorCounters.java",
         "patchSetId": 6
