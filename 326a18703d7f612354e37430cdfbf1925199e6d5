@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "fafc7978_7e3e85db",
+        "filename": "common/features/infrautils-features/pom.xml",
+        "patchSetId": 9
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2017-02-26T16:22:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fafc7978_567bb67a",
+      "revId": "326a18703d7f612354e37430cdfbf1925199e6d5",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fafc7978_96dfde68",
         "filename": "common/features/infrautils-features/src/main/features/features.xml",
         "patchSetId": 9
@@ -30,6 +48,24 @@
       "writtenOn": "2017-02-22T11:11:49Z",
       "side": 1,
       "message": "Nit: remove tabs",
+      "revId": "326a18703d7f612354e37430cdfbf1925199e6d5",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_9e39a9f4",
+        "filename": "common/features/infrautils-features/src/main/features/features.xml",
+        "patchSetId": 9
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2017-02-26T16:22:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fafc7978_96dfde68",
       "revId": "326a18703d7f612354e37430cdfbf1925199e6d5",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -59,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "fafc7978_3e1fdd6d",
+        "filename": "common/features/pom.xml",
+        "patchSetId": 9
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2017-02-26T16:22:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fafc7978_d6e5e638",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 2
+      },
+      "revId": "326a18703d7f612354e37430cdfbf1925199e6d5",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fafc7978_f6d74a49",
         "filename": "datastoreutils/datastoreutils-api/src/main/java/org/opendaylight/infrautils/datastoreutils/api/AbstractDataStoreJob.java",
         "patchSetId": 9
@@ -70,6 +130,24 @@
       "writtenOn": "2017-02-22T11:11:49Z",
       "side": 1,
       "message": "we also need make state as volatile for memory consistency.",
+      "revId": "326a18703d7f612354e37430cdfbf1925199e6d5",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_1e049916",
+        "filename": "datastoreutils/datastoreutils-api/src/main/java/org/opendaylight/infrautils/datastoreutils/api/AbstractDataStoreJob.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2017-02-26T16:22:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fafc7978_f6d74a49",
       "revId": "326a18703d7f612354e37430cdfbf1925199e6d5",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -93,6 +171,24 @@
     },
     {
       "key": {
+        "uuid": "fafc7978_8112e806",
+        "filename": "datastoreutils/datastoreutils-impl/src/main/java/org/opendaylight/infrautils/datastoreutils/internal/DataStoreJobCoordinatorImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2017-02-26T16:22:35Z",
+      "side": 1,
+      "message": "I just looked at the class again and I agree with Michael Vorburger. We can remove this class and implement this in a better way. We will fix the classes which implement this class in the future change which updates the other projects to use the infra DSJC instead of the genius one. We can also return some object from enqueueJob which enables the clients to query it for status.",
+      "parentUuid": "fafc7978_9674fe68",
+      "revId": "326a18703d7f612354e37430cdfbf1925199e6d5",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fafc7978_b65022d5",
         "filename": "datastoreutils/datastoreutils-impl/src/main/java/org/opendaylight/infrautils/datastoreutils/internal/DataStoreJobCoordinatorImpl.java",
         "patchSetId": 9
@@ -104,6 +200,24 @@
       "writtenOn": "2017-02-22T11:11:49Z",
       "side": 1,
       "message": "we don\u0027t have synchronize on jobQueueMap since it\u0027s already ConcurrentHashMap.",
+      "revId": "326a18703d7f612354e37430cdfbf1925199e6d5",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_6176e4a5",
+        "filename": "datastoreutils/datastoreutils-impl/src/main/java/org/opendaylight/infrautils/datastoreutils/internal/DataStoreJobCoordinatorImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2017-02-26T16:22:35Z",
+      "side": 1,
+      "message": "This will not guard us from synchronization problems with getWaitingEntries(), etc.\nIt may be possible to reduce synchronization here but this is a preoptimization (which should be pretty negligible) that should be carefully done and I didn\u0027t plan to do it in this change.",
+      "parentUuid": "fafc7978_b65022d5",
       "revId": "326a18703d7f612354e37430cdfbf1925199e6d5",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -127,6 +241,24 @@
     },
     {
       "key": {
+        "uuid": "fafc7978_417be08b",
+        "filename": "datastoreutils/datastoreutils-impl/src/main/java/org/opendaylight/infrautils/datastoreutils/internal/DataStoreJobCoordinatorImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2017-02-26T16:22:35Z",
+      "side": 1,
+      "message": "Same as above.",
+      "parentUuid": "fafc7978_d60166b0",
+      "revId": "326a18703d7f612354e37430cdfbf1925199e6d5",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fafc7978_f6c10a55",
         "filename": "datastoreutils/datastoreutils-impl/src/main/java/org/opendaylight/infrautils/datastoreutils/internal/DataStoreJobCoordinatorImpl.java",
         "patchSetId": 9
@@ -138,6 +270,24 @@
       "writtenOn": "2017-02-22T11:11:49Z",
       "side": 1,
       "message": "Both catch blocks are doing same thing. just replace it with single one (may be only with Exception).",
+      "revId": "326a18703d7f612354e37430cdfbf1925199e6d5",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_4167604d",
+        "filename": "datastoreutils/datastoreutils-impl/src/main/java/org/opendaylight/infrautils/datastoreutils/internal/DataStoreJobCoordinatorImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2017-02-26T16:22:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fafc7978_f6c10a55",
       "revId": "326a18703d7f612354e37430cdfbf1925199e6d5",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
