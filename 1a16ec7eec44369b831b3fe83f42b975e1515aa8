@@ -1,0 +1,157 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fafc7978_c1eb3a76",
+        "filename": "datastoreutils/datastoreutils-api/pom.xml",
+        "patchSetId": 11
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-03-01T15:09:00Z",
+      "side": 1,
+      "message": "remove this, now that counters are only used in the impl, the api doesn\u0027t have to expose this anymore",
+      "revId": "1a16ec7eec44369b831b3fe83f42b975e1515aa8",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_e133de5f",
+        "filename": "datastoreutils/datastoreutils-api/src/main/java/org/opendaylight/infrautils/datastoreutils/api/DataStoreJobCoordinator.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-03-01T15:09:00Z",
+      "side": 1,
+      "message": "is the change of Copyright from genius origin Ericsson to HPE ok?",
+      "revId": "1a16ec7eec44369b831b3fe83f42b975e1515aa8",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_e19d9e0b",
+        "filename": "datastoreutils/datastoreutils-api/src/main/java/org/opendaylight/infrautils/datastoreutils/api/DataStoreJobCoordinator.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-03-01T15:09:00Z",
+      "side": 1,
+      "message": "personally I don\u0027t like and don\u0027t think we should use \".api\" in package names, it\u0027s ugly - what are others thoughts about this? As far as I see, genius doesn\u0027t do this today. - I would just make use \"package org.opendaylight.infrautils.datastoreutils\" (for -api; and package org.opendaylight.infrautils.datastoreutils.internal for the -impl)",
+      "revId": "1a16ec7eec44369b831b3fe83f42b975e1515aa8",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_8167724c",
+        "filename": "datastoreutils/datastoreutils-api/src/main/java/org/opendaylight/infrautils/datastoreutils/api/JobEntry.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-03-01T15:09:00Z",
+      "side": 1,
+      "message": "if I correctly understand the new split api/impl design we\u0027ve arrived at here (which looks great to me, thank you), then I believe this class JobQueue is wrong to be in api now, and should be moved into impl ..",
+      "revId": "1a16ec7eec44369b831b3fe83f42b975e1515aa8",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_4172aa11",
+        "filename": "datastoreutils/datastoreutils-api/src/main/java/org/opendaylight/infrautils/datastoreutils/api/JobQueue.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-03-01T15:09:00Z",
+      "side": 1,
+      "message": "if I correctly understand the new split api/impl design we\u0027ve arrived at here (which looks great to me, thank you), then I believe this class JobQueue is wrong to be in api now, and should be moved into impl ..",
+      "revId": "1a16ec7eec44369b831b3fe83f42b975e1515aa8",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_212846e1",
+        "filename": "datastoreutils/datastoreutils-api/src/main/java/org/opendaylight/infrautils/datastoreutils/api/RollbackCallable.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-03-01T15:09:00Z",
+      "side": 1,
+      "message": "remove empty default constructor",
+      "revId": "1a16ec7eec44369b831b3fe83f42b975e1515aa8",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_a1c9d627",
+        "filename": "datastoreutils/datastoreutils-impl/src/main/java/org/opendaylight/infrautils/datastoreutils/internal/DataStoreJobCoordinatorImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-03-01T15:09:00Z",
+      "side": 1,
+      "message": "use @Singleton annotation and blueprint-maven-plugin, see https://wiki.opendaylight.org/view/BestPractices/DI_Guidelines",
+      "revId": "1a16ec7eec44369b831b3fe83f42b975e1515aa8",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_21604600",
+        "filename": "datastoreutils/datastoreutils-impl/src/main/java/org/opendaylight/infrautils/datastoreutils/internal/DataStoreJobCoordinatorImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-03-01T15:09:00Z",
+      "side": 1,
+      "message": "we\u0027d be loosing the hopefully about-to-merged https://git.opendaylight.org/gerrit/#/c/52014/3/mdsalutil/mdsalutil-api/src/main/java/org/opendaylight/genius/datastoreutils/DataStoreJobCoordinator.java here... suggested order of things: Let\u0027s get c/52014 merged into Genius, then adapt this to use that?  (Maybe best to briefly discuss order and best next action in Thursday call?)",
+      "revId": "1a16ec7eec44369b831b3fe83f42b975e1515aa8",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_e1cf5e27",
+        "filename": "datastoreutils/datastoreutils-impl/src/main/resources/org/opendaylight/blueprint/datastoreutils.xml",
+        "patchSetId": 11
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-03-01T15:09:00Z",
+      "side": 1,
+      "message": "remove this \u003cbean\u003e after @Singleton and use of blueprint-maven-plugin, as per https://wiki.opendaylight.org/view/BestPractices/DI_Guidelines",
+      "revId": "1a16ec7eec44369b831b3fe83f42b975e1515aa8",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
