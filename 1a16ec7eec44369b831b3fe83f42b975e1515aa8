@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "fafc7978_7d05cb44",
+        "filename": "datastoreutils/datastoreutils-api/pom.xml",
+        "patchSetId": 11
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2017-03-02T12:34:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fafc7978_c1eb3a76",
+      "revId": "1a16ec7eec44369b831b3fe83f42b975e1515aa8",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fafc7978_e133de5f",
         "filename": "datastoreutils/datastoreutils-api/src/main/java/org/opendaylight/infrautils/datastoreutils/api/DataStoreJobCoordinator.java",
         "patchSetId": 11
@@ -30,6 +48,24 @@
       "writtenOn": "2017-03-01T15:09:00Z",
       "side": 1,
       "message": "is the change of Copyright from genius origin Ericsson to HPE ok?",
+      "revId": "1a16ec7eec44369b831b3fe83f42b975e1515aa8",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_5d00c733",
+        "filename": "datastoreutils/datastoreutils-api/src/main/java/org/opendaylight/infrautils/datastoreutils/api/DataStoreJobCoordinator.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2017-03-02T12:34:17Z",
+      "side": 1,
+      "message": "Well, this file is new. The file that existed before is the Impl.",
+      "parentUuid": "fafc7978_e133de5f",
       "revId": "1a16ec7eec44369b831b3fe83f42b975e1515aa8",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "fafc7978_fd989b1d",
+        "filename": "datastoreutils/datastoreutils-api/src/main/java/org/opendaylight/infrautils/datastoreutils/api/DataStoreJobCoordinator.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2017-03-02T12:34:17Z",
+      "side": 1,
+      "message": "I tend to agree with you and I changed it.",
+      "parentUuid": "fafc7978_e19d9e0b",
+      "revId": "1a16ec7eec44369b831b3fe83f42b975e1515aa8",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fafc7978_8167724c",
         "filename": "datastoreutils/datastoreutils-api/src/main/java/org/opendaylight/infrautils/datastoreutils/api/JobEntry.java",
         "patchSetId": 11
@@ -64,6 +118,24 @@
       "writtenOn": "2017-03-01T15:09:00Z",
       "side": 1,
       "message": "if I correctly understand the new split api/impl design we\u0027ve arrived at here (which looks great to me, thank you), then I believe this class JobQueue is wrong to be in api now, and should be moved into impl ..",
+      "revId": "1a16ec7eec44369b831b3fe83f42b975e1515aa8",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_bd9293f3",
+        "filename": "datastoreutils/datastoreutils-api/src/main/java/org/opendaylight/infrautils/datastoreutils/api/JobEntry.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2017-03-02T12:34:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fafc7978_8167724c",
       "revId": "1a16ec7eec44369b831b3fe83f42b975e1515aa8",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "fafc7978_fdbffb5e",
+        "filename": "datastoreutils/datastoreutils-api/src/main/java/org/opendaylight/infrautils/datastoreutils/api/JobQueue.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2017-03-02T12:34:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fafc7978_4172aa11",
+      "revId": "1a16ec7eec44369b831b3fe83f42b975e1515aa8",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fafc7978_212846e1",
         "filename": "datastoreutils/datastoreutils-api/src/main/java/org/opendaylight/infrautils/datastoreutils/api/RollbackCallable.java",
         "patchSetId": 11
@@ -98,6 +188,24 @@
       "writtenOn": "2017-03-01T15:09:00Z",
       "side": 1,
       "message": "remove empty default constructor",
+      "revId": "1a16ec7eec44369b831b3fe83f42b975e1515aa8",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_ddc2f7e7",
+        "filename": "datastoreutils/datastoreutils-api/src/main/java/org/opendaylight/infrautils/datastoreutils/api/RollbackCallable.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2017-03-02T12:34:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fafc7978_212846e1",
       "revId": "1a16ec7eec44369b831b3fe83f42b975e1515aa8",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -121,6 +229,24 @@
     },
     {
       "key": {
+        "uuid": "fafc7978_20f676f9",
+        "filename": "datastoreutils/datastoreutils-impl/src/main/java/org/opendaylight/infrautils/datastoreutils/internal/DataStoreJobCoordinatorImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2017-03-02T12:34:17Z",
+      "side": 1,
+      "message": "Great, I like this",
+      "parentUuid": "fafc7978_a1c9d627",
+      "revId": "1a16ec7eec44369b831b3fe83f42b975e1515aa8",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fafc7978_21604600",
         "filename": "datastoreutils/datastoreutils-impl/src/main/java/org/opendaylight/infrautils/datastoreutils/internal/DataStoreJobCoordinatorImpl.java",
         "patchSetId": 11
@@ -138,6 +264,24 @@
     },
     {
       "key": {
+        "uuid": "fafc7978_c31cd46c",
+        "filename": "datastoreutils/datastoreutils-impl/src/main/java/org/opendaylight/infrautils/datastoreutils/internal/DataStoreJobCoordinatorImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2017-03-02T12:34:17Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "fafc7978_21604600",
+      "revId": "1a16ec7eec44369b831b3fe83f42b975e1515aa8",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fafc7978_e1cf5e27",
         "filename": "datastoreutils/datastoreutils-impl/src/main/resources/org/opendaylight/blueprint/datastoreutils.xml",
         "patchSetId": 11
@@ -149,6 +293,24 @@
       "writtenOn": "2017-03-01T15:09:00Z",
       "side": 1,
       "message": "remove this \u003cbean\u003e after @Singleton and use of blueprint-maven-plugin, as per https://wiki.opendaylight.org/view/BestPractices/DI_Guidelines",
+      "revId": "1a16ec7eec44369b831b3fe83f42b975e1515aa8",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_40f3ba09",
+        "filename": "datastoreutils/datastoreutils-impl/src/main/resources/org/opendaylight/blueprint/datastoreutils.xml",
+        "patchSetId": 11
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2017-03-02T12:34:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fafc7978_e1cf5e27",
       "revId": "1a16ec7eec44369b831b3fe83f42b975e1515aa8",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
