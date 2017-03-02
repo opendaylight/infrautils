@@ -12,19 +12,25 @@ import org.opendaylight.infrautils.counters.api.OccurenceCounter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.codahale.metrics.MetricRegistry;
+
 
 public class OccurenceCounterEntry {
     public OccurenceCounter counter;
     public long lastVal;
     public long maxWidth = 0;
     public Logger logger;
-    public String printName;
+    public String printName;    
 
     public OccurenceCounterEntry(OccurenceCounter counter) {
         this.counter = counter;
         lastVal = 0;
         logger = LoggerFactory.getLogger(counter.group + "." + counter.name);
         printName = counter.groupAcronym + "." + counter.name;
+        
+        MetricRegistry r = MetricRegistry.name("yakir", "a");
+        r.
+        
     }
 
     @Override
