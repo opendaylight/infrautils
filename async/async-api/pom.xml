@@ -12,6 +12,10 @@
     <packaging>bundle</packaging>
     <modelVersion>4.0.0</modelVersion>
     <version>1.1.0-SNAPSHOT</version>
+    <!-- <name> formatting is used by autorelease to parse and notify projects on
+         build failure. Please do not modify this unless you have a good reason. -->
+    <name>ODL :: infrautils :: ${project.artifactId}</name>
+
     <build>
         <plugins>
             <plugin>
