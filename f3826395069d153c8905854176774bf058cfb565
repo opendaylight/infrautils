@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fafc7978_6e5ce119",
+        "filename": "docs/specs/job-coordinator.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2017-03-05T15:32:44Z",
+      "side": 1,
+      "message": "In my infrautils commit we lost the outer map and now we have just one map (jobQueueMap) which holds all the job queues and with their keys.",
+      "range": {
+        "startLine": 96,
+        "startChar": 45,
+        "endLine": 96,
+        "endChar": 56
+      },
+      "revId": "f3826395069d153c8905854176774bf058cfb565",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
