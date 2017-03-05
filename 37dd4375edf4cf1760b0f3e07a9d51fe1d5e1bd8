@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fafc7978_2e3f79b5",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/DataStoreJobCoordinatorCounters.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2017-03-05T15:10:05Z",
+      "side": 1,
+      "message": "this also needs change",
+      "revId": "37dd4375edf4cf1760b0f3e07a9d51fe1d5e1bd8",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_8e4ae552",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/test/java/org/opendaylight/infrautils/jobcoordinator/tests/DataStoreJobCoordinatorTest.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2017-03-05T15:10:05Z",
+      "side": 1,
+      "message": "this too",
+      "revId": "37dd4375edf4cf1760b0f3e07a9d51fe1d5e1bd8",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
