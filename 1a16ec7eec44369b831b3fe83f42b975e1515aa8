@@ -282,6 +282,24 @@
     },
     {
       "key": {
+        "uuid": "fafc7978_1749e830",
+        "filename": "datastoreutils/datastoreutils-impl/src/main/java/org/opendaylight/infrautils/datastoreutils/internal/DataStoreJobCoordinatorImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-03-06T10:30:52Z",
+      "side": 1,
+      "message": "let\u0027s decouple this - I\u0027ll +1 this one, and when both this and c/52014 will be merged, then I\u0027ll raise another change to re-apply this... I\u0027ve just taken a note about it, I won\u0027t forget",
+      "parentUuid": "fafc7978_c31cd46c",
+      "revId": "1a16ec7eec44369b831b3fe83f42b975e1515aa8",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fafc7978_e1cf5e27",
         "filename": "datastoreutils/datastoreutils-impl/src/main/resources/org/opendaylight/blueprint/datastoreutils.xml",
         "patchSetId": 11
