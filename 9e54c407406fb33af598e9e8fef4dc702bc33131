@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fafc7978_f1f554ed",
+        "filename": "docs/specs/job-coordinator.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 5278
+      },
+      "writtenOn": "2017-03-06T05:39:53Z",
+      "side": 1,
+      "message": "you can rephrase this sentence because JC is about executing tasks in parallel/sequential manner based on its job key. The job can also do MD-SAL data store updates.",
+      "revId": "9e54c407406fb33af598e9e8fef4dc702bc33131",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_5199c0c2",
+        "filename": "docs/specs/job-coordinator.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 5278
+      },
+      "writtenOn": "2017-03-06T05:39:53Z",
+      "side": 1,
+      "message": "Do we need separate developer guide for it ?\nyou could explain in spec itself about new BP APIs and its usage.\nhttps://git.opendaylight.org/gerrit/#/c/51431/14/jobcoordinator/jobcoordinator-api/src/main/java/org/opendaylight/infrautils/jobcoordinator/JobCoordinator.java",
+      "revId": "9e54c407406fb33af598e9e8fef4dc702bc33131",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
