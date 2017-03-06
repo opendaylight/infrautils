@@ -19,6 +19,29 @@
     },
     {
       "key": {
+        "uuid": "fafc7978_b7929c49",
+        "filename": "docs/specs/job-coordinator.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2017-03-06T10:49:34Z",
+      "side": 1,
+      "message": "I don\u0027t really know what should be the scope of a spec and to what level it should detail, but my feeling is that going into implementation details (data structures, java classes) is too much. Implementations can change for many pragmatic reasons (such as optimization) and thus should not be described in design documents (imo), What do you think?",
+      "range": {
+        "startLine": 53,
+        "startChar": 43,
+        "endLine": 54,
+        "endChar": 51
+      },
+      "revId": "9e54c407406fb33af598e9e8fef4dc702bc33131",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fafc7978_5199c0c2",
         "filename": "docs/specs/job-coordinator.rst",
         "patchSetId": 9
