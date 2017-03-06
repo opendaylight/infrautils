@@ -60,6 +60,30 @@
     },
     {
       "key": {
+        "uuid": "fafc7978_d7000068",
+        "filename": "docs/specs/job-coordinator.rst",
+        "patchSetId": 9
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2017-03-06T10:57:41Z",
+      "side": 1,
+      "message": "Oops I missed this comment..\nWe usually think of design specs as Implementation sketches, and hence thought this is required. As you had previously mentioned, while migrating the code, you have removed the outer JobEntryMap, so I think I will rephrase this.",
+      "parentUuid": "fafc7978_b7929c49",
+      "range": {
+        "startLine": 53,
+        "startChar": 43,
+        "endLine": 54,
+        "endChar": 51
+      },
+      "revId": "9e54c407406fb33af598e9e8fef4dc702bc33131",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fafc7978_5199c0c2",
         "filename": "docs/specs/job-coordinator.rst",
         "patchSetId": 9
