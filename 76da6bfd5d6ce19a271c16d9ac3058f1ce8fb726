@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fafc7978_634eaf3c",
+        "filename": "docs/specs/job-coordinator.rst",
+        "patchSetId": 13
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 5278
+      },
+      "writtenOn": "2017-03-07T07:27:43Z",
+      "side": 1,
+      "message": "Nit: you could highlight these APIs with .. code-block:: bash",
+      "revId": "76da6bfd5d6ce19a271c16d9ac3058f1ce8fb726",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
