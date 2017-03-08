@@ -16,6 +16,24 @@
       "revId": "76da6bfd5d6ce19a271c16d9ac3058f1ce8fb726",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_1d5c5818",
+        "filename": "docs/specs/job-coordinator.rst",
+        "patchSetId": 13
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2017-03-08T11:35:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fafc7978_634eaf3c",
+      "revId": "76da6bfd5d6ce19a271c16d9ac3058f1ce8fb726",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
