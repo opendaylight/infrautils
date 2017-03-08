@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "fafc7978_ca284735",
+        "filename": "jobcoordinator/jobcoordinator-api/src/main/java/org/opendaylight/infrautils/jobcoordinator/JobCoordinator.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-03-08T00:39:55Z",
+      "side": 1,
+      "message": "copy/paste some text from https://git.opendaylight.org/gerrit/#/c/51418/14/docs/specs/job-coordinator.rst ?",
+      "parentUuid": "fafc7978_e5074780",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 33
+      },
+      "revId": "5a421d25b750bcad980831fc0eacfa6e77c92ebb",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fafc7978_25fe6f6b",
         "filename": "jobcoordinator/jobcoordinator-api/src/main/java/org/opendaylight/infrautils/jobcoordinator/RollbackCallable.java",
         "patchSetId": 14
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "fafc7978_6af03bc9",
+        "filename": "jobcoordinator/jobcoordinator-api/src/main/java/org/opendaylight/infrautils/jobcoordinator/RollbackCallable.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-03-08T00:39:55Z",
+      "side": 1,
+      "message": "hopefully not, let\u0027s document that with a package-info.java:\n\n@org.eclipse.jdt.annotation.NonNullByDefault\npackage org.opendaylight.genius.datastoreutils;\n\nand put @Nullable if \"futures\" can be null..",
+      "parentUuid": "fafc7978_25fe6f6b",
+      "range": {
+        "startLine": 24,
+        "startChar": 21,
+        "endLine": 24,
+        "endChar": 30
+      },
+      "revId": "5a421d25b750bcad980831fc0eacfa6e77c92ebb",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fafc7978_65fb5779",
         "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobCoordinatorCounters.java",
         "patchSetId": 14
@@ -59,6 +107,30 @@
       "writtenOn": "2017-03-06T23:31:25Z",
       "side": 1,
       "message": "enum values should be capitalized, as per best practices. Since this is a public enum, each member should have a javadoc.",
+      "range": {
+        "startLine": 14,
+        "startChar": 4,
+        "endLine": 14,
+        "endChar": 74
+      },
+      "revId": "5a421d25b750bcad980831fc0eacfa6e77c92ebb",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_aabd03da",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobCoordinatorCounters.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-03-08T00:39:55Z",
+      "side": 1,
+      "message": "it\u0027s a public enum in an *-impl, not not API .. could be made package-local, I guess",
+      "parentUuid": "fafc7978_65fb5779",
       "range": {
         "startLine": 14,
         "startChar": 4,
@@ -268,6 +340,30 @@
       "writtenOn": "2017-03-06T23:31:25Z",
       "side": 1,
       "message": "Is this ever accessed outside of this package?",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 6
+      },
+      "revId": "5a421d25b750bcad980831fc0eacfa6e77c92ebb",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_eab38b07",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobEntry.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-03-08T00:39:55Z",
+      "side": 1,
+      "message": "it\u0027s in *-impl, not not API .. could be made package-local, I guess",
+      "parentUuid": "fafc7978_250caf93",
       "range": {
         "startLine": 22,
         "startChar": 0,
