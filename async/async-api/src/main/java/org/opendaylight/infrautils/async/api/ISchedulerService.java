@@ -12,7 +12,8 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
 public interface ISchedulerService {
-    public static final String DEFAULT_POOL = "DEFAULT_POOL";
+
+    String DEFAULT_POOL = "DEFAULT_POOL";
 
     void sleep(int millis);
 
@@ -22,18 +23,19 @@ public interface ISchedulerService {
 
     boolean cancel(String identifier);
 
-    void scheduleWorkerAtFixedRate(String identifier, String poolName, IWorker worker, long rate, TimeUnit t);
+    void scheduleWorkerAtFixedRate(String identifier, String poolName, IWorker worker, long rate, TimeUnit timeUnit);
 
-    void scheduleWorkerAtFixedRate(String identifier, String poolName, IWorker worker, long delay, long rate, TimeUnit t);
+    void scheduleWorkerAtFixedRate(String identifier, String poolName, IWorker worker, long delay, long rate,
+            TimeUnit timeUnit);
 
-    void scheduleWorkerAtFixedRate(String identifier, IWorker worker, long rate, TimeUnit t);
+    void scheduleWorkerAtFixedRate(String identifier, IWorker worker, long rate, TimeUnit timeUnit);
 
-    void scheduleWorkerAtFixedRate(String identifier, IWorker worker, long delay, long rate, TimeUnit t);
+    void scheduleWorkerAtFixedRate(String identifier, IWorker worker, long delay, long rate, TimeUnit timeUnit);
 
-    ScheduledFuture<?> scheduleWorkerOnce(String poolName, IWorker worker, long delay, TimeUnit t);
+    ScheduledFuture<?> scheduleWorkerOnce(String poolName, IWorker worker, long delay, TimeUnit timeUnit);
 
-    ScheduledFuture<?> scheduleWorkerOnce(IWorker worker, long delay, TimeUnit t);
+    ScheduledFuture<?> scheduleWorkerOnce(IWorker worker, long delay, TimeUnit timeUnit);
 
-    void scheduleWorkersOnce(String poolName, long delay, TimeUnit t, IWorker... workers);
+    void scheduleWorkersOnce(String poolName, long delay, TimeUnit timeUnit, IWorker... workers);
 
 }

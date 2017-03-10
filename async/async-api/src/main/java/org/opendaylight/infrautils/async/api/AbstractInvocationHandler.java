@@ -14,8 +14,9 @@ import java.lang.reflect.Proxy;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public abstract class AbstractInvocationHandler implements InvocationHandler {
+
     private static AtomicInteger hashCodeCounter = new AtomicInteger(0);
-    private int hashValue;
+    private final int hashValue;
 
     public AbstractInvocationHandler() {
         hashValue = hashCodeCounter.getAndIncrement();
@@ -23,6 +24,7 @@ public abstract class AbstractInvocationHandler implements InvocationHandler {
 
     public abstract Object doInvoke(Object proxy, Method method, Object[] args) throws Throwable;
 
+    @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         if ("hashCode".equals(method.getName())) {
             return hashValue;

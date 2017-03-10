@@ -32,7 +32,7 @@ public class SchedulerService implements ISchedulerService {
     private final Map<String, ScheduledThreadPoolExecutor> poolNameToExecutor;
     private final Map<String, PoolData> identifierToPoolData;
     private final Map<String, ScheduledFuture<?>> identifierToTaskReference;
-    private IAsyncConfig config;
+    private final IAsyncConfig config;
 
     public SchedulerService(IAsyncConfig config) {
         poolNameToExecutor = new ConcurrentHashMap<>();
@@ -63,26 +63,32 @@ public class SchedulerService implements ISchedulerService {
             final int prime = 31;
             int result = 1;
             result = prime * result + getOuterType().hashCode();
-            result = prime * result + ((poolName == null) ? 0 : poolName.hashCode());
+            result = prime * result + (poolName == null ? 0 : poolName.hashCode());
             return result;
         }
 
         @Override
         public boolean equals(Object obj) {
-            if (this == obj)
+            if (this == obj) {
                 return true;
-            if (obj == null)
+            }
+            if (obj == null) {
                 return false;
-            if (getClass() != obj.getClass())
+            }
+            if (getClass() != obj.getClass()) {
                 return false;
+            }
             PoolData other = (PoolData) obj;
-            if (!getOuterType().equals(other.getOuterType()))
+            if (!getOuterType().equals(other.getOuterType())) {
                 return false;
+            }
             if (poolName == null) {
-                if (other.poolName != null)
+                if (other.poolName != null) {
                     return false;
-            } else if (!poolName.equals(other.poolName))
+                }
+            } else if (!poolName.equals(other.poolName)) {
                 return false;
+            }
             return true;
         }
 
@@ -107,7 +113,7 @@ public class SchedulerService implements ISchedulerService {
 
     public static class RunnableWrapperForWorker implements Runnable {
 
-        private IWorker worker;
+        private final IWorker worker;
 
         public RunnableWrapperForWorker(IWorker worker) {
             this.worker = worker;
@@ -149,7 +155,7 @@ public class SchedulerService implements ISchedulerService {
     }
 
     @Override
-    public void scheduleWorkerAtFixedRate(String identifier, String poolName, IWorker worker, long delay, long rate, TimeUnit t) {
+    public void scheduleWorkerAtFixedRate(String identifier, String poolName, IWorker worker, long delay, long rate, TimeUnit timeUnit) {
         if (identifierToPoolData.containsKey(identifier)) {
             throw new RuntimeException("Worker Group with the id: " + identifier + " already exists!");
         }
@@ -159,7 +165,7 @@ public class SchedulerService implements ISchedulerService {
         PoolData poolData = new PoolData(poolName, worker);
         identifierToPoolData.put(identifier, poolData);
 
-        ScheduledFuture<?> taskReference = executor.scheduleAtFixedRate(poolData.runnable, delay, rate, t);
+        ScheduledFuture<?> taskReference = executor.scheduleAtFixedRate(poolData.runnable, delay, rate, timeUnit);
         identifierToTaskReference.put(identifier, taskReference);
     }
 
@@ -224,31 +230,31 @@ public class SchedulerService implements ISchedulerService {
     }
 
     @Override
-    public void scheduleWorkerAtFixedRate(String identifier, String poolName, IWorker worker, long rate, TimeUnit t) {
-        scheduleWorkerAtFixedRate(identifier, poolName, worker, 0, rate, t);
+    public void scheduleWorkerAtFixedRate(String identifier, String poolName, IWorker worker, long rate, TimeUnit timeUnit) {
+        scheduleWorkerAtFixedRate(identifier, poolName, worker, 0, rate, timeUnit);
     }
 
     @Override
-    public void scheduleWorkerAtFixedRate(String identifier, IWorker worker, long delay, long rate, TimeUnit t) {
-        scheduleWorkerAtFixedRate(identifier, DEFAULT_POOL, worker, delay, rate, t);
+    public void scheduleWorkerAtFixedRate(String identifier, IWorker worker, long delay, long rate, TimeUnit timeUnit) {
+        scheduleWorkerAtFixedRate(identifier, DEFAULT_POOL, worker, delay, rate, timeUnit);
 
     }
 
     @Override
-    public void scheduleWorkerAtFixedRate(String identifier, IWorker worker, long rate, TimeUnit t) {
-        scheduleWorkerAtFixedRate(identifier, DEFAULT_POOL, worker, 0, rate, t);
+    public void scheduleWorkerAtFixedRate(String identifier, IWorker worker, long rate, TimeUnit timeUnit) {
+        scheduleWorkerAtFixedRate(identifier, DEFAULT_POOL, worker, 0, rate, timeUnit);
     }
 
     @Override
-    public void scheduleWorkersOnce(String poolName, long delay, TimeUnit t, IWorker... workers) {
+    public void scheduleWorkersOnce(String poolName, long delay, TimeUnit timeUnit, IWorker... workers) {
         for (IWorker worker : workers) {
-            scheduleWorkerOnce(poolName, worker, delay, t);
+            scheduleWorkerOnce(poolName, worker, delay, timeUnit);
         }
     }
 
     @Override
-    public ScheduledFuture<?> scheduleWorkerOnce(IWorker worker, long delay, TimeUnit t) {
-        return scheduleWorkerOnce(DEFAULT_POOL, worker, delay, t);
+    public ScheduledFuture<?> scheduleWorkerOnce(IWorker worker, long delay, TimeUnit timeUnit) {
+        return scheduleWorkerOnce(DEFAULT_POOL, worker, delay, timeUnit);
     }
 
     private int getPoolSize(String poolName) {

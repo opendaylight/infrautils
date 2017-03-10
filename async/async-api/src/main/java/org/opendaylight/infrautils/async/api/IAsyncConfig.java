@@ -9,8 +9,10 @@
 package org.opendaylight.infrautils.async.api;
 
 public interface IAsyncConfig {
-    public static final String CONFIG_POOL_NAME = "pool.name";
-    public static final String CONFIG_PROXIES = "/proxies/";
+
+    String CONFIG_POOL_NAME = "pool.name";
+
+    String CONFIG_PROXIES = "/proxies/";
 
     String getString(String path, String defaultValue);
 
