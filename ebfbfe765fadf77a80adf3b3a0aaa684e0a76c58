@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fafc7978_be7417cf",
+        "filename": "docs/specs/job-coordinator.rst",
+        "patchSetId": 16
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2017-03-10T09:31:30Z",
+      "side": 1,
+      "message": "Is this actually the primary use case?",
+      "range": {
+        "startLine": 12,
+        "startChar": 69,
+        "endLine": 13,
+        "endChar": 17
+      },
+      "revId": "ebfbfe765fadf77a80adf3b3a0aaa684e0a76c58",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_be86d7b6",
+        "filename": "docs/specs/job-coordinator.rst",
+        "patchSetId": 16
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2017-03-10T09:31:30Z",
+      "side": 1,
+      "message": "In what sense is it unnecessary? Does this mean there is no backpressure at all?",
+      "range": {
+        "startLine": 22,
+        "startChar": 69,
+        "endLine": 22,
+        "endChar": 103
+      },
+      "revId": "ebfbfe765fadf77a80adf3b3a0aaa684e0a76c58",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_1ea9e323",
+        "filename": "docs/specs/job-coordinator.rst",
+        "patchSetId": 16
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2017-03-10T09:31:30Z",
+      "side": 1,
+      "message": "What sort of failures are we talking about? Is there specific data store failure pattern which is addressed via retries?",
+      "range": {
+        "startLine": 104,
+        "startChar": 0,
+        "endLine": 104,
+        "endChar": 26
+      },
+      "revId": "ebfbfe765fadf77a80adf3b3a0aaa684e0a76c58",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_de791bc9",
+        "filename": "docs/specs/job-coordinator.rst",
+        "patchSetId": 16
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2017-03-10T09:31:30Z",
+      "side": 1,
+      "message": "Has the proposed code been tested at scale? What is its impact on overall system thoughput?",
+      "range": {
+        "startLine": 132,
+        "startChar": 0,
+        "endLine": 133,
+        "endChar": 90
+      },
+      "revId": "ebfbfe765fadf77a80adf3b3a0aaa684e0a76c58",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
