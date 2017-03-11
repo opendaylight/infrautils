@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "fafc7978_e4fc49b7",
+        "filename": "docs/specs/job-coordinator.rst",
+        "patchSetId": 16
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2017-03-11T14:53:19Z",
+      "side": 1,
+      "message": "Right, but if there is no backpressure and we cannot keep up with the rate of changes we will keep accumulating a work backlog in unbounded queues and at some point will run out of memory. The size of those queues is not logically capped at the working set size, but rather than the sum of all transitions.\n\nImagine a scenario, where we have a thousand ports and create a thousand interfaces on each and what we do is keep creating/deleting them in a loop as fast as possible. If we run this workload long enough we will run out of memory. Moreover if we run it just for a shorter period of time, the system will have a \u0027tail\u0027 where no new work is submitted, but we still have to crunch through the backlog -- most of which is just unneeded churn, as jobs in the middle of the queue are rendered unnecessary by their follow-up jobs.",
+      "parentUuid": "fafc7978_44d3955f",
+      "range": {
+        "startLine": 22,
+        "startChar": 69,
+        "endLine": 22,
+        "endChar": 103
+      },
+      "revId": "ebfbfe765fadf77a80adf3b3a0aaa684e0a76c58",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fafc7978_1ea9e323",
         "filename": "docs/specs/job-coordinator.rst",
         "patchSetId": 16
@@ -143,6 +167,30 @@
     },
     {
       "key": {
+        "uuid": "fafc7978_c422e550",
+        "filename": "docs/specs/job-coordinator.rst",
+        "patchSetId": 16
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2017-03-11T14:53:19Z",
+      "side": 1,
+      "message": "Right, but normal operation should not incur any exceptions, whereas you regard this as a needed component. I am trying to understand what errors does the retry mechanism solve under normal operation -- because if they are common enough to require an infrastructure component to deal with them it is indicative that perhaps they need to be analyzed to see what their root cause is.",
+      "parentUuid": "fafc7978_04e6ad43",
+      "range": {
+        "startLine": 104,
+        "startChar": 0,
+        "endLine": 104,
+        "endChar": 26
+      },
+      "revId": "ebfbfe765fadf77a80adf3b3a0aaa684e0a76c58",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fafc7978_de791bc9",
         "filename": "docs/specs/job-coordinator.rst",
         "patchSetId": 16
@@ -178,6 +226,30 @@
       "side": 1,
       "message": "Yes, the proposed framework is already part of genius project, and has been tested thoroughly for three releases, Beryllium, Boron and Carbon, and is part of Ericsson\u0027s customer solution. Have been tested in scale on a regular basis as part of our internal scale regression. Use of this framework has reduced time for our network provisioning almost by 40%",
       "parentUuid": "fafc7978_de791bc9",
+      "range": {
+        "startLine": 132,
+        "startChar": 0,
+        "endLine": 133,
+        "endChar": 90
+      },
+      "revId": "ebfbfe765fadf77a80adf3b3a0aaa684e0a76c58",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_04198d21",
+        "filename": "docs/specs/job-coordinator.rst",
+        "patchSetId": 16
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2017-03-11T14:53:19Z",
+      "side": 1,
+      "message": "I would like to know more about the test methodology. Is there a chance to have a comparative benchmark in the open, so we understand what the workload looks like?",
+      "parentUuid": "fafc7978_e4e0c927",
       "range": {
         "startLine": 132,
         "startChar": 0,
