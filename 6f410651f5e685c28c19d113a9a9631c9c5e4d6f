@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fafc7978_ff5336df",
+        "filename": "docs/specs/status-and-diagnostics.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 4039
+      },
+      "writtenOn": "2017-03-12T08:36:31Z",
+      "side": 1,
+      "message": "why is this considered a separated use case? this should be an integral troubleshooting tool supporting all other use cases, providing visibility.",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 62
+      },
+      "revId": "6f410651f5e685c28c19d113a9a9631c9c5e4d6f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_9f482a2e",
+        "filename": "docs/specs/status-and-diagnostics.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 4039
+      },
+      "writtenOn": "2017-03-12T08:36:31Z",
+      "side": 1,
+      "message": "why not?",
+      "range": {
+        "startLine": 203,
+        "startChar": 0,
+        "endLine": 204,
+        "endChar": 29
+      },
+      "revId": "6f410651f5e685c28c19d113a9a9631c9c5e4d6f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
