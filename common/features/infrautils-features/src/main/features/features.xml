@@ -9,10 +9,8 @@
         description='OpenDaylight :: Infrautils :: All with Samples'>
         <feature version='${project.version}'>odl-infrautils-all</feature>
         <feature version='${project.version}'>odl-infrautils-counters-sample</feature>
-        <feature version='${project.version}'>odl-infrautils-async-sample</feature>
     </feature>
     <feature name='odl-infrautils-all' version='${project.version}' description='OpenDaylight :: Infrautils :: All'>
-        <feature version='${project.version}'>odl-infrautils-async</feature>
         <feature version='${project.version}'>odl-infrautils-inject</feature>
     </feature>
     <feature name='odl-infrautils-counters' version='${project.version}'
@@ -23,22 +21,10 @@
         <bundle>mvn:org.apache.commons/commons-lang3/3.1</bundle>
         <configfile finalname="etc/org.opendaylight.counters.cfg">mvn:org.opendaylight.infrautils/counters-impl/{{VERSION}}/cfg/countersconf/</configfile>
     </feature>
-    <feature name='odl-infrautils-async' version='${project.version}'
-        description='OpenDaylight :: Infrautils :: Async'>
-        <feature version='${project.version}'>odl-infrautils-counters</feature>
-        <bundle>mvn:org.opendaylight.infrautils/async-api/{{VERSION}}</bundle>
-        <bundle>mvn:org.opendaylight.infrautils/async-impl/{{VERSION}}</bundle>
-        <configfile finalname="etc/org.opendaylight.async.cfg">mvn:org.opendaylight.infrautils/async-impl/{{VERSION}}/cfg/asyncconf/</configfile>
-    </feature>
     <feature name='odl-infrautils-counters-sample' version='${project.version}'
         description='OpenDaylight :: Infrautils :: Counters Sample'>
         <feature version='${project.version}'>odl-infrautils-counters</feature>
         <bundle>mvn:org.opendaylight.infrautils/samples-counters-impl/{{VERSION}}</bundle>
-    </feature>
-        <feature name='odl-infrautils-async-sample' version='${project.version}'
-        description='OpenDaylight :: Infrautils :: Async Infrasturcture Sample'>
-        <feature version='${project.version}'>odl-infrautils-async</feature>
-        <bundle>mvn:org.opendaylight.infrautils/samples-async-impl/{{VERSION}}</bundle>
     </feature>
     <feature name='odl-infrautils-inject' version='${project.version}'
         description='OpenDaylight :: Infrautils :: @Inject'>

@@ -34,11 +34,6 @@
     <dependencies>
         <dependency>
             <groupId>org.opendaylight.infrautils</groupId>
-            <artifactId>async-impl</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.opendaylight.infrautils</groupId>
             <artifactId>counters-api</artifactId>
             <version>${project.version}</version>
         </dependency>
