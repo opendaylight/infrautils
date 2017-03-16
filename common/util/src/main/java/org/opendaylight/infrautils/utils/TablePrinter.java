@@ -45,8 +45,7 @@ public class TablePrinter {
                         if (compareInt == 0) {
                             // identical numbers, move to next column
                             continue;
-                        }
-                        if (compareInt != 0) {
+                        } else {
                             return compareInt;
                         }
                     }
