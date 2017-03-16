@@ -5,6 +5,7 @@ target-ide/
 .project
 .classpath
 .checkstyle
+.fbExcludeFilterFile
 .tox
 MANIFEST.MF
 *.iml

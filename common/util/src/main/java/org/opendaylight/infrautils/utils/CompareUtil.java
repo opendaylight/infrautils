@@ -15,7 +15,7 @@ public class CompareUtil {
             return true;
         }
         if (obj1 == null) {
-            return (obj2 == null);
+            return obj2 == null;
         }
         return obj1.equals(obj2);
     }
@@ -25,16 +25,16 @@ public class CompareUtil {
         if (obj1 == obj2) {
             return 0;
         }
-        if ((obj1 == null) && (obj2 != null)) {
+        if (obj1 == null && obj2 != null) {
             return 1;
-        } else if ((obj1 != null) && (obj2 == null)) {
+        } else if (obj1 != null && obj2 == null) {
             return -1;
         }
         return obj1.compareTo(obj2);
     }
 
-    public static <T> void calculateDiff(Collection<T> newCollection, Collection<T> oldCollection, Collection<T> added, Collection<T> removed,
-            Collection<T> retain) {
+    public static <T> void calculateDiff(Collection<T> newCollection, Collection<T> oldCollection, Collection<T> added,
+            Collection<T> removed, Collection<T> retain) {
         retain.addAll(newCollection);
         added.addAll(newCollection);
         removed.addAll(oldCollection);
