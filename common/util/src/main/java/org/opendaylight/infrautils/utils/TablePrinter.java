@@ -17,27 +17,28 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class TablePrinter {
-
-    private int ncols;
-    private List<String[]> table = new ArrayList<String[]>();
-    private String title = null;
-    private String[] header = null;
-    private Comparator<String[]> comparator;
-    protected static final Logger logger = LoggerFactory.getLogger(TablePrinter.class);
+    private static final Logger LOG = LoggerFactory.getLogger(TablePrinter.class);
 
     private static int SPACE_BETWEEN_COLUMNS = 1;
     private static int SPACE_BEFORE_TABLES_WITH_TITLE = 4;
 
+    private int ncols;
+    private final List<String[]> table = new ArrayList<>();
+    private String title = null;
+    private String[] header = null;
+    private Comparator<String[]> comparator;
+
     public TablePrinter(final int sortByColumn) {
         this.comparator = new Comparator<String[]>() {
+            @Override
             public int compare(String[] o1, String[] o2) {
-                for(int i = sortByColumn; i < o1.length && i < o2.length; i++) {
+                for (int i = sortByColumn; i < o1.length && i < o2.length; i++) {
                     int compareStr = o1[i].compareTo(o2[i]);
                     if (compareStr == 0) {
                         // identical strings, move to next column
                         continue;
                     }
-                    
+
                     if (o1[i].matches("^\\d+$") && o2[i].matches("^\\d+$")) {
                         // strings are actually numbers, compare numbers
                         int compareInt = extractInt(o1[i]) - extractInt(o2[i]);
@@ -49,13 +50,12 @@ public class TablePrinter {
                             return compareInt;
                         }
                     }
-                    
+
                     if (o1[i].matches("^\\D+\\d+$") && o2[i].matches("^\\D+\\d+$")) {
-                        // strings are strings with trailing numbers (e.g. "odl2 and odl10") 
+                        // strings are strings with trailing numbers (e.g. "odl2 and odl10")
                         String o1StringPart = o1[i].replaceAll("\\d+$", ""); // remove digits from end of string
                         String o2StringPart = o2[i].replaceAll("\\d+$", ""); // remove digits from end of string
-                        if(o1StringPart.equals(o2StringPart))
-                        {
+                        if (o1StringPart.equals(o2StringPart)) {
                             // string parts are identical, compare integers
                             int compareInt = extractInt(o1[i]) - extractInt(o2[i]);
                             if (compareInt != 0) {
@@ -63,20 +63,21 @@ public class TablePrinter {
                             }
                         }
                     }
-                    
+
                     return compareStr;
                 }
                 return 0;
             }
-            
-            int extractInt(String s) {
-                String numStr = s.replaceAll("^\\D*", ""); // remove non-digits
+
+            int extractInt(String str) {
+                String numStr = str.replaceAll("^\\D*", ""); // remove non-digits
                 // return 0 if no digits found
                 try {
                     int num = Integer.parseInt(numStr);
                     return num;
                 } catch (NumberFormatException e) {
-                    logger.warn("Received unexpected NumberFormatException when trying to parse string {} into an integer", numStr);
+                    LOG.warn("Received unexpected NumberFormatException when trying to parse string {} into an integer",
+                            numStr);
                     return 0;
                 }
             }
@@ -103,7 +104,8 @@ public class TablePrinter {
 
         table.add(newLine);
     }
-    
+
+    @Override
     public String toString() {
         String separator = columnSeparator();
         int[] maxWidths = calculateWidths();
@@ -129,13 +131,13 @@ public class TablePrinter {
         Collections.sort(table, comparator);
     }
 
-    
+
     private void printTitle(StringBuilder sb) {
         if (title != null) {
             sb.append(title).append(":").append("\n");
         }
     }
-    
+
     private void printHeader(String separator, int[] maxWidths, StringBuilder sb) {
         if (header != null) {
             if (title != null) {
@@ -193,8 +195,8 @@ public class TablePrinter {
         }
     }
 
-    private void printSeparator(String separator, StringBuilder sb, int i) {
-        if (i == 0) {
+    private void printSeparator(String separator, StringBuilder sb, int integer) {
+        if (integer == 0) {
             sb.append(StringUtils.repeat(" ", SPACE_BETWEEN_COLUMNS));
         } else {
             sb.append(separator);
@@ -210,7 +212,7 @@ public class TablePrinter {
         header = names;
         ncols = names.length;
     }
-    
+
     public void setTitle(String title) {
         this.title = title;
     }

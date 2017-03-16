@@ -21,34 +21,29 @@ public class StringUtil {
     private static final String[] EMPTY_STRING_ARRAY = {};
     private static final Integer[] EMPTY_INTEGER_ARRAY = {};
     private static final int[] EMPTY_INT_ARRAY = {};
+    private static final String DEFAULT_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss.SSS z";
+
     public static final String ARRAY_SPLIT_CHAR = ";";
     public static final String GUI_ARRAY_SEPARATOR = ";";
     public static final char GUI_ARRAY_SEPARATOR_CHAR = GUI_ARRAY_SEPARATOR.charAt(0);
-    private static final String DEFAULT_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss.SSS z";
 
     public static final int NO_VALUE = -1;
     public static final int TRUE = 1;
     public static final int FALSE = 0;
     private static final int MAX_ARGS_CHARS = 450;
 
-    public static String asString(Date date) {
-        DateFormat format = new SimpleDateFormat(DEFAULT_DATE_FORMAT);
-        String dateStr = format.format(date);
-        return dateStr;
-    }
-    
     public static Date parseDate(String dateStr) throws ParseException {
-        if (dateStr == null){
+        if (dateStr == null) {
             return null;
         }
         DateFormat format = new SimpleDateFormat(DEFAULT_DATE_FORMAT);
         return format.parse(dateStr);
     }
-    
+
     public static boolean isStringRangeValid(String val, int min, int max) {
         int length = val == null ? 0 : val.length();
 
-        if ((length < min) || (length > max)) {
+        if (length < min || length > max) {
             return false;
         }
         return true;
@@ -65,6 +60,12 @@ public class StringUtil {
         }
         sb.append(")");
         return sb.toString();
+    }
+
+    public static String asString(Date date) {
+        DateFormat format = new SimpleDateFormat(DEFAULT_DATE_FORMAT);
+        String dateStr = format.format(date);
+        return dateStr;
     }
 
     public static String asString(List<String> strList) {
@@ -93,12 +94,12 @@ public class StringUtil {
         return sb.toString();
     }
 
-    public static String asString(Object o) {
-        return (o == null) ? "" : o.toString();
+    public static String asString(Object other) {
+        return other == null ? "" : other.toString();
     }
 
     public static boolean isEmpty(String str) {
-        return ((str == null) || ("".equals(str.trim())));
+        return str == null || "".equals(str.trim());
     }
 
     public static int asNumber(String str) {
@@ -108,7 +109,7 @@ public class StringUtil {
     public static Integer asNullableNumber(String str) {
         try {
             return Integer.valueOf(str.trim());
-        } catch (RuntimeException e) {
+        } catch (NumberFormatException e) {
             return null;
         }
     }
@@ -116,7 +117,7 @@ public class StringUtil {
     public static Long asNullableLongNumber(String str) {
         try {
             return Long.valueOf(str.trim());
-        } catch (RuntimeException e) {
+        } catch (NumberFormatException e) {
             return null;
         }
     }
@@ -158,7 +159,7 @@ public class StringUtil {
     }
 
     public static String[] asArray(String inputArray) {
-        if ((inputArray == null) || (inputArray.trim().isEmpty())) {
+        if (inputArray == null || inputArray.trim().isEmpty()) {
             return EMPTY_STRING_ARRAY;
         }
         return inputArray.split(ARRAY_SPLIT_CHAR);
@@ -199,19 +200,21 @@ public class StringUtil {
         return inputArray.substring(1, inputArray.length() - 1).split("(\\s*,\\s*)");
     }
 
-    public static String unquote(String s) {
-        if ((s.startsWith("\"") || s.startsWith("'")) && (s.endsWith("\"") || s.endsWith("'"))) {
-            return s.substring(1, s.length() - 1);
+    public static String unquote(String string) {
+        if ((string.startsWith("\"") || string.startsWith("'")) && (string.endsWith("\"") || string.endsWith("'"))) {
+            return string.substring(1, string.length() - 1);
         }
-        return s;
+        return string;
     }
 
     public static String capitalize(String str) {
         int strLen;
-        if ((str == null) || ((strLen = str.length()) == 0)) {
+        if (str == null || (strLen = str.length()) == 0) {
             return str;
         }
-        return new StringBuilder(strLen).append(Character.toTitleCase(str.charAt(0))).append(str.substring(1)).toString();
+        return new StringBuilder(strLen)
+                .append(Character.toTitleCase(str.charAt(0))).append(str.substring(1))
+                .toString();
     }
 
     public static String replace(String text, String searchString, String replacement) {
@@ -219,7 +222,7 @@ public class StringUtil {
     }
 
     public static String replace(String text, String searchString, String replacement, int max) {
-        if (isEmpty(text) || isEmpty(searchString) || (replacement == null) || (max == 0)) {
+        if (isEmpty(text) || isEmpty(searchString) || replacement == null || max == 0) {
             return text;
         }
         int start = 0;
@@ -249,103 +252,102 @@ public class StringUtil {
     }
 
     public static boolean hasValue(int num) {
-        return (num != NO_VALUE);
+        return num != NO_VALUE;
     }
 
     public static boolean emptyString(String str) {
-        if ((str == null) || (str.length() == 0)) {
+        if (str == null || str.length() == 0) {
             return true;
         }
         str = str.trim();
-        return (str.length() == 0);
+        return str.length() == 0;
     }
 
     public static String fullMethodSignatureAsString(Object target, Method method, Object[] args) {
-        StringBuilder s = new StringBuilder();
-        s.append(target.getClass().getSimpleName()).append("::").append(method.getName()).append('(');
-        int preLength = s.length();
+        StringBuilder string = new StringBuilder();
+        string.append(target.getClass().getSimpleName()).append("::").append(method.getName()).append('(');
+        int preLength = string.length();
         Class<?>[] types = method.getParameterTypes();
-        for (int i = 0; (args != null) && (i < args.length); i++) {
+        for (int i = 0; args != null && i < args.length; i++) {
             if (i > 0) {
-                s.append(", ");
+                string.append(", ");
             }
             if (args[i] == null) {
-                s.append("null");
+                string.append("null");
             } else if (types[i].equals(String.class)) {
-                s.append('\"').append(String.valueOf(args[i]).replaceAll("\"", "\\\"")).append('\"');
+                string.append('\"').append(String.valueOf(args[i]).replaceAll("\"", "\\\"")).append('\"');
             } else if (types[i].equals(Long.class) || types[i].equals(long.class)) {
-                s.append(args[i]).append('L');
+                string.append(args[i]).append('L');
             } else if (String.class.equals(args[i].getClass().getComponentType())) {
-                s.append("S").append(Arrays.toString((String[]) args[i]));
+                string.append("S").append(Arrays.toString((String[]) args[i]));
             } else if (int.class.equals(args[i].getClass().getComponentType())) {
-                s.append("i").append(Arrays.toString((int[]) args[i]));
+                string.append("i").append(Arrays.toString((int[]) args[i]));
             } else if (boolean.class.equals(args[i].getClass().getComponentType())) {
-                s.append("b").append(Arrays.toString((boolean[]) args[i]));
+                string.append("b").append(Arrays.toString((boolean[]) args[i]));
             } else if (long.class.equals(args[i].getClass().getComponentType())) {
-                s.append("l").append(Arrays.toString((long[]) args[i]));
+                string.append("l").append(Arrays.toString((long[]) args[i]));
             } else if (args[i].getClass().isArray() && !args[i].getClass().getComponentType().isPrimitive()) {
-                s.append("O").append(Arrays.toString((Object[]) args[i]));
+                string.append("O").append(Arrays.toString((Object[]) args[i]));
             } else {
-                s.append(args[i]);
+                string.append(args[i]);
             }
-            if ((s.length() - preLength) > MAX_ARGS_CHARS) {
+            if (string.length() - preLength > MAX_ARGS_CHARS) {
                 break;
             }
         }
-        if ((s.length() - preLength) > MAX_ARGS_CHARS) {
-            int length = Math.min((s.length() - preLength), MAX_ARGS_CHARS);
-            return s.subSequence(0, length) + "...)";
+        if (string.length() - preLength > MAX_ARGS_CHARS) {
+            int length = Math.min(string.length() - preLength, MAX_ARGS_CHARS);
+            return string.subSequence(0, length) + "...)";
         }
-        s.append(')');
-        return s.toString();
+        string.append(')');
+        return string.toString();
     }
 
     public static String collect(Object... objects) {
-        StringBuilder s = new StringBuilder();
+        StringBuilder string = new StringBuilder();
         for (Object o : objects) {
-            s.append(o);
+            string.append(o);
         }
-        return s.toString();
+        return string.toString();
     }
 
     public static String toString(byte[] bytes) {
-        StringBuilder s = new StringBuilder();
-        s.append('[');
+        StringBuilder string = new StringBuilder();
+        string.append('[');
         int last = bytes.length - 1;
         for (int i = 0; i <= last; i++) {
             if (i > 0) {
-                s.append(',');
+                string.append(',');
             }
-            if ((i < last) && (bytes[i] == bytes[i + 1])) {
+            if (i < last && bytes[i] == bytes[i + 1]) {
                 int count = 1;
-                while ((i < last) && (bytes[i] == bytes[i + 1])) {
+                while (i < last && bytes[i] == bytes[i + 1]) {
                     ++i;
                     ++count;
                 }
-                s.append(toString(bytes[i])).append('x').append(count);
+                string.append(toString(bytes[i])).append('x').append(count);
             } else {
-                s.append(toString(bytes[i]));
+                string.append(toString(bytes[i]));
             }
         }
-        s.append("] (byte[" + bytes.length + "])");
-        return s.toString();
+        string.append("] (byte[" + bytes.length + "])");
+        return string.toString();
     }
 
-    public static String toString(byte b) {
-        int i = b;
-        i += 0x100;
-        String hex = Integer.toHexString(i);
+    public static String toString(byte someByte) {
+        int byteAsInt = someByte;
+        byteAsInt += 0x100;
+        String hex = Integer.toHexString(byteAsInt);
         return hex.substring(hex.length() - 2);
     }
 
     public static StringComparator STRING_COMPARATOR_INSTANCE = new StringComparator();
 
     private static class StringComparator implements Comparator<String> {
-
+        @Override
         public int compare(String o1, String o2) {
             return o1.compareTo(o2);
         }
-
     }
 
     public static boolean isMatching(String filter, String[] filters) {
@@ -365,16 +367,16 @@ public class StringUtil {
         int close = 0;
         if (patternStr != null) {
             for (int i = 0; i < patternStr.length(); i++) {
-                char c = patternStr.charAt(i);
-                if (c == '(') {
+                char character = patternStr.charAt(i);
+                if (character == '(') {
                     open++;
-                } else if (c == ')') {
+                } else if (character == ')') {
                     close++;
                 }
             }
         }
 
-        return (open == close) ? open : -1;
+        return open == close ? open : -1;
     }
 
     public static String convertAsciiStringToString(String inputInAscii) {

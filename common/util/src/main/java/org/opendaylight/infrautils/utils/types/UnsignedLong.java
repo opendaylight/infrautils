@@ -14,12 +14,13 @@ public class UnsignedLong extends Number implements Comparable<UnsignedLong> {
 
     public static final UnsignedLong ZERO = new UnsignedLong(BigInteger.ZERO);
     public static final UnsignedLong[] EMPTY = new UnsignedLong[0];
-    private static final byte[] MAX_UNSIGNED_LONG_IN_BYTES = new byte[] { (byte) 0xFF, (byte) 0xFF, (byte) 0xFF, (byte) 0xFF, (byte) 0xFF,
-            (byte) 0xFF, (byte) 0xFF, (byte) 0xFF };
-    private static final BigInteger MAX_UNSIGNED_LONG_BIGINT = new BigInteger(1, UnsignedLong.MAX_UNSIGNED_LONG_IN_BYTES);
+    private static final byte[] MAX_UNSIGNED_LONG_IN_BYTES = new byte[] { (byte) 0xFF, (byte) 0xFF, (byte) 0xFF,
+        (byte) 0xFF, (byte) 0xFF, (byte) 0xFF, (byte) 0xFF, (byte) 0xFF };
+    private static final BigInteger MAX_UNSIGNED_LONG_BIGINT = new BigInteger(1,
+            UnsignedLong.MAX_UNSIGNED_LONG_IN_BYTES);
     public static final UnsignedLong MAX_UNSIGNED_LONG = new UnsignedLong(MAX_UNSIGNED_LONG_BIGINT);
     private static final long serialVersionUID = 1388932495422976578L;
-    private BigInteger number;
+    private final BigInteger number;
 
     private UnsignedLong(BigInteger number) {
         this.number = number;
@@ -65,8 +66,8 @@ public class UnsignedLong extends Number implements Comparable<UnsignedLong> {
 
     public static UnsignedLong valueOf(BigInteger value) {
         if (value.compareTo(UnsignedLong.MAX_UNSIGNED_LONG_BIGINT) == 1) {
-            throw new IllegalArgumentException("Can not create unsigned long bigger then " + UnsignedLong.MAX_UNSIGNED_LONG_BIGINT + " (value="
-                    + value + ")");
+            throw new IllegalArgumentException("Can not create unsigned long bigger then "
+                    + UnsignedLong.MAX_UNSIGNED_LONG_BIGINT + " (value=" + value + ")");
         }
 
         if (value == BigInteger.ZERO) {
@@ -109,34 +110,36 @@ public class UnsignedLong extends Number implements Comparable<UnsignedLong> {
     }
 
     public UnsignedLong add(UnsignedLong other) {
-        if (other == UnsignedLong.ZERO) {// Optimization
+        if (other == UnsignedLong.ZERO) { // Optimization
             return this;
         }
-        if (this == UnsignedLong.ZERO) {// Optimization
+        if (this == UnsignedLong.ZERO) {  // Optimization
             return other;
         }
         return UnsignedLong.valueOf(number.add(other.bigIntegerValue()));
     }
 
     public UnsignedLong wrapAroundAdd(UnsignedLong other) {
-        if (other == UnsignedLong.ZERO) {// Optimization
+        if (other == UnsignedLong.ZERO) { // Optimization
             return this;
         }
-        if (this == UnsignedLong.ZERO) {// Optimization
+        if (this == UnsignedLong.ZERO) {  // Optimization
             return other;
         }
-        return UnsignedLong.valueOf(number.add(other.bigIntegerValue()).mod(MAX_UNSIGNED_LONG_BIGINT.add(BigInteger.ONE)));
+        return UnsignedLong
+                .valueOf(number.add(other.bigIntegerValue()).mod(MAX_UNSIGNED_LONG_BIGINT.add(BigInteger.ONE)));
     }
 
-    public int compareTo(UnsignedLong o) {
-        if (o == null) {
+    @Override
+    public int compareTo(UnsignedLong other) {
+        if (other == null) {
             return -1;
         }
-        return number.compareTo(o.number);
+        return number.compareTo(other.number);
     }
 
     public static UnsignedLong[] arr(Collection<UnsignedLong> collection) {
-        if ((collection == null) || collection.isEmpty()) {
+        if (collection == null || collection.isEmpty()) {
             return EMPTY;
         }
         return collection.toArray(new UnsignedLong[collection.size()]);

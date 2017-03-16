@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- vi: set et smarttab sw=4 tabstop=4: -->
 <!-- Copyright (c) 2014 Cisco Systems, Inc. and others. All rights reserved.
-	This program and the accompanying materials are made available under the
-	terms of the Eclipse Public License v1.0 which accompanies this distribution,
-	and is available at http://www.eclipse.org/legal/epl-v10.html -->
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Public License v1.0 which accompanies this distribution,
+    and is available at http://www.eclipse.org/legal/epl-v10.html -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-	<parent>
-		<groupId>org.opendaylight.odlparent</groupId>
-		<artifactId>odlparent</artifactId>
-		<version>1.8.0-SNAPSHOT</version>
-		<relativePath/>
-	</parent>
-	<packaging>bundle</packaging>
-	<modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.opendaylight.odlparent</groupId>
+        <artifactId>odlparent</artifactId>
+        <version>1.8.0-SNAPSHOT</version>
+        <relativePath/>
+    </parent>
+    <packaging>bundle</packaging>
+    <modelVersion>4.0.0</modelVersion>
     <groupId>org.opendaylight.infrautils</groupId>
     <artifactId>infrautils-util</artifactId>
     <version>1.1.0-SNAPSHOT</version>
-		<!-- <name> formatting is used by autorelease to parse and notify projects on
+        <!-- <name> formatting is used by autorelease to parse and notify projects on
          build failure. Please do not modify this unless you have a good reason. -->
     <name>ODL :: infrautils :: ${project.artifactId}</name>
 
@@ -28,26 +28,16 @@
             <artifactId>guava</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>3.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.geronimo.specs</groupId>
-            <artifactId>geronimo-jpa_2.0_spec</artifactId>
-            <version>1.1</version>
-        </dependency>
     </dependencies>
-
 
     <build>
         <plugins>
@@ -56,18 +46,34 @@
                 <artifactId>maven-bundle-plugin</artifactId>
                 <extensions>true</extensions>
             </plugin>
+             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <configuration>
+                  <propertyExpansion>checkstyle.violationSeverity=error</propertyExpansion>
+                </configuration>
+            </plugin>
+<!-- TODO
+            <plugin>
+               <groupId>org.codehaus.mojo</groupId>
+               <artifactId>findbugs-maven-plugin</artifactId>
+               <configuration>
+                 <failOnError>true</failOnError>
+               </configuration>
+            </plugin>
+ -->
         </plugins>
     </build>
 
     <!-- Maven Site Configuration The following configuration is necessary for
-		maven-site-plugin to correctly identify the correct deployment path for OpenDaylight
-		Maven sites. -->
-	<url>${odl.site.url}/${project.groupId}/${stream}/${project.artifactId}/</url>
+        maven-site-plugin to correctly identify the correct deployment path for OpenDaylight
+        Maven sites. -->
+    <url>${odl.site.url}/${project.groupId}/${stream}/${project.artifactId}/</url>
 
-	<distributionManagement>
-		<site>
-			<id>opendaylight-site</id>
-			<url>${nexus.site.url}/${project.artifactId}/</url>
-		</site>
-	</distributionManagement>
+    <distributionManagement>
+        <site>
+            <id>opendaylight-site</id>
+            <url>${nexus.site.url}/${project.artifactId}/</url>
+        </site>
+    </distributionManagement>
 </project>
