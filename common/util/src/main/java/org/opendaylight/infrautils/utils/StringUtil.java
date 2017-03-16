@@ -7,6 +7,7 @@
  */
 package org.opendaylight.infrautils.utils;
 
+import com.google.common.base.Charsets;
 import java.lang.reflect.Method;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -102,7 +103,7 @@ public class StringUtil {
     }
 
     public static int asNumber(String str) {
-        return Integer.valueOf(str.trim());
+        return Integer.parseInt(str.trim());
     }
 
     public static Integer asNullableNumber(String str) {
@@ -338,7 +339,7 @@ public class StringUtil {
         return hex.substring(hex.length() - 2);
     }
 
-    public static StringComparator STRING_COMPARATOR_INSTANCE = new StringComparator();
+    public static final StringComparator STRING_COMPARATOR_INSTANCE = new StringComparator();
 
     private static class StringComparator implements Comparator<String> {
 
@@ -389,6 +390,6 @@ public class StringUtil {
             value[i] = Byte.valueOf(asciiValues[i]);
         }
 
-        return new String(value);
+        return new String(value, Charsets.US_ASCII);
     }
 }
