@@ -2,6 +2,98 @@
   "comments": [
     {
       "key": {
+        "uuid": "fafc7978_bbb402d2",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/TablePrinter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2017-03-17T00:27:35Z",
+      "side": 1,
+      "message": "the size of this thing warrants a named class (see what Sonar thinks about it)",
+      "range": {
+        "startLine": 32,
+        "startChar": 25,
+        "endLine": 32,
+        "endChar": 54
+      },
+      "revId": "2b52227daa7fc26f8401a8c71cd314bb2efa7b78",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_9bb5bed2",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/TablePrinter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2017-03-17T00:27:35Z",
+      "side": 1,
+      "message": "those patterns should be pre-compiled",
+      "range": {
+        "startLine": 42,
+        "startChar": 38,
+        "endLine": 42,
+        "endChar": 77
+      },
+      "revId": "2b52227daa7fc26f8401a8c71cd314bb2efa7b78",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_7bba9ac1",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/TablePrinter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2017-03-17T00:27:35Z",
+      "side": 1,
+      "message": "same here",
+      "range": {
+        "startLine": 54,
+        "startChar": 38,
+        "endLine": 54,
+        "endChar": 85
+      },
+      "revId": "2b52227daa7fc26f8401a8c71cd314bb2efa7b78",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_dbaf467c",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/TablePrinter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2017-03-17T00:27:35Z",
+      "side": 1,
+      "message": "and here",
+      "range": {
+        "startLine": 73,
+        "startChar": 47,
+        "endLine": 73,
+        "endChar": 54
+      },
+      "revId": "2b52227daa7fc26f8401a8c71cd314bb2efa7b78",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fafc7978_5bacf68c",
         "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/types/UnsignedLong.java",
         "patchSetId": 1
