@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fafc7978_3b9bf273",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/CompareUtil.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2017-03-17T00:12:30Z",
+      "side": 1,
+      "message": "better documentation, including @param and @return would be nice.",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 7
+      },
+      "revId": "c2a9d7e5f09e5fae660bf3a00e09e4c5f13c7dc9",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_fb904a50",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/CompareUtil.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2017-03-17T00:12:30Z",
+      "side": 1,
+      "message": "unneeded compares:\n\nif (obj1 \u003d\u003d null) return 1; if (obj2 !\u003d null) return -1;\n\nachieves the same thing, since the case of both being nulls is taken care of in the first comparison.",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 9
+      },
+      "revId": "c2a9d7e5f09e5fae660bf3a00e09e4c5f13c7dc9",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
