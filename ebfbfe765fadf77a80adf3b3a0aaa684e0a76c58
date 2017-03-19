@@ -239,6 +239,30 @@
     },
     {
       "key": {
+        "uuid": "fafc7978_e8e87318",
+        "filename": "docs/specs/job-coordinator.rst",
+        "patchSetId": 16
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 5703
+      },
+      "writtenOn": "2017-03-19T12:18:08Z",
+      "side": 1,
+      "message": "Common exceptions are Submits to MD-SAL which fail due to concurrent changes. This is a potential outcome of working with MVCC datastores in certain use patterns.",
+      "parentUuid": "fafc7978_47738cb4",
+      "range": {
+        "startLine": 104,
+        "startChar": 0,
+        "endLine": 104,
+        "endChar": 26
+      },
+      "revId": "ebfbfe765fadf77a80adf3b3a0aaa684e0a76c58",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fafc7978_de791bc9",
         "filename": "docs/specs/job-coordinator.rst",
         "patchSetId": 16
