@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "fafc7978_cb800649",
+        "filename": "diagstatus/diagstatus-api/src/main/java/org/opendaylight/infrautils/diagstatus/api/ServiceStatus.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2017-03-20T12:03:59Z",
+      "side": 1,
+      "message": "There wont be multiple writers for the same service from outside.",
+      "parentUuid": "fafc7978_083a1736",
+      "revId": "505114ea2d9fefc06500a9583632ee4e3bbd5b53",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fafc7978_a8daeb14",
         "filename": "diagstatus/diagstatus-impl/src/main/java/org/opendaylight/infrautils/diagstatus/DiagStatusManager.java",
         "patchSetId": 10
@@ -30,6 +48,24 @@
       "writtenOn": "2017-03-19T14:23:08Z",
       "side": 1,
       "message": "Shouldn\u0027t we log the exception here?",
+      "revId": "505114ea2d9fefc06500a9583632ee4e3bbd5b53",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_2b955288",
+        "filename": "diagstatus/diagstatus-impl/src/main/java/org/opendaylight/infrautils/diagstatus/DiagStatusManager.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2017-03-20T12:03:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fafc7978_a8daeb14",
       "revId": "505114ea2d9fefc06500a9583632ee4e3bbd5b53",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -59,6 +95,30 @@
     },
     {
       "key": {
+        "uuid": "fafc7978_0b920e9f",
+        "filename": "diagstatus/diagstatus-impl/src/main/java/org/opendaylight/infrautils/diagstatus/DiagStatusManager.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2017-03-20T12:03:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fafc7978_c8080f94",
+      "range": {
+        "startLine": 85,
+        "startChar": 31,
+        "endLine": 85,
+        "endChar": 32
+      },
+      "revId": "505114ea2d9fefc06500a9583632ee4e3bbd5b53",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fafc7978_c82f6ff5",
         "filename": "diagstatus/diagstatus-impl/src/main/java/org/opendaylight/infrautils/diagstatus/MBeanService.java",
         "patchSetId": 10
@@ -76,6 +136,24 @@
     },
     {
       "key": {
+        "uuid": "fafc7978_6b8f5a76",
+        "filename": "diagstatus/diagstatus-impl/src/main/java/org/opendaylight/infrautils/diagstatus/MBeanService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2017-03-20T12:03:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fafc7978_c82f6ff5",
+      "revId": "505114ea2d9fefc06500a9583632ee4e3bbd5b53",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fafc7978_28355b46",
         "filename": "diagstatus/diagstatus-impl/src/main/java/org/opendaylight/infrautils/diagstatus/StatusMonitorServiceImplMBean.java",
         "patchSetId": 10
@@ -87,6 +165,24 @@
       "writtenOn": "2017-03-19T14:23:08Z",
       "side": 1,
       "message": "Map instead of map",
+      "revId": "505114ea2d9fefc06500a9583632ee4e3bbd5b53",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_4b8c1680",
+        "filename": "diagstatus/diagstatus-impl/src/main/java/org/opendaylight/infrautils/diagstatus/StatusMonitorServiceImplMBean.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2017-03-20T12:03:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fafc7978_28355b46",
       "revId": "505114ea2d9fefc06500a9583632ee4e3bbd5b53",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
