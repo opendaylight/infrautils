@@ -11,7 +11,6 @@ package org.opendaylight.infrautils.jobcoordinator.internal;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
-
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -21,12 +20,12 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-
 import javax.annotation.PreDestroy;
 import javax.inject.Singleton;
-
 import org.opendaylight.infrautils.jobcoordinator.JobCoordinator;
 import org.opendaylight.infrautils.jobcoordinator.RollbackCallable;
+import org.opendaylight.infrautils.utils.concurrent.LoggingThreadUncaughtExceptionHandler;
+import org.opendaylight.infrautils.utils.concurrent.ThreadFactoryProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -37,16 +36,24 @@ public class JobCoordinatorImpl implements JobCoordinator {
 
     private static final long RETRY_WAIT_BASE_TIME_MILLIS = 1000;
 
-    // package local instead of private for TestJobCoordinator
-    private final ForkJoinPool fjPool = new ForkJoinPool();
+    private static final int FJP_MAX_CAP = 0x7fff; // max #workers - 1; copy/pasted from ForkJoinPool private
+
+    private final ForkJoinPool fjPool = new ForkJoinPool(
+            Math.min(FJP_MAX_CAP, Runtime.getRuntime().availableProcessors()),
+            ForkJoinPool.defaultForkJoinWorkerThreadFactory,
+            LoggingThreadUncaughtExceptionHandler.toLogger(LOG),
+            false);
+
     private final Map<String, JobQueue> jobQueueMap = new HashMap<>();
 
     private final ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(5);
 
     public JobCoordinatorImpl() {
-        Thread jobQueueHandlerThread = new Thread(new JobQueueHandler());
-        jobQueueHandlerThread.setDaemon(true);
-        jobQueueHandlerThread.start();
+        ThreadFactoryProvider.builder()
+            .namePrefix("JobCoordinator-JobQueueHandler")
+            .logger(LOG)
+            .build().get()
+            .newThread(new JobQueueHandler()).start();
     }
 
     @PreDestroy
