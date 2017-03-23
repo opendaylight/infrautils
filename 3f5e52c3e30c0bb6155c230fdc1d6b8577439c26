@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "fafc7978_6d4ab984",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/concurrent/LoggingThreadUncaughtExceptionHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-03-23T17:01:08Z",
+      "side": 1,
+      "message": "This was intentional - my idea here was that you would typically use this as toLOG(LOG), see e.g. in DataStoreImpl - so it seemed \"consistent\" to name it toLOG instead of toLog.. what do you think? I\u0027m open to change it to toLog() instead if you / others think this is ugly / confusing..",
+      "parentUuid": "fafc7978_8d29dd39",
+      "range": {
+        "startLine": 20,
+        "startChar": 43,
+        "endLine": 20,
+        "endChar": 48
+      },
+      "revId": "3f5e52c3e30c0bb6155c230fdc1d6b8577439c26",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fafc7978_cde125fe",
         "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobCoordinatorImpl.java",
         "patchSetId": 1
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "fafc7978_4d4d3599",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobCoordinatorImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-03-23T17:01:08Z",
+      "side": 1,
+      "message": "personally I typically use constants when using a value more than once, else I find it hinders readability more than help.. but I\u0027m open be convinced otherwise - what do you think?",
+      "parentUuid": "fafc7978_cde125fe",
+      "range": {
+        "startLine": 40,
+        "startChar": 35,
+        "endLine": 40,
+        "endChar": 41
+      },
+      "revId": "3f5e52c3e30c0bb6155c230fdc1d6b8577439c26",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fafc7978_6da119a9",
         "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobCoordinatorImpl.java",
         "patchSetId": 1
@@ -59,6 +107,30 @@
       "writtenOn": "2017-03-23T16:05:35Z",
       "side": 1,
       "message": "move to const",
+      "range": {
+        "startLine": 51,
+        "startChar": 24,
+        "endLine": 51,
+        "endChar": 56
+      },
+      "revId": "3f5e52c3e30c0bb6155c230fdc1d6b8577439c26",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_ad44a174",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobCoordinatorImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-03-23T17:01:08Z",
+      "side": 1,
+      "message": "as above, what value does it add, other than making the code harder to read due to another indirection?",
+      "parentUuid": "fafc7978_6da119a9",
       "range": {
         "startLine": 51,
         "startChar": 24,
