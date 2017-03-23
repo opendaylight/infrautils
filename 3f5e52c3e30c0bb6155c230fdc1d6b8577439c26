@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "fafc7978_cd064521",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/concurrent/LoggingThreadUncaughtExceptionHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2017-03-23T17:10:32Z",
+      "side": 1,
+      "message": "I think toLog(LOG) is fine because the method name should just describe what it does and in that respect it\u0027s no other than other methods. It\u0027s not important though :)",
+      "parentUuid": "fafc7978_6d4ab984",
+      "range": {
+        "startLine": 20,
+        "startChar": 43,
+        "endLine": 20,
+        "endChar": 48
+      },
+      "revId": "3f5e52c3e30c0bb6155c230fdc1d6b8577439c26",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fafc7978_cde125fe",
         "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobCoordinatorImpl.java",
         "patchSetId": 1
@@ -84,6 +108,30 @@
       "side": 1,
       "message": "personally I typically use constants when using a value more than once, else I find it hinders readability more than help.. but I\u0027m open be convinced otherwise - what do you think?",
       "parentUuid": "fafc7978_cde125fe",
+      "range": {
+        "startLine": 40,
+        "startChar": 35,
+        "endLine": 40,
+        "endChar": 41
+      },
+      "revId": "3f5e52c3e30c0bb6155c230fdc1d6b8577439c26",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_5002ec09",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobCoordinatorImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2017-03-23T17:10:32Z",
+      "side": 1,
+      "message": "A const name usually describes the value in words (which is necessary when the value is not self-descriptive), which then removes the need for a comment inside the code. That\u0027s the advantage I can think of when the value only appears once in the code.",
+      "parentUuid": "fafc7978_4d4d3599",
       "range": {
         "startLine": 40,
         "startChar": 35,
