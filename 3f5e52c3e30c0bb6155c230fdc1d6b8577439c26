@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fafc7978_8d29dd39",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/concurrent/LoggingThreadUncaughtExceptionHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2017-03-23T16:05:35Z",
+      "side": 1,
+      "message": "fix casing (or is this on purpose?)",
+      "range": {
+        "startLine": 20,
+        "startChar": 43,
+        "endLine": 20,
+        "endChar": 48
+      },
+      "revId": "3f5e52c3e30c0bb6155c230fdc1d6b8577439c26",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_cde125fe",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobCoordinatorImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2017-03-23T16:05:35Z",
+      "side": 1,
+      "message": "Move to const",
+      "range": {
+        "startLine": 40,
+        "startChar": 35,
+        "endLine": 40,
+        "endChar": 41
+      },
+      "revId": "3f5e52c3e30c0bb6155c230fdc1d6b8577439c26",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_6da119a9",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobCoordinatorImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 6071
+      },
+      "writtenOn": "2017-03-23T16:05:35Z",
+      "side": 1,
+      "message": "move to const",
+      "range": {
+        "startLine": 51,
+        "startChar": 24,
+        "endLine": 51,
+        "endChar": 56
+      },
+      "revId": "3f5e52c3e30c0bb6155c230fdc1d6b8577439c26",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
