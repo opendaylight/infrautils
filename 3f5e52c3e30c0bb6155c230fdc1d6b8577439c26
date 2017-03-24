@@ -119,6 +119,29 @@
     },
     {
       "key": {
+        "uuid": "fafc7978_71072f82",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/concurrent/ThreadFactoryProvider.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2017-03-24T16:55:34Z",
+      "side": 1,
+      "message": "this needs to be documented. Wouldn\u0027t it be better just to document our stance on ThreadFactories in general and audit the code to use TFB with exception handler?",
+      "range": {
+        "startLine": 51,
+        "startChar": 8,
+        "endLine": 51,
+        "endChar": 37
+      },
+      "revId": "3f5e52c3e30c0bb6155c230fdc1d6b8577439c26",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fafc7978_cde125fe",
         "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobCoordinatorImpl.java",
         "patchSetId": 1
