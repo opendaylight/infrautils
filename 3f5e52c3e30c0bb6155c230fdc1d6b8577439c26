@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "fafc7978_4105eec0",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/concurrent/LoggingThreadUncaughtExceptionHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-03-27T16:01:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fafc7978_b1ea37aa",
+      "range": {
+        "startLine": 20,
+        "startChar": 4,
+        "endLine": 20,
+        "endChar": 65
+      },
+      "revId": "3f5e52c3e30c0bb6155c230fdc1d6b8577439c26",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fafc7978_71e0cfcc",
         "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/concurrent/LoggingThreadUncaughtExceptionHandler.java",
         "patchSetId": 1
@@ -119,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "fafc7978_6112b20a",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/concurrent/LoggingThreadUncaughtExceptionHandler.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-03-27T16:01:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fafc7978_71e0cfcc",
+      "range": {
+        "startLine": 27,
+        "startChar": 20,
+        "endLine": 27,
+        "endChar": 29
+      },
+      "revId": "3f5e52c3e30c0bb6155c230fdc1d6b8577439c26",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fafc7978_71072f82",
         "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/concurrent/ThreadFactoryProvider.java",
         "patchSetId": 1
@@ -130,6 +178,30 @@
       "writtenOn": "2017-03-24T16:55:34Z",
       "side": 1,
       "message": "this needs to be documented. Wouldn\u0027t it be better just to document our stance on ThreadFactories in general and audit the code to use TFB with exception handler?",
+      "range": {
+        "startLine": 51,
+        "startChar": 8,
+        "endLine": 51,
+        "endChar": 37
+      },
+      "revId": "3f5e52c3e30c0bb6155c230fdc1d6b8577439c26",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_e199827a",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/concurrent/ThreadFactoryProvider.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-03-27T16:01:42Z",
+      "side": 1,
+      "message": "\u003e this needs to be documented.\n\nYeah, you\u0027re right... so daemon is now a new property, with default true, and JavaDoc documented.\n\n\u003e Wouldn\u0027t it be better just to document our stance on ThreadFactories in general and audit the code to use TFB with exception handler?\n\nNobody RTFMs ;) so my idea was to intro this and then hava CS rule to forbid direct use of ThreadFactoryBuilder e.g. via Checkstyle and suggest use of this utility, which enforces the best practice programmatically.",
+      "parentUuid": "fafc7978_71072f82",
       "range": {
         "startLine": 51,
         "startChar": 8,
@@ -201,6 +273,30 @@
       "side": 1,
       "message": "A const name usually describes the value in words (which is necessary when the value is not self-descriptive), which then removes the need for a comment inside the code. That\u0027s the advantage I can think of when the value only appears once in the code.",
       "parentUuid": "fafc7978_4d4d3599",
+      "range": {
+        "startLine": 40,
+        "startChar": 35,
+        "endLine": 40,
+        "endChar": 41
+      },
+      "revId": "3f5e52c3e30c0bb6155c230fdc1d6b8577439c26",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_c11f1e08",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobCoordinatorImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-03-27T16:01:42Z",
+      "side": 1,
+      "message": "Done, intro. FJP_MAX_CAP",
+      "parentUuid": "fafc7978_5002ec09",
       "range": {
         "startLine": 40,
         "startChar": 35,
