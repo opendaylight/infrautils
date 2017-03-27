@@ -12,7 +12,6 @@ import com.google.common.base.Joiner;
 import com.google.common.base.Strings;
 import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -21,13 +20,16 @@ import java.util.Date;
 import java.util.List;
 import java.util.regex.Pattern;
 import javax.annotation.RegEx;
+import javax.annotation.concurrent.GuardedBy;
 
 public class StringUtil {
 
     private static final String[] EMPTY_STRING_ARRAY = {};
     private static final Integer[] EMPTY_INTEGER_ARRAY = {};
     private static final int[] EMPTY_INT_ARRAY = {};
-    private static final String DEFAULT_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss.SSS z";
+
+    @GuardedBy("DEFAULT_DATE_FORMAT")
+    private static final SimpleDateFormat DEFAULT_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS z");
 
     public static final String ARRAY_SPLIT_CHAR = ";";
     public static final String GUI_ARRAY_SEPARATOR = ";";
@@ -44,20 +46,22 @@ public class StringUtil {
     public static final int FALSE = 0;
     private static final int MAX_ARGS_CHARS = 450;
 
-    public static Date parseDate(String dateStr) throws ParseException {
+    // FIXME: We have Java 8: people should use java.time.Instant instead
+    public static Date parseDate(final String dateStr) throws ParseException {
         if (dateStr == null) {
             return null;
         }
-        DateFormat format = new SimpleDateFormat(DEFAULT_DATE_FORMAT);
-        return format.parse(dateStr);
+        synchronized (DEFAULT_DATE_FORMAT) {
+            return DEFAULT_DATE_FORMAT.parse(dateStr);
+        }
     }
 
-    public static boolean isStringRangeValid(String val, int min, int max) {
+    public static boolean isStringRangeValid(final String val, final int min, final int max) {
         int length = val == null ? 0 : val.length();
         return length >= min && length <= max;
     }
 
-    public static String methodAsString(String methodName, Object... args) {
+    public static String methodAsString(final String methodName, final Object... args) {
         StringBuilder sb = new StringBuilder();
         sb.append(methodName).append('(');
         for (int i = 0; i < args.length; i++) {
@@ -70,13 +74,14 @@ public class StringUtil {
         return sb.toString();
     }
 
-    public static String asString(Date date) {
-        DateFormat format = new SimpleDateFormat(DEFAULT_DATE_FORMAT);
-        String dateStr = format.format(date);
-        return dateStr;
+    // FIXME: We have Java 8: people should use java.time.Instant instead
+    public static String asString(final Date date) {
+        synchronized (DEFAULT_DATE_FORMAT) {
+            return DEFAULT_DATE_FORMAT.format(date);
+        }
     }
 
-    public static String asString(List<String> strList) {
+    public static String asString(final List<String> strList) {
         return asString(strList, ARRAY_SPLIT_CHAR);
     }
 
@@ -84,7 +89,7 @@ public class StringUtil {
         return Joiner.on(delimiter).join(strList);
     }
 
-    public static String asString(int[] intarr) {
+    public static String asString(final int[] intarr) {
         StringBuilder sb = new StringBuilder();
         for (int i : intarr) {
             sb.append(i).append(ARRAY_SPLIT_CHAR);
@@ -107,7 +112,7 @@ public class StringUtil {
         return Integer.parseInt(str.trim());
     }
 
-    public static Integer asNullableNumber(String str) {
+    public static Integer asNullableNumber(final String str) {
         try {
             return Integer.valueOf(str.trim());
         } catch (NumberFormatException e) {
@@ -115,7 +120,7 @@ public class StringUtil {
         }
     }
 
-    public static Long asNullableLongNumber(String str) {
+    public static Long asNullableLongNumber(final String str) {
         try {
             return Long.valueOf(str.trim());
         } catch (NumberFormatException e) {
@@ -127,7 +132,7 @@ public class StringUtil {
         return str == null ? null : str.trim();
     }
 
-    public static String asNonEmptyStr(String str) {
+    public static String asNonEmptyStr(final String str) {
         if (str == null) {
             return null;
         }
@@ -135,7 +140,7 @@ public class StringUtil {
         return res.isEmpty() ? null : res;
     }
 
-    public static String asNonEmptyStrNoTrim(String str) {
+    public static String asNonEmptyStrNoTrim(final String str) {
         if (str == null) {
             return null;
         }
@@ -143,7 +148,7 @@ public class StringUtil {
         return str.trim().isEmpty() ? null : str;
     }
 
-    public static String asEmptyStr(String str) {
+    public static String asEmptyStr(final String str) {
         String res = asNonEmptyStr(str);
         return res == null ? "" : res;
     }
@@ -155,7 +160,7 @@ public class StringUtil {
         return inputArray.split(ARRAY_SPLIT_CHAR);
     }
 
-    public static Integer[] asIds(String inputArray) {
+    public static Integer[] asIds(final String inputArray) {
         if (isEmpty(inputArray)) {
             return EMPTY_INTEGER_ARRAY;
         }
@@ -167,7 +172,7 @@ public class StringUtil {
         return integers;
     }
 
-    public static int[] asIntArray(String inputArray) {
+    public static int[] asIntArray(final String inputArray) {
         if (isEmpty(inputArray)) {
             return EMPTY_INT_ARRAY;
         }
@@ -198,7 +203,7 @@ public class StringUtil {
         return string;
     }
 
-    public static String capitalize(String str) {
+    public static String capitalize(final String str) {
         int strLen;
         if (str == null || (strLen = str.length()) == 0) {
             return str;
@@ -208,7 +213,7 @@ public class StringUtil {
                 .toString();
     }
 
-    public static String replace(String text, String searchString, String replacement) {
+    public static String replace(final String text, final String searchString, final String replacement) {
         return replace(text, searchString, replacement, -1);
     }
 
@@ -238,11 +243,11 @@ public class StringUtil {
         return buf.toString();
     }
 
-    public static Integer convertNoValue(int num) {
+    public static Integer convertNoValue(final int num) {
         return hasValue(num) ? num : null;
     }
 
-    public static boolean hasValue(int num) {
+    public static boolean hasValue(final int num) {
         return num != NO_VALUE;
     }
 
@@ -336,7 +341,7 @@ public class StringUtil {
     @Deprecated
     public static final Comparator<String> STRING_COMPARATOR_INSTANCE = String::compareTo;
 
-    public static boolean isMatching(String filter, String[] filters) {
+    public static boolean isMatching(final String filter, final String[] filters) {
         if (filters == null) {
             return false;
         }
@@ -348,7 +353,7 @@ public class StringUtil {
         return false;
     }
 
-    public static int getNumOfPatternGroups(String patternStr) {
+    public static int getNumOfPatternGroups(final String patternStr) {
         int open = 0;
         int close = 0;
         if (patternStr != null) {
@@ -365,7 +370,7 @@ public class StringUtil {
         return open == close ? open : -1;
     }
 
-    public static String convertAsciiStringToString(String inputInAscii) {
+    public static String convertAsciiStringToString(final String inputInAscii) {
         if (inputInAscii == null || inputInAscii.isEmpty()) {
             return "";
         }
