@@ -38,7 +38,7 @@ public class StringUtil {
     }
     
     public static Date parseDate(String dateStr) throws ParseException {
-        if (dateStr == null){
+        if (dateStr == null) {
             return null;
         }
         DateFormat format = new SimpleDateFormat(DEFAULT_DATE_FORMAT);
@@ -47,23 +47,19 @@ public class StringUtil {
     
     public static boolean isStringRangeValid(String val, int min, int max) {
         int length = val == null ? 0 : val.length();
-
-        if ((length < min) || (length > max)) {
-            return false;
-        }
-        return true;
+        return length >= min && length <= max;
     }
 
     public static String methodAsString(String methodName, Object... args) {
         StringBuilder sb = new StringBuilder();
-        sb.append(methodName).append("(");
+        sb.append(methodName).append('(');
         for (int i = 0; i < args.length; i++) {
             if (i != 0) {
                 sb.append(", ");
             }
             sb.append(args[i]);
         }
-        sb.append(")");
+        sb.append(')');
         return sb.toString();
     }
 
@@ -98,7 +94,7 @@ public class StringUtil {
     }
 
     public static boolean isEmpty(String str) {
-        return ((str == null) || ("".equals(str.trim())));
+        return ((str == null) || (str.trim().isEmpty()));
     }
 
     public static int asNumber(String str) {
@@ -133,11 +129,7 @@ public class StringUtil {
             return null;
         }
         String res = str.trim();
-        if (res.length() == 0) {
-            return null;
-        }
-
-        return res;
+        return res.isEmpty() ? null : res;
     }
 
     public static String asNonEmptyStrNoTrim(String str) {
@@ -145,11 +137,7 @@ public class StringUtil {
             return null;
         }
 
-        if (str.trim().length() == 0) {
-            return null;
-        }
-
-        return str;
+        return str.trim().isEmpty() ? null : str;
     }
 
     public static String asEmptyStr(String str) {
@@ -327,7 +315,7 @@ public class StringUtil {
                 s.append(toString(bytes[i]));
             }
         }
-        s.append("] (byte[" + bytes.length + "])");
+        s.append("] (byte[").append(bytes.length).append("])");
         return s.toString();
     }
 
