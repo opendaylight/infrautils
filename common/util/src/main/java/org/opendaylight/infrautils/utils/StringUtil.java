@@ -8,13 +8,13 @@
 package org.opendaylight.infrautils.utils;
 
 import java.lang.reflect.Method;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import javax.annotation.concurrent.GuardedBy;
 
 public class StringUtil {
 
@@ -24,33 +24,38 @@ public class StringUtil {
     public static final String ARRAY_SPLIT_CHAR = ";";
     public static final String GUI_ARRAY_SEPARATOR = ";";
     public static final char GUI_ARRAY_SEPARATOR_CHAR = GUI_ARRAY_SEPARATOR.charAt(0);
-    private static final String DEFAULT_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss.SSS z";
+
+    @GuardedBy("DEFAULT_DATE_FORMAT")
+    private static final SimpleDateFormat DEFAULT_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS z");
 
     public static final int NO_VALUE = -1;
     public static final int TRUE = 1;
     public static final int FALSE = 0;
     private static final int MAX_ARGS_CHARS = 450;
 
-    public static String asString(Date date) {
-        DateFormat format = new SimpleDateFormat(DEFAULT_DATE_FORMAT);
-        String dateStr = format.format(date);
-        return dateStr;
+    // FIXME: We have Java 8: people should use java.time.Instant instead
+    public static String asString(final Date date) {
+        synchronized (DEFAULT_DATE_FORMAT) {
+            return DEFAULT_DATE_FORMAT.format(date);
+        }
     }
-    
-    public static Date parseDate(String dateStr) throws ParseException {
+
+    // FIXME: We have Java 8: people should use java.time.Instant instead
+    public static Date parseDate(final String dateStr) throws ParseException {
         if (dateStr == null) {
             return null;
         }
-        DateFormat format = new SimpleDateFormat(DEFAULT_DATE_FORMAT);
-        return format.parse(dateStr);
+        synchronized (DEFAULT_DATE_FORMAT) {
+            return DEFAULT_DATE_FORMAT.parse(dateStr);
+        }
     }
-    
-    public static boolean isStringRangeValid(String val, int min, int max) {
+
+    public static boolean isStringRangeValid(final String val, final int min, final int max) {
         int length = val == null ? 0 : val.length();
         return length >= min && length <= max;
     }
 
-    public static String methodAsString(String methodName, Object... args) {
+    public static String methodAsString(final String methodName, final Object... args) {
         StringBuilder sb = new StringBuilder();
         sb.append(methodName).append('(');
         for (int i = 0; i < args.length; i++) {
@@ -63,11 +68,11 @@ public class StringUtil {
         return sb.toString();
     }
 
-    public static String asString(List<String> strList) {
+    public static String asString(final List<String> strList) {
         return asString(strList, ARRAY_SPLIT_CHAR);
     }
 
-    public static String asString(List<String> strList, String delimiter) {
+    public static String asString(final List<String> strList, final String delimiter) {
         StringBuilder sb = new StringBuilder();
         for (String str : strList) {
             sb.append(str).append(delimiter);
@@ -78,7 +83,7 @@ public class StringUtil {
         return sb.toString();
     }
 
-    public static String asString(int[] intarr) {
+    public static String asString(final int[] intarr) {
         StringBuilder sb = new StringBuilder();
         for (int i : intarr) {
             sb.append(i).append(ARRAY_SPLIT_CHAR);
@@ -89,19 +94,19 @@ public class StringUtil {
         return sb.toString();
     }
 
-    public static String asString(Object o) {
+    public static String asString(final Object o) {
         return (o == null) ? "" : o.toString();
     }
 
-    public static boolean isEmpty(String str) {
+    public static boolean isEmpty(final String str) {
         return ((str == null) || (str.trim().isEmpty()));
     }
 
-    public static int asNumber(String str) {
+    public static int asNumber(final String str) {
         return Integer.valueOf(str.trim());
     }
 
-    public static Integer asNullableNumber(String str) {
+    public static Integer asNullableNumber(final String str) {
         try {
             return Integer.valueOf(str.trim());
         } catch (RuntimeException e) {
@@ -109,7 +114,7 @@ public class StringUtil {
         }
     }
 
-    public static Long asNullableLongNumber(String str) {
+    public static Long asNullableLongNumber(final String str) {
         try {
             return Long.valueOf(str.trim());
         } catch (RuntimeException e) {
@@ -117,14 +122,14 @@ public class StringUtil {
         }
     }
 
-    public static String asStr(String str) {
+    public static String asStr(final String str) {
         if (str == null) {
             return null;
         }
         return str.trim();
     }
 
-    public static String asNonEmptyStr(String str) {
+    public static String asNonEmptyStr(final String str) {
         if (str == null) {
             return null;
         }
@@ -132,7 +137,7 @@ public class StringUtil {
         return res.isEmpty() ? null : res;
     }
 
-    public static String asNonEmptyStrNoTrim(String str) {
+    public static String asNonEmptyStrNoTrim(final String str) {
         if (str == null) {
             return null;
         }
@@ -140,19 +145,19 @@ public class StringUtil {
         return str.trim().isEmpty() ? null : str;
     }
 
-    public static String asEmptyStr(String str) {
+    public static String asEmptyStr(final String str) {
         String res = asNonEmptyStr(str);
         return res == null ? "" : res;
     }
 
-    public static String[] asArray(String inputArray) {
+    public static String[] asArray(final String inputArray) {
         if ((inputArray == null) || (inputArray.trim().isEmpty())) {
             return EMPTY_STRING_ARRAY;
         }
         return inputArray.split(ARRAY_SPLIT_CHAR);
     }
 
-    public static Integer[] asIds(String inputArray) {
+    public static Integer[] asIds(final String inputArray) {
         if (isEmpty(inputArray)) {
             return EMPTY_INTEGER_ARRAY;
         }
@@ -164,7 +169,7 @@ public class StringUtil {
         return integers;
     }
 
-    public static int[] asIntArray(String inputArray) {
+    public static int[] asIntArray(final String inputArray) {
         if (isEmpty(inputArray)) {
             return EMPTY_INT_ARRAY;
         }
@@ -187,14 +192,14 @@ public class StringUtil {
         return inputArray.substring(1, inputArray.length() - 1).split("(\\s*,\\s*)");
     }
 
-    public static String unquote(String s) {
+    public static String unquote(final String s) {
         if ((s.startsWith("\"") || s.startsWith("'")) && (s.endsWith("\"") || s.endsWith("'"))) {
             return s.substring(1, s.length() - 1);
         }
         return s;
     }
 
-    public static String capitalize(String str) {
+    public static String capitalize(final String str) {
         int strLen;
         if ((str == null) || ((strLen = str.length()) == 0)) {
             return str;
@@ -202,11 +207,11 @@ public class StringUtil {
         return new StringBuilder(strLen).append(Character.toTitleCase(str.charAt(0))).append(str.substring(1)).toString();
     }
 
-    public static String replace(String text, String searchString, String replacement) {
+    public static String replace(final String text, final String searchString, final String replacement) {
         return replace(text, searchString, replacement, -1);
     }
 
-    public static String replace(String text, String searchString, String replacement, int max) {
+    public static String replace(final String text, final String searchString, final String replacement, int max) {
         if (isEmpty(text) || isEmpty(searchString) || (replacement == null) || (max == 0)) {
             return text;
         }
@@ -232,11 +237,11 @@ public class StringUtil {
         return buf.toString();
     }
 
-    public static Integer convertNoValue(int num) {
+    public static Integer convertNoValue(final int num) {
         return hasValue(num) ? num : null;
     }
 
-    public static boolean hasValue(int num) {
+    public static boolean hasValue(final int num) {
         return (num != NO_VALUE);
     }
 
@@ -248,7 +253,7 @@ public class StringUtil {
         return (str.length() == 0);
     }
 
-    public static String fullMethodSignatureAsString(Object target, Method method, Object[] args) {
+    public static String fullMethodSignatureAsString(final Object target, final Method method, final Object[] args) {
         StringBuilder s = new StringBuilder();
         s.append(target.getClass().getSimpleName()).append("::").append(method.getName()).append('(');
         int preLength = s.length();
@@ -288,7 +293,7 @@ public class StringUtil {
         return s.toString();
     }
 
-    public static String collect(Object... objects) {
+    public static String collect(final Object... objects) {
         StringBuilder s = new StringBuilder();
         for (Object o : objects) {
             s.append(o);
@@ -296,7 +301,7 @@ public class StringUtil {
         return s.toString();
     }
 
-    public static String toString(byte[] bytes) {
+    public static String toString(final byte[] bytes) {
         StringBuilder s = new StringBuilder();
         s.append('[');
         int last = bytes.length - 1;
@@ -319,7 +324,7 @@ public class StringUtil {
         return s.toString();
     }
 
-    public static String toString(byte b) {
+    public static String toString(final byte b) {
         int i = b;
         i += 0x100;
         String hex = Integer.toHexString(i);
@@ -330,13 +335,14 @@ public class StringUtil {
 
     private static class StringComparator implements Comparator<String> {
 
-        public int compare(String o1, String o2) {
+        @Override
+        public int compare(final String o1, final String o2) {
             return o1.compareTo(o2);
         }
 
     }
 
-    public static boolean isMatching(String filter, String[] filters) {
+    public static boolean isMatching(final String filter, final String[] filters) {
         if (filters == null) {
             return false;
         }
@@ -348,7 +354,7 @@ public class StringUtil {
         return false;
     }
 
-    public static int getNumOfPatternGroups(String patternStr) {
+    public static int getNumOfPatternGroups(final String patternStr) {
         int open = 0;
         int close = 0;
         if (patternStr != null) {
@@ -365,7 +371,7 @@ public class StringUtil {
         return (open == close) ? open : -1;
     }
 
-    public static String convertAsciiStringToString(String inputInAscii) {
+    public static String convertAsciiStringToString(final String inputInAscii) {
         if (inputInAscii == null || inputInAscii.isEmpty()) {
             return "";
         }
