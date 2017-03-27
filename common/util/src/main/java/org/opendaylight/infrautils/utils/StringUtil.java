@@ -7,6 +7,7 @@
  */
 package org.opendaylight.infrautils.utils;
 
+import com.google.common.base.Joiner;
 import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
 import java.text.DateFormat;
@@ -73,15 +74,8 @@ public class StringUtil {
         return asString(strList, ARRAY_SPLIT_CHAR);
     }
 
-    public static String asString(List<String> strList, String delimiter) {
-        StringBuilder sb = new StringBuilder();
-        for (String str : strList) {
-            sb.append(str).append(delimiter);
-        }
-        if (sb.length() > 0) {
-            sb.setLength(sb.length() - 1);
-        }
-        return sb.toString();
+    public static String asString(final List<String> strList, final String delimiter) {
+        return Joiner.on(delimiter).join(strList);
     }
 
     public static String asString(int[] intarr) {
