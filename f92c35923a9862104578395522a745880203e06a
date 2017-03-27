@@ -45,6 +45,29 @@
       "revId": "f92c35923a9862104578395522a745880203e06a",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_07a496b7",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobCoordinatorImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2017-03-27T23:21:51Z",
+      "side": 1,
+      "message": "another constant, would it make sense for it to be tunable at least via a property?",
+      "range": {
+        "startLine": 49,
+        "startChar": 103,
+        "endLine": 49,
+        "endChar": 104
+      },
+      "revId": "f92c35923a9862104578395522a745880203e06a",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
