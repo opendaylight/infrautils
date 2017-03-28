@@ -8,6 +8,7 @@
 package org.opendaylight.infrautils.utils;
 
 import com.google.common.base.Joiner;
+import com.google.common.base.Strings;
 import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
 import java.text.DateFormat;
@@ -257,12 +258,8 @@ public class StringUtil {
         return num != NO_VALUE;
     }
 
-    public static boolean emptyString(String str) {
-        if (str == null || str.length() == 0) {
-            return true;
-        }
-        str = str.trim();
-        return str.length() == 0;
+    public static boolean emptyString(final String str) {
+        return Strings.isNullOrEmpty(str) || str.trim().isEmpty();
     }
 
     public static String fullMethodSignatureAsString(Object target, Method method, Object[] args) {
