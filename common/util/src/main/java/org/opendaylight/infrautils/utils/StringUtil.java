@@ -377,7 +377,7 @@ public class StringUtil {
         byte[] value = new byte[asciiValues.length];
 
         for (int i = 0; i < asciiValues.length; i++) {
-            value[i] = Byte.valueOf(asciiValues[i]);
+            value[i] = Byte.parseByte(asciiValues[i]);
         }
 
         return new String(value, Charsets.US_ASCII);
