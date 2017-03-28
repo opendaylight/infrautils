@@ -127,10 +127,7 @@ public class StringUtil {
     }
 
     public static String asStr(final String str) {
-        if (str == null) {
-            return null;
-        }
-        return str.trim();
+        return str == null ? null : str.trim();
     }
 
     public static String asNonEmptyStr(final String str) {
