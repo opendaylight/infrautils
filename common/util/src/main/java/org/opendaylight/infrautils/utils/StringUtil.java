@@ -335,16 +335,11 @@ public class StringUtil {
         return hex.substring(hex.length() - 2);
     }
 
-    public static StringComparator STRING_COMPARATOR_INSTANCE = new StringComparator();
-
-    private static class StringComparator implements Comparator<String> {
-
-        @Override
-        public int compare(final String o1, final String o2) {
-            return o1.compareTo(o2);
-        }
-
-    }
+    /**
+     * @deprecated Use String::compareTo directly.
+     */
+    @Deprecated
+    public static final Comparator<String> STRING_COMPARATOR_INSTANCE = String::compareTo;
 
     public static boolean isMatching(final String filter, final String[] filters) {
         if (filters == null) {
