@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "fafc7978_0253e139",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/concurrent/ThreadFactoryProvider.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-03-28T13:29:17Z",
+      "side": 1,
+      "message": "Done; oups, of course. We (I?) really need to sort out automatic quality checks for Logger... ;)  I never wrapped what I had in mind re. this for CS; FYI recently stumbled upon https://github.com/KengoTODA/findbugs-slf4j, similar existing 3rd party checks for this for FB, which looks nice and useful - will try adding those, some time.",
+      "parentUuid": "fafc7978_87c88676",
+      "range": {
+        "startLine": 62,
+        "startChar": 46,
+        "endLine": 62,
+        "endChar": 49
+      },
+      "revId": "f92c35923a9862104578395522a745880203e06a",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fafc7978_c7c28e52",
         "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/concurrent/package-info.java",
         "patchSetId": 2
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "fafc7978_c21f196f",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/concurrent/package-info.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-03-28T13:29:17Z",
+      "side": 1,
+      "message": "the package-info.java is here to hold the @NonNullByDefault in this case - but sure, why not JavaDoc also, Done.",
+      "parentUuid": "fafc7978_c7c28e52",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 53
+      },
+      "revId": "f92c35923a9862104578395522a745880203e06a",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fafc7978_07a496b7",
         "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobCoordinatorImpl.java",
         "patchSetId": 2
@@ -59,6 +107,30 @@
       "writtenOn": "2017-03-27T23:21:51Z",
       "side": 1,
       "message": "another constant, would it make sense for it to be tunable at least via a property?",
+      "range": {
+        "startLine": 49,
+        "startChar": 103,
+        "endLine": 49,
+        "endChar": 104
+      },
+      "revId": "f92c35923a9862104578395522a745880203e06a",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_c258b959",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobCoordinatorImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-03-28T13:29:17Z",
+      "side": 1,
+      "message": "perhaps, but that has nothing to do with this change? ;) That FJP_MAX_CAP constant intro. above is actually just copy/pasted from ForkJoinPool private, it\u0027s already currently used in the default new ForkJoinPool(); constructor.",
+      "parentUuid": "fafc7978_07a496b7",
       "range": {
         "startLine": 49,
         "startChar": 103,
