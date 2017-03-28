@@ -343,14 +343,13 @@ public class StringUtil {
         return hex.substring(hex.length() - 2);
     }
 
-    public static final StringComparator STRING_COMPARATOR_INSTANCE = new StringComparator();
-
-    private static class StringComparator implements Comparator<String> {
-        @Override
-        public int compare(String o1, String o2) {
-            return o1.compareTo(o2);
-        }
-    }
+    /**
+     * A shared String comparator, equivalent to String::compareTo.
+     *
+     * @deprecated Use String::compareTo directly.
+     */
+    @Deprecated
+    public static final Comparator<String> STRING_COMPARATOR_INSTANCE = String::compareTo;
 
     public static boolean isMatching(String filter, String[] filters) {
         if (filters == null) {
