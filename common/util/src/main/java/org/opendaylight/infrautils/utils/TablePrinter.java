@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,25 +18,26 @@ import org.slf4j.LoggerFactory;
 public class TablePrinter {
 
     private int ncols;
-    private List<String[]> table = new ArrayList<String[]>();
+    private final List<String[]> table = new ArrayList<>();
     private String title = null;
     private String[] header = null;
     private Comparator<String[]> comparator;
     protected static final Logger logger = LoggerFactory.getLogger(TablePrinter.class);
 
-    private static int SPACE_BETWEEN_COLUMNS = 1;
-    private static int SPACE_BEFORE_TABLES_WITH_TITLE = 4;
+    private static final int SPACE_BETWEEN_COLUMNS = 1;
+    private static final int SPACE_BEFORE_TABLES_WITH_TITLE = 4;
 
     public TablePrinter(final int sortByColumn) {
         this.comparator = new Comparator<String[]>() {
-            public int compare(String[] o1, String[] o2) {
+            @Override
+            public int compare(final String[] o1, final String[] o2) {
                 for(int i = sortByColumn; i < o1.length && i < o2.length; i++) {
                     int compareStr = o1[i].compareTo(o2[i]);
                     if (compareStr == 0) {
                         // identical strings, move to next column
                         continue;
                     }
-                    
+
                     if (o1[i].matches("^\\d+$") && o2[i].matches("^\\d+$")) {
                         // strings are actually numbers, compare numbers
                         int compareInt = extractInt(o1[i]) - extractInt(o2[i]);
@@ -49,9 +49,9 @@ public class TablePrinter {
                             return compareInt;
                         }
                     }
-                    
+
                     if (o1[i].matches("^\\D+\\d+$") && o2[i].matches("^\\D+\\d+$")) {
-                        // strings are strings with trailing numbers (e.g. "odl2 and odl10") 
+                        // strings are strings with trailing numbers (e.g. "odl2 and odl10")
                         String o1StringPart = o1[i].replaceAll("\\d+$", ""); // remove digits from end of string
                         String o2StringPart = o2[i].replaceAll("\\d+$", ""); // remove digits from end of string
                         if(o1StringPart.equals(o2StringPart))
@@ -63,13 +63,13 @@ public class TablePrinter {
                             }
                         }
                     }
-                    
+
                     return compareStr;
                 }
                 return 0;
             }
-            
-            int extractInt(String s) {
+
+            int extractInt(final String s) {
                 String numStr = s.replaceAll("^\\D*", ""); // remove non-digits
                 // return 0 if no digits found
                 try {
@@ -87,11 +87,11 @@ public class TablePrinter {
         this(0);
     }
 
-    public void setColumnNumber(int ncols) {
+    public void setColumnNumber(final int ncols) {
         this.ncols = ncols;
     }
 
-    public void addRow(Object... array) {
+    public void addRow(final Object... array) {
         String[] newLine = new String[array.length];
         for (int i = 0; i < array.length; i++) {
             if (array[i] != null && !array[i].toString().isEmpty()) {
@@ -103,7 +103,8 @@ public class TablePrinter {
 
         table.add(newLine);
     }
-    
+
+    @Override
     public String toString() {
         String separator = columnSeparator();
         int[] maxWidths = calculateWidths();
@@ -129,14 +130,14 @@ public class TablePrinter {
         Collections.sort(table, comparator);
     }
 
-    
-    private void printTitle(StringBuilder sb) {
+
+    private void printTitle(final StringBuilder sb) {
         if (title != null) {
             sb.append(title).append(":").append("\n");
         }
     }
-    
-    private void printHeader(String separator, int[] maxWidths, StringBuilder sb) {
+
+    private void printHeader(final String separator, final int[] maxWidths, final StringBuilder sb) {
         if (header != null) {
             if (title != null) {
                 sb.append(StringUtils.repeat(" ", SPACE_BEFORE_TABLES_WITH_TITLE));
@@ -149,13 +150,13 @@ public class TablePrinter {
         }
     }
 
-    private void printHeaderUnderline(String separator, int[] maxWidths, StringBuilder sb) {
+    private void printHeaderUnderline(final String separator, final int[] maxWidths, final StringBuilder sb) {
         int rowLength = SPACE_BETWEEN_COLUMNS + separator.length() * (header.length - 1) + sum(maxWidths);
         sb.append(StringUtils.repeat("-", rowLength));
         sb.append("\n");
     }
 
-    private int sum(int[] array) {
+    private int sum(final int[] array) {
         int ret = 0;
         for (int n : array) {
             ret += n;
@@ -163,7 +164,7 @@ public class TablePrinter {
         return ret;
     }
 
-    private void printRow(String separator, int[] maxWidths, StringBuilder sb, String[] row) {
+    private void printRow(final String separator, final int[] maxWidths, final StringBuilder sb, final String[] row) {
         for (int i = 0; i < row.length; i++) {
             printSeparator(separator, sb, i);
             sb.append(row[i]);
@@ -185,7 +186,7 @@ public class TablePrinter {
         return maxWidths;
     }
 
-    private void considerRow(int[] maxWidths, String[] row) {
+    private void considerRow(final int[] maxWidths, final String[] row) {
         for (int i = 0; i < row.length; i++) {
             if (row[i].length() > maxWidths[i]) {
                 maxWidths[i] = row[i].length();
@@ -193,7 +194,7 @@ public class TablePrinter {
         }
     }
 
-    private void printSeparator(String separator, StringBuilder sb, int i) {
+    private void printSeparator(final String separator, final StringBuilder sb, final int i) {
         if (i == 0) {
             sb.append(StringUtils.repeat(" ", SPACE_BETWEEN_COLUMNS));
         } else {
@@ -206,12 +207,12 @@ public class TablePrinter {
         return space + "|" + space;
     }
 
-    public void setColumnNames(String... names) {
+    public void setColumnNames(final String... names) {
         header = names;
         ncols = names.length;
     }
-    
-    public void setTitle(String title) {
+
+    public void setTitle(final String title) {
         this.title = title;
     }
 
