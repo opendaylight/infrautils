@@ -15,6 +15,8 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Pattern;
+import javax.annotation.RegEx;
 import javax.annotation.concurrent.GuardedBy;
 
 public class StringUtil {
@@ -28,6 +30,10 @@ public class StringUtil {
 
     @GuardedBy("DEFAULT_DATE_FORMAT")
     private static final SimpleDateFormat DEFAULT_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS z");
+
+    @RegEx
+    private static final String STR_ARRAY_PATTERN_STR = "(\\s*,\\s*)";
+    private static final Pattern STR_ARRAY_PATTERN = Pattern.compile(STR_ARRAY_PATTERN_STR);
 
     public static final int NO_VALUE = -1;
     public static final int TRUE = 1;
@@ -183,7 +189,8 @@ public class StringUtil {
         if (!(inputArray.startsWith("[") && inputArray.endsWith("]"))) {
             throw new RuntimeException("String array incorrectly formatted");
         }
-        return inputArray.substring(1, inputArray.length() - 1).split("(\\s*,\\s*)");
+
+        return STR_ARRAY_PATTERN.split(inputArray.substring(1, inputArray.length() - 1));
     }
 
     public static String unquote(final String s) {
