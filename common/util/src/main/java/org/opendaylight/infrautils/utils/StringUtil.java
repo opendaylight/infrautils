@@ -7,6 +7,7 @@
  */
 package org.opendaylight.infrautils.utils;
 
+import com.google.common.base.CharMatcher;
 import com.google.common.base.Joiner;
 import com.google.common.base.Strings;
 import java.lang.reflect.Method;
@@ -35,6 +36,8 @@ public class StringUtil {
     @RegEx
     private static final String STR_ARRAY_PATTERN_STR = "(\\s*,\\s*)";
     private static final Pattern STR_ARRAY_PATTERN = Pattern.compile(STR_ARRAY_PATTERN_STR);
+
+    private static final CharMatcher DQUOTE = CharMatcher.is('"');
 
     public static final int NO_VALUE = -1;
     public static final int TRUE = 1;
@@ -271,7 +274,7 @@ public class StringUtil {
             if (args[i] == null) {
                 string.append("null");
             } else if (String.class.equals(types[i])) {
-                string.append('\"').append(String.valueOf(args[i]).replaceAll("\"", "\\\"")).append('\"');
+                string.append('\"').append(DQUOTE.replaceFrom(String.valueOf(args[i]), "\\\"")).append('\"');
             } else if (Long.class.equals(types[i]) || long.class.equals(types[i])) {
                 string.append(args[i]).append('L');
             } else if (String.class.equals(args[i].getClass().getComponentType())) {
