@@ -272,9 +272,9 @@ public class StringUtil {
             }
             if (args[i] == null) {
                 string.append("null");
-            } else if (types[i].equals(String.class)) {
+            } else if (String.class.equals(types[i])) {
                 string.append('\"').append(DQUOTE.replaceFrom(String.valueOf(args[i]), "\\\"")).append('\"');
-            } else if (types[i].equals(Long.class) || types[i].equals(long.class)) {
+            } else if (Long.class.equals(types[i]) || long.class.equals(types[i])) {
                 string.append(args[i]).append('L');
             } else if (String.class.equals(args[i].getClass().getComponentType())) {
                 string.append("S").append(Arrays.toString((String[]) args[i]));
