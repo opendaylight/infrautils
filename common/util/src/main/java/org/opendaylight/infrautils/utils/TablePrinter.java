@@ -11,21 +11,31 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.regex.Pattern;
+import javax.annotation.RegEx;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class TablePrinter {
+    protected static final Logger logger = LoggerFactory.getLogger(TablePrinter.class);
+    private static final int SPACE_BETWEEN_COLUMNS = 1;
+    private static final int SPACE_BEFORE_TABLES_WITH_TITLE = 4;
+
+    @RegEx
+    private static final String DPLUS_STR = "^\\d+$";
+    private static final Pattern DPLUS = Pattern.compile(DPLUS_STR);
+
+    @RegEx
+    private static final String  DPLUS_DPLUS_STR = "^\\D+\\d+$";
+    private static final Pattern DPLUS_DPLUS = Pattern.compile(DPLUS_DPLUS_STR);
 
     private int ncols;
     private final List<String[]> table = new ArrayList<>();
     private String title = null;
     private String[] header = null;
     private Comparator<String[]> comparator;
-    protected static final Logger logger = LoggerFactory.getLogger(TablePrinter.class);
 
-    private static final int SPACE_BETWEEN_COLUMNS = 1;
-    private static final int SPACE_BEFORE_TABLES_WITH_TITLE = 4;
 
     public TablePrinter(final int sortByColumn) {
         this.comparator = new Comparator<String[]>() {
@@ -38,7 +48,7 @@ public class TablePrinter {
                         continue;
                     }
 
-                    if (o1[i].matches("^\\d+$") && o2[i].matches("^\\d+$")) {
+                    if (DPLUS.matcher(o1[i]).matches() && DPLUS.matcher(o2[i]).matches()) {
                         // strings are actually numbers, compare numbers
                         int compareInt = extractInt(o1[i]) - extractInt(o2[i]);
                         if (compareInt == 0) {
@@ -50,7 +60,7 @@ public class TablePrinter {
                         }
                     }
 
-                    if (o1[i].matches("^\\D+\\d+$") && o2[i].matches("^\\D+\\d+$")) {
+                    if (DPLUS_DPLUS.matcher(o1[i]).matches() && DPLUS_DPLUS.matcher(o2[i]).matches()) {
                         // strings are strings with trailing numbers (e.g. "odl2 and odl10")
                         String o1StringPart = o1[i].replaceAll("\\d+$", ""); // remove digits from end of string
                         String o2StringPart = o2[i].replaceAll("\\d+$", ""); // remove digits from end of string
@@ -156,7 +166,7 @@ public class TablePrinter {
         sb.append("\n");
     }
 
-    private int sum(final int[] array) {
+    private static int sum(final int[] array) {
         int ret = 0;
         for (int n : array) {
             ret += n;
@@ -164,7 +174,8 @@ public class TablePrinter {
         return ret;
     }
 
-    private void printRow(final String separator, final int[] maxWidths, final StringBuilder sb, final String[] row) {
+    private static void printRow(final String separator, final int[] maxWidths, final StringBuilder sb,
+            final String[] row) {
         for (int i = 0; i < row.length; i++) {
             printSeparator(separator, sb, i);
             sb.append(row[i]);
@@ -186,7 +197,7 @@ public class TablePrinter {
         return maxWidths;
     }
 
-    private void considerRow(final int[] maxWidths, final String[] row) {
+    private static void considerRow(final int[] maxWidths, final String[] row) {
         for (int i = 0; i < row.length; i++) {
             if (row[i].length() > maxWidths[i]) {
                 maxWidths[i] = row[i].length();
@@ -194,7 +205,7 @@ public class TablePrinter {
         }
     }
 
-    private void printSeparator(final String separator, final StringBuilder sb, final int i) {
+    private static void printSeparator(final String separator, final StringBuilder sb, final int i) {
         if (i == 0) {
             sb.append(StringUtils.repeat(" ", SPACE_BETWEEN_COLUMNS));
         } else {
