@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "fafc7978_d07cf5ed",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/TablePrinter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-03-30T15:32:44Z",
+      "side": 1,
+      "message": "Sure, go ahead!  But that has nothing to do with this change, where I\u0027m trying to enforce Checkstyle - why -1 because of this?!",
+      "parentUuid": "fafc7978_bbb402d2",
+      "range": {
+        "startLine": 32,
+        "startChar": 25,
+        "endLine": 32,
+        "endChar": 54
+      },
+      "revId": "2b52227daa7fc26f8401a8c71cd314bb2efa7b78",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fafc7978_9bb5bed2",
         "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/TablePrinter.java",
         "patchSetId": 1
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "fafc7978_308461d3",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/TablePrinter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-03-30T15:32:44Z",
+      "side": 1,
+      "message": "Sure, go ahead!  But that has nothing to do with this change, where I\u0027m trying to enforce Checkstyle - why -1 because of this?!",
+      "parentUuid": "fafc7978_9bb5bed2",
+      "range": {
+        "startLine": 42,
+        "startChar": 38,
+        "endLine": 42,
+        "endChar": 77
+      },
+      "revId": "2b52227daa7fc26f8401a8c71cd314bb2efa7b78",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fafc7978_7bba9ac1",
         "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/TablePrinter.java",
         "patchSetId": 1
@@ -59,6 +107,30 @@
       "writtenOn": "2017-03-17T00:27:35Z",
       "side": 1,
       "message": "same here",
+      "range": {
+        "startLine": 54,
+        "startChar": 38,
+        "endLine": 54,
+        "endChar": 85
+      },
+      "revId": "2b52227daa7fc26f8401a8c71cd314bb2efa7b78",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_10879dd8",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/TablePrinter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-03-30T15:32:44Z",
+      "side": 1,
+      "message": "Sure, go ahead!  But that has nothing to do with this change, where I\u0027m trying to enforce Checkstyle - why -1 because of this?!",
+      "parentUuid": "fafc7978_7bba9ac1",
       "range": {
         "startLine": 54,
         "startChar": 38,
@@ -105,6 +177,30 @@
       "writtenOn": "2017-03-17T00:24:42Z",
       "side": 1,
       "message": "Can we @deprecate this class in favor of Guava\u0027s UnsignedLong? That thing is *way* more efficient.",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 78
+      },
+      "revId": "2b52227daa7fc26f8401a8c71cd314bb2efa7b78",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_901b8dc9",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/types/UnsignedLong.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-03-30T15:32:44Z",
+      "side": 1,
+      "message": "Sure, go ahead!  But that has nothing to do with this change, where I\u0027m trying to enforce Checkstyle - why -1 because of this?!",
+      "parentUuid": "fafc7978_5bacf68c",
       "range": {
         "startLine": 13,
         "startChar": 0,
