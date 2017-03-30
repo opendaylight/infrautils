@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "fafc7978_103f9dd7",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/StringUtil.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-03-30T16:02:38Z",
+      "side": 1,
+      "message": "question of taste rather than real bug or anything? As neither Checkstyle nor FindBugs pointed this out, and my Eclipse autoformatter does not remove this automatically for me either (it does this for some other bracket expressions; I\u0027ve enable an option related to this), I don\u0027t want to have to manually do this on every file I touch just because you like it like this... ;-) Is that really a reason to -1 a change on existing code where the main point of the change is to get closer to being able to enable FindBugs?",
+      "parentUuid": "fafc7978_3b72d249",
+      "range": {
+        "startLine": 102,
+        "startChar": 14,
+        "endLine": 102,
+        "endChar": 58
+      },
+      "revId": "7ee8c8883121e15c2fcbcb452d651c9ae8a979f5",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fafc7978_db98e66c",
         "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/StringUtil.java",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2017-03-17T00:18:59Z",
       "side": 1,
       "message": "use a lambda:\n\nCOMPARATOR \u003d (o1, o2) -\u003e o1.compareTo(o2);\n\nGiven the expressiveness, I think the constant should be @deprecated.",
+      "range": {
+        "startLine": 342,
+        "startChar": 0,
+        "endLine": 350,
+        "endChar": 5
+      },
+      "revId": "7ee8c8883121e15c2fcbcb452d651c9ae8a979f5",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_502005b0",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/StringUtil.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-03-30T16:02:38Z",
+      "side": 1,
+      "message": "I see you\u0027ve done that in c/53944 - would you be willing to un -1 this as a result?",
+      "parentUuid": "fafc7978_db98e66c",
       "range": {
         "startLine": 342,
         "startChar": 0,
