@@ -20,7 +20,7 @@ import java.util.concurrent.Callable;
  * Enqueued jobs are stored in unbounded queues until they are run, this should
  * be kept in mind as it might lead to an OOM.
  */
-public interface JobCoordinator {
+public interface JobCoordinator { // do *NOT* extends JobCoordinatorMonitor
 
     /**
      * Enqueues a job.
@@ -69,24 +69,4 @@ public interface JobCoordinator {
      */
     void enqueueJob(String key, Callable<List<ListenableFuture<Void>>> mainWorker, RollbackCallable rollbackWorker,
             int maxRetries);
-
-    /**
-     * Returns the cleared task count.
-     */
-    long getClearedTaskCount();
-
-    /**
-     * Returns the created task count.
-     */
-    long getCreatedTaskCount();
-
-    /**
-     * Returns the incomplete task count.
-     */
-    long getIncompleteTaskCount();
-
-    /**
-     * Returns the pending task count.
-     */
-    long getPendingTaskCount();
 }
