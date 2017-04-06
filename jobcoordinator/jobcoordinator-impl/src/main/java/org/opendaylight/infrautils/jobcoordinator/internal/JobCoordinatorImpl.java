@@ -23,6 +23,7 @@ import java.util.concurrent.TimeUnit;
 import javax.annotation.PreDestroy;
 import javax.inject.Singleton;
 import org.opendaylight.infrautils.jobcoordinator.JobCoordinator;
+import org.opendaylight.infrautils.jobcoordinator.JobCoordinatorMonitor;
 import org.opendaylight.infrautils.jobcoordinator.RollbackCallable;
 import org.opendaylight.infrautils.utils.concurrent.LoggingThreadUncaughtExceptionHandler;
 import org.opendaylight.infrautils.utils.concurrent.ThreadFactoryProvider;
@@ -30,7 +31,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Singleton
-public class JobCoordinatorImpl implements JobCoordinator {
+public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor {
 
     private static final Logger LOG = LoggerFactory.getLogger(JobCoordinatorImpl.class);
 
