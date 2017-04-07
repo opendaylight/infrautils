@@ -7,7 +7,7 @@ target-ide/
 .checkstyle
 .fbExcludeFilterFile
 .tox
-MANIFEST.MF
 *.iml
 .idea
 .fbExcludeFilterFile
+.vscode/
