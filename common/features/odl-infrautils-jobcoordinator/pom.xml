@@ -7,13 +7,13 @@
     <parent>
         <groupId>org.opendaylight.odlparent</groupId>
         <artifactId>single-feature-parent</artifactId>
-        <version>1.8.0-SNAPSHOT</version>
+        <version>1.9.0-SNAPSHOT</version>
         <relativePath/>
     </parent>
 
     <groupId>org.opendaylight.infrautils</groupId>
     <artifactId>odl-infrautils-jobcoordinator</artifactId>
-    <version>1.1.0-SNAPSHOT</version>
+    <version>1.2.0-SNAPSHOT</version>
     <packaging>feature</packaging>
 
     <name>OpenDaylight :: Infrautils :: DataStoreUtils</name>
