@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da01753e_2093aba4",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobCoordinatorImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 5278
+      },
+      "writtenOn": "2017-04-11T05:35:00Z",
+      "side": 1,
+      "message": "Don\u0027t we need @Inject here ?",
+      "revId": "ffcfc8d94fbeb265eba9e19c767e2148fbb1bc3b",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da01753e_608db37b",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/resources/org/opendaylight/blueprint/jobcoordinator.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 5278
+      },
+      "writtenOn": "2017-04-11T05:35:00Z",
+      "side": 1,
+      "message": "I hope this would expose both the interfaces.",
+      "revId": "ffcfc8d94fbeb265eba9e19c767e2148fbb1bc3b",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
