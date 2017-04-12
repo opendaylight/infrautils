@@ -32,6 +32,12 @@
     </dependencyManagement>
     <dependencies>
         <dependency>
+            <groupId>org.opendaylight.odlparent</groupId>
+            <artifactId>features-odlparent</artifactId>
+            <classifier>features</classifier>
+            <type>xml</type>
+        </dependency>
+        <dependency>
             <groupId>org.opendaylight.infrautils</groupId>
             <artifactId>jobcoordinator-api</artifactId>
             <version>${project.version}</version>
