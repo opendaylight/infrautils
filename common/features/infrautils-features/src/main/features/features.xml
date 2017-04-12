@@ -2,9 +2,10 @@
 <!-- Copyright (c) 2016 Hewlett Packard Enterprise, Co. and others. All rights reserved. This
     program and the accompanying materials are made available under the terms of the Eclipse Public
     License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html -->
-<features name="odl-infrautils-${project.version}" xmlns="http://karaf.apache.org/xmlns/features/v1.2.0"
+<features name="odl-infrautils-${project.version}" xmlns="http://karaf.apache.org/xmlns/features/v1.3.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://karaf.apache.org/xmlns/features/v1.2.0 http://karaf.apache.org/xmlns/features/v1.2.0">
+    xsi:schemaLocation="http://karaf.apache.org/xmlns/features/v1.3.0 http://karaf.apache.org/xmlns/features/v1.3.0">
+    <repository>mvn:org.opendaylight.odlparent/features-odlparent/{{VERSION}}/xml/features</repository>
     <feature name='odl-infrautils-all-with-samples' version='${project.version}'
         description='OpenDaylight :: Infrautils :: All with Samples'>
         <feature version='${project.version}'>odl-infrautils-all</feature>
@@ -16,10 +17,9 @@
     </feature>
     <feature name='odl-infrautils-counters' version='${project.version}'
         description='OpenDaylight :: Infrautils :: Counters'>
+        <feature version='${project.version}'>odl-infrautils-utils</feature>
         <bundle>mvn:org.opendaylight.infrautils/counters-api/{{VERSION}}</bundle>
         <bundle>mvn:org.opendaylight.infrautils/counters-impl/{{VERSION}}</bundle>
-        <bundle>mvn:org.opendaylight.infrautils/infrautils-util/{{VERSION}}</bundle>
-        <bundle>wrap:mvn:org.apache.commons/commons-lang3/{{VERSION}}</bundle>
         <configfile finalname="etc/org.opendaylight.counters.cfg">mvn:org.opendaylight.infrautils/counters-impl/{{VERSION}}/cfg/countersconf/</configfile>
     </feature>
     <feature name='odl-infrautils-counters-sample' version='${project.version}'
@@ -28,7 +28,7 @@
         <bundle>mvn:org.opendaylight.infrautils/samples-counters-impl/{{VERSION}}</bundle>
     </feature>
     <feature name='odl-infrautils-jobcoordinator' version='${project.version}'
-        description='OpenDaylight :: Infrautils :: DataStoreUtils'>
+        description='OpenDaylight :: Infrautils :: Job Coordinator'>
         <feature version='${project.version}'>odl-infrautils-counters</feature>
         <bundle>mvn:org.opendaylight.infrautils/jobcoordinator-api/{{VERSION}}</bundle>
         <bundle>mvn:org.opendaylight.infrautils/jobcoordinator-impl/{{VERSION}}</bundle>
@@ -37,5 +37,11 @@
         description='OpenDaylight :: Infrautils :: @Inject'>
         <bundle>mvn:org.opendaylight.infrautils/inject/{{VERSION}}</bundle>
         <bundle>wrap:mvn:javax.inject/javax.inject/{{VERSION}}</bundle>
+    </feature>
+    <feature name='odl-infrautils-utils' version='${project.version}'
+        description='OpenDaylight :: Infrautils :: Utils'>
+        <feature version="[1.7.0, 2.0.0)" dependency="true">odl-guava-18</feature>
+        <bundle>mvn:org.opendaylight.infrautils/infrautils-util/{{VERSION}}</bundle>
+        <bundle>wrap:mvn:org.apache.commons/commons-lang3/{{VERSION}}</bundle>
     </feature>
 </features>
