@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da01753e_47e99b7f",
+        "filename": "caches/sample/it/src/test/java/org/opendaylight/infrautils/caches/sample/it/SampleIntegrationTest.java",
+        "patchSetId": 27
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 4540
+      },
+      "writtenOn": "2017-04-12T15:24:11Z",
+      "side": 1,
+      "message": "Do we need to distinguish here? AFAIK the tarball works on Windows too.",
+      "revId": "319bd4b699c48edb8c380caeaec7d80806b70798",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
