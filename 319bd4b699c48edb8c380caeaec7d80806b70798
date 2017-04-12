@@ -16,6 +16,24 @@
       "revId": "319bd4b699c48edb8c380caeaec7d80806b70798",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da01753e_fa3786ae",
+        "filename": "caches/sample/it/src/test/java/org/opendaylight/infrautils/caches/sample/it/SampleIntegrationTest.java",
+        "patchSetId": 27
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-04-12T16:35:26Z",
+      "side": 1,
+      "message": "you\u0027re right,  as per our IRC chat, as the distributions are identical and this is just a different archive format, I\u0027ll simplify this",
+      "parentUuid": "da01753e_47e99b7f",
+      "revId": "319bd4b699c48edb8c380caeaec7d80806b70798",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
