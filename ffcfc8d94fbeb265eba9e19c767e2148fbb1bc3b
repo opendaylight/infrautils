@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "da01753e_17b04f42",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobCoordinatorImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-04-18T09:40:11Z",
+      "side": 1,
+      "message": "AFAIK it\u0027s not needed here, because there are no arguments to @Inject (it may not hurt either, I\u0027m not sure; but as unrelated to this change, I won\u0027t change it)",
+      "parentUuid": "da01753e_2093aba4",
+      "revId": "ffcfc8d94fbeb265eba9e19c767e2148fbb1bc3b",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da01753e_608db37b",
         "filename": "jobcoordinator/jobcoordinator-impl/src/main/resources/org/opendaylight/blueprint/jobcoordinator.xml",
         "patchSetId": 3
@@ -30,6 +48,24 @@
       "writtenOn": "2017-04-11T05:35:00Z",
       "side": 1,
       "message": "I hope this would expose both the interfaces.",
+      "revId": "ffcfc8d94fbeb265eba9e19c767e2148fbb1bc3b",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da01753e_7786fb66",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/resources/org/opendaylight/blueprint/jobcoordinator.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-04-18T09:40:11Z",
+      "side": 1,
+      "message": "yes that\u0027s what this (supposedly does), according to some documentation I had found... I\u0027ve not tested it though (in an ideal world, we should have a simple IT for this)",
+      "parentUuid": "da01753e_608db37b",
       "revId": "ffcfc8d94fbeb265eba9e19c767e2148fbb1bc3b",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
