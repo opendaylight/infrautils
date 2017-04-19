@@ -1,0 +1,225 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da01753e_6032a911",
+        "filename": "diagstatus/diagstatus-api/src/main/java/org/opendaylight/infrautils/diagstatus/api/ServiceStatus.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-04-19T15:01:05Z",
+      "side": 1,
+      "message": "this class is a bit curious .. you have constructor arguments and setters.. do you really need it to have setters for everything, could you not make it have final fields and constructor only? At least for some.",
+      "revId": "381b2a6cab9319c3350cb0eb2423d6422ccffb98",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da01753e_401cc577",
+        "filename": "diagstatus/diagstatus-impl/src/main/java/org/opendaylight/infrautils/diagstatus/DiagStatusManager.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-04-19T15:01:05Z",
+      "side": 1,
+      "message": "a lot of TODOs still here for something that should be merged ASAP...",
+      "revId": "381b2a6cab9319c3350cb0eb2423d6422ccffb98",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da01753e_a013f164",
+        "filename": "diagstatus/diagstatus-impl/src/main/java/org/opendaylight/infrautils/diagstatus/MBeanService.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-04-19T15:01:05Z",
+      "side": 1,
+      "message": "remove {} - not needed for ex",
+      "revId": "381b2a6cab9319c3350cb0eb2423d6422ccffb98",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da01753e_8016ad53",
+        "filename": "diagstatus/diagstatus-impl/src/main/java/org/opendaylight/infrautils/diagstatus/MBeanService.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-04-19T15:01:05Z",
+      "side": 1,
+      "message": "error instead of info ?",
+      "revId": "381b2a6cab9319c3350cb0eb2423d6422ccffb98",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da01753e_e00cd944",
+        "filename": "diagstatus/diagstatus-impl/src/main/java/org/opendaylight/infrautils/diagstatus/MBeanService.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-04-19T15:01:05Z",
+      "side": 1,
+      "message": "error instead of info ?",
+      "revId": "381b2a6cab9319c3350cb0eb2423d6422ccffb98",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da01753e_c30eff31",
+        "filename": "diagstatus/diagstatus-impl/src/main/resources/diagstatusservice.properties",
+        "patchSetId": 17
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-04-19T15:01:05Z",
+      "side": 1,
+      "message": "As expressed in private email, this design looks flawed and not \"modular\" to me.",
+      "revId": "381b2a6cab9319c3350cb0eb2423d6422ccffb98",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da01753e_c007151c",
+        "filename": "diagstatus/diagstatus-impl/src/test/java/org/opendaylight/infrautils/diagstatus/test/DiagStatusTest.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-04-19T15:01:05Z",
+      "side": 1,
+      "message": "I wouldn\u0027t put MockitoJUnitRunner unless you really have @Mock",
+      "revId": "381b2a6cab9319c3350cb0eb2423d6422ccffb98",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da01753e_2007011e",
+        "filename": "diagstatus/diagstatus-impl/src/test/java/org/opendaylight/infrautils/diagstatus/test/DiagStatusTest.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-04-19T15:01:05Z",
+      "side": 1,
+      "message": "this is pretty empty for something that should be merged ASAP...",
+      "revId": "381b2a6cab9319c3350cb0eb2423d6422ccffb98",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da01753e_0002bd0a",
+        "filename": "diagstatus/diagstatus-shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusShell.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-04-19T15:01:05Z",
+      "side": 1,
+      "message": "TODO indeed",
+      "revId": "381b2a6cab9319c3350cb0eb2423d6422ccffb98",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da01753e_6300f301",
+        "filename": "diagstatus/diagstatus-shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusShowSvcStatusShell.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-04-19T15:01:05Z",
+      "side": 1,
+      "message": "TODO indeed",
+      "revId": "381b2a6cab9319c3350cb0eb2423d6422ccffb98",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da01753e_43032f0d",
+        "filename": "diagstatus/diagstatus-shell/src/main/java/org/opendaylight/infrautils/diagstatus/util/DiagStatusUtil.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-04-19T15:01:05Z",
+      "side": 1,
+      "message": "..",
+      "revId": "381b2a6cab9319c3350cb0eb2423d6422ccffb98",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da01753e_830d173a",
+        "filename": "diagstatus/diagstatus-shell/src/main/java/org/opendaylight/infrautils/diagstatus/util/DiagStatusUtil.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-04-19T15:01:05Z",
+      "side": 1,
+      "message": "..",
+      "revId": "381b2a6cab9319c3350cb0eb2423d6422ccffb98",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da01753e_e313435a",
+        "filename": "diagstatus/diagstatus-shell/src/main/java/org/opendaylight/infrautils/diagstatus/util/DiagStatusUtil.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-04-19T15:01:05Z",
+      "side": 1,
+      "message": "..",
+      "revId": "381b2a6cab9319c3350cb0eb2423d6422ccffb98",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
