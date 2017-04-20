@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "da01753e_f1eadf0d",
+        "filename": "common/features/infrautils-features/src/main/features/features.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-04-20T20:58:15Z",
+      "side": 1,
+      "message": "any particular reason why not? I\u0027ve seen this in other features.xml in ODL, and thought it may be required.. or could not hurt",
+      "parentUuid": "da01753e_20f3819f",
+      "range": {
+        "startLine": 7,
+        "startChar": 66,
+        "endLine": 7,
+        "endChar": 67
+      },
+      "revId": "7e9d418b2c5badeb4f4a49568be1adbd2381920b",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da01753e_a0365150",
         "filename": "common/features/infrautils-features/src/main/features/features.xml",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2017-04-19T14:22:22Z",
       "side": 1,
       "message": "I am not sure this picks the correct version during Autorelease.\nPossibly you can drop the version option here, and karaf will find the intended feature in features-odlparent repo.",
+      "range": {
+        "startLine": 43,
+        "startChar": 26,
+        "endLine": 43,
+        "endChar": 40
+      },
+      "revId": "7e9d418b2c5badeb4f4a49568be1adbd2381920b",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da01753e_31f587ee",
+        "filename": "common/features/infrautils-features/src/main/features/features.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-04-20T20:58:15Z",
+      "side": 1,
+      "message": "I\u0027ve seen this in other features.xml in ODL, and it seems to have passed the build now.  Do you have any objection if I self merge this in infrautils as is?",
+      "parentUuid": "da01753e_a0365150",
       "range": {
         "startLine": 43,
         "startChar": 26,
