@@ -1,0 +1,24 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1485188017955
+Build-Jdk: 1.8.0_111
+Built-By: skitt
+Bundle-Blueprint: OSGI-INF/blueprint/blueprint.xml
+Bundle-Description: OpenDaylight is leading the transformation to Open S
+ oftware Defined Networking (SDN). For more information, please see http
+ s://www.opendaylight.org
+Bundle-DocURL: https://www.opendaylight.org
+Bundle-License: https://www.eclipse.org/legal/epl-v10.html
+Bundle-ManifestVersion: 2
+Bundle-Name: counters-impl
+Bundle-SymbolicName: org.opendaylight.infrautils.counters-impl
+Bundle-Vendor: OpenDaylight
+Bundle-Version: 1.1.0.SNAPSHOT
+Created-By: Apache Maven Bundle Plugin
+Export-Package: org.opendaylight.infrautils.counters.impl;version="1.0.2
+ ";uses:="org.slf4j"
+Import-Package: org.opendaylight.infrautils.counters.api;version="[1.0,2
+ )",org.opendaylight.infrautils.utils;version="[1.1,2)",org.osgi.service
+ .blueprint;version="[1.0.0,2.0.0)",org.slf4j;version="[1.7,2)"
+Originally-Created-By: Apache Maven Bundle Plugin
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Tool: Bnd-3.0.0.201509101326
