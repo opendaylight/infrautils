@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "da01753e_229ed356",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/concurrent/MoreExecutors.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 6230
+      },
+      "writtenOn": "2017-04-21T10:42:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da01753e_b1bfb7fa",
+      "revId": "537b0b561348399e548c389a4762fc65787908ec",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da01753e_d13b5b9a",
         "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/concurrent/MoreExecutors.java",
         "patchSetId": 3
@@ -30,6 +48,24 @@
       "writtenOn": "2017-04-20T21:21:43Z",
       "side": 1,
       "message": "just about the class name .. I know it was me who suggested MoreExecutors in the first place on our chat in IRC, but on looking at this again here, I realize that was stupid.. this is real intented as a drop-in replacement for java.util.concurrent.Executors (you could even add some of its other methods here too?) and not quite the same as com.google.common.util.concurrent.MoreExecutors, which offers a few other things.. so would you mind to name it perhaps Executors2 or even just Executors after all?  Sorry!",
+      "revId": "537b0b561348399e548c389a4762fc65787908ec",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da01753e_82a4dfa6",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/concurrent/MoreExecutors.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 6230
+      },
+      "writtenOn": "2017-04-21T10:42:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da01753e_d13b5b9a",
       "revId": "537b0b561348399e548c389a4762fc65787908ec",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
