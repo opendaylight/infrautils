@@ -4,6 +4,6 @@
   odl:use-default-for-reference-types="true">
 
   <service ref="jobCoordinator" odl:type="default"
-    interface="org.opendaylight.infrautils.jobcoordinator.api.jobCoordinator" />
+    interface="org.opendaylight.infrautils.jobcoordinator.api.JobCoordinator" />
 
 </blueprint>
