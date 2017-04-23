@@ -46,6 +46,34 @@ public interface EventBus extends AutoCloseable {
     // a WARN log if we're fully up-and-running.
 
     /**
+     * Subscribe an event listener by specifying an event Class type.
+     *
+     * @param eventClass
+     *            Event type as java.lang.Class
+     * @param listener
+     *            Event listener
+     *
+     * @return Subscription used (only) to {@link #unsubscribe(Subscription)}
+     */
+//   <E> Subscription  subscribe(Class<E> eventClass, EventListener<? super E> listener);
+
+    /**
+     * Subscribe an event listener by specifying an event TypeToken. This is
+     * useful to support "reified" event listeners using generics.
+     *
+     * @param eventClass
+     *            Event type as TypeToken (e.g.
+     *            <code>new TypeToken&lt;ServiceRegisteredEvent&lt;YourService&gt;&gt;() {}</code>)
+     * @param listener
+     *            Event listener
+     *
+     * @return Subscription used (only) to {@link #unsubscribe(Subscription)}
+     */
+//   <E> Subscription  subscribe(TypeToken<E> reifiedEventClass, EventListener<E> listener);
+    // TODO how to do <? super E> instead of <E> and get
+    // ReifiedEventsTest.testSubscribeSuperTypeListener() to work?!
+
+    /**
      * Registers all methods annotated with {@link Listener} on {@code object}
      * to receive events.
      *

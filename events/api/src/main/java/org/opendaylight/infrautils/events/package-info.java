@@ -29,6 +29,9 @@
  * <li>fails on
  * {@link EventBus#subscribe(Object)} if you mistakingly pass the wrong
  * object which has no suitable annotations or has a non-void return value
+ * <li><i>  TODO not yet implemented: only offers annotation based subscription not both
+ * annotation as well as simply inline lambda listeners like this API (including
+ * subscribing to re-ified types);</i>
  * </ul>
  * <li><a href=
  * "https://docs.spongepowered.org/stable/en/plugin/event/listeners.html">Events
