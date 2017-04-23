@@ -32,4 +32,19 @@ public interface JobCoordinatorMonitor {
      */
     long getPendingTaskCount();
 
+    /**
+     * Returns the failed jobs count.
+     */
+    long getFailedJobCount();
+
+    /**
+     * Returns the retry jobs count.
+     */
+    long getRetriesCount();
+
+    /**
+     * Returns the job execution attempts.
+     */
+    long getExecuteAttempts();
+
 }
