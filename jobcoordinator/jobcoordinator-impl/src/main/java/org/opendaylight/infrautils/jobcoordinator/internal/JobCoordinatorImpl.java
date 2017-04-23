@@ -124,6 +124,16 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
         return JobCoordinatorCounters.jobs_pending.get();
     }
 
+    @Override
+    public long getFailedJobCount() {
+        return JobCoordinatorCounters.jobs_failed.get();
+    }
+
+    @Override
+    public long getRetriesCount() {
+        return JobCoordinatorCounters.jobs_retries_for_failure.get();
+    }
+
     /**
      * Cleanup the submitted job from the job queue.
      **/
@@ -181,6 +191,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
             }
 
             int retryCount = jobEntry.decrementRetryCountAndGet();
+            JobCoordinatorCounters.jobs_retries_for_failure.inc();
             if (retryCount > 0) {
                 long waitTime = RETRY_WAIT_BASE_TIME_MILLIS / retryCount;
                 scheduledExecutorService.schedule(() -> {
@@ -189,7 +200,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
                 }, waitTime, TimeUnit.MILLISECONDS);
                 return;
             }
-
+            JobCoordinatorCounters.jobs_failed.inc();
             if (jobEntry.getRollbackWorker() != null) {
                 jobEntry.setMainWorker(null);
                 RollbackTask rollbackTask = new RollbackTask(jobEntry);
@@ -259,6 +270,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
                 long jobExecutionTimeNanos = System.nanoTime() - jobStartTimestampNanos;
                 printJobs(jobEntry.getKey(), TimeUnit.NANOSECONDS.toMillis(jobExecutionTimeNanos));
             } catch (Exception e) {
+                JobCoordinatorCounters.jobs_failed.inc();
                 LOG.error("Exception when executing jobEntry: {}", jobEntry, e);
             }
 

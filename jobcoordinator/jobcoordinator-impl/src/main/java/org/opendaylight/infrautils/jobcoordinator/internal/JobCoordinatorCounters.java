@@ -11,7 +11,8 @@ package org.opendaylight.infrautils.jobcoordinator.internal;
 import org.opendaylight.infrautils.counters.api.OccurenceCounter;
 
 enum JobCoordinatorCounters {
-    jobs_created, jobs_cleared, jobs_pending(true), jobs_incomplete(true);
+    jobs_created, jobs_cleared, jobs_pending(true), jobs_incomplete(true), jobs_failed,
+    jobs_retries_for_failure;
 
     private OccurenceCounter counter;
 
