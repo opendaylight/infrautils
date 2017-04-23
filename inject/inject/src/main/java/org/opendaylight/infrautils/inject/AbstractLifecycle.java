@@ -28,7 +28,7 @@ public abstract class AbstractLifecycle implements Lifecycle {
         STARTED, STOPPED
     }
 
-    private AtomicReference<State> state = new AtomicReference<>(State.STOPPED);
+    private final AtomicReference<State> state = new AtomicReference<>(State.STOPPED);
 
     protected abstract void start() throws Exception;
 
@@ -75,4 +75,9 @@ public abstract class AbstractLifecycle implements Lifecycle {
         return state.get() == State.STARTED;
     }
 
+    protected void requireRunning() throws IllegalStateException {
+        if (!isRunning()) {
+            throw new IllegalStateException(State.STOPPED.name());
+        }
+    }
 }
