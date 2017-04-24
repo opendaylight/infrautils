@@ -19,6 +19,57 @@
     },
     {
       "key": {
+        "uuid": "da01753e_791c0dc2",
+        "filename": "diagstatus/diagstatus-impl/src/main/java/org/opendaylight/infrautils/diagstatus/DiagStatusManager.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 5278
+      },
+      "writtenOn": "2017-04-24T06:40:04Z",
+      "side": 1,
+      "message": "Nit: you could remove CanonicalName for Properties",
+      "revId": "381b2a6cab9319c3350cb0eb2423d6422ccffb98",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da01753e_39fe0539",
+        "filename": "diagstatus/diagstatus-impl/src/main/java/org/opendaylight/infrautils/diagstatus/DiagStatusManager.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 5278
+      },
+      "writtenOn": "2017-04-24T06:40:04Z",
+      "side": 1,
+      "message": "I don\u0027t see servicesMap is not used anywehere in this class. Does it get used in near future ?",
+      "revId": "381b2a6cab9319c3350cb0eb2423d6422ccffb98",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da01753e_d996d9ef",
+        "filename": "diagstatus/diagstatus-impl/src/main/java/org/opendaylight/infrautils/diagstatus/DiagStatusManager.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 5278
+      },
+      "writtenOn": "2017-04-24T06:40:04Z",
+      "side": 1,
+      "message": "This would lead to setting null for servicesMap. It could potentially lead to NPE while using  it.",
+      "revId": "381b2a6cab9319c3350cb0eb2423d6422ccffb98",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da01753e_401cc577",
         "filename": "diagstatus/diagstatus-impl/src/main/java/org/opendaylight/infrautils/diagstatus/DiagStatusManager.java",
         "patchSetId": 17
@@ -30,6 +81,40 @@
       "writtenOn": "2017-04-19T15:01:05Z",
       "side": 1,
       "message": "a lot of TODOs still here for something that should be merged ASAP...",
+      "revId": "381b2a6cab9319c3350cb0eb2423d6422ccffb98",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da01753e_196fc1fe",
+        "filename": "diagstatus/diagstatus-impl/src/main/java/org/opendaylight/infrautils/diagstatus/MBeanService.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 5278
+      },
+      "writtenOn": "2017-04-24T06:40:04Z",
+      "side": 1,
+      "message": "can you make it as singleton and use it ?",
+      "revId": "381b2a6cab9319c3350cb0eb2423d6422ccffb98",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da01753e_999451e3",
+        "filename": "diagstatus/diagstatus-impl/src/main/java/org/opendaylight/infrautils/diagstatus/MBeanService.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 5278
+      },
+      "writtenOn": "2017-04-24T06:40:04Z",
+      "side": 1,
+      "message": "log with objNameStr",
       "revId": "381b2a6cab9319c3350cb0eb2423d6422ccffb98",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -53,6 +138,23 @@
     },
     {
       "key": {
+        "uuid": "da01753e_19b86175",
+        "filename": "diagstatus/diagstatus-impl/src/main/java/org/opendaylight/infrautils/diagstatus/MBeanService.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 5278
+      },
+      "writtenOn": "2017-04-24T06:40:04Z",
+      "side": 1,
+      "message": "can you have mplatformMbeanServera as member variable and use it across methods ?",
+      "revId": "381b2a6cab9319c3350cb0eb2423d6422ccffb98",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da01753e_8016ad53",
         "filename": "diagstatus/diagstatus-impl/src/main/java/org/opendaylight/infrautils/diagstatus/MBeanService.java",
         "patchSetId": 17
@@ -70,6 +172,23 @@
     },
     {
       "key": {
+        "uuid": "da01753e_39ac4535",
+        "filename": "diagstatus/diagstatus-impl/src/main/java/org/opendaylight/infrautils/diagstatus/MBeanService.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 5278
+      },
+      "writtenOn": "2017-04-24T06:40:04Z",
+      "side": 1,
+      "message": "shouldn\u0027t it be null instead of empty string ?",
+      "revId": "381b2a6cab9319c3350cb0eb2423d6422ccffb98",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da01753e_e00cd944",
         "filename": "diagstatus/diagstatus-impl/src/main/java/org/opendaylight/infrautils/diagstatus/MBeanService.java",
         "patchSetId": 17
@@ -81,6 +200,23 @@
       "writtenOn": "2017-04-19T15:01:05Z",
       "side": 1,
       "message": "error instead of info ?",
+      "revId": "381b2a6cab9319c3350cb0eb2423d6422ccffb98",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da01753e_3973a5e8",
+        "filename": "diagstatus/diagstatus-impl/src/main/java/org/opendaylight/infrautils/diagstatus/StatusMonitorServiceImplMBean.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 5278
+      },
+      "writtenOn": "2017-04-24T06:40:04Z",
+      "side": 1,
+      "message": "make the return type just to Map. and remove canonical name.",
       "revId": "381b2a6cab9319c3350cb0eb2423d6422ccffb98",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
