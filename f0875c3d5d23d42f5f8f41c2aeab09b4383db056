@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da01753e_c84b9d85",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/test/java/org/opendaylight/infrautils/jobcoordinator/tests/JobCoordinatorTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 5350
+      },
+      "writtenOn": "2017-04-24T16:09:29Z",
+      "side": 1,
+      "message": "kind of confusing because it isWaiting when it is running :-)",
+      "range": {
+        "startLine": 38,
+        "startChar": 32,
+        "endLine": 38,
+        "endChar": 41
+      },
+      "revId": "f0875c3d5d23d42f5f8f41c2aeab09b4383db056",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da01753e_488a0dc0",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/test/java/org/opendaylight/infrautils/jobcoordinator/tests/JobCoordinatorTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 5350
+      },
+      "writtenOn": "2017-04-24T16:09:29Z",
+      "side": 1,
+      "message": "this line is identical to 156. I don\u0027t understand why it is needed here again. Apparantly it won\u0027t wait much.\n... and it\u0027s not a typo cause changing it to waitingCallable2 provokes a deadlock, right?",
+      "range": {
+        "startLine": 160,
+        "startChar": 54,
+        "endLine": 160,
+        "endChar": 55
+      },
+      "revId": "f0875c3d5d23d42f5f8f41c2aeab09b4383db056",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
