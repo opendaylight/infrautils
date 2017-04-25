@@ -17,3 +17,4 @@ package org.opendaylight.infrautils.events.system;
  * @author Michael Vorburger.ch
  */
 public interface NodeLifecycleEvent { }
+
