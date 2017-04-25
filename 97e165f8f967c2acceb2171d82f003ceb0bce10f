@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "da01753e_ebe816b6",
+        "filename": "events/api/src/main/java/org/opendaylight/infrautils/events/EventPublisher.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-04-25T15:15:53Z",
+      "side": 1,
+      "message": "CompletionStage \"does not define methods for initially creating, forcibly completing normally or exceptionally\" (which is great, you wouldn\u0027t want to expose that) but also not to \"probing completion status or results, or awaiting completion of a stage\", which is less ideal.. as you may want to join() or get() on the return, e.g. in a test.  So either we introduce a custom interface extending CompletionStage with such methods and wrap, or let users who really need to use the toCompletableFuture() method on CompletionStage, what do you think?",
+      "parentUuid": "da01753e_504ab3ac",
+      "range": {
+        "startLine": 42,
+        "startChar": 4,
+        "endLine": 42,
+        "endChar": 21
+      },
+      "revId": "97e165f8f967c2acceb2171d82f003ceb0bce10f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da01753e_d55cd5ef",
         "filename": "events/api/src/main/java/org/opendaylight/infrautils/events/services/ServiceEvent.java",
         "patchSetId": 10
