@@ -25,6 +25,40 @@
     },
     {
       "key": {
+        "uuid": "da01753e_30272f14",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/test/java/org/opendaylight/infrautils/jobcoordinator/tests/JobCoordinatorTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 5278
+      },
+      "writtenOn": "2017-04-25T11:50:34Z",
+      "side": 1,
+      "message": "This job key is used in all tests. just move it as instance member variable.",
+      "revId": "f0875c3d5d23d42f5f8f41c2aeab09b4383db056",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da01753e_10694b25",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/test/java/org/opendaylight/infrautils/jobcoordinator/tests/JobCoordinatorTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 5278
+      },
+      "writtenOn": "2017-04-25T11:50:34Z",
+      "side": 1,
+      "message": "does it wait for any finite time ? moreover does this check really required ?",
+      "revId": "f0875c3d5d23d42f5f8f41c2aeab09b4383db056",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da01753e_488a0dc0",
         "filename": "jobcoordinator/jobcoordinator-impl/src/test/java/org/opendaylight/infrautils/jobcoordinator/tests/JobCoordinatorTest.java",
         "patchSetId": 1
@@ -42,6 +76,23 @@
         "endLine": 160,
         "endChar": 55
       },
+      "revId": "f0875c3d5d23d42f5f8f41c2aeab09b4383db056",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da01753e_30d28f00",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/test/java/org/opendaylight/infrautils/jobcoordinator/tests/JobCoordinatorTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 5278
+      },
+      "writtenOn": "2017-04-25T11:50:34Z",
+      "side": 1,
+      "message": "can you also check for assertPending(0) here ? considering these tests are run in multi-cores.",
       "revId": "f0875c3d5d23d42f5f8f41c2aeab09b4383db056",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
