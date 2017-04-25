@@ -39,6 +39,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.function.Predicate;
@@ -207,8 +208,8 @@ final class SubscriberRegistry {
               parameterTypes.length);
 
           checkArgument(
-              method.getReturnType().equals(Void.TYPE),
-              "Method %s has %s annotation but does not return void",
+              method.getReturnType().equals(Void.TYPE) || method.getReturnType().equals(CompletableFuture.class),
+              "Method %s has %s annotation but does not return void or CompletableFuture",
               method, annotationClass);
 
           MethodIdentifier ident = new MethodIdentifier(method);

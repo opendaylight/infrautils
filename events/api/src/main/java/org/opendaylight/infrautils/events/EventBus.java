@@ -38,7 +38,7 @@ public interface EventBus extends AutoCloseable {
      *         listeners processed event, or for reacting to exceptions (it will
      *         already have been error logged, so no need to use to only log)
      */
-    CompletableFuture<Void> publish(Object event);
+    CompletableFuture<?> publish(Object event);
 
     // TODO document the dead event behavior?
     // <p/>If there are no listeners registered for the event's type, then the

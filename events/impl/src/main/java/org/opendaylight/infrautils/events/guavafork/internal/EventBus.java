@@ -224,7 +224,7 @@ public class EventBus {
    * @param event event to post.
    */
   @SuppressFBWarnings("NP_NONNULL_PARAM_VIOLATION")
-  public CompletableFuture<Void> post(Object event) {
+  public CompletableFuture<?> post(Object event) {
     List<Subscriber> eventSubscribers = subscribers.getSubscribers(event);
     if (!eventSubscribers.isEmpty()) {
       return dispatcher.dispatch(event, eventSubscribers);

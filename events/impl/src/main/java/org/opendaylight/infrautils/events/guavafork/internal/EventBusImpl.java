@@ -76,9 +76,9 @@ public class EventBusImpl extends AbstractLifecycle implements org.opendaylight.
     }
 
     @Override
-    public CompletableFuture<Void> publish(Object event) {
+    public CompletableFuture<?> publish(Object event) {
         // do *NOT* requireRunning();
-        CompletableFuture<Void> future;
+        CompletableFuture<?> future;
         try {
             future = guavaEventBus.post(event);
         } catch (RejectedExecutionException e) {

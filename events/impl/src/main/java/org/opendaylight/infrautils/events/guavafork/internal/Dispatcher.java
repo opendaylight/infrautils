@@ -72,7 +72,7 @@ abstract class Dispatcher {
   /**
    * Dispatches the given {@code event} to the given {@code subscribers}.
    */
-  abstract CompletableFuture<Void> dispatch(Object event, List<Subscriber> eventSubscribers);
+  abstract CompletableFuture<?> dispatch(Object event, List<Subscriber> eventSubscribers);
 
   /**
    * Implementation of a {@link #perThreadDispatchQueue()} dispatcher.
@@ -126,7 +126,7 @@ abstract class Dispatcher {
           queue.remove();
         }
       }
-      return CompletableFuture.allOf(futures.toArray(new CompletableFuture[0]));
+      return CompletableFuture.allOf(futures.toArray(new CompletableFuture[futures.size()]));
     }
 
     private static final class Event {
@@ -181,7 +181,7 @@ abstract class Dispatcher {
       while ((e = queue.poll()) != null) {
           futures.add(e.subscriber.dispatchEvent(e.event));
       }
-      return CompletableFuture.allOf(futures.toArray(new CompletableFuture[0]));
+      return CompletableFuture.allOf(futures.toArray(new CompletableFuture[futures.size()]));
     }
 
     private static final class EventWithSubscriber {
@@ -202,13 +202,13 @@ abstract class Dispatcher {
     private static final ImmediateDispatcher INSTANCE = new ImmediateDispatcher();
 
     @Override
-    CompletableFuture<Void> dispatch(Object event, List<Subscriber> subscribers) {
+    CompletableFuture<?> dispatch(Object event, List<Subscriber> subscribers) {
       checkNotNull(event);
       List<CompletableFuture<?>> futures = new ArrayList<>(subscribers.size());
       for (Subscriber subscriber : subscribers) {
           futures.add(subscriber.dispatchEvent(event));
       }
-      return CompletableFuture.allOf(futures.toArray(new CompletableFuture[0]));
+      return CompletableFuture.allOf(futures.toArray(new CompletableFuture[futures.size()]));
     }
   }
 

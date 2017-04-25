@@ -9,6 +9,7 @@ package org.opendaylight.infrautils.events.tests;
 
 import org.junit.After;
 import org.junit.Before;
+import org.opendaylight.infrautils.events.EventBus;
 import org.opendaylight.infrautils.events.guavafork.internal.EventBusImpl;
 
 /**
@@ -23,7 +24,7 @@ public abstract class EventsTestBase {
 
     protected interface AnotherEvent { }
 
-    protected EventBusImpl bus = new EventBusImpl();
+    protected EventBus bus = new EventBusImpl();
 
     // EventBus is asynchronous, must use volatile:
     volatile boolean childEventReceived = false;
@@ -32,7 +33,7 @@ public abstract class EventsTestBase {
 
     @Before
     public void setUp() {
-        bus.init();
+        ((EventBusImpl)bus).init();
     }
 
     @After

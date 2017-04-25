@@ -69,18 +69,37 @@ class Subscriber {
    * Dispatches {@code event} to this subscriber using the proper executor.
    */
   @SuppressWarnings("unchecked")
-  final CompletableFuture<Void> dispatchEvent(final Object event) {
-      return CompletableFuture.runAsync(() -> {
-          try {
-            invokeSubscriberMethod(event);
+  final CompletableFuture<?> dispatchEvent(final Object event) {
+/*
+      try {
+        return (CompletableFuture<Object>) invokeSubscriberMethod(event);
+      } catch (InvocationTargetException e) {
+          bus.handleSubscriberException(e.getCause(), context(event));
+          throw Throwables.propagate(e.getCause());
+      } catch (IllegalArgumentException | IllegalAccessException e) {
+          bus.handleSubscriberException(e, context(event));
+          throw Throwables.propagate(e);
+      }
+ */
+      return CompletableFuture.supplyAsync(() -> {
+        try {
+            return invokeSubscriberMethod(event);
         } catch (InvocationTargetException e) {
             bus.handleSubscriberException(e.getCause(), context(event));
-            Throwables.propagate(e.getCause());
+            throw Throwables.propagate(e.getCause());
         } catch (IllegalArgumentException | IllegalAccessException e) {
             bus.handleSubscriberException(e, context(event));
-            Throwables.propagate(e);
+            throw Throwables.propagate(e);
         }
-      }, executor);
+      }, executor).handle((o, e) -> {
+        if (e != null) {
+            return new CompletableFuture<>().completeExceptionally(e);
+        } else if (o instanceof CompletableFuture) { // unwrap
+            return CompletableFuture.completedFuture(((CompletableFuture<?>) o).join());
+        } else {
+            return CompletableFuture.completedFuture(o);
+        }
+    });
   }
 
   /**
@@ -88,20 +107,21 @@ class Subscriber {
    * synchronized.
    */
   @VisibleForTesting
-  void invokeSubscriberMethod(Object event) throws InvocationTargetException, IllegalAccessException, IllegalArgumentException {
-    try {
-      method.invoke(target, checkNotNull(event));
+  Object invokeSubscriberMethod(Object event) throws InvocationTargetException, IllegalAccessException, IllegalArgumentException {
+//    try {
+      return method.invoke(target, checkNotNull(event));
 //    } catch (IllegalArgumentException e) {
 //      throw new Error("Method rejected target/argument: " + event, e);
 //    } catch (IllegalAccessException e) {
 //      throw new Error("Method became inaccessible: " + event, e);
-    } catch (InvocationTargetException e) {
-      Throwable cause = e.getCause();
-      if (cause instanceof Error) {
-        throw (Error) cause;
-      }
-      throw e;
-    }
+
+//    } catch (InvocationTargetException e) {
+//      Throwable cause = e.getCause();
+//      if (cause instanceof Error) {
+//        throw (Error) cause;
+//      }
+//      throw e;
+//    }
   }
 
   /**
@@ -140,9 +160,9 @@ class Subscriber {
     }
 
     @Override
-    void invokeSubscriberMethod(Object event) throws InvocationTargetException, IllegalAccessException, IllegalArgumentException {
+    Object invokeSubscriberMethod(Object event) throws InvocationTargetException, IllegalAccessException, IllegalArgumentException {
       synchronized (this) {
-        super.invokeSubscriberMethod(event);
+        return super.invokeSubscriberMethod(event);
       }
     }
   }
