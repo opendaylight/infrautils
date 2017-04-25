@@ -33,6 +33,8 @@ import com.google.common.reflect.TypeToken;
 import com.google.common.util.concurrent.UncheckedExecutionException;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -207,8 +209,8 @@ final class SubscriberRegistry {
               parameterTypes.length);
 
           checkArgument(
-              method.getReturnType().equals(Void.TYPE),
-              "Method %s has %s annotation but does not return void",
+              method.getReturnType().equals(Void.TYPE) || isCompletableFutureVoid(method.getGenericReturnType()),
+              "Method %s has %s annotation but does not return void or CompletableFuture<Void>",
               method, annotationClass);
 
           MethodIdentifier ident = new MethodIdentifier(method);
@@ -221,7 +223,16 @@ final class SubscriberRegistry {
     return ImmutableList.copyOf(identifiers.values());
   }
 
-  /**
+  private boolean isCompletableFutureVoid(Type genericReturnType) {
+      if (genericReturnType instanceof ParameterizedType) {
+          ParameterizedType parameterizedType = (ParameterizedType) genericReturnType;
+          Type[] typeArguments = parameterizedType.getActualTypeArguments();
+          return typeArguments.length == 1 && typeArguments[0].equals(Void.TYPE);
+      }
+      return false;
+}
+
+/**
    * Global cache of classes to their flattened hierarchy of supertypes.
    */
   private final LoadingCache<Class<?>, ImmutableSet<Class<?>>> flattenHierarchyCache =
