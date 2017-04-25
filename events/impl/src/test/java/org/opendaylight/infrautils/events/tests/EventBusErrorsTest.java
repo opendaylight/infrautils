@@ -58,7 +58,7 @@ public class EventBusErrorsTest {
         }
     }
 
-    private void assertFutureCompletedExceptionally(CompletableFuture<Void> future) {
+    private void assertFutureCompletedExceptionally(CompletableFuture<?> future) {
         try {
             future.join();
             fail("CompletionException expected");
