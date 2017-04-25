@@ -204,7 +204,7 @@ abstract class Dispatcher {
     @Override
     CompletableFuture<Void> dispatch(Object event, List<Subscriber> subscribers) {
       checkNotNull(event);
-      List<CompletableFuture<?>> futures = new ArrayList<>(subscribers.size());
+      List<CompletableFuture<Void>> futures = new ArrayList<>(subscribers.size());
       for (Subscriber subscriber : subscribers) {
           futures.add(subscriber.dispatchEvent(event));
       }
