@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "da01753e_504ab3ac",
+        "filename": "events/api/src/main/java/org/opendaylight/infrautils/events/EventPublisher.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-04-25T12:23:39Z",
+      "side": 1,
+      "message": "I was really after the chaining, so don\u0027t want Future here, but I think what you\u0027re saying is to use interface CompletionStage instead of the CompletableFuture class here, right?  I think that\u0027s indeed much better - can you confirm, and I\u0027ll change it!",
+      "parentUuid": "da01753e_d57215ac",
+      "range": {
+        "startLine": 42,
+        "startChar": 4,
+        "endLine": 42,
+        "endChar": 21
+      },
+      "revId": "97e165f8f967c2acceb2171d82f003ceb0bce10f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da01753e_d55cd5ef",
         "filename": "events/api/src/main/java/org/opendaylight/infrautils/events/services/ServiceEvent.java",
         "patchSetId": 10
@@ -36,6 +60,30 @@
       "writtenOn": "2017-04-25T08:11:28Z",
       "side": 1,
       "message": "So this is a service injection framework parallel to OSGi, right? I can now fling around not just interface implementations, but really any sort of a class -- opening the door to tight coupling across the board...",
+      "range": {
+        "startLine": 21,
+        "startChar": 17,
+        "endLine": 21,
+        "endChar": 32
+      },
+      "revId": "97e165f8f967c2acceb2171d82f003ceb0bce10f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da01753e_70ab771d",
+        "filename": "events/api/src/main/java/org/opendaylight/infrautils/events/services/ServiceEvent.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-04-25T12:23:39Z",
+      "side": 1,
+      "message": "No no no, this is NOT for DI, that wasn\u0027t the point here at all - I\u0027ve removed these event types from this change in Patch Set 11, to simplify the discussion.",
+      "parentUuid": "da01753e_d55cd5ef",
       "range": {
         "startLine": 21,
         "startChar": 17,
