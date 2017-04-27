@@ -7,9 +7,12 @@
  */
 package org.opendaylight.infrautils.testutils.tests;
 
+import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
 import org.opendaylight.infrautils.testutils.LogRule;
+import org.opendaylight.infrautils.testutils.RunUntilFailureClassRule;
+import org.opendaylight.infrautils.testutils.RunUntilFailureRule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,8 +25,8 @@ public class ExampleTest {
 
     private static final Logger LOG = LoggerFactory.getLogger(ExampleTest.class);
 
-    // public static @ClassRule RunUntilFailureClassRule classRepeater = new RunUntilFailureClassRule();
-    // public @Rule RunUntilFailureRule repeater = new RunUntilFailureRule(classRepeater);
+    public static @ClassRule RunUntilFailureClassRule classRepeater = new RunUntilFailureClassRule(10);
+    public @Rule RunUntilFailureRule repeater = new RunUntilFailureRule(classRepeater);
 
     public @Rule LogRule logRule = new LogRule();
 
