@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da01753e_efd76f49",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/concurrent/CompletableFutures.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2017-04-27T22:16:25Z",
+      "side": 1,
+      "message": "\u003cT\u003e CompletableFuture\u003cT\u003e is the correct incantation here.\n\nWhy is a *Future* needed? Shouldn\u0027t this rather be a CompletionStage?",
+      "range": {
+        "startLine": 39,
+        "startChar": 17,
+        "endLine": 39,
+        "endChar": 38
+      },
+      "revId": "6be7c975ca519c091169f70129dfd7a853d8b92a",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
