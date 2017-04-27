@@ -7,6 +7,7 @@
  */
 package org.opendaylight.infrautils.testutils;
 
+import com.google.common.base.Strings;
 import org.junit.rules.TestRule;
 import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
@@ -29,8 +30,8 @@ import org.slf4j.LoggerFactory;
  */
 public class LogRule implements TestRule {
 
-    private static final String HEADER = header(120);
-    private static final String MESSAGE = "{} ({}ms) @Test {}() in {}";
+    private static final String HEADER = Strings.repeat("-", 120);
+    private static final String MESSAGE = "{} ({}ms) @Test {}()";
 
     @Override
     public Statement apply(Statement statement, Description description) {
@@ -40,6 +41,7 @@ public class LogRule implements TestRule {
             @Override
             @SuppressWarnings("checkstyle:IllegalCatch")
             public void evaluate() throws Throwable {
+                testLog.info(HEADER);
                 testLog.info("BEGIN @Test {}()", description.getMethodName());
                 long startTimeInMS = System.currentTimeMillis();
                 Throwable caughtThrowable = null;
@@ -51,24 +53,13 @@ public class LogRule implements TestRule {
                 } finally {
                     long durationInMS = System.currentTimeMillis() - startTimeInMS;
                     if (caughtThrowable == null) {
-                        testLog.info(MESSAGE, "ENDED", durationInMS, description.getMethodName(),
-                                description.getClassName());
+                        testLog.info(MESSAGE, "ENDED", durationInMS, description.getMethodName());
                     } else {
-                        testLog.error(MESSAGE, "FAILED", durationInMS, description.getMethodName(),
-                                description.getClassName(), caughtThrowable);
+                        testLog.error(MESSAGE, "FAILED", durationInMS, description.getMethodName(), caughtThrowable);
                     }
-                    testLog.info(HEADER);
                 }
             }
         };
-    }
-
-    private static String header(int len) {
-        StringBuffer sb = new StringBuffer(len);
-        for (int i = 0; i < len; i++) {
-            sb.append('=');
-        }
-        return sb.toString();
     }
 
 }
