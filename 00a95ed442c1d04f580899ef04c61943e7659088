@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da01753e_ef3e4f8b",
+        "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/concurrent/CompletionStageTestAwaiter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2017-04-27T22:24:13Z",
+      "side": 1,
+      "message": "this should be a per-instance thing, available to callers of await().",
+      "range": {
+        "startLine": 70,
+        "startChar": 20,
+        "endLine": 70,
+        "endChar": 49
+      },
+      "revId": "00a95ed442c1d04f580899ef04c61943e7659088",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da01753e_cf538be0",
+        "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/concurrent/CompletionStageTestAwaiter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2017-04-27T22:24:13Z",
+      "side": 1,
+      "message": "these should be explicit constants",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 44
+      },
+      "revId": "00a95ed442c1d04f580899ef04c61943e7659088",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
