@@ -22,6 +22,18 @@ public class RunUntilFailureClassRule implements TestRule {
 
     // package local
     boolean isRunning = true;
+    private final Long maximumNumberOfTimesToRun;
+
+    public RunUntilFailureClassRule() {
+        this.maximumNumberOfTimesToRun = null;
+    }
+
+    public RunUntilFailureClassRule(long maximumNumberOfTimesToRun) {
+        if (maximumNumberOfTimesToRun < 1) {
+            throw new IllegalArgumentException("maximumNumberOfTimesToRun must be positive");
+        }
+        this.maximumNumberOfTimesToRun = maximumNumberOfTimesToRun;
+    }
 
     @Override
     public Statement apply(Statement statement, Description description) {
@@ -45,7 +57,7 @@ public class RunUntilFailureClassRule implements TestRule {
                 testLog.info("RunUntilFailureRule #{}/∞", runNumber++);
                 statement.evaluate();
             }
-            while (isRunning);
+            while (isRunning && (maximumNumberOfTimesToRun == null || runNumber < maximumNumberOfTimesToRun + 1));
         }
 
     }
