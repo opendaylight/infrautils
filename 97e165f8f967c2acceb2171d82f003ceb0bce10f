@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "da01753e_9e71bc46",
+        "filename": "events/api/src/main/java/org/opendaylight/infrautils/events/EventPublisher.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-04-27T13:50:16Z",
+      "side": 1,
+      "message": "\u003d\u003d\u003e https://git.opendaylight.org/gerrit/#/c/56170/",
+      "parentUuid": "da01753e_ebe816b6",
+      "range": {
+        "startLine": 42,
+        "startChar": 4,
+        "endLine": 42,
+        "endChar": 21
+      },
+      "revId": "97e165f8f967c2acceb2171d82f003ceb0bce10f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da01753e_d55cd5ef",
         "filename": "events/api/src/main/java/org/opendaylight/infrautils/events/services/ServiceEvent.java",
         "patchSetId": 10
