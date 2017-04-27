@@ -7,6 +7,7 @@
  */
 package org.opendaylight.infrautils.testutils;
 
+import com.google.common.base.Strings;
 import org.junit.rules.TestRule;
 import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
@@ -19,6 +20,8 @@ import org.slf4j.LoggerFactory;
  * @author Michael Vorburger
  */
 public class RunUntilFailureClassRule implements TestRule {
+
+    private static final String HEADER = Strings.repeat("=", 120);
 
     // package local
     boolean isRunning = true;
@@ -54,6 +57,7 @@ public class RunUntilFailureClassRule implements TestRule {
         public void evaluate() throws Throwable {
             int runNumber = 1;
             do {
+                testLog.info(HEADER);
                 testLog.info("RunUntilFailureRule #{}/{}", runNumber++,
                         maximumNumberOfTimesToRun == null ? "∞" : maximumNumberOfTimesToRun);
                 statement.evaluate();
