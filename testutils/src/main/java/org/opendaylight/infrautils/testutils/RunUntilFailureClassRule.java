@@ -20,6 +20,8 @@ import org.slf4j.LoggerFactory;
  */
 public class RunUntilFailureClassRule implements TestRule {
 
+    private static final String HEADER = LogRule.header(120, '=');
+
     // package local
     boolean isRunning = true;
 
@@ -42,6 +44,7 @@ public class RunUntilFailureClassRule implements TestRule {
         public void evaluate() throws Throwable {
             int runNumber = 1;
             do {
+                testLog.info(HEADER);
                 testLog.info("RunUntilFailureRule #{}/∞", runNumber++);
                 statement.evaluate();
             }
