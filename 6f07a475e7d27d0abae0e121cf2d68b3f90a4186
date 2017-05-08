@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba068154_9874a09d",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/test/java/org/opendaylight/infrautils/jobcoordinator/tests/JobCoordinatorTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-08T15:25:20Z",
+      "side": 1,
+      "message": "do you want to mark this \"final\" (and upper-case JOB_EXCEPTION) ?",
+      "revId": "6f07a475e7d27d0abae0e121cf2d68b3f90a4186",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba068154_d86e28c9",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/test/java/org/opendaylight/infrautils/jobcoordinator/tests/JobCoordinatorTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-08T15:25:20Z",
+      "side": 1,
+      "message": "on seeing this commented out here again (by me, I know), I just remembered https://git.opendaylight.org/gerrit/#/c/56153/ - this could be used here now, if you like the idea?  So you would uncomment this and putting e.g. new RunUntilFailureClassRule(100), or less than 100 if that\u0027s too slow (although I would expect it should not be), to make this a more robust concurrency test just by running it a lot?  It will prevent arbitrary \"random\" (\u0027heisenbug\u0027) failures in the future if this test is ever changed again.",
+      "revId": "6f07a475e7d27d0abae0e121cf2d68b3f90a4186",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
