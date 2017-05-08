@@ -69,6 +69,24 @@
       "revId": "ffcfc8d94fbeb265eba9e19c767e2148fbb1bc3b",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba068154_7d63aeb1",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/resources/org/opendaylight/blueprint/jobcoordinator.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-08T10:03:58Z",
+      "side": 1,
+      "message": "\u003d\u003d\u003e we should not need a simple IT for this; SFT should cover this, see https://bugs.opendaylight.org/show_bug.cgi?id\u003d8355 \u0026 https://bugs.opendaylight.org/show_bug.cgi?id\u003d8397 ...",
+      "parentUuid": "da01753e_7786fb66",
+      "revId": "ffcfc8d94fbeb265eba9e19c767e2148fbb1bc3b",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
