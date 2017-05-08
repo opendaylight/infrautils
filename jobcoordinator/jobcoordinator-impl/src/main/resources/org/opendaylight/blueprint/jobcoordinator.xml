@@ -3,7 +3,7 @@
   xmlns:odl="http://opendaylight.org/xmlns/blueprint/v1.0.0"
   odl:use-default-for-reference-types="true">
 
-  <service ref="jobCoordinator" odl:type="default"
-    interface="org.opendaylight.infrautils.jobcoordinator.api.jobCoordinator" />
+  <service ref="jobCoordinatorImpl" odl:type="default"
+    interface="org.opendaylight.infrautils.jobcoordinator.JobCoordinator" />
 
 </blueprint>
