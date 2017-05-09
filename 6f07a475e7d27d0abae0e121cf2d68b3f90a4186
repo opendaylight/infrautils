@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ba068154_9331210e",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/test/java/org/opendaylight/infrautils/jobcoordinator/tests/JobCoordinatorTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 5278
+      },
+      "writtenOn": "2017-05-09T06:41:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba068154_9874a09d",
+      "revId": "6f07a475e7d27d0abae0e121cf2d68b3f90a4186",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba068154_d86e28c9",
         "filename": "jobcoordinator/jobcoordinator-impl/src/test/java/org/opendaylight/infrautils/jobcoordinator/tests/JobCoordinatorTest.java",
         "patchSetId": 4
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "ba068154_332cb5ab",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/test/java/org/opendaylight/infrautils/jobcoordinator/tests/JobCoordinatorTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 5278
+      },
+      "writtenOn": "2017-05-09T06:41:03Z",
+      "side": 1,
+      "message": "This is a very good idea to test stability/robustness of a concurrent system.\nMaking it to 100 might take more time to execute these tests, so having it as 25 for now (it took around 3 mins 15 secs for 225 test runs)",
+      "parentUuid": "ba068154_d86e28c9",
+      "revId": "6f07a475e7d27d0abae0e121cf2d68b3f90a4186",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba068154_b8cfe4af",
         "filename": "jobcoordinator/jobcoordinator-impl/src/test/java/org/opendaylight/infrautils/jobcoordinator/tests/JobCoordinatorTest.java",
         "patchSetId": 4
@@ -47,6 +83,30 @@
       "writtenOn": "2017-05-08T16:20:46Z",
       "side": 1,
       "message": "If the execution stepped over line 186, it looks like this line has no effect at all, right?",
+      "range": {
+        "startLine": 190,
+        "startChar": 8,
+        "endLine": 190,
+        "endChar": 67
+      },
+      "revId": "6f07a475e7d27d0abae0e121cf2d68b3f90a4186",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba068154_731d9d73",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/test/java/org/opendaylight/infrautils/jobcoordinator/tests/JobCoordinatorTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 5278
+      },
+      "writtenOn": "2017-05-09T06:41:03Z",
+      "side": 1,
+      "message": "This would buy some extra time for job coordinator to try to execute a job once so that line no # 192 succeeds.",
+      "parentUuid": "ba068154_b8cfe4af",
       "range": {
         "startLine": 190,
         "startChar": 8,
