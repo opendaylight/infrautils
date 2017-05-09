@@ -1,0 +1,548 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba068154_75557e1c",
+        "filename": "diagstatus/diagstatus-api/pom.xml",
+        "patchSetId": 19
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-09T22:44:43Z",
+      "side": 1,
+      "message": "technically you could use bundle-parent from odlparent instead of config-parent here .. and you should, because we\u0027re trying to deprecate the controller config subsystem, aren\u0027t we?",
+      "revId": "f087e33f37a4dbc7858925be4dbc5e63c619de84",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba068154_9558e257",
+        "filename": "diagstatus/diagstatus-api/pom.xml",
+        "patchSetId": 19
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-09T22:44:43Z",
+      "side": 1,
+      "message": "I usually put this modelVersion on the very top, right after project, before parent; it\u0027s more logical.",
+      "revId": "f087e33f37a4dbc7858925be4dbc5e63c619de84",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba068154_f5720ee4",
+        "filename": "diagstatus/diagstatus-api/src/main/java/org/opendaylight/infrautils/diagstatus/api/DiagStatusService.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-09T22:44:43Z",
+      "side": 1,
+      "message": "0. is the String argument here intended to be the same as the one in the next method?  Then it should be called the same as well - String serviceIdentifier instead of service.\n\n1. it\u0027s better to return CompletionStage instead of CompletableFuture.  Read e.g. the JavaDoc in https://git.opendaylight.org/gerrit/#/c/56167/ and https://git.opendaylight.org/gerrit/#/c/56164/ to learn more about why.\n\n2. would it make sense for this to be CompletionStage\u003cService\u003e instead of Void?",
+      "revId": "f087e33f37a4dbc7858925be4dbc5e63c619de84",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba068154_4037dae3",
+        "filename": "diagstatus/diagstatus-api/src/main/java/org/opendaylight/infrautils/diagstatus/api/DiagStatusService.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-09T22:44:43Z",
+      "side": 1,
+      "message": "getServiceDescriptor?  see comment in class Service",
+      "revId": "f087e33f37a4dbc7858925be4dbc5e63c619de84",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba068154_a034c6de",
+        "filename": "diagstatus/diagstatus-api/src/main/java/org/opendaylight/infrautils/diagstatus/api/DiagStatusService.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-09T22:44:43Z",
+      "side": 1,
+      "message": "getAllServiceDescriptors ?",
+      "revId": "f087e33f37a4dbc7858925be4dbc5e63c619de84",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba068154_555e7a46",
+        "filename": "diagstatus/diagstatus-api/src/main/java/org/opendaylight/infrautils/diagstatus/api/Service.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-09T22:44:43Z",
+      "side": 1,
+      "message": "with current naming, this JavaDoc @link is self recursive!",
+      "revId": "f087e33f37a4dbc7858925be4dbc5e63c619de84",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba068154_f5496e8c",
+        "filename": "diagstatus/diagstatus-api/src/main/java/org/opendaylight/infrautils/diagstatus/api/Service.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-09T22:44:43Z",
+      "side": 1,
+      "message": "Could we find any better name than the much overused term \"Service\" for what this is?  I\u0027d argue that it\u0027s not a \"Service\", because you e.g. can\u0027t call it.. perhaps just \"ServiceDescriptor\" ?  Or, even much better, can you think of some *Descriptor without *Service* at all? Just because \"Service\" is so over-used already... especially in our technical context - services are those things that are registered in the OSGi registry, or the ODL YANG RPC services.. whereas, if I understood your intention correctly, this is for something slightly higher level, right?  What would be some examples of instances you would use this for?  What would you call them?  \"Functionality\"?  \"Feature\" (no that\u0027s too similar to as in Karaf  again)?  \"Module\"?  \"Component\"?? (That\u0027s a bit overused too though.)",
+      "revId": "f087e33f37a4dbc7858925be4dbc5e63c619de84",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba068154_15451270",
+        "filename": "diagstatus/diagstatus-api/src/main/java/org/opendaylight/infrautils/diagstatus/api/Service.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-09T22:44:43Z",
+      "side": 1,
+      "message": "this class is a typical \"value object\", which personally I would often not code out anymore, but consider using http://immutables.github.io for.  It\u0027s just an idea.",
+      "revId": "f087e33f37a4dbc7858925be4dbc5e63c619de84",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba068154_b54fe691",
+        "filename": "diagstatus/diagstatus-api/src/main/java/org/opendaylight/infrautils/diagstatus/api/Service.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-09T22:44:43Z",
+      "side": 1,
+      "message": "all of these 4 fields should be final",
+      "revId": "f087e33f37a4dbc7858925be4dbc5e63c619de84",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba068154_d54a6a82",
+        "filename": "diagstatus/diagstatus-api/src/main/java/org/opendaylight/infrautils/diagstatus/api/Service.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-09T22:44:43Z",
+      "side": 1,
+      "message": "more FYI than FYA: I liked to implement equals() with org.opendaylight.yangtools.util.EvenMoreObjects .. if you think it\u0027s great, we could move it from yangtools to infrautils - do you want to raise a separate Gerrit for it?",
+      "revId": "f087e33f37a4dbc7858925be4dbc5e63c619de84",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba068154_95810292",
+        "filename": "diagstatus/diagstatus-api/src/main/java/org/opendaylight/infrautils/diagstatus/api/Service.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-09T22:44:43Z",
+      "side": 1,
+      "message": "use java.util.Objects.hash(Object...)",
+      "revId": "f087e33f37a4dbc7858925be4dbc5e63c619de84",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba068154_357496ce",
+        "filename": "diagstatus/diagstatus-api/src/main/java/org/opendaylight/infrautils/diagstatus/api/Service.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-09T22:44:43Z",
+      "side": 1,
+      "message": "have a toString here",
+      "revId": "f087e33f37a4dbc7858925be4dbc5e63c619de84",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba068154_f5404e58",
+        "filename": "diagstatus/diagstatus-impl/pom.xml",
+        "patchSetId": 19
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-09T22:44:43Z",
+      "side": 1,
+      "message": "technically you could use bundle-parent from odlparent instead of config-parent here .. and you should, because we\u0027re trying to deprecate the controller config subsystem, aren\u0027t we?",
+      "revId": "f087e33f37a4dbc7858925be4dbc5e63c619de84",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba068154_d531ca0c",
+        "filename": "diagstatus/diagstatus-impl/pom.xml",
+        "patchSetId": 19
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-09T22:44:43Z",
+      "side": 1,
+      "message": "I usually put this modelVersion on the very top, right after project, before parent; it\u0027s more logical.",
+      "revId": "f087e33f37a4dbc7858925be4dbc5e63c619de84",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba068154_6013fe5c",
+        "filename": "diagstatus/diagstatus-impl/src/main/java/org/opendaylight/infrautils/diagstatus/DiagStatusManager.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-09T22:44:43Z",
+      "side": 1,
+      "message": "personally I prefer the naming convention DiagStatusServiceImpl than the *Service interface and *Manager class convention (that makes no sense to me)",
+      "revId": "f087e33f37a4dbc7858925be4dbc5e63c619de84",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba068154_603adece",
+        "filename": "diagstatus/diagstatus-impl/src/main/java/org/opendaylight/infrautils/diagstatus/DiagStatusManager.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-09T22:44:43Z",
+      "side": 1,
+      "message": "what is infrautils.services.status? Why not just call this JMX name infrautils.diagstatus - like the code and presumably the odl-infrautils-diagstatus feature you\u0027ll have to create?",
+      "revId": "f087e33f37a4dbc7858925be4dbc5e63c619de84",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba068154_a01de668",
+        "filename": "diagstatus/diagstatus-impl/src/main/java/org/opendaylight/infrautils/diagstatus/DiagStatusManager.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-09T22:44:43Z",
+      "side": 1,
+      "message": "final ?",
+      "revId": "f087e33f37a4dbc7858925be4dbc5e63c619de84",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba068154_002672b7",
+        "filename": "diagstatus/diagstatus-impl/src/main/java/org/opendaylight/infrautils/diagstatus/DiagStatusManager.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-09T22:44:43Z",
+      "side": 1,
+      "message": "personally I would just fold both this initializeStatusMonService() as well as the @PostConstruct start() method directly right into the DiagStatusManager() constructor.. if you have no particular reason for needing them to be like this.  It makes the code flow easier to read also.",
+      "revId": "f087e33f37a4dbc7858925be4dbc5e63c619de84",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba068154_c02bca80",
+        "filename": "diagstatus/diagstatus-impl/src/main/java/org/opendaylight/infrautils/diagstatus/MBeanService.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-09T22:44:43Z",
+      "side": 1,
+      "message": "public final class MBeanUtils { \n    private MBeanUtils() { }",
+      "revId": "f087e33f37a4dbc7858925be4dbc5e63c619de84",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba068154_801a626c",
+        "filename": "diagstatus/diagstatus-impl/src/main/java/org/opendaylight/infrautils/diagstatus/MBeanService.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-09T22:44:43Z",
+      "side": 1,
+      "message": "do you need this here?  I thought the idea on our previous exchanges was that we don\u0027t use loosely typed JMX to communicate between services..",
+      "revId": "f087e33f37a4dbc7858925be4dbc5e63c619de84",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba068154_e026ceb9",
+        "filename": "diagstatus/diagstatus-impl/src/main/java/org/opendaylight/infrautils/diagstatus/MBeanService.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-09T22:44:43Z",
+      "side": 1,
+      "message": "as above",
+      "revId": "f087e33f37a4dbc7858925be4dbc5e63c619de84",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba068154_c0046a17",
+        "filename": "diagstatus/diagstatus-impl/src/test/java/org/opendaylight/infrautils/diagstatus/test/DiagStatusTest.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-09T22:44:43Z",
+      "side": 1,
+      "message": "I\u0027m not a huge fan of empty classes like this.. delete this from here, if you would like this to get merged before you complete this?",
+      "revId": "f087e33f37a4dbc7858925be4dbc5e63c619de84",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba068154_952f42a1",
+        "filename": "diagstatus/diagstatus-shell/pom.xml",
+        "patchSetId": 19
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-09T22:44:43Z",
+      "side": 1,
+      "message": "yeah here it\u0027s right! ;)",
+      "revId": "f087e33f37a4dbc7858925be4dbc5e63c619de84",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba068154_5525dac0",
+        "filename": "diagstatus/diagstatus-shell/pom.xml",
+        "patchSetId": 19
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-09T22:44:43Z",
+      "side": 1,
+      "message": "technically you could use bundle-parent from odlparent instead of config-parent here .. and you should, because we\u0027re trying to deprecate the controller config subsystem, aren\u0027t we?",
+      "revId": "f087e33f37a4dbc7858925be4dbc5e63c619de84",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba068154_752c5eac",
+        "filename": "diagstatus/diagstatus-shell/pom.xml",
+        "patchSetId": 19
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-09T22:44:43Z",
+      "side": 1,
+      "message": "remove this entire useless crap section",
+      "revId": "f087e33f37a4dbc7858925be4dbc5e63c619de84",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba068154_d518aa86",
+        "filename": "diagstatus/diagstatus-shell/pom.xml",
+        "patchSetId": 19
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-09T22:44:43Z",
+      "side": 1,
+      "message": "I\u0027m surprised that you would need this, particularly in the CLI bundle... remove? (AFAIK Jolokia will do the JSON transformation for you without you needing this.  And even if, that would not be in CLI.)",
+      "revId": "f087e33f37a4dbc7858925be4dbc5e63c619de84",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba068154_550cba42",
+        "filename": "diagstatus/diagstatus-shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/ShowSvcStatus.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-09T22:44:43Z",
+      "side": 1,
+      "message": "name this class with a *Command suffix, just by convention, to make it clear that this is an implementation of a CLI command?",
+      "revId": "f087e33f37a4dbc7858925be4dbc5e63c619de84",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba068154_35093632",
+        "filename": "diagstatus/diagstatus-shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/ShowSvcStatus.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-09T22:44:43Z",
+      "side": 1,
+      "message": "put a new line separator here",
+      "revId": "f087e33f37a4dbc7858925be4dbc5e63c619de84",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba068154_9506221f",
+        "filename": "diagstatus/diagstatus-shell/src/main/java/org/opendaylight/infrautils/diagstatus/util/StatusOperations.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-09T22:44:43Z",
+      "side": 1,
+      "message": "Huh? Is this intentional, or left over? And what does this have to do with the -shell bundle for CLI commands?  Isn\u0027t your MBeanService class for this?",
+      "revId": "f087e33f37a4dbc7858925be4dbc5e63c619de84",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba068154_15135267",
+        "filename": "diagstatus/pom.xml",
+        "patchSetId": 19
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-09T22:44:43Z",
+      "side": 1,
+      "message": "here it\u0027s definitely wrong, this should just be using odlparent-lite (not odlparent or bundle-parent)",
+      "revId": "f087e33f37a4dbc7858925be4dbc5e63c619de84",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba068154_b51d2676",
+        "filename": "diagstatus/pom.xml",
+        "patchSetId": 19
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-09T22:44:43Z",
+      "side": 1,
+      "message": "I usually put this modelVersion on the very top, right after project, before parent; it\u0027s more logical",
+      "revId": "f087e33f37a4dbc7858925be4dbc5e63c619de84",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba068154_f517ae4f",
+        "filename": "diagstatus/pom.xml",
+        "patchSetId": 19
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-09T22:44:43Z",
+      "side": 1,
+      "message": "put an empty line separation here?",
+      "revId": "f087e33f37a4dbc7858925be4dbc5e63c619de84",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
