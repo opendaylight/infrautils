@@ -33,6 +33,7 @@
         <module>odl-infrautils-counters-sample</module>
         <module>odl-infrautils-inject</module>
         <module>odl-infrautils-utils</module>
+        <module>odl-infrautils-ready</module>
     </modules>
 
     <url>${odl.site.url}/${project.groupId}/${stream}/${project.artifactId}/</url>
