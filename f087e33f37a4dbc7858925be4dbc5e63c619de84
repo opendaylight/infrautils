@@ -36,6 +36,23 @@
     },
     {
       "key": {
+        "uuid": "ba068154_60681ebb",
+        "filename": "diagstatus/diagstatus-api/src/main/java/org/opendaylight/infrautils/diagstatus/api/DiagStatusService.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-09T22:51:06Z",
+      "side": 1,
+      "message": "I\u0027m not a fan of the \".api\" package name convention.. would you mind to just call this package org.opendaylight.infrautils.diagstatus?",
+      "revId": "f087e33f37a4dbc7858925be4dbc5e63c619de84",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba068154_f5720ee4",
         "filename": "diagstatus/diagstatus-api/src/main/java/org/opendaylight/infrautils/diagstatus/api/DiagStatusService.java",
         "patchSetId": 19
@@ -240,6 +257,23 @@
     },
     {
       "key": {
+        "uuid": "ba068154_a06206d6",
+        "filename": "diagstatus/diagstatus-impl/src/main/java/org/opendaylight/infrautils/diagstatus/DiagStatusManager.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-09T22:51:06Z",
+      "side": 1,
+      "message": "can you call this package org.opendaylight.infrautils.diagstatus.internal; ? It\u0027s both a convention and a little bit more.. the maven-bundle-plugin will make this package private if it\u0027s called \"internal\", so other bundles can\u0027t access it\u0027s content.",
+      "revId": "f087e33f37a4dbc7858925be4dbc5e63c619de84",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba068154_6013fe5c",
         "filename": "diagstatus/diagstatus-impl/src/main/java/org/opendaylight/infrautils/diagstatus/DiagStatusManager.java",
         "patchSetId": 19
@@ -427,6 +461,23 @@
     },
     {
       "key": {
+        "uuid": "ba068154_80b6e23b",
+        "filename": "diagstatus/diagstatus-shell/pom.xml",
+        "patchSetId": 19
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-09T22:51:06Z",
+      "side": 1,
+      "message": "IMHO such *-shell bundles will typically depend on the *-api bundles (but not the *-impl bundles)",
+      "revId": "f087e33f37a4dbc7858925be4dbc5e63c619de84",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba068154_d518aa86",
         "filename": "diagstatus/diagstatus-shell/pom.xml",
         "patchSetId": 19
@@ -438,6 +489,23 @@
       "writtenOn": "2017-05-09T22:44:43Z",
       "side": 1,
       "message": "I\u0027m surprised that you would need this, particularly in the CLI bundle... remove? (AFAIK Jolokia will do the JSON transformation for you without you needing this.  And even if, that would not be in CLI.)",
+      "revId": "f087e33f37a4dbc7858925be4dbc5e63c619de84",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba068154_e09b6ec7",
+        "filename": "diagstatus/diagstatus-shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/ShowSvcStatus.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-09T22:51:06Z",
+      "side": 1,
+      "message": "scope \u003d \"diagstatus\", name\u003d\"list\"; for diagstatus:list, just like feature:list and bundle:list and caches:list ?  and description should be human understandable documentaiton phrase, not \"getRemoteServicesStatus\"",
       "revId": "f087e33f37a4dbc7858925be4dbc5e63c619de84",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -472,6 +540,23 @@
       "writtenOn": "2017-05-09T22:44:43Z",
       "side": 1,
       "message": "put a new line separator here",
+      "revId": "f087e33f37a4dbc7858925be4dbc5e63c619de84",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba068154_40acfaed",
+        "filename": "diagstatus/diagstatus-shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/ShowSvcStatus.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-09T22:51:06Z",
+      "side": 1,
+      "message": "AFAIK you typically don\u0027t need that, Karaf does this automatically for you (from what you put into description\u003d everywhere)",
       "revId": "f087e33f37a4dbc7858925be4dbc5e63c619de84",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
