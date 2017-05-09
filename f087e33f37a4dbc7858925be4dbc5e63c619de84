@@ -70,6 +70,24 @@
     },
     {
       "key": {
+        "uuid": "ba068154_40935aa3",
+        "filename": "diagstatus/diagstatus-api/src/main/java/org/opendaylight/infrautils/diagstatus/api/DiagStatusService.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-09T22:53:04Z",
+      "side": 1,
+      "message": "On 2. I\u0027m not 100% sure if you mean that this for taking deferred action after this or really all services are registered.. if it\u0027s the latter then perhaps returning Service instead of Void does not make sense here, please ignore this if that is the case.",
+      "parentUuid": "ba068154_f5720ee4",
+      "revId": "f087e33f37a4dbc7858925be4dbc5e63c619de84",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba068154_4037dae3",
         "filename": "diagstatus/diagstatus-api/src/main/java/org/opendaylight/infrautils/diagstatus/api/DiagStatusService.java",
         "patchSetId": 19
