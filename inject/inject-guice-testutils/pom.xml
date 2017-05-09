@@ -39,6 +39,8 @@
     <dependency>
       <groupId>javax.inject</groupId>
       <artifactId>javax.inject</artifactId>
+      <!-- Important to enforce false because in odlparent it's true (see gerrit/c/56723) -->
+      <optional>false</optional>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
