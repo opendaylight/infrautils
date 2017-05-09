@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba068154_c0a0eaf6",
+        "filename": "common/util/src/test/java/org/opendaylight/infrautils/utils/concurrent/tests/SlowExecutor.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-05-09T22:49:23Z",
+      "side": 1,
+      "message": "Should this be public, ie generally reusable?",
+      "revId": "6dee18ed3cf7cdbc178bc04d1c42dd77e80c81e2",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba068154_40651ae0",
+        "filename": "common/util/src/test/java/org/opendaylight/infrautils/utils/concurrent/tests/SlowExecutor.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-05-09T22:49:23Z",
+      "side": 1,
+      "message": "How about making the interval random between say 10 and 100?",
+      "revId": "6dee18ed3cf7cdbc178bc04d1c42dd77e80c81e2",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
