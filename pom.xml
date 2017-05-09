@@ -37,6 +37,7 @@
         <module>jobcoordinator</module>
         <module>inject</module>
         <module>samples</module>
+        <module>ready</module>
     </modules>
 
     <profiles>
