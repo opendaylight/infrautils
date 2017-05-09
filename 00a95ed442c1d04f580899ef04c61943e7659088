@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ba068154_15e99280",
+        "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/concurrent/CompletionStageTestAwaiter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-09T22:00:48Z",
+      "side": 1,
+      "message": "Done, but it takes a handstand, because join() which throws CompletionException, CancellationException has no variant with timeout, only get() does, so we have to translate the exceptions..",
+      "parentUuid": "da01753e_a95d5f17",
+      "range": {
+        "startLine": 56,
+        "startChar": 8,
+        "endLine": 56,
+        "endChar": 73
+      },
+      "revId": "00a95ed442c1d04f580899ef04c61943e7659088",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da01753e_ef3e4f8b",
         "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/concurrent/CompletionStageTestAwaiter.java",
         "patchSetId": 2
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "ba068154_55895ac9",
+        "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/concurrent/CompletionStageTestAwaiter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-09T22:00:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da01753e_ef3e4f8b",
+      "range": {
+        "startLine": 70,
+        "startChar": 20,
+        "endLine": 70,
+        "endChar": 49
+      },
+      "revId": "00a95ed442c1d04f580899ef04c61943e7659088",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da01753e_cf538be0",
         "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/concurrent/CompletionStageTestAwaiter.java",
         "patchSetId": 2
@@ -59,6 +107,30 @@
       "writtenOn": "2017-04-27T22:24:13Z",
       "side": 1,
       "message": "these should be explicit constants",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 44
+      },
+      "revId": "00a95ed442c1d04f580899ef04c61943e7659088",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba068154_9593c2f9",
+        "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/concurrent/CompletionStageTestAwaiter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-09T22:00:48Z",
+      "side": 1,
+      "message": "Nah, I disagree, I find that style less and not more readable, and do that only when I use such a private constant value more than once.. in this case, I\u0027d like to leave it like this, if that\u0027s OK with you?",
+      "parentUuid": "da01753e_cf538be0",
       "range": {
         "startLine": 75,
         "startChar": 0,
