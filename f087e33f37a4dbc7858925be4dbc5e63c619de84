@@ -19,6 +19,23 @@
     },
     {
       "key": {
+        "uuid": "ba068154_c0d58a44",
+        "filename": "diagstatus/diagstatus-api/pom.xml",
+        "patchSetId": 19
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-09T22:59:28Z",
+      "side": 1,
+      "message": "I would just call this \u003cartifactId\u003ediagstatus, not -api.",
+      "revId": "f087e33f37a4dbc7858925be4dbc5e63c619de84",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba068154_9558e257",
         "filename": "diagstatus/diagstatus-api/pom.xml",
         "patchSetId": 19
@@ -609,6 +626,23 @@
       "writtenOn": "2017-05-09T22:44:43Z",
       "side": 1,
       "message": "here it\u0027s definitely wrong, this should just be using odlparent-lite (not odlparent or bundle-parent)",
+      "revId": "f087e33f37a4dbc7858925be4dbc5e63c619de84",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba068154_20cbb6a6",
+        "filename": "diagstatus/pom.xml",
+        "patchSetId": 19
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-09T22:59:28Z",
+      "side": 1,
+      "message": "this is typically called \u003cartifactId\u003ediagstatus-aggregator",
       "revId": "f087e33f37a4dbc7858925be4dbc5e63c619de84",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
