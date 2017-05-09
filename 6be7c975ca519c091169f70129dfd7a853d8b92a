@@ -22,6 +22,30 @@
       "revId": "6be7c975ca519c091169f70129dfd7a853d8b92a",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba068154_95aaa217",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/concurrent/CompletableFutures.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-09T22:08:58Z",
+      "side": 1,
+      "message": "\u003e \u003cT\u003e CompletableFuture\u003cT\u003e is the correct incantation here.\n\nDuh! Right, of course - Done.\n\n\u003e Why is a *Future* needed? Shouldn\u0027t this rather be a CompletionStage?\n\nOne may want to use this from an existing method which (wrongly, arguably; I get it) already returns a CompletableFuture instead of a CompletionStage? Then it\u0027s handy to have this.  But I\u0027ve introduced a (new) CompletionStages utils as well now, that\u0027s a good idea.",
+      "parentUuid": "da01753e_efd76f49",
+      "range": {
+        "startLine": 39,
+        "startChar": 17,
+        "endLine": 39,
+        "endChar": 38
+      },
+      "revId": "6be7c975ca519c091169f70129dfd7a853d8b92a",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
