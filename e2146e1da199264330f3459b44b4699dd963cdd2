@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ba068154_76f101cd",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/SystemReadyServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-10T21:18:56Z",
+      "side": 1,
+      "message": "Erm.. I\u0027m not sure what exactly you mean, how do you define \"test code\" precisely?  The odlparent.bundles4test.TestBundleDiag stuff is currently initially just used by the build in SingleFeatureTest, yes, (and has been well tested there over the last few months!), but.. so what?  Ultimately it\u0027s still just... well, code.  It checks bundle state and what not.  Do you have any more specific actionable objection what problems using this could cause?  According to my initial local tests, this works just great! ;-) What\u0027s the actual issue you see with this?",
+      "parentUuid": "ba068154_d62b8d2e",
+      "revId": "e2146e1da199264330f3459b44b4699dd963cdd2",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba068154_f6269167",
         "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/SystemReadyServiceImpl.java",
         "patchSetId": 6
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "ba068154_56c5dd59",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/SystemReadyServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-10T21:18:56Z",
+      "side": 1,
+      "message": "I was kind of anticipating future iterations here where this would kick in (again) and this would run again on the same Executor on new feature:install runs, after the initial boot.. but yes I could also change it to just use a new Thread directly, instead the first and each later (feature:install) time.. do other reviewers have any pro/con thoughts re. how to best do this for this usage scenario?",
+      "parentUuid": "ba068154_f6269167",
+      "revId": "e2146e1da199264330f3459b44b4699dd963cdd2",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba068154_b62c094c",
         "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/SystemReadyServiceImpl.java",
         "patchSetId": 6
@@ -47,6 +83,24 @@
       "writtenOn": "2017-05-10T21:00:35Z",
       "side": 1,
       "message": "I\u0027m not sure JVM Errors should be stopped here - particularly OutOfMemory which, from what I recall from past experience, has to be propagated to the JVM in order to generate a heap dump.",
+      "revId": "e2146e1da199264330f3459b44b4699dd963cdd2",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba068154_3695b940",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/SystemReadyServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-10T21:18:56Z",
+      "side": 1,
+      "message": "OK but how do you do that?  if you rethrow from here, it just goes into the uncaughtExceptionHandler of the Thread - not \"to the JVM\" (what does that mean?) .. As it\u0027s now, the org.opendaylight.infrautils.utils.concurrent.Executors uses org.opendaylight.infrautils.utils.concurrent.ThreadFactoryProvider which runs this in a Thread that has a org.opendaylight.infrautils.utils.concurrent.LoggingThreadUncaughtExceptionHandler .. but we anyway just logged it here, so AFAIK all a \"throw throwable\" here would add is to make the same appear twice in the log (which is always confusing), without adding any other real value.  Can you enlighten me what I am missing, so I can learn something?",
+      "parentUuid": "ba068154_b62c094c",
       "revId": "e2146e1da199264330f3459b44b4699dd963cdd2",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
