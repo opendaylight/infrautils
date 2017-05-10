@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "ba068154_f6fe916a",
+        "filename": "ready/api/src/main/java/org/opendaylight/infrautils/ready/SystemReadyListener.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2017-05-10T21:36:31Z",
+      "side": 1,
+      "message": "this is not sufficient. the system can become \u0027un-ready\u0027 the moment the user types in \u0027feature:install oh-i-forgot-this-feature\u0027",
+      "range": {
+        "startLine": 20,
+        "startChar": 3,
+        "endLine": 20,
+        "endChar": 25
+      },
+      "revId": "e2146e1da199264330f3459b44b4699dd963cdd2",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba068154_96090598",
+        "filename": "ready/api/src/main/java/org/opendaylight/infrautils/ready/SystemReadyService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2017-05-10T21:36:31Z",
+      "side": 1,
+      "message": "ugh, strings to enumerate possible system states?\n\nhow does fully ready interact with:\n- asynchronous background service startup (such as state recovery)\n- cluster-wide service settlement (join cluster, settle singleton services)",
+      "range": {
+        "startLine": 28,
+        "startChar": 4,
+        "endLine": 28,
+        "endChar": 49
+      },
+      "revId": "e2146e1da199264330f3459b44b4699dd963cdd2",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba068154_d62b8d2e",
         "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/SystemReadyServiceImpl.java",
         "patchSetId": 6
