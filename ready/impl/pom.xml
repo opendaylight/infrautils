@@ -21,6 +21,9 @@
   <artifactId>ready-impl</artifactId>
   <version>1.2.0-SNAPSHOT</version>
   <packaging>bundle</packaging>
+  <!-- <name> formatting is used by autorelease to parse and notify projects on
+       build failure. Please do not modify this unless you have a good reason. -->
+  <name>ODL :: infrautils :: ${project.artifactId}</name>
 
   <dependencies>
     <dependency>
@@ -75,6 +78,100 @@
          <failOnError>true</failOnError>
        </configuration>
      </plugin>
+
+     <!-- TODO Remove again once https://git.opendaylight.org/gerrit/#/c/54885/ is finally merged -->
+     <plugin>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <inherited>false</inherited>
+        <executions>
+          <execution>
+            <id>move-autowire-test</id>
+            <phase>process-test-classes</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <skip>true</skip>
+            </configuration>
+          </execution>
+          <execution>
+            <id>move-autowire-test_c54885</id>
+            <phase>process-test-classes</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <target>
+                <taskdef resource="net/sf/antcontrib/antcontrib.properties"/>
+                <if>
+                  <available file="${project.basedir}/src/main/resources/org/opendaylight/blueprint" type="dir"/>
+                  <then>
+                    <echo>Moving autowire.xml to org/opendaylight/blueprint</echo>
+                    <move file="${project.build.directory}/generated-resources/OSGI-INF/blueprint/autowire.xml"
+                          todir="${project.build.directory}/generated-resources/org/opendaylight/blueprint"
+                          failonerror="false" quiet="true" />
+                  </then>
+                  <else>
+                    <echo>NOT moving autowire.xml (to org/opendaylight/blueprint)</echo>
+                  </else>
+                </if>
+              </target>
+            </configuration>
+          </execution>
+          <execution>
+            <id>move-autowire-package</id>
+            <phase>prepare-package</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <skip>true</skip>
+            </configuration>
+          </execution>
+          <execution>
+            <id>move-autowire-package_c54885</id>
+            <phase>prepare-package</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <target>
+                <taskdef resource="net/sf/antcontrib/antcontrib.properties"/>
+                <if>
+                  <available file="${project.basedir}/src/main/resources/org/opendaylight/blueprint" type="dir"/>
+                  <then>
+                    <echo>Moving autowire.xml to org/opendaylight/blueprint</echo>
+                    <move file="${project.build.directory}/generated-resources/OSGI-INF/blueprint/autowire.xml"
+                          todir="${project.build.directory}/generated-resources/org/opendaylight/blueprint"
+                          failonerror="false" quiet="true" />
+                  </then>
+                  <else>
+                    <echo>NOT moving autowire.xml (to org/opendaylight/blueprint)</echo>
+                  </else>
+                </if>
+              </target>
+            </configuration>
+          </execution>
+        </executions>
+        <dependencies>
+          <dependency>
+            <groupId>ant-contrib</groupId>
+            <artifactId>ant-contrib</artifactId>
+            <version>1.0b3</version>
+            <exclusions>
+              <exclusion>
+                <groupId>ant</groupId>
+                <artifactId>ant</artifactId>
+              </exclusion>
+            </exclusions>
+          </dependency>
+          <dependency>
+            <groupId>org.apache.ant</groupId>
+            <artifactId>ant-nodeps</artifactId>
+            <version>1.8.1</version>
+          </dependency>
+        </dependencies>
+      </plugin>
     </plugins>
   </build>
 </project>

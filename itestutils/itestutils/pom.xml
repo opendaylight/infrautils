@@ -129,12 +129,6 @@
   <build>
     <plugins>
       <plugin>
-        <!-- Still needed here because we have to use versionAsInProject() for the Karaf distribution
-             until https://ops4j1.jira.com/browse/PAXEXAM-813 is fixed -->
-        <groupId>org.apache.servicemix.tooling</groupId>
-        <artifactId>depends-maven-plugin</artifactId>
-      </plugin>
-      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
         <configuration>

@@ -7,8 +7,12 @@
  */
 package org.opendaylight.infrautils.itestutils.it;
 
+import static org.ops4j.pax.exam.CoreOptions.maven;
+
 import org.junit.Test;
 import org.opendaylight.infrautils.itestutils.AbstractIntegrationTest;
+import org.ops4j.pax.exam.options.MavenUrlReference;
+import org.ops4j.pax.exam.options.UrlReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,6 +29,27 @@ public class SampleIntegrationTest extends AbstractIntegrationTest {
     public void testEmptyJustToMakeSureKarafStartedOK() {
         LOG.info("info log is not visible, as not enabled");
         LOG.warn("warn log is visible");
+    }
+
+    @Override
+    protected MavenUrlReference getKarafURL(boolean isKaraf4) {
+        final String karafArtifactId = isKaraf4 ? "opendaylight-karaf4-empty" : "opendaylight-karaf-empty";
+        return maven().groupId("org.opendaylight.odlparent")
+                   .artifactId(karafArtifactId).versionAsInProject().type("tar.gz");
+    }
+
+    @Override
+    protected UrlReference featureRepositoryURL() {
+        // We really don't actually need / want to install a feature here
+        // but is exceptional, any normal real IT would want to...
+        return null;
+    }
+
+    @Override
+    protected String featureName() {
+        // We really don't actually need / want to install a feature here
+        // but is exceptional, any normal real IT would want to...
+        return null;
     }
 
 //    @Test

@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- vi: set et smarttab sw=2 tabstop=2: -->
 <!--
  Copyright © 2017 Red Hat, Inc. and others. All rights reserved.
 
@@ -12,16 +11,14 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.opendaylight.odlparent</groupId>
-    <artifactId>odlparent</artifactId>
-    <version>1.9.0-SNAPSHOT</version>
+    <groupId>org.opendaylight.infrautils</groupId>
+    <artifactId>itestutils-parent</artifactId>
+    <version>1.2.0-SNAPSHOT</version>
     <relativePath />
   </parent>
 
   <groupId>org.opendaylight.infrautils</groupId>
-  <artifactId>itestutils-parent</artifactId>
-  <version>1.2.0-SNAPSHOT</version>
-  <packaging>pom</packaging>
+  <artifactId>ready-it</artifactId>
   <!-- <name> formatting is used by autorelease to parse and notify projects on
        build failure. Please do not modify this unless you have a good reason. -->
   <name>ODL :: infrautils :: ${project.artifactId}</name>
@@ -29,62 +26,85 @@
   <dependencies>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>itestutils</artifactId>
+      <artifactId>ready-api</artifactId>
       <version>${project.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.opendaylight.infrautils</groupId>
+      <artifactId>infrautils-karaf4</artifactId>
+      <version>${project.version}</version>
+      <type>tar.gz</type>
+      <exclusions>
+        <exclusion>
+          <groupId>*</groupId>
+          <artifactId>*</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>infrautils-features4</artifactId>
+      <version>${project.version}</version>
+      <type>xml</type>
+      <classifier>features</classifier>
+      <exclusions>
+        <exclusion>
+          <groupId>*</groupId>
+          <artifactId>*</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
   </dependencies>
 
   <build>
     <plugins>
       <plugin>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <configuration>
-          <systemPropertyVariables>
-            <org.ops4j.pax.url.mvn.localRepository>${settings.localRepository}</org.ops4j.pax.url.mvn.localRepository>
-          </systemPropertyVariables>
-        </configuration>
-      </plugin>
-      <plugin>
         <!-- Still needed here because we have to use versionAsInProject() for the Karaf distribution
              until https://ops4j1.jira.com/browse/PAXEXAM-813 is fixed -->
         <groupId>org.apache.servicemix.tooling</groupId>
         <artifactId>depends-maven-plugin</artifactId>
       </plugin>
+
+<!--
       <plugin>
         <groupId>com.github.veithen.alta</groupId>
         <artifactId>alta-maven-plugin</artifactId>
-        <version>0.5</version>
         <executions>
           <execution>
             <goals>
               <goal>generate-test-resources</goal>
             </goals>
             <configuration>
-              <name>%groupId%_%artifactId%.link</name>
-<!--
-              <name>%bundle.symbolicName%.link</name>
- -->
-              <value>%url%</value>
-<!--
-              <dependencySet>
-                <scope>test</scope>
-              </dependencySet>
- -->
               <artifacts>
                 <artifact>
-                  <groupId>org.opendaylight.odlparent</groupId>
-                  <!-- Pending https://ops4j1.jira.com/browse/PAXEXAM-813, this doesn't actually work, yet -->
-                  <artifactId>opendaylight-karaf4-empty</artifactId>
-                  <version>1.9.0-SNAPSHOT</version>
-                  <!-- NB the tar.gz is almost half the size of the zip, so use that, even for Windows (works fine) -->
-                  <type>tar.gz</type>
+                  <groupId>${project.groupId}</groupId>
+                  <artifactId>infrautils-features4</artifactId>
+                  <version>${project.version}</version>
+                  <classifier>features</classifier>
+                  <type>xml</type>
                 </artifact>
               </artifacts>
             </configuration>
           </execution>
         </executions>
       </plugin>
+ -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <configuration>
+          <propertyExpansion>checkstyle.violationSeverity=error</propertyExpansion>
+        </configuration>
+      </plugin>
+      <plugin>
+       <groupId>org.codehaus.mojo</groupId>
+       <artifactId>findbugs-maven-plugin</artifactId>
+       <configuration>
+         <failOnError>true</failOnError>
+       </configuration>
+     </plugin>
     </plugins>
   </build>
-
 </project>
