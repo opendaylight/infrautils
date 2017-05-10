@@ -83,6 +83,24 @@
     },
     {
       "key": {
+        "uuid": "ba068154_5674bdfc",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/SystemReadyServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-05-10T21:58:55Z",
+      "side": 1,
+      "message": "Just that TestBundleDiag (and I assume the entire bundles4test package) is intended for Junit tests. It could have junit assertions which we don\u0027t want leaking to production.  What else is in bundles4test package that might get pulled in that we may not want in production?  If you want to reuse code in TestBundleDiag in production, then I\u0027d rather see that code in a production bundle that TestBundleDiag calls. That\u0027s my 2 cents but if others are fine with it then OK.",
+      "parentUuid": "ba068154_76f101cd",
+      "revId": "e2146e1da199264330f3459b44b4699dd963cdd2",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba068154_f6269167",
         "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/SystemReadyServiceImpl.java",
         "patchSetId": 6
@@ -147,6 +165,24 @@
       "side": 1,
       "message": "OK but how do you do that?  if you rethrow from here, it just goes into the uncaughtExceptionHandler of the Thread - not \"to the JVM\" (what does that mean?) .. As it\u0027s now, the org.opendaylight.infrautils.utils.concurrent.Executors uses org.opendaylight.infrautils.utils.concurrent.ThreadFactoryProvider which runs this in a Thread that has a org.opendaylight.infrautils.utils.concurrent.LoggingThreadUncaughtExceptionHandler .. but we anyway just logged it here, so AFAIK all a \"throw throwable\" here would add is to make the same appear twice in the log (which is always confusing), without adding any other real value.  Can you enlighten me what I am missing, so I can learn something?",
       "parentUuid": "ba068154_b62c094c",
+      "revId": "e2146e1da199264330f3459b44b4699dd963cdd2",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba068154_967e25e3",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/SystemReadyServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-05-10T21:58:55Z",
+      "side": 1,
+      "message": "As Robert commented in another patch set - Errors should be propagated.",
+      "parentUuid": "ba068154_3695b940",
       "revId": "e2146e1da199264330f3459b44b4699dd963cdd2",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
