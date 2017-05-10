@@ -27,6 +27,7 @@ import org.ops4j.pax.exam.junit.PaxExam;
 import org.ops4j.pax.exam.karaf.options.KarafDistributionKitConfigurationOption;
 import org.ops4j.pax.exam.karaf.options.KarafDistributionOption;
 import org.ops4j.pax.exam.options.MavenUrlReference;
+import org.ops4j.pax.exam.options.UrlReference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -75,28 +76,26 @@ public abstract class AbstractIntegrationTest {
         FileUtils.delete(targetPaxExam);
 
         final boolean isKaraf4 = true; // TODO more dynamic & self test both
-        final String karafArtifactId = isKaraf4 ? "opendaylight-karaf4-empty" : "opendaylight-karaf-empty";
-        // NB: This karafVersion currently actually doesn't seem to be used by PAX Exam.. ;) but set anyway:
-        // (see also https://ops4j1.jira.com/projects/PAXEXAM/issues/PAXEXAM-598)
         final String karafVersion = isKaraf4 ? "4.0.7" : "3.0.0";
 
         // NB the tar.gz is almost half the size of the zip, so use that, even for Windows (works fine)
-        MavenUrlReference karafURL = maven().groupId("org.opendaylight.odlparent")
-                .artifactId(karafArtifactId).versionAsInProject().type("tar.gz");
+        MavenUrlReference karafURL = getKarafURL(isKaraf4);
         // TODO https://ops4j1.jira.com/browse/PAXEXAM-813
         // String? karafURL = [url(]"link:classpath:" + karafArtifactId + ".link";
         LOG.info("Karaf used: {}", karafURL.toString());
 
         return new Option[] {
-            // TODO find another solution without, for better isolation
-            // probably going to use http://veithen.github.io/alta/
-            // TODO Test and document what this is used for...
+            // We need this, for the moment, because the feature repo is read from the local Maven repo
+            // TODO remove this, and make all ITs use a Karaf dist which has the feature already
+            //      so there would be no need to access repo; that would lead to better isolation
             editKarafConfigurationFile(MAVEN_REPO_LOCAL, "etc/org.ops4j.pax.url.mvn.cfg",
                     "org.ops4j.pax.url.mvn.localRepository", System.getProperty(MAVEN_REPO_LOCAL, "")),
 
             when(Boolean.getBoolean(KARAF_DEBUG_PROP))
                 .useOptions(KarafDistributionOption.debugConfiguration(KARAF_DEBUG_PORT, true)),
 
+            // NB: This karafVersion currently actually doesn't seem to be used by PAX Exam.. ;) but set anyway:
+            // (see also https://ops4j1.jira.com/projects/PAXEXAM/issues/PAXEXAM-598)
             new KarafDistributionKitConfigurationOption(karafURL, NIX)
                 .karafVersion(karafVersion)
                 .useDeployFolder(false).unpackDirectory(targetPaxExam),
@@ -144,8 +143,25 @@ public abstract class AbstractIntegrationTest {
             // TODO why does this, intentionally with a bad feature name, not fail the test???
             // features(maven("org.opendaylight.infrautils","infrautils-features4", "1.1.0-SNAPSHOT")
             //       .classifier("features").type("xml"), "odl-infrautils-caches-sampleXXX")
+
+            when(featureRepositoryURL() != null)
+                .useOptions(features(featureRepositoryURL(), featureNames()))
         };
     }
+
+    protected MavenUrlReference getKarafURL(boolean isKaraf4) {
+        final String karafArtifactId = isKaraf4 ? "opendaylight-karaf4-empty" : "opendaylight-karaf-empty";
+        return maven().groupId("org.opendaylight.odlparent")
+                   .artifactId(karafArtifactId).versionAsInProject().type("tar.gz");
+    }
+
+    protected abstract UrlReference featureRepositoryURL();
+
+    protected String[] featureNames() {
+        return new String[] { featureName() };
+    }
+
+    protected abstract String featureName();
 
     @ProbeBuilder
     public TestProbeBuilder probeConfiguration(TestProbeBuilder probe) {

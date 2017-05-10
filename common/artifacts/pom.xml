@@ -36,12 +36,17 @@
             </dependency>
 
             <dependency>
-              <groupId>org.opendaylight.infrautils</groupId>
+              <groupId>${project.groupId}</groupId>
+              <artifactId>ready-api</artifactId>
+              <version>${project.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>${project.groupId}</groupId>
               <artifactId>inject</artifactId>
               <version>${project.version}</version>
             </dependency>
             <dependency>
-              <groupId>org.opendaylight.infrautils</groupId>
+              <groupId>${project.groupId}</groupId>
               <artifactId>inject.guice.testutils</artifactId>
               <version>${project.version}</version>
               <scope>test</scope>
@@ -78,6 +83,13 @@
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>odl-infrautils-jobcoordinator</artifactId>
+                <version>${project.version}</version>
+                <type>xml</type>
+                <classifier>features</classifier>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>odl-infrautils-ready</artifactId>
                 <version>${project.version}</version>
                 <type>xml</type>
                 <classifier>features</classifier>
