@@ -11,15 +11,14 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.opendaylight.odlparent</groupId>
-    <artifactId>bundle-parent</artifactId>
-    <version>1.9.0-SNAPSHOT</version>
+    <groupId>org.opendaylight.infrautils</groupId>
+    <artifactId>itestutils-parent</artifactId>
+    <version>1.2.0-SNAPSHOT</version>
     <relativePath />
   </parent>
 
   <groupId>org.opendaylight.infrautils</groupId>
-  <artifactId>ready-impl</artifactId>
-  <version>1.2.0-SNAPSHOT</version>
+  <artifactId>ready-it</artifactId>
   <packaging>bundle</packaging>
   <!-- <name> formatting is used by autorelease to parse and notify projects on
        build failure. Please do not modify this unless you have a good reason. -->
@@ -27,34 +26,9 @@
 
   <dependencies>
     <dependency>
-      <groupId>org.osgi</groupId>
-      <artifactId>org.osgi.core</artifactId>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
       <groupId>org.opendaylight.infrautils</groupId>
       <artifactId>ready-api</artifactId>
       <version>${project.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.opendaylight.odlparent</groupId>
-      <artifactId>bundles4-test</artifactId>
-      <version>1.9.0-SNAPSHOT</version>
-    </dependency>
-    <dependency>
-      <groupId>org.opendaylight.infrautils</groupId>
-      <artifactId>infrautils-util</artifactId>
-      <version>${project.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>javax.inject</groupId>
-      <artifactId>javax.inject</artifactId>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>org.ops4j.pax.cdi</groupId>
-      <artifactId>pax-cdi-api</artifactId>
-      <optional>true</optional>
     </dependency>
   </dependencies>
 
