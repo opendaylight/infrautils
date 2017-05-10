@@ -22,6 +22,30 @@
       "revId": "89bb6736f0cb93b95b3c6bd725b9ef978d9f23c8",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba068154_73763340",
+        "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/LogRule.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-10T17:27:42Z",
+      "side": 1,
+      "message": "Done (and TX for pointing out that utility I didn\u0027t know)",
+      "parentUuid": "ba068154_c0ee2a22",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 5
+      },
+      "revId": "89bb6736f0cb93b95b3c6bd725b9ef978d9f23c8",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
