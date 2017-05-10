@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba068154_d62b8d2e",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/SystemReadyServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-05-10T21:00:35Z",
+      "side": 1,
+      "message": "I\u0027m not sure about using test code in production.",
+      "revId": "e2146e1da199264330f3459b44b4699dd963cdd2",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba068154_f6269167",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/SystemReadyServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-05-10T21:00:35Z",
+      "side": 1,
+      "message": "Since the executorService is only used to run this one task, I think it should be shutdown at the end of the run() method so the thread doesn\u0027t hang around dormant for the life of the process. In fact you could just create a Thread directly instead of using a single-threaded executor.",
+      "revId": "e2146e1da199264330f3459b44b4699dd963cdd2",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba068154_b62c094c",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/SystemReadyServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-05-10T21:00:35Z",
+      "side": 1,
+      "message": "I\u0027m not sure JVM Errors should be stopped here - particularly OutOfMemory which, from what I recall from past experience, has to be propagated to the JVM in order to generate a heap dump.",
+      "revId": "e2146e1da199264330f3459b44b4699dd963cdd2",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
