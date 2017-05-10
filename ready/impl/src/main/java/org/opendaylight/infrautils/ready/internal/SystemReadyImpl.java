@@ -39,7 +39,7 @@ import org.slf4j.LoggerFactory;
  */
 @Singleton
 @OsgiServiceProvider(classes = SystemReadyMonitor.class)
-public class SystemReadyImpl implements SystemReadyMonitor, Runnable /* TODO c/56750 , DiagUpdatesListener */ {
+public class SystemReadyImpl implements SystemReadyMonitor, Runnable {
 
     private static final Logger LOG = LoggerFactory.getLogger(SystemReadyImpl.class);
 
@@ -94,13 +94,6 @@ public class SystemReadyImpl implements SystemReadyMonitor, Runnable /* TODO c/5
         }
     }
 
-/* TODO uncomment when https://git.opendaylight.org/gerrit/#/c/56750/ is merged in odlparent..
-
-    @Override
-    public void onUpdate(String diagInfo) {
-        currentFullSystemStatus.set(diagInfo);
-    }
-*/
     @Override
     public SystemState getSystemState() {
         return currentSystemState.get();
