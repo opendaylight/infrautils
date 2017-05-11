@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ba068154_e9f35608",
+        "filename": "ready/api/src/main/java/org/opendaylight/infrautils/ready/SystemReadyListener.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-11T01:20:51Z",
+      "side": 1,
+      "message": "Sure thing, I know exactly what you mean.  And it could be interesting to add support for notification of that, probably based on the hook I believe you\u0027ve recently contributed to Karaf, right? I\u0027ve added 2 new callback methods to this interface in anticipation of that.  However for the very short term (right NOW), I do not need that in the feature for which I\u0027m initially contributing this (the Daexim boot-on-import, which is only concerned with initial one time boot), so I\u0027d like to move ahead with this change as is and get it in as a v1; we can later follow-up with enhancements changes (I would expect that typically that will happen, and be driven by, the first one who finds this a useful base but wants to get notifications not just on system boot ready but on later feature [un]installs as well, for other use cases than the one I\u0027m primarily interested in in the very short term.)",
+      "parentUuid": "ba068154_f6fe916a",
+      "range": {
+        "startLine": 20,
+        "startChar": 3,
+        "endLine": 20,
+        "endChar": 25
+      },
+      "revId": "e2146e1da199264330f3459b44b4699dd963cdd2",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba068154_96090598",
         "filename": "ready/api/src/main/java/org/opendaylight/infrautils/ready/SystemReadyService.java",
         "patchSetId": 6
@@ -36,6 +60,30 @@
       "writtenOn": "2017-05-10T21:36:31Z",
       "side": 1,
       "message": "ugh, strings to enumerate possible system states?\n\nhow does fully ready interact with:\n- asynchronous background service startup (such as state recovery)\n- cluster-wide service settlement (join cluster, settle singleton services)",
+      "range": {
+        "startLine": 28,
+        "startChar": 4,
+        "endLine": 28,
+        "endChar": 49
+      },
+      "revId": "e2146e1da199264330f3459b44b4699dd963cdd2",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba068154_49e4223b",
+        "filename": "ready/api/src/main/java/org/opendaylight/infrautils/ready/SystemReadyService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-11T01:20:51Z",
+      "side": 1,
+      "message": "String is gone now; but more importantly, to your main point:\n\nI do understand what you mean, but I\u0027m totally ignoring both these aspects, for now, as I\u0027d like to get something simple that works and fulfils why I primarily need in the short term out of the door \u0026 merged ASAP (within days).  Would that be acceptable to you?\n\nMedium term, we should follow up on extending this new feature and build upon this first iteration with a v2 which adds support for what you\u0027re after above.  Perhaps something along the lines of https://git.opendaylight.org/gerrit/#/c/56821/ (which may actually let us cover both of what you\u0027re after above?) - shall we continue this discussion there?",
+      "parentUuid": "ba068154_96090598",
       "range": {
         "startLine": 28,
         "startChar": 4,
@@ -95,6 +143,24 @@
       "side": 1,
       "message": "Just that TestBundleDiag (and I assume the entire bundles4test package) is intended for Junit tests. It could have junit assertions which we don\u0027t want leaking to production.  What else is in bundles4test package that might get pulled in that we may not want in production?  If you want to reuse code in TestBundleDiag in production, then I\u0027d rather see that code in a production bundle that TestBundleDiag calls. That\u0027s my 2 cents but if others are fine with it then OK.",
       "parentUuid": "ba068154_76f101cd",
+      "revId": "e2146e1da199264330f3459b44b4699dd963cdd2",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba068154_6962c6d9",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/SystemReadyServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-11T01:20:51Z",
+      "side": 1,
+      "message": "Oh OK, right... now (only) I actually see what you meant.  So I\u0027ve just had a closer look at what bundles4test actually has \u0026 needs on the classpath, here are the findings: It (bundles4test) DOES NOT \"have junit assertions which we don\u0027t want leaking to production\" - I kind of had this use case in mind already when I already wrote it, I think.  It does Awaitility and Hamcrest, but those are already OSGi embedded as private implementation details, not leaked outside the bundle. use Also it CAN currently throw java.lang.AssertionError and org.awaitility.core.ConditionTimeoutException - and that is not great, to be changed in https://git.opendaylight.org/gerrit/#/c/56817/.  As for Awaitility, it itself again only has JUnit as \u003cscope\u003etest, so we\u0027re good there.  Thank you for having raised this point, which lead to c/56817.  I think with that we\u0027re good on this now.",
+      "parentUuid": "ba068154_5674bdfc",
       "revId": "e2146e1da199264330f3459b44b4699dd963cdd2",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -183,6 +249,24 @@
       "side": 1,
       "message": "As Robert commented in another patch set - Errors should be propagated.",
       "parentUuid": "ba068154_3695b940",
+      "revId": "e2146e1da199264330f3459b44b4699dd963cdd2",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba068154_293a7ecd",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/SystemReadyServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-11T01:20:51Z",
+      "side": 1,
+      "message": "I still don\u0027t understand what the point is in this particular case, as explained above, but have \"bigger fish to fry\" so have just added re-throw now; so Done.",
+      "parentUuid": "ba068154_967e25e3",
       "revId": "e2146e1da199264330f3459b44b4699dd963cdd2",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
