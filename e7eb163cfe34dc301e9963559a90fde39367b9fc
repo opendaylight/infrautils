@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba068154_4c00b0aa",
+        "filename": "ready/api/src/main/java/org/opendaylight/infrautils/ready/SystemReadyMonitor.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 4540
+      },
+      "writtenOn": "2017-05-11T09:15:40Z",
+      "side": 1,
+      "message": "This sounds like a dumping ground, and in my experience those are never actually useful :-(. Information for end-users should be an enum, potentially with extra, typed information, until the presentation layer (think i18n). Information for system administrators and developers should go in logs (which then end up properly aggregated).",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 72
+      },
+      "revId": "e7eb163cfe34dc301e9963559a90fde39367b9fc",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba068154_cc466023",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/SystemReadyImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 4540
+      },
+      "writtenOn": "2017-05-11T09:15:40Z",
+      "side": 1,
+      "message": "readiness :-P",
+      "revId": "e7eb163cfe34dc301e9963559a90fde39367b9fc",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
