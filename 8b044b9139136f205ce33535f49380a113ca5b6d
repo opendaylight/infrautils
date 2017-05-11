@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ba068154_89d56a45",
+        "filename": "ready/api/src/main/java/org/opendaylight/infrautils/ready/SystemReadyService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-11T01:20:51Z",
+      "side": 1,
+      "message": "yeah sure; this wasn\u0027t my best design.. ;-) see new enum SystemState and getSystemState() - Done.",
+      "parentUuid": "ba068154_d6038d71",
+      "range": {
+        "startLine": 42,
+        "startChar": 4,
+        "endLine": 51,
+        "endChar": 42
+      },
+      "revId": "8b044b9139136f205ce33535f49380a113ca5b6d",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba068154_16f51583",
         "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/SystemReadyServiceImpl.java",
         "patchSetId": 7
@@ -36,6 +60,30 @@
       "writtenOn": "2017-05-10T21:39:20Z",
       "side": 1,
       "message": "That certainly does not mean Errors should not be propagated. Errors are just deadly.",
+      "range": {
+        "startLine": 81,
+        "startChar": 12,
+        "endLine": 81,
+        "endChar": 115
+      },
+      "revId": "8b044b9139136f205ce33535f49380a113ca5b6d",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba068154_4931c2eb",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/SystemReadyServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-11T01:20:51Z",
+      "side": 1,
+      "message": "Done; but see also discussion on https://git.opendaylight.org/gerrit/#/c/56749/6/ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/SystemReadyServiceImpl.java@76 and comment there if I\u0027m missing something I should learn.",
+      "parentUuid": "ba068154_16f51583",
       "range": {
         "startLine": 81,
         "startChar": 12,
