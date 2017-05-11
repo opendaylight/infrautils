@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ba068154_02366f52",
+        "filename": "ready/api/src/main/java/org/opendaylight/infrautils/ready/SystemReadyMonitor.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-11T16:53:16Z",
+      "side": 1,
+      "message": "Done, by removal; as discussed by voice, our chat has convinced me that, at least for a first ready v1 for now / the short term, we really don\u0027t need anything like this on API at all.. what I meant to return here WILL be logged anyway, and so the log is where the information I intended to surface here will be visible.  --  A future RPC API on top of this can start exposing the SystemState enum - and perhaps that will actually be entirely sufficient.  If not, we can come back to this interface later to add getSystemStateShortSummaryText() and getSystemStateDetailsText() kind of methods here in future iterations!",
+      "parentUuid": "ba068154_4c00b0aa",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 72
+      },
+      "revId": "e7eb163cfe34dc301e9963559a90fde39367b9fc",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba068154_cc466023",
         "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/SystemReadyImpl.java",
         "patchSetId": 8
@@ -36,6 +60,24 @@
       "writtenOn": "2017-05-11T09:15:40Z",
       "side": 1,
       "message": "readiness :-P",
+      "revId": "e7eb163cfe34dc301e9963559a90fde39367b9fc",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba068154_62ef7bb1",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/SystemReadyImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-11T16:53:16Z",
+      "side": 1,
+      "message": "Done, tx!",
+      "parentUuid": "ba068154_cc466023",
       "revId": "e7eb163cfe34dc301e9963559a90fde39367b9fc",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
