@@ -93,6 +93,30 @@
       "revId": "8b044b9139136f205ce33535f49380a113ca5b6d",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba068154_6c6c949d",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/SystemReadyServiceImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 4540
+      },
+      "writtenOn": "2017-05-11T09:15:40Z",
+      "side": 1,
+      "message": "There are circumstances in which it makes sense to handle *certain* errors without re-throwing them (including OOME, e.g. in the context of large allocations), but this isn’t one of them.",
+      "parentUuid": "ba068154_16f51583",
+      "range": {
+        "startLine": 81,
+        "startChar": 12,
+        "endLine": 81,
+        "endChar": 115
+      },
+      "revId": "8b044b9139136f205ce33535f49380a113ca5b6d",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
