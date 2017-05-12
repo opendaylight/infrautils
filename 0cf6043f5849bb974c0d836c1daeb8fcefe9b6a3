@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba068154_d8b576ce",
+        "filename": "itestutils/it/src/test/java/org/opendaylight/infrautils/itestutils/it/SampleIntegrationTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 4540
+      },
+      "writtenOn": "2017-05-12T08:29:39Z",
+      "side": 1,
+      "message": "Why is this needed?",
+      "revId": "0cf6043f5849bb974c0d836c1daeb8fcefe9b6a3",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
