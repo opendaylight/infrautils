@@ -33,6 +33,7 @@
     <modules>
         <module>common</module>
         <module>testutils</module>
+        <module>itestutils</module>
         <module>counters</module>
         <module>jobcoordinator</module>
         <module>inject</module>
