@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ba068154_8ddbabec",
+        "filename": "ready/api/src/main/java/org/opendaylight/infrautils/ready/SystemState.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-15T08:44:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba068154_a14b1e2a",
+      "revId": "151052942c75e9ee10327030c8c9bf037051faef",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba068154_e15526c7",
         "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/SystemReadyImpl.java",
         "patchSetId": 10
@@ -30,6 +48,24 @@
       "writtenOn": "2017-05-12T13:47:41Z",
       "side": 1,
       "message": "Going back to my previous comment, I\u0027d still prefer to clean up this executor thread when the task is complete. Or just create a new Thread.",
+      "revId": "151052942c75e9ee10327030c8c9bf037051faef",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba068154_ad55cf1e",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/SystemReadyImpl.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-15T08:44:44Z",
+      "side": 1,
+      "message": "Done, happy? Only reluctantly, because as explained on https://git.opendaylight.org/gerrit/#/c/56749/6/ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/SystemReadyServiceImpl.java@49 the Executor was intended so that future iteration can submit new tasks on feature/bundle changes, but by now I just want to get this finally merged, so I\u0027ve changed it as you want it after all... OK now?",
+      "parentUuid": "ba068154_e15526c7",
       "revId": "151052942c75e9ee10327030c8c9bf037051faef",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
