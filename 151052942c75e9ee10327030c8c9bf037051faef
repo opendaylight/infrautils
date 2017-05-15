@@ -87,6 +87,24 @@
       "revId": "151052942c75e9ee10327030c8c9bf037051faef",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba068154_e5636baf",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/SystemReadyImpl.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-15T14:44:20Z",
+      "side": 1,
+      "message": "Yeah, sorry, I\u0027ll try to tone it down - I was upset because of something going on downstream internally that\u0027s kind of indirectly related (basically pressure to deliver on what this is a, small, part of) .. Anyhow. If this change is OK as-is for you now, would you like to +1 it now?",
+      "parentUuid": "ba068154_73e4640d",
+      "revId": "151052942c75e9ee10327030c8c9bf037051faef",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
