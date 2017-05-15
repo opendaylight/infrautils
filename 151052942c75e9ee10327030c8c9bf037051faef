@@ -69,6 +69,24 @@
       "revId": "151052942c75e9ee10327030c8c9bf037051faef",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba068154_73e4640d",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/SystemReadyImpl.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-05-15T12:11:43Z",
+      "side": 1,
+      "message": "You sound a bit sarcastic/upset - sorry, I hope I didn\u0027t offend you - I didn\u0027t mean to.  A future iteration can spawn a new thread as well. Is this a huge deal? No ... my point is just to save a long-term resource - the task on startup only needs to run once - subsequent CLI feature installs will be uncommon and likely not in production.",
+      "parentUuid": "ba068154_ad55cf1e",
+      "revId": "151052942c75e9ee10327030c8c9bf037051faef",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
