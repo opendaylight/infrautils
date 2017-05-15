@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ba068154_d8e72f3f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-15T09:15:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba068154_3e4aab80",
+      "revId": "0cf6043f5849bb974c0d836c1daeb8fcefe9b6a3",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba068154_d8b576ce",
         "filename": "itestutils/it/src/test/java/org/opendaylight/infrautils/itestutils/it/SampleIntegrationTest.java",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2017-05-12T08:29:39Z",
       "side": 1,
       "message": "Why is this needed?",
+      "revId": "0cf6043f5849bb974c0d836c1daeb8fcefe9b6a3",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba068154_98c48793",
+        "filename": "itestutils/it/src/test/java/org/opendaylight/infrautils/itestutils/it/SampleIntegrationTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-15T09:15:41Z",
+      "side": 1,
+      "message": "because as soon as you use @Inject to test a service, FB isn\u0027t happy, because it doesn\u0027t (cannot) understand that Pax Exam will do something about the @Inject, so it thinks it\u0027s a bug.. butas there is no @Inject in this example, yet; I\u0027ve just removed it for now, to avoid any confusion.  I\u0027ll just add it back the minute the first *IntegrationTest extends AbstractIntegrationTest uses an @Inject.",
+      "parentUuid": "ba068154_d8b576ce",
       "revId": "0cf6043f5849bb974c0d836c1daeb8fcefe9b6a3",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
