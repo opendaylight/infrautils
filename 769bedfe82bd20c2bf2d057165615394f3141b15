@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba068154_0a82f64e",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/SystemReadyImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 4540
+      },
+      "writtenOn": "2017-05-16T16:09:36Z",
+      "side": 1,
+      "message": "This is now ready ;-).",
+      "revId": "769bedfe82bd20c2bf2d057165615394f3141b15",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba068154_ea821251",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/SystemReadyImpl.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 4540
+      },
+      "writtenOn": "2017-05-16T16:09:36Z",
+      "side": 1,
+      "message": "Is this still in the pipe? Presumably not in this form...",
+      "revId": "769bedfe82bd20c2bf2d057165615394f3141b15",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
