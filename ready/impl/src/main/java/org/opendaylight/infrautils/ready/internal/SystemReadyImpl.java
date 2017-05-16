@@ -23,6 +23,7 @@ import org.opendaylight.infrautils.ready.SystemReadyListener;
 import org.opendaylight.infrautils.ready.SystemReadyMonitor;
 import org.opendaylight.infrautils.ready.SystemState;
 import org.opendaylight.infrautils.utils.concurrent.ThreadFactoryProvider;
+import org.opendaylight.odlparent.bundles4test.SystemStateFailureException;
 import org.opendaylight.odlparent.bundles4test.TestBundleDiag;
 import org.ops4j.pax.cdi.api.OsgiServiceProvider;
 import org.osgi.framework.BundleContext;
@@ -77,11 +78,10 @@ public class SystemReadyImpl implements SystemReadyMonitor, Runnable /* TODO c/5
                 listener.onSystemBootReady();
             }
 
-// TODO uncomment when https://git.opendaylight.org/gerrit/#/c/56817/ is merged in odlparent..
-//        } catch (SystemStateFailureException e) {
-//          LOG.error("Failed, some bundles did not start (SystemReadyListeners are not called)", e);
-//            currentSystemState.set(Failure);
-//            // We do not re-throw this
+        } catch (SystemStateFailureException e) {
+            LOG.error("Failed, some bundles did not start (SystemReadyListeners are not called)", e);
+            currentSystemState.set(FAILURE);
+            // We do not re-throw this
 
         } catch (Throwable throwable) {
             // It's exceptionally OK to catch Throwable here, because we do want to set the currentFullSystemStatus
