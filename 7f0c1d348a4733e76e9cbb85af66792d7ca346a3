@@ -16,6 +16,24 @@
       "revId": "7f0c1d348a4733e76e9cbb85af66792d7ca346a3",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba068154_b9a3384e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-18T13:50:39Z",
+      "side": 1,
+      "message": "I know!  That\u0027s why I\u0027m retrying this now.. ;)  Missed to update the commit message; have done so now - TX for pointing it out!",
+      "parentUuid": "ba068154_f93ca0c1",
+      "revId": "7f0c1d348a4733e76e9cbb85af66792d7ca346a3",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
