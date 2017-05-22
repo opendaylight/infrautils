@@ -8,6 +8,7 @@
 package org.opendaylight.infrautils.itestutils;
 
 import static org.junit.Assert.fail;
+import static org.opendaylight.infrautils.itestutils.KarafRelease.KARAF_V4;
 import static org.ops4j.pax.exam.CoreOptions.maven;
 import static org.ops4j.pax.exam.CoreOptions.when;
 import static org.ops4j.pax.exam.karaf.options.KarafDistributionKitConfigurationOption.Platform.NIX;
@@ -17,13 +18,11 @@ import static org.ops4j.pax.exam.karaf.options.KarafDistributionOption.features;
 import static org.ops4j.pax.exam.karaf.options.KarafDistributionOption.keepRuntimeFolder;
 
 import java.io.File;
-import org.junit.runner.RunWith;
 import org.ops4j.io.FileUtils;
 import org.ops4j.pax.exam.Configuration;
 import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.ProbeBuilder;
 import org.ops4j.pax.exam.TestProbeBuilder;
-import org.ops4j.pax.exam.junit.PaxExam;
 import org.ops4j.pax.exam.karaf.options.KarafDistributionKitConfigurationOption;
 import org.ops4j.pax.exam.karaf.options.KarafDistributionOption;
 import org.ops4j.pax.exam.options.MavenUrlReference;
@@ -36,12 +35,10 @@ import org.slf4j.LoggerFactory;
  *
  * @author Michael Vorburger.ch
  */
-@RunWith(PaxExam.class)
+//@RunWith(PaxExam.class)
 public abstract class AbstractIntegrationTest {
 
     // TODO compare if anything to take from org.opendaylight.controller.config.it.base.AbstractConfigTestBase?
-
-    // TODO @RunWith(PaxExamParameterized) to allow running automatically under both Karaf 3 & 4 ?
 
     // TODO integrate this with infra.ready/bundle[4]-test to ensure all bundles have finished wiring before test start
     //        and/or use @Inject protected [private?] org.apache.karaf.features.BootFinished bootFinished; ?
@@ -75,7 +72,7 @@ public abstract class AbstractIntegrationTest {
         final File targetPaxExam = new File("target/paxexam/");
         FileUtils.delete(targetPaxExam);
 
-        final boolean isKaraf4 = true; // TODO more dynamic & self test both
+        final boolean isKaraf4 = getKarafRelease().equals(KARAF_V4);
         final String karafVersion = isKaraf4 ? "4.0.7" : "3.0.0";
 
         // NB the tar.gz is almost half the size of the zip, so use that, even for Windows (works fine)
@@ -147,6 +144,10 @@ public abstract class AbstractIntegrationTest {
             when(featureRepositoryURL() != null)
                 .useOptions(features(featureRepositoryURL(), featureNames()))
         };
+    }
+
+    protected KarafRelease getKarafRelease() {
+        return KarafRelease.KARAF_V4;
     }
 
     protected MavenUrlReference getKarafURL(boolean isKaraf4) {
