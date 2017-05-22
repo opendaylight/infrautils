@@ -23,10 +23,10 @@ import org.opendaylight.infrautils.ready.SystemReadyListener;
 import org.opendaylight.infrautils.ready.SystemReadyMonitor;
 import org.opendaylight.infrautils.ready.SystemState;
 import org.opendaylight.infrautils.utils.concurrent.ThreadFactoryProvider;
-import org.opendaylight.odlparent.bundles4test.SystemStateFailureException;
-import org.opendaylight.odlparent.bundles4test.TestBundleDiag;
+import org.opendaylight.odlparent.bundlestest.BundleDiag;
+import org.opendaylight.odlparent.bundlestest.SystemStateFailureException;
+import org.ops4j.pax.cdi.api.OsgiService;
 import org.ops4j.pax.cdi.api.OsgiServiceProvider;
-import org.osgi.framework.BundleContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -44,15 +44,15 @@ public class SystemReadyImpl implements SystemReadyMonitor, Runnable {
     private final Queue<SystemReadyListener> listeners = new ConcurrentLinkedQueue<>();
     private final AtomicReference<SystemState> currentSystemState = new AtomicReference<>(BOOTING);
 
-    private final BundleContext bundleContext;
+    private final BundleDiag bundleDiag;
     private final ThreadFactory threadFactory = ThreadFactoryProvider.builder()
                                                     .namePrefix("SystemReadyService")
                                                     .logger(LOG)
                                                     .build().get();
 
     @Inject
-    public SystemReadyImpl(BundleContext bundleContext) {
-        this.bundleContext = bundleContext;
+    public SystemReadyImpl(@OsgiService BundleDiag bundleDiag) {
+        this.bundleDiag = bundleDiag;
         LOG.info("Now starting to provide full system readiness status updates (see TestBundleDiag's logs)...");
     }
 
@@ -66,7 +66,7 @@ public class SystemReadyImpl implements SystemReadyMonitor, Runnable {
     public void run() {
         try {
             // 5 minutes really ought to be enough for the whole circus to completely boot up?!
-            TestBundleDiag.checkBundleDiagInfos(bundleContext, 5, TimeUnit.MINUTES /* TODO c/56750 , this */);
+            bundleDiag.checkBundleDiagInfos(5, TimeUnit.MINUTES, null);
             currentSystemState.set(ACTIVE);
             LOG.info("System ready; AKA: Aye captain, all warp coils are now operating at peak efficiency! [M.]");
 
