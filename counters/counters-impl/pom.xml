@@ -1,71 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<parent>
-		<groupId>org.opendaylight.odlparent</groupId>
-		<artifactId>odlparent</artifactId>
-		<version>1.9.0-SNAPSHOT</version>
-		<relativePath/>
-	</parent>
-	<groupId>org.opendaylight.infrautils</groupId>
-	<artifactId>counters-impl</artifactId>
-	<packaging>bundle</packaging>
-	<!-- <name> formatting is used by autorelease to parse and notify projects on
-			 build failure. Please do not modify this unless you have a good reason. -->
-	<name>ODL :: infrautils :: ${project.artifactId}</name>
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <parent>
+    <groupId>org.opendaylight.odlparent</groupId>
+    <artifactId>odlparent</artifactId>
+    <version>1.9.0-SNAPSHOT</version>
+    <relativePath />
+  </parent>
+  <groupId>org.opendaylight.infrautils</groupId>
+  <artifactId>counters-impl</artifactId>
+  <packaging>bundle</packaging>
+    <!-- <name> formatting is used by autorelease to parse and notify projects on
+             build failure. Please do not modify this unless you have a good reason. -->
+  <name>ODL :: infrautils :: ${project.artifactId}</name>
 
-	<modelVersion>4.0.0</modelVersion>
-    <version>1.2.0-SNAPSHOT</version>
-    <build>
-		<plugins>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>build-helper-maven-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>attach-artifacts</id>
-						<goals>
-							<goal>attach-artifact</goal>
-						</goals>
-						<phase>package</phase>
-						<configuration>
-							<artifacts>
-								<artifact>
-									<file>${project.build.directory}/classes/initial/counters.cfg</file>
-									<type>cfg</type>
-									<classifier>countersconf</classifier>
-								</artifact>
-							</artifacts>
-							<packaging>jar</packaging>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.felix</groupId>
-				<artifactId>maven-bundle-plugin</artifactId>
-				<extensions>true</extensions>
-				<configuration>
-                    <instructions>
-                        <Export-Package>
-                            org.opendaylight.infrautils.counters.impl
-                        </Export-Package>
-                    </instructions>
-				</configuration>
-			</plugin>
-		</plugins>
+  <modelVersion>4.0.0</modelVersion>
+  <version>1.2.0-SNAPSHOT</version>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <configuration>
+          <propertyExpansion>checkstyle.violationSeverity=error</propertyExpansion>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>attach-artifacts</id>
+            <goals>
+              <goal>attach-artifact</goal>
+            </goals>
+            <phase>package</phase>
+            <configuration>
+              <artifacts>
+                <artifact>
+                  <file>${project.build.directory}/classes/initial/counters.cfg</file>
+                  <type>cfg</type>
+                  <classifier>countersconf</classifier>
+                </artifact>
+              </artifacts>
+              <packaging>jar</packaging>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <extensions>true</extensions>
+        <configuration>
+          <instructions>
+            <Export-Package>
+              org.opendaylight.infrautils.counters.impl
+            </Export-Package>
+          </instructions>
+        </configuration>
+      </plugin>
+    </plugins>
 
-	</build>
-	<dependencies>
-		<dependency>
-			<groupId>org.opendaylight.infrautils</groupId>
-			<artifactId>counters-api</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.opendaylight.infrautils</groupId>
-			<artifactId>infrautils-util</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-	</dependencies>
+  </build>
+  <dependencies>
+    <dependency>
+      <groupId>org.opendaylight.infrautils</groupId>
+      <artifactId>counters-api</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.opendaylight.infrautils</groupId>
+      <artifactId>infrautils-util</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+  </dependencies>
 </project>
