@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Hewlett Packard Enterprise, Co. and others. All rights reserved.
+ * Copyright (c) 2016, 2017 Hewlett Packard Enterprise, Co. and others. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
@@ -9,20 +9,20 @@ package org.opendaylight.infrautils.counters.impl.service;
 
 import java.util.HashSet;
 import java.util.LinkedHashSet;
-
+import java.util.Set;
 import org.opendaylight.infrautils.counters.api.OccurenceCounter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class CountersDumperThread implements Runnable {
-    private Object blockResetCounters = new Object();
+    private final Object blockResetCounters = new Object();
     private volatile boolean keepRunning = true;
     private volatile int countersDumpInterval;
-    private static HashSet<OccurenceCounterEntry> counters = new HashSet<OccurenceCounterEntry>();
-    private static LinkedHashSet<OccurenceCounterEntry> printCounters = new LinkedHashSet<OccurenceCounterEntry>();
-    protected static final Logger logger = LoggerFactory.getLogger(CountersDumperThread.class);
+    private static HashSet<OccurenceCounterEntry> counters = new HashSet<>();
+    private static LinkedHashSet<OccurenceCounterEntry> printCounters = new LinkedHashSet<>();
+    protected static final Logger LOG = LoggerFactory.getLogger(CountersDumperThread.class);
 
-    public CountersDumperThread(int countersDumpInterval) throws Exception {
+    public CountersDumperThread(int countersDumpInterval) {
         this.countersDumpInterval = countersDumpInterval;
         updateCounters();
     }
@@ -55,7 +55,7 @@ public class CountersDumperThread implements Runnable {
             }
             StringBuilder sb = new StringBuilder();
             for (OccurenceCounterEntry entry : counters) {
-                if ((entry.counter.get() != entry.lastVal) && isCategoryPermitted(entry)) {
+                if (entry.counter.get() != entry.lastVal && isCategoryPermitted(entry)) {
                     printCounters.add(entry);
                 } else {
                     printCounters.remove(entry);
@@ -80,31 +80,29 @@ public class CountersDumperThread implements Runnable {
             }
             if (sb.length() > 0) {
                 sb.delete(sb.length() - 2, sb.length());
-                logger.info(sb.toString());
+                LOG.info(sb.toString());
             }
         }
     }
 
+    @Override
     public void run() {
-        logger.info("Starting counters thread with interval of: {}", countersDumpInterval);
+        LOG.info("Starting counters thread with interval of: {}", countersDumpInterval);
         while (keepRunning) {
             try {
-                try {
-                    runCounterDump();
-                    Thread.sleep(countersDumpInterval);
-                } catch (InterruptedException e) {
-                }
-            } catch (Throwable t) {
-                logger.error(t.getMessage(), t);
+                runCounterDump();
+                Thread.sleep(countersDumpInterval);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
             }
         }
-        logger.info("Killed counters thread");
+        LOG.info("Killed counters thread");
     }
 
     private void alignToMaxWidth(OccurenceCounterEntry entry, long difference, StringBuilder sb) {
         int width = Long.toString(difference).length();
         if (entry.maxWidth > width) {
-            for (int i = 0; i < (entry.maxWidth - width); ++i) {
+            for (int i = 0; i < entry.maxWidth - width; ++i) {
                 sb.append(" ");
             }
         }
@@ -129,7 +127,7 @@ public class CountersDumperThread implements Runnable {
         countersDumpInterval = interval;
     }
 
-    public HashSet<OccurenceCounterEntry> getCounters() {
+    public Set<OccurenceCounterEntry> getCounters() {
         return (HashSet<OccurenceCounterEntry>) counters.clone();
     }
 }
