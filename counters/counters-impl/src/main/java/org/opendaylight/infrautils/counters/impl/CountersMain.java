@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Hewlett Packard Enterprise, Co. and others. All rights reserved.
+ * Copyright (c) 2016, 2017 Hewlett Packard Enterprise, Co. and others. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
@@ -18,7 +18,7 @@ import org.slf4j.LoggerFactory;
 
 public class CountersMain {
 
-    protected static final Logger logger = LoggerFactory.getLogger(CountersMain.class);
+    protected static final Logger LOG = LoggerFactory.getLogger(CountersMain.class);
     private CountersDumperThread countersRunnable = null;
     private Thread countersThread = null;
     private volatile int interval = 0;
@@ -26,44 +26,36 @@ public class CountersMain {
     private volatile boolean shouldWrite = false;
 
     public void initialize() {
-        try {
-            initialized = true;
-            if (shouldWrite) {
-                startDumpersThread();
-            }
-        } catch (Exception e) {
-            logger.error(e.getMessage(), e);
+        initialized = true;
+        if (shouldWrite) {
+            startDumpersThread();
         }
     }
 
-    private void startDumpersThread() throws Exception {
+    private void startDumpersThread() {
         countersRunnable = new CountersDumperThread(interval);
         countersThread = new Thread(countersRunnable);
         countersThread.setName("CountersThread");
         countersThread.start();
-        logger.info("Counters thread started");
+        LOG.info("Counters thread started");
     }
 
     public void setWritelog(boolean shouldWrite) {
-        try {
-            // Change from false to true, and not init time
-            if (!this.shouldWrite && shouldWrite && initialized) {
-                startDumpersThread();
-                // Change from true to false
-            } else if (this.shouldWrite && !shouldWrite) {
-                stopTheCountersThread();
-            }
-            this.shouldWrite = shouldWrite;
-        } catch (Exception e) {
-            logger.error(e.getMessage(), e);
+        // Change from false to true, and not init time
+        if (!this.shouldWrite && shouldWrite && initialized) {
+            startDumpersThread();
+            // Change from true to false
+        } else if (this.shouldWrite && !shouldWrite) {
+            stopTheCountersThread();
         }
+        this.shouldWrite = shouldWrite;
     }
 
     public void setInterval(int interval) {
         if (this.interval != interval) {
             this.interval = interval;
             if (countersRunnable != null) { // Runtime update
-                logger.info("Counters interval updated in runtime to: " + interval);
+                LOG.info("Counters interval updated in runtime to {}", interval);
                 countersRunnable.setSleepInterval(interval);
                 countersThread.interrupt();
             }
@@ -71,19 +63,24 @@ public class CountersMain {
     }
 
     public void clean() {
-        logger.info("Counters Thread Clean called!");
+        LOG.info("Counters Thread Clean called!");
         stopTheCountersThread();
     }
 
     private void stopTheCountersThread() {
+        boolean interrupted = false;
         if (countersRunnable != null) {
             countersRunnable.setKeepRunning(false);
             countersThread.interrupt();
             try {
                 countersThread.join();
             } catch (InterruptedException e) {
+                interrupted = true;
+            } finally {
+                if (interrupted) {
+                    Thread.currentThread().interrupt();
+                }
             }
-            countersThread = null;
         }
     }
 
@@ -112,7 +109,6 @@ public class CountersMain {
     }
 
     private String getCounterFullName(String group, String counter) {
-        String counterName = String.format("%s::%s", group, counter);
-        return counterName;
+        return String.format("%s::%s", group, counter);
     }
 }
