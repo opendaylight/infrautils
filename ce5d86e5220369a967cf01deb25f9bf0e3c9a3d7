@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "7af0899e_55ee9b8c",
+        "filename": "counters/counters-impl/src/main/java/org/opendaylight/infrautils/counters/impl/CountersMain.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 5861
+      },
+      "writtenOn": "2017-05-24T11:39:59Z",
+      "side": 1,
+      "message": "That\u0027s indeed the article I used as a reference :). I introduced that variable because of the possibility of the join() being interrupted as well and following the recommendation in listing 6, but I do not have a strong opinion on this, since we can just propagate the exception.",
+      "parentUuid": "7af0899e_1576d33e",
+      "revId": "ce5d86e5220369a967cf01deb25f9bf0e3c9a3d7",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7af0899e_151d3367",
         "filename": "counters/counters-impl/src/main/java/org/opendaylight/infrautils/counters/impl/service/CountersDumperThread.java",
         "patchSetId": 1
@@ -66,6 +84,24 @@
       "side": 1,
       "message": "In this case, how we handle InterruptedException depends on how we want to handle interruptions. If other threads are supposed to be able to interrupt this one, and have it stop, then the run() loop should become\n\n    while (keepRunning \u0026\u0026 !Thread.interrupted()) {\n        try {\n            runCounterDump();\n            Thread.sleep(countersDumpInterval);\n        } catch (InterruptedException e) {\n            Thread.currentThread().interrupt();\n        }\n    }\n\nso that the interruption request actually has an impact (note the new while condition).",
       "parentUuid": "7af0899e_151d3367",
+      "revId": "ce5d86e5220369a967cf01deb25f9bf0e3c9a3d7",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7af0899e_75a47757",
+        "filename": "counters/counters-impl/src/main/java/org/opendaylight/infrautils/counters/impl/service/CountersDumperThread.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 5861
+      },
+      "writtenOn": "2017-05-24T11:39:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7af0899e_55ddfb13",
       "revId": "ce5d86e5220369a967cf01deb25f9bf0e3c9a3d7",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
