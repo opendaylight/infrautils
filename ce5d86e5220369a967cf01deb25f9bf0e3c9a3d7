@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7af0899e_b50fff2d",
+        "filename": "counters/counters-impl/src/main/java/org/opendaylight/infrautils/counters/impl/CountersMain.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-24T09:35:10Z",
+      "side": 1,
+      "message": "When I have a moment I want to read up to understand this better, before merging it..",
+      "revId": "ce5d86e5220369a967cf01deb25f9bf0e3c9a3d7",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7af0899e_151d3367",
+        "filename": "counters/counters-impl/src/main/java/org/opendaylight/infrautils/counters/impl/service/CountersDumperThread.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-05-24T09:35:10Z",
+      "side": 1,
+      "message": "as well",
+      "revId": "ce5d86e5220369a967cf01deb25f9bf0e3c9a3d7",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
