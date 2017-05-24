@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "7af0899e_1576d33e",
+        "filename": "counters/counters-impl/src/main/java/org/opendaylight/infrautils/counters/impl/CountersMain.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 4540
+      },
+      "writtenOn": "2017-05-24T10:42:36Z",
+      "side": 1,
+      "message": "See https://www.ibm.com/developerworks/library/j-jtp05236/index.html for a good overview. In this particular instance I think declaring that StopTheCountersThread() throws InterruptedException would be appropriate... At the very least, I don’t see the need for an interrupted variable:\n\n    } catch (InterruptedException e) {\n        Thread.currentThread().interrupt();\n    }",
+      "parentUuid": "7af0899e_b50fff2d",
+      "revId": "ce5d86e5220369a967cf01deb25f9bf0e3c9a3d7",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7af0899e_151d3367",
         "filename": "counters/counters-impl/src/main/java/org/opendaylight/infrautils/counters/impl/service/CountersDumperThread.java",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2017-05-24T09:35:10Z",
       "side": 1,
       "message": "as well",
+      "revId": "ce5d86e5220369a967cf01deb25f9bf0e3c9a3d7",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7af0899e_55ddfb13",
+        "filename": "counters/counters-impl/src/main/java/org/opendaylight/infrautils/counters/impl/service/CountersDumperThread.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 4540
+      },
+      "writtenOn": "2017-05-24T10:42:36Z",
+      "side": 1,
+      "message": "In this case, how we handle InterruptedException depends on how we want to handle interruptions. If other threads are supposed to be able to interrupt this one, and have it stop, then the run() loop should become\n\n    while (keepRunning \u0026\u0026 !Thread.interrupted()) {\n        try {\n            runCounterDump();\n            Thread.sleep(countersDumpInterval);\n        } catch (InterruptedException e) {\n            Thread.currentThread().interrupt();\n        }\n    }\n\nso that the interruption request actually has an impact (note the new while condition).",
+      "parentUuid": "7af0899e_151d3367",
       "revId": "ce5d86e5220369a967cf01deb25f9bf0e3c9a3d7",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
