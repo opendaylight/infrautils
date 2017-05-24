@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Hewlett Packard Enterprise, Co. and others. All rights reserved.
+ * Copyright (c) 2016, 2017 Hewlett Packard Enterprise, Co. and others. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
@@ -21,10 +21,10 @@ import org.opendaylight.infrautils.utils.types.UnsignedLong;
 @SuppressWarnings("serial")
 public class CountersGroup implements Serializable {
 
-    private final Map<String, Map<String, UnsignedLong>> groups = new TreeMap<String, Map<String, UnsignedLong>>();
+    private final Map<String, Map<String, UnsignedLong>> groups = new TreeMap<>();
 
     public List<CounterGroup> getCounters() {
-        List<CounterGroup> ret = new ArrayList<CounterGroup>();
+        List<CounterGroup> ret = new ArrayList<>();
         for (Map.Entry<String, Map<String, UnsignedLong>> e : groups.entrySet()) {
             ret.add(new CounterGroup(e));
         }
@@ -48,22 +48,22 @@ public class CountersGroup implements Serializable {
         groups.put(groupName, counters);
     }
 
+    public CountersGroup put(String groupName, String counterName, UnsignedLong counterValue) {
+        Map<String, UnsignedLong> group = groups.get(groupName);
+        if (group == null) {
+            group = new HashMap<>();
+            groups.put(groupName, group);
+        }
+        group.put(counterName, counterValue);
+        return this;
+    }
+
     public CountersGroup rename(String oldGroupName, String newGroupName) {
         Map<String, UnsignedLong> group = groups.remove(oldGroupName);
         if (group == null) {
             return null;
         }
         groups.put(newGroupName, group);
-        return this;
-    }
-
-    public CountersGroup put(String groupName, String counterName, UnsignedLong counterValue) {
-        Map<String, UnsignedLong> group = groups.get(groupName);
-        if (group == null) {
-            group = new HashMap<String, UnsignedLong>();
-            groups.put(groupName, group);
-        }
-        group.put(counterName, counterValue);
         return this;
     }
 
@@ -90,22 +90,22 @@ public class CountersGroup implements Serializable {
         if (obj == this) {
             return true;
         }
-        if ((obj == null) || !getClass().equals(obj.getClass())) {
+        if (obj == null || !getClass().equals(obj.getClass())) {
             return false;
         }
         return groups.equals(((CountersGroup) obj).groups);
     }
 
     public String asHierarchy(boolean removePollTimestamp) {
-        StringBuilder s = new StringBuilder("CounterGroups");
+        StringBuilder stringBuilder = new StringBuilder("CounterGroups");
         for (Entry<String, Map<String, UnsignedLong>> groupEntry : groups.entrySet()) {
-            s.append("\n\t").append(groupEntry.getKey());
+            stringBuilder.append("\n\t").append(groupEntry.getKey());
             for (Entry<String, UnsignedLong> counterEntry : groupEntry.getValue().entrySet()) {
                 if (!removePollTimestamp || !"poll-time-stamp".equals(counterEntry.getKey())) {
-                    s.append("\n\t\t").append(counterEntry);
+                    stringBuilder.append("\n\t\t").append(counterEntry);
                 }
             }
         }
-        return s.toString();
+        return stringBuilder.toString();
     }
 }

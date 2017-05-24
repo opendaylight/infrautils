@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Hewlett Packard Enterprise, Co. and others. All rights reserved.
+ * Copyright (c) 2016, 2017 Hewlett Packard Enterprise, Co. and others. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
@@ -15,13 +15,11 @@ import java.util.Map;
 import java.util.Map.Entry;
 import org.opendaylight.infrautils.utils.types.UnsignedLong;
 
-
-
 public class CounterGroup {
 
     private final String groupName;
 
-    private final List<CounterGroupEntry> counters = new ArrayList<CounterGroupEntry>();
+    private final List<CounterGroupEntry> counters = new ArrayList<>();
 
     protected CounterGroup() {
         groupName = "";
@@ -43,9 +41,9 @@ public class CounterGroup {
             value = null;
         }
 
-        protected CounterGroupEntry(Map.Entry<String, UnsignedLong> e) {
-            key = e.getKey();
-            value = e.getValue().bigIntegerValue();
+        protected CounterGroupEntry(Map.Entry<String, UnsignedLong> entry) {
+            key = entry.getKey();
+            value = entry.getValue().bigIntegerValue();
         }
     }
 }
