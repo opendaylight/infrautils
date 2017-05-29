@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "3afa9182_f29240f5",
+        "filename": "counters/counters-impl/src/main/java/org/opendaylight/infrautils/counters/impl/CountersMain.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 4540
+      },
+      "writtenOn": "2017-05-29T12:47:43Z",
+      "side": 1,
+      "message": "I wondered if that was from listing 6... In this case the method isn\u0027t uninterruptible so the tweak doesn\u0027t apply (as in, there isn\u0027t a loop which continues if the thread is interrupted). Here interrupted can become true *only* if join() is interrupted, and the *only* thing we do if interrupted is true is interrupt the thread again; so we might as well just interrupt the thread from the exception handler, which will cause any outside loop to stop (assuming it checks for that), or re-throw the exception (simply declaring it in the method signature).",
+      "parentUuid": "7af0899e_55ee9b8c",
+      "revId": "ce5d86e5220369a967cf01deb25f9bf0e3c9a3d7",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7af0899e_151d3367",
         "filename": "counters/counters-impl/src/main/java/org/opendaylight/infrautils/counters/impl/service/CountersDumperThread.java",
         "patchSetId": 1
