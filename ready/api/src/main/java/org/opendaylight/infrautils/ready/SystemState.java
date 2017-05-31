@@ -14,7 +14,7 @@ package org.opendaylight.infrautils.ready;
  */
 public enum SystemState {
 
-    // NB: There is a very similar enum in org.opendaylight.odlparent.bundles4test.SystemState,
+    // NB: There is a very similar enum in org.opendaylight.odlparent.bundlestest.lib.SystemState,
     // but this is intentionally copied here instead of referenced from there, because:
     //
     //    (a) we consider odlparent.bundles[4]test an implementation details of infrautils.ready-impl,
