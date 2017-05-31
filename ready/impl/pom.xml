@@ -35,13 +35,43 @@
     </dependency>
     <dependency>
       <groupId>org.opendaylight.odlparent</groupId>
-      <artifactId>bundles4-test</artifactId>
+      <artifactId>bundles-test-lib</artifactId>
       <version>1.9.0-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.opendaylight.infrautils</groupId>
       <artifactId>infrautils-util</artifactId>
       <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.karaf.bundle</groupId>
+      <artifactId>org.apache.karaf.bundle.core</artifactId>
+      <!-- karaf.version & karaf4.version are API compatible (for karaf.bundle.core) -->
+      <version>${karaf.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <!-- We HAVE to list hamcrest and awaitility as dependencies here,
+         not because we need to compile against it, but so that the Embed-Dependency
+         in the maven-bundle-plugin below works! -->
+    <dependency>
+      <groupId>org.hamcrest</groupId>
+      <artifactId>hamcrest-core</artifactId>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.awaitility</groupId>
+      <artifactId>awaitility</artifactId>
+      <scope>compile</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>cglib</groupId>
+          <artifactId>cglib-nodep</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.objenesis</groupId>
+          <artifactId>objenesis</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>javax.inject</groupId>
@@ -57,6 +87,18 @@
 
   <build>
     <plugins>
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <configuration>
+          <instructions>
+            <Embed-Dependency>bundles-test-lib,awaitility,hamcrest-core</Embed-Dependency>
+            <!-- Do NOT <Embed-Transitive>true</Embed-Transitive> -->
+            <!-- We must tweak karaf.bundle.core's version range so that it works both in Karaf 3 and Karaf 4 -->
+            <Import-Package>!net.sf.cglib.proxy,!org.objenesis,org.apache.karaf.bundle.core;version="[3.0,5)",*</Import-Package>
+          </instructions>
+        </configuration>
+      </plugin>
       <plugin>
         <groupId>org.apache.aries.blueprint</groupId>
         <artifactId>blueprint-maven-plugin</artifactId>

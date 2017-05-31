@@ -19,19 +19,21 @@ import java.util.concurrent.atomic.AtomicReference;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.inject.Singleton;
+import org.apache.karaf.bundle.core.BundleService;
 import org.opendaylight.infrautils.ready.SystemReadyListener;
 import org.opendaylight.infrautils.ready.SystemReadyMonitor;
 import org.opendaylight.infrautils.ready.SystemState;
 import org.opendaylight.infrautils.utils.concurrent.ThreadFactoryProvider;
-import org.opendaylight.odlparent.bundles4test.SystemStateFailureException;
-import org.opendaylight.odlparent.bundles4test.TestBundleDiag;
+import org.opendaylight.odlparent.bundlestest.lib.SystemStateFailureException;
+import org.opendaylight.odlparent.bundlestest.lib.TestBundleDiag;
+import org.ops4j.pax.cdi.api.OsgiService;
 import org.ops4j.pax.cdi.api.OsgiServiceProvider;
 import org.osgi.framework.BundleContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Implementation of "system ready" services.
+ * Implementation of the "system ready" service.
  *
  * @author Michael Vorburger.ch
  */
@@ -44,15 +46,16 @@ public class SystemReadyImpl implements SystemReadyMonitor, Runnable /* TODO c/5
     private final Queue<SystemReadyListener> listeners = new ConcurrentLinkedQueue<>();
     private final AtomicReference<SystemState> currentSystemState = new AtomicReference<>(BOOTING);
 
-    private final BundleContext bundleContext;
     private final ThreadFactory threadFactory = ThreadFactoryProvider.builder()
                                                     .namePrefix("SystemReadyService")
                                                     .logger(LOG)
                                                     .build().get();
 
+    private final TestBundleDiag testBundleDiag;
+
     @Inject
-    public SystemReadyImpl(BundleContext bundleContext) {
-        this.bundleContext = bundleContext;
+    public SystemReadyImpl(BundleContext bundleContext, @OsgiService BundleService bundleService) {
+        this.testBundleDiag = new TestBundleDiag(bundleContext, bundleService);
         LOG.info("Now starting to provide full system readiness status updates (see TestBundleDiag's logs)...");
     }
 
@@ -66,7 +69,7 @@ public class SystemReadyImpl implements SystemReadyMonitor, Runnable /* TODO c/5
     public void run() {
         try {
             // 5 minutes really ought to be enough for the whole circus to completely boot up?!
-            TestBundleDiag.checkBundleDiagInfos(bundleContext, 5, TimeUnit.MINUTES /* TODO c/56750 , this */);
+            testBundleDiag.checkBundleDiagInfos(5, TimeUnit.MINUTES /* TODO c/56750 , this */);
             currentSystemState.set(ACTIVE);
             LOG.info("System ready; AKA: Aye captain, all warp coils are now operating at peak efficiency! [M.]");
 
