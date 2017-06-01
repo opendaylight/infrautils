@@ -39,7 +39,7 @@ public class GuiceRule implements MethodRule {
      * We do this to avoid having to declare bindings of Listeners asEagerSingleton(),
      * because in typical OpenDaylight projects there are Listener classes which are not @Inject,
      * but must still be created (so that they're registered).
-     * @see <a href="https://github.com/google/guice/wiki/Bootstrap">Guice documentation</a>.
+     * See <a href="https://github.com/google/guice/wiki/Bootstrap">Guice documentation</a>.
      */
     protected static final Stage DEFAULT_STAGE = Stage.PRODUCTION;
 
