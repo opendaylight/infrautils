@@ -7,6 +7,7 @@
  */
 package org.opendaylight.infrautils.itestutils.it;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.opendaylight.infrautils.itestutils.AbstractIntegrationTest;
 import org.slf4j.Logger;
@@ -16,6 +17,7 @@ import org.slf4j.LoggerFactory;
  * Example Integration Test.
  * @author Michael Vorburger.ch
  */
+@Ignore // TODO remove this when https://bugs.opendaylight.org/show_bug.cgi?id=4290 is solved
 // @ExamReactorStrategy(PerClass.class) IFF the default PerMethod (which provides better isolation!) really is too slow?
 public class SampleIntegrationTest extends AbstractIntegrationTest {
 
