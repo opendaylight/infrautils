@@ -12,7 +12,7 @@
         <feature version='${project.version}'>odl-infrautils-counters-sample</feature>
     </feature>
     <feature name='odl-infrautils-all' version='${project.version}' description='OpenDaylight :: Infrautils :: All'>
-        <feature version='${project.version}'>odl-infrautils-jobcoordinator</feature>
+        <!--feature version='${project.version}'>odl-infrautils-jobcoordinator</feature-->
         <feature version='${project.version}'>odl-infrautils-inject</feature>
     </feature>
     <feature name='odl-infrautils-counters' version='${project.version}'
@@ -27,12 +27,12 @@
         <feature version='${project.version}'>odl-infrautils-counters</feature>
         <bundle>mvn:org.opendaylight.infrautils/samples-counters-impl/{{VERSION}}</bundle>
     </feature>
-    <feature name='odl-infrautils-jobcoordinator' version='${project.version}'
+    <!--feature name='odl-infrautils-jobcoordinator' version='${project.version}'
         description='OpenDaylight :: Infrautils :: Job Coordinator'>
         <feature version='${project.version}'>odl-infrautils-counters</feature>
         <bundle>mvn:org.opendaylight.infrautils/jobcoordinator-api/{{VERSION}}</bundle>
         <bundle>mvn:org.opendaylight.infrautils/jobcoordinator-impl/{{VERSION}}</bundle>
-    </feature>
+    </feature-->
     <feature name='odl-infrautils-inject' version='${project.version}'
         description='OpenDaylight :: Infrautils :: @Inject'>
         <bundle>mvn:org.opendaylight.infrautils/inject/{{VERSION}}</bundle>

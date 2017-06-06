@@ -12,7 +12,7 @@
     <parent>
         <groupId>org.opendaylight.odlparent</groupId>
         <artifactId>odlparent-lite</artifactId>
-        <version>1.9.0-SNAPSHOT</version>
+        <version>1.8.0-Carbon</version>
         <relativePath/>
     </parent>
     <groupId>org.opendaylight.infrautils</groupId>
@@ -29,11 +29,12 @@
         <module>odl-infrautils-all-with-samples</module>
         <module>odl-infrautils-all</module>
         <module>odl-infrautils-counters</module>
-        <module>odl-infrautils-jobcoordinator</module>
+        <!--module>odl-infrautils-jobcoordinator</module-->
         <module>odl-infrautils-counters-sample</module>
         <module>odl-infrautils-inject</module>
         <module>odl-infrautils-utils</module>
-        <module>odl-infrautils-ready</module>
+        <!-- This needs the ready module -->
+        <!--module>odl-infrautils-ready</module-->
     </modules>
 
     <url>${odl.site.url}/${project.groupId}/${stream}/${project.artifactId}/</url>
