@@ -13,7 +13,7 @@
     <parent>
       <groupId>org.opendaylight.odlparent</groupId>
       <artifactId>odlparent-lite</artifactId>
-      <version>1.9.0-SNAPSHOT</version>
+      <version>1.8.0-Carbon</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
@@ -38,7 +38,8 @@
         <module>jobcoordinator</module>
         <module>inject</module>
         <module>samples</module>
-        <module>ready</module>
+        <!-- This needs a newer version of odlparent than 1.8.0-Carbon -->
+        <!--module>ready</module-->
     </modules>
 
     <profiles>
