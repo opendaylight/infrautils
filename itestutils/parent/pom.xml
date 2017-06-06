@@ -14,7 +14,7 @@
   <parent>
     <groupId>org.opendaylight.odlparent</groupId>
     <artifactId>odlparent</artifactId>
-    <version>1.9.0-SNAPSHOT</version>
+    <version>1.8.0-Carbon</version>
     <relativePath />
   </parent>
 
@@ -61,7 +61,7 @@
                   <groupId>org.opendaylight.odlparent</groupId>
                   <!-- Pending https://ops4j1.jira.com/browse/PAXEXAM-813, this doesn't actually work, yet -->
                   <artifactId>opendaylight-karaf4-empty</artifactId>
-                  <version>1.9.0-SNAPSHOT</version>
+                  <version>1.8.0-Carbon</version>
                   <!-- NB the tar.gz is almost half the size of the zip, so use that, even for Windows (works fine) -->
                   <type>tar.gz</type>
                 </artifact>
