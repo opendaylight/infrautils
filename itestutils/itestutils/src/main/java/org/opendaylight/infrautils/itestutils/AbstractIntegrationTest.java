@@ -20,6 +20,7 @@ import java.io.File;
 import org.junit.runner.RunWith;
 import org.ops4j.io.FileUtils;
 import org.ops4j.pax.exam.Configuration;
+import org.ops4j.pax.exam.MavenUtils;
 import org.ops4j.pax.exam.Option;
 import org.ops4j.pax.exam.ProbeBuilder;
 import org.ops4j.pax.exam.TestProbeBuilder;
@@ -75,17 +76,18 @@ public abstract class AbstractIntegrationTest {
         FileUtils.delete(targetPaxExam);
 
         final boolean isKaraf4 = true; // TODO more dynamic & self test both
+        final String karafGroupId = "org.opendaylight.odlparent";
         final String karafArtifactId = isKaraf4 ? "opendaylight-karaf4-empty" : "opendaylight-karaf-empty";
-        // NB: This karafVersion currently actually doesn't seem to be used by PAX Exam.. ;) but set anyway:
+        // This karafVersion must match the exact minor version of Karaf due to
+        // https://bugs.opendaylight.org/show_bug.cgi?id=8578
         // (see also https://ops4j1.jira.com/projects/PAXEXAM/issues/PAXEXAM-598)
-        final String karafVersion = isKaraf4 ? "4.0.7" : "3.0.0";
-
+        final String karafVersion = MavenUtils.getArtifactVersion("org.apache.karaf.features", "standard");
         // NB the tar.gz is almost half the size of the zip, so use that, even for Windows (works fine)
-        MavenUrlReference karafURL = maven().groupId("org.opendaylight.odlparent")
+        MavenUrlReference karafURL = maven().groupId(karafGroupId)
                 .artifactId(karafArtifactId).versionAsInProject().type("tar.gz");
         // TODO https://ops4j1.jira.com/browse/PAXEXAM-813
         // String? karafURL = [url(]"link:classpath:" + karafArtifactId + ".link";
-        LOG.info("Karaf used: {}", karafURL.toString());
+        LOG.info("Karaf v{} used: {}", karafVersion, karafURL.toString());
 
         return new Option[] {
             // TODO find another solution without, for better isolation
@@ -93,6 +95,8 @@ public abstract class AbstractIntegrationTest {
             // TODO Test and document what this is used for...
             editKarafConfigurationFile(MAVEN_REPO_LOCAL, "etc/org.ops4j.pax.url.mvn.cfg",
                     "org.ops4j.pax.url.mvn.localRepository", System.getProperty(MAVEN_REPO_LOCAL, "")),
+            editKarafConfigurationFile(MAVEN_REPO_LOCAL, "etc/org.ops4j.pax.url.mvn.cfg",
+                    "org.ops4j.pax.url.mvn.disableAether", "true"),
 
             when(Boolean.getBoolean(KARAF_DEBUG_PROP))
                 .useOptions(KarafDistributionOption.debugConfiguration(KARAF_DEBUG_PORT, true)),
