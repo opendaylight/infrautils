@@ -1,0 +1,174 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3afa9182_9aee4e21",
+        "filename": "diagstatus/api/pom.xml",
+        "patchSetId": 24
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-06-07T16:19:30Z",
+      "side": 1,
+      "message": "I usually put this modelVersion on the very top, right after project, before parent; it\u0027s more logical.",
+      "revId": "6706c1ba3cb91e28d3244d3da6b9256ecaf1276b",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3afa9182_bae98a1c",
+        "filename": "diagstatus/api/pom.xml",
+        "patchSetId": 24
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-06-07T16:19:30Z",
+      "side": 1,
+      "message": "I would just call this \u003cartifactId\u003ediagstatus, not -api.",
+      "revId": "6706c1ba3cb91e28d3244d3da6b9256ecaf1276b",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3afa9182_1a489e2c",
+        "filename": "diagstatus/api/pom.xml",
+        "patchSetId": 24
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-06-07T16:19:30Z",
+      "side": 1,
+      "message": "this hard-coded guava version here is very suspicious - why? Normally this gets inherited from the dependencyManagement defined in odlparent - you should be able to just remove it (and it should still build) - try?",
+      "revId": "6706c1ba3cb91e28d3244d3da6b9256ecaf1276b",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3afa9182_daf8d6e7",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/DiagStatusService.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-06-07T16:19:30Z",
+      "side": 1,
+      "message": "0. is the String argument here intended to be the same as the one in the next method?  Then it should be called the same as well - String serviceIdentifier instead of service.\n\n1. it\u0027s better to return CompletionStage instead of CompletableFuture.  Read e.g. the JavaDoc in https://git.opendaylight.org/gerrit/#/c/56167/ and https://git.opendaylight.org/gerrit/#/c/56164/ to learn more about why.",
+      "revId": "6706c1ba3cb91e28d3244d3da6b9256ecaf1276b",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3afa9182_dacf36af",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ServiceDescriptor.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-06-07T16:19:30Z",
+      "side": 1,
+      "message": "please use java.time.Instant instead of java.util.Date, see https://docs.oracle.com/javase/tutorial/datetime/iso/legacy.html",
+      "revId": "6706c1ba3cb91e28d3244d3da6b9256ecaf1276b",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3afa9182_facaf29f",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ServiceDescriptor.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-06-07T16:19:30Z",
+      "side": 1,
+      "message": "as above, return Instant instead of Date",
+      "revId": "6706c1ba3cb91e28d3244d3da6b9256ecaf1276b",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3afa9182_ba37caaf",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/MBeanService.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-06-07T16:19:30Z",
+      "side": 1,
+      "message": "public final class MBeanUtils { \n    private MBeanUtils() { }",
+      "revId": "6706c1ba3cb91e28d3244d3da6b9256ecaf1276b",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3afa9182_ba050ac4",
+        "filename": "diagstatus/impl/src/main/resources/org/opendaylight/blueprint/diagstatus.xml",
+        "patchSetId": 24
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-06-07T16:19:30Z",
+      "side": 1,
+      "message": "get rid of this empty file",
+      "revId": "6706c1ba3cb91e28d3244d3da6b9256ecaf1276b",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3afa9182_9a63eeb0",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusCommand.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-06-07T16:19:30Z",
+      "side": 1,
+      "message": "description should be human understandable documentaiton phrase, not \"getRemoteServicesStatus\"",
+      "revId": "6706c1ba3cb91e28d3244d3da6b9256ecaf1276b",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3afa9182_5a5226de",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusCommand.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-06-07T16:19:30Z",
+      "side": 1,
+      "message": "AFAIK you typically don\u0027t need that, Karaf does this automatically for you (from what you put into description\u003d everywhere)",
+      "revId": "6706c1ba3cb91e28d3244d3da6b9256ecaf1276b",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
