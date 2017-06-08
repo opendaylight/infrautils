@@ -11,15 +11,18 @@ package org.opendaylight.infrautils.jobcoordinator.internal;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.ReentrantLock;
+
 import javax.annotation.PreDestroy;
 import javax.inject.Singleton;
 import org.opendaylight.infrautils.jobcoordinator.JobCoordinator;
@@ -45,7 +48,9 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
             LoggingThreadUncaughtExceptionHandler.toLogger(LOG),
             false);
 
-    private final Map<String, JobQueue> jobQueueMap = new HashMap<>();
+    private final Map<String, JobQueue> jobQueueMap = new ConcurrentHashMap<>();
+    private final ReentrantLock jobQueueMapLock = new ReentrantLock();
+    private final Condition jobQueueMapCondition = jobQueueMapLock.newCondition();
 
     private final ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(5);
 
@@ -83,21 +88,14 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
     public void enqueueJob(String key, Callable<List<ListenableFuture<Void>>> mainWorker,
             RollbackCallable rollbackWorker, int maxRetries) {
         JobEntry jobEntry = new JobEntry(key, mainWorker, rollbackWorker, maxRetries);
+        JobQueue jobQueue = jobQueueMap.computeIfAbsent(key, mapKey -> new JobQueue());
+        jobQueue.addEntry(jobEntry);
 
-        synchronized (jobQueueMap) {
-            JobQueue jobQueue = jobQueueMap.getOrDefault(key, null);
-            if (jobQueue == null) {
-                jobQueue = new JobQueue();
-                jobQueueMap.put(key, jobQueue);
-            }
-            jobQueue.addEntry(jobEntry);
+        JobCoordinatorCounters.jobs_pending.inc();
+        JobCoordinatorCounters.jobs_incomplete.inc();
+        JobCoordinatorCounters.jobs_created.inc();
 
-            JobCoordinatorCounters.jobs_pending.inc();
-            JobCoordinatorCounters.jobs_incomplete.inc();
-            JobCoordinatorCounters.jobs_created.inc();
-
-            jobQueueMap.notify();
-        }
+        signalForNexJob();
     }
 
     @Override
@@ -140,18 +138,24 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
      **/
     private void clearJob(JobEntry jobEntry) {
         LOG.trace("About to clear jobkey {}", jobEntry.getKey());
-        synchronized (jobQueueMap) {
-            JobQueue jobQueue = jobQueueMap.get(jobEntry.getKey());
-            jobQueue.setExecutingEntry(null);
-            if (jobQueue.isEmpty()) {
-                LOG.trace("Clear jobkey {}", jobEntry.getKey());
-                jobQueueMap.remove(jobEntry.getKey());
-            }
-
-            jobQueueMap.notify();
+        JobQueue jobQueue = jobQueueMap.get(jobEntry.getKey());
+        jobQueue.setExecutingEntry(null);
+        if (jobQueue.isEmpty()) {
+            LOG.trace("Clear jobkey {}", jobEntry.getKey());
+            jobQueueMap.remove(jobEntry.getKey());
         }
+        signalForNexJob();
         JobCoordinatorCounters.jobs_cleared.inc();
         JobCoordinatorCounters.jobs_incomplete.dec();
+    }
+
+    private void signalForNexJob() {
+        jobQueueMapLock.lock();
+        try {
+            jobQueueMapCondition.signalAll();
+        } finally {
+            jobQueueMapLock.unlock();
+        }
     }
 
     /**
@@ -301,32 +305,38 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
             LOG.info("Starting JobQueue Handler Thread");
             while (true) {
                 try {
-                    synchronized (jobQueueMap) {
-                        Iterator<Map.Entry<String, JobQueue>> it = jobQueueMap.entrySet().iterator();
-                        while (it.hasNext()) {
-                            Map.Entry<String, JobQueue> entry = it.next();
-                            if (entry.getValue().getExecutingEntry() != null) {
-                                JobCoordinatorCounters.job_execute_attempts.inc();
-                                continue;
-                            }
-                            JobEntry jobEntry = entry.getValue().poll();
-                            if (jobEntry != null) {
-                                entry.getValue().setExecutingEntry(jobEntry);
-                                MainTask worker = new MainTask(jobEntry);
-                                LOG.trace("Executing job {}", jobEntry.getKey());
-                                fjPool.execute(worker);
-                                JobCoordinatorCounters.jobs_pending.dec();
-
-                            } else {
-                                it.remove();
-                            }
+                    Iterator<Map.Entry<String, JobQueue>> it = jobQueueMap.entrySet().iterator();
+                    while (it.hasNext()) {
+                        Map.Entry<String, JobQueue> entry = it.next();
+                        if (entry.getValue().getExecutingEntry() != null) {
+                            JobCoordinatorCounters.job_execute_attempts.inc();
+                            continue;
                         }
+                        JobEntry jobEntry = entry.getValue().poll();
+                        if (jobEntry != null) {
+                            entry.getValue().setExecutingEntry(jobEntry);
+                            MainTask worker = new MainTask(jobEntry);
+                            LOG.trace("Executing job {}", jobEntry.getKey());
+                            fjPool.execute(worker);
+                            JobCoordinatorCounters.jobs_pending.dec();
 
-                        jobQueueMap.wait();
+                        } else {
+                            it.remove();
+                        }
                     }
+                    waitForJobEntry();
                 } catch (Exception e) {
                     LOG.error("Exception while executing the tasks", e);
                 }
+            }
+        }
+
+        private void waitForJobEntry() throws InterruptedException {
+            jobQueueMapLock.lock();
+            try {
+                jobQueueMapCondition.await();
+            } finally {
+                jobQueueMapLock.unlock();
             }
         }
     }
