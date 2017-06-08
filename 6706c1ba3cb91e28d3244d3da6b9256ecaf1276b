@@ -139,6 +139,24 @@
     },
     {
       "key": {
+        "uuid": "3afa9182_01e95180",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/MBeanService.java",
+        "patchSetId": 24
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2017-06-08T11:15:04Z",
+      "side": 1,
+      "message": "hope it is to make it non-accessible by others",
+      "parentUuid": "3afa9182_814ee1bf",
+      "revId": "6706c1ba3cb91e28d3244d3da6b9256ecaf1276b",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3afa9182_ba050ac4",
         "filename": "diagstatus/impl/src/main/resources/org/opendaylight/blueprint/diagstatus.xml",
         "patchSetId": 24
