@@ -190,8 +190,6 @@ public class JobCoordinatorTest {
         assertCreated(2);
         Awaitility.await().until(() -> waitingCallable1.isWaiting);
 
-        assertExecuteAttempts(1);
-
         assertIncomplete(2);
         assertPending(1);
         assertThat(!waitingCallable2.isWaiting);
