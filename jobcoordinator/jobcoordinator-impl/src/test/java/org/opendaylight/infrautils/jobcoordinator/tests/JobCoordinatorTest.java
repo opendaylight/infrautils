@@ -40,7 +40,8 @@ import org.opendaylight.infrautils.testutils.RunUntilFailureRule;
  */
 public class JobCoordinatorTest {
 
-    private static final RuntimeException JOB_EXCEPTION = new JobException("Job is failed intentionally");
+    private static final RuntimeException JOB_EXCEPTION = new JobException("Job is failed intentionally",
+            null, true, false);
 
     private static class WaitingCallable implements Callable<List<ListenableFuture<Void>>> {
 
@@ -71,6 +72,11 @@ public class JobCoordinatorTest {
 
         private JobException(String message) {
             super(message);
+        }
+
+        private JobException(String message, Throwable cause, boolean enableSuppression,
+                boolean writableStackTrace) {
+            super(message, cause, enableSuppression, writableStackTrace);
         }
     }
 
