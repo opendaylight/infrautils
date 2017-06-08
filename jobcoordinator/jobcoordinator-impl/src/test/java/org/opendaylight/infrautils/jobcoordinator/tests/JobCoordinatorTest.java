@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.Callable;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.awaitility.Awaitility;
@@ -134,6 +135,7 @@ public class JobCoordinatorTest {
     public void setUp() {
         jobCoordinator = new JobCoordinatorImpl();
         OccurenceCounter.clearAllCounters(new String[] { ".*" }, new String[] { ".*" });
+        Awaitility.setDefaultTimeout(15, TimeUnit.SECONDS);
     }
 
     @After
