@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3afa9182_6cf642d9",
+        "filename": "ready/impl/pom.xml",
+        "patchSetId": 6
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-06-09T19:30:12Z",
+      "side": 1,
+      "message": "This is wrong because bundles-test-lib did not even exist in 1.8.0-Carbon, but as this was commented out in the aggregator it won\u0027t matter now, and I\u0027m expected to just revert this entire commit next week anyway, so .. whatever, let\u0027s get this in as-is, to move forward.",
+      "revId": "d170ca9c297a08c0a7faf553a885d4c633d5b74d",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
