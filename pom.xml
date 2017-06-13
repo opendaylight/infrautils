@@ -13,7 +13,7 @@
     <parent>
       <groupId>org.opendaylight.odlparent</groupId>
       <artifactId>odlparent-lite</artifactId>
-      <version>1.8.0-Carbon</version>
+      <version>1.9.0</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
@@ -35,11 +35,11 @@
         <module>testutils</module>
         <module>itestutils</module>
         <module>counters</module>
-        <!-- This needs a newer version of odlparent than 1.8.0-Carbon -->
+        <!-- This needs a newer version of odlparent than 1.9.0 -->
         <!--module>jobcoordinator</module-->
         <module>inject</module>
         <module>samples</module>
-        <!-- This needs a newer version of odlparent than 1.8.0-Carbon -->
+        <!-- This needs a newer version of odlparent than 1.9.0 -->
         <!--module>ready</module-->
         <module>diagstatus</module>
     </modules>
