@@ -37,7 +37,6 @@
             <classifier>features</classifier>
             <type>xml</type>
         </dependency>
-        <!--
         <dependency>
             <groupId>org.opendaylight.infrautils</groupId>
             <artifactId>jobcoordinator-api</artifactId>
@@ -48,7 +47,6 @@
             <artifactId>jobcoordinator-impl</artifactId>
             <version>${project.version}</version>
         </dependency>
-        -->
         <dependency>
             <groupId>org.opendaylight.infrautils</groupId>
             <artifactId>infrautils-util</artifactId>

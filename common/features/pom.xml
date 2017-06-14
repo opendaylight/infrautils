@@ -29,12 +29,11 @@
         <module>odl-infrautils-all-with-samples</module>
         <module>odl-infrautils-all</module>
         <module>odl-infrautils-counters</module>
-        <!--module>odl-infrautils-jobcoordinator</module-->
+        <module>odl-infrautils-jobcoordinator</module>
         <module>odl-infrautils-counters-sample</module>
         <module>odl-infrautils-inject</module>
         <module>odl-infrautils-utils</module>
-        <!-- This needs the ready module -->
-        <!--module>odl-infrautils-ready</module-->
+        <module>odl-infrautils-ready</module>
     </modules>
 
     <url>${odl.site.url}/${project.groupId}/${stream}/${project.artifactId}/</url>

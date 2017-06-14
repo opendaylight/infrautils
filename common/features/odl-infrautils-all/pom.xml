@@ -26,7 +26,6 @@
     <name>OpenDaylight :: Infrautils :: All</name>
 
     <dependencies>
-        <!--
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>odl-infrautils-jobcoordinator</artifactId>
@@ -34,7 +33,6 @@
             <type>xml</type>
             <classifier>features</classifier>
         </dependency>
-        -->
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>odl-infrautils-inject</artifactId>
@@ -42,7 +40,6 @@
             <type>xml</type>
             <classifier>features</classifier>
         </dependency>
-        <!--
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>odl-infrautils-ready</artifactId>
@@ -50,7 +47,6 @@
             <type>xml</type>
             <classifier>features</classifier>
         </dependency>
-        -->
     </dependencies>
 
 </project>

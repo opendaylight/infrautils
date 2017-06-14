@@ -35,12 +35,10 @@
         <module>testutils</module>
         <module>itestutils</module>
         <module>counters</module>
-        <!-- This needs a newer version of odlparent than 1.9.0 -->
-        <!--module>jobcoordinator</module-->
+        <module>jobcoordinator</module>
         <module>inject</module>
         <module>samples</module>
-        <!-- This needs a newer version of odlparent than 1.9.0 -->
-        <!--module>ready</module-->
+        <module>ready</module>
         <module>diagstatus</module>
     </modules>
 
