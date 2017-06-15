@@ -4,14 +4,14 @@
 	<parent>
 		<groupId>org.opendaylight.odlparent</groupId>
 		<artifactId>odlparent</artifactId>
-		<version>1.7.4-SNAPSHOT</version>
+		<version>1.7.4-Boron-SR4</version>
 		<relativePath/>
 	</parent>
 	<groupId>org.opendaylight.infrautils</groupId>
 	<artifactId>counters-impl</artifactId>
 	<packaging>bundle</packaging>
 	<modelVersion>4.0.0</modelVersion>
-    <version>1.0.4-SNAPSHOT</version>
+    <version>1.0.4-Boron-SR4</version>
     <build>
 		<plugins>
 			<plugin>

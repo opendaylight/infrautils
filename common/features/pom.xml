@@ -5,12 +5,12 @@
     <parent>
         <groupId>org.opendaylight.odlparent</groupId>
         <artifactId>features-parent</artifactId>
-        <version>1.7.4-SNAPSHOT</version>
+        <version>1.7.4-Boron-SR4</version>
         <relativePath/>
     </parent>
     <groupId>org.opendaylight.infrautils</groupId>
     <artifactId>infrautils-features</artifactId>
-    <version>1.0.4-SNAPSHOT</version>
+    <version>1.0.4-Boron-SR4</version>
     <packaging>jar</packaging>
     <properties>
         <config.counters.configfile>org.opendaylight.counters.cfg</config.counters.configfile>
