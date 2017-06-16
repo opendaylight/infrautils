@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1af78d9a_2f5ba555",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobCoordinatorImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-06-16T16:31:38Z",
+      "side": 1,
+      "message": "I\u0027m a little wary of synchronizing on global Strings. \n\nWhy not externally synchronize the JobQueue (and leave the internal Queue as unsynchronized)? So here you would just do:\n\n  JobQueue jobQueue \u003d jobQueueMap.get(jobKey);\n   jobQueue.setExecutingEntry(null);\n\nYou can let the JobQueueHandler remove the JobQueue from the jobQueueMap when empty:\n\n  JobQueue jobQueue \u003d entry.getValue();\n   if (jobQueue.getExecutingEntry() !\u003d null) {\n       continue;\n   }\n\n   synchronized(jobQueue) {\n       JobEntry jobEntry \u003d jobQueue.poll();\n       if (jobEntry !\u003d null) {\n         ...\n       } else  {\n           it.remove();\n           jobQueue.poisoned();\n       }\n  }\n\nIn enqueueJob:\n\n  while(true) {\n      JobQueue jobQueue \u003d jobQueueMap.computeIfAbsent(key, \n              mapKey -\u003e new JobQueue());\n      synchronized(jobQueue) {\n          if (!jobQueue.poisoned()) {\n              jobQueue.addEntry(jobEntry);\n              break;\n          } \n\n          // try again - if it\u0027s been poisoned then we know it\u0027s been removed \n          // from the jobQueueMap.\n      }\n  }\n\nAnother option is to just leave JobQueue entries in the jobQueueMap. I don\u0027t know how this is used but I assume users would continuously or subsequently add more tasks for a key over time. A JobQueue instance doesn\u0027t have a large footprint if empty.",
+      "revId": "3748ae8cff9c58f4e18dbf3bfda566919b2df468",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
