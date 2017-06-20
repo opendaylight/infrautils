@@ -152,10 +152,10 @@ public abstract class AbstractIntegrationTest {
         };
     }
 
+    // TODO Remove isKaraf4 in next clean-up (it used to be for opendaylight-karaf4-empty VS opendaylight-karaf-empty)
     protected MavenUrlReference getKarafURL(boolean isKaraf4) {
-        final String karafArtifactId = isKaraf4 ? "opendaylight-karaf4-empty" : "opendaylight-karaf-empty";
         return maven().groupId("org.opendaylight.odlparent")
-                   .artifactId(karafArtifactId).versionAsInProject().type("tar.gz");
+                   .artifactId("opendaylight-karaf-empty").versionAsInProject().type("tar.gz");
         // NB the tar.gz is almost half the size of the zip, so use that, even for Windows (works fine)
     }
 
