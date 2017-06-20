@@ -140,11 +140,11 @@ public abstract class AbstractIntegrationTest {
             // mavenBundle(maven("com.google.guava", "guava").versionAsInProject()),
 
             // TODO don't specify this here like this, but in pom.xml and read from there (veithen/alta ?)
-            // features(maven("org.opendaylight.infrautils","infrautils-features4", "1.2.0-SNAPSHOT")
+            // features(maven("org.opendaylight.infrautils","infrautils-features", "1.2.0-SNAPSHOT")
             //        .classifier("features").type("xml"), "odl-infrautils-caches-sample"),
 
             // TODO why does this, intentionally with a bad feature name, not fail the test???
-            // features(maven("org.opendaylight.infrautils","infrautils-features4", "1.1.0-SNAPSHOT")
+            // features(maven("org.opendaylight.infrautils","infrautils-features", "1.1.0-SNAPSHOT")
             //       .classifier("features").type("xml"), "odl-infrautils-caches-sampleXXX")
 
             when(featureRepositoryURL() != null)
@@ -152,10 +152,10 @@ public abstract class AbstractIntegrationTest {
         };
     }
 
+    // TODO Remove isKaraf4 in next clean-up (it used to be for opendaylight-karaf4-empty VS opendaylight-karaf-empty)
     protected MavenUrlReference getKarafURL(boolean isKaraf4) {
-        final String karafArtifactId = isKaraf4 ? "opendaylight-karaf4-empty" : "opendaylight-karaf-empty";
         return maven().groupId("org.opendaylight.odlparent")
-                   .artifactId(karafArtifactId).versionAsInProject().type("tar.gz");
+                   .artifactId("opendaylight-karaf-empty").versionAsInProject().type("tar.gz");
         // NB the tar.gz is almost half the size of the zip, so use that, even for Windows (works fine)
     }
 

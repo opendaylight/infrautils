@@ -13,7 +13,7 @@
     <parent>
       <groupId>org.opendaylight.odlparent</groupId>
       <artifactId>odlparent-lite</artifactId>
-      <version>1.9.0</version>
+      <version>2.0.0</version>
       <relativePath/>
     </parent>
 
@@ -27,14 +27,6 @@
 
     <dependencyManagement>
         <dependencies>
-            <dependency>
-                <groupId>org.opendaylight.infrautils</groupId>
-                <artifactId>features-infrautils</artifactId>
-                <classifier>features</classifier>
-                <type>xml</type>
-                <version>${project.version}</version>
-            </dependency>
-
             <dependency>
               <groupId>${project.groupId}</groupId>
               <artifactId>ready-api</artifactId>
@@ -54,7 +46,7 @@
 
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>infrautils-features4</artifactId>
+                <artifactId>infrautils-features</artifactId>
                 <version>${project.version}</version>
                 <type>xml</type>
                 <classifier>features</classifier>

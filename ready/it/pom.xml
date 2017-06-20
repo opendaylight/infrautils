@@ -32,7 +32,7 @@
 
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>infrautils-features4</artifactId>
+      <artifactId>infrautils-features</artifactId>
       <version>${project.version}</version>
       <type>xml</type>
       <classifier>features</classifier>

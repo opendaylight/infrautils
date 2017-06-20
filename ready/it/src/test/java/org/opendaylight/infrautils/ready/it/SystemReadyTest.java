@@ -43,7 +43,7 @@ public class SystemReadyTest extends AbstractIntegrationTest {
     protected UrlReference featureRepositoryURL() {
         return maven()
                 .groupId("org.opendaylight.infrautils")
-                .artifactId("infrautils-features4")
+                .artifactId("infrautils-features")
                 .classifier("features")
                 .type("xml")
                 .versionAsInProject();
