@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa2559ec_5e46b524",
+        "filename": "common/features/infrautils-features/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 3276
+      },
+      "writtenOn": "2017-06-21T14:59:50Z",
+      "side": 1,
+      "message": "Could you explain change being done in this file?",
+      "revId": "e6065e196e9abb9131b7baceb46d46043282df89",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
