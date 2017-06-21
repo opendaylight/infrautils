@@ -11,6 +11,7 @@ import static org.junit.Assert.assertEquals;
 import static org.ops4j.pax.exam.CoreOptions.maven;
 
 import javax.inject.Inject;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.opendaylight.infrautils.itestutils.AbstractIntegrationTest;
 import org.opendaylight.infrautils.ready.SystemReadyMonitor;
@@ -32,6 +33,7 @@ public class SystemReadyTest extends AbstractIntegrationTest {
     // private volatile boolean isReady = false;
 
     @Test
+    @Ignore // TODO This can't work reliably as-is; it needs to await isReady.. which needs Awaitility in Pax Exam
     public void testSystemState() {
         // systemReadyMonitor.registerListener(() -> isReady = true);
         assertEquals(SystemState.ACTIVE, systemReadyMonitor.getSystemState());
