@@ -16,6 +16,24 @@
       "revId": "e6065e196e9abb9131b7baceb46d46043282df89",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa2559ec_3ebae1e1",
+        "filename": "common/features/infrautils-features/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-06-21T15:24:57Z",
+      "side": 1,
+      "message": "This diff looks confusing, but what really happened here is that the old Karaf 3 common/features/infrautils-features (with its features.xml) was removed, and the common/features/infrautils-features4 was renamed to infrautils-features, so most of what you see here is \"just\" what used to be infrautils-features4/pom.xml ... HTH?",
+      "parentUuid": "fa2559ec_5e46b524",
+      "revId": "e6065e196e9abb9131b7baceb46d46043282df89",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
