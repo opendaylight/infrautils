@@ -17,6 +17,7 @@ import static org.ops4j.pax.exam.karaf.options.KarafDistributionOption.features;
 import static org.ops4j.pax.exam.karaf.options.KarafDistributionOption.keepRuntimeFolder;
 
 import java.io.File;
+import org.awaitility.Awaitility;
 import org.junit.runner.RunWith;
 import org.ops4j.io.FileUtils;
 import org.ops4j.pax.exam.Configuration;
@@ -41,8 +42,6 @@ import org.slf4j.LoggerFactory;
 public abstract class AbstractIntegrationTest {
 
     // TODO compare if anything to take from org.opendaylight.controller.config.it.base.AbstractConfigTestBase?
-
-    // TODO @RunWith(PaxExamParameterized) to allow running automatically under both Karaf 3 & 4 ?
 
     // TODO integrate this with infra.ready/bundle[4]-test to ensure all bundles have finished wiring before test start
     //        and/or use @Inject protected [private?] org.apache.karaf.features.BootFinished bootFinished; ?
@@ -170,7 +169,18 @@ public abstract class AbstractIntegrationTest {
     @ProbeBuilder
     public TestProbeBuilder probeConfiguration(TestProbeBuilder probe) {
         probe.addTest(AbstractIntegrationTest.class);
-        // TODO util to enumerate all inner classes; probe.addTest(LogRule.class);
+
+        // TODO Test ReflectionUtil.addAllClassesInSameAndSubPackageOfClass(probe, LogRule.class);
+
+        // adding this so that loading of Awaitility and its dependencies works
+        // We have to "help" Pax Exam with what classes need to be bundled with its probe:
+        ReflectionUtil.addAllClassesInSameAndSubPackageOfClass(probe, Awaitility.class);
+        ReflectionUtil.addAllClassesInSamePackage(probe, "com.google.common.base");
+        ReflectionUtil.addAllClassesInSamePackage(probe, "com.google.common.collect");
+        ReflectionUtil.addAllClassesInSamePackage(probe, "com.google.common.eventbus");
+        ReflectionUtil.addAllClassesInSamePackage(probe, "com.google.common.io");
+        ReflectionUtil.addAllClassesInSamePackage(probe, "com.google.common.truth");
+
         return probe;
     }
 

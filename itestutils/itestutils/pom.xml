@@ -32,6 +32,11 @@
       <scope>compile</scope>
     </dependency>
     <dependency>
+      <groupId>org.awaitility</groupId>
+      <artifactId>awaitility</artifactId>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>infrautils-testutils</artifactId>
       <version>${project.version}</version>

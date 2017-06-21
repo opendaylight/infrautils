@@ -7,6 +7,8 @@
  */
 package org.opendaylight.infrautils.itestutils.it;
 
+import com.google.common.truth.Truth;
+import org.awaitility.Awaitility;
 import org.junit.Test;
 import org.opendaylight.infrautils.itestutils.AbstractIntegrationTest;
 import org.ops4j.pax.exam.options.UrlReference;
@@ -42,9 +44,14 @@ public class SampleIntegrationTest extends AbstractIntegrationTest {
         return null;
     }
 
-//    @Test
-//    public void testGoogleTruthWorksInsideOSGi() {
-//        assertThat(Boolean.TRUE).isTrue();
-//    }
+    @Test
+    public void testAwaitilityWorksInsideOSGi() {
+        Awaitility.await().until(() -> true);
+    }
+
+    @Test
+    public void testGoogleTruthWorksInsideOSGi() {
+        Truth.assertThat(Boolean.TRUE).isTrue();
+    }
 
 }

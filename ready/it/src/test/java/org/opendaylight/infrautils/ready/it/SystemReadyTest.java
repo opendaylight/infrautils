@@ -7,11 +7,12 @@
  */
 package org.opendaylight.infrautils.ready.it;
 
+import static org.awaitility.Awaitility.await;
 import static org.junit.Assert.assertEquals;
 import static org.ops4j.pax.exam.CoreOptions.maven;
 
+import java.util.concurrent.atomic.AtomicBoolean;
 import javax.inject.Inject;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.opendaylight.infrautils.itestutils.AbstractIntegrationTest;
 import org.opendaylight.infrautils.ready.SystemReadyMonitor;
@@ -30,12 +31,12 @@ public class SystemReadyTest extends AbstractIntegrationTest {
 
     @Inject SystemReadyMonitor systemReadyMonitor;
 
-    // private volatile boolean isReady = false;
+    private final AtomicBoolean isReady = new AtomicBoolean(false);
 
     @Test
-    @Ignore // TODO This can't work reliably as-is; it needs to await isReady.. which needs Awaitility in Pax Exam
     public void testSystemState() {
-        // systemReadyMonitor.registerListener(() -> isReady = true);
+        systemReadyMonitor.registerListener(() -> isReady.set(true));
+        await().untilTrue(isReady);
         assertEquals(SystemState.ACTIVE, systemReadyMonitor.getSystemState());
     }
 
