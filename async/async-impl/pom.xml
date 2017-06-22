@@ -4,14 +4,14 @@
     <parent>
         <groupId>org.opendaylight.odlparent</groupId>
         <artifactId>odlparent</artifactId>
-        <version>1.7.4-SNAPSHOT</version>
+        <version>1.7.5-SNAPSHOT</version>
     <relativePath/>
     </parent>
     <groupId>org.opendaylight.infrautils</groupId>
     <artifactId>async-impl</artifactId>
     <packaging>bundle</packaging>
     <modelVersion>4.0.0</modelVersion>
-    <version>1.0.4-SNAPSHOT</version>
+    <version>1.0.5-SNAPSHOT</version>
     <build>
         <plugins>
             <plugin>
