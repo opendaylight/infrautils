@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa2559ec_406887f5",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobCoordinatorImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-06-22T18:20:15Z",
+      "side": 1,
+      "message": "would this code perhaps be a little clearer if you just returned true instead of jobExists \u003d true and breaks, and return false at the end? Just because there\u0027s already a return false anyway, at the top..",
+      "revId": "b9df915dde8dd42f0320412ccef917fa32e9bfd1",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
