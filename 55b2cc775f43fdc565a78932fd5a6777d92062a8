@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa2559ec_4c3c3d94",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobCoordinatorImpl.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-06-23T19:09:46Z",
+      "side": 1,
+      "message": "This won\u0027t return null but it\u0027s ok to check",
+      "revId": "55b2cc775f43fdc565a78932fd5a6777d92062a8",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa2559ec_0c5245dd",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobCoordinatorImpl.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-06-23T19:09:46Z",
+      "side": 1,
+      "message": "Wondering why we loop here instead of just await since we check for jobs in the run method - isJobExistsToExecute seems redundant.",
+      "revId": "55b2cc775f43fdc565a78932fd5a6777d92062a8",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
