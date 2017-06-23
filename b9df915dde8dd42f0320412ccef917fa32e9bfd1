@@ -16,6 +16,24 @@
       "revId": "b9df915dde8dd42f0320412ccef917fa32e9bfd1",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa2559ec_d653a16a",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobCoordinatorImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 5278
+      },
+      "writtenOn": "2017-06-23T05:19:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa2559ec_406887f5",
+      "revId": "b9df915dde8dd42f0320412ccef917fa32e9bfd1",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
