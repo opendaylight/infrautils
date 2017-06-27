@@ -51,6 +51,24 @@
       "revId": "55b2cc775f43fdc565a78932fd5a6777d92062a8",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da2a55be_d8b59932",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobCoordinatorImpl.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-06-27T11:19:48Z",
+      "side": 1,
+      "message": "re: #2, processing/checks in isJobExistsToExecute and JobQueueHandler#run are essentially equivalent, i.e. they both iterate the JobQueue entries and check getExecutingEntry and one checks isEmpty and the other calls poll. So the processing is redundant.  However, this isn\u0027t a big deal. I understand the concern re: #1.  I think you could also alleviate #1 by using a  boolean flag to indicate if a job is present.  In signalForNexJob, set the flag and in waitForJobIfNeeded, check the flag in lieu of isJobExistsToExecute.",
+      "parentUuid": "da2a55be_529eaa57",
+      "revId": "55b2cc775f43fdc565a78932fd5a6777d92062a8",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
