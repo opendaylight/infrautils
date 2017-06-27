@@ -69,6 +69,24 @@
       "revId": "55b2cc775f43fdc565a78932fd5a6777d92062a8",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da2a55be_78caada2",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobCoordinatorImpl.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-06-27T14:40:43Z",
+      "side": 1,
+      "message": "Also clear the flag after the while loop in waitForJobIfNeeded.",
+      "parentUuid": "da2a55be_d8b59932",
+      "revId": "55b2cc775f43fdc565a78932fd5a6777d92062a8",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
