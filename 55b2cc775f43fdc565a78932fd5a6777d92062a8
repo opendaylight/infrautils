@@ -33,6 +33,24 @@
       "revId": "55b2cc775f43fdc565a78932fd5a6777d92062a8",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da2a55be_529eaa57",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobCoordinatorImpl.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 5278
+      },
+      "writtenOn": "2017-06-27T02:57:34Z",
+      "side": 1,
+      "message": "This is being added for two reasons.\n\n1. When jobs are enqueued after iterator in JobQueueHandler crossed its Map.Entry and if we don\u0027t have this check, then there will be ~1 sec delay in processing that job entry. This check will avoid that.\n2. When there is no job entries in any of the job queue, it is unnecessary to run the loop in JobQueueHandler (which has unnecessary polling of the queue though it is empty) and avoided by isJobExistsToExecute method.",
+      "parentUuid": "fa2559ec_0c5245dd",
+      "revId": "55b2cc775f43fdc565a78932fd5a6777d92062a8",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
