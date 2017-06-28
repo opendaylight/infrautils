@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da2a55be_c84ae226",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobCoordinatorImpl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-06-28T13:33:11Z",
+      "side": 1,
+      "message": "It doesn\u0027t need to be volatile since it\u0027s accessed while holding jobQueueMapLock. In fact you can add @GuardedBy(\"jobQueueMapLock\") to explicitly indicate that.",
+      "range": {
+        "startLine": 58,
+        "startChar": 12,
+        "endLine": 58,
+        "endChar": 20
+      },
+      "revId": "f34cf27a2eee3ce9888080b678aff1942d6e0445",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
