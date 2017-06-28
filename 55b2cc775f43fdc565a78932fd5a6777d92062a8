@@ -87,6 +87,24 @@
       "revId": "55b2cc775f43fdc565a78932fd5a6777d92062a8",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da2a55be_326331b3",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobCoordinatorImpl.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 5278
+      },
+      "writtenOn": "2017-06-28T04:58:32Z",
+      "side": 1,
+      "message": "Yes Tom, I agree. It reduces time complexity.",
+      "parentUuid": "da2a55be_78caada2",
+      "revId": "55b2cc775f43fdc565a78932fd5a6777d92062a8",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
