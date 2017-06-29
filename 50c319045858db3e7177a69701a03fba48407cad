@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "da2a55be_172ff7a2",
+        "filename": "jobcoordinator/jobcoordinator-api/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 5861
+      },
+      "writtenOn": "2017-06-29T14:27:12Z",
+      "side": 1,
+      "message": "I think it should be like that, but I had to get this working. Otherwise, Karaf cannot resolve the dependencies. I can provide you with the errors and we can investigate it.",
+      "parentUuid": "da2a55be_f79b4370",
+      "revId": "50c319045858db3e7177a69701a03fba48407cad",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da2a55be_378ddb32",
         "filename": "jobcoordinator/jobcoordinator-impl/pom.xml",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2017-06-29T13:49:46Z",
       "side": 1,
       "message": "This is wrong; the jobcoordinator.internal package SHOULD be be private - why/where do you need to consume (directly access) this package? You should only ever use the API, not the Impl...",
+      "revId": "50c319045858db3e7177a69701a03fba48407cad",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da2a55be_b709ca2e",
+        "filename": "jobcoordinator/jobcoordinator-impl/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 5861
+      },
+      "writtenOn": "2017-06-29T14:27:12Z",
+      "side": 1,
+      "message": "Yes, I know, but that\u0027s the only way I found to get Karaf resolving the dependencies. I tried different recipes, without exporting anything, exporting only the API and finally exporting the implementation which finally solved the problem; but I agree, it is better to find out the root cause of this problem. BTW, the counters-* bundles are also exporting both the api and the impl packages.",
+      "parentUuid": "da2a55be_378ddb32",
       "revId": "50c319045858db3e7177a69701a03fba48407cad",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
