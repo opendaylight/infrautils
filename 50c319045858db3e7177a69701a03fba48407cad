@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da2a55be_f79b4370",
+        "filename": "jobcoordinator/jobcoordinator-api/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-06-29T13:49:46Z",
+      "side": 1,
+      "message": "This should not be needed, as by default this package should already be exported, see the maven-bundle-plugin / BND documentation. Are you seeing an actual problem where this package is private?  If that\u0027s the case, I\u0027d like to investigate why this doens\u0027t work like it whould out of the box (e.g. we may have a wrong maven-bundle-plugin configuration in odlparent).",
+      "revId": "50c319045858db3e7177a69701a03fba48407cad",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da2a55be_378ddb32",
+        "filename": "jobcoordinator/jobcoordinator-impl/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-06-29T13:49:46Z",
+      "side": 1,
+      "message": "This is wrong; the jobcoordinator.internal package SHOULD be be private - why/where do you need to consume (directly access) this package? You should only ever use the API, not the Impl...",
+      "revId": "50c319045858db3e7177a69701a03fba48407cad",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
