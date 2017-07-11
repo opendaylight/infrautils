@@ -12,13 +12,13 @@
   <parent>
     <groupId>org.opendaylight.odlparent</groupId>
     <artifactId>odlparent</artifactId>
-    <version>1.8.1-SNAPSHOT</version>
+    <version>1.8.1-Carbon</version>
     <relativePath />
   </parent>
 
   <groupId>org.opendaylight.infrautils</groupId>
   <artifactId>inject.guice.testutils</artifactId>
-  <version>1.1.1-SNAPSHOT</version>
+  <version>1.1.1-Carbon</version>
   <!-- <name> formatting is used by autorelease to parse and notify projects on
        build failure. Please do not modify this unless you have a good reason. -->
   <name>ODL :: infrautils :: ${project.artifactId}</name>
