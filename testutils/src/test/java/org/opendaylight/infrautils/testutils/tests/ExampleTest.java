@@ -17,7 +17,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Example.
+ * Unit test, and example, of how to use the {@link LogRule} and {@link RunUntilFailureRule}.
  *
  * @author Michael Vorburger
  */
