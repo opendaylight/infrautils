@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "da2a55be_2dd723c3",
+        "filename": "common/util/src/test/java/org/opendaylight/infrautils/utils/concurrent/tests/SlowExecutor.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-07-11T18:49:53Z",
+      "side": 1,
+      "message": "Making it public here wouldn\u0027t be sufficient for it to be generally reusable (because this is in a src/test..) but I\u0027ve now moved it into src/main of testutils.concurrent, which makes it available to others, too.",
+      "parentUuid": "ba068154_c0a0eaf6",
+      "revId": "6dee18ed3cf7cdbc178bc04d1c42dd77e80c81e2",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba068154_40651ae0",
         "filename": "common/util/src/test/java/org/opendaylight/infrautils/utils/concurrent/tests/SlowExecutor.java",
         "patchSetId": 3
@@ -30,6 +48,24 @@
       "writtenOn": "2017-05-09T22:49:23Z",
       "side": 1,
       "message": "How about making the interval random between say 10 and 100?",
+      "revId": "6dee18ed3cf7cdbc178bc04d1c42dd77e80c81e2",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da2a55be_0defbf88",
+        "filename": "common/util/src/test/java/org/opendaylight/infrautils/utils/concurrent/tests/SlowExecutor.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-07-11T18:49:53Z",
+      "side": 1,
+      "message": "Sure... 30..100? Done.",
+      "parentUuid": "ba068154_40651ae0",
       "revId": "6dee18ed3cf7cdbc178bc04d1c42dd77e80c81e2",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
