@@ -25,7 +25,7 @@ import org.slf4j.LoggerFactory;
  * <p>Usage:
  *
  * <pre>
- *   public {@literal @}Rule LogCaptureRule logRule = new LogCaptureRule();
+ *   public {@literal @}Rule LogCaptureRule logCaptureRule = new LogCaptureRule();
  *
  *   {@literal @}Test ...
  *
