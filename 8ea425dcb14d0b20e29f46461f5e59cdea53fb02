@@ -22,6 +22,23 @@
       "revId": "8ea425dcb14d0b20e29f46461f5e59cdea53fb02",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da2a55be_c8811591",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/concurrent/MoreFutures.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 5278
+      },
+      "writtenOn": "2017-07-12T05:59:06Z",
+      "side": 1,
+      "message": "can we add another utility method which can take Object as arg ? This would avoid pre-computation of object.toString().\nOr you are making it to open for others to add those methods as needed.",
+      "revId": "8ea425dcb14d0b20e29f46461f5e59cdea53fb02",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
