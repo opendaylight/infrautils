@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "da2a55be_52231305",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/concurrent/FailureLoggingFutureCallback.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-07-12T14:25:43Z",
+      "side": 1,
+      "message": "are you sure that\u0027s a valid / frequent need?  I\u0027d go on the assumption that in 99% of cases, we\u0027ll want to use this utility to attach it to the Future returned by a DataBroker Tx submit. IF that failed, it really is an error, not a warn, do you agree?  In more specific cases, the caller perhaps should just add his own listener, instead of using this, which is essentially just an (IMHO very convenient) short cut.  If when starting to use this we see that we truly have a need to attach failure callbacks which only warn instead of error, then let\u0027s revisit this discussion and extend this - would that work for you?",
+      "parentUuid": "da2a55be_88f9ddca",
+      "range": {
+        "startLine": 40,
+        "startChar": 15,
+        "endLine": 40,
+        "endChar": 20
+      },
+      "revId": "8ea425dcb14d0b20e29f46461f5e59cdea53fb02",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da2a55be_c8811591",
         "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/concurrent/MoreFutures.java",
         "patchSetId": 2
@@ -36,6 +60,24 @@
       "writtenOn": "2017-07-12T05:59:06Z",
       "side": 1,
       "message": "can we add another utility method which can take Object as arg ? This would avoid pre-computation of object.toString().\nOr you are making it to open for others to add those methods as needed.",
+      "revId": "8ea425dcb14d0b20e29f46461f5e59cdea53fb02",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da2a55be_f27967fd",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/concurrent/MoreFutures.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-07-12T14:25:43Z",
+      "side": 1,
+      "message": "\u003e can we add another utility method which can take Object as arg ? This would avoid pre-computation of object.toString().\n\nThat\u0027s a very good point actually - why don\u0027t I just make this method\u0027s argument Object right away?  And then toString it in the FailureLoggingFutureCallback .. the usual slf4j practice of not toString doesn\u0027t apply here, as that toString will anyway only get called in case of an error.\n\nMaybe I could even already implement the idea I had to directly support message format arg1, arg2, Object... args here - let me try.\n\n\u003e Or you are making it to open for others to add those methods as needed.\n\nNo I think it make lead to less \"scattering\" of code all around if we kept this utility only here (but do of course just raise changes in infrautils for enhancements do this!) instead of e.g. subclasses of this elsewhere.  In fact, let me make this class final! ;)",
+      "parentUuid": "da2a55be_c8811591",
       "revId": "8ea425dcb14d0b20e29f46461f5e59cdea53fb02",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
