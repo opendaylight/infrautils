@@ -10,6 +10,7 @@ package org.opendaylight.infrautils.utils.concurrent;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.common.util.concurrent.MoreExecutors;
+import java.util.concurrent.CompletionStage;
 import org.slf4j.Logger;
 
 /**
@@ -22,6 +23,14 @@ import org.slf4j.Logger;
 public final class ListenableFutures {
 
     private ListenableFutures() { }
+
+    /**
+     * Converts a Guava ListenableFuture to a Java 8 CompletionStage.
+     * Callers should not cast the returned CompletionStage by this method to CompletableFuture (as it may not be one).
+     */
+    public static <V> CompletionStage<V> toCompletionStage(ListenableFuture<V> future) {
+        return CompletionStageWrapper.wrap(new ListenableToCompletableFutureWrapper<>(future));
+    }
 
     /**
      * Adds a callback to a ListenableFuture which logs any failures.
