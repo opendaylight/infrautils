@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da2a55be_2bf426f1",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/concurrent/MoreFutures.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 5278
+      },
+      "writtenOn": "2017-07-13T05:31:21Z",
+      "side": 1,
+      "message": "Nit: shouldn\u0027t we also make this constructor to throw with AssertionError(\"MoreFutures can not be initialized\") ?",
+      "revId": "167d397ac6ce46fb8698434bfd3d7c7cf0dc0e2f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
