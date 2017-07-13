@@ -16,6 +16,24 @@
       "revId": "167d397ac6ce46fb8698434bfd3d7c7cf0dc0e2f",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da2a55be_01d783c2",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/concurrent/MoreFutures.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-07-13T12:25:01Z",
+      "side": 1,
+      "message": "Nah, that\u0027s usually never done.. the typically pattern is to just make any class that only has static methods final and a private constructor. Then there\u0027s no way that a user can do new MoreFutures() anyway, so need need for a throw.",
+      "parentUuid": "da2a55be_2bf426f1",
+      "revId": "167d397ac6ce46fb8698434bfd3d7c7cf0dc0e2f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
