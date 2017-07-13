@@ -69,8 +69,10 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
 
     @PreDestroy
     public void destroy() {
+        LOG.info("JobCoordinator shutting down... (tasks still running may be stopped/cancelled/interrupted)");
         fjPool.shutdownNow();
         scheduledExecutorService.shutdownNow();
+        LOG.info("JobCoordinator now closed for business.");
     }
 
     @Override
