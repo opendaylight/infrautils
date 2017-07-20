@@ -279,7 +279,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
                 futures = jobEntry.getMainWorker().call();
                 long jobExecutionTimeNanos = System.nanoTime() - jobStartTimestampNanos;
                 printJobs(jobEntry.getKey(), TimeUnit.NANOSECONDS.toMillis(jobExecutionTimeNanos));
-            } catch (Exception e) {
+            } catch (Throwable e) {
                 JobCoordinatorCounters.jobs_failed.inc();
                 LOG.error("Exception when executing jobEntry: {}", jobEntry, e);
             }
