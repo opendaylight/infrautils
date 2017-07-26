@@ -8,7 +8,8 @@
 package org.opendaylight.infrautils.utils.mdc;
 
 import com.google.common.annotations.Beta;
-import com.google.common.base.Strings;
+import com.google.common.io.BaseEncoding;
+import com.google.common.primitives.Longs;
 import java.util.concurrent.atomic.AtomicLong;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,14 +53,11 @@ public final class ExecutionOrigin extends MDCEntry {
 
     private static final AtomicLong NEXT_ID = new AtomicLong();
 
-    // base 32 is chosen because the implementation is faster than a higher one
-    // (bigger ones internally use BigInteger, in Java 8 at least), and because
-    // using e.g. 36 (for 26 letter plus 10 digits..) the max. long would give
-    // "3W5E11264SGSE" instead of "FVVVVVVVVVVVU" (in base 32) - but both are 13 chars
-    // long, so a higher base would just make it slower without getting us a
-    // shorter String ID (and the shorter the better, in logs)
-    private static final int RADIX = 32;
-    private static final int ID_STRING_MAX_LENGTH = 13;
+    // base 32 is chosen because we want as short as possible String ID for the logs, but:
+    //   * in a base64 encoding we would save just 2 (of 13) characters,
+    //     but the mixed upper/lower case  could be confusing to log readers (and the '+' and '/' are ugly)
+    //   * using e.g. 36 (for 26 letter plus 10 digits..) encoding the max. long value would also be 13 chars
+    private static final BaseEncoding ENCODING = BaseEncoding.base32();
 
     /**
      * Returns the next origin ID.
@@ -123,9 +121,7 @@ public final class ExecutionOrigin extends MDCEntry {
     @Override
     public String mdcValueString() {
         if (idAsString == null) {
-            final String nextIdString = Long.toUnsignedString(id, RADIX).toUpperCase();
-            final String paddedNextIdString = Strings.padStart(nextIdString, ID_STRING_MAX_LENGTH, '0');
-            this.idAsString = paddedNextIdString;
+            idAsString = ENCODING.encode(Longs.toByteArray(id));
         }
         return idAsString;
     }

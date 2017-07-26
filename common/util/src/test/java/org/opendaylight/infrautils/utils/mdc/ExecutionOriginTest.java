@@ -38,18 +38,18 @@ public class ExecutionOriginTest {
     @Test
     public void testOriginsNextIdImplementation() {
         ExecutionOrigin.resetOriginID_used_only_for_testing(0);
-        assertThat(ExecutionOrigin.next().toString()).isEqualTo("0000000000000");
-        assertThat(ExecutionOrigin.next().toString()).isEqualTo("0000000000001");
-        assertThat(ExecutionOrigin.next().toString()).isEqualTo("0000000000002");
-        assertThat(ExecutionOrigin.next().toString()).isEqualTo("0000000000003");
+        assertThat(ExecutionOrigin.next().toString()).isEqualTo("AAAAAAAAAAAAA===");
+        assertThat(ExecutionOrigin.next().toString()).isEqualTo("AAAAAAAAAAAAC===");
+        assertThat(ExecutionOrigin.next().toString()).isEqualTo("AAAAAAAAAAAAE===");
+        assertThat(ExecutionOrigin.next().toString()).isEqualTo("AAAAAAAAAAAAG===");
 
         ExecutionOrigin.resetOriginID_used_only_for_testing(0xfe2abf3f4fcfdf8fL);
-        assertThat(ExecutionOrigin.next().toString()).isEqualTo("FSALV7T7SVNSF");
+        assertThat(ExecutionOrigin.next().toString()).isEqualTo("7YVL6P2PZ7PY6===");
 
         ExecutionOrigin.resetOriginID_used_only_for_testing(0xffffffffffffffffL - 1);
-        assertThat(ExecutionOrigin.next().toString()).isEqualTo("FVVVVVVVVVVVU");
-        assertThat(ExecutionOrigin.next().toString()).isEqualTo("FVVVVVVVVVVVV");
-        assertThat(ExecutionOrigin.next().toString()).isEqualTo("0000000000000");
+        assertThat(ExecutionOrigin.next().toString()).isEqualTo("7777777777774===");
+        assertThat(ExecutionOrigin.next().toString()).isEqualTo("7777777777776===");
+        assertThat(ExecutionOrigin.next().toString()).isEqualTo("AAAAAAAAAAAAA===");
     }
 
 
