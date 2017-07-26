@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da2a55be_2c84120b",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/mdc/MDCs.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 4540
+      },
+      "writtenOn": "2017-07-26T15:42:04Z",
+      "side": 1,
+      "message": "“overwriting” ;-)",
+      "revId": "7554d8b60deacdad8b1b34742930de27b6ac1b8a",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da2a55be_cc64564b",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/mdc/MDCs.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 4540
+      },
+      "writtenOn": "2017-07-26T15:42:04Z",
+      "side": 1,
+      "message": "I think this would be better:\n\n    if (oldValue !\u003d null \u0026\u0026 !oldValue.equals(val)) {\n\nThat way, multiple points in a code sequence can inject the same value (e.g. a correlation id) without breaking anything, but a change in MDC value will be caught. If we exclude all MDC writes with a pre-existing value, we’ll end up having to track on the client side whether a value has been written yet or not (or we’ll just find MDC.remove() before MDC.put() everywhere).",
+      "revId": "7554d8b60deacdad8b1b34742930de27b6ac1b8a",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da2a55be_0cb02ef3",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/mdc/MDCs.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 4540
+      },
+      "writtenOn": "2017-07-26T15:42:04Z",
+      "side": 1,
+      "message": "Might as well use putCloseable() here, it’s designed for this:\n\n    try (MDC.MDCCloseable closeable \u003d MDC.putCloseable(key, val) {\n        runnable.run();\n    }\n\n(and extract the validation from MDCs.put()).\n\n(Although that ruins the nice common implementation with the putAll variant below...)",
+      "revId": "7554d8b60deacdad8b1b34742930de27b6ac1b8a",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da2a55be_2c5c127e",
+        "filename": "common/util/src/test/java/org/opendaylight/infrautils/utils/mdc/MDCTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 4540
+      },
+      "writtenOn": "2017-07-26T15:42:04Z",
+      "side": 1,
+      "message": "This needs to be split, since one part of the test expects an exception and the other doesn’t.",
+      "revId": "7554d8b60deacdad8b1b34742930de27b6ac1b8a",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da2a55be_0c5f8e73",
+        "filename": "common/util/src/test/java/org/opendaylight/infrautils/utils/mdc/MDCTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 4540
+      },
+      "writtenOn": "2017-07-26T15:42:04Z",
+      "side": 1,
+      "message": "As above.",
+      "revId": "7554d8b60deacdad8b1b34742930de27b6ac1b8a",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da2a55be_6c556a4f",
+        "filename": "common/util/src/test/java/org/opendaylight/infrautils/utils/mdc/OriginsTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 4540
+      },
+      "writtenOn": "2017-07-26T15:42:04Z",
+      "side": 1,
+      "message": "Origins doesn’t make any implementation guarantees, yet your test relies on the internal implementation detail...",
+      "revId": "7554d8b60deacdad8b1b34742930de27b6ac1b8a",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
