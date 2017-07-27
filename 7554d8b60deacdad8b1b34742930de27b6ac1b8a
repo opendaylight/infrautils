@@ -142,6 +142,24 @@
     },
     {
       "key": {
+        "uuid": "da2a55be_457e796c",
+        "filename": "common/util/src/test/java/org/opendaylight/infrautils/utils/mdc/MDCTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 4540
+      },
+      "writtenOn": "2017-07-27T09:27:26Z",
+      "side": 1,
+      "message": "Yeah, I know there are two sides to the argument. I definitely agree we shouldn’t be testing MDC! Basically this stumbles on the difference between “test code as demo code” (which is your original intent as I understand it, on top of the unit test of course) and plain unit test code.",
+      "parentUuid": "da2a55be_257385b2",
+      "revId": "7554d8b60deacdad8b1b34742930de27b6ac1b8a",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da2a55be_0c5f8e73",
         "filename": "common/util/src/test/java/org/opendaylight/infrautils/utils/mdc/MDCTest.java",
         "patchSetId": 1
