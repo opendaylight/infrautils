@@ -117,6 +117,52 @@
     },
     {
       "key": {
+        "uuid": "da2a55be_fb72adab",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/mdc/MDCs.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2017-07-27T20:02:13Z",
+      "side": 1,
+      "message": "Import MDCCloseable",
+      "range": {
+        "startLine": 58,
+        "startChar": 13,
+        "endLine": 58,
+        "endChar": 29
+      },
+      "revId": "5f16cd1aabb93bd7486c18a0db6590ed47f0ad86",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da2a55be_1b7061a4",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/mdc/MDCs.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2017-07-27T20:02:13Z",
+      "side": 1,
+      "message": "How would this get used? Wouldn\u0027t a \n\nputRunRemove(Runnable, String... kvpairs);\n\nbe much more usable?",
+      "range": {
+        "startLine": 68,
+        "startChar": 23,
+        "endLine": 68,
+        "endChar": 88
+      },
+      "revId": "5f16cd1aabb93bd7486c18a0db6590ed47f0ad86",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da2a55be_dbcb6a1c",
         "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/mdc/MDCs.java",
         "patchSetId": 2
@@ -202,6 +248,29 @@
         "startChar": 0,
         "endLine": 39,
         "endChar": 28
+      },
+      "revId": "5f16cd1aabb93bd7486c18a0db6590ed47f0ad86",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da2a55be_bb9f95b3",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/mdc/Origins.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2017-07-27T20:02:13Z",
+      "side": 1,
+      "message": "Why not use base64?",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 40
       },
       "revId": "5f16cd1aabb93bd7486c18a0db6590ed47f0ad86",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
