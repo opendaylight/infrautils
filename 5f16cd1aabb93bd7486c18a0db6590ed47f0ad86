@@ -48,6 +48,75 @@
     },
     {
       "key": {
+        "uuid": "da2a55be_1b5fc273",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/mdc/MDCs.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2017-07-27T18:52:38Z",
+      "side": 1,
+      "message": "Preconditions.checkArgument()",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 73
+      },
+      "revId": "5f16cd1aabb93bd7486c18a0db6590ed47f0ad86",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da2a55be_9b73b214",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/mdc/MDCs.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2017-07-27T18:52:38Z",
+      "side": 1,
+      "message": "Check this first, before performing a lookup. Preconditions.checkArgument() does this with formatting.",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 9
+      },
+      "revId": "5f16cd1aabb93bd7486c18a0db6590ed47f0ad86",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da2a55be_dbcb6a1c",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/mdc/MDCs.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2017-07-27T18:52:38Z",
+      "side": 1,
+      "message": "keyValues.keySet().forEach(MDC::remove))",
+      "range": {
+        "startLine": 73,
+        "startChar": 12,
+        "endLine": 73,
+        "endChar": 62
+      },
+      "revId": "5f16cd1aabb93bd7486c18a0db6590ed47f0ad86",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da2a55be_5bf49a86",
         "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/mdc/Origins.java",
         "patchSetId": 2
