@@ -209,6 +209,30 @@
     },
     {
       "key": {
+        "uuid": "da2a55be_fb80ed47",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/mdc/Origins.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2017-07-27T20:25:47Z",
+      "side": 1,
+      "message": "on further thought, this really is not an object property, but rather transitive execution context correlator.\n\nIf that is the case, this API needs further design work. A concept of an MDCEntry needs to be defined (i.e. an object which can be stored in an MDC):\n\npublic abstract class MDCEntry {\n    public abstract String mdcKeyString();\n\n    @Override\n    public abstract String toString();\n}\n\n\nIn that vein, it really should be named something like \u0027ExecutionOrigin\u0027 or similar.",
+      "parentUuid": "da2a55be_5bf49a86",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 59
+      },
+      "revId": "5f16cd1aabb93bd7486c18a0db6590ed47f0ad86",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da2a55be_bb4af6c2",
         "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/mdc/Origins.java",
         "patchSetId": 2
