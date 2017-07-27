@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da2a55be_3b00c666",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2017-07-27T18:47:19Z",
+      "side": 1,
+      "message": "The commit message could use some love. A tracker feature BZ would be nice, too.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 59
+      },
+      "revId": "5f16cd1aabb93bd7486c18a0db6590ed47f0ad86",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da2a55be_3b8566d0",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/mdc/MDCs.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2017-07-27T18:47:19Z",
+      "side": 1,
+      "message": "My biggest problem with MDC is that is a \u003cString, String\u003e store. It is impossible to communicate reasonable state without forcing it to be serialized/deserialized.\n\nThat precludes it from being used in high-performance paths. Even Origins class performs a String.valueOf(), where a simple \u0027new OriginID()\u0027 would suffice.",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 21
+      },
+      "revId": "5f16cd1aabb93bd7486c18a0db6590ed47f0ad86",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da2a55be_5bf49a86",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/mdc/Origins.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2017-07-27T18:47:19Z",
+      "side": 1,
+      "message": "Please do not overload OID (https://en.wikipedia.org/wiki/Oid).\n\nSince this is an object identifier, please make this \u0027implements yangtools.concepts.Identifier\u0027. That way it can be used with \u0027concepts.Identifiable\u0027 and used in cross-references.",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 59
+      },
+      "revId": "5f16cd1aabb93bd7486c18a0db6590ed47f0ad86",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da2a55be_bb4af6c2",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/mdc/Origins.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2017-07-27T18:47:19Z",
+      "side": 1,
+      "message": "Please do not fuse concepts (OriginID) and its encoding.",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 108
+      },
+      "revId": "5f16cd1aabb93bd7486c18a0db6590ed47f0ad86",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da2a55be_db16caa6",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/mdc/Origins.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2017-07-27T18:47:19Z",
+      "side": 1,
+      "message": "This really looks like a Supplier\u003cOriginID\u003e. How about structuring this as:\n\npublic final class OriginID {\n    private final long id;\n\n    public static Supplier\u003cOriginID\u003e newSupplier() {\n        return new SupplierImpl();\n    }\n\n    private static final class SupplierImpl implements Supplier\u003cOriginID\u003e {\n        // counter et al.\n    }\n}",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 28
+      },
+      "revId": "5f16cd1aabb93bd7486c18a0db6590ed47f0ad86",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da2a55be_5b3bfa37",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/mdc/Origins.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2017-07-27T18:47:19Z",
+      "side": 1,
+      "message": "Please encapsulate the long without formatting it to a string so we retain the fact this is an OriginID, which has semantics, not a random string.",
+      "range": {
+        "startLine": 63,
+        "startChar": 18,
+        "endLine": 63,
+        "endChar": 24
+      },
+      "revId": "5f16cd1aabb93bd7486c18a0db6590ed47f0ad86",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
