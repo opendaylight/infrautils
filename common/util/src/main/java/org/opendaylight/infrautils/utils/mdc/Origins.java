@@ -11,6 +11,7 @@ import com.google.common.base.Strings;
 import java.util.concurrent.atomic.AtomicLong;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
 
 /**
  * Origin MDC utility.
@@ -59,6 +60,11 @@ public final class Origins {
 
     /**
      * Returns the next origin ID.
+     *
+     * <p>This method does <b>NOT</b> put that next value into the MDC;
+     * doing that, as well as (crucially) cleaning it up again at some point,
+     * is the responsibility of the caller of this method, typically using
+     * one of {@link MDCs}' methods.
      */
     public static String nextOriginID() {
         final long nextId = ID.getAndIncrement();
@@ -68,6 +74,28 @@ public final class Origins {
         final String nextIdString = Long.toUnsignedString(nextId, RADIX).toUpperCase();
         final String paddedNextIdString = Strings.padStart(nextIdString, OID_STRING_MAX_LENGTH, '0');
         return paddedNextIdString;
+    }
+
+    /**
+     * Returns the current origin ID.
+     *
+     * <p>Normal application code will never have to invoke this.  Do <b>NOT</b> explicitly use this in your
+     * Logger; the origin ID will already be automatically included in <b>all ODL logs</b>, always.
+     *
+     * <p>Typical usage of this method would only be in order to e.g. propagate the current origin ID onwards
+     * to another system during an RPC call; if that other system has it's own tracing facility similar to
+     * this, it will make it possible to correlate events.
+     *
+     * <p>This method is really just a convenience short-cut around <code>MDC.get(OID_MDC_KEY)</code>,
+     * and can be used for more readable code (but does not have to be).  It also does throw a clear
+     * error message instead of returning null.
+     */
+    public static String currentOriginID() throws IllegalStateException {
+        String oid = MDC.get(OID_MDC_KEY);
+        if (oid == null) {
+            throw new IllegalStateException("No Origin ID (OID) available in MDC :(");
+        }
+        return oid;
     }
 
     // package-private!!  Only ever intended to be used in the unit test of this class

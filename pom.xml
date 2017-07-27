@@ -40,6 +40,7 @@
         <module>samples</module>
         <module>ready</module>
         <module>diagstatus</module>
+        <module>it</module>
     </modules>
 
     <profiles>
