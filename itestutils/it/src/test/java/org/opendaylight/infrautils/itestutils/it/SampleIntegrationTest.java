@@ -42,6 +42,7 @@ public class SampleIntegrationTest extends AbstractIntegrationTest {
         return null;
     }
 
+// TODO do some magic for Google Truth to "just work" here... see TODO in AbstractIntegrationTest
 //    @Test
 //    public void testGoogleTruthWorksInsideOSGi() {
 //        assertThat(Boolean.TRUE).isTrue();

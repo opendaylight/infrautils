@@ -9,6 +9,7 @@ package org.opendaylight.infrautils.utils.mdc;
 
 import static com.google.common.truth.Truth.assertThat;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -19,7 +20,7 @@ import org.junit.Test;
 public class OriginsTest {
 
     @Test
-    public void testOriginsAPI() {
+    public void testOriginsNextIdAPI() {
         String firstID = Origins.nextOriginID();
         String secondID = Origins.nextOriginID();
         assertThat(firstID).isNotNull();
@@ -27,7 +28,7 @@ public class OriginsTest {
     }
 
     @Test
-    public void testOriginsImplementation() {
+    public void testOriginsNextIdImplementation() {
         Origins.resetOriginID_used_only_for_testing(0);
         assertThat(Origins.nextOriginID()).isEqualTo("0000000000000");
         assertThat(Origins.nextOriginID()).isEqualTo("0000000000001");
@@ -42,4 +43,19 @@ public class OriginsTest {
         assertThat(Origins.nextOriginID()).isEqualTo("FVVVVVVVVVVVV");
         assertThat(Origins.nextOriginID()).isEqualTo("0000000000000");
     }
+
+    @Test(expected = IllegalStateException.class)
+    public void testFailingOriginsCurrentIdAPI() {
+        Origins.currentOriginID();
+    }
+
+    @Test
+    @Ignore // see @Ignore in MDCTest (same reason; will un-ignore later)
+    public void testOriginsCurrentIdAPI() {
+        String oid = Origins.nextOriginID();
+        MDCs.putRunRemove(Origins.OID_MDC_KEY, oid, () -> {
+            assertThat(Origins.currentOriginID()).isEqualTo(oid);
+        });
+    }
+
 }
