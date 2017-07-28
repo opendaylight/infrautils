@@ -16,6 +16,24 @@
       "revId": "f356a459a22c06719bb78bae9686e58476d11a13",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da2a55be_41f4a886",
+        "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/ClasspathHellDuplicatesCheckRule.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-07-28T11:26:27Z",
+      "side": 1,
+      "message": "it is, by the filterHarmlessKnownIssues() method intentionally being protected and not private.. a user of this JUnit Rule could subclass it and @Override filterHarmlessKnownIssues() to implement her own filtering, or delegate to super, and then do more filtering.  Shall we start with this impl as is, and refine in if we see what customization users of this would possibly need?",
+      "parentUuid": "da2a55be_a5c4955f",
+      "revId": "f356a459a22c06719bb78bae9686e58476d11a13",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
