@@ -42,8 +42,6 @@ public abstract class AbstractIntegrationTest {
 
     // TODO compare if anything to take from org.opendaylight.controller.config.it.base.AbstractConfigTestBase?
 
-    // TODO @RunWith(PaxExamParameterized) to allow running automatically under both Karaf 3 & 4 ?
-
     // TODO integrate this with infra.ready/bundle[4]-test to ensure all bundles have finished wiring before test start
     //        and/or use @Inject protected [private?] org.apache.karaf.features.BootFinished bootFinished; ?
 
@@ -76,13 +74,12 @@ public abstract class AbstractIntegrationTest {
         final File targetPaxExam = new File("target/paxexam/");
         FileUtils.delete(targetPaxExam);
 
-        final boolean isKaraf4 = true; // TODO more dynamic & self test both
         // This karafVersion must match the exact minor version of Karaf due to
         // https://bugs.opendaylight.org/show_bug.cgi?id=8578
         // (see also https://ops4j1.jira.com/projects/PAXEXAM/issues/PAXEXAM-598)
         final String karafVersion = MavenUtils.getArtifactVersion("org.apache.karaf.features", "standard");
 
-        MavenUrlReference karafURL = getKarafURL(isKaraf4);
+        MavenUrlReference karafURL = getKarafURL();
         // TODO https://ops4j1.jira.com/browse/PAXEXAM-813
         // String? karafURL = [url(]"link:classpath:" + karafArtifactId + ".link";
         LOG.info("Karaf v{} used: {}", karafVersion, karafURL.toString());
@@ -126,10 +123,8 @@ public abstract class AbstractIntegrationTest {
                 .ignoreRemoteShell(),  // remoteShell defaults to true (?), so save time, as not required
 
             // TODO remove this when wrappedBundle(Truth) below is removed (it's just for that; auto.w.odl-testutils)
-            when(isKaraf4)
-                .useOptions(
-                    features(maven("org.apache.karaf.features","standard", karafVersion)
-                                .classifier("features").type("xml"), "wrap")),
+            features(maven("org.apache.karaf.features","standard", karafVersion)
+                        .classifier("features").type("xml"), "wrap"),
 
             // TODO Experiment with not needing this by scanning this call via reflection, find dependencies,
             // and injecting 'em all via a @ProbeBuilder probe.addTest ... that could be cool!
@@ -152,8 +147,7 @@ public abstract class AbstractIntegrationTest {
         };
     }
 
-    // TODO Remove isKaraf4 in next clean-up (it used to be for opendaylight-karaf4-empty VS opendaylight-karaf-empty)
-    protected MavenUrlReference getKarafURL(boolean isKaraf4) {
+    protected MavenUrlReference getKarafURL() {
         return maven().groupId("org.opendaylight.odlparent")
                    .artifactId("opendaylight-karaf-empty").versionAsInProject().type("tar.gz");
         // NB the tar.gz is almost half the size of the zip, so use that, even for Windows (works fine)
