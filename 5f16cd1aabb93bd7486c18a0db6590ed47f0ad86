@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "da2a55be_21437415",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-07-28T10:48:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da2a55be_3b00c666",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 59
+      },
+      "revId": "5f16cd1aabb93bd7486c18a0db6590ed47f0ad86",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da2a55be_3b8566d0",
         "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/mdc/MDCs.java",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2017-07-27T18:47:19Z",
       "side": 1,
       "message": "My biggest problem with MDC is that is a \u003cString, String\u003e store. It is impossible to communicate reasonable state without forcing it to be serialized/deserialized.\n\nThat precludes it from being used in high-performance paths. Even Origins class performs a String.valueOf(), where a simple \u0027new OriginID()\u0027 would suffice.",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 21
+      },
+      "revId": "5f16cd1aabb93bd7486c18a0db6590ed47f0ad86",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da2a55be_015d90e9",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/mdc/MDCs.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-07-28T10:48:45Z",
+      "side": 1,
+      "message": "I see, but that\u0027s how MDC is.. I\u0027m not sure what to do about this review comment! ;) This is a utility for MDC, called MDCs.  I guess we could come up with our own utility with a static ThreadLocal thing, LIKE an MDC, but for a Map\u003cString, Object\u003e .. that in itself isn\u0027t that hard to do, but getting that integrated so that a slf4j -\u003e Pax Logging -\u003e Log4j Appender can include it, as done in c/c/60828, seems likely a lot more work than I have time for sinking into this - unless you have some smart idea?  So here\u0027s what I would propose: Let us keep this class, as is, as an MDC utility.  If we find something better than MDCs, I\u0027ll be happy to remove it later! And I\u0027ll work on Origins to make it more not-neccesasrily-immediately-a-String friendly now, so that if in the future we have something better, that part at least is ready.  Does that work for you?  (PS: I don\u0027t see where the Origins class performs a String.valueOf()...)",
+      "parentUuid": "da2a55be_3b8566d0",
       "range": {
         "startLine": 11,
         "startChar": 0,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "da2a55be_416e6897",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/mdc/MDCs.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-07-28T10:48:45Z",
+      "side": 1,
+      "message": "Yeah, but erm... that\u0027s.. not this utility class\u0027s concern?  This is just \"Utility methods for {@link MDC}\".  If you have some better documentation you\u0027d like to see here, would you like to propose something I can copy/paste? ;)",
+      "parentUuid": "da2a55be_9b4c5172",
+      "range": {
+        "startLine": 31,
+        "startChar": 27,
+        "endLine": 31,
+        "endChar": 37
+      },
+      "revId": "5f16cd1aabb93bd7486c18a0db6590ed47f0ad86",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da2a55be_1b5fc273",
         "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/mdc/MDCs.java",
         "patchSetId": 2
@@ -82,6 +154,30 @@
       "writtenOn": "2017-07-27T18:52:38Z",
       "side": 1,
       "message": "Preconditions.checkArgument()",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 73
+      },
+      "revId": "5f16cd1aabb93bd7486c18a0db6590ed47f0ad86",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da2a55be_815180da",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/mdc/MDCs.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-07-28T10:48:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da2a55be_1b5fc273",
       "range": {
         "startLine": 38,
         "startChar": 0,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "da2a55be_c16258ac",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/mdc/MDCs.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-07-28T10:48:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da2a55be_9b73b214",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 9
+      },
+      "revId": "5f16cd1aabb93bd7486c18a0db6590ed47f0ad86",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da2a55be_fb72adab",
         "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/mdc/MDCs.java",
         "patchSetId": 2
@@ -128,6 +248,30 @@
       "writtenOn": "2017-07-27T20:02:13Z",
       "side": 1,
       "message": "Import MDCCloseable",
+      "range": {
+        "startLine": 58,
+        "startChar": 13,
+        "endLine": 58,
+        "endChar": 29
+      },
+      "revId": "5f16cd1aabb93bd7486c18a0db6590ed47f0ad86",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da2a55be_01463023",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/mdc/MDCs.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-07-28T10:48:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da2a55be_fb72adab",
       "range": {
         "startLine": 58,
         "startChar": 13,
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "da2a55be_a15644d0",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/mdc/MDCs.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-07-28T10:48:45Z",
+      "side": 1,
+      "message": "I was expecting code using this could construct the Map using e.g. Guava\u0027s ImmutableMap.of ... a String... kvpairs expressed the API less clearly, I find.  OK for you?",
+      "parentUuid": "da2a55be_1b7061a4",
+      "range": {
+        "startLine": 68,
+        "startChar": 23,
+        "endLine": 68,
+        "endChar": 88
+      },
+      "revId": "5f16cd1aabb93bd7486c18a0db6590ed47f0ad86",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da2a55be_dbcb6a1c",
         "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/mdc/MDCs.java",
         "patchSetId": 2
@@ -174,6 +342,30 @@
       "writtenOn": "2017-07-27T18:52:38Z",
       "side": 1,
       "message": "keyValues.keySet().forEach(MDC::remove))",
+      "range": {
+        "startLine": 73,
+        "startChar": 12,
+        "endLine": 73,
+        "endChar": 62
+      },
+      "revId": "5f16cd1aabb93bd7486c18a0db6590ed47f0ad86",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da2a55be_4147881d",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/mdc/MDCs.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-07-28T10:48:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da2a55be_dbcb6a1c",
       "range": {
         "startLine": 73,
         "startChar": 12,
@@ -233,6 +425,54 @@
     },
     {
       "key": {
+        "uuid": "da2a55be_2111b405",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/mdc/Origins.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-07-28T10:48:45Z",
+      "side": 1,
+      "message": "Done; fair enough, I\u0027ve removed the \"OID\" terminology, and won\u0027t be using it again in this context.  I didn\u0027t get what this has to do with a yangtools.concepts.Identifier (and anyway we cannot depend on yangtools in infrautils), but I think your next comment makes this feedback moot, yes?",
+      "parentUuid": "da2a55be_5bf49a86",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 59
+      },
+      "revId": "5f16cd1aabb93bd7486c18a0db6590ed47f0ad86",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da2a55be_011470f3",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/mdc/Origins.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-07-28T10:48:45Z",
+      "side": 1,
+      "message": "Never heard the term \"transitive execution context correlator\", quick Google hits .NET and Scale related stuff, which I did not read - but I\u0027m guessing yes, this is what you call what I envisioned, here.\n\nI don\u0027t really get your idea with the MDCEntry.. as long as by MDC we mean org.slf4j.MDC, which is (basically) Map\u003cString,String\u003e anyway, I don\u0027t understand the value of a MDCEntry abstraction.  But I suspect you may not like org.slf4j.MDC and think we should have an infrautils.MDC which is not a Map\u003cString,String\u003e but a Map\u003cMDCKey,MDCEntry\u003e ?  If you want to put into a Gerrit in parallel to propose this - go for it.  What I don\u0027t understand is how you would ultimately stuff this the logging subsystem(s) - they\u0027re expecting a String, and the ultimate goal of this entire show is, only, to have this (Execution)Origin show up in logs, so... Having said all that, I\u0027ve done it anyway - because I want to get your +1 ... ;-)  If upon looking over the change version you want me to ditch it again, let me know.\n\nWhat I do understand is the idea of having a dedicated class representing an \"origin\" - before it becomes a String encoded ID - and have now adjusted the design of this class in that sense - see if you like it better like that.\n\nI\u0027m also perfely happy to rename Origins to ExecutionOrigin; done.",
+      "parentUuid": "da2a55be_fb80ed47",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 59
+      },
+      "revId": "5f16cd1aabb93bd7486c18a0db6590ed47f0ad86",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da2a55be_bb4af6c2",
         "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/mdc/Origins.java",
         "patchSetId": 2
@@ -244,6 +484,30 @@
       "writtenOn": "2017-07-27T18:47:19Z",
       "side": 1,
       "message": "Please do not fuse concepts (OriginID) and its encoding.",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 108
+      },
+      "revId": "5f16cd1aabb93bd7486c18a0db6590ed47f0ad86",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da2a55be_21b6d4fa",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/mdc/Origins.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-07-28T10:48:45Z",
+      "side": 1,
+      "message": "I\u0027ve now made this the JavaDoc of the toString() - acceptable?",
+      "parentUuid": "da2a55be_bb4af6c2",
       "range": {
         "startLine": 34,
         "startChar": 0,
@@ -279,6 +543,30 @@
     },
     {
       "key": {
+        "uuid": "da2a55be_61960c4e",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/mdc/Origins.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-07-28T10:48:45Z",
+      "side": 1,
+      "message": "I see what you mean, but fear that this gives the impression that one may obtain several different new Suppliers, which is confusing IMHO, and would mislead users of this to believe there can be several independent streams of ExecutionOrigin - whereas the whole point is that this is a system wide singleton - used in logging.  Agreed, or NOK?  \n\nIf you do want to expand this to be a general ID generator util (would you have a use for that elsewhere?), then we could do that (although I do not see the need) - but in that case, let\u0027s split this class up into at least 2 separate thingies - something like a class IDGenerator implements Supplier\u003cID\u003e and ExecutionOrigin then being a user of this, where an ExecutionOrigin is a singleton for one kind of an ID - and you can use this for other IDs elsewhere, if needed.",
+      "parentUuid": "da2a55be_db16caa6",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 28
+      },
+      "revId": "5f16cd1aabb93bd7486c18a0db6590ed47f0ad86",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da2a55be_bb9f95b3",
         "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/mdc/Origins.java",
         "patchSetId": 2
@@ -302,6 +590,30 @@
     },
     {
       "key": {
+        "uuid": "da2a55be_c18c1838",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/mdc/Origins.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-07-28T10:48:45Z",
+      "side": 1,
+      "message": "Erm .. how do you mean? I may be missing something here, but I\u0027m trying to represent a long in the shortest possible String (which is human readable and suitable for \u0027grep\u0027 in logs and what not, so [A-Z0-9]), and IMHO that\u0027s base 32, as explained in this comment - did you read it, completely?  How do you encode a Long as a String in base64?  The Long.toUnsignedString() just falls back to radix 10 if the radix is larger than Character.MAX_RADIX... if you have an idea how to represent a long as a String shorter than (max.) 13 characters, best speak in code instead of english... ;-)",
+      "parentUuid": "da2a55be_bb9f95b3",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 40
+      },
+      "revId": "5f16cd1aabb93bd7486c18a0db6590ed47f0ad86",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da2a55be_5b3bfa37",
         "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/mdc/Origins.java",
         "patchSetId": 2
@@ -313,6 +625,30 @@
       "writtenOn": "2017-07-27T18:47:19Z",
       "side": 1,
       "message": "Please encapsulate the long without formatting it to a string so we retain the fact this is an OriginID, which has semantics, not a random string.",
+      "range": {
+        "startLine": 63,
+        "startChar": 18,
+        "endLine": 63,
+        "endChar": 24
+      },
+      "revId": "5f16cd1aabb93bd7486c18a0db6590ed47f0ad86",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da2a55be_a1a004a0",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/mdc/Origins.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-07-28T10:48:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da2a55be_5b3bfa37",
       "range": {
         "startLine": 63,
         "startChar": 18,
