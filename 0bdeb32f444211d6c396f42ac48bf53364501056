@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da2a55be_045c7e24",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobCoordinatorImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-07-28T13:03:24Z",
+      "side": 1,
+      "message": "It is not good practice to catch Throwable as it includes JVM Error (even the javadocs indicate this: \"Error...indicates serious problems that a reasonable application should not try to catch\"). The question is what Error type(s) do you think you this code can recover from?",
+      "revId": "0bdeb32f444211d6c396f42ac48bf53364501056",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
