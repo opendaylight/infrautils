@@ -242,7 +242,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
 
             try {
                 futures = callable.call();
-            } catch (Exception e) {
+            } catch (Throwable e) {
                 LOG.error("Exception when executing jobEntry: {}", jobEntry, e);
             }
 
@@ -330,7 +330,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
                         JobCoordinatorCounters.jobs_pending.dec();
                     }
                     waitForJobIfNeeded();
-                } catch (Exception e) {
+                } catch (Throwable e) {
                     LOG.error("Exception while executing the tasks", e);
                 }
             }
