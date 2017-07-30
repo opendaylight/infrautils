@@ -638,6 +638,30 @@
     },
     {
       "key": {
+        "uuid": "da2a55be_30c0dc7b",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/mdc/Origins.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2017-07-30T14:45:06Z",
+      "side": 1,
+      "message": "It will result in a constant-length identifier, which I think is nice property.",
+      "parentUuid": "da2a55be_30d9fc83",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 40
+      },
+      "revId": "5f16cd1aabb93bd7486c18a0db6590ed47f0ad86",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da2a55be_5b3bfa37",
         "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/mdc/Origins.java",
         "patchSetId": 2
