@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "da2a55be_50975090",
+        "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/concurrent/AwaitableExecutorService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2017-07-30T14:25:43Z",
+      "side": 1,
+      "message": "Any reason for not subclassing ForwardingExecutorService ?",
+      "range": {
+        "startLine": 24,
+        "startChar": 38,
+        "endLine": 24,
+        "endChar": 64
+      },
+      "revId": "0491adc9ec6745527d49d73b7cd1ee2ad853bce9",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da2a55be_30abbcd7",
         "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/concurrent/AwaitableExecutorService.java",
         "patchSetId": 4
