@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da2a55be_708c1480",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/mdc/ExecutionOrigin.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2017-07-30T14:34:38Z",
+      "side": 1,
+      "message": "does not need to be public.",
+      "range": {
+        "startLine": 47,
+        "startChar": 4,
+        "endLine": 47,
+        "endChar": 52
+      },
+      "revId": "0de92d36664a6efada938f32a372f9574f1803fc",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da2a55be_d0ea200e",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/mdc/MDCs.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2017-07-30T14:34:38Z",
+      "side": 1,
+      "message": "Using MDCEntry allows you to make sure people do not mismatch key and value.",
+      "range": {
+        "startLine": 54,
+        "startChar": 36,
+        "endLine": 54,
+        "endChar": 58
+      },
+      "revId": "0de92d36664a6efada938f32a372f9574f1803fc",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da2a55be_b0edec27",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/mdc/MDCs.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2017-07-30T14:34:38Z",
+      "side": 1,
+      "message": "... and with the change above, you can do:\n\nRunnable runnable, MDCEntry... keysValues\n\nwhich is much more user-friendly.",
+      "range": {
+        "startLine": 66,
+        "startChar": 36,
+        "endLine": 66,
+        "endChar": 85
+      },
+      "revId": "0de92d36664a6efada938f32a372f9574f1803fc",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
