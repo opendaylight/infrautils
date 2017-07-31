@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ba1f61a0_6bb49df2",
+        "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/concurrent/AwaitableExecutorService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 4540
+      },
+      "writtenOn": "2017-07-31T13:14:53Z",
+      "side": 1,
+      "message": "Just my ignorance ;-).",
+      "parentUuid": "da2a55be_50975090",
+      "range": {
+        "startLine": 24,
+        "startChar": 38,
+        "endLine": 24,
+        "endChar": 64
+      },
+      "revId": "0491adc9ec6745527d49d73b7cd1ee2ad853bce9",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da2a55be_30abbcd7",
         "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/concurrent/AwaitableExecutorService.java",
         "patchSetId": 4
@@ -36,6 +60,30 @@
       "writtenOn": "2017-07-30T14:23:35Z",
       "side": 1,
       "message": "Preconditions.checkNotNull()",
+      "range": {
+        "startLine": 29,
+        "startChar": 22,
+        "endLine": 29,
+        "endChar": 33
+      },
+      "revId": "0491adc9ec6745527d49d73b7cd1ee2ad853bce9",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_4bb9d9e8",
+        "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/concurrent/AwaitableExecutorService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 4540
+      },
+      "writtenOn": "2017-07-31T13:14:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da2a55be_30abbcd7",
       "range": {
         "startLine": 29,
         "startChar": 22,
@@ -94,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "ba1f61a0_cb72e948",
+        "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/concurrent/AwaitableExecutorService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 4540
+      },
+      "writtenOn": "2017-07-31T13:14:53Z",
+      "side": 1,
+      "message": "I hesitated when initially implementing this, because it seemed to me coding the desired status in the wake-up made it too specific. But perhaps the appropriate way to see it is that the whole class is designed only to detect when the queue is empty.",
+      "parentUuid": "da2a55be_d0834054",
+      "range": {
+        "startLine": 151,
+        "startChar": 0,
+        "endLine": 152,
+        "endChar": 44
+      },
+      "revId": "0491adc9ec6745527d49d73b7cd1ee2ad853bce9",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da2a55be_b0868c63",
         "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/concurrent/AwaitableExecutorService.java",
         "patchSetId": 4
@@ -128,6 +200,30 @@
       "writtenOn": "2017-07-30T14:23:35Z",
       "side": 1,
       "message": "A javadoc would be nice, too",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 57
+      },
+      "revId": "0491adc9ec6745527d49d73b7cd1ee2ad853bce9",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_0e524f13",
+        "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/concurrent/package-info.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 4540
+      },
+      "writtenOn": "2017-07-31T13:14:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da2a55be_107e786b",
       "range": {
         "startLine": 9,
         "startChar": 0,
