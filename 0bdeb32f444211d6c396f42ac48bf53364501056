@@ -16,6 +16,24 @@
       "revId": "0bdeb32f444211d6c396f42ac48bf53364501056",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_4e81e749",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobCoordinatorImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 5278
+      },
+      "writtenOn": "2017-07-31T14:00:06Z",
+      "side": 1,
+      "message": "The one scenario i can think of is NoClassDefFoundError from a jc task. If it is thrown by one task, then JC never executes any jobs which contain same job key.",
+      "parentUuid": "da2a55be_045c7e24",
+      "revId": "0bdeb32f444211d6c396f42ac48bf53364501056",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
