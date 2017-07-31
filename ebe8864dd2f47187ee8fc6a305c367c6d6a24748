@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba1f61a0_6ea5cb03",
+        "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/concurrent/AwaitableExecutorService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 5278
+      },
+      "writtenOn": "2017-07-31T13:51:07Z",
+      "side": 1,
+      "message": "Nit: use static import for Collectors.toList()",
+      "revId": "ebe8864dd2f47187ee8fc6a305c367c6d6a24748",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
