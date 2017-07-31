@@ -34,6 +34,24 @@
       "revId": "0bdeb32f444211d6c396f42ac48bf53364501056",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_8e475f1d",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobCoordinatorImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2017-07-31T14:14:16Z",
+      "side": 1,
+      "message": "... but that indicates the entire controller is inconsistent -- that is a scenario where aborting completely in a fail-fast manner is better than any other option.",
+      "parentUuid": "ba1f61a0_4e81e749",
+      "revId": "0bdeb32f444211d6c396f42ac48bf53364501056",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
