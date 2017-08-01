@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "ba1f61a0_cfa2ee99",
+        "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/ClasspathHellDuplicatesCheckRule.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2017-08-01T16:26:45Z",
+      "side": 1,
+      "message": "final constant... why not just inline it?",
+      "range": {
+        "startLine": 47,
+        "startChar": 8,
+        "endLine": 47,
+        "endChar": 50
+      },
+      "revId": "f356a459a22c06719bb78bae9686e58476d11a13",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da2a55be_a5c4955f",
         "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/ClasspathHellDuplicatesCheckRule.java",
         "patchSetId": 5
@@ -31,6 +54,29 @@
       "side": 1,
       "message": "it is, by the filterHarmlessKnownIssues() method intentionally being protected and not private.. a user of this JUnit Rule could subclass it and @Override filterHarmlessKnownIssues() to implement her own filtering, or delegate to super, and then do more filtering.  Shall we start with this impl as is, and refine in if we see what customization users of this would possibly need?",
       "parentUuid": "da2a55be_a5c4955f",
+      "revId": "f356a459a22c06719bb78bae9686e58476d11a13",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_af9fba4f",
+        "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/ClasspathHellDuplicatesCheckRule.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2017-08-01T16:26:45Z",
+      "side": 1,
+      "message": "This looks like a resourcesWithDuplicates.stream().filter() use case..",
+      "range": {
+        "startLine": 88,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 28
+      },
       "revId": "f356a459a22c06719bb78bae9686e58476d11a13",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
