@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ba1f61a0_c1b913eb",
+        "filename": "caches/api/src/main/java/org/opendaylight/infrautils/caches/BaseCacheConfig.java",
+        "patchSetId": 33
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-04T15:04:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da01753e_83c32556",
+      "revId": "ade9dae203a2653c1bb642ad75b786259c6cbbfb",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da01753e_43949d42",
         "filename": "caches/api/src/main/java/org/opendaylight/infrautils/caches/BaseCacheConfig.java",
         "patchSetId": 33
@@ -30,6 +48,24 @@
       "writtenOn": "2017-04-27T12:12:57Z",
       "side": 1,
       "message": "javadocs?",
+      "revId": "ade9dae203a2653c1bb642ad75b786259c6cbbfb",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_01cb2b73",
+        "filename": "caches/api/src/main/java/org/opendaylight/infrautils/caches/BaseCacheConfig.java",
+        "patchSetId": 33
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-04T15:04:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da01753e_43949d42",
       "revId": "ade9dae203a2653c1bb642ad75b786259c6cbbfb",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "ba1f61a0_e1ab7787",
+        "filename": "caches/api/src/main/java/org/opendaylight/infrautils/caches/Cache.java",
+        "patchSetId": 33
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-04T15:04:43Z",
+      "side": 1,
+      "message": "Nope, normally not needed because package-info.java already has @org.eclipse.jdt.annotation.NonNullByDefault.  But I want to support anyone making efforts for null safety, so I\u0027ve exceptionally added it here as well, as this is the key interface of the entire story, just to be double sure... ;-) But I\u0027d like to avoid peppering it all over the place - that\u0027s what package level default non nullability is for.",
+      "parentUuid": "da01753e_e38af119",
+      "revId": "ade9dae203a2653c1bb642ad75b786259c6cbbfb",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da01753e_03861513",
         "filename": "caches/api/src/main/java/org/opendaylight/infrautils/caches/Cache.java",
         "patchSetId": 33
@@ -64,6 +118,24 @@
       "writtenOn": "2017-04-27T12:12:57Z",
       "side": 1,
       "message": "javadocs? @Nonnull?",
+      "revId": "ade9dae203a2653c1bb642ad75b786259c6cbbfb",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_a1885f23",
+        "filename": "caches/api/src/main/java/org/opendaylight/infrautils/caches/Cache.java",
+        "patchSetId": 33
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-04T15:04:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da01753e_03861513",
       "revId": "ade9dae203a2653c1bb642ad75b786259c6cbbfb",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "ba1f61a0_21a3cf9f",
+        "filename": "caches/api/src/main/java/org/opendaylight/infrautils/caches/Cache.java",
+        "patchSetId": 33
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-04T15:04:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da01753e_637e011b",
+      "revId": "ade9dae203a2653c1bb642ad75b786259c6cbbfb",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da01753e_a3746936",
         "filename": "caches/api/src/main/java/org/opendaylight/infrautils/caches/CacheFunction.java",
         "patchSetId": 33
@@ -98,6 +188,24 @@
       "writtenOn": "2017-04-27T12:12:57Z",
       "side": 1,
       "message": "javadoc @params and @return",
+      "revId": "ade9dae203a2653c1bb642ad75b786259c6cbbfb",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_41aa4371",
+        "filename": "caches/api/src/main/java/org/opendaylight/infrautils/caches/CacheFunction.java",
+        "patchSetId": 33
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-04T15:04:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da01753e_a3746936",
       "revId": "ade9dae203a2653c1bb642ad75b786259c6cbbfb",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -121,6 +229,24 @@
     },
     {
       "key": {
+        "uuid": "ba1f61a0_21caaf4f",
+        "filename": "caches/api/src/main/java/org/opendaylight/infrautils/caches/CacheManager.java",
+        "patchSetId": 33
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-04T15:04:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da01753e_23987969",
+      "revId": "ade9dae203a2653c1bb642ad75b786259c6cbbfb",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da01753e_63a561a1",
         "filename": "caches/api/src/main/java/org/opendaylight/infrautils/caches/CacheManagers.java",
         "patchSetId": 33
@@ -132,6 +258,24 @@
       "writtenOn": "2017-04-27T12:12:57Z",
       "side": 1,
       "message": "method javadocs?",
+      "revId": "ade9dae203a2653c1bb642ad75b786259c6cbbfb",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_01c7ab46",
+        "filename": "caches/api/src/main/java/org/opendaylight/infrautils/caches/CacheManagers.java",
+        "patchSetId": 33
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-04T15:04:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da01753e_63a561a1",
       "revId": "ade9dae203a2653c1bb642ad75b786259c6cbbfb",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -155,6 +299,24 @@
     },
     {
       "key": {
+        "uuid": "ba1f61a0_a12b3fea",
+        "filename": "caches/api/src/main/java/org/opendaylight/infrautils/caches/CachePolicy.java",
+        "patchSetId": 33
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-04T15:04:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da01753e_c3bd2db9",
+      "revId": "ade9dae203a2653c1bb642ad75b786259c6cbbfb",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da01753e_43a2dd99",
         "filename": "caches/api/src/main/java/org/opendaylight/infrautils/caches/CachePolicy.java",
         "patchSetId": 33
@@ -166,6 +328,24 @@
       "writtenOn": "2017-04-27T12:12:57Z",
       "side": 1,
       "message": "remove commented code?",
+      "revId": "ade9dae203a2653c1bb642ad75b786259c6cbbfb",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_41c1a32d",
+        "filename": "caches/api/src/main/java/org/opendaylight/infrautils/caches/CachePolicy.java",
+        "patchSetId": 33
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-04T15:04:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da01753e_43a2dd99",
       "revId": "ade9dae203a2653c1bb642ad75b786259c6cbbfb",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -195,6 +375,30 @@
     },
     {
       "key": {
+        "uuid": "ba1f61a0_213f4f27",
+        "filename": "caches/api/src/main/java/org/opendaylight/infrautils/caches/CacheProvider.java",
+        "patchSetId": 33
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-04T15:04:43Z",
+      "side": 1,
+      "message": "Done (contributions to Checkstyle for this most welcome! ;)",
+      "parentUuid": "da01753e_43c93d58",
+      "range": {
+        "startLine": 29,
+        "startChar": 5,
+        "endLine": 29,
+        "endChar": 8
+      },
+      "revId": "ade9dae203a2653c1bb642ad75b786259c6cbbfb",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da01753e_a3c2a931",
         "filename": "caches/api/src/main/java/org/opendaylight/infrautils/caches/CacheProvider.java",
         "patchSetId": 33
@@ -206,6 +410,24 @@
       "writtenOn": "2017-04-27T12:12:57Z",
       "side": 1,
       "message": "method javadocs?",
+      "revId": "ade9dae203a2653c1bb642ad75b786259c6cbbfb",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_c149138d",
+        "filename": "caches/api/src/main/java/org/opendaylight/infrautils/caches/CacheProvider.java",
+        "patchSetId": 33
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-04T15:04:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da01753e_a3c2a931",
       "revId": "ade9dae203a2653c1bb642ad75b786259c6cbbfb",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -229,6 +451,24 @@
     },
     {
       "key": {
+        "uuid": "ba1f61a0_e13b77e9",
+        "filename": "caches/api/src/main/java/org/opendaylight/infrautils/caches/CacheStats.java",
+        "patchSetId": 33
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-04T15:04:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da01753e_e3df910b",
+      "revId": "ade9dae203a2653c1bb642ad75b786259c6cbbfb",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da01753e_23e6b9e8",
         "filename": "caches/api/src/main/java/org/opendaylight/infrautils/caches/CheckedCacheFunction.java",
         "patchSetId": 33
@@ -240,6 +480,24 @@
       "writtenOn": "2017-04-27T12:12:57Z",
       "side": 1,
       "message": "method javadocs?",
+      "revId": "ade9dae203a2653c1bb642ad75b786259c6cbbfb",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_811d5b76",
+        "filename": "caches/api/src/main/java/org/opendaylight/infrautils/caches/CheckedCacheFunction.java",
+        "patchSetId": 33
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-04T15:04:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da01753e_23e6b9e8",
       "revId": "ade9dae203a2653c1bb642ad75b786259c6cbbfb",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
