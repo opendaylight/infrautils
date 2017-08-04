@@ -8,6 +8,7 @@
 package org.opendaylight.infrautils.caches.noop.internal;
 
 import java.util.Map;
+import java.util.Objects;
 import org.opendaylight.infrautils.caches.Cache;
 import org.opendaylight.infrautils.caches.CacheConfig;
 import org.opendaylight.infrautils.caches.CacheFunction;
@@ -38,6 +39,13 @@ final class NoopCache<K, V> implements Cache<K, V> {
     @Override
     public Map<K, V> get(Iterable<? extends K> keys) {
         return function.get(keys);
+    }
+
+    @Override
+    public void put(K key, V value) {
+        Objects.requireNonNull(key, "key");
+        Objects.requireNonNull(value, "value");
+        // Ignore!
     }
 
     @Override

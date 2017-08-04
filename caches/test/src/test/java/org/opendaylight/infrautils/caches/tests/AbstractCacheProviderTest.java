@@ -15,8 +15,10 @@ import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Locale;
+import java.util.concurrent.atomic.AtomicBoolean;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
+import org.junit.Rule;
 import org.junit.Test;
 import org.opendaylight.infrautils.caches.BadCacheFunctionRuntimeException;
 import org.opendaylight.infrautils.caches.BaseCacheConfig;
@@ -28,6 +30,7 @@ import org.opendaylight.infrautils.caches.CachePolicyBuilder;
 import org.opendaylight.infrautils.caches.CacheProvider;
 import org.opendaylight.infrautils.caches.CheckedCache;
 import org.opendaylight.infrautils.caches.CheckedCacheConfigBuilder;
+import org.opendaylight.infrautils.testutils.LogRule;
 
 /**
  * Base Unit Test for CacheProvider.
@@ -37,7 +40,7 @@ import org.opendaylight.infrautils.caches.CheckedCacheConfigBuilder;
 @SuppressFBWarnings("NP_NONNULL_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR")
 public abstract class AbstractCacheProviderTest {
 
-    // public @Rule LogRule logRule = new LogRule();
+    public @Rule LogRule logRule = new LogRule();
 
     private Cache<Integer, String> firstUncheckedCache;
     private Cache<Double, BigDecimal> secondUncheckedCache;
@@ -70,6 +73,27 @@ public abstract class AbstractCacheProviderTest {
     public void testGetAll() {
         assertThat(firstUncheckedCache.get(255, 10).values()).containsExactly("ff", "a");
         assertThat(firstUncheckedCache.get(255, 10)).containsExactly(255, "ff", 10, "a");
+    }
+
+    @Test
+    public void testPut() throws Exception {
+        final AtomicBoolean cacheFunctionUsed = new AtomicBoolean(false);
+        Cache<Integer, String> cache = cacheProvider.newCache(
+            new CacheConfigBuilder<Integer, String>()
+                .cacheFunction(i -> {
+                    cacheFunctionUsed.set(true);
+                    return Integer.toHexString(i);
+                })
+                .anchor(this)
+                .build());
+        cache.put(10, Integer.toHexString(10));
+        assertThat(cache.get(10)).isEqualTo("a");
+        assertThat(cacheFunctionUsed.get()).isEqualTo(false);
+
+        assertThat(cache.get(255)).isEqualTo("ff");
+        assertThat(cacheFunctionUsed.get()).isEqualTo(true);
+
+        cache.close();
     }
 
     @Test
@@ -150,9 +174,44 @@ public abstract class AbstractCacheProviderTest {
             .containsExactly("world", "world");
     }
 
+    @Test
+    public void testPutCheckedCache() throws Exception {
+        // This is technically a wrong usage of the API, as per the JavaDoc,
+        // contrary to the testPut() for the unchecked cache which does it right,
+        // but for a quick unit test here, it will do anyway:
+        CheckedCache<File, String, IOException> checkedCache = checkedCache();
+        checkedCache.put(new File("hello.txt"), "badValueInconsistentValue");
+        assertThat(checkedCache.get(new File("hello.txt"))).isEqualTo("badValueInconsistentValue");
+        checkedCache.close();
+    }
+
     @Test(expected = IOException.class)
     public void testThrowingCheckedCache() throws IOException {
         assertThat(checkedThrowingCache().get(new File("hello.txt"))).isEqualTo("world");
+    }
+
+    @Test(expected = NullPointerException.class)
+    @SuppressFBWarnings("NP_NONNULL_PARAM_VIOLATION")
+    public void testPutNullKey() {
+        firstUncheckedCache.put(null, "...");
+    }
+
+    @Test(expected = NullPointerException.class)
+    @SuppressFBWarnings("NP_NONNULL_PARAM_VIOLATION")
+    public void testPutNullKeyIntoCheckedCache() {
+        checkedCache().put(null, "...");
+    }
+
+    @Test(expected = NullPointerException.class)
+    @SuppressFBWarnings("NP_NONNULL_PARAM_VIOLATION")
+    public void testPutNullValue() {
+        firstUncheckedCache.put(123, null);
+    }
+
+    @Test(expected = NullPointerException.class)
+    @SuppressFBWarnings("NP_NONNULL_PARAM_VIOLATION")
+    public void testPutNullValueIntoCheckedCache() {
+        checkedCache().put(new File("."), null);
     }
 
     private Cache<String, Object> badNullCache() {

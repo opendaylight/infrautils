@@ -19,6 +19,16 @@ public class NoopCacheTest extends AbstractCacheProviderTest {
 
     @Override
     public void testCacheMonitorPolicyAndStat() {
-        // @Ignore this test for the NOOP impl
+        // @Ignore this test for the NOOP impl, because the NoopCache has no Stats
+    }
+
+    @Override
+    public void testPut() throws Exception {
+        // @Ignore this test for the NOOP impl, because the NoopCache ignores put()
+    }
+
+    @Override
+    public void testPutCheckedCache() throws Exception {
+        // @Ignore this test for the NOOP impl, because the NoopCache ignores put()
     }
 }
