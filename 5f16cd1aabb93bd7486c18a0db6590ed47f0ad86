@@ -662,6 +662,30 @@
     },
     {
       "key": {
+        "uuid": "ba1f61a0_a1e97f1c",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/mdc/Origins.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-04T13:33:36Z",
+      "side": 1,
+      "message": "Absolutely, constant-length is great for what we want here, especially in logs - and I\u0027ve already done this via the \u00270\u0027 padding through Strings.padStart, had you seen that?  It\u0027s a prefix instead of Guava\u0027s RFC encoders \u0027\u003d\u0027 postfixes. Are you concerned about performance of the 2-3 String operations, Long.toUnsignedString, String.toUpperCase, Strings.padStart?\n\nI did just have a quick play with (Guava\u0027s) base64.. so that\u0027s actually doing [A-Za-z0-9+/] - it saves us 1 character (or 2 if we did omitPadding(); giving you e.g. \"/iq/P0/P348\") - with the disadvantage of mixing upper and lower case - which I suspect could later possibly lead to some confusions due to coincidentally very similar looking but actually entirely different Execution Origin IDs, when doing case insensitive searches for correlation IDs in future log files?  And I don\u0027t like the \u0027/\u0027 and \u0027+\u0027 much - just to save a byte or two for the String representation of these IDs here.  \n\nAlso I doubt this makes any difference in terms of performance?  Now, if you do feel strong for Guava Encoding utilities (which I did not know about; thank you for making me discover them through this), I could replace my code with a usage of BaseEncoding.base32() ... but I don\u0027t really see the point of it, unless you insist, or have reasons to believe it\u0027s (much?) faster than what I\u0027m doing?\n\nI did just play briefly with Guava\u0027s BaseEncoding.base32() .. found it confusing how 0L is \"AAAAAAAAAAAAA\u003d\u003d\u003d\" and 1L is \"AAAAAAAAAAAAC\u003d\u003d\u003d\", because \"AAAAAAAAAAAAB\u003d\u003d\u003d\" is (also!) 0L... and \"AAAAAAAAAAAAD\u003d\u003d\u003d\" also 1L, and then with \"AAAAAAAAAAAAE\u003d\u003d\u003d\" is 2L ... huh?  That seems a bit weird to me, but I\u0027m probably missing some deeper reason of why these (RFC compliant, apparently) encodings work the way they do?  Of course that effect wouldn\u0027t be a real problem in our usage here, as long as they are unique, so if you have some good reason to believe using that is better than doing it ourselves, just say so, and I\u0027ll change it.\n\nSo... are you OK if we leave this as is, or feel strongly about changing it to using Guava\u0027s base32 encoder instead of the current \"Long.toUnsignedString(id, RADIX).toUpperCase()\" + \u00270\u0027 padding?",
+      "parentUuid": "da2a55be_30c0dc7b",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 40
+      },
+      "revId": "5f16cd1aabb93bd7486c18a0db6590ed47f0ad86",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da2a55be_5b3bfa37",
         "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/mdc/Origins.java",
         "patchSetId": 2
