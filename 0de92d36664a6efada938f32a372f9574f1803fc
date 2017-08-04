@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ba1f61a0_2168efb9",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/mdc/ExecutionOrigin.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-04T13:33:36Z",
+      "side": 1,
+      "message": "done.. with some more JavaDoc to clarify usage.  \n\nBTW: JavaDoc updated because I was confused myself, thinking we need this to be public to MDC.put(ExecutionOrigin.MDC_KEY, ExecutionOrigin.next().toString(), or the equivalent using the MDCs util) - but of course you now have to use mdcKeyString() ... now done so e.g. in ExecutionOriginTest.testOriginsCurrentIdAPI(). \n\nNOTE that\u0027ve added a new mdcValueString() in MDCEntry to pair with mdcKeyString(), with a final toString delegating to it.  On using this in ExecutionOriginTest.testOriginsCurrentIdAPI(), this seemed much clearer, than expecting developers to implicitly guess that toString is the way here.\n\nPS: Of course, we could now add a put method (into ExecutionOrigin), but I\u0027ve intentionally not done that, as then you get into the \"who cleans it up\" (which the MDCs util nicely addresses) discussion, and also to be able to have a user bulk put several entries into the MDC in one go.  Say, a future Servlet Filter I want to write (and use in RESTCONF...) which does this and perhaps stick a few more things into the MDC, while it\u0027s at it.",
+      "parentUuid": "da2a55be_708c1480",
+      "range": {
+        "startLine": 47,
+        "startChar": 4,
+        "endLine": 47,
+        "endChar": 52
+      },
+      "revId": "0de92d36664a6efada938f32a372f9574f1803fc",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da2a55be_d0ea200e",
         "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/mdc/MDCs.java",
         "patchSetId": 3
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "ba1f61a0_0165ebe0",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/mdc/MDCs.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-04T13:33:36Z",
+      "side": 1,
+      "message": "Sure, but this is supposed to be a generic utility.  I might want to put an... requestor\u0027s IP address into the MDC.  A key/value pair argument is very common (Map.put!)- why force me to have to have to use an (abstract class) MDCEntry implementation?  What I can, and have done, is to ALSO offer an overloaded method variant with an MDCEntry argument - but I don\u0027t want to remove this one.. does that work for you?",
+      "parentUuid": "da2a55be_d0ea200e",
+      "range": {
+        "startLine": 54,
+        "startChar": 36,
+        "endLine": 54,
+        "endChar": 58
+      },
+      "revId": "0de92d36664a6efada938f32a372f9574f1803fc",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da2a55be_b0edec27",
         "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/mdc/MDCs.java",
         "patchSetId": 3
@@ -59,6 +107,30 @@
       "writtenOn": "2017-07-30T14:34:38Z",
       "side": 1,
       "message": "... and with the change above, you can do:\n\nRunnable runnable, MDCEntry... keysValues\n\nwhich is much more user-friendly.",
+      "range": {
+        "startLine": 66,
+        "startChar": 36,
+        "endLine": 66,
+        "endChar": 85
+      },
+      "revId": "0de92d36664a6efada938f32a372f9574f1803fc",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_6162e7d9",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/mdc/MDCs.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-04T13:33:36Z",
+      "side": 1,
+      "message": "as above",
+      "parentUuid": "da2a55be_b0edec27",
       "range": {
         "startLine": 66,
         "startChar": 36,
