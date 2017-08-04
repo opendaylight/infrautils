@@ -7,6 +7,8 @@
  */
 package org.opendaylight.infrautils.caches;
 
+import javax.annotation.Nonnull;
+
 /**
  * Base class for {@link Cache} and {@link CheckedCache}.
  *
@@ -24,9 +26,37 @@ public interface BaseCache<K, V> extends AutoCloseable {
      */
     void evict(K key);
 
-    // We intentionally do *NOT* provide a replace(K key, V value) method,
-    // as this could lead to cache inconsistencies if badly used (and people will...);
-    // the *ONLY* way to get values *MUST* be through the cache function!
+    /**
+     * Puts a new entry into the Cache, replacing any existing one.
+     *
+     * <p>Normally, you often never need to call this method, as in regular usage
+     * scenarios a cache API client just invokes {@link Cache#get(Object)} (or {@link CheckedCache#get(Object)},
+     * which then internally (may) use the {@link CacheFunction} (or {@link CheckedCacheFunction}) - without you
+     * ever having had to explicitly <i>put</i> something into the Cache.
+     *
+     * <p>This method is <b>ONLY</b> (!) intended for "optimizations". It is useful if the code
+     * using a cache already has a key and value (e.g. following an external update
+     * notification event kind of thing) and wants to "save time" on an expected
+     * subsequent {@link Cache#get(Object)} (or {@link CheckedCache#get(Object)}
+     * invoking the {@link CacheFunction} (or {@link CheckedCacheFunction})
+     * unnecessarily, using this "hint" to "propose" an entry to the cache.
+     *
+     * <p>Any code using this must expect key/value pairs that have been put into a
+     * cache to disappear at any time (e.g. when the cache is full and this
+     * key/value hasn't been used, or after a programmatic or end-user operator
+     * initiated eviction), and be able to obtain <b>THE SAME</b> value from the
+     * {@link CacheFunction} (or {@link CheckedCacheFunction}), for the given key.
+     *
+     * <p>Failure to implement calls to this put method consistent with the implementation
+     * of the cache's get function <b>WILL</b> lead to weird cache inconsistencies!
+     *
+     * <p>Some Cache implementations may <b>IGNORE</b> this "hint" method.
+     *
+     * @param key the key of the proposed new cache entry
+     * @param value the value of the proposed new cache entry
+     * @throws NullPointerException if the cache's users passed a null key or value
+     */
+    void put(@Nonnull K key, @Nonnull V value) throws NullPointerException;
 
     CacheManager getManager();
 

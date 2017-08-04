@@ -58,6 +58,13 @@ public final class DelegatingNullSafeCheckedCache<K, V, E extends Exception> imp
     }
 
     @Override
+    public void put(K key, V value) {
+        Objects.requireNonNull(key, "key");
+        Objects.requireNonNull(value, "value");
+        delegate.put(key, value);
+    }
+
+    @Override
     public void evict(K key) {
         Objects.requireNonNull(key, "null key (not supported)");
         delegate.evict(key);

@@ -56,6 +56,11 @@ abstract class GuavaBaseCacheAdapter<K, V> implements BaseCache<K, V>, CacheMana
     }
 
     @Override
+    public void put(K key, V value) {
+        guavaCache().put(key, value);
+    }
+
+    @Override
     public final CacheManager getManager() {
         return this;
     }

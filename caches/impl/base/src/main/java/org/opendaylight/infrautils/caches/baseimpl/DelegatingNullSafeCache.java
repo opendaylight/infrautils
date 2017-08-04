@@ -58,6 +58,13 @@ public final class DelegatingNullSafeCache<K, V> implements Cache<K, V> {
     }
 
     @Override
+    public void put(K key, V value) {
+        Objects.requireNonNull(key, "key");
+        Objects.requireNonNull(value, "value");
+        delegate.put(key, value);
+    }
+
+    @Override
     public void evict(K key) {
         Objects.requireNonNull(key, "null key (not supported)");
         delegate.evict(key);
