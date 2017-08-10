@@ -13,7 +13,7 @@
   <parent>
     <groupId>org.opendaylight.odlparent</groupId>
     <artifactId>bundle-parent</artifactId>
-    <version>2.0.2</version>
+    <version>2.0.4</version>
     <relativePath />
   </parent>
 
@@ -39,7 +39,14 @@
     <dependency>
       <groupId>org.opendaylight.odlparent</groupId>
       <artifactId>bundles-test-lib</artifactId>
-      <version>2.0.2</version>
+      <version>2.0.4</version>
+      <exclusions>
+        <!-- TODO Remove karaf-util exclusion from here once https://git.opendaylight.org/gerrit/#/c/61489/ is in odlparent (and we have a release with it we're using here) -->
+        <exclusion>
+          <groupId>org.opendaylight.odlparent</groupId>
+          <artifactId>karaf-util</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>org.opendaylight.infrautils</groupId>
