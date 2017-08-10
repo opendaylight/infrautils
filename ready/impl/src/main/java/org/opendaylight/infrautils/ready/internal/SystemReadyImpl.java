@@ -76,6 +76,9 @@ public class SystemReadyImpl implements SystemReadyMonitor, Runnable {
             if (!listeners.isEmpty()) {
                 LOG.info("Now notifying all its registered SystemReadyListeners...");
             }
+
+            // TODO functionalityReadyNotifier.register(BundlesBootedReady.class);
+
             SystemReadyListener listener;
             while ((listener = listeners.poll()) != null) {
                 listener.onSystemBootReady();
