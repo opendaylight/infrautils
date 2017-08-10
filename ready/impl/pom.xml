@@ -13,7 +13,7 @@
   <parent>
     <groupId>org.opendaylight.odlparent</groupId>
     <artifactId>bundle-parent</artifactId>
-    <version>2.0.2</version>
+    <version>2.0.4</version>
     <relativePath />
   </parent>
 
@@ -39,7 +39,13 @@
     <dependency>
       <groupId>org.opendaylight.odlparent</groupId>
       <artifactId>bundles-test-lib</artifactId>
-      <version>2.0.2</version>
+      <version>2.0.4</version>
+    </dependency>
+    <!-- TODO Remove karaf-util again from here, and from the dependency below, once https://git.opendaylight.org/gerrit/#/c/61489/ is in odlparent -->
+    <dependency>
+      <groupId>org.opendaylight.odlparent</groupId>
+      <artifactId>karaf-util</artifactId>
+      <version>2.0.4</version>
     </dependency>
     <dependency>
       <groupId>org.opendaylight.infrautils</groupId>
@@ -95,7 +101,8 @@
         <artifactId>maven-bundle-plugin</artifactId>
         <configuration>
           <instructions>
-            <Embed-Dependency>bundles-test-lib,awaitility,hamcrest-core</Embed-Dependency>
+            <!-- TODO Remove karaf-util again from here, and from the dependency above, once https://git.opendaylight.org/gerrit/#/c/61489/ is in odlparent -->
+            <Embed-Dependency>karaf-util,bundles-test-lib,awaitility,hamcrest-core</Embed-Dependency>
             <!-- Do NOT <Embed-Transitive>true</Embed-Transitive> -->
             <!-- We must tweak karaf.bundle.core's version range so that it works both in Karaf 3 and Karaf 4 -->
             <Import-Package>!net.sf.cglib.proxy,!org.objenesis,org.apache.karaf.bundle.core;version="[3.0,5)",*</Import-Package>
