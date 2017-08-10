@@ -12,7 +12,8 @@
   <parent>
     <groupId>org.opendaylight.odlparent</groupId>
     <artifactId>odlparent</artifactId>
-    <version>2.0.2</version>
+    <!-- TODO temporary local, do not commit; revert to 2.0.4 ... -->
+    <version>3.0.0-SNAPSHOT</version>
     <relativePath />
   </parent>
 
@@ -67,8 +68,9 @@
       <scope>compile</scope>
     </dependency>
     <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-simple</artifactId>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-core</artifactId>
+      <type>test-jar</type>
       <scope>compile</scope>
     </dependency>
   </dependencies>

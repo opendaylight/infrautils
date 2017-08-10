@@ -12,7 +12,7 @@ import static org.opendaylight.infrautils.utils.concurrent.ListenableFutures.add
 
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
-import org.junit.Rule;
+import org.junit.ClassRule;
 import org.junit.Test;
 import org.opendaylight.infrautils.testutils.LogCaptureRule;
 import org.opendaylight.infrautils.utils.concurrent.ListenableFutures;
@@ -29,7 +29,7 @@ public class FutureListenerLogTest {
 
     private static final Logger LOG = LoggerFactory.getLogger(FutureListenerLogTest.class);
 
-    public @Rule LogCaptureRule logCaptureRule = new LogCaptureRule();
+    public static @ClassRule LogCaptureRule logCaptureRule = new LogCaptureRule();
 
     @Test
     public void testFailingListenableFuture() {
