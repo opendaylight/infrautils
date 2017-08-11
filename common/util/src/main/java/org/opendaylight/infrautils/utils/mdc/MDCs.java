@@ -10,6 +10,7 @@ package org.opendaylight.infrautils.utils.mdc;
 import com.google.common.annotations.Beta;
 import com.google.common.base.Preconditions;
 import java.util.Map;
+import org.opendaylight.infrautils.utils.CheckedRunnable;
 import org.slf4j.MDC;
 import org.slf4j.MDC.MDCCloseable;
 
@@ -88,6 +89,20 @@ public final class MDCs {
             for (MDCEntry mdcEntry : keysValues) {
                 MDC.remove(mdcEntry.mdcKeyString());
             }
+        }
+    }
+
+    // Following are variants of above to wrap code which throws a checked exception
+
+    public static <T extends Throwable> void putRunCheckedRemove(MDCEntry entry, CheckedRunnable<T> runnable) throws T {
+        putRunCheckedRemove(entry.mdcKeyString(), entry.mdcValueString(), runnable);
+    }
+
+    public static <T extends Throwable> void putRunCheckedRemove(String key, String val, CheckedRunnable<T> runnable)
+            throws T {
+        validate(key, val);
+        try (MDCCloseable closeable = MDC.putCloseable(key, val)) {
+            runnable.run();
         }
     }
 
