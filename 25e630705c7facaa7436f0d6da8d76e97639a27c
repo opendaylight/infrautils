@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba1f61a0_f9cae34d",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/mdc/CrossThreadContextHolder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2017-08-14T21:28:36Z",
+      "side": 1,
+      "message": "should be abstract",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 12
+      },
+      "revId": "25e630705c7facaa7436f0d6da8d76e97639a27c",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_79def312",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/mdc/CrossThreadContextHolder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2017-08-14T21:28:36Z",
+      "side": 1,
+      "message": "should be package-private",
+      "range": {
+        "startLine": 41,
+        "startChar": 4,
+        "endLine": 41,
+        "endChar": 12
+      },
+      "revId": "25e630705c7facaa7436f0d6da8d76e97639a27c",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
