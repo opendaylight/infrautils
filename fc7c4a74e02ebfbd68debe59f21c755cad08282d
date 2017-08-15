@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba1f61a0_37ee3fb5",
+        "filename": "ready/impl/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 2046
+      },
+      "writtenOn": "2017-08-15T13:22:00Z",
+      "side": 1,
+      "message": "Odlparent 2.0.5 is not out yet. I am testing whether GBP features would pass Distribution SFT, but Sandbox [0] has shown an error with this artifact and version 2.0.4 so I guess I need to compile also with this patch (although I am not sure why it is needed).\n\n[0] https://jenkins.opendaylight.org/sandbox/job/integration-multipatch-test-nitrogen/1/",
+      "range": {
+        "startLine": 41,
+        "startChar": 18,
+        "endLine": 41,
+        "endChar": 34
+      },
+      "revId": "fc7c4a74e02ebfbd68debe59f21c755cad08282d",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
