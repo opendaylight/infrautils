@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba1f61a0_cd8476d6",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/FunctionalityReadyNotifierImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-08-15T19:22:59Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this return a ServiceRegistration? Then the user simply calls unregister obviating the need for the unregister below.",
+      "revId": "d3a09e06b1c9ac1c8de7209b1d146194f0dbab5b",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_6d7d8ae7",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/FunctionalityReadyNotifierImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-08-15T19:22:59Z",
+      "side": 1,
+      "message": "It seems the purpose of this is to advertise a FunctionalityReady instance for another bundle to wait on. Of course one can do this via BP \u003cservice\u003e element. I assume the purpose of this class is for cases when some initialization is backgrounded such that  the functionality isn\u0027t ready until it completes? I wonder if we could work this into a BP extension similar to \u003cservice\u003e which takes a Future and and advertises the service when the Future completes.",
+      "revId": "d3a09e06b1c9ac1c8de7209b1d146194f0dbab5b",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
