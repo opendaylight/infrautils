@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ba1f61a0_454a20c6",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/mdc/CrossThreadContextHolder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-15T11:37:49Z",
+      "side": 1,
+      "message": "Done, but would it be better to make it final instead of abstract? I thought that was the rule - classes with only static methods should be final ...",
+      "parentUuid": "ba1f61a0_f9cae34d",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 12
+      },
+      "revId": "25e630705c7facaa7436f0d6da8d76e97639a27c",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba1f61a0_79def312",
         "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/mdc/CrossThreadContextHolder.java",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2017-08-14T21:28:36Z",
       "side": 1,
       "message": "should be package-private",
+      "range": {
+        "startLine": 41,
+        "startChar": 4,
+        "endLine": 41,
+        "endChar": 12
+      },
+      "revId": "25e630705c7facaa7436f0d6da8d76e97639a27c",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_25456cb3",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/mdc/CrossThreadContextHolder.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-15T11:37:49Z",
+      "side": 1,
+      "message": "Done, but why?  There should be no other implementations... and if there ever are, then this class will be changed - it\u0027s not meant to be extensible, but my idea was simply that the get/set methods or CrossThreadContextHolderImpl implementations inside this class may be change in the future..",
+      "parentUuid": "ba1f61a0_79def312",
       "range": {
         "startLine": 41,
         "startChar": 4,
