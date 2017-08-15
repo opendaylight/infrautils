@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba1f61a0_8d61de3b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-08-15T19:24:34Z",
+      "side": 1,
+      "message": "Can you please add a commit message explaining this patch?",
+      "revId": "ea4526ebe98299f4c302e6e045bf5c2fd14ff687",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
