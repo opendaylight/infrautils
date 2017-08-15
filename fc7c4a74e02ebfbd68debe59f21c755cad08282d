@@ -22,6 +22,30 @@
       "revId": "fc7c4a74e02ebfbd68debe59f21c755cad08282d",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_9a13d2b7",
+        "filename": "ready/impl/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 2046
+      },
+      "writtenOn": "2017-08-15T16:23:43Z",
+      "side": 1,
+      "message": "\u003e Sandbox [0]\n\n/4 confirm onl-integration-all with GBP features pass STF with this patch, and /5 confirms again that without this, it fails on accessing 2.0.4 version of bundles-test-lib.\n\nIt is possible that multipatch job is somehow preventing Maven from looking at the correct Nexus place, but I do not see how.",
+      "parentUuid": "ba1f61a0_37ee3fb5",
+      "range": {
+        "startLine": 41,
+        "startChar": 18,
+        "endLine": 41,
+        "endChar": 34
+      },
+      "revId": "fc7c4a74e02ebfbd68debe59f21c755cad08282d",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
