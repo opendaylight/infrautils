@@ -25,6 +25,23 @@
     },
     {
       "key": {
+        "uuid": "ba1f61a0_2bb1ba8f",
+        "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/ClasspathHellDuplicatesCheckRule.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-16T09:50:02Z",
+      "side": 1,
+      "message": "to express the purpose of this boolean, used twice in the following lines as argument to two different methods - if both were inlined the intention would not be as clear as when it is spelt out like this",
+      "revId": "f356a459a22c06719bb78bae9686e58476d11a13",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da2a55be_a5c4955f",
         "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/ClasspathHellDuplicatesCheckRule.java",
         "patchSetId": 5
@@ -77,6 +94,23 @@
         "endLine": 96,
         "endChar": 28
       },
+      "revId": "f356a459a22c06719bb78bae9686e58476d11a13",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_0bacb634",
+        "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/ClasspathHellDuplicatesCheckRule.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-16T09:50:02Z",
+      "side": 1,
+      "message": "Done",
       "revId": "f356a459a22c06719bb78bae9686e58476d11a13",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
