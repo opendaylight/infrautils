@@ -18,5 +18,5 @@ public interface DiagStatusServiceImplMBean {
 
     String acquireServiceStatusJSON(String outputType);
 
-    java.util.HashMap acquireServiceStatusMAP();
+    java.util.Map acquireServiceStatusMAP();
 }
