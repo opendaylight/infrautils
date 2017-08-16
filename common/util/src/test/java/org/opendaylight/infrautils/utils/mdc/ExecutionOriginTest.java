@@ -52,7 +52,6 @@ public class ExecutionOriginTest {
         assertThat(ExecutionOrigin.next().toString()).isEqualTo("0000000000000");
     }
 
-
     @Test(expected = IllegalStateException.class)
     public void testFailingOriginsCurrentIdAPI() {
         ExecutionOrigin.currentID();
@@ -62,7 +61,7 @@ public class ExecutionOriginTest {
     @Ignore // see @Ignore in MDCTest (same reason; will un-ignore later)
     public void testOriginsCurrentIdAPI() {
         ExecutionOrigin nextExecutionOrigin = ExecutionOrigin.next();
-        MDCs.putRunRemove(nextExecutionOrigin.mdcKeyString(), nextExecutionOrigin.mdcValueString(), () -> {
+        MDCs.putRunRemove(nextExecutionOrigin, () -> {
             assertThat(ExecutionOrigin.currentID()).isEqualTo(nextExecutionOrigin.mdcValueString());
         });
     }
