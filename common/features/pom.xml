@@ -35,6 +35,7 @@
         <module>odl-infrautils-ready</module>
         <module>odl-infrautils-caches</module>
         <module>odl-infrautils-caches-sample</module>
+        <module>odl-infrautils-diagstatus</module>
     </modules>
 
     <url>${odl.site.url}/${project.groupId}/${stream}/${project.artifactId}/</url>
