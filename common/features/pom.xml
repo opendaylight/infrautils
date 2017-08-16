@@ -33,6 +33,7 @@
         <module>odl-infrautils-inject</module>
         <module>odl-infrautils-utils</module>
         <module>odl-infrautils-ready</module>
+        <module>odl-infrautils-diagstatus</module>
     </modules>
 
     <url>${odl.site.url}/${project.groupId}/${stream}/${project.artifactId}/</url>
