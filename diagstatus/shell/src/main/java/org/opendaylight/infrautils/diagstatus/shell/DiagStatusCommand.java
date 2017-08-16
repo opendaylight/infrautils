@@ -10,6 +10,7 @@ package org.opendaylight.infrautils.diagstatus.shell;
 import org.apache.karaf.shell.commands.Command;
 import org.apache.karaf.shell.commands.Option;
 import org.apache.karaf.shell.console.OsgiCommandSupport;
+import org.opendaylight.infrautils.diagstatus.DiagStatusService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,16 +24,21 @@ public class DiagStatusCommand extends OsgiCommandSupport {
 
     private static final Logger LOG = LoggerFactory.getLogger(DiagStatusCommand.class);
 
+    private final DiagStatusService diagStatusService;
+
     @Option(name = "-n", aliases = {"--node"}, required = false, multiValued = false)
     String nip;
     @Option(name = "-a", aliases = {"--all"}, required = false, multiValued = false)
     String all;
-    @Option(name = "-h", aliases = {"--help"}, required = false, multiValued = false)
-    String help;
+
+    public DiagStatusCommand(DiagStatusService diagStatusService) {
+        this.diagStatusService = diagStatusService;
+    }
 
     @Override
     protected Object doExecute() throws Exception {
-        //TODO will come in subsequent patches
+        // TODO this is just for basic testing. More detailed implementation will come in subsequent patches
+        session.getConsole().print(diagStatusService.getAllServiceDescriptors());
         return null;
     }
 }

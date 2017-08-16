@@ -8,8 +8,7 @@
 
 package org.opendaylight.infrautils.diagstatus;
 
-import java.util.List;
-import java.util.concurrent.CompletionStage;
+import java.util.Collection;
 import javax.annotation.concurrent.ThreadSafe;
 
 /**
@@ -26,20 +25,22 @@ public interface DiagStatusService extends AutoCloseable {
      * @param serviceIdentifier
      *            unique identifier for the service being registered
      *
-     * @return Completion Stage information for the registration
+     * @return Registration status
      */
-    CompletionStage<Void> register(String serviceIdentifier);
+    boolean register(String serviceIdentifier);
 
     /**
      * Report the status of a service specified by the identifier.
      *
      * @param serviceIdentifier
      *            unique identifier for a service
-     * @param serviceState
+     * @param statusDescription
      *            current status of the service
+     * @param serviceState
+     *            optional description if apps want to convey some details about the current state
      *
      */
-    void report(String serviceIdentifier, ServiceState serviceState);
+    void report(String serviceIdentifier, ServiceState serviceState, String statusDescription);
 
     /**
      * Retrieve the status of a service specified by the identifier.
@@ -53,9 +54,18 @@ public interface DiagStatusService extends AutoCloseable {
     /**
      * Retrieve the status of all services registered so far.
      *
-     * @return  status list for all registered services
+     * @return  status set for all registered services
      *
      */
-    List<ServiceDescriptor> getAllServiceDescriptors();
+    Collection<ServiceDescriptor> getAllServiceDescriptors();
 
+    /**
+     * Deregister a service for status monitoring.
+     *
+     * @param serviceIdentifier
+     *            unique identifier for the service being registered
+     *
+     * @return Deregistration status
+     */
+    boolean deregister(String serviceIdentifier);
 }
