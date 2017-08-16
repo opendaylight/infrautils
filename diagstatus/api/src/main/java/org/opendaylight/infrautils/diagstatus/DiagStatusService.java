@@ -8,7 +8,7 @@
 
 package org.opendaylight.infrautils.diagstatus;
 
-import java.util.List;
+import java.util.Collection;
 import java.util.concurrent.CompletionStage;
 import javax.annotation.concurrent.ThreadSafe;
 
@@ -39,7 +39,7 @@ public interface DiagStatusService extends AutoCloseable {
      *            current status of the service
      *
      */
-    void report(String serviceIdentifier, ServiceState serviceState);
+    void report(String serviceIdentifier, ServiceState serviceState, String statusDesc);
 
     /**
      * Retrieve the status of a service specified by the identifier.
@@ -53,9 +53,9 @@ public interface DiagStatusService extends AutoCloseable {
     /**
      * Retrieve the status of all services registered so far.
      *
-     * @return  status list for all registered services
+     * @return  status set for all registered services
      *
      */
-    List<ServiceDescriptor> getAllServiceDescriptors();
+    Collection<ServiceDescriptor> getAllServiceDescriptors();
 
 }
