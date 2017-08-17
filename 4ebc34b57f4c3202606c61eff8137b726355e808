@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba1f61a0_8bdedf3d",
+        "filename": "diagstatus/shell/src/main/resources/OSGI-INF/blueprint/blueprint.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-17T12:22:16Z",
+      "side": 1,
+      "message": "for this to work, you will have to register an implemenation of DiagStatusService in the OSGi Service registry - which currently (in this change set) you are not yet..",
+      "revId": "4ebc34b57f4c3202606c61eff8137b726355e808",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
