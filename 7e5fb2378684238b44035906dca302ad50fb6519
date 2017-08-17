@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba1f61a0_a8d649c1",
+        "filename": "diagstatus/impl/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-17T10:07:28Z",
+      "side": 1,
+      "message": "No, do not change this, why?? Revert to \u003cscope\u003etest\u003c/scope\u003e",
+      "revId": "7e5fb2378684238b44035906dca302ad50fb6519",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_08e675b4",
+        "filename": "diagstatus/impl/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-17T10:07:28Z",
+      "side": 1,
+      "message": "also \u003cscope\u003etest\u003c/scope\u003e",
+      "revId": "7e5fb2378684238b44035906dca302ad50fb6519",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_48efcd87",
+        "filename": "diagstatus/impl/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-17T10:07:28Z",
+      "side": 1,
+      "message": "NOOOO! You MUST make this \u003cscope\u003etest\u003c/scope\u003e",
+      "revId": "7e5fb2378684238b44035906dca302ad50fb6519",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_28f2596f",
+        "filename": "diagstatus/impl/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-17T10:07:28Z",
+      "side": 1,
+      "message": "\u003cscope\u003etest\u003c/scope\u003e also",
+      "revId": "7e5fb2378684238b44035906dca302ad50fb6519",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_68ec5190",
+        "filename": "diagstatus/impl/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-17T10:07:28Z",
+      "side": 1,
+      "message": "\u003cscope\u003etest\u003c/scope\u003e also",
+      "revId": "7e5fb2378684238b44035906dca302ad50fb6519",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_c8029d3d",
+        "filename": "diagstatus/impl/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-17T10:07:28Z",
+      "side": 1,
+      "message": "\u003cscope\u003etest\u003c/scope\u003e also (here you have nothing, and default it compile)",
+      "revId": "7e5fb2378684238b44035906dca302ad50fb6519",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_a8fda93d",
+        "filename": "diagstatus/impl/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-17T10:07:28Z",
+      "side": 1,
+      "message": "what is this?",
+      "revId": "7e5fb2378684238b44035906dca302ad50fb6519",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
