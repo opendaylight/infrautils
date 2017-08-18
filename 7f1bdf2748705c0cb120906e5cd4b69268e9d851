@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba1f61a0_a98488d4",
+        "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/concurrent/TestableQueues.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 4540
+      },
+      "writtenOn": "2017-08-18T09:57:20Z",
+      "side": 1,
+      "message": "Why not do this now?",
+      "revId": "7f1bdf2748705c0cb120906e5cd4b69268e9d851",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
