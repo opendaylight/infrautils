@@ -16,6 +16,24 @@
       "revId": "7f1bdf2748705c0cb120906e5cd4b69268e9d851",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_e96de033",
+        "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/concurrent/TestableQueues.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 4540
+      },
+      "writtenOn": "2017-08-18T09:58:02Z",
+      "side": 1,
+      "message": "Oh wait, you’re doing this with this commit... So remove the TODO then ;-).",
+      "parentUuid": "ba1f61a0_a98488d4",
+      "revId": "7f1bdf2748705c0cb120906e5cd4b69268e9d851",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
