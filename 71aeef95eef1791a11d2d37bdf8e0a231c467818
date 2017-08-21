@@ -22,6 +22,23 @@
       "revId": "71aeef95eef1791a11d2d37bdf8e0a231c467818",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_55b8f275",
+        "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/concurrent/TestableQueues.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-21T15:04:11Z",
+      "side": 1,
+      "message": "That\u0027s a great point.. wanted to \"fix\" this, but wasn\u0027t really sure how to best calculate an appropriate poll interval .. at first was going to do like timeout/5 (or /10) - but that\u0027s dumb - if you make it 60s timeout, then it\u0027s going to wait for too long, before even first trying. Then I thought of something like if (timeout \u003c 100) pollInterval \u003d 10 else if (timeout \u003c 500) pollInterval \u003d 100 else pollInterval \u003d 250, that\u0027s probabably better than a division, but I\u0027m not if there\u0027s even better .. interested in suggestions.",
+      "revId": "71aeef95eef1791a11d2d37bdf8e0a231c467818",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
