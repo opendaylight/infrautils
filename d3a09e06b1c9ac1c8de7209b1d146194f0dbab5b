@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ba1f61a0_95deea6b",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/FunctionalityReadyNotifierImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-21T13:54:01Z",
+      "side": 1,
+      "message": "yeah that\u0027s a nicer API, you\u0027re right - done (but, after having first done a round using actual org.osgi.framework.ServiceRegistration, then decided to have our own FunctionalityReadyRegistration instead - read its JavaDoc about why).",
+      "parentUuid": "ba1f61a0_cd8476d6",
+      "revId": "d3a09e06b1c9ac1c8de7209b1d146194f0dbab5b",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba1f61a0_6d7d8ae7",
         "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/FunctionalityReadyNotifierImpl.java",
         "patchSetId": 3
@@ -30,6 +48,24 @@
       "writtenOn": "2017-08-15T19:22:59Z",
       "side": 1,
       "message": "It seems the purpose of this is to advertise a FunctionalityReady instance for another bundle to wait on. Of course one can do this via BP \u003cservice\u003e element. I assume the purpose of this class is for cases when some initialization is backgrounded such that  the functionality isn\u0027t ready until it completes? I wonder if we could work this into a BP extension similar to \u003cservice\u003e which takes a Future and and advertises the service when the Future completes.",
+      "revId": "d3a09e06b1c9ac1c8de7209b1d146194f0dbab5b",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_95c54a90",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/FunctionalityReadyNotifierImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-21T13:54:01Z",
+      "side": 1,
+      "message": "Yeah, you got it.. this is for things you don\u0027t want to (cannot) do with the BP \u003cservice\u003e element as is, because you want to advertise them \"later\".  FYI I\u0027ve stumbled into one case of something like this e.g. in https://git.opendaylight.org/gerrit/#/c/61486/, and I think we have our situations like it.  \n\nI can sort of see where want to take this with a BP extension (but not exactly; dunno where/how you pass that Future?), but... I don\u0027t much like XML, so from my side want to keep these things to annotations and programmatic APIs - as here.  OK to get your +1 anyway? ;)",
+      "parentUuid": "ba1f61a0_6d7d8ae7",
       "revId": "d3a09e06b1c9ac1c8de7209b1d146194f0dbab5b",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
