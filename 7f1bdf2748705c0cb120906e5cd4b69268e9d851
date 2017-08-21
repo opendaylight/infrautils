@@ -34,6 +34,40 @@
       "revId": "7f1bdf2748705c0cb120906e5cd4b69268e9d851",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_4fa7c50c",
+        "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/concurrent/TestableQueues.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-21T10:39:50Z",
+      "side": 1,
+      "message": "Done",
+      "revId": "7f1bdf2748705c0cb120906e5cd4b69268e9d851",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_2faa51d4",
+        "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/concurrent/TestableQueues.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-21T10:39:50Z",
+      "side": 1,
+      "message": "Done",
+      "revId": "7f1bdf2748705c0cb120906e5cd4b69268e9d851",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
