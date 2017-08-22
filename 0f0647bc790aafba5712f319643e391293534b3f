@@ -1,0 +1,4237 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba1f61a0_96ed4df2",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/DiagStatusService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "minor nit: I would just spell out the variable name of the argument - statusDescription",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_a94ab6c2",
+        "filename": "diagstatus/impl/pom.xml",
+        "patchSetId": 6
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "this is.. what is this? I\u0027ve never seen \u003cversion\u003eRELEASE before - I think this is wrong.  If you\u0027ve seen it elsewhere, please reply with comment exactly where - it\u0027s probably wrong there too!",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_56c6354a",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "nit: new line between LOG and constants please, if you don\u0027t mind",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_f6892927",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "nit: new line between LOG and constants please, if you don\u0027t mind",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_36b621fb",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "nit: new line between LOG and constants please, if you don\u0027t mind",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_169e7d56",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "nit: new line between LOG and constants please, if you don\u0027t mind",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_76a419a6",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "why is this, but only this, a public and not a private? It\u0027s not even used - remove? Or at least make it private..",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_16b95de9",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "why is this, but only this, a public and not a private? It\u0027s not even used - remove? Or at least make it private..",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_b6c5f13d",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "why is this, but only this, a public and not a private? It\u0027s not even used - remove? Or at least make it private..",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_d68ce537",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "why is this, but only this, a public and not a private? It\u0027s not even used - remove? Or at least make it private..",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_569f5550",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "nit: new line between constant and class\u0027s normal fields please, if you don\u0027t mind (just for readability)",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_96c0ad2b",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "nit: new line between constant and class\u0027s normal fields please, if you don\u0027t mind (just for readability)",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_76cff97f",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "nit: new line between constant and class\u0027s normal fields please, if you don\u0027t mind (just for readability)",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_3684610b",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "nit: new line between constant and class\u0027s normal fields please, if you don\u0027t mind (just for readability)",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_f6de4910",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "why a separate (and public?) method here - just hold this right up into the start() above?",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_29f526ee",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "@Override",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_a93596db",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "@Override",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_1672fde4",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "@Override",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_49ca1a6f",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "@Override",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_568595ab",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "@Override",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_69a43ea6",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "@Override",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_e99caec2",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "@Override",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_b607b11b",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "@Override",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_d63505f8",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "@Override",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_c930caa0",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "@Override",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_36374150",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "@Override",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_96738d14",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "@Override",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_f613e9b5",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "@Override",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_16ecbdc6",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "@Override",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_d6f2256e",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "@Override",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_4947ba1d",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "@Override",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_d67d05e9",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "@Override",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_56f47586",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "@Override",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_b694d1e2",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "CompletionStage instead of CompletableFuture would be better IMHO - although why did we even make this return this, could it ever be async?",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_499fba50",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "CompletionStage instead of CompletableFuture would be better IMHO - although why did we even make this return this, could it ever be async?",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_36eaa175",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "CompletionStage instead of CompletableFuture would be better IMHO - although why did we even make this return this, could it ever be async?",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_368581d0",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "CompletionStage instead of CompletableFuture would be better IMHO - although why did we even make this return this, could it ever be async?",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_09f822e4",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "CompletionStage instead of CompletableFuture would be better IMHO - although why did we even make this return this, could it ever be async?",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_363d81df",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "CompletionStage instead of CompletableFuture would be better IMHO - although why did we even make this return this, could it ever be async?",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_893092e9",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "CompletionStage instead of CompletableFuture would be better IMHO - although why did we even make this return this, could it ever be async?",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_a9c9167a",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "CompletionStage instead of CompletableFuture would be better IMHO - although why did we even make this return this, could it ever be async?",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_29288633",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "CompletionStage instead of CompletableFuture would be better IMHO - although why did we even make this return this, could it ever be async?",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_b6f3319d",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "CompletionStage instead of CompletableFuture would be better IMHO - although why did we even make this return this, could it ever be async?",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_f661293a",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "CompletionStage instead of CompletableFuture would be better IMHO - although why did we even make this return this, could it ever be async?",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_d616a5a6",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "CompletionStage instead of CompletableFuture would be better IMHO - although why did we even make this return this, could it ever be async?",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_a95636d0",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "CompletionStage instead of CompletableFuture would be better IMHO - although why did we even make this return this, could it ever be async?",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_767899c4",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "CompletionStage instead of CompletableFuture would be better IMHO - although why did we even make this return this, could it ever be async?",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_c99f2ab3",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "CompletionStage instead of CompletableFuture would be better IMHO - although why did we even make this return this, could it ever be async?",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_96026d09",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "CompletionStage instead of CompletableFuture would be better IMHO - although why did we even make this return this, could it ever be async?",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_163afd35",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "CompletionStage instead of CompletableFuture would be better IMHO - although why did we even make this return this, could it ever be async?",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_e9002e03",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "return CompletableFuture.completedFuture(null);",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_968f0dcc",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "return CompletableFuture.completedFuture(null);",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_a9ae3683",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "return CompletableFuture.completedFuture(null);",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_96eeedb2",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "return CompletableFuture.completedFuture(null);",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_092b0231",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "return CompletableFuture.completedFuture(null);",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_360e218e",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "return CompletableFuture.completedFuture(null);",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_16403d55",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "return CompletableFuture.completedFuture(null);",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_16883de6",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "return CompletableFuture.completedFuture(null);",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_764099a5",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "return CompletableFuture.completedFuture(null);",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_69defe6e",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "return CompletableFuture.completedFuture(null);",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_d664e54a",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "return CompletableFuture.completedFuture(null);",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_5673d5e6",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "return CompletableFuture.completedFuture(null);",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_29a7e60d",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "return CompletableFuture.completedFuture(null);",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_e94e6e6e",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "return CompletableFuture.completedFuture(null);",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_89c41260",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "return CompletableFuture.completedFuture(null);",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_16eddd8b",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "return CompletableFuture.completedFuture(null);",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_8951b2da",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "return CompletableFuture.completedFuture(null);",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_d6e185d1",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "statusDescription ?",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_49d97a82",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "see below",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_c951ea0f",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "see below",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_e9a2eeac",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "see below",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_09aae2d3",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "see below",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_6921de4c",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "see below",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_e95f8ee3",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "see below",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_89a9b27d",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "see below",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_69b0be43",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "as below",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_e9b78ed6",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "as below",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_c9a56ab6",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "as below",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_491cda13",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "as below",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_2959a636",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "as below",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_c9628aac",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "as below",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_a9e8f610",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "as below",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_7626d9cf",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "isEmpty() is clearer than size() \u003e 0, but I\u0027d remove it, as not needed (for will just do nothing if empty), then you have one level less of indention, which is clearer to read",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_89e37232",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "isEmpty() is clearer than size() \u003e 0, but I\u0027d remove it, as not needed (for will just do nothing if empty), then you have one level less of indention, which is clearer to read",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_c9ba8abf",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "isEmpty() is clearer than size() \u003e 0, but I\u0027d remove it, as not needed (for will just do nothing if empty), then you have one level less of indention, which is clearer to read",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_c903aa0b",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "isEmpty() is clearer than size() \u003e 0, but I\u0027d remove it, as not needed (for will just do nothing if empty), then you have one level less of indention, which is clearer to read",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_49ab3ad6",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "isEmpty() is clearer than size() \u003e 0, but I\u0027d remove it, as not needed (for will just do nothing if empty), then you have one level less of indention, which is clearer to read",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_095ca224",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "isEmpty() is clearer than size() \u003e 0, but I\u0027d remove it, as not needed (for will just do nothing if empty), then you have one level less of indention, which is clearer to read",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_295a46f3",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "isEmpty() is clearer than size() \u003e 0, but I\u0027d remove it, as not needed (for will just do nothing if empty), then you have one level less of indention, which is clearer to read",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_b6821192",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "isEmpty() is clearer than size() \u003e 0, but I\u0027d remove it, as not needed (for will just do nothing if empty), then you have one level less of indention, which is clearer to read",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_29ad269d",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "isEmpty() is clearer than size() \u003e 0, but I\u0027d remove it, as not needed (for will just do nothing if empty), then you have one level less of indention, which is clearer to read",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_a91bd619",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "isEmpty() is clearer than size() \u003e 0, but I\u0027d remove it, as not needed (for will just do nothing if empty), then you have one level less of indention, which is clearer to read",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_09b022f3",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "do you really want this?  If you ask it for status and nothing has been registered then .. well, it\u0027s empty.  How is that a CRITICAL ERROR ? ;)",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_562115b3",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "do you really want this?  If you ask it for status and nothing has been registered then .. well, it\u0027s empty.  How is that a CRITICAL ERROR ? ;)",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_095dc2e9",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "do you really want this?  If you ask it for status and nothing has been registered then .. well, it\u0027s empty.  How is that a CRITICAL ERROR ? ;)",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_290b6626",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "do you really want this?  If you ask it for status and nothing has been registered then .. well, it\u0027s empty.  How is that a CRITICAL ERROR ? ;)",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_69427e3f",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "do you really want this?  If you ask it for status and nothing has been registered then .. well, it\u0027s empty.  How is that a CRITICAL ERROR ? ;)",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_8916d2ef",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "do you really want this?  If you ask it for status and nothing has been registered then .. well, it\u0027s empty.  How is that a CRITICAL ERROR ? ;)",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_a9bab620",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "do you really want this?  If you ask it for status and nothing has been registered then .. well, it\u0027s empty.  How is that a CRITICAL ERROR ? ;)",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_e9d14e58",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "do you really want this?  If you ask it for status and nothing has been registered then .. well, it\u0027s empty.  How is that a CRITICAL ERROR ? ;)",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_29b246e6",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "do you really want this?  If you ask it for status and nothing has been registered then .. well, it\u0027s empty.  How is that a CRITICAL ERROR ? ;)",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_493dfaba",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "as above",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_090e6234",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "as above",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_6996fe4d",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "as above",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_69739e80",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "as above",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_09b5c2cc",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "as above",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_e9d4ae21",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "as above",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_c9d44a49",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "as above",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_89b53233",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "as above",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_69cb9e53",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "as aboveh",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_c9d72a22",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "as aboveh",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_49917a51",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "as aboveh",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_e9830e54",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "as aboveh",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_29cc06bc",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "as aboveh",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_496e9a97",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "as aboveh",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_69143e44",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "as aboveh",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_a94c7671",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "as aboveh",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_09cf82b1",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "getServiceStatus instead of acquire? Just a thought, up to you. Also you could use *As* so get/acquire/ServiceStatusAsJSON()",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_29dfe63c",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "getServiceStatus instead of acquire? Just a thought, up to you. Also you could use *As* so get/acquire/ServiceStatusAsJSON()",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_a96d969a",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "getServiceStatus instead of acquire? Just a thought, up to you. Also you could use *As* so get/acquire/ServiceStatusAsJSON()",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_a9a0f69f",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "getServiceStatus instead of acquire? Just a thought, up to you. Also you could use *As* so get/acquire/ServiceStatusAsJSON()",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_49c69a4a",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "getServiceStatus instead of acquire? Just a thought, up to you. Also you could use *As* so get/acquire/ServiceStatusAsJSON()",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_a9c5963d",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "This method has a weird name - why MAP as uppercase? Because *JSON before? But that\u0027s an abbreviation, whereas Map isn\u0027t.  I probably just would even mention Map, just acquireServiceStatus() or even getServiceStatus()",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_899b7271",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "This method has a weird name - why MAP as uppercase? Because *JSON before? But that\u0027s an abbreviation, whereas Map isn\u0027t.  I probably just would even mention Map, just acquireServiceStatus() or even getServiceStatus()",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_09e2e202",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "This method has a weird name - why MAP as uppercase? Because *JSON before? But that\u0027s an abbreviation, whereas Map isn\u0027t.  I probably just would even mention Map, just acquireServiceStatus() or even getServiceStatus()",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_89689288",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "This method has a weird name - why MAP as uppercase? Because *JSON before? But that\u0027s an abbreviation, whereas Map isn\u0027t.  I probably just would even mention Map, just acquireServiceStatus() or even getServiceStatus()",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_69c55e8d",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "This method has a weird name - why MAP as uppercase? Because *JSON before? But that\u0027s an abbreviation, whereas Map isn\u0027t.  I probably just would even mention Map, just acquireServiceStatus() or even getServiceStatus()",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_b6305102",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "Map\u003cString, ServiceDescriptor\u003e not just Map",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_16115dac",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "Map\u003cString, ServiceDescriptor\u003e not just Map",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_766ed930",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "Map\u003cString, ServiceDescriptor\u003e not just Map",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_365c617e",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "Map\u003cString, ServiceDescriptor\u003e not just Map",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_490fba2e",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "Map\u003cString, ServiceDescriptor\u003e not just Map",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_8947f24a",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "Map\u003cString, ServiceDescriptor\u003e not just Map",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_f6bda969",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "Map\u003cString, ServiceDescriptor\u003e not just Map",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_76037942",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "Map\u003cString, ServiceDescriptor\u003e not just Map",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_967d4db4",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "Map\u003cString, ServiceDescriptor\u003e not just Map",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_69e8bee2",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "Map\u003cString, ServiceDescriptor\u003e not just Map",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_e9894e27",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "Map\u003cString, ServiceDescriptor\u003e not just Map",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_e9066ecd",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "Map\u003cString, ServiceDescriptor\u003e not just Map",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_c9860a65",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "Map\u003cString, ServiceDescriptor\u003e not just Map",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_89c0922b",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "Map\u003cString, ServiceDescriptor\u003e not just Map",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_49c05a7c",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "Map\u003cString, ServiceDescriptor\u003e not just Map",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_a91e3661",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "Hm... why? See below. These Checkstyle checks are there for a good reason, normally.",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_f64be984",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "Hm... why? See below. These Checkstyle checks are there for a good reason, normally.",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_962b8d93",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "Hm... why? See below. These Checkstyle checks are there for a good reason, normally.",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_e975ce98",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "Hm... why? See below. These Checkstyle checks are there for a good reason, normally.",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_d6c065e2",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "Hm... why? See below. These Checkstyle checks are there for a good reason, normally.",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_c98c4a38",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "Hm... why? See below. These Checkstyle checks are there for a good reason, normally.",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_c909eade",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "Hm... why? See below. These Checkstyle checks are there for a good reason, normally.",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_e9de6e10",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "Hm... why? See below. These Checkstyle checks are there for a good reason, normally.",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_49e33a05",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "Hm... why? See below. These Checkstyle checks are there for a good reason, normally.",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_297ec66b",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "Hm... why? See below. These Checkstyle checks are there for a good reason, normally.",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_a9bf56fa",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "Hm... why? See below. These Checkstyle checks are there for a good reason, normally.",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_8919b27b",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "I would not define these two variables (statusToBeUpdated and statusStr) at the top here, but just remove this and declare further down where you need and use them",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_36b8e175",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "I would not define these two variables (statusToBeUpdated and statusStr) at the top here, but just remove this and declare further down where you need and use them",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_165f9d73",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "I would not define these two variables (statusToBeUpdated and statusStr) at the top here, but just remove this and declare further down where you need and use them",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_d64ea595",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "I would not define these two variables (statusToBeUpdated and statusStr) at the top here, but just remove this and declare further down where you need and use them",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_56fe3539",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "I would not define these two variables (statusToBeUpdated and statusStr) at the top here, but just remove this and declare further down where you need and use them",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_c978ca91",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "I would not define these two variables (statusToBeUpdated and statusStr) at the top here, but just remove this and declare further down where you need and use them",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_f6192989",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "I would not define these two variables (statusToBeUpdated and statusStr) at the top here, but just remove this and declare further down where you need and use them",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_c9e1ead1",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "I would not define these two variables (statusToBeUpdated and statusStr) at the top here, but just remove this and declare further down where you need and use them",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_89ba5208",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "I would not define these two variables (statusToBeUpdated and statusStr) at the top here, but just remove this and declare further down where you need and use them",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_a9f2b6cf",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "I would not define these two variables (statusToBeUpdated and statusStr) at the top here, but just remove this and declare further down where you need and use them",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_2984060b",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "I would not define these two variables (statusToBeUpdated and statusStr) at the top here, but just remove this and declare further down where you need and use them",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_2911a605",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "I would not define these two variables (statusToBeUpdated and statusStr) at the top here, but just remove this and declare further down where you need and use them",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_0981424a",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "I would not define these two variables (statusToBeUpdated and statusStr) at the top here, but just remove this and declare further down where you need and use them",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_297086a4",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "Erm, so... serviceStateName?  Sorry, I\u0027m not following here!  You\u0027re saying this will be something else later? Then why not remove all this, and put in the real thing later? It makes absolutely no sense the way it currently is - I\u0027d rather we remove this, finish up, merge, and then see this in a later change..",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_d61ce579",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "Erm, so... serviceStateName?  Sorry, I\u0027m not following here!  You\u0027re saying this will be something else later? Then why not remove all this, and put in the real thing later? It makes absolutely no sense the way it currently is - I\u0027d rather we remove this, finish up, merge, and then see this in a later change..",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_b6fdf13c",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "Erm, so... serviceStateName?  Sorry, I\u0027m not following here!  You\u0027re saying this will be something else later? Then why not remove all this, and put in the real thing later? It makes absolutely no sense the way it currently is - I\u0027d rather we remove this, finish up, merge, and then see this in a later change..",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_3646217d",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "Erm, so... serviceStateName?  Sorry, I\u0027m not following here!  You\u0027re saying this will be something else later? Then why not remove all this, and put in the real thing later? It makes absolutely no sense the way it currently is - I\u0027d rather we remove this, finish up, merge, and then see this in a later change..",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_e9278eb4",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "Erm, so... serviceStateName?  Sorry, I\u0027m not following here!  You\u0027re saying this will be something else later? Then why not remove all this, and put in the real thing later? It makes absolutely no sense the way it currently is - I\u0027d rather we remove this, finish up, merge, and then see this in a later change..",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_16bb1d73",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "Erm, so... serviceStateName?  Sorry, I\u0027m not following here!  You\u0027re saying this will be something else later? Then why not remove all this, and put in the real thing later? It makes absolutely no sense the way it currently is - I\u0027d rather we remove this, finish up, merge, and then see this in a later change..",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_c92a8a7d",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "but, but... it can never be null or empty!  And you should use String.isNullOrEmpty() instead anyway",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_16495d8b",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "but, but... it can never be null or empty!  And you should use String.isNullOrEmpty() instead anyway",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_e9382ea2",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "Erm, so... serviceStateName?  Sorry, I\u0027m not following here!  You\u0027re saying this will be something else later? Then why not remove all this, and put in the real thing later? It makes absolutely no sense the way it currently is - I\u0027d rather we remove this, finish up, merge, and then see this in a later change..",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_097302b2",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "but, but... it can never be null or empty!  And you should use String.isNullOrEmpty() instead anyway",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_09878210",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "Erm, so... serviceStateName?  Sorry, I\u0027m not following here!  You\u0027re saying this will be something else later? Then why not remove all this, and put in the real thing later? It makes absolutely no sense the way it currently is - I\u0027d rather we remove this, finish up, merge, and then see this in a later change..",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_f69649ef",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "but, but... it can never be null or empty!  And you should use String.isNullOrEmpty() instead anyway",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_89ed32f2",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "Erm, so... serviceStateName?  Sorry, I\u0027m not following here!  You\u0027re saying this will be something else later? Then why not remove all this, and put in the real thing later? It makes absolutely no sense the way it currently is - I\u0027d rather we remove this, finish up, merge, and then see this in a later change..",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_69971e91",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "Erm, so... serviceStateName?  Sorry, I\u0027m not following here!  You\u0027re saying this will be something else later? Then why not remove all this, and put in the real thing later? It makes absolutely no sense the way it currently is - I\u0027d rather we remove this, finish up, merge, and then see this in a later change..",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_29e9a6b8",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "Erm, so... serviceStateName?  Sorry, I\u0027m not following here!  You\u0027re saying this will be something else later? Then why not remove all this, and put in the real thing later? It makes absolutely no sense the way it currently is - I\u0027d rather we remove this, finish up, merge, and then see this in a later change..",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_76b1b98e",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "but, but... it can never be null or empty!  And you should use String.isNullOrEmpty() instead anyway",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_3614614d",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "but, but... it can never be null or empty!  And you should use String.isNullOrEmpty() instead anyway",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_0914a2f3",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "Erm, so... serviceStateName?  Sorry, I\u0027m not following here!  You\u0027re saying this will be something else later? Then why not remove all this, and put in the real thing later? It makes absolutely no sense the way it currently is - I\u0027d rather we remove this, finish up, merge, and then see this in a later change..",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_09eca2c6",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "but, but... it can never be null or empty!  And you should use String.isNullOrEmpty() instead anyway",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_c93baa9a",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "but, but... it can never be null or empty!  And you should use String.isNullOrEmpty() instead anyway",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_69fa7ebe",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "but, but... it can never be null or empty!  And you should use String.isNullOrEmpty() instead anyway",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_49921aa0",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "but, but... it can never be null or empty!  And you should use String.isNullOrEmpty() instead anyway",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_e9bb0ee3",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "but, but... it can never be null or empty!  And you should use String.isNullOrEmpty() instead anyway",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_697d5e1c",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "but, but... it can never be null or empty!  And you should use String.isNullOrEmpty() instead anyway",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_292246a4",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "There is absolutely no way for this code above to throw an Exception - I don\u0027t htink this general catch (Exception ex) is justified here",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_765ff941",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "There is absolutely no way for this code above to throw an Exception - I don\u0027t htink this general catch (Exception ex) is justified here",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_16179d52",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "There is absolutely no way for this code above to throw an Exception - I don\u0027t htink this general catch (Exception ex) is justified here",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_6969debd",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "There is absolutely no way for this code above to throw an Exception - I don\u0027t htink this general catch (Exception ex) is justified here",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_56ac7535",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "There is absolutely no way for this code above to throw an Exception - I don\u0027t htink this general catch (Exception ex) is justified here",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_c9be0ad4",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "There is absolutely no way for this code above to throw an Exception - I don\u0027t htink this general catch (Exception ex) is justified here",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_29436615",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "There is absolutely no way for this code above to throw an Exception - I don\u0027t htink this general catch (Exception ex) is justified here",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_69d27e01",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "There is absolutely no way for this code above to throw an Exception - I don\u0027t htink this general catch (Exception ex) is justified here",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_49785a2b",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "There is absolutely no way for this code above to throw an Exception - I don\u0027t htink this general catch (Exception ex) is justified here",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_a991169b",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "There is absolutely no way for this code above to throw an Exception - I don\u0027t htink this general catch (Exception ex) is justified here",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_49f5fac9",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "There is absolutely no way for this code above to throw an Exception - I don\u0027t htink this general catch (Exception ex) is justified here",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_760d393e",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "why? Oh you don\u0027t mean the code is unreachable (that\u0027s how I understood this), but this is for when the a service is not yet in the Map? But that\u0027s what the code below says, so I don\u0027t think this comment is needed..",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_b6ab311c",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "why? Oh you don\u0027t mean the code is unreachable (that\u0027s how I understood this), but this is for when the a service is not yet in the Map? But that\u0027s what the code below says, so I don\u0027t think this comment is needed..",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_d6998520",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "why? Oh you don\u0027t mean the code is unreachable (that\u0027s how I understood this), but this is for when the a service is not yet in the Map? But that\u0027s what the code below says, so I don\u0027t think this comment is needed..",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_4964dae4",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "why? Oh you don\u0027t mean the code is unreachable (that\u0027s how I understood this), but this is for when the a service is not yet in the Map? But that\u0027s what the code below says, so I don\u0027t think this comment is needed..",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_56691524",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "why? Oh you don\u0027t mean the code is unreachable (that\u0027s how I understood this), but this is for when the a service is not yet in the Map? But that\u0027s what the code below says, so I don\u0027t think this comment is needed..",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_565ab550",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "why? Oh you don\u0027t mean the code is unreachable (that\u0027s how I understood this), but this is for when the a service is not yet in the Map? But that\u0027s what the code below says, so I don\u0027t think this comment is needed..",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_0925c2aa",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "why? Oh you don\u0027t mean the code is unreachable (that\u0027s how I understood this), but this is for when the a service is not yet in the Map? But that\u0027s what the code below says, so I don\u0027t think this comment is needed..",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_7655394f",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "why? Oh you don\u0027t mean the code is unreachable (that\u0027s how I understood this), but this is for when the a service is not yet in the Map? But that\u0027s what the code below says, so I don\u0027t think this comment is needed..",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_49cdfa5c",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "why? Oh you don\u0027t mean the code is unreachable (that\u0027s how I understood this), but this is for when the a service is not yet in the Map? But that\u0027s what the code below says, so I don\u0027t think this comment is needed..",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_36a10148",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "warn? error?",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_96a6ed51",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "warn? error?",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_a9775639",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "why? Oh you don\u0027t mean the code is unreachable (that\u0027s how I understood this), but this is for when the a service is not yet in the Map? But that\u0027s what the code below says, so I don\u0027t think this comment is needed..",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_693b9ed1",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "warn? error?",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_b659715c",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "warn? error?",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_09466223",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "why? Oh you don\u0027t mean the code is unreachable (that\u0027s how I understood this), but this is for when the a service is not yet in the Map? But that\u0027s what the code below says, so I don\u0027t think this comment is needed..",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_898c1281",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "why? Oh you don\u0027t mean the code is unreachable (that\u0027s how I understood this), but this is for when the a service is not yet in the Map? But that\u0027s what the code below says, so I don\u0027t think this comment is needed..",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_5650f55d",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "warn? error?",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_29b6c6fa",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "why? Oh you don\u0027t mean the code is unreachable (that\u0027s how I understood this), but this is for when the a service is not yet in the Map? But that\u0027s what the code below says, so I don\u0027t think this comment is needed..",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_b67851f3",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "warn? error?",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_a963d6da",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "warn? error?",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_a90476c0",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "why? Oh you don\u0027t mean the code is unreachable (that\u0027s how I understood this), but this is for when the a service is not yet in the Map? But that\u0027s what the code below says, so I don\u0027t think this comment is needed..",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_5608f52c",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "warn? error?",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_89725247",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "warn? error?",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_09b942e9",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "warn? error?",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_a9dc7613",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "warn? error?",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_e9eaee0d",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "warn? error?",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_89fff2a9",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "warn? error?",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_694c3e43",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "warn? error?",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_89d7f2ec",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "I don\u0027t really understand what you\u0027re doing here.. but I trust you do - so up to you.",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_e9902e45",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "I don\u0027t really understand what you\u0027re doing here.. but I trust you do - so up to you.",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_e905ce7a",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "why Object - it\u0027s a String - so make it String serviceIdentifier (and remove the useless toString) ?",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_e92dce47",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "why Object - it\u0027s a String - so make it String serviceIdentifier ?",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_69cf1e80",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "why Object - it\u0027s a String - so make it String serviceIdentifier (and remove the useless toString) ?",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_c993aa4d",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "why Object - it\u0027s a String - so make it String serviceIdentifier (and remove the useless toString) ?",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_c908ca93",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "don\u0027t do that, just let the loop write nothing",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_29008666",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "as above, I wouldn\u0027t do that",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_09030274",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "as above, it\u0027s confusing to having this log here - the \"client\" (caller) isn\u0027t going to see this anyway, so who is this for?  And you DID honour the service request, because you are returning \"{}\" so this is.. not really useful or needed, IMHO.",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_36e901b9",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "nit: remove trailing space in log message",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_96a9cd7d",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "nit: remove trailing space in log message",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_a9f3d69c",
+        "filename": "diagstatus/impl/src/test/java/org/opendaylight/infrautils/diagstatus/test/DiagStatusTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "nit: remove empty line here",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_89eed2b2",
+        "filename": "diagstatus/impl/src/test/java/org/opendaylight/infrautils/diagstatus/test/DiagStatusTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "nit: insert space new line here",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_6940bea5",
+        "filename": "diagstatus/impl/src/test/java/org/opendaylight/infrautils/diagstatus/test/DiagStatusTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "More FYI: In this particular case, using the GuiceRule and DiagStatusTestModule to @Inject DiagStatusService is \"almost\" overkill - you could just do the x2 new in the test.. but I\u0027m OK if you leave it - I like the GuiceRule... ;-)",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_e92cae04",
+        "filename": "diagstatus/impl/src/test/java/org/opendaylight/infrautils/diagstatus/test/DiagStatusTestModule.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "remove this? ;-)",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_c92f2af5",
+        "filename": "diagstatus/impl/src/test/java/org/opendaylight/infrautils/diagstatus/test/DiagStatusTestModule.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "remove these ..",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_561c7513",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusCommand.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "final",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_f62da947",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusCommand.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "just while I see this again, as proposed in https://git.opendaylight.org/gerrit/#/c/58742/ you can remove this - Karaf Commands automatically have help, from Karaf, you don\u0027t have to provide one - try it.",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_b61b311a",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusCommand.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "use injection by constructor instead of setter for commands; see caches/cli for how-to",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_d6d7c521",
+        "filename": "diagstatus/shell/src/main/resources/OSGI-INF/blueprint/blueprint.xml",
+        "patchSetId": 6
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-22T14:24:08Z",
+      "side": 1,
+      "message": "change this to \u003cargument instead of \u003cproperty when you\u0027ll make it a constructor, like in caches/cli/src/main/resources/OSGI-INF/blueprint/commands.xml",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
