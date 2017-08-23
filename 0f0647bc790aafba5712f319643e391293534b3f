@@ -72,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "ba1f61a0_de9cf7c2",
+        "filename": "diagstatus/impl/pom.xml",
+        "patchSetId": 6
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-23T18:08:54Z",
+      "side": 1,
+      "message": "yeah sure it won\u0027t work without the version, but you would have to put the correct *-SNAPSHOT one for master, oxygen.\n\nactually, do you even really need mdsal-binding-test-utils?  This may be a left over, and you can just remove this?",
+      "parentUuid": "ba1f61a0_cc09f8de",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba1f61a0_56c6354a",
         "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
         "patchSetId": 6
