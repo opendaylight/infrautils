@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba1f61a0_0703e273",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/DiagStatusService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-24T11:56:16Z",
+      "side": 1,
+      "message": "why Boolean instead of boolean?  Hopefully you don\u0027t intend to ever return null here ;) so a boolean would be more null safe than a Boolean? And sorry to keep piling up more review comment - but you keep adding more code to a review you said was final! ;-)",
+      "range": {
+        "startLine": 70,
+        "startChar": 12,
+        "endLine": 70,
+        "endChar": 13
+      },
+      "revId": "8a521fea19afb70dab207c63c13422a87a3f401a",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_47f4ba86",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-24T11:56:16Z",
+      "side": 1,
+      "message": "as per previous comment, a boolean instead of a Boolean would be more null safe.",
+      "revId": "8a521fea19afb70dab207c63c13422a87a3f401a",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_e7c84e24",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusCommand.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-24T11:56:16Z",
+      "side": 1,
+      "message": "FYI, strictly speaking this particular @Inject here won\u0027t work / won\u0027t do anything / isn\u0027t needed, because you need XML for these commands (AFAIK).  It (probably) doesn\u0027t do any harm either, so I don\u0027t mind.",
+      "revId": "8a521fea19afb70dab207c63c13422a87a3f401a",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
