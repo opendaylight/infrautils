@@ -108,6 +108,24 @@
     },
     {
       "key": {
+        "uuid": "ba1f61a0_e705ee7a",
+        "filename": "diagstatus/impl/pom.xml",
+        "patchSetId": 6
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-08-24T11:56:16Z",
+      "side": 1,
+      "message": "No need to move this to infrautils; actually, it is like this: You only need to use the org.opendaylight.mdsal.binding.testutils.AssertDataObjects from mdsal-binding-test-util to assertEqualBeans if the expected and actual are YANG DataObject instances (because they are a bit... special).  In your test here, you wanted to use this to compare \"normal\" Java Beans, and here you can just directly use the underlying https://github.com/vorburger/xtendbeans (which is what AssertDataObjects internally also uses, but wrapped).",
+      "parentUuid": "ba1f61a0_e1d15e58",
+      "revId": "0f0647bc790aafba5712f319643e391293534b3f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba1f61a0_56c6354a",
         "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
         "patchSetId": 6
