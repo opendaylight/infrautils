@@ -27,9 +27,15 @@
 
     <dependencyManagement>
         <dependencies>
+            <!-- APIs & runtime utilities -->
             <dependency>
               <groupId>${project.groupId}</groupId>
-              <artifactId>ready-api</artifactId>
+             <artifactId>caches-api</artifactId>
+              <version>${project.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>${project.groupId}</groupId>
+              <artifactId>infrautils-util</artifactId>
               <version>${project.version}</version>
             </dependency>
             <dependency>
@@ -39,11 +45,36 @@
             </dependency>
             <dependency>
               <groupId>${project.groupId}</groupId>
+              <artifactId>jobcoordinator-api</artifactId>
+              <version>${project.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>${project.groupId}</groupId>
+              <artifactId>ready-api</artifactId>
+              <version>${project.version}</version>
+            </dependency>
+
+            <!-- Test utilities -->
+            <dependency>
+              <groupId>org.opendaylight.infrautils</groupId>
+              <artifactId>infrautils-testutils</artifactId>
+              <version>${project.version}</version>
+              <scope>test</scope>
+            </dependency>
+            <dependency>
+              <groupId>${project.groupId}</groupId>
               <artifactId>inject.guice.testutils</artifactId>
               <version>${project.version}</version>
               <scope>test</scope>
             </dependency>
+            <dependency>
+              <groupId>${project.groupId}</groupId>
+              <artifactId>itestutils</artifactId>
+              <version>${project.version}</version>
+              <scope>test</scope>
+            </dependency>
 
+            <!-- Karaf features -->
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>infrautils-features</artifactId>
