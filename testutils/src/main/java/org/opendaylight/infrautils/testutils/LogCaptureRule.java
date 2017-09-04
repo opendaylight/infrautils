@@ -7,7 +7,6 @@
  */
 package org.opendaylight.infrautils.testutils;
 
-import junit.framework.AssertionFailedError;
 import org.junit.ComparisonFailure;
 import org.junit.rules.ExpectedException;
 import org.junit.rules.TestRule;
@@ -65,18 +64,26 @@ public class LogCaptureRule implements TestRule {
             @SuppressWarnings("checkstyle:IllegalCatch")
             public void evaluate() throws Throwable {
                 RememberingLogger.resetLastError();
-                statement.evaluate();
+                Throwable testFailingThrowable = null;
+                try {
+                    statement.evaluate();
+                } catch (Throwable t) {
+                    testFailingThrowable = t;
+                }
+                final Throwable finalTestFailingThrowable = testFailingThrowable;
                 RememberingLogger.getLastErrorMessage().ifPresent(lastErrorLogMessage -> {
                     if (expectedErrorLogMessage == null) {
-                        throw new AssertionFailedError(
-                                "LogCaptureRule expected no error log, but: " + lastErrorLogMessage);
+                        throw new LogCaptureRuleException(
+                            "Expected no error log, but: " + lastErrorLogMessage,
+                                RememberingLogger.getLastErrorThrowable().orElse(null), finalTestFailingThrowable);
                     } else if (!expectedErrorLogMessage.equals(lastErrorLogMessage)) {
                         throw new ComparisonFailure("LogCaptureRule expected different error message",
                                 expectedErrorLogMessage, lastErrorLogMessage);
                     }
                 });
                 if (!RememberingLogger.getLastErrorMessage().isPresent() && expectedErrorLogMessage != null) {
-                    throw new AssertionFailedError("LogCaptureRule expected an error log: " + expectedErrorLogMessage);
+                    throw new LogCaptureRuleException("Expected error log message: "
+                            + expectedErrorLogMessage, null, finalTestFailingThrowable);
                 }
             }
         };
