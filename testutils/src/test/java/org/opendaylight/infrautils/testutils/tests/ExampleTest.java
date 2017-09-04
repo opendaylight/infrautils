@@ -11,6 +11,7 @@ import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
 import org.opendaylight.infrautils.testutils.ClasspathHellDuplicatesCheckRule;
+import org.opendaylight.infrautils.testutils.LogCaptureRule;
 import org.opendaylight.infrautils.testutils.LogRule;
 import org.opendaylight.infrautils.testutils.RunUntilFailureClassRule;
 import org.opendaylight.infrautils.testutils.RunUntilFailureRule;
@@ -18,7 +19,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Unit test, and example, of how to use the {@link LogRule} and {@link RunUntilFailureRule}.
+ * Unit test, and example, of how to use the different new JUnit Rules.
  *
  * @author Michael Vorburger
  */
@@ -30,6 +31,7 @@ public class ExampleTest {
     public @Rule RunUntilFailureRule repeater = new RunUntilFailureRule(classRepeater);
 
     public @Rule LogRule logRule = new LogRule();
+    public @Rule LogCaptureRule logCaptureRule = new LogCaptureRule();
 
     public static @ClassRule ClasspathHellDuplicatesCheckRule jHades = new ClasspathHellDuplicatesCheckRule();
 
@@ -37,6 +39,7 @@ public class ExampleTest {
     public void testA() throws Exception {
         LOG.info("doin' stuff in testA...");
         Thread.sleep(50);
+        // LOG.error("boum");
     }
 
     @Test
