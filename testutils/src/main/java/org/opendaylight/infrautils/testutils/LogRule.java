@@ -13,6 +13,8 @@ import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.Marker;
+import org.slf4j.MarkerFactory;
 
 /**
  * JUnit Rule which nicely separates {@literal @}Test/s in the log.
@@ -32,6 +34,11 @@ public class LogRule implements TestRule {
 
     private static final String HEADER = Strings.repeat("-", 120);
     private static final String MESSAGE = "{} ({}ms) @Test {}()";
+    private static final Marker MARKER = MarkerFactory.getMarker(LogRule.class.getName());
+
+    public static Marker getMarker() {
+        return MARKER;
+    }
 
     @Override
     public Statement apply(Statement statement, Description description) {
@@ -41,8 +48,8 @@ public class LogRule implements TestRule {
             @Override
             @SuppressWarnings("checkstyle:IllegalCatch")
             public void evaluate() throws Throwable {
-                testLog.info(HEADER);
-                testLog.info("BEGIN @Test {}()", description.getMethodName());
+                testLog.info(MARKER, HEADER);
+                testLog.info(MARKER, "BEGIN @Test {}()", description.getMethodName());
                 long startTimeInMS = System.currentTimeMillis();
                 Throwable caughtThrowable = null;
                 try {
@@ -53,9 +60,10 @@ public class LogRule implements TestRule {
                 } finally {
                     long durationInMS = System.currentTimeMillis() - startTimeInMS;
                     if (caughtThrowable == null) {
-                        testLog.info(MESSAGE, "ENDED", durationInMS, description.getMethodName());
+                        testLog.info(MARKER, MESSAGE, "ENDED", durationInMS, description.getMethodName());
                     } else {
-                        testLog.error(MESSAGE, "FAILED", durationInMS, description.getMethodName(), caughtThrowable);
+                        testLog.error(MARKER, MESSAGE, "FAILED", durationInMS, description.getMethodName(),
+                                caughtThrowable);
                     }
                 }
             }
