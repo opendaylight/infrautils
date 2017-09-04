@@ -9,9 +9,11 @@ package org.opendaylight.infrautils.testutils.tests;
 
 import static com.google.common.truth.Truth.assertThat;
 
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.opendaylight.infrautils.testutils.LogCaptureRule;
+import org.opendaylight.infrautils.testutils.LogRule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,37 +26,54 @@ public class LogCaptureRuleTest {
 
     private static final Logger LOG = LoggerFactory.getLogger(LogCaptureRuleTest.class);
 
-    public @Rule LogCaptureRule logRule = new LogCaptureRule();
+    public @Rule LogRule logRule = new LogRule();
+
+    public @Rule LogCaptureRule logCaptureRule = new LogCaptureRule();
+
+    @Test // (expected = LogCaptureRuleException.class)
+    @Ignore // because expected does not work, because that can't handle what's from a Rule
+    public void logUnexpectedError() {
+        LOG.error("boum", new IllegalStateException("unexpected"));
+    }
+
+    @Test
+    @Ignore // as above
+    // NB: The LogCaptureRuleException thrown by this includes "bam!" (as Suppressed)
+    // and does not have "FAILED @Test logUnexpectedErrorAndThrow" (from LogRule) as message
+    public void logUnexpectedErrorAndThrow() throws Exception {
+        LOG.error("boum", new IllegalStateException("unexpected"));
+        throw new Exception("bam!", new IllegalArgumentException("bad"));
+    }
 
     @Test
     public void logError() {
-        logRule.expectError("boum");
+        logCaptureRule.expectError("boum");
         LOG.error("boum");
     }
 
     @Test
     public void logErrorWithException() {
         Exception ko = new IllegalArgumentException("KO");
-        logRule.expectError("boum");
+        logCaptureRule.expectError("boum");
         LOG.error("boum", ko);
-        assertThat(logRule.getLastErrorThrowable()).isEqualTo(ko);
+        assertThat(logCaptureRule.getLastErrorThrowable()).isEqualTo(ko);
     }
 
     @Test
     public void logErrorWithOneMessageFormatArgument() {
-        logRule.expectError("bada boum");
+        logCaptureRule.expectError("bada boum");
         LOG.error("{} boum", "bada");
     }
 
     @Test
     public void logErrorWithTwoMessageFormatArguments() {
-        logRule.expectError("bada boum kadum");
+        logCaptureRule.expectError("bada boum kadum");
         LOG.error("{} boum {}", "bada", "kadum");
     }
 
     @Test
     public void logErrorWithThreeMessageFormatArguments() {
-        logRule.expectError("bada boum kadum tabam");
+        logCaptureRule.expectError("bada boum kadum tabam");
         LOG.error("{} boum {} {}", "bada", "kadum", "tabam");
     }
 
