@@ -7,38 +7,58 @@
  */
 package org.opendaylight.infrautils.diagstatus.shell;
 
+import java.util.List;
+
 import org.apache.karaf.shell.commands.Command;
 import org.apache.karaf.shell.commands.Option;
 import org.apache.karaf.shell.console.OsgiCommandSupport;
-import org.opendaylight.infrautils.diagstatus.DiagStatusService;
+import org.opendaylight.infrautils.diagstatus.util.DiagStatusUtil;
+import org.opendaylight.infrautils.diagstatus.util.StatusOperations;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * CLI for showing remote service status.
+ * CLI for showing registered service status.
  *
  * @author Faseela K
  */
-@Command(scope = "diagstatus", name = "list", description = "show the status of registered services")
+@Command(scope = "diagstatus", name = "showSvcStatus", description = "show the status of registered services")
 public class DiagStatusCommand extends OsgiCommandSupport {
 
     private static final Logger LOG = LoggerFactory.getLogger(DiagStatusCommand.class);
 
-    private final DiagStatusService diagStatusService;
-
-    @Option(name = "-n", aliases = {"--node"}, required = false, multiValued = false)
+    @Option(name = "-n", aliases = {"--node"})
     String nip;
-    @Option(name = "-a", aliases = {"--all"}, required = false, multiValued = false)
+    @Option(name = "-a", aliases = {"--all"})
     String all;
 
-    public DiagStatusCommand(DiagStatusService diagStatusService) {
-        this.diagStatusService = diagStatusService;
-    }
-
     @Override
+    @SuppressWarnings("checkstyle:IllegalCatch")
     protected Object doExecute() throws Exception {
-        // TODO this is just for basic testing. More detailed implementation will come in subsequent patches
-        session.getConsole().print(diagStatusService.getAllServiceDescriptors());
+        StringBuilder strBuilder = new StringBuilder();
+        strBuilder.append("Timestamp: " + new java.util.Date().toString() + "\n");
+
+        if (all != null || (all == null && nip == null)) {
+            List<String> clusterIPAddresses = DiagStatusUtil.getClusterMembers();
+            if (!clusterIPAddresses.isEmpty()) {
+                for (String remoteIpAddr : clusterIPAddresses) {
+                    try {
+                        strBuilder.append(StatusOperations.getRemoteStatusSummary(remoteIpAddr));
+                    } catch (Exception e) {
+                        LOG.error("Exception while reaching Host ::{}", remoteIpAddr);
+                    }
+                }
+            } else {
+                LOG.info("Could not obtain cluster members or the cluster-command is being executed locally\n");
+                strBuilder.append(StatusOperations.getLocalStatusSummary("localhost"));
+            }
+        }
+
+        if (null != nip) {
+            strBuilder.append(DiagStatusUtil.getNodeSpecificStatus(nip));
+        }
+
+        session.getConsole().print(strBuilder.toString());
         return null;
     }
 }

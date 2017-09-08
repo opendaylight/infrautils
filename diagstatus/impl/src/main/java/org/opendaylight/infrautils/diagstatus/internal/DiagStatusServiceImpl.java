@@ -21,6 +21,7 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import org.opendaylight.infrautils.diagstatus.DiagStatusService;
+import org.opendaylight.infrautils.diagstatus.MBeanUtils;
 import org.opendaylight.infrautils.diagstatus.ServiceDescriptor;
 import org.opendaylight.infrautils.diagstatus.ServiceState;
 import org.ops4j.pax.cdi.api.OsgiServiceProvider;
@@ -38,11 +39,6 @@ public class DiagStatusServiceImpl implements DiagStatusService, DiagStatusServi
 
     private static final Logger LOG = LoggerFactory.getLogger(DiagStatusServiceImpl.class);
 
-    private static final String DEBUG_OUTPUT_FORMAT = "D";
-    private static final String BRIEF_OUTPUT_FORMAT = "B";
-    private static final String VERBOSE_OUTPUT_FORMAT = "V";
-    private static final String JMX_OBJECT_NAME = "org.opendaylight.infrautils.diagstatus:type=SvcStatus";
-
     private final Map<String, ServiceDescriptor> statusMap = new ConcurrentHashMap<>();
 
     @Inject
@@ -53,13 +49,13 @@ public class DiagStatusServiceImpl implements DiagStatusService, DiagStatusServi
     @PostConstruct
     public void start() {
         LOG.info("{} start", getClass().getSimpleName());
-        MBeanUtils.registerServerMBean(this, JMX_OBJECT_NAME);
+        MBeanUtils.registerServerMBean(this, MBeanUtils.JMX_OBJECT_NAME);
     }
 
     @Override
     @PreDestroy
     public void close() throws Exception {
-        MBeanUtils.unregisterServerMBean(this, JMX_OBJECT_NAME);
+        MBeanUtils.unregisterServerMBean(this, MBeanUtils.JMX_OBJECT_NAME);
         LOG.info("{} close", getClass().getSimpleName());
     }
 
@@ -175,7 +171,20 @@ public class DiagStatusServiceImpl implements DiagStatusService, DiagStatusServi
     @Override
     public Map<String, ServiceDescriptor> acquireServiceStatusMap() {
         updateServiceStatusMap();
-        return statusMap;
+        java.util.HashMap resultMap = new java.util.HashMap();
+        String operationalState;
+        if (statusMap.size() > 0) {
+            for (ServiceDescriptor stat : statusMap.values()) {
+                ServiceState state = stat.getServiceState();
+                if (state == null || state.equals(ServiceState.ERROR) || state.equals(ServiceState.UNREGISTERED)) {
+                    operationalState = "ERROR";
+                } else {
+                    operationalState = "OPERATIONAL";
+                }
+                resultMap.put(stat.getModuleServiceName(), operationalState);
+            }
+        }
+        return resultMap;
     }
 
     private void updateServiceStatusMap(String serviceIdentifier) {
@@ -220,13 +229,13 @@ public class DiagStatusServiceImpl implements DiagStatusService, DiagStatusServi
             writer.beginArray(); //[
             for (Map.Entry<String, ServiceDescriptor> status : statusMap.entrySet()) {
                 writer.beginObject(); // {
-                if (formatType.equals(DEBUG_OUTPUT_FORMAT)) {
+                if (formatType.equals(MBeanUtils.DEBUG_OUTPUT_FORMAT)) {
                     writer.name("serviceName").value(status.getKey());
                     writer.name("lastReportedStatus").value(status.getValue().getServiceState().name());
                     writer.name("effectiveStatus").value(status.getValue().getServiceState().name());
                     writer.name("reportedStatusDes").value(status.getValue().getStatusDesc());
                     writer.name("statusTimestamp").value(status.getValue().getTimestamp().toString());
-                } else if (formatType.equals(VERBOSE_OUTPUT_FORMAT)) {
+                } else if (formatType.equals(MBeanUtils.VERBOSE_OUTPUT_FORMAT)) {
                     writer.name("serviceName").value(status.getKey());
                     writer.name("effectiveStatus").value(status.getValue().getServiceState().name());
                 } else {

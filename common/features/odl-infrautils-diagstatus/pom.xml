@@ -24,6 +24,10 @@
             <artifactId>diagstatus-shell</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.jolokia</groupId>
+            <artifactId>jolokia-osgi</artifactId>
+        </dependency>
     </dependencies>
 
 </project>
