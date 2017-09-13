@@ -14,15 +14,14 @@ import org.slf4j.LoggerFactory;
 
 
 public class OccurenceCounterEntry {
-    public OccurenceCounter counter;
-    public long lastVal;
+    public final OccurenceCounter counter;
+    public long lastVal = 0;
     public long maxWidth = 0;
-    public Logger logger;
-    public String printName;
+    public final Logger logger;
+    public final String printName;
 
     public OccurenceCounterEntry(OccurenceCounter counter) {
         this.counter = counter;
-        lastVal = 0;
         logger = LoggerFactory.getLogger(counter.group + "." + counter.name);
         printName = counter.groupAcronym + "." + counter.name;
     }

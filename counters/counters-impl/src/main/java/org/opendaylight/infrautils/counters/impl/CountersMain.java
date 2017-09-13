@@ -18,7 +18,7 @@ import org.slf4j.LoggerFactory;
 
 public class CountersMain {
 
-    protected static final Logger LOG = LoggerFactory.getLogger(CountersMain.class);
+    private static final Logger LOG = LoggerFactory.getLogger(CountersMain.class);
     private CountersDumperThread countersRunnable = null;
     private Thread countersThread = null;
     private volatile int interval = 0;

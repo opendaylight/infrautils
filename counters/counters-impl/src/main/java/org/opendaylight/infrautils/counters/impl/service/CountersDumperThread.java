@@ -19,8 +19,8 @@ public class CountersDumperThread implements Runnable {
     private volatile boolean keepRunning = true;
     private volatile int countersDumpInterval;
     private static HashSet<OccurenceCounterEntry> counters = new HashSet<>();
-    private static LinkedHashSet<OccurenceCounterEntry> printCounters = new LinkedHashSet<>();
-    protected static final Logger LOG = LoggerFactory.getLogger(CountersDumperThread.class);
+    private static final LinkedHashSet<OccurenceCounterEntry> OCCURENCE_COUNTER_ENTRIES = new LinkedHashSet<>();
+    private static final Logger LOG = LoggerFactory.getLogger(CountersDumperThread.class);
 
     public CountersDumperThread(int countersDumpInterval) {
         this.countersDumpInterval = countersDumpInterval;
@@ -56,12 +56,12 @@ public class CountersDumperThread implements Runnable {
             StringBuilder sb = new StringBuilder();
             for (OccurenceCounterEntry entry : counters) {
                 if (entry.counter.get() != entry.lastVal && isCategoryPermitted(entry)) {
-                    printCounters.add(entry);
+                    OCCURENCE_COUNTER_ENTRIES.add(entry);
                 } else {
-                    printCounters.remove(entry);
+                    OCCURENCE_COUNTER_ENTRIES.remove(entry);
                 }
             }
-            for (OccurenceCounterEntry entry : printCounters) {
+            for (OccurenceCounterEntry entry : OCCURENCE_COUNTER_ENTRIES) {
                 long curVal = entry.counter.get();
                 long difference = curVal - entry.lastVal;
                 updateMaxWidth(entry, difference);

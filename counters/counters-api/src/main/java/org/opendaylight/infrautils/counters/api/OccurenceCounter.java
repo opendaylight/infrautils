@@ -20,13 +20,13 @@ public class OccurenceCounter implements Comparable<OccurenceCounter> {
     private final AtomicLong totalOccur = new AtomicLong(0);
     private final AtomicInteger occursSinceLastPrint = new AtomicInteger(0);
     private final AtomicInteger occursInLastBulk = new AtomicInteger(0);
-    public String name;
+    public final String name;
     private boolean isErasable = true;
-    public boolean isLoggable;
+    public final boolean isLoggable;
     public boolean isState = false;
 
-    public String group;
-    public String groupAcronym;
+    public final String group;
+    public final String groupAcronym;
     private final String description;
     private final OccurenceCounter parent;
 
@@ -71,15 +71,15 @@ public class OccurenceCounter implements Comparable<OccurenceCounter> {
         this.name = name;
         this.isState = isState;
         internalResetCounter();
-        synchronized (counters) {
-            counters.add(this);
+        synchronized (COUNTERS) {
+            COUNTERS.add(this);
         }
     }
 
     public static CountersGroup getCounterGroups(String[] filterGroupNames, String[] filterCounterNames) {
         CountersGroup groups = new CountersGroup();
-        synchronized (counters) {
-            for (OccurenceCounter counter : counters) {
+        synchronized (COUNTERS) {
+            for (OccurenceCounter counter : COUNTERS) {
                 if (counter != null && counter.isMatching(filterGroupNames, filterCounterNames)) {
                     Map<String, UnsignedLong> groupCounters = groups.get(counter.group);
                     if (groupCounters == null) {
@@ -94,8 +94,8 @@ public class OccurenceCounter implements Comparable<OccurenceCounter> {
     }
 
     public static void clearAllCounters(String[] filterGroupNames, String[] filterCounterNames) {
-        synchronized (counters) {
-            for (OccurenceCounter counter : counters) {
+        synchronized (COUNTERS) {
+            for (OccurenceCounter counter : COUNTERS) {
                 if (counter != null && counter.isErasable && counter.isMatching(filterGroupNames, filterCounterNames)) {
                     counter.internalResetCounter();
                 }
@@ -107,15 +107,15 @@ public class OccurenceCounter implements Comparable<OccurenceCounter> {
         return StringUtil.isMatching(group, filterGroupNames) && StringUtil.isMatching(name, filterCounterNames);
     }
 
-    private static HashSet<OccurenceCounter> counters = new HashSet<>();
+    private static final HashSet<OccurenceCounter> COUNTERS = new HashSet<>();
 
     public static HashSet<OccurenceCounter> getCounters() {
-        return counters;
+        return COUNTERS;
     }
 
     public static HashSet<OccurenceCounter> cloneCounters() {
-        synchronized (counters) {
-            return new HashSet<>(counters);
+        synchronized (COUNTERS) {
+            return new HashSet<>(COUNTERS);
         }
     }
 
@@ -148,8 +148,8 @@ public class OccurenceCounter implements Comparable<OccurenceCounter> {
             throw new UnsupportedOperationException("Cannot reset a counter with parent");
         }
         internalResetCounter();
-        synchronized (counters) {
-            for (OccurenceCounter counter : counters) {
+        synchronized (COUNTERS) {
+            for (OccurenceCounter counter : COUNTERS) {
                 if (counter != null && counter.parent == this) {
                     counter.internalResetCounter();
                 }
@@ -163,7 +163,7 @@ public class OccurenceCounter implements Comparable<OccurenceCounter> {
         occursInLastBulk.set(0);
     }
 
-    public long add(long val) {
+    private long add(long val) {
         if (parent != null) {
             parent.add(val);
         }
