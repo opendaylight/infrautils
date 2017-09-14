@@ -22,6 +22,30 @@
       "revId": "c2400da8dcff0f8dd5e4201e7ce84897e1b9968e",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_dc3f94b2",
+        "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/LogCaptureRuleException.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-09-14T13:57:08Z",
+      "side": 1,
+      "message": "yeah it is, well spotted Tx, now removed; +1 ?  (This was a  left over from while I was figuring out that \"suppressed\" stuff; then forgot about removing this at the end.)",
+      "parentUuid": "ba1f61a0_bd94778b",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 5
+      },
+      "revId": "c2400da8dcff0f8dd5e4201e7ce84897e1b9968e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
