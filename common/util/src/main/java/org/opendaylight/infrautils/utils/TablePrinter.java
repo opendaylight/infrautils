@@ -8,7 +8,6 @@
 package org.opendaylight.infrautils.utils;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -20,8 +19,8 @@ import org.slf4j.LoggerFactory;
 public class TablePrinter {
     private static final Logger LOG = LoggerFactory.getLogger(TablePrinter.class);
 
-    private static int SPACE_BETWEEN_COLUMNS = 1;
-    private static int SPACE_BEFORE_TABLES_WITH_TITLE = 4;
+    private static final int SPACE_BETWEEN_COLUMNS = 1;
+    private static final int SPACE_BEFORE_TABLES_WITH_TITLE = 4;
 
     @RegEx
     private static final String DPLUS_STR = "^\\d+$";
@@ -71,7 +70,6 @@ public class TablePrinter {
                             }
                         }
                     }
-
                     return compareStr;
                 }
                 return 0;
@@ -81,8 +79,7 @@ public class TablePrinter {
                 String numStr = str.replaceAll("^\\D*", ""); // remove non-digits
                 // return 0 if no digits found
                 try {
-                    int num = Integer.parseInt(numStr);
-                    return num;
+                    return Integer.parseInt(numStr);
                 } catch (NumberFormatException e) {
                     LOG.warn("Received unexpected NumberFormatException when trying to parse string {} into an integer",
                             numStr);
@@ -109,7 +106,6 @@ public class TablePrinter {
                 newLine[i] = "N/A";
             }
         }
-
         table.add(newLine);
     }
 
@@ -120,7 +116,7 @@ public class TablePrinter {
         StringBuilder sb = new StringBuilder();
 
         if (comparator != null) {
-            sort();
+            table.sort(comparator);
         }
 
         printTitle(sb);
@@ -134,11 +130,6 @@ public class TablePrinter {
 
         return sb.toString();
     }
-
-    public void sort() {
-        Collections.sort(table, comparator);
-    }
-
 
     private void printTitle(StringBuilder sb) {
         if (title != null) {
@@ -212,7 +203,7 @@ public class TablePrinter {
         }
     }
 
-    public String columnSeparator() {
+    private String columnSeparator() {
         String space = StringUtils.repeat(" ", SPACE_BETWEEN_COLUMNS);
         return space + "|" + space;
     }
@@ -225,5 +216,4 @@ public class TablePrinter {
     public void setTitle(String title) {
         this.title = title;
     }
-
 }

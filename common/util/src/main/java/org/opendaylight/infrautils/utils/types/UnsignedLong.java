@@ -10,7 +10,7 @@ package org.opendaylight.infrautils.utils.types;
 import java.math.BigInteger;
 import java.util.Collection;
 
-public class UnsignedLong extends Number implements Comparable<UnsignedLong> {
+public final class UnsignedLong extends Number implements Comparable<UnsignedLong> {
 
     public static final UnsignedLong ZERO = new UnsignedLong(BigInteger.ZERO);
     public static final UnsignedLong[] EMPTY = new UnsignedLong[0];

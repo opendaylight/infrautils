@@ -16,7 +16,7 @@ import org.slf4j.Logger;
  *
  * @author Michael Vorburger.ch
  */
-public class LoggingThreadUncaughtExceptionHandler implements UncaughtExceptionHandler {
+public final class LoggingThreadUncaughtExceptionHandler implements UncaughtExceptionHandler {
 
     /**
      * Factory method to obtain an instance of this bound to the passed slf4j Logger.
@@ -35,5 +35,4 @@ public class LoggingThreadUncaughtExceptionHandler implements UncaughtExceptionH
     public void uncaughtException(Thread thread, Throwable throwable) {
         logger.error("Thread terminated due to uncaught exception: {}", thread.getName(), throwable);
     }
-
 }

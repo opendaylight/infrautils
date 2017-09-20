@@ -7,9 +7,11 @@
  */
 package org.opendaylight.infrautils.utils;
 
-import java.util.Collection;
+public final class CompareUtil {
 
-public class CompareUtil {
+    private CompareUtil() {
+    }
+
     public static boolean safeCompare(Object obj1, Object obj2) {
         if (obj1 == obj2) {
             return true;
@@ -30,20 +32,4 @@ public class CompareUtil {
         }
         return obj2 == null ? -1 : obj1.compareTo(obj2);
     }
-
-    public static <T> void calculateDiff(Collection<T> newCollection, Collection<T> oldCollection, Collection<T> added,
-            Collection<T> removed, Collection<T> retain) {
-        retain.addAll(newCollection);
-        added.addAll(newCollection);
-        removed.addAll(oldCollection);
-        retain.retainAll(oldCollection);
-        for (T oldElement : oldCollection) {
-            added.remove(oldElement);
-        }
-
-        for (T newElement : newCollection) {
-            removed.remove(newElement);
-        }
-    }
-
 }
