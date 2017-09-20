@@ -57,6 +57,24 @@
       "revId": "71aeef95eef1791a11d2d37bdf8e0a231c467818",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_7b5820fa",
+        "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/concurrent/TestableQueues.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-09-20T11:10:15Z",
+      "side": 1,
+      "message": "Sounds good to me - done (with a minimum timeout Precondition) - OK for everyone like this?",
+      "parentUuid": "ba1f61a0_8aa5fda3",
+      "revId": "71aeef95eef1791a11d2d37bdf8e0a231c467818",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
