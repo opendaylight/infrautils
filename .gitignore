@@ -11,3 +11,4 @@ target-ide/
 .idea
 .fbExcludeFilterFile
 .vscode/
+.factorypath
