@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
+
+  <reference-list id="registeredServiceRefs"
+                  interface="org.opendaylight.infrautils.diagstatus.ServiceStatusPoller" />
+
+  <bean id="diagStatusImpl" class="org.opendaylight.infrautils.diagstatus.internal.DiagStatusServiceImpl">
+    <property name="statusPollerImplList" ref="registeredServiceRefs"/>
+  </bean>
+
+</blueprint>

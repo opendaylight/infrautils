@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import javax.annotation.PostConstruct;
@@ -24,6 +25,7 @@ import org.opendaylight.infrautils.diagstatus.DiagStatusService;
 import org.opendaylight.infrautils.diagstatus.MBeanUtils;
 import org.opendaylight.infrautils.diagstatus.ServiceDescriptor;
 import org.opendaylight.infrautils.diagstatus.ServiceState;
+import org.opendaylight.infrautils.diagstatus.ServiceStatusPoller;
 import org.ops4j.pax.cdi.api.OsgiServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,6 +42,8 @@ public class DiagStatusServiceImpl implements DiagStatusService, DiagStatusServi
     private static final Logger LOG = LoggerFactory.getLogger(DiagStatusServiceImpl.class);
 
     private final Map<String, ServiceDescriptor> statusMap = new ConcurrentHashMap<>();
+
+    List<ServiceStatusPoller> statusPollerImplList;
 
     @Inject
     public DiagStatusServiceImpl() {
@@ -59,6 +63,14 @@ public class DiagStatusServiceImpl implements DiagStatusService, DiagStatusServi
         LOG.info("{} close", getClass().getSimpleName());
     }
 
+    public List<ServiceStatusPoller> getStatusPollerImplList() {
+        return statusPollerImplList;
+    }
+
+    public void setStatusPollerImplList(List<ServiceStatusPoller> statusPollerImplList) {
+        this.statusPollerImplList = statusPollerImplList;
+    }
+
     @Override
     public boolean register(String serviceIdentifier) {
         ServiceDescriptor serviceDescriptor = new ServiceDescriptor(serviceIdentifier, ServiceState.STARTING,
@@ -71,6 +83,11 @@ public class DiagStatusServiceImpl implements DiagStatusService, DiagStatusServi
     public boolean deregister(String serviceIdentifier) {
         statusMap.remove(serviceIdentifier);
         return true;
+    }
+
+    @Override
+    public void report(ServiceDescriptor serviceDescriptor) {
+        statusMap.put(serviceDescriptor.getModuleServiceName(), serviceDescriptor);
     }
 
     @Override
@@ -188,33 +205,30 @@ public class DiagStatusServiceImpl implements DiagStatusService, DiagStatusServi
     }
 
     private void updateServiceStatusMap(String serviceIdentifier) {
-        ServiceDescriptor serviceDescriptor = statusMap.get(serviceIdentifier);
-        ServiceDescriptor statusToBeUpdated;
+
+    }
+
+    private void updateServiceStatusMap() {
+        for(ServiceStatusPoller serviceReference : statusPollerImplList) {
+            ServiceDescriptor serviceDescriptor = serviceReference.getServiceDescriptor();
+            statusMap.put(serviceDescriptor.getModuleServiceName(), serviceDescriptor);
+        }
+        /*ServiceDescriptor statusToBeUpdated = null;
         if (serviceDescriptor != null) {
             LOG.info("acquire service status for {}", serviceIdentifier);
-            // TODO statusStr below will be actually polled from applications
-            // TODO since this is not in place currently, just putting a TODO here
-            String statusStr = "DUMMY";
-            if (statusStr != null && statusStr.length() > 0) {
-                // TODO poll this from applications who have registered for diagstatus service polling
+            if (serviceDescriptor.getServiceState() != null) {
+
             } else {
                 LOG.error("Invalid service status received for {}", serviceIdentifier);
                 statusToBeUpdated = new ServiceDescriptor(serviceIdentifier, ServiceState.ERROR,
                         "Invalid service status received");
-                statusMap.put(serviceIdentifier, statusToBeUpdated);
             }
         } else {
             // SERVICE NOT REGISTERED
             LOG.error("Target Service {} is UNAVAILABLE for status check", serviceIdentifier);
             statusToBeUpdated = new ServiceDescriptor(serviceIdentifier, ServiceState.UNREGISTERED, null);
-            statusMap.put(serviceIdentifier, statusToBeUpdated);
         }
-    }
-
-    private void updateServiceStatusMap() {
-        for (String serviceIdentifier : statusMap.keySet()) {
-            updateServiceStatusMap(serviceIdentifier.toString());
-        }
+        statusMap.put(serviceIdentifier, statusToBeUpdated);*/
     }
 
     private String convertStatusSummaryToJSON(String formatType) {
