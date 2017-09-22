@@ -65,7 +65,8 @@ public class SystemReadyImpl implements SystemReadyMonitor, Runnable {
     }
 
     @Override
-    @SuppressWarnings("checkstyle:IllegalCatch")
+    // disables "Catch Exception instead of Throwable" checkstyle/sonar warnings; it's OK, because we rethrow
+    @SuppressWarnings({ "checkstyle:IllegalCatch", "squid:S1181" })
     public void run() {
         try {
             // 5 minutes really ought to be enough for the whole circus to completely boot up?!
