@@ -65,7 +65,7 @@ public class SystemReadyImpl implements SystemReadyMonitor, Runnable {
     }
 
     @Override
-    @SuppressWarnings("checkstyle:IllegalCatch")
+    @SuppressWarnings("checkstyle:IllegalCatch") // below
     public void run() {
         try {
             // 5 minutes really ought to be enough for the whole circus to completely boot up?!
@@ -86,11 +86,13 @@ public class SystemReadyImpl implements SystemReadyMonitor, Runnable {
             currentSystemState.set(FAILURE);
             // We do not re-throw this
 
-        } catch (Throwable throwable) {
-            // It's exceptionally OK to catch Throwable here, because we do want to set the currentFullSystemStatus
+        } catch (RuntimeException throwable) {
+            // It's exceptionally OK to catch RuntimeException here,
+            // because we do want to set the currentFullSystemStatus
             LOG.error("Failed unexpectedly (SystemReadyListeners are not called)", throwable);
             currentSystemState.set(FAILURE);
-            throw throwable; // we do re-throw this
+            // and now we do re-throw it!
+            throw throwable;
         }
     }
 
