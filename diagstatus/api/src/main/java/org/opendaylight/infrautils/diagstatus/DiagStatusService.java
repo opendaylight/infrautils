@@ -43,6 +43,15 @@ public interface DiagStatusService extends AutoCloseable {
     void report(String serviceIdentifier, ServiceState serviceState, String statusDescription);
 
     /**
+     * Report the status of a service specified by the identifier.
+     *
+     * @param serviceDescriptor
+     *            description of the service state
+     *
+     */
+    void report(ServiceDescriptor serviceDescriptor);
+
+    /**
      * Retrieve the status of a service specified by the identifier.
      *
      * @param serviceIdentifier
