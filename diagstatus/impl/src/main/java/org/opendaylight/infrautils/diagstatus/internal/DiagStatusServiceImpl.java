@@ -11,9 +11,7 @@ package org.opendaylight.infrautils.diagstatus.internal;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.io.StringWriter;
-import java.util.Collection;
-import java.util.Date;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -21,8 +19,10 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import org.opendaylight.infrautils.diagstatus.DiagStatusService;
+import org.opendaylight.infrautils.diagstatus.MBeanUtils;
 import org.opendaylight.infrautils.diagstatus.ServiceDescriptor;
 import org.opendaylight.infrautils.diagstatus.ServiceState;
+import org.opendaylight.infrautils.diagstatus.ServiceStatusProvider;
 import org.ops4j.pax.cdi.api.OsgiServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,18 +32,16 @@ import org.slf4j.LoggerFactory;
  * and aggregating the status of the same.
  * @author Faseela K
  */
+
 @Singleton
 @OsgiServiceProvider(classes = DiagStatusService.class)
 public class DiagStatusServiceImpl implements DiagStatusService, DiagStatusServiceImplMBean {
 
     private static final Logger LOG = LoggerFactory.getLogger(DiagStatusServiceImpl.class);
 
-    private static final String DEBUG_OUTPUT_FORMAT = "D";
-    private static final String BRIEF_OUTPUT_FORMAT = "B";
-    private static final String VERBOSE_OUTPUT_FORMAT = "V";
-    private static final String JMX_OBJECT_NAME = "org.opendaylight.infrautils.diagstatus:type=SvcStatus";
-
     private final Map<String, ServiceDescriptor> statusMap = new ConcurrentHashMap<>();
+
+    private List<ServiceStatusProvider> serviceStatusProviders = new ArrayList<>();
 
     @Inject
     public DiagStatusServiceImpl() {
@@ -53,14 +51,22 @@ public class DiagStatusServiceImpl implements DiagStatusService, DiagStatusServi
     @PostConstruct
     public void start() {
         LOG.info("{} start", getClass().getSimpleName());
-        MBeanUtils.registerServerMBean(this, JMX_OBJECT_NAME);
+        MBeanUtils.registerServerMBean(this, MBeanUtils.JMX_OBJECT_NAME);
     }
 
     @Override
     @PreDestroy
     public void close() throws Exception {
-        MBeanUtils.unregisterServerMBean(this, JMX_OBJECT_NAME);
+        MBeanUtils.unregisterServerMBean(this, MBeanUtils.JMX_OBJECT_NAME);
         LOG.info("{} close", getClass().getSimpleName());
+    }
+
+    public void onServiceStatusProviderUnbind(ServiceStatusProvider statusPoller) {
+        this.serviceStatusProviders.remove(statusPoller);
+    }
+
+    public void onServiceStatusProviderBind(ServiceStatusProvider statusPoller) {
+        this.serviceStatusProviders.add(statusPoller);
     }
 
     @Override
@@ -78,6 +84,11 @@ public class DiagStatusServiceImpl implements DiagStatusService, DiagStatusServi
     }
 
     @Override
+    public void report(ServiceDescriptor serviceDescriptor) {
+        statusMap.put(serviceDescriptor.getModuleServiceName(), serviceDescriptor);
+    }
+
+    @Override
     public void report(String service, ServiceState serviceState, String statusDescription) {
         ServiceDescriptor serviceDescriptor = new ServiceDescriptor(service, serviceState, statusDescription);
         statusMap.put(service, serviceDescriptor);
@@ -85,7 +96,7 @@ public class DiagStatusServiceImpl implements DiagStatusService, DiagStatusServi
 
     @Override
     public ServiceDescriptor getServiceDescriptor(String serviceIdentifier) {
-        updateServiceStatusMap(serviceIdentifier);
+        updateServiceStatusMap();
         return statusMap.get(serviceIdentifier);
     }
 
@@ -175,36 +186,26 @@ public class DiagStatusServiceImpl implements DiagStatusService, DiagStatusServi
     @Override
     public Map<String, ServiceDescriptor> acquireServiceStatusMap() {
         updateServiceStatusMap();
-        return statusMap;
-    }
-
-    private void updateServiceStatusMap(String serviceIdentifier) {
-        ServiceDescriptor serviceDescriptor = statusMap.get(serviceIdentifier);
-        ServiceDescriptor statusToBeUpdated;
-        if (serviceDescriptor != null) {
-            LOG.info("acquire service status for {}", serviceIdentifier);
-            // TODO statusStr below will be actually polled from applications
-            // TODO since this is not in place currently, just putting a TODO here
-            String statusStr = "DUMMY";
-            if (statusStr != null && statusStr.length() > 0) {
-                // TODO poll this from applications who have registered for diagstatus service polling
-            } else {
-                LOG.error("Invalid service status received for {}", serviceIdentifier);
-                statusToBeUpdated = new ServiceDescriptor(serviceIdentifier, ServiceState.ERROR,
-                        "Invalid service status received");
-                statusMap.put(serviceIdentifier, statusToBeUpdated);
+        java.util.HashMap resultMap = new java.util.HashMap();
+        String operationalState;
+        if (statusMap.size() > 0) {
+            for (ServiceDescriptor stat : statusMap.values()) {
+                ServiceState state = stat.getServiceState();
+                if (state == null || state.equals(ServiceState.ERROR) || state.equals(ServiceState.UNREGISTERED)) {
+                    operationalState = "ERROR";
+                } else {
+                    operationalState = "OPERATIONAL";
+                }
+                resultMap.put(stat.getModuleServiceName(), operationalState);
             }
-        } else {
-            // SERVICE NOT REGISTERED
-            LOG.error("Target Service {} is UNAVAILABLE for status check", serviceIdentifier);
-            statusToBeUpdated = new ServiceDescriptor(serviceIdentifier, ServiceState.UNREGISTERED, null);
-            statusMap.put(serviceIdentifier, statusToBeUpdated);
         }
+        return resultMap;
     }
 
     private void updateServiceStatusMap() {
-        for (String serviceIdentifier : statusMap.keySet()) {
-            updateServiceStatusMap(serviceIdentifier.toString());
+        for(ServiceStatusProvider serviceReference : serviceStatusProviders) {
+            ServiceDescriptor serviceDescriptor = serviceReference.getServiceDescriptor();
+            statusMap.put(serviceDescriptor.getModuleServiceName(), serviceDescriptor);
         }
     }
 
@@ -220,13 +221,13 @@ public class DiagStatusServiceImpl implements DiagStatusService, DiagStatusServi
             writer.beginArray(); //[
             for (Map.Entry<String, ServiceDescriptor> status : statusMap.entrySet()) {
                 writer.beginObject(); // {
-                if (formatType.equals(DEBUG_OUTPUT_FORMAT)) {
+                if (formatType.equals(MBeanUtils.DEBUG_OUTPUT_FORMAT)) {
                     writer.name("serviceName").value(status.getKey());
                     writer.name("lastReportedStatus").value(status.getValue().getServiceState().name());
                     writer.name("effectiveStatus").value(status.getValue().getServiceState().name());
                     writer.name("reportedStatusDes").value(status.getValue().getStatusDesc());
                     writer.name("statusTimestamp").value(status.getValue().getTimestamp().toString());
-                } else if (formatType.equals(VERBOSE_OUTPUT_FORMAT)) {
+                } else if (formatType.equals(MBeanUtils.VERBOSE_OUTPUT_FORMAT)) {
                     writer.name("serviceName").value(status.getKey());
                     writer.name("effectiveStatus").value(status.getValue().getServiceState().name());
                 } else {

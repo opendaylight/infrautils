@@ -9,6 +9,8 @@
 package org.opendaylight.infrautils.diagstatus;
 
 import com.google.common.base.MoreObjects;
+
+import java.io.Serializable;
 import java.time.Instant;
 import java.util.Objects;
 import org.opendaylight.yangtools.util.EvenMoreObjects;
@@ -18,7 +20,7 @@ import org.opendaylight.yangtools.util.EvenMoreObjects;
  *
  * @author Faseela K
  */
-public class ServiceDescriptor {
+public class ServiceDescriptor implements Serializable {
 
     private final String moduleServiceName;
     private final ServiceState serviceState;
@@ -51,8 +53,9 @@ public class ServiceDescriptor {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).add("serviceName", getModuleServiceName()).add("serviceState",
-            getServiceState()).add("statusDesc", getStatusDesc()).add("timeStamp", getTimestamp()).toString();
+        return MoreObjects.toStringHelper(this).add("serviceName", getModuleServiceName())
+                .add("serviceState", getServiceState()).add("statusDesc", getStatusDesc())
+                .add("timeStamp", getTimestamp()).toString();
     }
 
     @Override

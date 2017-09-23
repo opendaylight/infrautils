@@ -29,7 +29,8 @@ public class DiagStatusTest {
     public @Rule LogRule logRule = new LogRule();
     public @Rule MethodRule guice = new GuiceRule(new DiagStatusTestModule());
 
-    @Inject DiagStatusService diagStatusService;
+    @Inject
+    DiagStatusService diagStatusService;
 
     @Test
     public void testDiagStatus() {
