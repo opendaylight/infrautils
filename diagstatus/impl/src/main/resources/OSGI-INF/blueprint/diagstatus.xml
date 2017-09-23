@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
+
+  <reference-list id="registeredServiceRefs"
+                  interface="org.opendaylight.infrautils.diagstatus.ServiceStatusProvider"
+                  availability="optional">
+    <reference-listener bind-method="onServiceStatusProviderBind" unbind-method="onServiceStatusProviderUnbind">
+      <bean class="org.opendaylight.infrautils.diagstatus.internal.DiagStatusServiceImpl"/>
+    </reference-listener>
+  </reference-list>
+</blueprint>
