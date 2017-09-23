@@ -8,6 +8,11 @@
 
 package org.opendaylight.infrautils.diagstatus.internal;
 
+/**
+ * DiagStatus MBean Operations.
+ *
+ * @author Faseela K
+ */
 public interface DiagStatusServiceImplMBean {
 
     String acquireServiceStatus();

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
+
+  <reference-list id="list"
+                  member-type="service-object"
+                  interface="org.opendaylight.infrautils.diagstatus.ServiceStatusProvider"
+                  availability="optional" />
+
+</blueprint>
