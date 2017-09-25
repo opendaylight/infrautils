@@ -46,6 +46,30 @@
       "revId": "316f7f70aa2b9fca65e2f5beee54fae4773b2e68",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_afe408ac",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/SystemReadyImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 5861
+      },
+      "writtenOn": "2017-09-25T10:13:30Z",
+      "side": 1,
+      "message": "On the link you included in your email[1], there are three dots \"...\" that allow you to expand an info panel where there is information about the problem and usually examples on how to solve it.\n\n[1] https://sonar.opendaylight.org/component_issues?id\u003dorg.opendaylight.infrautils%3Ainfrautils#resolved\u003dfalse|severities\u003dBLOCKER",
+      "parentUuid": "ba1f61a0_0f38b43b",
+      "range": {
+        "startLine": 69,
+        "startChar": 51,
+        "endLine": 69,
+        "endChar": 64
+      },
+      "revId": "316f7f70aa2b9fca65e2f5beee54fae4773b2e68",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
