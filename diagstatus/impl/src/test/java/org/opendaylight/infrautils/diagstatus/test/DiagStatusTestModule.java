@@ -11,8 +11,10 @@ import java.net.UnknownHostException;
 
 import org.opendaylight.infrautils.diagstatus.DiagStatusService;
 import org.opendaylight.infrautils.diagstatus.internal.DiagStatusServiceImpl;
-import org.opendaylight.infrautils.diagstatus.internal.DiagStatusServiceImplMBean;
 import org.opendaylight.infrautils.inject.guice.testutils.AbstractGuiceJsr250Module;
+import org.opendaylight.infrautils.ready.SystemReadyListener;
+import org.opendaylight.infrautils.ready.SystemReadyMonitor;
+import org.opendaylight.infrautils.ready.SystemState;
 
 /**
  * Dependency Injection Wiring for {@link DiagStatusTest}.
@@ -24,6 +26,17 @@ public class DiagStatusTestModule extends AbstractGuiceJsr250Module {
     @Override
     protected void configureBindings() throws UnknownHostException {
         bind(DiagStatusService.class).to(DiagStatusServiceImpl.class);
-        bind(DiagStatusServiceImplMBean.class).to(DiagStatusServiceImpl.class);
+        bind(SystemReadyMonitor.class).toInstance(new SystemReadyMonitor() {
+
+            @Override
+            public void registerListener(SystemReadyListener listener) {
+                // NOOP
+            }
+
+            @Override
+            public SystemState getSystemState() {
+                return SystemState.ACTIVE;
+            }
+        });
     }
 }

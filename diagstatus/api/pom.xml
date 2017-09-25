@@ -28,6 +28,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.opendaylight.infrautils</groupId>
+            <artifactId>ready-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
         </dependency>
