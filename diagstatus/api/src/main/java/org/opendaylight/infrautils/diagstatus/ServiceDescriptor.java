@@ -8,10 +8,11 @@
 
 package org.opendaylight.infrautils.diagstatus;
 
+import static java.util.Objects.requireNonNull;
+
 import com.google.common.base.MoreObjects;
 import java.time.Instant;
 import java.util.Objects;
-import org.opendaylight.yangtools.util.EvenMoreObjects;
 
 /**
  * Details of a registered service.
@@ -23,13 +24,13 @@ public class ServiceDescriptor {
     private final String moduleServiceName;
     private final ServiceState serviceState;
     private final Instant timestamp;
-    private final String statusDesc; // In case of ERROR state specific error message to aid troubleshooting can be
-                                     // provided  by monitored service
+    // In case of ERROR state specific error message to aid troubleshooting can be provided by monitored service:
+    private final String statusDesc;
 
     public ServiceDescriptor(String moduleServiceName, ServiceState svcState, String statusDesc) {
-        this.moduleServiceName = moduleServiceName;
-        this.serviceState = svcState;
-        this.statusDesc = statusDesc;
+        this.moduleServiceName = requireNonNull(moduleServiceName, "moduleServiceName");
+        this.serviceState = requireNonNull(svcState, "svcState");
+        this.statusDesc = requireNonNull(statusDesc, "statusDesc");
         this.timestamp = Instant.now();
     }
 
@@ -57,11 +58,29 @@ public class ServiceDescriptor {
 
     @Override
     public boolean equals(Object obj) {
-        return EvenMoreObjects.equalsHelper(this, obj,
-            (self, other) -> Objects.equals(self.getModuleServiceName(), other.getModuleServiceName())
-                && Objects.equals(self.getServiceState(), other.getServiceState())
-                && Objects.equals(self.getStatusDesc(), other.getStatusDesc())
-                && Objects.equals(self.getTimestamp(), other.getTimestamp()));
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (!(obj instanceof ServiceDescriptor)) {
+            return false;
+        }
+        ServiceDescriptor other = (ServiceDescriptor) obj;
+        if (!moduleServiceName.equals(other.moduleServiceName)) {
+            return false;
+        }
+        if (serviceState != other.serviceState) {
+            return false;
+        }
+        if (!statusDesc.equals(other.statusDesc)) {
+            return false;
+        }
+        if (!timestamp.equals(other.timestamp)) {
+            return false;
+        }
+        return true;
     }
 
     @Override

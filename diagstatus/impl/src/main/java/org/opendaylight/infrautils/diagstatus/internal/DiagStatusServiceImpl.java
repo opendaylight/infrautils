@@ -185,7 +185,7 @@ public class DiagStatusServiceImpl implements DiagStatusService, DiagStatusServi
             // TODO statusStr below will be actually polled from applications
             // TODO since this is not in place currently, just putting a TODO here
             String statusStr = "DUMMY";
-            if (statusStr != null && statusStr.length() > 0) {
+            if (statusStr.length() > 0) {
                 // TODO poll this from applications who have registered for diagstatus service polling
             } else {
                 LOG.error("Invalid service status received for {}", serviceIdentifier);
@@ -203,7 +203,7 @@ public class DiagStatusServiceImpl implements DiagStatusService, DiagStatusServi
 
     private void updateServiceStatusMap() {
         for (String serviceIdentifier : statusMap.keySet()) {
-            updateServiceStatusMap(serviceIdentifier.toString());
+            updateServiceStatusMap(serviceIdentifier);
         }
     }
 
