@@ -16,6 +16,24 @@
       "revId": "798ae9d6861d53b062764d093e714656e855c527",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_325a3b83",
+        "filename": "caches/impl/guava/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 4540
+      },
+      "writtenOn": "2017-09-25T14:41:17Z",
+      "side": 1,
+      "message": "Indeed, done!",
+      "parentUuid": "ba1f61a0_523d2f2a",
+      "revId": "798ae9d6861d53b062764d093e714656e855c527",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
