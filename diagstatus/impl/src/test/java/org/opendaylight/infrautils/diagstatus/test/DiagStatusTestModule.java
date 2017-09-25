@@ -43,5 +43,6 @@ public class DiagStatusTestModule extends AbstractGuiceJsr250Module {
                 return SystemState.ACTIVE;
             }
         });
+        // not currently needed, maybe later: bind(DiagStatusServiceMBean.class).to(DiagStatusServiceMBeanImpl.class);
     }
 }
