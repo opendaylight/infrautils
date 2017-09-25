@@ -17,7 +17,7 @@ import javax.annotation.concurrent.ThreadSafe;
  * @author Faseela K
  */
 @ThreadSafe
-public interface DiagStatusService extends AutoCloseable {
+public interface DiagStatusService {
 
     /**
      * Register a service for status monitoring.
