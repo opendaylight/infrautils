@@ -11,6 +11,7 @@ package org.opendaylight.infrautils.diagstatus;
 import com.google.common.base.MoreObjects;
 import java.time.Instant;
 import java.util.Objects;
+import javax.annotation.concurrent.Immutable;
 import org.opendaylight.yangtools.util.EvenMoreObjects;
 
 /**
@@ -18,7 +19,9 @@ import org.opendaylight.yangtools.util.EvenMoreObjects;
  *
  * @author Faseela K
  */
-public class ServiceDescriptor {
+@Immutable
+@com.google.errorprone.annotations.Immutable
+public final class ServiceDescriptor {
 
     private final String moduleServiceName;
     private final ServiceState serviceState;

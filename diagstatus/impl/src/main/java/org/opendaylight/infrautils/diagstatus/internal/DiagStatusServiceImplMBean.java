@@ -8,6 +8,8 @@
 
 package org.opendaylight.infrautils.diagstatus.internal;
 
+import org.opendaylight.infrautils.diagstatus.ServiceDescriptor;
+
 public interface DiagStatusServiceImplMBean {
 
     String acquireServiceStatus();
@@ -18,5 +20,5 @@ public interface DiagStatusServiceImplMBean {
 
     String acquireServiceStatusAsJSON(String outputType);
 
-    java.util.Map acquireServiceStatusMap();
+    java.util.Map<String, ServiceDescriptor> acquireServiceStatusMap();
 }

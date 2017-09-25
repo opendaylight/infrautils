@@ -23,7 +23,6 @@ import org.opendaylight.infrautils.testutils.LogRule;
  *
  * @author Faseela K
  */
-
 public class DiagStatusTest {
 
     public @Rule LogRule logRule = new LogRule();
@@ -45,6 +44,5 @@ public class DiagStatusTest {
         Assert.assertEquals(serviceDescriptor.getServiceState(), ServiceState.OPERATIONAL);
 
         // TODO add JXM based Junits to see if the service state is getting retrieved properly.
-
     }
 }

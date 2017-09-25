@@ -8,6 +8,8 @@
 
 package org.opendaylight.infrautils.diagstatus.internal;
 
+import static org.opendaylight.infrautils.diagstatus.ServiceState.STARTING;
+
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.io.StringWriter;
@@ -22,6 +24,7 @@ import javax.inject.Singleton;
 
 import org.opendaylight.infrautils.diagstatus.DiagStatusService;
 import org.opendaylight.infrautils.diagstatus.ServiceDescriptor;
+import org.opendaylight.infrautils.diagstatus.ServiceRegistration;
 import org.opendaylight.infrautils.diagstatus.ServiceState;
 import org.ops4j.pax.cdi.api.OsgiServiceProvider;
 import org.slf4j.Logger;
@@ -64,17 +67,14 @@ public class DiagStatusServiceImpl implements DiagStatusService, DiagStatusServi
     }
 
     @Override
-    public boolean register(String serviceIdentifier) {
-        ServiceDescriptor serviceDescriptor = new ServiceDescriptor(serviceIdentifier, ServiceState.STARTING,
-                "INITIALIZING");
+    public ServiceRegistration register(String serviceIdentifier) {
+        ServiceDescriptor serviceDescriptor = new ServiceDescriptor(serviceIdentifier, STARTING, "INITIALIZING");
         statusMap.put(serviceIdentifier, serviceDescriptor);
-        return true;
-    }
-
-    @Override
-    public boolean deregister(String serviceIdentifier) {
-        statusMap.remove(serviceIdentifier);
-        return true;
+        return () -> {
+            if (statusMap.remove(serviceIdentifier) == null) {
+                throw new IllegalStateException("Service already unregistered");
+            }
+        };
     }
 
     @Override
@@ -215,7 +215,7 @@ public class DiagStatusServiceImpl implements DiagStatusService, DiagStatusServi
         try {
             writer = new JsonWriter(strWrtr);
             writer.beginObject();
-            writer.name("timeStamp").value((new Date()).toString());
+            writer.name("timeStamp").value(new Date().toString());
             writer.name("statusSummary");
             writer.beginArray(); //[
             for (Map.Entry<String, ServiceDescriptor> status : statusMap.entrySet()) {
