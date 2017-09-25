@@ -56,7 +56,7 @@ public interface BaseCache<K, V> extends AutoCloseable {
      * @param value the value of the proposed new cache entry
      * @throws NullPointerException if the cache's users passed a null key or value
      */
-    void put(@Nonnull K key, @Nonnull V value) throws NullPointerException;
+    void put(@Nonnull K key, @Nonnull V value);
 
     CacheManager getManager();
 
