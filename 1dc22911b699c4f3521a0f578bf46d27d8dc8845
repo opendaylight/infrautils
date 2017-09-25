@@ -53,6 +53,40 @@
     },
     {
       "key": {
+        "uuid": "ba1f61a0_2db6608a",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-09-25T20:49:09Z",
+      "side": 1,
+      "message": "if you don\u0027t mind, could you add @javax.inject.Named(\"serviceStatusProviders\") here?  That should allow (but do test it..) to then use \u003creference-list id\u003d\"serviceStatusProviders\" instead of id\u003d\"list\" in diagstatus.xml - which will probably make a lot more sense to anyone reading this code in the future than the \"list\" will make to them... ;-) Thanks!",
+      "revId": "1dc22911b699c4f3521a0f578bf46d27d8dc8845",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_0db9dc78",
+        "filename": "diagstatus/impl/src/main/resources/OSGI-INF/blueprint/diagstatus.xml",
+        "patchSetId": 8
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-09-25T20:49:09Z",
+      "side": 1,
+      "message": "would you mind putting in / keeping the comment from https://git.opendaylight.org/gerrit/#/c/63401/3..6/diagstatus/impl/src/main/resources/OSGI-INF/blueprint/diagstatus.xml here? That will remind us in the future why we ended up figuring out that we had to hand-write this BP XML, and could not get it generated...",
+      "revId": "1dc22911b699c4f3521a0f578bf46d27d8dc8845",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba1f61a0_6d8cd8da",
         "filename": "diagstatus/shell/pom.xml",
         "patchSetId": 8
