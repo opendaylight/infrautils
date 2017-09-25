@@ -9,6 +9,7 @@ package org.opendaylight.infrautils.diagstatus;
 
 import java.util.Collection;
 import javax.annotation.concurrent.ThreadSafe;
+import org.opendaylight.infrautils.ready.SystemState;
 
 /**
  * DiagStatus ServiceDescriptor which lets users register/retrieve for particular service status details.
@@ -57,5 +58,10 @@ public interface DiagStatusService {
      *
      */
     Collection<ServiceDescriptor> getAllServiceDescriptors();
+
+    /**
+     * Retrieve the system's overall state (provided by the ready service).
+     */
+    SystemState getSystemState();
 
 }

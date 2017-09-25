@@ -7,19 +7,24 @@
  */
 package org.opendaylight.infrautils.diagstatus.internal;
 
+import static org.opendaylight.infrautils.diagstatus.ServiceState.OPERATIONAL;
 import static org.opendaylight.infrautils.diagstatus.ServiceState.STARTING;
 
+import com.google.common.collect.ImmutableList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import javax.inject.Inject;
 import javax.inject.Singleton;
-
 import org.opendaylight.infrautils.diagstatus.DiagStatusService;
 import org.opendaylight.infrautils.diagstatus.ServiceDescriptor;
 import org.opendaylight.infrautils.diagstatus.ServiceRegistration;
 import org.opendaylight.infrautils.diagstatus.ServiceStatusProvider;
+import org.opendaylight.infrautils.ready.SystemReadyListener;
+import org.opendaylight.infrautils.ready.SystemReadyMonitor;
+import org.opendaylight.infrautils.ready.SystemState;
+import org.ops4j.pax.cdi.api.OsgiService;
 import org.ops4j.pax.cdi.api.OsgiServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,21 +34,25 @@ import org.slf4j.LoggerFactory;
  * and aggregating the status of the same.
  * @author Faseela K
  */
-
 @Singleton
 @OsgiServiceProvider(classes = DiagStatusService.class)
-public class DiagStatusServiceImpl implements DiagStatusService {
+public class DiagStatusServiceImpl implements DiagStatusService, SystemReadyListener {
 
     private static final Logger LOG = LoggerFactory.getLogger(DiagStatusServiceImpl.class);
+
+    private final SystemReadyMonitor systemReadyMonitor;
 
     private final Map<String, ServiceDescriptor> statusMap = new ConcurrentHashMap<>();
 
     private final List<ServiceStatusProvider> serviceStatusProviders;
 
     @Inject
-    public DiagStatusServiceImpl(List<ServiceStatusProvider> serviceStatusProviders) {
+    public DiagStatusServiceImpl(List<ServiceStatusProvider> serviceStatusProviders,
+            @OsgiService SystemReadyMonitor systemReadyMonitor) {
         this.serviceStatusProviders = serviceStatusProviders;
-        LOG.info("{} initialized", getClass().getSimpleName());
+        this.systemReadyMonitor = systemReadyMonitor;
+        systemReadyMonitor.registerListener(this);
+        LOG.info("{} started", getClass().getSimpleName());
     }
 
     @Override
@@ -55,6 +64,15 @@ public class DiagStatusServiceImpl implements DiagStatusService {
                 throw new IllegalStateException("Service already unregistered");
             }
         };
+    }
+
+    @Override
+    public void onSystemBootReady() {
+        for (Map.Entry<String, ServiceDescriptor> status : statusMap.entrySet()) {
+            ServiceDescriptor serviceDescriptor = new ServiceDescriptor(status.getKey(), OPERATIONAL,
+                    "Operational through global system readyness");
+            status.setValue(serviceDescriptor);
+        }
     }
 
     @Override
@@ -71,7 +89,12 @@ public class DiagStatusServiceImpl implements DiagStatusService {
     @Override
     public Collection<ServiceDescriptor> getAllServiceDescriptors() {
         updateServiceStatusMap();
-        return statusMap.values();
+        return ImmutableList.copyOf(statusMap.values());
+    }
+
+    @Override
+    public SystemState getSystemState() {
+        return systemReadyMonitor.getSystemState();
     }
 
     private void updateServiceStatusMap() {
@@ -80,4 +103,5 @@ public class DiagStatusServiceImpl implements DiagStatusService {
             statusMap.put(serviceDescriptor.getModuleServiceName(), serviceDescriptor);
         }
     }
+
 }

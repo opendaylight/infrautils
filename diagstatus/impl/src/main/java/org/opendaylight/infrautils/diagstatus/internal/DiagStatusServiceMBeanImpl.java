@@ -53,6 +53,7 @@ public class DiagStatusServiceMBeanImpl implements DiagStatusServiceMBean {
     @Override
     public String acquireServiceStatus() {
         StringBuilder statusSummary = new StringBuilder();
+        statusSummary.append("System ready state: ").append(diagStatusService.getSystemState()).append('\n');
         for (ServiceDescriptor status : diagStatusService.getAllServiceDescriptors()) {
             statusSummary.append("ServiceName          : ").append(status.getModuleServiceName()).append("\n");
             if (status.getServiceState() != null) {
@@ -75,6 +76,7 @@ public class DiagStatusServiceMBeanImpl implements DiagStatusServiceMBean {
     @Override
     public String acquireServiceStatusDetailed() {
         StringBuilder statusSummary = new StringBuilder();
+        statusSummary.append("System ready state: ").append(diagStatusService.getSystemState()).append('\n');
         for (ServiceDescriptor status : diagStatusService.getAllServiceDescriptors()) {
             statusSummary
                     .append("  ")
@@ -89,6 +91,7 @@ public class DiagStatusServiceMBeanImpl implements DiagStatusServiceMBean {
     public String acquireServiceStatusBrief() {
         final String errorState = "ERROR - ";
         StringBuilder statusSummary = new StringBuilder();
+        statusSummary.append("System ready state: ").append(diagStatusService.getSystemState()).append('\n');
         for (ServiceDescriptor stat : diagStatusService.getAllServiceDescriptors()) {
             ServiceState state = stat.getServiceState();
             if (state.equals(ERROR) || state.equals(UNREGISTERED)) {
@@ -120,6 +123,7 @@ public class DiagStatusServiceMBeanImpl implements DiagStatusServiceMBean {
             JsonWriter writer = new JsonWriter(strWrtr);
             writer.beginObject();
             writer.name("timeStamp").value(new Date().toString());
+            writer.name("systemReadyState").value(diagStatusService.getSystemState().name());
             writer.name("statusSummary");
             writer.beginArray(); //[
             for (ServiceDescriptor status : diagStatusService.getAllServiceDescriptors()) {
