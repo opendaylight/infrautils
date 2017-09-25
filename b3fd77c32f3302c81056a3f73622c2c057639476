@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "ba1f61a0_4d00f433",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/DiagStatusService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-09-25T20:25:59Z",
+      "side": 1,
+      "message": "NOK still",
+      "parentUuid": "ba1f61a0_b80bb7d4",
+      "revId": "b3fd77c32f3302c81056a3f73622c2c057639476",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba1f61a0_f811af04",
         "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ServiceStatusPoller.java",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2017-09-21T12:32:10Z",
       "side": 1,
       "message": "how about JavaDoc like \"...can register an implementation of this interface in the OSGi service registry if...\" ?",
+      "revId": "b3fd77c32f3302c81056a3f73622c2c057639476",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_6d05f844",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ServiceStatusPoller.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-09-25T20:25:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba1f61a0_f811af04",
       "revId": "b3fd77c32f3302c81056a3f73622c2c057639476",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "ba1f61a0_0deb9c78",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ServiceStatusPoller.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-09-25T20:25:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba1f61a0_f8288f34",
+      "revId": "b3fd77c32f3302c81056a3f73622c2c057639476",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba1f61a0_58fc3bb8",
         "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ServiceStatusPoller.java",
         "patchSetId": 1
@@ -64,6 +118,24 @@
       "writtenOn": "2017-09-21T12:32:10Z",
       "side": 1,
       "message": "I\u0027m not sure I understand why this relates only to \"northbound\" .. could also be invoked otherwise, e.g. when an operator does a CLI, for JMX, and in other scenarios - so perhaps re-formulate this more generally?",
+      "revId": "b3fd77c32f3302c81056a3f73622c2c057639476",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_2de8207b",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ServiceStatusPoller.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-09-25T20:25:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba1f61a0_58fc3bb8",
       "revId": "b3fd77c32f3302c81056a3f73622c2c057639476",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "ba1f61a0_adfb7045",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-09-25T20:25:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba1f61a0_381ea70c",
+      "revId": "b3fd77c32f3302c81056a3f73622c2c057639476",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba1f61a0_98f073ca",
         "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
         "patchSetId": 1
@@ -98,6 +188,24 @@
       "writtenOn": "2017-09-21T12:32:10Z",
       "side": 1,
       "message": "naming, as above: getServiceStatusProviders(). Also perhaps this could do with a JavaDoc which explains that this is a sort of \"snapshot in time\", it\u0027s not fixed and can and will CHANGE ?",
+      "revId": "b3fd77c32f3302c81056a3f73622c2c057639476",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_8df66c5b",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-09-25T20:25:59Z",
+      "side": 1,
+      "message": "This methods seems to now have been removed, so non-issue.",
+      "parentUuid": "ba1f61a0_98f073ca",
       "revId": "b3fd77c32f3302c81056a3f73622c2c057639476",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -121,6 +229,24 @@
     },
     {
       "key": {
+        "uuid": "ba1f61a0_ed98c81d",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-09-25T20:25:59Z",
+      "side": 1,
+      "message": "as above",
+      "parentUuid": "ba1f61a0_18b483f0",
+      "revId": "b3fd77c32f3302c81056a3f73622c2c057639476",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba1f61a0_f8dfef37",
         "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
         "patchSetId": 1
@@ -132,6 +258,24 @@
       "writtenOn": "2017-09-21T12:32:10Z",
       "side": 1,
       "message": "this seems too similar to the other report() to me, but if you think it makes sense to have both, then up to you...",
+      "revId": "b3fd77c32f3302c81056a3f73622c2c057639476",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_2d9f8004",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-09-25T20:25:59Z",
+      "side": 1,
+      "message": "NOK still, but probably better to have this variant, so perhaps we can remove the other original method instead now?",
+      "parentUuid": "ba1f61a0_f8dfef37",
       "revId": "b3fd77c32f3302c81056a3f73622c2c057639476",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -155,6 +299,24 @@
     },
     {
       "key": {
+        "uuid": "ba1f61a0_0da27c4a",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-09-25T20:25:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba1f61a0_78993f78",
+      "revId": "b3fd77c32f3302c81056a3f73622c2c057639476",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba1f61a0_587f1b15",
         "filename": "diagstatus/impl/src/main/resources/OSGI-INF/blueprint/diagstatus.xml",
         "patchSetId": 1
@@ -166,6 +328,24 @@
       "writtenOn": "2017-09-21T12:32:10Z",
       "side": 1,
       "message": "cool that this works for you now!",
+      "revId": "b3fd77c32f3302c81056a3f73622c2c057639476",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_cd9b4416",
+        "filename": "diagstatus/impl/src/main/resources/OSGI-INF/blueprint/diagstatus.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-09-25T20:25:59Z",
+      "side": 1,
+      "message": "It did not, but I look more into this for Faseela and eventually figured out a solution that works..",
+      "parentUuid": "ba1f61a0_587f1b15",
       "revId": "b3fd77c32f3302c81056a3f73622c2c057639476",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
