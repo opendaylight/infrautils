@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba1f61a0_523d2f2a",
+        "filename": "caches/impl/guava/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-09-25T14:27:50Z",
+      "side": 1,
+      "message": "how about we ditch this \u003cversion\u003e here and everywhere else?  It\u0027s is (corectly...) leading to a \"Duplicating managed version 2.0.4 for odl-guava-22\" from M2E - that\u0027s because we already have dependencyManagement for odl-guava-22 \u0026 Co. in odlparent-artifacts, a BOM which we \u003cscope\u003eimport in odlparent. So really, we don\u0027t even need this, and have thing less to worry about keeping in sync during version bumps.  (Imagine the mess it would likely create if we mix things up across versions here...)",
+      "revId": "798ae9d6861d53b062764d093e714656e855c527",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
