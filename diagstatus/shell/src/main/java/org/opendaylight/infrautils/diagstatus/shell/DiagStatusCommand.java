@@ -38,7 +38,8 @@ public class DiagStatusCommand extends OsgiCommandSupport {
     @Override
     protected Object doExecute() throws Exception {
         // TODO this is just for basic testing. More detailed implementation will come in subsequent patches
-        session.getConsole().print(diagStatusService.getAllServiceDescriptors());
+        session.getConsole().println("System ready state: " + diagStatusService.getSystemState());
+        session.getConsole().println(diagStatusService.getAllServiceDescriptors());
         return null;
     }
 }
