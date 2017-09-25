@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba1f61a0_b21f4bb6",
+        "filename": "ready/api/src/main/java/org/opendaylight/infrautils/ready/SystemReadyBlocker.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 2046
+      },
+      "writtenOn": "2017-09-25T14:35:50Z",
+      "side": 1,
+      "message": "Perhaps the \"northbound\" part of this service, which publishes state to interested parties, can also publish \"ready since\" date?",
+      "range": {
+        "startLine": 30,
+        "startChar": 3,
+        "endLine": 30,
+        "endChar": 50
+      },
+      "revId": "93e115ac343ceac8df12de2de2d78d87a60594c6",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
