@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba1f61a0_8ddf8cd5",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/DiagStatusService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-09-25T20:25:59Z",
+      "side": 1,
+      "message": "seems to overlap with void report(String serviceIdentifier, ServiceState serviceState, String statusDescription) .. which should have only one of those two?  I like this one better, so how about you remove the other one?",
+      "revId": "1dc22911b699c4f3521a0f578bf46d27d8dc8845",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_cdf4e45c",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/MBeanUtils.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-09-25T20:25:59Z",
+      "side": 1,
+      "message": "why does this internal JMX utility suddenly have to be part of the public API of this?  That seems very weird, to me.  -- If you keep bugging me ;) with this JMX stuff, I\u0027m starting to wonder whether we should have the generic (non diagstatus specific) part of this elsewhere, e.g. in infrautils/common/util\u0027s org.opendaylight.infrautils.utils (or even inside a new org.opendaylight.infrautils.utils.management sub-package) - thoughts?",
+      "revId": "1dc22911b699c4f3521a0f578bf46d27d8dc8845",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_4d8754b5",
+        "filename": "diagstatus/impl/pom.xml",
+        "patchSetId": 8
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-09-25T20:25:59Z",
+      "side": 1,
+      "message": "why? I don\u0027t think you directly use an OSGi API anywhere (which is good) - so remove this?",
+      "revId": "1dc22911b699c4f3521a0f578bf46d27d8dc8845",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_6d8cd8da",
+        "filename": "diagstatus/shell/pom.xml",
+        "patchSetId": 8
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-09-25T20:25:59Z",
+      "side": 1,
+      "message": "but we ARE fully Karaf 4 only now - so remove this?  It\u0027s wrong anyway, and wouldn\u0027t make this bundle work on Karaf 3, see https://wiki.opendaylight.org/view/Karaf_4_migration#Karaf_CLI_commands_shell.commands_version_issue ...",
+      "revId": "1dc22911b699c4f3521a0f578bf46d27d8dc8845",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
