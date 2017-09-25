@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba1f61a0_4dae342f",
+        "filename": "diagstatus/it/src/test/java/org/opendaylight/infrautils/diagstatus/it/DiagStatusIT.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-09-25T20:53:37Z",
+      "side": 1,
+      "message": "FYI This is actually useless - the fact that the feature can just be loaded is already guaranteed by the SFT, so that doesn\u0027t have to be covered again here.",
+      "revId": "b2c3850c30fce54c4cc0118865be1deca0564dda",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_ada9b025",
+        "filename": "diagstatus/it/src/test/java/org/opendaylight/infrautils/diagstatus/it/DiagStatusIT.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-09-25T20:53:37Z",
+      "side": 1,
+      "message": "on 2nd thought, this alone here, copy/pasted evidently from the existing DiagStatusTest component test (which I had not even noticed existed a few hours ago), does not gives us additional coverage.  An IT only makes sense for diagstatus if we wanted to cover OSGi specific functionality.  For example, in such an IT you could ensure that a new ServiceStatusProvider OSGi service which just got dynamically registered is indeed being found by diagstatus.  That kind of thing would be much harder in a component test, and be good for an IT (but it may not be such a high priority to cover that scenario).",
+      "revId": "b2c3850c30fce54c4cc0118865be1deca0564dda",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
