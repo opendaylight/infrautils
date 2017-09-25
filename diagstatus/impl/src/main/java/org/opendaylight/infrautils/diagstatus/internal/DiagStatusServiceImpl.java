@@ -9,13 +9,13 @@ package org.opendaylight.infrautils.diagstatus.internal;
 
 import static org.opendaylight.infrautils.diagstatus.ServiceState.STARTING;
 
+import com.google.common.collect.ImmutableList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import javax.inject.Inject;
 import javax.inject.Singleton;
-
 import org.opendaylight.infrautils.diagstatus.DiagStatusService;
 import org.opendaylight.infrautils.diagstatus.ServiceDescriptor;
 import org.opendaylight.infrautils.diagstatus.ServiceRegistration;
@@ -29,7 +29,6 @@ import org.slf4j.LoggerFactory;
  * and aggregating the status of the same.
  * @author Faseela K
  */
-
 @Singleton
 @OsgiServiceProvider(classes = DiagStatusService.class)
 public class DiagStatusServiceImpl implements DiagStatusService {
@@ -43,7 +42,7 @@ public class DiagStatusServiceImpl implements DiagStatusService {
     @Inject
     public DiagStatusServiceImpl(List<ServiceStatusProvider> serviceStatusProviders) {
         this.serviceStatusProviders = serviceStatusProviders;
-        LOG.info("{} initialized", getClass().getSimpleName());
+        LOG.info("{} started", getClass().getSimpleName());
     }
 
     @Override
@@ -71,7 +70,7 @@ public class DiagStatusServiceImpl implements DiagStatusService {
     @Override
     public Collection<ServiceDescriptor> getAllServiceDescriptors() {
         updateServiceStatusMap();
-        return statusMap.values();
+        return ImmutableList.copyOf(statusMap.values());
     }
 
     private void updateServiceStatusMap() {
@@ -80,4 +79,5 @@ public class DiagStatusServiceImpl implements DiagStatusService {
             statusMap.put(serviceDescriptor.getModuleServiceName(), serviceDescriptor);
         }
     }
+
 }

@@ -37,11 +37,14 @@ import org.opendaylight.infrautils.diagstatus.DiagStatusServiceMBean;
 import org.opendaylight.infrautils.diagstatus.MBeanUtils;
 import org.opendaylight.infrautils.diagstatus.ServiceDescriptor;
 import org.opendaylight.infrautils.diagstatus.ServiceState;
+import org.opendaylight.infrautils.ready.SystemReadyListener;
+import org.opendaylight.infrautils.ready.SystemReadyMonitor;
+import org.ops4j.pax.cdi.api.OsgiService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Singleton
-public class DiagStatusServiceMBeanImpl extends StandardMBean implements DiagStatusServiceMBean {
+public class DiagStatusServiceMBeanImpl extends StandardMBean implements DiagStatusServiceMBean, SystemReadyListener {
 
     private static final String DEBUG_OUTPUT_FORMAT = "D";
     private static final String BRIEF_OUTPUT_FORMAT = "B";
@@ -51,16 +54,30 @@ public class DiagStatusServiceMBeanImpl extends StandardMBean implements DiagSta
     private static final Logger LOG = LoggerFactory.getLogger(DiagStatusServiceMBeanImpl.class);
 
     private final DiagStatusService diagStatusService;
+    private final SystemReadyMonitor systemReadyMonitor;
+    private final MBeanServer mbeanServer;
     private Pair<JMXConnectorServer, Registry> jmxConnector = null;
 
     @Inject
-    public DiagStatusServiceMBeanImpl(DiagStatusService diagStatusService) throws JMException, IOException {
+    public DiagStatusServiceMBeanImpl(DiagStatusService diagStatusService,
+                                      @OsgiService SystemReadyMonitor systemReadyMonitor)
+            throws JMException, IOException {
         super(DiagStatusServiceMBean.class);
         this.diagStatusService = diagStatusService;
-        MBeanServer mbeanServer = MBeanUtils.registerServerMBean(this, JMX_OBJECT_NAME);
+        this.systemReadyMonitor = systemReadyMonitor;
+        systemReadyMonitor.registerListener(this);
+        mbeanServer = MBeanUtils.registerServerMBean(this, JMX_OBJECT_NAME);
+    }
+
+    @Override
+    public void onSystemBootReady() {
         Optional<String> host = ClusterMemberInfoProvider.getSelfAddress();
         if (host.isPresent()) {
-            jmxConnector = MBeanUtils.startRMIConnectorServer(mbeanServer, host.get());
+            try {
+                jmxConnector = MBeanUtils.startRMIConnectorServer(mbeanServer, host.get());
+            } catch (IOException e) {
+                LOG.error("unable to start jmx connector for host {}", host.get());
+            }
         }
     }
 
@@ -76,6 +93,7 @@ public class DiagStatusServiceMBeanImpl extends StandardMBean implements DiagSta
     @Override
     public String acquireServiceStatus() {
         StringBuilder statusSummary = new StringBuilder();
+        statusSummary.append("System ready state: ").append(systemReadyMonitor.getSystemState()).append('\n');
         for (ServiceDescriptor status : diagStatusService.getAllServiceDescriptors()) {
             statusSummary.append("ServiceName          : ").append(status.getModuleServiceName()).append("\n");
             if (status.getServiceState() != null) {
@@ -98,6 +116,7 @@ public class DiagStatusServiceMBeanImpl extends StandardMBean implements DiagSta
     @Override
     public String acquireServiceStatusDetailed() {
         StringBuilder statusSummary = new StringBuilder();
+        statusSummary.append("System ready state: ").append(systemReadyMonitor.getSystemState()).append('\n');
         for (ServiceDescriptor status : diagStatusService.getAllServiceDescriptors()) {
             statusSummary
                     .append("  ")
@@ -112,6 +131,7 @@ public class DiagStatusServiceMBeanImpl extends StandardMBean implements DiagSta
     public String acquireServiceStatusBrief() {
         final String errorState = "ERROR - ";
         StringBuilder statusSummary = new StringBuilder();
+        statusSummary.append("System ready state: ").append(systemReadyMonitor.getSystemState()).append('\n');
         for (ServiceDescriptor stat : diagStatusService.getAllServiceDescriptors()) {
             ServiceState state = stat.getServiceState();
             if (state.equals(ERROR) || state.equals(UNREGISTERED)) {
@@ -143,6 +163,7 @@ public class DiagStatusServiceMBeanImpl extends StandardMBean implements DiagSta
             JsonWriter writer = new JsonWriter(strWrtr);
             writer.beginObject();
             writer.name("timeStamp").value(new Date().toString());
+            writer.name("systemReadyState").value(systemReadyMonitor.getSystemState().name());
             writer.name("statusSummary");
             writer.beginArray(); //[
             for (ServiceDescriptor status : diagStatusService.getAllServiceDescriptors()) {

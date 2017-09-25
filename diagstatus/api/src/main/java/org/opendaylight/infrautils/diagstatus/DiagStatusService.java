@@ -57,5 +57,4 @@ public interface DiagStatusService {
      *
      */
     Collection<ServiceDescriptor> getAllServiceDescriptors();
-
 }
