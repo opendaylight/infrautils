@@ -22,6 +22,30 @@
       "revId": "316f7f70aa2b9fca65e2f5beee54fae4773b2e68",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_0f38b43b",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/SystemReadyImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-09-25T09:57:26Z",
+      "side": 1,
+      "message": "just for another next time (other solution here), how do you do this? In the Sonar UI? And it persists it in some DB?  Which we won\u0027t loose? ;) Somehow I\u0027d feel having this metadata in source code is more.. \"durable\" than in some tools\u0027 DB... ;-)",
+      "parentUuid": "ba1f61a0_d995ca33",
+      "range": {
+        "startLine": 69,
+        "startChar": 51,
+        "endLine": 69,
+        "endChar": 64
+      },
+      "revId": "316f7f70aa2b9fca65e2f5beee54fae4773b2e68",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
