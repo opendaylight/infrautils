@@ -8,7 +8,6 @@
 package org.opendaylight.infrautils.diagstatus.test;
 
 import java.net.UnknownHostException;
-
 import org.opendaylight.infrautils.diagstatus.DiagStatusService;
 import org.opendaylight.infrautils.diagstatus.internal.DiagStatusServiceImpl;
 import org.opendaylight.infrautils.inject.guice.testutils.AbstractGuiceJsr250Module;
@@ -38,5 +37,6 @@ public class DiagStatusTestModule extends AbstractGuiceJsr250Module {
                 return SystemState.ACTIVE;
             }
         });
+        // not currently needed, maybe later: bind(DiagStatusServiceMBean.class).to(DiagStatusServiceMBeanImpl.class);
     }
 }

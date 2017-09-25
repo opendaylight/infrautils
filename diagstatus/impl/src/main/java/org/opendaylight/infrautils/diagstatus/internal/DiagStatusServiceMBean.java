@@ -5,10 +5,12 @@
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html
  */
-
 package org.opendaylight.infrautils.diagstatus.internal;
 
-public interface DiagStatusServiceImplMBean {
+import java.util.Map;
+import org.opendaylight.infrautils.diagstatus.ServiceDescriptor;
+
+public interface DiagStatusServiceMBean {
 
     String acquireServiceStatus();
 
@@ -18,5 +20,7 @@ public interface DiagStatusServiceImplMBean {
 
     String acquireServiceStatusAsJSON(String outputType);
 
-    java.util.Map acquireServiceStatusMap();
+    // TODO Why do we need the same in a Map here which we can already get as a Collection from DiagStatusService?
+    // Does the DiagStatusService need to return a Map instead of a Collection?
+    Map<String, ServiceDescriptor> acquireServiceStatusMap();
 }
