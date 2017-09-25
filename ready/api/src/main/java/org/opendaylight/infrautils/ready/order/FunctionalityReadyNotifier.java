@@ -14,7 +14,15 @@ package org.opendaylight.infrautils.ready.order;
  */
 public interface FunctionalityReadyNotifier {
 
-    FunctionalityReadyRegistration<? extends FunctionalityReady>
-        register(Class<? extends FunctionalityReady> markerInterface);
+    /**
+     * Unregister a {@link FunctionalityReady} marker.
+     *
+     * @param the marker FunctionalityReady marker interface
+     *
+     * @see FunctionalityReady
+     */
+    <T extends FunctionalityReady> FunctionalityReadyRegistration<T> register(Class<T> markerInterface);
+
+    // TODO void unregister(FunctionalityReadyRegistration<T> registration);
 
 }
