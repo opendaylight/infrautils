@@ -56,9 +56,8 @@ public class DiagStatusServiceImpl implements DiagStatusService, DiagStatusServi
         MBeanUtils.registerServerMBean(this, JMX_OBJECT_NAME);
     }
 
-    @Override
     @PreDestroy
-    public void close() throws Exception {
+    public void close() {
         MBeanUtils.unregisterServerMBean(this, JMX_OBJECT_NAME);
         LOG.info("{} close", getClass().getSimpleName());
     }
@@ -215,7 +214,7 @@ public class DiagStatusServiceImpl implements DiagStatusService, DiagStatusServi
         try {
             writer = new JsonWriter(strWrtr);
             writer.beginObject();
-            writer.name("timeStamp").value((new Date()).toString());
+            writer.name("timeStamp").value(new Date().toString());
             writer.name("statusSummary");
             writer.beginArray(); //[
             for (Map.Entry<String, ServiceDescriptor> status : statusMap.entrySet()) {
