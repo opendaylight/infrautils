@@ -7,9 +7,12 @@
  */
 package org.opendaylight.infrautils.diagstatus.test;
 
+import com.google.inject.TypeLiteral;
 import java.net.UnknownHostException;
-
+import java.util.Collections;
+import java.util.List;
 import org.opendaylight.infrautils.diagstatus.DiagStatusService;
+import org.opendaylight.infrautils.diagstatus.ServiceStatusProvider;
 import org.opendaylight.infrautils.diagstatus.internal.DiagStatusServiceImpl;
 import org.opendaylight.infrautils.diagstatus.internal.DiagStatusServiceImplMBean;
 import org.opendaylight.infrautils.inject.guice.testutils.AbstractGuiceJsr250Module;
@@ -25,5 +28,6 @@ public class DiagStatusTestModule extends AbstractGuiceJsr250Module {
     protected void configureBindings() throws UnknownHostException {
         bind(DiagStatusService.class).to(DiagStatusServiceImpl.class);
         bind(DiagStatusServiceImplMBean.class).to(DiagStatusServiceImpl.class);
+        bind(new TypeLiteral<List<ServiceStatusProvider>>() {}).toInstance(Collections.emptyList());
     }
 }

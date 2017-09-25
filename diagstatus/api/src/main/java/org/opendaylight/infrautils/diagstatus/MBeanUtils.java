@@ -5,9 +5,10 @@
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html
  */
-package org.opendaylight.infrautils.diagstatus.internal;
+package org.opendaylight.infrautils.diagstatus;
 
 import java.lang.management.ManagementFactory;
+import javax.management.AttributeNotFoundException;
 import javax.management.InstanceAlreadyExistsException;
 import javax.management.InstanceNotFoundException;
 import javax.management.MBeanException;
@@ -28,6 +29,15 @@ import org.slf4j.LoggerFactory;
  */
 public final class MBeanUtils {
     private static final Logger LOG = LoggerFactory.getLogger(MBeanUtils.class);
+    public static final String JMX_OBJECT_NAME = "org.opendaylight.infrautils.diagstatus:type=SvcStatus";
+    public static final String JMX_SVCSTATUS_OPERATION = "acquireServiceStatus";
+    public static final String JMX_SVCSTATUS_OPERATION_DETAILED = "acquireServiceStatusDetailed";
+    public static final String JMX_SVCSTATUS_OPERATION_BRIEF = "acquireServiceStatusBrief";
+    public static final String JMX_SVCSTATUS_OPERATION_REMOTE = "acquireServiceStatusAsJSON";
+
+    public static final String VERBOSE_OUTPUT_FORMAT = "V";
+    public static final String BRIEF_OUPUT_FORMAT = "B";
+    public static final String DEBUG_OUTPUT_FORMAT = "D";
 
     private MBeanUtils() {
     }
@@ -58,18 +68,29 @@ public final class MBeanUtils {
         }
     }
 
-    public static Object invokeMBeanFunction(String objName, String functionName, Object[] params) throws Exception {
+    public static Object invokeMBeanFunction(String objName, String functionName) {
         Object udpated = "";
         try {
 
             ObjectName objectName = new ObjectName(objName);
             MBeanServer mplatformMbeanServer = ManagementFactory.getPlatformMBeanServer();
-
-            udpated = mplatformMbeanServer.invoke(objectName, functionName, params, null);
+            udpated = mplatformMbeanServer.invoke(objectName, functionName, null, null);
         } catch (InstanceNotFoundException | MBeanException | ReflectionException | MalformedObjectNameException t) {
             LOG.info("CRITICAL : Exception in executing MXBean function");
-            throw t;
         }
         return udpated;
+    }
+
+    public static Object readMBeanAttribute(String objName, String attribute) {
+        Object attributeObj = null;
+        try {
+            ObjectName objectName = new ObjectName(objName);
+            MBeanServer platformMbeanServer = ManagementFactory.getPlatformMBeanServer();
+            attributeObj = platformMbeanServer.getAttribute(objectName, attribute);
+        } catch (AttributeNotFoundException | InstanceNotFoundException | MBeanException
+                | ReflectionException | MalformedObjectNameException t) {
+            LOG.info("CRITICAL : Exception in executing MXBean function");
+        }
+        return attributeObj;
     }
 }

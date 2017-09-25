@@ -23,13 +23,13 @@ import org.opendaylight.infrautils.testutils.LogRule;
  *
  * @author Faseela K
  */
-
 public class DiagStatusTest {
 
     public @Rule LogRule logRule = new LogRule();
     public @Rule MethodRule guice = new GuiceRule(new DiagStatusTestModule());
 
-    @Inject DiagStatusService diagStatusService;
+    @Inject
+    DiagStatusService diagStatusService;
 
     @Test
     public void testDiagStatus() {
@@ -40,11 +40,12 @@ public class DiagStatusTest {
         Assert.assertEquals(serviceDescriptor.getServiceState(), ServiceState.STARTING);
 
         // Verify if "testService" status is updated as OPERATIONAL.
-        diagStatusService.report(testService1, ServiceState.OPERATIONAL, "service is UP");
+        ServiceDescriptor reportStatus = new ServiceDescriptor(testService1, ServiceState.OPERATIONAL,
+                "service is UP");
+        diagStatusService.report(reportStatus);
         serviceDescriptor = diagStatusService.getServiceDescriptor(testService1);
         Assert.assertEquals(serviceDescriptor.getServiceState(), ServiceState.OPERATIONAL);
 
         // TODO add JXM based Junits to see if the service state is getting retrieved properly.
-
     }
 }
