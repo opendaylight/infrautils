@@ -10,9 +10,9 @@ package org.opendaylight.infrautils.counters.api;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
-import org.opendaylight.infrautils.utils.CompareUtil;
 import org.opendaylight.infrautils.utils.StringUtil;
 import org.opendaylight.infrautils.utils.types.UnsignedLong;
 
@@ -140,7 +140,7 @@ public class OccurenceCounter implements Comparable<OccurenceCounter> {
             return false;
         }
         OccurenceCounter other = (OccurenceCounter) obj;
-        return CompareUtil.safeCompare(other.name, name) && CompareUtil.safeCompare(other.group, group);
+        return Objects.equals(other.name, name) && Objects.equals(other.group, group);
     }
 
     public void resetCounter() {
