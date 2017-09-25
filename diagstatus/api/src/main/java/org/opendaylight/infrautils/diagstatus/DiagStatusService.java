@@ -32,15 +32,11 @@ public interface DiagStatusService {
     /**
      * Report the status of a service specified by the identifier.
      *
-     * @param serviceIdentifier
-     *            unique identifier for a service
-     * @param statusDescription
-     *            current status of the service
-     * @param serviceState
-     *            optional description if apps want to convey some details about the current state
+     * @param serviceDescriptor
+     *            description of the service state
      *
      */
-    void report(String serviceIdentifier, ServiceState serviceState, String statusDescription);
+    void report(ServiceDescriptor serviceDescriptor);
 
     /**
      * Retrieve the status of a service specified by the identifier.

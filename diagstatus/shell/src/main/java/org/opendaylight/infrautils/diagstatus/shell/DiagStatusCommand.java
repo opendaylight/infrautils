@@ -19,7 +19,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Faseela K
  */
-@Command(scope = "diagstatus", name = "list", description = "show the status of registered services")
+@Command(scope = "diagstatus", name = "showSvcStatus", description = "show the status of registered services")
 public class DiagStatusCommand extends OsgiCommandSupport {
 
     private static final Logger LOG = LoggerFactory.getLogger(DiagStatusCommand.class);

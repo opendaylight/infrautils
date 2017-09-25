@@ -11,6 +11,8 @@ package org.opendaylight.infrautils.diagstatus;
 import static java.util.Objects.requireNonNull;
 
 import com.google.common.base.MoreObjects;
+
+import java.io.Serializable;
 import java.time.Instant;
 import java.util.Objects;
 
@@ -52,8 +54,9 @@ public class ServiceDescriptor {
 
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).add("serviceName", getModuleServiceName()).add("serviceState",
-            getServiceState()).add("statusDesc", getStatusDesc()).add("timeStamp", getTimestamp()).toString();
+        return MoreObjects.toStringHelper(this).add("serviceName", getModuleServiceName())
+                .add("serviceState", getServiceState()).add("statusDesc", getStatusDesc())
+                .add("timeStamp", getTimestamp()).toString();
     }
 
     @Override
