@@ -7,13 +7,13 @@
  */
 package org.opendaylight.infrautils.counters.api;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
-import org.opendaylight.infrautils.utils.StringUtil;
 import org.opendaylight.infrautils.utils.types.UnsignedLong;
 
 public class OccurenceCounter implements Comparable<OccurenceCounter> {
@@ -104,7 +104,8 @@ public class OccurenceCounter implements Comparable<OccurenceCounter> {
     }
 
     public boolean isMatching(String[] filterGroupNames, String[] filterCounterNames) {
-        return StringUtil.isMatching(group, filterGroupNames) && StringUtil.isMatching(name, filterCounterNames);
+        return filterGroupNames != null && filterCounterNames != null && Arrays.stream(filterGroupNames).anyMatch(
+                group::matches) && Arrays.stream(filterCounterNames).anyMatch(name::matches);
     }
 
     private static final HashSet<OccurenceCounter> COUNTERS = new HashSet<>();
