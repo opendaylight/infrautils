@@ -34,8 +34,10 @@
   <dependencies>
     <dependency>
       <groupId>org.opendaylight.infrautils</groupId>
-      <artifactId>counters-api</artifactId>
+      <artifactId>odl-infrautils-counters</artifactId>
       <version>${project.version}</version>
+      <classifier>features</classifier>
+      <type>xml</type>
     </dependency>
     <dependency>
       <groupId>org.opendaylight.infrautils</groupId>
@@ -44,8 +46,10 @@
     </dependency>
     <dependency>
       <groupId>org.opendaylight.infrautils</groupId>
-      <artifactId>infrautils-util</artifactId>
+      <artifactId>odl-infrautils-utils</artifactId>
       <version>${project.version}</version>
+      <classifier>features</classifier>
+      <type>xml</type>
     </dependency>
     <dependency>
       <groupId>javax.inject</groupId>
