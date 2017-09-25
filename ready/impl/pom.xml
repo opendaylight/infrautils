@@ -50,8 +50,10 @@
     </dependency>
     <dependency>
       <groupId>org.opendaylight.infrautils</groupId>
-      <artifactId>infrautils-util</artifactId>
+      <artifactId>odl-infrautils-utils</artifactId>
       <version>${project.version}</version>
+      <classifier>features</classifier>
+      <type>xml</type>
     </dependency>
     <dependency>
       <groupId>org.apache.karaf.bundle</groupId>

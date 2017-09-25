@@ -32,13 +32,17 @@
     </build>
     <dependencies>
         <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
+            <groupId>org.opendaylight.odlparent</groupId>
+            <artifactId>odl-guava-22</artifactId>
+            <classifier>features</classifier>
+            <type>xml</type>
         </dependency>
         <dependency>
             <groupId>org.opendaylight.infrautils</groupId>
-            <artifactId>infrautils-util</artifactId>
+            <artifactId>odl-infrautils-utils</artifactId>
             <version>${project.version}</version>
+            <classifier>features</classifier>
+            <type>xml</type>
         </dependency>
         <dependency>
             <groupId>org.opendaylight.infrautils</groupId>

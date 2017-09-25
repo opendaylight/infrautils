@@ -51,8 +51,10 @@
     </dependency>
     <dependency>
       <!-- Just for Stopwatch (NOT for guava cache!) -->
-      <groupId>com.google.guava</groupId>
-      <artifactId>guava</artifactId>
+      <groupId>org.opendaylight.odlparent</groupId>
+      <artifactId>odl-guava-22</artifactId>
+      <classifier>features</classifier>
+      <type>xml</type>
     </dependency>
 
     <dependency>
