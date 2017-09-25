@@ -5,7 +5,6 @@
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html
  */
-
 package org.opendaylight.infrautils.diagstatus;
 
 import java.util.Collection;
@@ -14,7 +13,11 @@ import javax.annotation.concurrent.ThreadSafe;
 /**
  * DiagStatus ServiceDescriptor which lets users register/retrieve for particular service status details.
  *
+ * <p>The term "service" in this context refers to a "higher-level functional service", not an OSGi Service interface.
+ * (It could map to an OSGi service interface, or several of them, or none.)
+ *
  * @author Faseela K
+ * @author Michael Vorburger
  */
 @ThreadSafe
 public interface DiagStatusService {
@@ -27,7 +30,7 @@ public interface DiagStatusService {
      *
      * @return Registration status
      */
-    boolean register(String serviceIdentifier);
+    ServiceRegistration register(String serviceIdentifier);
 
     /**
      * Report the status of a service specified by the identifier.
@@ -55,13 +58,4 @@ public interface DiagStatusService {
      */
     Collection<ServiceDescriptor> getAllServiceDescriptors();
 
-    /**
-     * Deregister a service for status monitoring.
-     *
-     * @param serviceIdentifier
-     *            unique identifier for the service being registered
-     *
-     * @return Deregistration status
-     */
-    boolean deregister(String serviceIdentifier);
 }

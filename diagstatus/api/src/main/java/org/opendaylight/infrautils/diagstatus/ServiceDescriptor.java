@@ -5,7 +5,6 @@
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html
  */
-
 package org.opendaylight.infrautils.diagstatus;
 
 import static java.util.Objects.requireNonNull;
@@ -14,13 +13,16 @@ import com.google.common.base.MoreObjects;
 
 import java.time.Instant;
 import java.util.Objects;
+import javax.annotation.concurrent.Immutable;
 
 /**
  * Details of a registered service.
  *
  * @author Faseela K
  */
-public class ServiceDescriptor {
+@Immutable
+@com.google.errorprone.annotations.Immutable
+public final class ServiceDescriptor {
 
     private final String moduleServiceName;
     private final ServiceState serviceState;

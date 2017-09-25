@@ -5,10 +5,10 @@
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html
  */
-
 package org.opendaylight.infrautils.diagstatus.internal;
 
 import static org.opendaylight.infrautils.diagstatus.MBeanUtils.JMX_OBJECT_NAME;
+import static org.opendaylight.infrautils.diagstatus.ServiceState.STARTING;
 
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
@@ -26,6 +26,7 @@ import javax.inject.Singleton;
 import org.opendaylight.infrautils.diagstatus.DiagStatusService;
 import org.opendaylight.infrautils.diagstatus.MBeanUtils;
 import org.opendaylight.infrautils.diagstatus.ServiceDescriptor;
+import org.opendaylight.infrautils.diagstatus.ServiceRegistration;
 import org.opendaylight.infrautils.diagstatus.ServiceState;
 import org.opendaylight.infrautils.diagstatus.ServiceStatusProvider;
 import org.ops4j.pax.cdi.api.OsgiServiceProvider;
@@ -67,17 +68,14 @@ public class DiagStatusServiceImpl implements DiagStatusService, DiagStatusServi
     }
 
     @Override
-    public boolean register(String serviceIdentifier) {
-        ServiceDescriptor serviceDescriptor = new ServiceDescriptor(serviceIdentifier, ServiceState.STARTING,
-                "INITIALIZING");
+    public ServiceRegistration register(String serviceIdentifier) {
+        ServiceDescriptor serviceDescriptor = new ServiceDescriptor(serviceIdentifier, STARTING, "INITIALIZING");
         statusMap.put(serviceIdentifier, serviceDescriptor);
-        return true;
-    }
-
-    @Override
-    public boolean deregister(String serviceIdentifier) {
-        statusMap.remove(serviceIdentifier);
-        return true;
+        return () -> {
+            if (statusMap.remove(serviceIdentifier) == null) {
+                throw new IllegalStateException("Service already unregistered");
+            }
+        };
     }
 
     @Override
