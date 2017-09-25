@@ -8,13 +8,22 @@
 package org.opendaylight.infrautils.ready.order;
 
 /**
- * Service to register &amp; unregister {@link FunctionalityReady} markers.
+ * Service to register {@link FunctionalityReady} markers.
  *
  * @author Michael Vorburger.ch
  */
 public interface FunctionalityReadyNotifier {
 
-    FunctionalityReadyRegistration<? extends FunctionalityReady>
-        register(Class<? extends FunctionalityReady> markerInterface);
+    /**
+     * Unregister a {@link FunctionalityReady} marker.
+     *
+     * @param markerInterface
+     *            the marker FunctionalityReady marker interface
+     * @return the {@link FunctionalityReadyRegistration} which allows to
+     *         {@link FunctionalityReadyRegistration#unregister()} the marker
+     *
+     * @see FunctionalityReady
+     */
+    <T extends FunctionalityReady> FunctionalityReadyRegistration<T> register(Class<T> markerInterface);
 
 }
