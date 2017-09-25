@@ -70,6 +70,57 @@
     },
     {
       "key": {
+        "uuid": "ba1f61a0_ed4d689b",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-09-25T21:07:17Z",
+      "side": 1,
+      "message": "Map\u003cString, ServiceDescriptor\u003e resultMap \u003d new HashMap\u003c\u003e();",
+      "revId": "1dc22911b699c4f3521a0f578bf46d27d8dc8845",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_cd506434",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-09-25T21:07:17Z",
+      "side": 1,
+      "message": "this variable (operationalState) should be inside the for loop",
+      "revId": "1dc22911b699c4f3521a0f578bf46d27d8dc8845",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_2d44a072",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-09-25T21:07:17Z",
+      "side": 1,
+      "message": "you should probably extent the DiagStatusTest to cover all cases of what\u0027s happening in here?",
+      "revId": "1dc22911b699c4f3521a0f578bf46d27d8dc8845",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba1f61a0_0db9dc78",
         "filename": "diagstatus/impl/src/main/resources/OSGI-INF/blueprint/diagstatus.xml",
         "patchSetId": 8
