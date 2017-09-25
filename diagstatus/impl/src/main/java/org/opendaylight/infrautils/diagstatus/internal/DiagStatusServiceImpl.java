@@ -5,11 +5,15 @@
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html
  */
-
 package org.opendaylight.infrautils.diagstatus.internal;
 
-import static org.opendaylight.infrautils.diagstatus.MBeanUtils.JMX_OBJECT_NAME;
+import static org.opendaylight.infrautils.diagstatus.ServiceState.ERROR;
+import static org.opendaylight.infrautils.diagstatus.ServiceState.OPERATIONAL;
+import static org.opendaylight.infrautils.diagstatus.ServiceState.STARTING;
+import static org.opendaylight.infrautils.diagstatus.ServiceState.UNREGISTERED;
 
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.io.StringWriter;
@@ -19,7 +23,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -28,6 +31,9 @@ import org.opendaylight.infrautils.diagstatus.MBeanUtils;
 import org.opendaylight.infrautils.diagstatus.ServiceDescriptor;
 import org.opendaylight.infrautils.diagstatus.ServiceState;
 import org.opendaylight.infrautils.diagstatus.ServiceStatusProvider;
+import org.opendaylight.infrautils.ready.SystemReadyListener;
+import org.opendaylight.infrautils.ready.SystemReadyMonitor;
+import org.opendaylight.infrautils.ready.SystemState;
 import org.ops4j.pax.cdi.api.OsgiServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,38 +46,52 @@ import org.slf4j.LoggerFactory;
 
 @Singleton
 @OsgiServiceProvider(classes = DiagStatusService.class)
-public class DiagStatusServiceImpl implements DiagStatusService, DiagStatusServiceImplMBean {
+public class DiagStatusServiceImpl implements DiagStatusService, DiagStatusServiceImplMBean, SystemReadyListener {
 
     private static final Logger LOG = LoggerFactory.getLogger(DiagStatusServiceImpl.class);
+
+    private static final String DEBUG_OUTPUT_FORMAT = "D";
+    private static final String BRIEF_OUTPUT_FORMAT = "B";
+    private static final String VERBOSE_OUTPUT_FORMAT = "V";
+    private static final String JMX_OBJECT_NAME = "org.opendaylight.infrautils.diagstatus:type=SvcStatus";
+
+    private final SystemReadyMonitor systemReadyMonitor;
 
     private final Map<String, ServiceDescriptor> statusMap = new ConcurrentHashMap<>();
 
     private final List<ServiceStatusProvider> serviceStatusProviders;
 
     @Inject
-    public DiagStatusServiceImpl(List<ServiceStatusProvider> serviceStatusProviders) {
+    public DiagStatusServiceImpl(List<ServiceStatusProvider> serviceStatusProviders,
+            SystemReadyMonitor systemReadyMonitor) {
         this.serviceStatusProviders = serviceStatusProviders;
-        LOG.info("{} initialized", getClass().getSimpleName());
-    }
-
-    @PostConstruct
-    public void start() {
-        LOG.info("{} start", getClass().getSimpleName());
         MBeanUtils.registerServerMBean(this, JMX_OBJECT_NAME);
+        this.systemReadyMonitor = systemReadyMonitor;
+        systemReadyMonitor.registerListener(this);
+        LOG.info("{} started", getClass().getSimpleName());
     }
 
     @PreDestroy
     public void close() {
         MBeanUtils.unregisterServerMBean(this, JMX_OBJECT_NAME);
-        LOG.info("{} close", getClass().getSimpleName());
+        LOG.info("{} closed", getClass().getSimpleName());
     }
 
     @Override
     public boolean register(String serviceIdentifier) {
-        ServiceDescriptor serviceDescriptor = new ServiceDescriptor(serviceIdentifier, ServiceState.STARTING,
+        ServiceDescriptor serviceDescriptor = new ServiceDescriptor(serviceIdentifier, STARTING,
                 "INITIALIZING");
         statusMap.put(serviceIdentifier, serviceDescriptor);
         return true;
+    }
+
+    @Override
+    public void onSystemBootReady() {
+        for (Map.Entry<String, ServiceDescriptor> status : statusMap.entrySet()) {
+            ServiceDescriptor serviceDescriptor = new ServiceDescriptor(status.getKey(), OPERATIONAL,
+                    "Operational through global system readyness");
+            status.setValue(serviceDescriptor);
+        }
     }
 
     @Override
@@ -94,16 +114,23 @@ public class DiagStatusServiceImpl implements DiagStatusService, DiagStatusServi
     @Override
     public Collection<ServiceDescriptor> getAllServiceDescriptors() {
         updateServiceStatusMap();
-        return statusMap.values();
+        return ImmutableList.copyOf(statusMap.values());
     }
 
-    /*
-     *  MBean interface Implementations for acquiring service status
-     */
+    @Override
+    public SystemState getSystemState() {
+        return systemReadyMonitor.getSystemState();
+    }
+
+    // ---
+    // Following methods are the implementations of the MBean interface methods for acquiring service status
+
     @Override
     public String acquireServiceStatus() {
         updateServiceStatusMap();
         StringBuilder statusSummary = new StringBuilder();
+
+        statusSummary.append("System ready state: ").append(getSystemState()).append('\n');
 
         for (Map.Entry<String, ServiceDescriptor> status : statusMap.entrySet()) {
             statusSummary.append("ServiceName          : ").append(status.getKey()).append("\n");
@@ -133,12 +160,13 @@ public class DiagStatusServiceImpl implements DiagStatusService, DiagStatusServi
     public String acquireServiceStatusDetailed() {
         updateServiceStatusMap();
         StringBuilder statusSummary = new StringBuilder();
+        statusSummary.append("System ready state: ").append(getSystemState()).append('\n');
         for (Map.Entry<String, ServiceDescriptor> status : statusMap.entrySet()) {
             if (status.getValue() != null) {
                 statusSummary
                         .append("  ")
                         .append(String.format("%-20s%-20s", status.getKey(), ": "
-                                + status.getValue().getServiceState().name()))
+                                + status.getValue().getServiceState()))
                         .append("\n");
             } else {
                 statusSummary
@@ -158,9 +186,10 @@ public class DiagStatusServiceImpl implements DiagStatusService, DiagStatusServi
         String errorState = "ERROR - ";
         ServiceState state;
 
+        statusSummary.append("System ready state: ").append(getSystemState()).append('\n');
         for (ServiceDescriptor stat : statusMap.values()) {
             state = stat.getServiceState();
-            if (state.equals(ServiceState.ERROR) || state.equals(ServiceState.UNREGISTERED)) {
+            if (state.equals(ERROR) || state.equals(UNREGISTERED)) {
                 statusSummary.append(errorState).append(stat.getModuleServiceName()).append(" ");
             }
         }
@@ -177,7 +206,7 @@ public class DiagStatusServiceImpl implements DiagStatusService, DiagStatusServi
     @Override
     public Map<String, String> acquireServiceStatusMap() {
         updateServiceStatusMap();
-        Map<String, String> resultMap = new HashMap();
+        Map<String, String> resultMap = new HashMap<>();
         if (statusMap.size() > 0) {
             for (ServiceDescriptor stat : statusMap.values()) {
                 String operationalState;
@@ -190,7 +219,7 @@ public class DiagStatusServiceImpl implements DiagStatusService, DiagStatusServi
                 resultMap.put(stat.getModuleServiceName(), operationalState);
             }
         }
-        return resultMap;
+        return ImmutableMap.copyOf(resultMap);
     }
 
     private void updateServiceStatusMap() {
@@ -202,12 +231,12 @@ public class DiagStatusServiceImpl implements DiagStatusService, DiagStatusServi
 
     private String convertStatusSummaryToJSON(String formatType) {
         String result = "{}";
-        StringWriter strWrtr = new StringWriter();
-        JsonWriter writer;
         try {
-            writer = new JsonWriter(strWrtr);
+            StringWriter strWrtr = new StringWriter();
+            JsonWriter writer = new JsonWriter(strWrtr);
             writer.beginObject();
             writer.name("timeStamp").value(new Date().toString());
+            writer.name("systemReadyState").value(getSystemState().name());
             writer.name("statusSummary");
             writer.beginArray(); //[
             for (Map.Entry<String, ServiceDescriptor> status : statusMap.entrySet()) {
@@ -236,4 +265,5 @@ public class DiagStatusServiceImpl implements DiagStatusService, DiagStatusServi
         }
         return result;
     }
+
 }
