@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "ba1f61a0_43f60390",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/DiagStatusService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-09-26T13:58:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba1f61a0_4d00f433",
+      "revId": "b3fd77c32f3302c81056a3f73622c2c057639476",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba1f61a0_f811af04",
         "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ServiceStatusPoller.java",
         "patchSetId": 1
