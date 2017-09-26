@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba1f61a0_c88e922d",
+        "filename": "ready/api/src/main/java/org/opendaylight/infrautils/ready/order/FunctionalityReadyNotifier.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-09-26T02:22:17Z",
+      "side": 1,
+      "message": "Javadoc? What does this method do....",
+      "revId": "db4c529c5119829855d2693956a42f3fe6a8a594",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
