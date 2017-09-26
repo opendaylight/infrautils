@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "ba1f61a0_c8f4d25c",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/MBeanUtils.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2017-09-26T06:58:50Z",
+      "side": 1,
+      "message": "this was moved to api, because this was used by shell bundle as well. \nIf you are interested, we can do the refactoring and move these utils to a common utilities package. But can that be done after the functionality is frozen and merged?",
+      "parentUuid": "ba1f61a0_cdf4e45c",
+      "revId": "1dc22911b699c4f3521a0f578bf46d27d8dc8845",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba1f61a0_4d8754b5",
         "filename": "diagstatus/impl/pom.xml",
         "patchSetId": 8
