@@ -16,6 +16,24 @@
       "revId": "397b8c413f42e2d1932d42bc2ba0e455c5f68418",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_23fe6f6b",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-09-26T11:34:26Z",
+      "side": 1,
+      "message": "http://www.oracle.com/webfolder/technetwork/tutorials/obe/java/Lambda-QuickStart/index.html ;-)",
+      "parentUuid": "ba1f61a0_48cf4256",
+      "revId": "397b8c413f42e2d1932d42bc2ba0e455c5f68418",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
