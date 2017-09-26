@@ -16,6 +16,24 @@
       "revId": "580b57b7f454908e3cf7dae914459201ebc3999e",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_63fb4779",
+        "filename": "common/features/odl-infrautils-diagstatus/pom.xml",
+        "patchSetId": 8
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-09-26T13:58:24Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "ba1f61a0_4dd914f2",
+      "revId": "580b57b7f454908e3cf7dae914459201ebc3999e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
