@@ -33,6 +33,24 @@
       "revId": "b2c3850c30fce54c4cc0118865be1deca0564dda",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba1f61a0_4852a267",
+        "filename": "diagstatus/it/src/test/java/org/opendaylight/infrautils/diagstatus/it/DiagStatusIT.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2017-09-26T06:24:02Z",
+      "side": 1,
+      "message": "I just added this as a framework where we can add more tests, when we get to execute karaf CLI commands, coz that will give more coverage.. Everything else I am planning to cover under component tests",
+      "parentUuid": "ba1f61a0_ada9b025",
+      "revId": "b2c3850c30fce54c4cc0118865be1deca0564dda",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
