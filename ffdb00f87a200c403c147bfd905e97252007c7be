@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba1f61a0_88ec9abc",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2017-09-26T05:04:03Z",
+      "side": 1,
+      "message": "most of these things are already fixed in my pending patch.. Now this results in more merge conflicts for me..",
+      "revId": "ffdb00f87a200c403c147bfd905e97252007c7be",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
