@@ -29,7 +29,6 @@ abstract class GuavaBaseCacheAdapter<K, V> implements BaseCache<K, V>, CacheMana
 
     protected GuavaBaseCacheAdapter(BaseCacheConfig config, CachePolicy initialPolicy,
             Function<CachePolicy, LoadingCache<K, V>> policyToCache) {
-        super();
         this.config = config;
         this.policyToCache = policyToCache;
         holder = new AtomicReference<>(newHolder(initialPolicy));

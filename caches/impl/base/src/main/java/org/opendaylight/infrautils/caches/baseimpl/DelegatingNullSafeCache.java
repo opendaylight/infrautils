@@ -24,7 +24,6 @@ public final class DelegatingNullSafeCache<K, V> implements Cache<K, V> {
     private final Cache<K, V> delegate;
 
     public DelegatingNullSafeCache(Cache<K, V> delegate) {
-        super();
         this.delegate = delegate;
     }
 
