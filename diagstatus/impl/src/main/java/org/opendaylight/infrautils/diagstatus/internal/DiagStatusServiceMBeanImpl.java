@@ -15,12 +15,23 @@ import com.google.common.collect.ImmutableMap.Builder;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.io.StringWriter;
+import java.rmi.registry.Registry;
 import java.util.Date;
 import java.util.Map;
 import javax.annotation.PreDestroy;
 import javax.inject.Inject;
 import javax.inject.Singleton;
+import javax.management.InstanceNotFoundException;
+import javax.management.MBeanRegistrationException;
+import javax.management.MBeanServer;
+import javax.management.MalformedObjectNameException;
+import javax.management.NotCompliantMBeanException;
+import javax.management.StandardMBean;
+import javax.management.remote.JMXConnectorServer;
+
+import org.apache.commons.lang3.tuple.Pair;
 import org.opendaylight.infrautils.diagstatus.DiagStatusService;
+import org.opendaylight.infrautils.diagstatus.DiagStatusServiceMBean;
 import org.opendaylight.infrautils.diagstatus.MBeanUtils;
 import org.opendaylight.infrautils.diagstatus.ServiceDescriptor;
 import org.opendaylight.infrautils.diagstatus.ServiceState;
@@ -28,7 +39,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Singleton
-public class DiagStatusServiceMBeanImpl implements DiagStatusServiceMBean {
+public class DiagStatusServiceMBeanImpl extends StandardMBean implements DiagStatusServiceMBean {
 
     private static final String DEBUG_OUTPUT_FORMAT = "D";
     private static final String BRIEF_OUTPUT_FORMAT = "B";
@@ -38,16 +49,22 @@ public class DiagStatusServiceMBeanImpl implements DiagStatusServiceMBean {
     private static final Logger LOG = LoggerFactory.getLogger(DiagStatusServiceMBeanImpl.class);
 
     private final DiagStatusService diagStatusService;
+    private final Pair<JMXConnectorServer, Registry> jmxConnector;
 
     @Inject
-    public DiagStatusServiceMBeanImpl(DiagStatusService diagStatusService) {
+    public DiagStatusServiceMBeanImpl(DiagStatusService diagStatusService) throws NotCompliantMBeanException,
+            IOException {
+        super(DiagStatusServiceMBean.class);
         this.diagStatusService = diagStatusService;
-        MBeanUtils.registerServerMBean(this, JMX_OBJECT_NAME);
+        MBeanServer mbeanServer = MBeanUtils.registerServerMBean(this, JMX_OBJECT_NAME);
+        jmxConnector = MBeanUtils.startRMIConnectorServer(mbeanServer);
     }
 
     @PreDestroy
-    public void close() {
+    public void close() throws IOException, MalformedObjectNameException,
+            InstanceNotFoundException, MBeanRegistrationException {
         MBeanUtils.unregisterServerMBean(this, JMX_OBJECT_NAME);
+        MBeanUtils.stopRMIConnectorServer(jmxConnector);
     }
 
     @Override
