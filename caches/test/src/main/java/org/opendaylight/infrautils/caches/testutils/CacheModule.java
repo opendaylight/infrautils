@@ -29,7 +29,6 @@ public class CacheModule extends AbstractModule {
     }
 
     public CacheModule(Class<? extends CacheProvider> providerClass) {
-        super();
         this.providerClass = providerClass;
     }
 

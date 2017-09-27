@@ -24,7 +24,6 @@ public final class DelegatingNullSafeCheckedCache<K, V, E extends Exception> imp
     private final CheckedCache<K, V, E> delegate;
 
     public DelegatingNullSafeCheckedCache(CheckedCache<K, V, E> delegate) {
-        super();
         this.delegate = delegate;
     }
 
