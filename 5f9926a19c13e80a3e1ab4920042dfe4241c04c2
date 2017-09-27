@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba1f61a0_f0b37407",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2017-09-27T11:09:37Z",
+      "side": 1,
+      "message": "why is this here? I dont\u0027t want to take systemReadyMonitor along with this :) I will rebase the ready patch only afterwards.. i just want this refactoring to get in",
+      "revId": "5f9926a19c13e80a3e1ab4920042dfe4241c04c2",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
