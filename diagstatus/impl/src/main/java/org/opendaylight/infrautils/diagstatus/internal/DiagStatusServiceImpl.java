@@ -7,20 +7,16 @@
  */
 package org.opendaylight.infrautils.diagstatus.internal;
 
-import static org.opendaylight.infrautils.diagstatus.MBeanUtils.JMX_OBJECT_NAME;
 import static org.opendaylight.infrautils.diagstatus.ServiceState.STARTING;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import org.opendaylight.infrautils.diagstatus.DiagStatusService;
-import org.opendaylight.infrautils.diagstatus.MBeanUtils;
 import org.opendaylight.infrautils.diagstatus.ServiceDescriptor;
 import org.opendaylight.infrautils.diagstatus.ServiceRegistration;
 import org.opendaylight.infrautils.diagstatus.ServiceStatusProvider;
@@ -48,18 +44,6 @@ public class DiagStatusServiceImpl implements DiagStatusService {
     public DiagStatusServiceImpl(List<ServiceStatusProvider> serviceStatusProviders) {
         this.serviceStatusProviders = serviceStatusProviders;
         LOG.info("{} initialized", getClass().getSimpleName());
-    }
-
-    @PostConstruct
-    public void start() {
-        LOG.info("{} start", getClass().getSimpleName());
-        MBeanUtils.registerServerMBean(this, JMX_OBJECT_NAME);
-    }
-
-    @PreDestroy
-    public void close() {
-        MBeanUtils.unregisterServerMBean(this, JMX_OBJECT_NAME);
-        LOG.info("{} close", getClass().getSimpleName());
     }
 
     @Override
