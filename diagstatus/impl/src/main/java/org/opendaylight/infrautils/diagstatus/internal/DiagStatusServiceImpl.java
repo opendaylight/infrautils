@@ -19,6 +19,7 @@ import javax.inject.Singleton;
 import org.opendaylight.infrautils.diagstatus.DiagStatusService;
 import org.opendaylight.infrautils.diagstatus.ServiceDescriptor;
 import org.opendaylight.infrautils.diagstatus.ServiceRegistration;
+import org.opendaylight.infrautils.diagstatus.ServiceState;
 import org.opendaylight.infrautils.diagstatus.ServiceStatusProvider;
 import org.ops4j.pax.cdi.api.OsgiServiceProvider;
 import org.slf4j.Logger;
@@ -44,6 +45,9 @@ public class DiagStatusServiceImpl implements DiagStatusService {
     public DiagStatusServiceImpl(List<ServiceStatusProvider> serviceStatusProviders) {
         this.serviceStatusProviders = serviceStatusProviders;
         LOG.info("{} initialized", getClass().getSimpleName());
+        // FOR TESTING--REMOVE THIS
+        register("IFM");
+        report(new ServiceDescriptor("IFM", ServiceState.OPERATIONAL, "Testing"));
     }
 
     @Override
