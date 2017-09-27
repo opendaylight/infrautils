@@ -1,0 +1,8 @@
+Verified+1: jenkins-releng <jenkins-releng@opendaylight.org>
+Code-Review+1: Michael Vorburger <vorburger@redhat.com>
+Code-Review+2: Faseela K <faseela.k@ericsson.com>
+Submitted-by: Faseela K <faseela.k@ericsson.com>
+Submitted-at: Wed, 27 Sep 2017 15:08:07 +0000
+Reviewed-on: https://git.opendaylight.org/gerrit/63514
+Project: infrautils
+Branch: refs/heads/master
