@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba1f61a0_f6b36c07",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/util/DiagStatusUtil.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-09-27T14:19:40Z",
+      "side": 1,
+      "message": "perhaps at least extract the lines related to that in a nice abstract small separate class dedicated just to this? Used by this class, which is more specific to getNodeSpecificStatus StatusOperations",
+      "revId": "73c8fe903d4055fbdb834a2dba3a860dd7b724f1",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
