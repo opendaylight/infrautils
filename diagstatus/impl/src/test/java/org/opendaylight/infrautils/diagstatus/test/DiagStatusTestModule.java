@@ -13,9 +13,9 @@ import java.util.Collections;
 import java.util.List;
 
 import org.opendaylight.infrautils.diagstatus.DiagStatusService;
+import org.opendaylight.infrautils.diagstatus.DiagStatusServiceMBean;
 import org.opendaylight.infrautils.diagstatus.ServiceStatusProvider;
 import org.opendaylight.infrautils.diagstatus.internal.DiagStatusServiceImpl;
-import org.opendaylight.infrautils.diagstatus.internal.DiagStatusServiceMBean;
 import org.opendaylight.infrautils.diagstatus.internal.DiagStatusServiceMBeanImpl;
 import org.opendaylight.infrautils.inject.guice.testutils.AbstractGuiceJsr250Module;
 
