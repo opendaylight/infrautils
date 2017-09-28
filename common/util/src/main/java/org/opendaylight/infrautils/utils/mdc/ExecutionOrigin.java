@@ -9,6 +9,8 @@ package org.opendaylight.infrautils.utils.mdc;
 
 import com.google.common.annotations.Beta;
 import com.google.common.base.Strings;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+import java.util.Locale;
 import java.util.concurrent.atomic.AtomicLong;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -104,6 +106,8 @@ public final class ExecutionOrigin extends MDCEntry {
     }
 
     private final long id;
+
+    @SuppressFBWarnings("SE_TRANSIENT_FIELD_NOT_RESTORED") // OK and intentional, as null check in mdcValueString()
     private transient String idAsString;
 
     private ExecutionOrigin(long id) {
@@ -123,7 +127,7 @@ public final class ExecutionOrigin extends MDCEntry {
     @Override
     public String mdcValueString() {
         if (idAsString == null) {
-            final String nextIdString = Long.toUnsignedString(id, RADIX).toUpperCase();
+            final String nextIdString = Long.toUnsignedString(id, RADIX).toUpperCase(Locale.ENGLISH);
             final String paddedNextIdString = Strings.padStart(nextIdString, ID_STRING_MAX_LENGTH, '0');
             this.idAsString = paddedNextIdString;
         }
