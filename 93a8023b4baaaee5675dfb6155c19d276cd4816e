@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba1f61a0_1d761106",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-09-29T15:20:18Z",
+      "side": 1,
+      "message": "I probably +1\u0027d this - I guess I assumed you had a specific use case for it. But I agree it doesn\u0027t seem to be useful.",
+      "revId": "93a8023b4baaaee5675dfb6155c19d276cd4816e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
