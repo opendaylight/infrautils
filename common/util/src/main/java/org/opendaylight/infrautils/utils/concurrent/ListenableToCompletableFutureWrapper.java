@@ -14,6 +14,7 @@ import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.common.util.concurrent.MoreExecutors;
 import java.util.concurrent.CompletableFuture;
+import org.eclipse.jdt.annotation.Nullable;
 
 // package local, not public
 final class ListenableToCompletableFutureWrapper<V> extends CompletableFuture<V> implements FutureCallback<V> {
@@ -29,7 +30,7 @@ final class ListenableToCompletableFutureWrapper<V> extends CompletableFuture<V>
     }
 
     @Override
-    public void onSuccess(final V result) {
+    public void onSuccess(final @Nullable V result) {
         complete(result);
     }
 
