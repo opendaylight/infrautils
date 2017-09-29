@@ -65,7 +65,7 @@ public class JobCoordinatorTest {
         }
     }
 
-    private static class JobException extends RuntimeException {
+    private static final class JobException extends RuntimeException {
 
         private static final long serialVersionUID = 1L;
 

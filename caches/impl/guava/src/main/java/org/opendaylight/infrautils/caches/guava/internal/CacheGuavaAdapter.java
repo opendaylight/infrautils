@@ -32,24 +32,30 @@ final class CacheGuavaAdapter<K, V> extends GuavaBaseCacheAdapter<K, V> implemen
     }
 
     @Override
+    // Suppress CS because propagating getCause() is what we want
+    @SuppressWarnings("checkstyle:AvoidHidingCauseException")
     public V get(K key) {
         try {
             return guavaCache().getUnchecked(key);
         } catch (UncheckedExecutionException e) {
             throw Throwables.propagate(e.getCause());
         } catch (InvalidCacheLoadException e) {
-            throw new BadCacheFunctionRuntimeException(e.getMessage());
+            throw new BadCacheFunctionRuntimeException(
+                    "InvalidCacheLoadException from Guava getUnchecked(): " + e.getMessage(), e);
         }
     }
 
     @Override
+    // Suppress CS because propagating getCause() is what we want
+    @SuppressWarnings("checkstyle:AvoidHidingCauseException")
     public Map<K, V> get(Iterable<? extends K> keys) {
         try {
             return guavaCache().getAll(keys);
         } catch (UncheckedExecutionException e) {
             throw Throwables.propagate(e.getCause());
         } catch (InvalidCacheLoadException e) {
-            throw new BadCacheFunctionRuntimeException(e.getMessage());
+            throw new BadCacheFunctionRuntimeException(
+                    "InvalidCacheLoadException from Guava getAll(): " + e.getMessage(), e);
         } catch (ExecutionException e) {
             // This normally should never happen here, because according to Guava Cache's doc,
             // an ExecutionException is thrown by getAll when the its CacheLoader (thus our

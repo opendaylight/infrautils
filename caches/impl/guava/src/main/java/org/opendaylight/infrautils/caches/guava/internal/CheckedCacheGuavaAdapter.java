@@ -33,7 +33,8 @@ final class CheckedCacheGuavaAdapter<K, V, E extends Exception>
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    // Suppress CS because propagating getCause() is what we want
+    @SuppressWarnings({"unchecked", "checkstyle:AvoidHidingCauseException"})
     @SuppressFBWarnings("BC_UNCONFIRMED_CAST_OF_RETURN_VALUE")
     public V get(K key) throws E {
         try {
@@ -41,12 +42,14 @@ final class CheckedCacheGuavaAdapter<K, V, E extends Exception>
         } catch (ExecutionException e) {
             throw (E) e.getCause();
         } catch (InvalidCacheLoadException e) {
-            throw new BadCacheFunctionRuntimeException(e.getMessage());
+            throw new BadCacheFunctionRuntimeException(
+                    "InvalidCacheLoadException from Guava get(): " + e.getMessage(), e);
         }
     }
 
     @Override
-    @SuppressWarnings("unchecked")
+    // Suppress CS because propagating getCause() is what we want
+    @SuppressWarnings({"unchecked", "checkstyle:AvoidHidingCauseException"})
     @SuppressFBWarnings("BC_UNCONFIRMED_CAST_OF_RETURN_VALUE")
     public Map<K, V> get(Iterable<? extends K> keys) throws E {
         try {
@@ -54,7 +57,8 @@ final class CheckedCacheGuavaAdapter<K, V, E extends Exception>
         } catch (ExecutionException e) {
             throw (E) e.getCause();
         } catch (InvalidCacheLoadException e) {
-            throw new BadCacheFunctionRuntimeException(e.getMessage());
+            throw new BadCacheFunctionRuntimeException(
+                    "InvalidCacheLoadException from Guava getAll(): " + e.getMessage(), e);
         }
     }
 

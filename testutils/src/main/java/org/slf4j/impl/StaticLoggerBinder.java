@@ -16,14 +16,14 @@ import org.slf4j.spi.LoggerFactoryBinder;
  *
  * @author Michael Vorburger.ch
  */
-public class StaticLoggerBinder implements LoggerFactoryBinder {
+public final class StaticLoggerBinder implements LoggerFactoryBinder {
 
     // Implementation copy/pasted from the class with the same name in slf4j-simple
     // but org.slf4j.impl.SimpleLoggerFactory replaced by LogCaptureRuleLoggerFactory
 
     private static final StaticLoggerBinder SINGLETON = new StaticLoggerBinder();
 
-    public static final StaticLoggerBinder getSingleton() {
+    public static StaticLoggerBinder getSingleton() {
         return SINGLETON;
     }
 
