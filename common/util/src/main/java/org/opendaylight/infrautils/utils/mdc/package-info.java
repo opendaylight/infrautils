@@ -6,13 +6,10 @@
  * and is available at http://www.eclipse.org/legal/epl-v10.html
  */
 
-/**
- * General purpose concurrency related utilities.
- */
 // see https://bugs.eclipse.org/bugs/show_bug.cgi?id=525512
 // Add TYPE_PARAMETER & ARRAY_CONTENTS to NonNullByDefault value() default:
 @NonNullByDefault({ PARAMETER, RETURN_TYPE, FIELD, TYPE_PARAMETER, TYPE_BOUND, TYPE_ARGUMENT, ARRAY_CONTENTS })
-package org.opendaylight.infrautils.utils.concurrent;
+package org.opendaylight.infrautils.utils.mdc;
 
 import static org.eclipse.jdt.annotation.DefaultLocation.ARRAY_CONTENTS;
 import static org.eclipse.jdt.annotation.DefaultLocation.FIELD;

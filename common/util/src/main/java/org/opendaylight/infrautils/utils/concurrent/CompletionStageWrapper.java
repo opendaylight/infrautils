@@ -14,6 +14,7 @@ import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
+import org.eclipse.jdt.annotation.Nullable;
 
 /**
  * {@link CompletionStage} wrapper which hides the implementation (e.g. such as,
@@ -65,37 +66,38 @@ public final class CompletionStageWrapper<T> implements CompletionStage<T> {
     }
 
     @Override
-    public <U> CompletionStage<U> thenApplyAsync(Function<? super T, ? extends U> fn, Executor executor) {
+    // TODO @Nullable Executor is wrong and a hack which should not be needed :(
+    public <U> CompletionStage<U> thenApplyAsync(Function<? super T, ? extends U> fn, @Nullable Executor executor) {
         return delegate.thenApplyAsync(fn, executor);
     }
 
     @Override
-    public CompletionStage<Void> thenAccept(Consumer<? super T> action) {
+    public CompletionStage<@Nullable Void> thenAccept(Consumer<? super T> action) {
         return delegate.thenAccept(action);
     }
 
     @Override
-    public CompletionStage<Void> thenAcceptAsync(Consumer<? super T> action) {
+    public CompletionStage<@Nullable Void> thenAcceptAsync(Consumer<? super T> action) {
         return delegate.thenAcceptAsync(action);
     }
 
     @Override
-    public CompletionStage<Void> thenAcceptAsync(Consumer<? super T> action, Executor executor) {
+    public CompletionStage<@Nullable Void> thenAcceptAsync(Consumer<? super T> action, Executor executor) {
         return delegate.thenAcceptAsync(action, executor);
     }
 
     @Override
-    public CompletionStage<Void> thenRun(Runnable action) {
+    public CompletionStage<@Nullable Void> thenRun(Runnable action) {
         return delegate.thenRun(action);
     }
 
     @Override
-    public CompletionStage<Void> thenRunAsync(Runnable action) {
+    public CompletionStage<@Nullable Void> thenRunAsync(Runnable action) {
         return delegate.thenRunAsync(action);
     }
 
     @Override
-    public CompletionStage<Void> thenRunAsync(Runnable action, Executor executor) {
+    public CompletionStage<@Nullable Void> thenRunAsync(Runnable action, Executor executor) {
         return delegate.thenRunAsync(action, executor);
     }
 
@@ -112,41 +114,44 @@ public final class CompletionStageWrapper<T> implements CompletionStage<T> {
     }
 
     @Override
+    // TODO @Nullable Executor is wrong and a hack which should not be needed :(
     public <U, V> CompletionStage<V> thenCombineAsync(CompletionStage<? extends U> other,
-            BiFunction<? super T, ? super U, ? extends V> fn, Executor executor) {
+            BiFunction<? super T, ? super U, ? extends V> fn, @Nullable Executor executor) {
         return delegate.thenCombineAsync(other, fn, executor);
     }
 
     @Override
-    public <U> CompletionStage<Void> thenAcceptBoth(CompletionStage<? extends U> other,
+    public <U> CompletionStage<@Nullable Void> thenAcceptBoth(CompletionStage<? extends U> other,
             BiConsumer<? super T, ? super U> action) {
         return delegate.thenAcceptBoth(other, action);
     }
 
     @Override
-    public <U> CompletionStage<Void> thenAcceptBothAsync(CompletionStage<? extends U> other,
+    public <U> CompletionStage<@Nullable Void> thenAcceptBothAsync(CompletionStage<? extends U> other,
             BiConsumer<? super T, ? super U> action) {
         return delegate.thenAcceptBothAsync(other, action);
     }
 
     @Override
-    public <U> CompletionStage<Void> thenAcceptBothAsync(CompletionStage<? extends U> other,
-            BiConsumer<? super T, ? super U> action, Executor executor) {
+    // TODO @Nullable Executor is wrong and a hack which should not be needed :(
+    public <U> CompletionStage<@Nullable Void> thenAcceptBothAsync(CompletionStage<? extends U> other,
+            BiConsumer<? super T, ? super U> action, @Nullable Executor executor) {
         return delegate.thenAcceptBothAsync(other, action, executor);
     }
 
     @Override
-    public CompletionStage<Void> runAfterBoth(CompletionStage<?> other, Runnable action) {
+    public CompletionStage<@Nullable Void> runAfterBoth(CompletionStage<?> other, Runnable action) {
         return delegate.runAfterBoth(other, action);
     }
 
     @Override
-    public CompletionStage<Void> runAfterBothAsync(CompletionStage<?> other, Runnable action) {
+    public CompletionStage<@Nullable Void> runAfterBothAsync(CompletionStage<?> other, Runnable action) {
         return delegate.runAfterBothAsync(other, action);
     }
 
     @Override
-    public CompletionStage<Void> runAfterBothAsync(CompletionStage<?> other, Runnable action, Executor executor) {
+    public CompletionStage<@Nullable Void> runAfterBothAsync(CompletionStage<?> other, Runnable action,
+            Executor executor) {
         return delegate.runAfterBothAsync(other, action, executor);
     }
 
@@ -161,39 +166,43 @@ public final class CompletionStageWrapper<T> implements CompletionStage<T> {
     }
 
     @Override
+    // TODO @Nullable Executor is wrong and a hack which should not be needed :(
     public <U> CompletionStage<U> applyToEitherAsync(CompletionStage<? extends T> other, Function<? super T, U> fn,
-            Executor executor) {
+            @Nullable Executor executor) {
         return delegate.applyToEitherAsync(other, fn, executor);
     }
 
     @Override
-    public CompletionStage<Void> acceptEither(CompletionStage<? extends T> other, Consumer<? super T> action) {
+    public CompletionStage<@Nullable Void> acceptEither(CompletionStage<? extends T> other,
+            Consumer<? super T> action) {
         return delegate.acceptEither(other, action);
     }
 
     @Override
-    public CompletionStage<Void> acceptEitherAsync(CompletionStage<? extends T> other, Consumer<? super T> action) {
+    public CompletionStage<@Nullable Void> acceptEitherAsync(CompletionStage<? extends T> other,
+            Consumer<? super T> action) {
         return delegate.acceptEitherAsync(other, action);
     }
 
     @Override
-    public CompletionStage<Void> acceptEitherAsync(CompletionStage<? extends T> other, Consumer<? super T> action,
-            Executor executor) {
+    public CompletionStage<@Nullable Void> acceptEitherAsync(CompletionStage<? extends T> other,
+            Consumer<? super T> action, Executor executor) {
         return delegate.acceptEitherAsync(other, action, executor);
     }
 
     @Override
-    public CompletionStage<Void> runAfterEither(CompletionStage<?> other, Runnable action) {
+    public CompletionStage<@Nullable Void> runAfterEither(CompletionStage<?> other, Runnable action) {
         return delegate.runAfterEither(other, action);
     }
 
     @Override
-    public CompletionStage<Void> runAfterEitherAsync(CompletionStage<?> other, Runnable action) {
+    public CompletionStage<@Nullable Void> runAfterEitherAsync(CompletionStage<?> other, Runnable action) {
         return delegate.runAfterEitherAsync(other, action);
     }
 
     @Override
-    public CompletionStage<Void> runAfterEitherAsync(CompletionStage<?> other, Runnable action, Executor executor) {
+    public CompletionStage<@Nullable Void> runAfterEitherAsync(CompletionStage<?> other, Runnable action,
+            Executor executor) {
         return delegate.runAfterEitherAsync(other, action, executor);
     }
 
@@ -208,8 +217,9 @@ public final class CompletionStageWrapper<T> implements CompletionStage<T> {
     }
 
     @Override
+    // TODO @Nullable Executor is wrong and a hack which should not be needed :(
     public <U> CompletionStage<U> thenComposeAsync(Function<? super T, ? extends CompletionStage<U>> fn,
-            Executor executor) {
+            @Nullable Executor executor) {
         return delegate.thenComposeAsync(fn, executor);
     }
 
@@ -229,7 +239,9 @@ public final class CompletionStageWrapper<T> implements CompletionStage<T> {
     }
 
     @Override
-    public CompletionStage<T> whenCompleteAsync(BiConsumer<? super T, ? super Throwable> action, Executor executor) {
+    // TODO @Nullable Executor is wrong and a hack which should not be needed :(
+    public CompletionStage<T> whenCompleteAsync(BiConsumer<? super T, ? super Throwable> action,
+            @Nullable Executor executor) {
         return delegate.whenCompleteAsync(action, executor);
     }
 
@@ -244,7 +256,9 @@ public final class CompletionStageWrapper<T> implements CompletionStage<T> {
     }
 
     @Override
-    public <U> CompletionStage<U> handleAsync(BiFunction<? super T, Throwable, ? extends U> fn, Executor executor) {
+    // TODO @Nullable Executor is wrong and a hack which should not be needed :(
+    public <U> CompletionStage<U> handleAsync(BiFunction<? super T, Throwable, ? extends U> fn,
+            @Nullable Executor executor) {
         return delegate.handleAsync(fn, executor);
     }
 
