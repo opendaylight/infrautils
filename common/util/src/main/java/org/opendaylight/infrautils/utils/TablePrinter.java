@@ -7,12 +7,17 @@
  */
 package org.opendaylight.infrautils.utils;
 
+import static org.eclipse.jdt.annotation.Checks.applyIfNonNull;
+
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.regex.Pattern;
 import javax.annotation.RegEx;
 import org.apache.commons.lang3.StringUtils;
+import org.eclipse.jdt.annotation.Checks;
+import org.eclipse.jdt.annotation.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -32,9 +37,15 @@ public class TablePrinter {
 
     private int ncols;
     private final List<String[]> table = new ArrayList<>();
-    private String title = null;
-    private String[] header = null;
     private Comparator<String[]> comparator;
+
+    // FB seems to get package-info.java's JDT NonNullByDefault, yet not its Nullable :(
+    // TODO perhaps on LastNPE.org projects FB null analysis should be disabled? (once we enforce in build, only?)
+    @SuppressFBWarnings("NP_STORE_INTO_NONNULL_FIELD")
+    private @Nullable String title = null;
+
+    @SuppressFBWarnings("NP_STORE_INTO_NONNULL_FIELD")
+    private String @Nullable [] header = null;
 
     public TablePrinter(final int sortByColumn) {
         this.comparator = new Comparator<String[]>() {
@@ -142,7 +153,9 @@ public class TablePrinter {
             if (title != null) {
                 sb.append(StringUtils.repeat(" ", SPACE_BEFORE_TABLES_WITH_TITLE));
             }
-            printRow(separator, maxWidths, sb, header);
+            Checks.ifNonNull(header, header -> {
+                printRow(separator, maxWidths, sb, header);
+            });
             if (title != null) {
                 sb.append(StringUtils.repeat(" ", SPACE_BEFORE_TABLES_WITH_TITLE));
             }
@@ -151,9 +164,12 @@ public class TablePrinter {
     }
 
     private void printHeaderUnderline(String separator, int[] maxWidths, StringBuilder sb) {
-        int rowLength = SPACE_BETWEEN_COLUMNS + separator.length() * (header.length - 1) + sum(maxWidths);
-        sb.append(StringUtils.repeat("-", rowLength));
-        sb.append("\n");
+        applyIfNonNull(header, header -> {
+            int rowLength = SPACE_BETWEEN_COLUMNS + separator.length() * (header.length - 1) + sum(maxWidths);
+            sb.append(StringUtils.repeat("-", rowLength));
+            sb.append("\n");
+            return null;
+        });
     }
 
     private static int sum(final int[] array) {
@@ -203,7 +219,7 @@ public class TablePrinter {
         }
     }
 
-    private String columnSeparator() {
+    private static String columnSeparator() {
         String space = StringUtils.repeat(" ", SPACE_BETWEEN_COLUMNS);
         return space + "|" + space;
     }
