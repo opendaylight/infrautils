@@ -59,17 +59,22 @@ public final class CompletionStageTestAwaiter<T> {
         return await(completionStage, 500, TimeUnit.MILLISECONDS);
     }
 
+    // Suppress because (a) CS doesn't get initCause() and (b) CompletionException with getCause() is what we want
+    @SuppressWarnings("checkstyle:AvoidHidingCauseException")
     public static <T> T await(CompletionStage<T> completionStage, long timeout, TimeUnit unit)
             throws CompletionException, CancellationException, TimeoutException {
         try {
+            // we first try our luck and see if toCompletableFuture() is available:
             return completionStage.toCompletableFuture().get(timeout, unit);
         } catch (UnsupportedOperationException e) {
             // do NOT log, we're kinda half-expecting this, and can handle it (that's the whole point of this utility!)
             return new CompletionStageTestAwaiter<>(completionStage).await(timeout, unit);
-        // the following exceptions from get() needs to be translated to be fit the exceptions that
+        // the following exceptions from get() need to be translated to fit the exceptions that
         // join()'s method signature would have thrown (but join does not have a timeout variant)
         } catch (InterruptedException e) {
-            throw new CancellationException(e.getMessage());
+            CancellationException cancellationException = new CancellationException(e.getMessage());
+            cancellationException.initCause(e);
+            throw cancellationException;
         } catch (ExecutionException e) {
             throw new CompletionException(e.getMessage(), e.getCause());
         }
