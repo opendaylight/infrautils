@@ -5,13 +5,9 @@
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html
  */
-
-/**
- * General purpose concurrency related utilities.
- */
 // Add TYPE_PARAMETER & ARRAY_CONTENTS to NonNullByDefault value() default:
 @NonNullByDefault({ PARAMETER, RETURN_TYPE, FIELD, TYPE_PARAMETER, TYPE_BOUND, TYPE_ARGUMENT, ARRAY_CONTENTS })
-package org.opendaylight.infrautils.utils.concurrent;
+package org.opendaylight.infrautils.utils;
 
 import static org.eclipse.jdt.annotation.DefaultLocation.ARRAY_CONTENTS;
 import static org.eclipse.jdt.annotation.DefaultLocation.FIELD;
