@@ -9,6 +9,7 @@ package org.opendaylight.infrautils.utils.types;
 
 import java.math.BigInteger;
 import java.util.Collection;
+import java.util.Objects;
 
 public final class UnsignedLong extends Number implements Comparable<UnsignedLong> {
 
@@ -132,9 +133,7 @@ public final class UnsignedLong extends Number implements Comparable<UnsignedLon
 
     @Override
     public int compareTo(UnsignedLong other) {
-        if (other == null) {
-            return -1;
-        }
+        Objects.requireNonNull(other, "other");
         return number.compareTo(other.number);
     }
 
