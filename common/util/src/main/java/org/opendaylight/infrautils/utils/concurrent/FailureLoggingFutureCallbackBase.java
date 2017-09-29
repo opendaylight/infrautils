@@ -9,6 +9,7 @@ package org.opendaylight.infrautils.utils.concurrent;
 
 import com.google.common.base.Preconditions;
 import com.google.common.util.concurrent.FutureCallback;
+import org.eclipse.jdt.annotation.Nullable;
 import org.slf4j.Logger;
 
 /**
@@ -29,7 +30,7 @@ abstract class FailureLoggingFutureCallbackBase<V> implements FutureCallback<V> 
     public abstract void onFailure(Throwable throwable);
 
     @Override
-    public final void onSuccess(V result) {
+    public final void onSuccess(@Nullable V result) {
         // do nothing
     }
 

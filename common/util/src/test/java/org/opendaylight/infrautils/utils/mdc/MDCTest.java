@@ -43,12 +43,6 @@ public class MDCTest {
         MDC.put("yo", null);
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void testPutNullValueMDCs() {
-        // Whereas this will throw an IllegalArgumentException
-        MDCs.put("yo", null);
-    }
-
     @Test
     @Ignore // as above
     public void testPutRunRemove() {

@@ -8,6 +8,7 @@
 package org.opendaylight.infrautils.utils.concurrent;
 
 import com.google.common.base.Preconditions;
+import org.eclipse.jdt.annotation.NonNull;
 import org.slf4j.Logger;
 
 /**
@@ -15,7 +16,8 @@ import org.slf4j.Logger;
  * @author Michael Vorburger.ch
  */
 // package-local not public (for the time being)
-final class FailureFormat1ArgumentLoggingFutureCallback<V> extends FailureLoggingFutureCallbackBase<V> {
+// TODO Have to re-specify <@NonNull V> here seems wrong; see https://github.com/lastnpe/eclipse-null-eea-augments/pull/44/files
+final class FailureFormat1ArgumentLoggingFutureCallback<@NonNull V> extends FailureLoggingFutureCallbackBase<V> {
 
     private final String format;
     private final Object arg;

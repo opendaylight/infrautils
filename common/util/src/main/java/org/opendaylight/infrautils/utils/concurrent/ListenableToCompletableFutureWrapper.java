@@ -15,6 +15,7 @@ import com.google.common.util.concurrent.ListenableFuture;
 import com.google.common.util.concurrent.MoreExecutors;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.concurrent.CompletableFuture;
+import org.eclipse.jdt.annotation.Nullable;
 
 // package local, not public
 final class ListenableToCompletableFutureWrapper<V> extends CompletableFuture<V> implements FutureCallback<V> {
@@ -31,7 +32,7 @@ final class ListenableToCompletableFutureWrapper<V> extends CompletableFuture<V>
 
     @Override
     @SuppressFBWarnings("NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE") // https://github.com/findbugsproject/findbugs/issues/79
-    public void onSuccess(final V result) {
+    public void onSuccess(final @Nullable V result) {
         complete(result);
     }
 
