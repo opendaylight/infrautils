@@ -25,15 +25,14 @@ import java.util.function.Function;
  *
  * <p>
  * This is mainly intended to let methods return <code>CompletionStage</code>s
- * which internally were <code>CompletableFuture</code>s, yet deter developers
+ * which internally were <code>CompletableFuture</code>s, yet prevent developers
  * from abusing such async APIs by using them synchronously and just doing
  * <code>completionStage.toCompletableFuture().get()</code> (or
  * ((CompletableFuture)completionStage).get()).
  *
  * @author Michael Vorburger.ch
  */
-// package local, not public - for now
-final class CompletionStageWrapper<T> implements CompletionStage<T> {
+public final class CompletionStageWrapper<T> implements CompletionStage<T> {
 
     private final CompletionStage<T> delegate;
 
