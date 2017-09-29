@@ -9,6 +9,7 @@ package org.opendaylight.infrautils.utils.mdc;
 
 import com.google.common.annotations.Beta;
 import java.io.Serializable;
+import org.eclipse.jdt.annotation.Nullable;
 import org.slf4j.MDC;
 
 /**
@@ -28,7 +29,7 @@ public abstract class MDCEntry implements Serializable {
     public abstract int hashCode();
 
     @Override
-    public abstract boolean equals(Object obj);
+    public abstract boolean equals(@Nullable Object obj);
 
     @Override
     public final String toString() {

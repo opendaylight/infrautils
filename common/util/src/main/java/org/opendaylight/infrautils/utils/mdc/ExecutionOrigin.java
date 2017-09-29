@@ -9,9 +9,10 @@ package org.opendaylight.infrautils.utils.mdc;
 
 import com.google.common.annotations.Beta;
 import com.google.common.base.Strings;
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicLong;
+import org.eclipse.jdt.annotation.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
@@ -107,11 +108,11 @@ public final class ExecutionOrigin extends MDCEntry {
 
     private final long id;
 
-    @SuppressFBWarnings("SE_TRANSIENT_FIELD_NOT_RESTORED") // OK and intentional, as null check in mdcValueString()
-    private transient String idAsString;
+    private transient Optional<String> idAsString;
 
     private ExecutionOrigin(long id) {
         this.id = id;
+        idAsString = Optional.empty();
     }
 
     @Override
@@ -126,12 +127,12 @@ public final class ExecutionOrigin extends MDCEntry {
      */
     @Override
     public String mdcValueString() {
-        if (idAsString == null) {
+        if (idAsString == null || !idAsString.isPresent()) {
             final String nextIdString = Long.toUnsignedString(id, RADIX).toUpperCase(Locale.ENGLISH);
             final String paddedNextIdString = Strings.padStart(nextIdString, ID_STRING_MAX_LENGTH, '0');
-            this.idAsString = paddedNextIdString;
+            this.idAsString = Optional.of(paddedNextIdString);
         }
-        return idAsString;
+        return idAsString.get();
     }
 
     @Override
@@ -143,7 +144,7 @@ public final class ExecutionOrigin extends MDCEntry {
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(@Nullable Object obj) {
         if (this == obj) {
             return true;
         }
