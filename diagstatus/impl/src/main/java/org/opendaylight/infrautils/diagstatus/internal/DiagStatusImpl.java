@@ -28,19 +28,19 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Singleton
-public class DiagStatusServiceMBeanImpl implements DiagStatusServiceMBean {
+public class DiagStatusImpl implements DiagStatusImplMBean {
 
     private static final String DEBUG_OUTPUT_FORMAT = "D";
     private static final String BRIEF_OUTPUT_FORMAT = "B";
     private static final String VERBOSE_OUTPUT_FORMAT = "V";
     private static final String JMX_OBJECT_NAME = "org.opendaylight.infrautils.diagstatus:type=SvcStatus";
 
-    private static final Logger LOG = LoggerFactory.getLogger(DiagStatusServiceMBeanImpl.class);
+    private static final Logger LOG = LoggerFactory.getLogger(DiagStatusImpl.class);
 
     private final DiagStatusService diagStatusService;
 
     @Inject
-    public DiagStatusServiceMBeanImpl(DiagStatusService diagStatusService) {
+    public DiagStatusImpl(DiagStatusService diagStatusService) {
         this.diagStatusService = diagStatusService;
         MBeanUtils.registerServerMBean(this, JMX_OBJECT_NAME);
     }

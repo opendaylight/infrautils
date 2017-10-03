@@ -14,7 +14,7 @@ import java.util.Map;
  *
  * @author Faseela K
  */
-public interface DiagStatusServiceMBean {
+public interface DiagStatusImplMBean {
 
     String acquireServiceStatus();
 
