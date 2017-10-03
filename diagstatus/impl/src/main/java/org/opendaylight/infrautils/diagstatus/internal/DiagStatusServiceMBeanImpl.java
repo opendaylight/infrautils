@@ -20,9 +20,13 @@ import java.util.Map;
 import javax.annotation.PreDestroy;
 import javax.inject.Inject;
 import javax.inject.Singleton;
+<<<<<<< HEAD
 import javax.management.NotCompliantMBeanException;
 import javax.management.StandardMBean;
 
+=======
+import javax.management.JMException;
+>>>>>>> MBeanUtils show re-throw not LOG and swallow any JMX set-up problems
 import org.opendaylight.infrautils.diagstatus.DiagStatusService;
 import org.opendaylight.infrautils.diagstatus.MBeanUtils;
 import org.opendaylight.infrautils.diagstatus.ServiceDescriptor;
@@ -43,7 +47,7 @@ public class DiagStatusServiceMBeanImpl extends StandardMBean implements DiagSta
     private final DiagStatusService diagStatusService;
 
     @Inject
-    public DiagStatusServiceMBeanImpl(DiagStatusService diagStatusService) throws NotCompliantMBeanException {
+    public DiagStatusServiceMBeanImpl(DiagStatusService diagStatusService) throws JMException {
         super(DiagStatusServiceMBean.class);
         this.diagStatusService = diagStatusService;
         MBeanUtils.registerServerMBean(this, JMX_OBJECT_NAME);
