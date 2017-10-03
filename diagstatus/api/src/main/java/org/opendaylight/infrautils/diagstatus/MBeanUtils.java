@@ -9,13 +9,12 @@ package org.opendaylight.infrautils.diagstatus;
 
 import java.lang.management.ManagementFactory;
 import javax.management.AttributeNotFoundException;
-import javax.management.InstanceAlreadyExistsException;
 import javax.management.InstanceNotFoundException;
+import javax.management.JMException;
 import javax.management.MBeanException;
 import javax.management.MBeanRegistrationException;
 import javax.management.MBeanServer;
 import javax.management.MalformedObjectNameException;
-import javax.management.NotCompliantMBeanException;
 import javax.management.ObjectName;
 import javax.management.ReflectionException;
 
@@ -28,7 +27,12 @@ import org.slf4j.LoggerFactory;
  * @author Faseela K
  */
 public final class MBeanUtils {
+
+    // TODO Refactor this class, and move what is not diagstatus specific here into common/util
+    //         into a new org.opendaylight.infrautils.utils.management package there
+
     private static final Logger LOG = LoggerFactory.getLogger(MBeanUtils.class);
+
     public static final String JMX_OBJECT_NAME = "org.opendaylight.infrautils.diagstatus:type=SvcStatus";
     public static final String JMX_SVCSTATUS_OPERATION = "acquireServiceStatus";
     public static final String JMX_SVCSTATUS_OPERATION_DETAILED = "acquireServiceStatusDetailed";
@@ -42,20 +46,13 @@ public final class MBeanUtils {
     private MBeanUtils() {
     }
 
-    public static void registerServerMBean(Object mxBeanImplementor, String objNameStr) {
-
+    public static void registerServerMBean(Object mxBeanImplementor, String objNameStr) throws JMException {
         LOG.debug("register MXBean for {}", objNameStr);
         MBeanServer mbs = ManagementFactory.getPlatformMBeanServer();
 
-        try {
-            ObjectName objName = new ObjectName(objNameStr);
-            mbs.registerMBean(mxBeanImplementor, objName);
-            LOG.info("MXBean registration for {} SUCCESSFUL.", objNameStr);
-        } catch (InstanceAlreadyExistsException | MBeanRegistrationException | NotCompliantMBeanException
-            | MalformedObjectNameException ex) {
-            LOG.error("MXBean registration for {} FAILED due to {}", objNameStr, ex);
-        }
-
+        ObjectName objName = new ObjectName(objNameStr);
+        mbs.registerMBean(mxBeanImplementor, objName);
+        LOG.info("MXBean registration for {} SUCCESSFUL.", objNameStr);
     }
 
     public static void unregisterServerMBean(Object mxBeanImplementor, String objNameStr) {

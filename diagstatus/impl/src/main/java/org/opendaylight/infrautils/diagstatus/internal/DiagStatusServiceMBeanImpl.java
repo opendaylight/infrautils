@@ -20,6 +20,7 @@ import java.util.Map;
 import javax.annotation.PreDestroy;
 import javax.inject.Inject;
 import javax.inject.Singleton;
+import javax.management.JMException;
 import org.opendaylight.infrautils.diagstatus.DiagStatusService;
 import org.opendaylight.infrautils.diagstatus.MBeanUtils;
 import org.opendaylight.infrautils.diagstatus.ServiceDescriptor;
@@ -40,7 +41,7 @@ public class DiagStatusServiceMBeanImpl implements DiagStatusServiceMBean {
     private final DiagStatusService diagStatusService;
 
     @Inject
-    public DiagStatusServiceMBeanImpl(DiagStatusService diagStatusService) {
+    public DiagStatusServiceMBeanImpl(DiagStatusService diagStatusService) throws JMException {
         this.diagStatusService = diagStatusService;
         MBeanUtils.registerServerMBean(this, JMX_OBJECT_NAME);
     }
