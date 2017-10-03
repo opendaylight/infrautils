@@ -34,6 +34,41 @@
       "revId": "be01a5ee9bf3f6106215d4e7cddf0ecaf3fbd8ab",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_73aacbd5",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/TablePrinter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 4540
+      },
+      "writtenOn": "2017-10-03T15:57:13Z",
+      "side": 1,
+      "message": "Tell me more...",
+      "parentUuid": "9a245df4_dc4589b4",
+      "revId": "be01a5ee9bf3f6106215d4e7cddf0ecaf3fbd8ab",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_13626fd8",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/mdc/ExecutionOrigin.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 4540
+      },
+      "writtenOn": "2017-10-03T15:57:13Z",
+      "side": 1,
+      "message": "What\u0027s the benefit of storing this as an Optional, given that you need to deal with null anyway?",
+      "revId": "be01a5ee9bf3f6106215d4e7cddf0ecaf3fbd8ab",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
