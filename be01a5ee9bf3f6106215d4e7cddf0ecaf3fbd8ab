@@ -16,6 +16,24 @@
       "revId": "be01a5ee9bf3f6106215d4e7cddf0ecaf3fbd8ab",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_dc4589b4",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/TablePrinter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-10-03T10:19:53Z",
+      "side": 1,
+      "message": "Now THAT is the LEAST problem in all of this endeavour.. But IFF you have any interest and time to figure out Null Analysis related Generics Type issues, THEN lemme know! ;-)",
+      "parentUuid": "9a245df4_7cb0dddd",
+      "revId": "be01a5ee9bf3f6106215d4e7cddf0ecaf3fbd8ab",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
