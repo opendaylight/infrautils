@@ -13,9 +13,9 @@ import java.util.Collections;
 import java.util.List;
 import org.opendaylight.infrautils.diagstatus.DiagStatusService;
 import org.opendaylight.infrautils.diagstatus.ServiceStatusProvider;
+import org.opendaylight.infrautils.diagstatus.internal.DiagStatusImpl;
+import org.opendaylight.infrautils.diagstatus.internal.DiagStatusImplMBean;
 import org.opendaylight.infrautils.diagstatus.internal.DiagStatusServiceImpl;
-import org.opendaylight.infrautils.diagstatus.internal.DiagStatusServiceMBean;
-import org.opendaylight.infrautils.diagstatus.internal.DiagStatusServiceMBeanImpl;
 import org.opendaylight.infrautils.inject.guice.testutils.AbstractGuiceJsr250Module;
 
 /**
@@ -28,7 +28,7 @@ public class DiagStatusTestModule extends AbstractGuiceJsr250Module {
     @Override
     protected void configureBindings() throws UnknownHostException {
         bind(DiagStatusService.class).to(DiagStatusServiceImpl.class);
-        bind(DiagStatusServiceMBean.class).to(DiagStatusServiceMBeanImpl.class);
+        bind(DiagStatusImplMBean.class).to(DiagStatusImpl.class);
         bind(new TypeLiteral<List<ServiceStatusProvider>>() {}).toInstance(Collections.emptyList());
     }
 }
