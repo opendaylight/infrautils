@@ -8,6 +8,7 @@
 package org.opendaylight.infrautils.jobcoordinator.tests;
 
 import static com.google.common.truth.Truth.assertThat;
+import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.is;
 
 import com.google.common.util.concurrent.Futures;
@@ -39,6 +40,11 @@ import org.opendaylight.infrautils.testutils.RunUntilFailureRule;
  * @author Michael Vorburger.ch
  */
 public class JobCoordinatorTest {
+
+    // TODO That this test works is a best of a miracle.. the counters framework has static state :(
+    // The OccurenceCounter's clearAllCounters cannot be used, because JobCoordinatorCounters
+    // jobs_pending and jobs_incomplete are !isErasable ... we could introduce a new clear,
+    // but really, we should write a new counters framework, some day.
 
     private static final RuntimeException JOB_EXCEPTION = new JobException("Job is failed intentionally");
 
@@ -258,6 +264,15 @@ public class JobCoordinatorTest {
         assertThat(rollbackCallable.getRetries()).isEqualTo(1);
         assertRetry(3);
         assertFailed(1);
+    }
+
+    @Test
+    public void bug9238CallableListWithNull() {
+        // This test didn't fail for https://bugs.opendaylight.org/show_bug.cgi?id=9238 even before its fix
+        // but its point is to illustrate the error message in the LOG - before without but now with causing job's key
+        Callable<List<ListenableFuture<Void>>> callableListWithNull = () -> Collections.singletonList(null);
+        jobCoordinator.enqueueJob(getClass().getName().toString(), callableListWithNull);
+        Awaitility.await().until(() -> jobCoordinator.getIncompleteTaskCount(), greaterThan(0L));
     }
 
     private void assertCleared(int count) {
