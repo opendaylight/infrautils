@@ -12,6 +12,7 @@ import com.google.common.util.concurrent.ListenableFuture;
 import java.util.List;
 import java.util.concurrent.Callable;
 import org.eclipse.jdt.annotation.NonNull;
+import org.opendaylight.infrautils.utils.nonnull.NullSafeCollections;
 
 /**
  * A callable which runs in case a job task fails. It holds the futures that
@@ -30,6 +31,6 @@ public abstract class RollbackCallable implements Callable<List<ListenableFuture
      * called.
      */
     public void setFutures(@NonNull List<ListenableFuture<Void>> futures) {
-        this.futures = futures;
+        this.futures = NullSafeCollections.wrapAsNullSafeList(futures);
     }
 }
