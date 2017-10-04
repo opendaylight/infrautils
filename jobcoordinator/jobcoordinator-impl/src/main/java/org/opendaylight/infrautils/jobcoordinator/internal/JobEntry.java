@@ -5,7 +5,6 @@
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html
  */
-
 package org.opendaylight.infrautils.jobcoordinator.internal;
 
 import com.google.common.util.concurrent.ListenableFuture;
@@ -13,8 +12,7 @@ import com.google.common.util.concurrent.ListenableFuture;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
-
-import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.opendaylight.infrautils.jobcoordinator.RollbackCallable;
 
 /**
@@ -24,14 +22,14 @@ import org.opendaylight.infrautils.jobcoordinator.RollbackCallable;
 class JobEntry {
 
     private final String key;
-    private volatile Callable<List<ListenableFuture<Void>>> mainWorker;
-    private final RollbackCallable rollbackWorker;
+    private volatile @Nullable Callable<List<ListenableFuture<Void>>> mainWorker;
+    private final @Nullable RollbackCallable rollbackWorker;
     private volatile int retryCount;
     private static final AtomicIntegerFieldUpdater<JobEntry> RETRY_COUNT_FIELD_UPDATER =
             AtomicIntegerFieldUpdater.newUpdater(JobEntry.class, "retryCount");
-    private volatile List<ListenableFuture<Void>> futures;
+    private volatile @Nullable List<ListenableFuture<Void>> futures;
 
-    JobEntry(String key, Callable<List<ListenableFuture<Void>>> mainWorker, RollbackCallable rollbackWorker,
+    JobEntry(String key, Callable<List<ListenableFuture<Void>>> mainWorker, @Nullable RollbackCallable rollbackWorker,
             int maxRetries) {
         this.key = key;
         this.mainWorker = mainWorker;
@@ -49,15 +47,15 @@ class JobEntry {
         return key;
     }
 
-    public Callable<List<ListenableFuture<Void>>> getMainWorker() {
+    public @Nullable Callable<List<ListenableFuture<Void>>> getMainWorker() {
         return mainWorker;
     }
 
-    public void setMainWorker(Callable<List<ListenableFuture<Void>>> mainWorker) {
+    public void setMainWorker(@Nullable Callable<List<ListenableFuture<Void>>> mainWorker) {
         this.mainWorker = mainWorker;
     }
 
-    public RollbackCallable getRollbackWorker() {
+    public @Nullable RollbackCallable getRollbackWorker() {
         return rollbackWorker;
     }
 
@@ -73,11 +71,11 @@ class JobEntry {
         return RETRY_COUNT_FIELD_UPDATER.decrementAndGet(this);
     }
 
-    public List<ListenableFuture<Void>> getFutures() {
+    public @Nullable List<ListenableFuture<Void>> getFutures() {
         return futures;
     }
 
-    public void setFutures(@NonNull List<ListenableFuture<Void>> futures) {
+    public void setFutures(List<ListenableFuture<Void>> futures) {
         this.futures = futures;
     }
 
