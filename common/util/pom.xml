@@ -25,6 +25,16 @@
 
     <dependencies>
         <dependency>
+          <groupId>org.eclipse.jdt</groupId>
+          <artifactId>org.eclipse.jdt.annotation</artifactId>
+          <!-- TODO Remove version when <parent><version> is 3.0.0 which includes https://git.opendaylight.org/gerrit/#/c/63836/
+                                                          or 2.0.6 if that includes https://git.opendaylight.org/gerrit/#/c/63901/ -->
+          <version>2.1.0</version>
+          <!-- NB the https://git.opendaylight.org/gerrit/#/c/63972/ follow-up which change <scope>provided to compile -->
+          <scope>compile</scope>
+        </dependency>
+
+        <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
         </dependency>
