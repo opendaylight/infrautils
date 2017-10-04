@@ -18,12 +18,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.atomic.AtomicLong;
-
 import org.awaitility.Awaitility;
 import org.awaitility.Duration;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.ClassRule;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.opendaylight.infrautils.counters.api.OccurenceCounter;
@@ -125,7 +125,7 @@ public class JobCoordinatorTest {
     }
 
     public @Rule LogRule logRule = new LogRule();
-    public static @ClassRule RunUntilFailureClassRule classRepeater = new RunUntilFailureClassRule(25);
+    public static @ClassRule RunUntilFailureClassRule classRepeater = new RunUntilFailureClassRule(7);
     public @Rule RunUntilFailureRule repeater = new RunUntilFailureRule(classRepeater);
 
     private JobCoordinatorImpl jobCoordinator;
@@ -258,6 +258,22 @@ public class JobCoordinatorTest {
         assertThat(rollbackCallable.getRetries()).isEqualTo(1);
         assertRetry(3);
         assertFailed(1);
+    }
+
+    // TODO That this test works is a best of a miracle.. the counters framework has static state :(
+    // The OccurenceCounter's clearAllCounters cannot be used, because JobCoordinatorCounters
+    // jobs_pending and jobs_incomplete are !isErasable ... we could introduce a new clear, but
+    // really, we should write a new counters framework, some day.  Until then, we have to ignore
+    // this test, because there is currently no clean way to reset the incompleteTaskCount, therefore
+    // it cannot run properly isolate, and will break the other existing tests here.
+    @Ignore
+    @Test
+    public void bug9238CallableListWithNull() {
+        // This test didn't fail for https://bugs.opendaylight.org/show_bug.cgi?id=9238 even before its fix
+        // but its point is to illustrate the error message in the LOG - before without but now with causing job's key
+        Callable<List<ListenableFuture<Void>>> callableListWithNull = () -> Collections.singletonList(null);
+        jobCoordinator.enqueueJob(getClass().getName().toString(), callableListWithNull);
+        Awaitility.await().until(() -> jobCoordinator.getIncompleteTaskCount(), is(1L));
     }
 
     private void assertCleared(int count) {
