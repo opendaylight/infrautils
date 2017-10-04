@@ -21,8 +21,8 @@ import java.util.concurrent.atomic.AtomicLong;
 
 import org.awaitility.Awaitility;
 import org.awaitility.Duration;
+import org.eclipse.jdt.annotation.Nullable;
 import org.junit.After;
-import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
@@ -48,7 +48,7 @@ public class JobCoordinatorTest {
         Object lock = new Object();
 
         @Override
-        public List<ListenableFuture<Void>> call() throws Exception {
+        public @Nullable List<ListenableFuture<Void>> call() throws Exception {
             synchronized (lock) {
                 isWaiting = true;
                 lock.wait();
@@ -78,7 +78,7 @@ public class JobCoordinatorTest {
 
         private final boolean isThrowingException;
         private final int returnedListSize;
-        private final List<ListenableFuture<Void>> result;
+        private final @Nullable List<ListenableFuture<Void>> result;
         private final AtomicLong wasTried = new AtomicLong(0);
 
         TestCallable(boolean isThrowingException, int returnedListSize) {
@@ -87,17 +87,18 @@ public class JobCoordinatorTest {
             if (returnedListSize < 0) {
                 this.result = null;
             } else {
-                this.result = new ArrayList<>(returnedListSize);
+                ArrayList<ListenableFuture<Void>> nonNullResult = new ArrayList<>(returnedListSize);
                 ListenableFuture<Void> future = isThrowingException
                         ? Futures.immediateFailedFuture(JOB_EXCEPTION) : SettableFuture.create();
                 for (int i = 0; i < returnedListSize; i++) {
-                    result.add(i, future);
+                    nonNullResult.add(i, future);
                 }
+                this.result = nonNullResult;
             }
         }
 
         @Override
-        public List<ListenableFuture<Void>> call() {
+        public @Nullable List<ListenableFuture<Void>> call() {
             wasTried.incrementAndGet();
             if (isThrowingException && returnedListSize < 0) {
                 throw JOB_EXCEPTION;
@@ -114,7 +115,7 @@ public class JobCoordinatorTest {
         private final AtomicLong wasTried = new AtomicLong(0);
 
         @Override
-        public List<ListenableFuture<Void>> call() throws Exception {
+        public @Nullable List<ListenableFuture<Void>> call() throws Exception {
             wasTried.incrementAndGet();
             return Collections.emptyList();
         }
@@ -128,10 +129,9 @@ public class JobCoordinatorTest {
     public static @ClassRule RunUntilFailureClassRule classRepeater = new RunUntilFailureClassRule(25);
     public @Rule RunUntilFailureRule repeater = new RunUntilFailureRule(classRepeater);
 
-    private JobCoordinatorImpl jobCoordinator;
+    private final JobCoordinatorImpl jobCoordinator;
 
-    @Before
-    public void setUp() {
+    public JobCoordinatorTest() {
         jobCoordinator = new JobCoordinatorImpl();
         OccurenceCounter.clearAllCounters(new String[] { ".*" }, new String[] { ".*" });
     }
@@ -139,7 +139,6 @@ public class JobCoordinatorTest {
     @After
     public void tearDown() {
         jobCoordinator.destroy();
-        jobCoordinator = null;
     }
 
     @Test
@@ -284,8 +283,9 @@ public class JobCoordinatorTest {
         assertThat(jobCoordinator.getRetriesCount()).isEqualTo(count);
     }
 
+/* TODO
     private void assertExecuteAttempts(int count) {
         assertThat(jobCoordinator.getExecuteAttempts()).isEqualTo(count);
     }
-
+ */
 }

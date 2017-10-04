@@ -5,18 +5,19 @@
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html
  */
-
 package org.opendaylight.infrautils.jobcoordinator.internal;
 
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import org.eclipse.jdt.annotation.Nullable;
 
 /**
  * A queue which holds job entries and the current running job.
  */
 public class JobQueue {
-    private final Queue<JobEntry> jobQueue = new ConcurrentLinkedQueue<JobEntry>();
-    private volatile JobEntry executingEntry;
+
+    private final Queue<JobEntry> jobQueue = new ConcurrentLinkedQueue<>();
+    private volatile @Nullable JobEntry executingEntry;
 
     public void addEntry(JobEntry entry) {
         jobQueue.add(entry);
@@ -26,15 +27,15 @@ public class JobQueue {
         return jobQueue.isEmpty();
     }
 
-    public JobEntry poll() {
+    public @Nullable JobEntry poll() {
         return jobQueue.poll();
     }
 
-    public JobEntry getExecutingEntry() {
+    public @Nullable JobEntry getExecutingEntry() {
         return executingEntry;
     }
 
-    public void setExecutingEntry(JobEntry executingEntry) {
+    public void setExecutingEntry(@Nullable JobEntry executingEntry) {
         this.executingEntry = executingEntry;
     }
 }

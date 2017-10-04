@@ -5,7 +5,6 @@
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html
  */
-
 package org.opendaylight.infrautils.jobcoordinator.internal;
 
 import com.google.common.util.concurrent.FutureCallback;
@@ -27,6 +26,7 @@ import java.util.concurrent.locks.ReentrantLock;
 import javax.annotation.PreDestroy;
 import javax.annotation.concurrent.GuardedBy;
 import javax.inject.Singleton;
+import org.eclipse.jdt.annotation.Nullable;
 import org.opendaylight.infrautils.jobcoordinator.JobCoordinator;
 import org.opendaylight.infrautils.jobcoordinator.JobCoordinatorMonitor;
 import org.opendaylight.infrautils.jobcoordinator.RollbackCallable;
@@ -93,7 +93,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
 
     @Override
     public void enqueueJob(String key, Callable<List<ListenableFuture<Void>>> mainWorker,
-            RollbackCallable rollbackWorker, int maxRetries) {
+            @Nullable RollbackCallable rollbackWorker, int maxRetries) {
         JobEntry jobEntry = new JobEntry(key, mainWorker, rollbackWorker, maxRetries);
         JobQueue jobQueue = jobQueueMap.computeIfAbsent(key, mapKey -> new JobQueue());
         jobQueue.addEntry(jobEntry);
@@ -147,7 +147,11 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
         String jobKey = jobEntry.getKey();
         LOG.trace("About to clear jobkey {}", jobKey);
         JobQueue jobQueue = jobQueueMap.get(jobKey);
-        jobQueue.setExecutingEntry(null);
+        if (jobQueue != null) {
+            jobQueue.setExecutingEntry(null);
+        } else {
+            LOG.error("clearJob: jobQueueMap did not contain the key for this entry: {}", jobEntry);
+        }
         JobCoordinatorCounters.jobs_cleared.inc();
         JobCoordinatorCounters.jobs_incomplete.dec();
         signalForNexJob();
@@ -179,7 +183,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
          * TODO: Confirm this
          */
         @Override
-        public void onSuccess(List<Void> voids) {
+        public void onSuccess(@Nullable List<Void> voids) {
             LOG.trace("Job {} completed successfully", jobEntry.getKey());
             clearJob(jobEntry);
         }
@@ -237,13 +241,17 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
         @SuppressWarnings("checkstyle:IllegalCatch")
         public void run() {
             RollbackCallable callable = jobEntry.getRollbackWorker();
-            callable.setFutures(jobEntry.getFutures());
             List<ListenableFuture<Void>> futures = null;
+            if (callable != null) {
+                callable.setFutures(jobEntry.getFutures());
 
-            try {
-                futures = callable.call();
-            } catch (Exception e) {
-                LOG.error("Exception when executing jobEntry: {}", jobEntry, e);
+                try {
+                    futures = callable.call();
+                } catch (Exception e) {
+                    LOG.error("Exception when executing jobEntry: {}", jobEntry, e);
+                }
+            } else {
+                LOG.error("Unexpected no (null) rollback worker on job: {}", jobEntry);
             }
 
             if (futures == null || futures.isEmpty()) {
@@ -276,7 +284,12 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
             LOG.trace("Running job {}", jobEntry.getKey());
 
             try {
-                futures = jobEntry.getMainWorker().call();
+                Callable<List<ListenableFuture<Void>>> mainWorker = jobEntry.getMainWorker();
+                if (mainWorker != null) {
+                    futures = mainWorker.call();
+                } else {
+                    LOG.error("Unexpected no (null) main worker on job: {}", jobEntry);
+                }
                 long jobExecutionTimeNanos = System.nanoTime() - jobStartTimestampNanos;
                 printJobs(jobEntry.getKey(), TimeUnit.NANOSECONDS.toMillis(jobExecutionTimeNanos));
             } catch (Exception e) {
