@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a245df4_9c81474d",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ClusterMemberInfoProvider.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-10-05T09:56:25Z",
+      "side": 1,
+      "message": "erm.. OK, a NullPointerException is weird here? You could introduce a new checked exception to signal this? Do you want to change this now, or merge this and promise to change this later?",
+      "revId": "f0d1b7b59d3fc90ae60696cc229f078913e03dc6",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_dc929f9e",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/MBeanUtils.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-10-05T09:56:25Z",
+      "side": 1,
+      "message": "erm.. but, a catch NullPointerException is weird here? Do you want to change this now, or merge this and promise to change this later?",
+      "revId": "f0d1b7b59d3fc90ae60696cc229f078913e03dc6",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_7ce9f319",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/MBeanUtils.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-10-05T09:56:25Z",
+      "side": 1,
+      "message": "and here I thought I managed to help you understand why return null is always bad, but you remove it in one place, and then add it another... ;-) IFF startRMIConnectorServer() cannot always start a RMI Connector Server, then a better design would be to either let it throw an exception itself (or just let it propagate the exception that caused it to not be able to start, and let the caller handle it), or return an Optional.. up to you if you want to change this here, or later.",
+      "revId": "f0d1b7b59d3fc90ae60696cc229f078913e03dc6",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
