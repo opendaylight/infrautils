@@ -1,0 +1,293 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a245df4_f5721b48",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ClusterMemberInfoProvider.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-10-05T00:15:19Z",
+      "side": 1,
+      "message": "perhaps all methods arguments \u0026 return types here should be a clearer more strongly typed InetAddress instead of just a String?",
+      "revId": "199ce5ac3e9a178041b445559e46f1ee7f8f2c8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_95991f71",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ClusterMemberInfoProvider.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-10-05T00:15:19Z",
+      "side": 1,
+      "message": "how can I help you to get used to never doing this anymore? This just hides a problem and leads to an NPE, later.  If you cannot return the self address, then just throw an exception, explaining why.  (Or if this is INTENTIONALLY not always going to provide this, then perhaps use an Optional\u003c\u003e although in this case I don\u0027t think that\u0027s appropriate, and Exception is better.  This is because the calling code probably can\u0027t \"handle\" this, anyway?)",
+      "revId": "199ce5ac3e9a178041b445559e46f1ee7f8f2c8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_1549afd0",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/MBeanUtils.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-10-05T00:15:19Z",
+      "side": 1,
+      "message": "wondering why there is no *Test in this change.. should be possible to MBeanUtilsTest, or extend DiagStatusTest, for the functionality being added here?  Maybe too hard to be worth the effort (then you should refactor..), so.. later? Promise? ;)",
+      "revId": "199ce5ac3e9a178041b445559e46f1ee7f8f2c8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_759e2b58",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/MBeanUtils.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-10-05T00:15:19Z",
+      "side": 1,
+      "message": "catch / LOG / re-throw only makes sense if you can provide additional information.  Here you cannot, so this is pointless, IMHO.  Just remove it and let that propagate..",
+      "revId": "199ce5ac3e9a178041b445559e46f1ee7f8f2c8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_d5a27799",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/MBeanUtils.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-10-05T00:15:19Z",
+      "side": 1,
+      "message": "as above, remove entiry try/catch/LOG/throw, here too.",
+      "revId": "199ce5ac3e9a178041b445559e46f1ee7f8f2c8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_b59f0350",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/MBeanUtils.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-10-05T00:15:19Z",
+      "side": 1,
+      "message": "This is diferent - because now you can proivde the url as context",
+      "revId": "199ce5ac3e9a178041b445559e46f1ee7f8f2c8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_15ad2f89",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/MBeanUtils.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-10-05T00:15:19Z",
+      "side": 1,
+      "message": "remove \"due to {}\"",
+      "revId": "199ce5ac3e9a178041b445559e46f1ee7f8f2c8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_f5a97b7c",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/MBeanUtils.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-10-05T00:15:19Z",
+      "side": 1,
+      "message": "you could use the more nice to read \"try with resources\" (without catch) Java syntax here",
+      "revId": "199ce5ac3e9a178041b445559e46f1ee7f8f2c8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_35303356",
+        "filename": "diagstatus/shell/pom.xml",
+        "patchSetId": 5
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-10-05T00:15:19Z",
+      "side": 1,
+      "message": "you don\u0027t seem to be doing any JSON procesing (anymore?), so do we still need this?",
+      "revId": "199ce5ac3e9a178041b445559e46f1ee7f8f2c8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_75b58bcc",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusCommand.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-10-05T00:15:19Z",
+      "side": 1,
+      "message": "Command typically better just output to user CLI, not LOG ?",
+      "revId": "199ce5ac3e9a178041b445559e46f1ee7f8f2c8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_d5d0b7f9",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusCommand.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-10-05T00:15:19Z",
+      "side": 1,
+      "message": "this is strange - isn\u0027t it simply \"all\" IFF there is no --node?  Maybe you want to remove this, as it does not seem to be used and do anything (but it will be shown by Karaf, automatically, on -h; so could confuse users)",
+      "revId": "199ce5ac3e9a178041b445559e46f1ee7f8f2c8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_55b687dd",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusCommand.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-10-05T00:15:19Z",
+      "side": 1,
+      "message": "I think it\u0027s probably more clear for an end-user if you just just let this exception propagate and bubble up?  Or is there some good reason I may not be understanding here why you want to \"hide\" this case from an operator on the CLI?",
+      "revId": "199ce5ac3e9a178041b445559e46f1ee7f8f2c8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_d5c9d75b",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusCommand.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-10-05T00:15:19Z",
+      "side": 1,
+      "message": "shouldn\u0027t this rather be shown to the operator on the CLI, instead of go into the LOG?",
+      "revId": "199ce5ac3e9a178041b445559e46f1ee7f8f2c8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_35bb13c6",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/util/DiagStatusShellUtil.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-10-05T00:15:19Z",
+      "side": 1,
+      "message": "not sure why you have this in a separate class, in a diagstatus.util but not diagstatus.shell (which is confusing, when debugging later, because you can\u0027t see which bundle this class is in) - how about just making this simply a private method in DiagStatusCommand ?",
+      "revId": "199ce5ac3e9a178041b445559e46f1ee7f8f2c8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_95b0ffde",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/util/StatusOperations.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-10-05T00:15:19Z",
+      "side": 1,
+      "message": "same comment as before.. why not simply also in diagstatus.shell?  Or why no even just inside class DiagStatusCommand ?",
+      "revId": "199ce5ac3e9a178041b445559e46f1ee7f8f2c8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_15c40f3f",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/util/StatusOperations.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-10-05T00:15:19Z",
+      "side": 1,
+      "message": "This magic \"ERROR\" String match here is kind of curious.. where is this coming from?  JMX?  Guaranteed, will never change?  What if it\u0027s on a Chinese OS? ;) It usually to handle this more reliably, if at all possible.",
+      "revId": "199ce5ac3e9a178041b445559e46f1ee7f8f2c8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_b5c6e347",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/util/StatusOperations.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-10-05T00:15:19Z",
+      "side": 1,
+      "message": "are you sure you don\u0027t want to throw an Exception in this case? Just asking..",
+      "revId": "199ce5ac3e9a178041b445559e46f1ee7f8f2c8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
