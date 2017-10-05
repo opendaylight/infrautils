@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a245df4_f901753a",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/test/java/org/opendaylight/infrautils/jobcoordinator/tests/JobCoordinatorTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 5861
+      },
+      "writtenOn": "2017-10-05T08:18:02Z",
+      "side": 1,
+      "message": "List instead of ArrayList?",
+      "range": {
+        "startLine": 90,
+        "startChar": 16,
+        "endLine": 90,
+        "endChar": 50
+      },
+      "revId": "602ad7d71e27c29fe1ea1a4c6cc337512c7cda01",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
