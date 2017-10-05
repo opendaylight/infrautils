@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a245df4_3c6c9b9c",
+        "filename": "jobcoordinator/jobcoordinator-api/src/main/java/org/opendaylight/infrautils/jobcoordinator/RollbackCallable.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-10-05T10:19:48Z",
+      "side": 1,
+      "message": "as there are no users, instead of introducing yet another @Deprecated which will never be removed, let us just remove this method all together (respetively rename it) ... and, much more importantly, tihs leaves the door open for what we\u0027re trying to fix here - one could still do getFutures().add(null) by mistake, and cause Bug 9238 like problem, instead of using the new safe setFailedFutures() - so just kill it!",
+      "revId": "87fa52301ee6454c00464a8ed669d64888698b89",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_1c69d78b",
+        "filename": "jobcoordinator/jobcoordinator-api/src/main/java/org/opendaylight/infrautils/jobcoordinator/RollbackCallable.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-10-05T10:19:48Z",
+      "side": 1,
+      "message": "missing @Deprecated, but as above, please just remove",
+      "revId": "87fa52301ee6454c00464a8ed669d64888698b89",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
