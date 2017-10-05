@@ -24,6 +24,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
+import java.util.function.Function;
 import javax.annotation.PreDestroy;
 import javax.annotation.concurrent.GuardedBy;
 import javax.inject.Singleton;
@@ -236,12 +237,11 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
         @Override
         @SuppressWarnings("checkstyle:IllegalCatch")
         public void run() {
-            RollbackCallable callable = jobEntry.getRollbackWorker();
-            callable.setFutures(jobEntry.getFutures());
+            RollbackCallable rollbackWorker = jobEntry.getRollbackWorker();
             List<ListenableFuture<Void>> futures = null;
 
             try {
-                futures = callable.call();
+                futures = rollbackWorker.apply(jobEntry.getFutures());
             } catch (Exception e) {
                 LOG.error("Exception when executing jobEntry: {}", jobEntry, e);
             }

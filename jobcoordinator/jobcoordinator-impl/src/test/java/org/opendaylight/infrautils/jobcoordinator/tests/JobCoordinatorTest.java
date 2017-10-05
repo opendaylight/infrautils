@@ -114,7 +114,7 @@ public class JobCoordinatorTest {
         private final AtomicLong wasTried = new AtomicLong(0);
 
         @Override
-        public List<ListenableFuture<Void>> call() throws Exception {
+        public List<ListenableFuture<Void>> apply(List<ListenableFuture<Void>> failedFutures) {
             wasTried.incrementAndGet();
             return Collections.emptyList();
         }
