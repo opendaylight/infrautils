@@ -22,6 +22,30 @@
       "revId": "563353e7ace7043fb53a65c991e9060b63304466",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_5cd86f53",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/concurrent/LoggingUncaughtThreadDeathContextRunnable.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-10-05T12:47:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a245df4_f953356a",
+      "range": {
+        "startLine": 33,
+        "startChar": 22,
+        "endLine": 33,
+        "endChar": 67
+      },
+      "revId": "563353e7ace7043fb53a65c991e9060b63304466",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
