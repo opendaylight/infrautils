@@ -16,6 +16,24 @@
       "revId": "bd4aaefcd340a94050dc90652881c6864b9938c6",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_7fdd6514",
+        "filename": "jobcoordinator/jobcoordinator-api/src/main/java/org/opendaylight/infrautils/jobcoordinator/RollbackCallable.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 4540
+      },
+      "writtenOn": "2017-10-05T14:15:55Z",
+      "side": 1,
+      "message": "Indeed, done, thanks!",
+      "parentUuid": "9a245df4_5fa6a1c2",
+      "revId": "bd4aaefcd340a94050dc90652881c6864b9938c6",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
