@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "9a245df4_39b94d2f",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ClusterMemberInfoProvider.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2017-10-05T09:21:31Z",
+      "side": 1,
+      "message": "The value returned from this cluster mbean is string. and the value we finally use to frame the jmx url is also string..so if we make it inetaddress isnt that an unnecessary conversion?",
+      "parentUuid": "9a245df4_f5721b48",
+      "revId": "199ce5ac3e9a178041b445559e46f1ee7f8f2c8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a245df4_95991f71",
         "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ClusterMemberInfoProvider.java",
         "patchSetId": 5
@@ -30,6 +48,24 @@
       "writtenOn": "2017-10-05T00:15:19Z",
       "side": 1,
       "message": "how can I help you to get used to never doing this anymore? This just hides a problem and leads to an NPE, later.  If you cannot return the self address, then just throw an exception, explaining why.  (Or if this is INTENTIONALLY not always going to provide this, then perhaps use an Optional\u003c\u003e although in this case I don\u0027t think that\u0027s appropriate, and Exception is better.  This is because the calling code probably can\u0027t \"handle\" this, anyway?)",
+      "revId": "199ce5ac3e9a178041b445559e46f1ee7f8f2c8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_59eec123",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ClusterMemberInfoProvider.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2017-10-05T09:21:31Z",
+      "side": 1,
+      "message": "It is not right to throw null pointer, if somebody runs just infrautils feature, akka mbeans wont be available. The right thing will be not to start remote connector if self address is not available.",
+      "parentUuid": "9a245df4_95991f71",
       "revId": "199ce5ac3e9a178041b445559e46f1ee7f8f2c8e",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "9a245df4_f9dcd576",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/MBeanUtils.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2017-10-05T09:21:31Z",
+      "side": 1,
+      "message": "Promise..Next thing after ready integration",
+      "parentUuid": "9a245df4_1549afd0",
+      "revId": "199ce5ac3e9a178041b445559e46f1ee7f8f2c8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a245df4_759e2b58",
         "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/MBeanUtils.java",
         "patchSetId": 5
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "9a245df4_5931a1a1",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/MBeanUtils.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2017-10-05T09:21:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a245df4_759e2b58",
+      "revId": "199ce5ac3e9a178041b445559e46f1ee7f8f2c8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a245df4_d5a27799",
         "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/MBeanUtils.java",
         "patchSetId": 5
@@ -81,6 +153,24 @@
       "writtenOn": "2017-10-05T00:15:19Z",
       "side": 1,
       "message": "as above, remove entiry try/catch/LOG/throw, here too.",
+      "revId": "199ce5ac3e9a178041b445559e46f1ee7f8f2c8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_792c654b",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/MBeanUtils.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2017-10-05T09:21:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a245df4_d5a27799",
       "revId": "199ce5ac3e9a178041b445559e46f1ee7f8f2c8e",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -189,6 +279,24 @@
     },
     {
       "key": {
+        "uuid": "9a245df4_d91c7116",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusCommand.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2017-10-05T09:21:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a245df4_d5d0b7f9",
+      "revId": "199ce5ac3e9a178041b445559e46f1ee7f8f2c8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a245df4_55b687dd",
         "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusCommand.java",
         "patchSetId": 5
@@ -200,6 +308,24 @@
       "writtenOn": "2017-10-05T00:15:19Z",
       "side": 1,
       "message": "I think it\u0027s probably more clear for an end-user if you just just let this exception propagate and bubble up?  Or is there some good reason I may not be understanding here why you want to \"hide\" this case from an operator on the CLI?",
+      "revId": "199ce5ac3e9a178041b445559e46f1ee7f8f2c8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_391aed17",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusCommand.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2017-10-05T09:21:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a245df4_55b687dd",
       "revId": "199ce5ac3e9a178041b445559e46f1ee7f8f2c8e",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -223,6 +349,24 @@
     },
     {
       "key": {
+        "uuid": "9a245df4_f9f855c6",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusCommand.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2017-10-05T09:21:31Z",
+      "side": 1,
+      "message": "the CLI will anyways show the output of single node, instead of all nodes. this is just an INFO log to show that this is a single node system",
+      "parentUuid": "9a245df4_d5c9d75b",
+      "revId": "199ce5ac3e9a178041b445559e46f1ee7f8f2c8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a245df4_35bb13c6",
         "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/util/DiagStatusShellUtil.java",
         "patchSetId": 5
@@ -234,6 +378,24 @@
       "writtenOn": "2017-10-05T00:15:19Z",
       "side": 1,
       "message": "not sure why you have this in a separate class, in a diagstatus.util but not diagstatus.shell (which is confusing, when debugging later, because you can\u0027t see which bundle this class is in) - how about just making this simply a private method in DiagStatusCommand ?",
+      "revId": "199ce5ac3e9a178041b445559e46f1ee7f8f2c8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_191729ef",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/util/DiagStatusShellUtil.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2017-10-05T09:21:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a245df4_35bb13c6",
       "revId": "199ce5ac3e9a178041b445559e46f1ee7f8f2c8e",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -257,6 +419,24 @@
     },
     {
       "key": {
+        "uuid": "9a245df4_79d3c538",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/util/StatusOperations.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2017-10-05T09:21:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a245df4_95b0ffde",
+      "revId": "199ce5ac3e9a178041b445559e46f1ee7f8f2c8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a245df4_15c40f3f",
         "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/util/StatusOperations.java",
         "patchSetId": 5
@@ -274,6 +454,24 @@
     },
     {
       "key": {
+        "uuid": "9a245df4_39030dba",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/util/StatusOperations.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2017-10-05T09:21:31Z",
+      "side": 1,
+      "message": "Removed..as this case is not the same once we moved to JMX RMI",
+      "parentUuid": "9a245df4_15c40f3f",
+      "revId": "199ce5ac3e9a178041b445559e46f1ee7f8f2c8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a245df4_b5c6e347",
         "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/util/StatusOperations.java",
         "patchSetId": 5
@@ -285,6 +483,24 @@
       "writtenOn": "2017-10-05T00:15:19Z",
       "side": 1,
       "message": "are you sure you don\u0027t want to throw an Exception in this case? Just asking..",
+      "revId": "199ce5ac3e9a178041b445559e46f1ee7f8f2c8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_1900c9a9",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/util/StatusOperations.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2017-10-05T09:21:31Z",
+      "side": 1,
+      "message": "Removed",
+      "parentUuid": "9a245df4_b5c6e347",
       "revId": "199ce5ac3e9a178041b445559e46f1ee7f8f2c8e",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
