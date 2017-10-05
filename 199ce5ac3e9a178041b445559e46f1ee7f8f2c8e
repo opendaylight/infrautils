@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "9a245df4_dcabbfd4",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ClusterMemberInfoProvider.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-10-05T09:56:25Z",
+      "side": 1,
+      "message": "\u003e  value returned from this cluster mbean is string. and the value we finally use to frame the jmx url is also string\n\nThese are implementation and client usage details - if this is supposed to be a general utility, it would still make that a nicer API.. but anyway, I don\u0027t want to hold up just because of this!  Perhaps change later.",
+      "parentUuid": "9a245df4_39b94d2f",
+      "revId": "199ce5ac3e9a178041b445559e46f1ee7f8f2c8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a245df4_95991f71",
         "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ClusterMemberInfoProvider.java",
         "patchSetId": 5
