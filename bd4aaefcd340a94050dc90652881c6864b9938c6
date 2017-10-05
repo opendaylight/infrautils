@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a245df4_5fa6a1c2",
+        "filename": "jobcoordinator/jobcoordinator-api/src/main/java/org/opendaylight/infrautils/jobcoordinator/RollbackCallable.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 5278
+      },
+      "writtenOn": "2017-10-05T13:51:08Z",
+      "side": 1,
+      "message": "shouldn\u0027t you make RollbackCallable as interface ?",
+      "revId": "bd4aaefcd340a94050dc90652881c6864b9938c6",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
