@@ -115,11 +115,11 @@ public class JobCoordinatorTest {
         }
     }
 
-    private static class RollbackTask extends RollbackCallable {
+    private static class RollbackTask implements RollbackCallable {
         private final AtomicLong wasTried = new AtomicLong(0);
 
         @Override
-        public @Nullable List<ListenableFuture<Void>> call() throws Exception {
+        public List<ListenableFuture<Void>> apply(List<ListenableFuture<Void>> failedFutures) {
             wasTried.incrementAndGet();
             return Collections.emptyList();
         }
