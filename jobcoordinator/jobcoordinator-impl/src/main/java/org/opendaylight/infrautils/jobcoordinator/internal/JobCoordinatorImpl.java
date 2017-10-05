@@ -298,13 +298,11 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
         @Override
         @SuppressWarnings("checkstyle:IllegalCatch")
         public void runWithUncheckedExceptionLogging() {
-            RollbackCallable callable = jobEntry.getRollbackWorker();
+            RollbackCallable rollbackWorker = jobEntry.getRollbackWorker();
             List<ListenableFuture<Void>> futures = null;
-            if (callable != null) {
-                callable.setFutures(jobEntry.getFutures());
-
+            if (rollbackWorker != null) {
                 try {
-                    futures = callable.call();
+                    futures = rollbackWorker.apply(jobEntry.getFutures());
                 } catch (Exception e) {
                     LOG.error("Exception when executing jobEntry: {}", jobEntry, e);
                 }
