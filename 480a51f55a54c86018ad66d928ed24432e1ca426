@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a245df4_75874b10",
+        "filename": "diagstatus/shell/pom.xml",
+        "patchSetId": 4
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-10-05T00:15:19Z",
+      "side": 0,
+      "message": "The strange JavaDoc build failure you hit (\"com.sun.tools.javac.code.Symbol$CompletionFailure: class file for org.osgi.framework.InvalidSyntaxException not found\") is probably because you removed this.. your CLI bundle still uses OsgiCommandSupport (@deprecated Karaf 3 API; there\u0027s a better way for Karaf 4, see Karaf\u0027s documentation; but let\u0027s do that later), so  think you still need this... let me try for you.",
+      "revId": "480a51f55a54c86018ad66d928ed24432e1ca426",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
