@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "9a245df4_dcc61f49",
+        "filename": "jobcoordinator/jobcoordinator-api/src/main/java/org/opendaylight/infrautils/jobcoordinator/RollbackCallable.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 4540
+      },
+      "writtenOn": "2017-10-05T11:12:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a245df4_3c6c9b9c",
+      "revId": "87fa52301ee6454c00464a8ed669d64888698b89",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a245df4_1c69d78b",
         "filename": "jobcoordinator/jobcoordinator-api/src/main/java/org/opendaylight/infrautils/jobcoordinator/RollbackCallable.java",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2017-10-05T10:19:48Z",
       "side": 1,
       "message": "missing @Deprecated, but as above, please just remove",
+      "revId": "87fa52301ee6454c00464a8ed669d64888698b89",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_1cc1d72e",
+        "filename": "jobcoordinator/jobcoordinator-api/src/main/java/org/opendaylight/infrautils/jobcoordinator/RollbackCallable.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 4540
+      },
+      "writtenOn": "2017-10-05T11:12:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a245df4_1c69d78b",
       "revId": "87fa52301ee6454c00464a8ed669d64888698b89",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
