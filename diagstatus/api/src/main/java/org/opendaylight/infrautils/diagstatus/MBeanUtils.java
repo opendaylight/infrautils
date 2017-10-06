@@ -53,7 +53,7 @@ public final class MBeanUtils {
     public static final String JMX_URL_PREFIX = "service:jmx:rmi:///jndi/rmi://";
     public static final String JMX_URL_SUFFIX = "/server";
     public static final String JMX_URL_SEPARATOR = ":";
-    public static final int RMI_REGISTRY_PORT = 9999;
+    public static final int RMI_REGISTRY_PORT = 6886;
 
     private MBeanUtils() {
     }
