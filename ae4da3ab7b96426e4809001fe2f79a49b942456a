@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a245df4_62db091c",
+        "filename": "common/features/odl-infrautils-utils/pom.xml",
+        "patchSetId": 6
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2017-10-07T19:49:27Z",
+      "side": 1,
+      "message": "I am not sure about that one.\n\nWhat really is the intent of this dependency?\n\nIs it to be propagated as an implicit dependency to users of this artifact?",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 127
+      },
+      "revId": "ae4da3ab7b96426e4809001fe2f79a49b942456a",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
