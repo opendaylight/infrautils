@@ -11,8 +11,8 @@ package org.opendaylight.infrautils.jobcoordinator.internal;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
+import com.google.common.util.concurrent.MoreExecutors;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
@@ -255,7 +255,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
 
             jobEntry.setFutures(futures);
             ListenableFuture<List<Void>> listenableFuture = Futures.allAsList(futures);
-            Futures.addCallback(listenableFuture, new JobCallback(jobEntry));
+            Futures.addCallback(listenableFuture, new JobCallback(jobEntry), MoreExecutors.directExecutor());
         }
     }
 
@@ -294,7 +294,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
 
             jobEntry.setFutures(futures);
             ListenableFuture<List<Void>> listenableFuture = Futures.allAsList(futures);
-            Futures.addCallback(listenableFuture, new JobCallback(jobEntry));
+            Futures.addCallback(listenableFuture, new JobCallback(jobEntry), MoreExecutors.directExecutor());
         }
 
         private void printJobs(String key, long jobExecutionTime) {
@@ -313,9 +313,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
             LOG.info("Starting JobQueue Handler Thread");
             while (true) {
                 try {
-                    Iterator<Map.Entry<String, JobQueue>> it = jobQueueMap.entrySet().iterator();
-                    while (it.hasNext()) {
-                        Map.Entry<String, JobQueue> entry = it.next();
+                    for (Map.Entry<String, JobQueue> entry : jobQueueMap.entrySet()) {
                         JobQueue jobQueue = entry.getValue();
                         if (jobQueue.getExecutingEntry() != null) {
                             JobCoordinatorCounters.job_execute_attempts.inc();

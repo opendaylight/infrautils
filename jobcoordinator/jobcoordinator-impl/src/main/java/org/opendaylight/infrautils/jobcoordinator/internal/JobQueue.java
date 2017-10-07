@@ -15,7 +15,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
  * A queue which holds job entries and the current running job.
  */
 public class JobQueue {
-    private final Queue<JobEntry> jobQueue = new ConcurrentLinkedQueue<JobEntry>();
+    private final Queue<JobEntry> jobQueue = new ConcurrentLinkedQueue<>();
     private volatile JobEntry executingEntry;
 
     public void addEntry(JobEntry entry) {

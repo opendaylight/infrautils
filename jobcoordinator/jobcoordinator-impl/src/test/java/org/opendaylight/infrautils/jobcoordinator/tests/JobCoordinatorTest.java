@@ -145,7 +145,7 @@ public class JobCoordinatorTest {
     @Test
     public void testNoExceptionReturnNull() {
         TestCallable testCallable = new TestCallable(false, -1);
-        jobCoordinator.enqueueJob(getClass().getName().toString(), testCallable);
+        jobCoordinator.enqueueJob(getClass().getName(), testCallable);
         Awaitility.await().until(() -> jobCoordinator.getIncompleteTaskCount(), is(0L));
         assertThat(testCallable.getRetries()).isEqualTo(1);
     }
@@ -153,7 +153,7 @@ public class JobCoordinatorTest {
     @Test
     public void testNoExceptionReturnEmpty() {
         TestCallable testCallable = new TestCallable(false, 0);
-        jobCoordinator.enqueueJob(getClass().getName().toString(), testCallable);
+        jobCoordinator.enqueueJob(getClass().getName(), testCallable);
         Awaitility.await().until(() -> jobCoordinator.getIncompleteTaskCount(), is(0L));
         assertThat(testCallable.getRetries()).isEqualTo(1);
     }
@@ -161,7 +161,7 @@ public class JobCoordinatorTest {
     @Test
     public void testAnException() {
         TestCallable testCallable = new TestCallable(true, -1);
-        jobCoordinator.enqueueJob(getClass().getName().toString(), testCallable);
+        jobCoordinator.enqueueJob(getClass().getName(), testCallable);
         Awaitility.await().until(() -> jobCoordinator.getIncompleteTaskCount(), is(0L));
         assertFailed(1);
         assertThat(testCallable.getRetries()).isEqualTo(1);
@@ -170,7 +170,7 @@ public class JobCoordinatorTest {
     @Test
     public void testOneJob() {
         WaitingCallable waitingCallable = new WaitingCallable();
-        jobCoordinator.enqueueJob(getClass().getName().toString(), waitingCallable);
+        jobCoordinator.enqueueJob(getClass().getName(), waitingCallable);
         assertCreated(1);
         Awaitility.await().until(() -> waitingCallable.isWaiting);
         assertIncomplete(1);
@@ -182,11 +182,11 @@ public class JobCoordinatorTest {
     @Test
     public void testTwoJobsSameKey() {
         WaitingCallable waitingCallable1 = new WaitingCallable();
-        jobCoordinator.enqueueJob(getClass().getName().toString(), waitingCallable1);
+        jobCoordinator.enqueueJob(getClass().getName(), waitingCallable1);
         assertThat(jobCoordinator.getCreatedTaskCount()).isEqualTo(1);
         Awaitility.await().until(() -> waitingCallable1.isWaiting);
         WaitingCallable waitingCallable2 = new WaitingCallable();
-        jobCoordinator.enqueueJob(getClass().getName().toString(), waitingCallable2);
+        jobCoordinator.enqueueJob(getClass().getName(), waitingCallable2);
         assertCreated(2);
         Awaitility.await().until(() -> waitingCallable1.isWaiting);
 
@@ -224,7 +224,7 @@ public class JobCoordinatorTest {
     @Test
     public void testJobRetriesWhenException() {
         TestCallable testCallable = new TestCallable(true, 1);
-        jobCoordinator.enqueueJob(getClass().getName().toString(), testCallable, 3);
+        jobCoordinator.enqueueJob(getClass().getName(), testCallable, 3);
         Awaitility.await().until(() -> jobCoordinator.getIncompleteTaskCount(), is(0L));
         assertThat(testCallable.getRetries()).isEqualTo(3);
         assertRetry(3);
@@ -252,7 +252,7 @@ public class JobCoordinatorTest {
         TestCallable testCallable = new TestCallable(true, 1);
         RollbackTask rollbackCallable = new RollbackTask();
 
-        jobCoordinator.enqueueJob(getClass().getName().toString(), testCallable, rollbackCallable, 3);
+        jobCoordinator.enqueueJob(getClass().getName(), testCallable, rollbackCallable, 3);
         Awaitility.await().until(() -> jobCoordinator.getIncompleteTaskCount(), is(0L));
         assertThat(testCallable.getRetries()).isEqualTo(3);
         assertThat(rollbackCallable.getRetries()).isEqualTo(1);
@@ -272,7 +272,7 @@ public class JobCoordinatorTest {
         // This test didn't fail for https://bugs.opendaylight.org/show_bug.cgi?id=9238 even before its fix
         // but its point is to illustrate the error message in the LOG - before without but now with causing job's key
         Callable<List<ListenableFuture<Void>>> callableListWithNull = () -> Collections.singletonList(null);
-        jobCoordinator.enqueueJob(getClass().getName().toString(), callableListWithNull);
+        jobCoordinator.enqueueJob(getClass().getName(), callableListWithNull);
         Awaitility.await().until(() -> jobCoordinator.getIncompleteTaskCount(), is(1L));
     }
 
