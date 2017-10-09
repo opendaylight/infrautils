@@ -65,6 +65,29 @@
     },
     {
       "key": {
+        "uuid": "9a245df4_d67c3375",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/nonnull/NullSafeCollections.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2017-10-09T18:41:29Z",
+      "side": 1,
+      "message": "should also be final",
+      "range": {
+        "startLine": 55,
+        "startChar": 12,
+        "endLine": 55,
+        "endChar": 19
+      },
+      "revId": "ae4da3ab7b96426e4809001fe2f79a49b942456a",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a245df4_f6ab37d4",
         "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/nonnull/NullSafeCollections.java",
         "patchSetId": 6
@@ -81,6 +104,75 @@
         "startChar": 12,
         "endLine": 62,
         "endChar": 39
+      },
+      "revId": "ae4da3ab7b96426e4809001fe2f79a49b942456a",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_76874762",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/nonnull/NullSafeCollections.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2017-10-09T18:41:29Z",
+      "side": 1,
+      "message": "should be static",
+      "range": {
+        "startLine": 70,
+        "startChar": 8,
+        "endLine": 70,
+        "endChar": 26
+      },
+      "revId": "ae4da3ab7b96426e4809001fe2f79a49b942456a",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_1696cb94",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/nonnull/NullSafeCollections.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2017-10-09T18:41:29Z",
+      "side": 1,
+      "message": "should be static",
+      "range": {
+        "startLine": 74,
+        "startChar": 8,
+        "endLine": 74,
+        "endChar": 21
+      },
+      "revId": "ae4da3ab7b96426e4809001fe2f79a49b942456a",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_b681bf4c",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/nonnull/NullSafeCollections.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2017-10-09T18:41:29Z",
+      "side": 1,
+      "message": "collection.forEach(Objects::requireNonNull) should be more than enough",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 77,
+        "endChar": 13
       },
       "revId": "ae4da3ab7b96426e4809001fe2f79a49b942456a",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
