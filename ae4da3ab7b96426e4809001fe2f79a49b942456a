@@ -42,6 +42,29 @@
     },
     {
       "key": {
+        "uuid": "9a245df4_36b66f3e",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/nonnull/NullSafeCollections.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2017-10-09T18:39:00Z",
+      "side": 1,
+      "message": "missing documentation. this needs to explicitly note that the list will be traversed, as it can be a performance hog.\n\nFurthermore this needs to handle the case of\n\nwrapAsNullSafeList(wrapAsNullSafeList(wrapAsNullSafeList(list)))\n\nwithout leaking memory -- note the difference between ImmutableList.copyOf() and Collections.unmodifiableList().",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 5
+      },
+      "revId": "ae4da3ab7b96426e4809001fe2f79a49b942456a",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a245df4_f6ab37d4",
         "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/nonnull/NullSafeCollections.java",
         "patchSetId": 6
