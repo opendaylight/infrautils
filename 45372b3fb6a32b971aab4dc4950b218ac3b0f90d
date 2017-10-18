@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a245df4_97ef39b0",
+        "filename": "common/util/src/test/java/org/opendaylight/infrautils/utils/tests/StackTracesTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 4540
+      },
+      "writtenOn": "2017-10-18T11:06:49Z",
+      "side": 1,
+      "message": "This shows IMO that the method name is confusing: we call getCallerMethodName() to obtain the current method name (which is the utility’s caller)... So either getCallerMethodName() needs to reach one element further up, and the test reworked (which matches the initial use-case), or it needs to be renamed.\n\nIn both cases, it needs to be documented ;-).",
+      "revId": "45372b3fb6a32b971aab4dc4950b218ac3b0f90d",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
