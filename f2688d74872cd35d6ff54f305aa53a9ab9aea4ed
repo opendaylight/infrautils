@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a245df4_9200e7ab",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/StackTraces.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-10-18T13:09:26Z",
+      "side": 1,
+      "message": "how about \"getCallersCallerMethodName\"?",
+      "revId": "f2688d74872cd35d6ff54f305aa53a9ab9aea4ed",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_d231bfa3",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/StackTraces.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-10-18T13:09:26Z",
+      "side": 1,
+      "message": "Why does this add 2 to the given depth?",
+      "revId": "f2688d74872cd35d6ff54f305aa53a9ab9aea4ed",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
