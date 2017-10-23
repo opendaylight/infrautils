@@ -16,6 +16,24 @@
       "revId": "db4c529c5119829855d2693956a42f3fe6a8a594",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_31b5ab31",
+        "filename": "ready/api/src/main/java/org/opendaylight/infrautils/ready/order/FunctionalityReadyNotifier.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-10-23T11:23:10Z",
+      "side": 1,
+      "message": "Done, but just to \"action\" this feedback - personally I consider this the kind of fairly useless \"too obvious\" JavaDoc feedback.. you just write a line in English that repeats what the method signature does - I usually don\u0027t put JavaDoc if I don\u0027t have anything to say beyond what the method signature already expresses.",
+      "parentUuid": "ba1f61a0_c88e922d",
+      "revId": "db4c529c5119829855d2693956a42f3fe6a8a594",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
