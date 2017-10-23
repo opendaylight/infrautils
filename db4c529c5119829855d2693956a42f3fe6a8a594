@@ -52,6 +52,24 @@
       "revId": "db4c529c5119829855d2693956a42f3fe6a8a594",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_919617ef",
+        "filename": "ready/api/src/main/java/org/opendaylight/infrautils/ready/order/FunctionalityReadyNotifier.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-10-23T13:26:46Z",
+      "side": 1,
+      "message": "OK.  So +1 this now then? ;) Or do you think this needs more doc? BTW: There is a fair amoung of blurb in @see FunctionalityReady, did you see that?",
+      "parentUuid": "9a245df4_712f23f7",
+      "revId": "db4c529c5119829855d2693956a42f3fe6a8a594",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
