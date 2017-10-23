@@ -34,6 +34,24 @@
       "revId": "db4c529c5119829855d2693956a42f3fe6a8a594",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_712f23f7",
+        "filename": "ready/api/src/main/java/org/opendaylight/infrautils/ready/order/FunctionalityReadyNotifier.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-10-23T13:01:03Z",
+      "side": 1,
+      "message": "It\u0027s not obvious to me. As a user I\u0027m registering a \"markerInterface\" of type FunctionalityReady - what does that mean/entail? What does/should an implementation do with the \"markerInterface\"?\n\nIn general, l\u0027m a proponent of javadoc\u0027ing public APIs no matter now obvious it may be as it explicitly and (hopefully) clearly defines the API contract not only with users but with implementors as well.",
+      "parentUuid": "9a245df4_31b5ab31",
+      "revId": "db4c529c5119829855d2693956a42f3fe6a8a594",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
