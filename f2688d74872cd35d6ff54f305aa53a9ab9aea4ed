@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "9a245df4_113b47d2",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/StackTraces.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-10-23T11:07:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a245df4_9200e7ab",
+      "revId": "f2688d74872cd35d6ff54f305aa53a9ab9aea4ed",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a245df4_d231bfa3",
         "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/StackTraces.java",
         "patchSetId": 3
@@ -30,6 +48,24 @@
       "writtenOn": "2017-10-18T13:09:26Z",
       "side": 1,
       "message": "Why does this add 2 to the given depth?",
+      "revId": "f2688d74872cd35d6ff54f305aa53a9ab9aea4ed",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_31300be8",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/StackTraces.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-10-23T11:07:36Z",
+      "side": 1,
+      "message": "Done, added inline commento to explain\n\nalso check out the StackTracesTest to see that this does work as intended",
+      "parentUuid": "9a245df4_d231bfa3",
       "revId": "f2688d74872cd35d6ff54f305aa53a9ab9aea4ed",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
