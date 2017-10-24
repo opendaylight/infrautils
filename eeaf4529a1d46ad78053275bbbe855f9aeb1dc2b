@@ -34,6 +34,24 @@
       "revId": "eeaf4529a1d46ad78053275bbbe855f9aeb1dc2b",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_e7a51048",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/workaround/Activator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-10-24T17:43:48Z",
+      "side": 1,
+      "message": "yeah - I see that now however get() is not thread-safe. I would suggest make it easy and do:\n\n  private static JobCoordinatorImpl jobCoordinatorImpl \u003d new JobCoordinatorImpl();\n\n  public static JobCoordinator getJobCoordinator() {\n        return jobCoordinatorImpl;\n   }",
+      "parentUuid": "9a245df4_a7f4b8cf",
+      "revId": "eeaf4529a1d46ad78053275bbbe855f9aeb1dc2b",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
