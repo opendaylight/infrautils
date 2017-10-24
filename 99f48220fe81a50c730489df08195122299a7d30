@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a245df4_84fff266",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/resources/OSGI-INF/blueprint/jobcoordinator.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-10-24T14:21:06Z",
+      "side": 0,
+      "message": "We\u0027re going to need this file again so just comment this out.",
+      "revId": "99f48220fe81a50c730489df08195122299a7d30",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}

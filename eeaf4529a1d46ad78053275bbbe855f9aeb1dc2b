@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a245df4_242f26f8",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/workaround/Activator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-10-24T14:21:06Z",
+      "side": 1,
+      "message": "I assume you\u0027re making this static so the DataStoreJobCoordinator wiring can access it? Where is that being done? I was thinking it needs to be done in this class otherwise we may see race conditions. Also this bundle needs to have a lower start-level than normal. That will guarantee the static DataStoreJobCoordinator is created before any user bundle activates and starts BP.",
+      "revId": "eeaf4529a1d46ad78053275bbbe855f9aeb1dc2b",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
