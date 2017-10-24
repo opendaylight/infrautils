@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a245df4_2a4ecd96",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/SystemReadyImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-10-24T19:59:43Z",
+      "side": 1,
+      "message": "Not actually a \"throwable\" anymore but I won\u0027t nitpick :)",
+      "range": {
+        "startLine": 92,
+        "startChar": 34,
+        "endLine": 92,
+        "endChar": 43
+      },
+      "revId": "3c814d9568f4a12c7d79a0de98c9834b8ae8f8f5",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
