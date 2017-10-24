@@ -16,6 +16,24 @@
       "revId": "99f48220fe81a50c730489df08195122299a7d30",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_279f28b6",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/resources/OSGI-INF/blueprint/jobcoordinator.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-10-24T16:24:08Z",
+      "side": 0,
+      "message": "Done, if you insist.. but my expection is that we\u0027ll probably just be able to completely git revert this entire patch, in a few weeks.",
+      "parentUuid": "9a245df4_84fff266",
+      "revId": "99f48220fe81a50c730489df08195122299a7d30",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
