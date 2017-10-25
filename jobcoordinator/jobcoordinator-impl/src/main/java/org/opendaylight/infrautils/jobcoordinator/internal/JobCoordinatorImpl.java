@@ -11,18 +11,17 @@ import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.common.util.concurrent.MoreExecutors;
-
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.RejectedExecutionException;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
-
 import javax.annotation.PreDestroy;
 import javax.annotation.concurrent.GuardedBy;
 import org.eclipse.jdt.annotation.Nullable;
@@ -60,6 +59,8 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
     @GuardedBy("jobQueueMapLock")
     private boolean isJobAvailable = false;
 
+    private volatile boolean shutdown = false;
+
     public JobCoordinatorImpl() {
         ThreadFactoryProvider.builder()
             .namePrefix("JobCoordinator-JobQueueHandler")
@@ -71,6 +72,15 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
     @PreDestroy
     public void destroy() {
         LOG.info("JobCoordinator shutting down... (tasks still running may be stopped/cancelled/interrupted)");
+
+        jobQueueMapLock.lock();
+        try {
+            shutdown = true;
+            jobQueueMapCondition.signalAll();
+        } finally {
+            jobQueueMapLock.unlock();
+        }
+
         fjPool.shutdownNow();
         scheduledExecutorService.shutdownNow();
         LOG.info("JobCoordinator now closed for business.");
@@ -168,6 +178,33 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
         }
     }
 
+    private boolean executeTask(Runnable task) {
+        try {
+            fjPool.execute(task);
+            return true;
+        } catch (RejectedExecutionException e) {
+            if (!fjPool.isShutdown()) {
+                LOG.error("ForkJoinPool task rejected", e);
+            }
+
+            return false;
+        }
+    }
+
+    private boolean scheduleTask(Runnable task, long delay, TimeUnit unit) {
+        try {
+            scheduledExecutorService.schedule(task, delay, unit);
+            return true;
+        } catch (RejectedExecutionException e) {
+            if (!scheduledExecutorService.isShutdown()) {
+                LOG.error("ScheduledExecutorService task rejected", e);
+            }
+
+            return false;
+        }
+    }
+
+
     /**
      * JobCallback class is used as a future callback for main and rollback
      * workers to handle success and failure.
@@ -209,9 +246,9 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
             JobCoordinatorCounters.jobs_retries_for_failure.inc();
             if (retryCount > 0) {
                 long waitTime = RETRY_WAIT_BASE_TIME_MILLIS / retryCount;
-                scheduledExecutorService.schedule(() -> {
+                scheduleTask(() -> {
                     MainTask worker = new MainTask(jobEntry);
-                    fjPool.execute(worker);
+                    executeTask(worker);
                 }, waitTime, TimeUnit.MILLISECONDS);
                 return;
             }
@@ -219,7 +256,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
             if (jobEntry.getRollbackWorker() != null) {
                 jobEntry.setMainWorker(null);
                 RollbackTask rollbackTask = new RollbackTask(jobEntry);
-                fjPool.execute(rollbackTask);
+                executeTask(rollbackTask);
                 return;
             }
 
@@ -327,6 +364,10 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
             while (true) {
                 try {
                     for (Map.Entry<String, JobQueue> entry : jobQueueMap.entrySet()) {
+                        if (shutdown) {
+                            break;
+                        }
+
                         JobQueue jobQueue = entry.getValue();
                         if (jobQueue.getExecutingEntry() != null) {
                             JobCoordinatorCounters.job_execute_attempts.inc();
@@ -340,23 +381,29 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
                         jobQueue.setExecutingEntry(jobEntry);
                         MainTask worker = new MainTask(jobEntry);
                         LOG.trace("Executing job {}", jobEntry.getKey());
-                        fjPool.execute(worker);
-                        JobCoordinatorCounters.jobs_pending.dec();
+
+                        if (executeTask(worker)) {
+                            JobCoordinatorCounters.jobs_pending.dec();
+                        }
                     }
-                    waitForJobIfNeeded();
+
+                    if (!waitForJobIfNeeded()) {
+                        break;
+                    }
                 } catch (Exception e) {
                     LOG.error("Exception while executing the tasks", e);
                 }
             }
         }
 
-        private void waitForJobIfNeeded() throws InterruptedException {
+        private boolean waitForJobIfNeeded() throws InterruptedException {
             jobQueueMapLock.lock();
             try {
-                while (!isJobAvailable) {
+                while (!isJobAvailable && !shutdown) {
                     jobQueueMapCondition.await(1, TimeUnit.SECONDS);
                 }
                 isJobAvailable = false;
+                return !shutdown;
             } finally {
                 jobQueueMapLock.unlock();
             }
