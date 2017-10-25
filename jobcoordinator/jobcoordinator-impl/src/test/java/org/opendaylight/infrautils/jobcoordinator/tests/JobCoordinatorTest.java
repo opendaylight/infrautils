@@ -9,6 +9,7 @@ package org.opendaylight.infrautils.jobcoordinator.tests;
 
 import static com.google.common.truth.Truth.assertThat;
 import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertFalse;
 
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
@@ -129,16 +130,23 @@ public class JobCoordinatorTest {
     public static @ClassRule RunUntilFailureClassRule classRepeater = new RunUntilFailureClassRule(7);
     public @Rule RunUntilFailureRule repeater = new RunUntilFailureRule(classRepeater);
 
-    private final JobCoordinatorImpl jobCoordinator;
+    private static class TestJobCoordinatorImpl extends JobCoordinatorImpl {
+        void verifyJobQueueHandlerThreadStopped() {
+            assertFalse("obQueueHandler was not stopped", getJobQueueHandlerThread().isAlive());
+        }
+    }
+
+    private final TestJobCoordinatorImpl jobCoordinator;
 
     public JobCoordinatorTest() {
-        jobCoordinator = new JobCoordinatorImpl();
+        jobCoordinator = new TestJobCoordinatorImpl();
         OccurenceCounter.clearAllCounters(new String[] { ".*" }, new String[] { ".*" });
     }
 
     @After
     public void tearDown() {
         jobCoordinator.destroy();
+        jobCoordinator.verifyJobQueueHandlerThreadStopped();
     }
 
     @Test
