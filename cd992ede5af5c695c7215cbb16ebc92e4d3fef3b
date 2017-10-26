@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a245df4_f9d648f0",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobCoordinatorImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 5278
+      },
+      "writtenOn": "2017-10-26T14:06:02Z",
+      "side": 1,
+      "message": "can you also guard it with try-catch for RejectedExecutionException ?",
+      "revId": "cd992ede5af5c695c7215cbb16ebc92e4d3fef3b",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
