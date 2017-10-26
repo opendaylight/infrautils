@@ -8,7 +8,9 @@
 package org.opendaylight.infrautils.utils.concurrent;
 
 import com.google.common.util.concurrent.Futures;
+import com.google.common.util.concurrent.ListenableFuture;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionStage;
 
 /**
  * Utilities for {@link CompletableFuture}.
@@ -18,6 +20,14 @@ import java.util.concurrent.CompletableFuture;
 public final class CompletableFutures {
 
     private CompletableFutures() { }
+
+    /**
+     * Converts a Java 8 CompletionStage to a Guava ListenableFuture.
+     * See {@link CompletionStages#toListenableFuture(CompletionStage)} for a related function.
+     */
+    public static <V> ListenableFuture<V> toListenableFuture(CompletableFuture<V> completableFuture) {
+        return new CompletableToListenableFutureWrapper<>(completableFuture);
+    }
 
     /**
      * Return an immediately exceptional completed CompletableFuture.
