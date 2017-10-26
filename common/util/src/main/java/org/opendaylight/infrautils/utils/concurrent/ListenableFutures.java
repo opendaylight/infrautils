@@ -27,6 +27,8 @@ public final class ListenableFutures {
     /**
      * Converts a Guava ListenableFuture to a Java 8 CompletionStage.
      * Callers should not cast the returned CompletionStage by this method to CompletableFuture (as it may not be one).
+     * See {@link CompletionStages#toListenableFuture(CompletionStage)} for the inverse function of this.
+     * and {@link CompletableFutures#toListenableFuture(java.util.concurrent.CompletableFuture)} for a related function.
      */
     public static <V> CompletionStage<V> toCompletionStage(ListenableFuture<V> future) {
         return CompletionStageWrapper.wrap(new ListenableToCompletableFutureWrapper<>(future));
