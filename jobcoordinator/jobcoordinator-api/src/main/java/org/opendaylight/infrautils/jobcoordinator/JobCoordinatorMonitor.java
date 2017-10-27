@@ -47,4 +47,7 @@ public interface JobCoordinatorMonitor {
      */
     long getExecuteAttempts();
 
+    @Override
+    String toString();
+
 }
