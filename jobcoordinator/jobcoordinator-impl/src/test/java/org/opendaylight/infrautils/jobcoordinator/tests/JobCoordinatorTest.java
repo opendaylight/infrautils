@@ -44,7 +44,7 @@ public class JobCoordinatorTest {
 
     private static final Logger LOG = LoggerFactory.getLogger(JobCoordinatorTest.class);
 
-    private static final RuntimeException JOB_EXCEPTION = new JobException("Job is failed intentionally");
+    private static final Exception JOB_EXCEPTION = new JobException("Job is failed intentionally");
 
     private static class WaitingCallable implements Callable<List<ListenableFuture<Void>>> {
 
@@ -69,7 +69,7 @@ public class JobCoordinatorTest {
         }
     }
 
-    private static final class JobException extends RuntimeException {
+    private static final class JobException extends Exception {
 
         private static final long serialVersionUID = 1L;
 
@@ -102,7 +102,7 @@ public class JobCoordinatorTest {
         }
 
         @Override
-        public @Nullable List<ListenableFuture<Void>> call() {
+        public @Nullable List<ListenableFuture<Void>> call() throws Exception {
             wasTried.incrementAndGet();
             if (isThrowingException && returnedListSize < 0) {
                 throw JOB_EXCEPTION;
