@@ -27,7 +27,6 @@ import org.junit.ClassRule;
 import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
-import org.opendaylight.infrautils.counters.api.OccurenceCounter;
 import org.opendaylight.infrautils.jobcoordinator.RollbackCallable;
 import org.opendaylight.infrautils.jobcoordinator.internal.JobCoordinatorImpl;
 import org.opendaylight.infrautils.testutils.LogRule;
@@ -144,7 +143,6 @@ public class JobCoordinatorTest {
 
     public JobCoordinatorTest() {
         jobCoordinator = new TestJobCoordinatorImpl();
-        OccurenceCounter.clearAllCounters(new String[] { ".*" }, new String[] { ".*" });
     }
 
     @After

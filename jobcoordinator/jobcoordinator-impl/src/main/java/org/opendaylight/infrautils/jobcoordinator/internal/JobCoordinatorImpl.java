@@ -55,6 +55,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
     private final Map<String, JobQueue> jobQueueMap = new ConcurrentHashMap<>();
     private final ReentrantLock jobQueueMapLock = new ReentrantLock();
     private final Condition jobQueueMapCondition = jobQueueMapLock.newCondition();
+    private final JobCoordinatorCounters counters = new JobCoordinatorCounters();
 
     private final ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(5);
 
@@ -121,46 +122,46 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
         JobQueue jobQueue = jobQueueMap.computeIfAbsent(key, mapKey -> new JobQueue());
         jobQueue.addEntry(jobEntry);
 
-        JobCoordinatorCounters.jobs_pending.inc();
-        JobCoordinatorCounters.jobs_incomplete.inc();
-        JobCoordinatorCounters.jobs_created.inc();
+        counters.jobsPending().incrementAndGet();
+        counters.jobsIncomplete().incrementAndGet();
+        counters.jobsCreated().incrementAndGet();
 
         signalForNexJob();
     }
 
     @Override
     public long getClearedTaskCount() {
-        return JobCoordinatorCounters.jobs_cleared.get();
+        return counters.jobsCleared().get();
     }
 
     @Override
     public long getCreatedTaskCount() {
-        return JobCoordinatorCounters.jobs_created.get();
+        return counters.jobsCreated().get();
     }
 
     @Override
     public long getIncompleteTaskCount() {
-        return JobCoordinatorCounters.jobs_incomplete.get();
+        return counters.jobsIncomplete().get();
     }
 
     @Override
     public long getPendingTaskCount() {
-        return JobCoordinatorCounters.jobs_pending.get();
+        return counters.jobsPending().get();
     }
 
     @Override
     public long getFailedJobCount() {
-        return JobCoordinatorCounters.jobs_failed.get();
+        return counters.jobsFailed().get();
     }
 
     @Override
     public long getRetriesCount() {
-        return JobCoordinatorCounters.jobs_retries_for_failure.get();
+        return counters.jobsRetriesForFailure().get();
     }
 
     @Override
     public long getExecuteAttempts() {
-        return JobCoordinatorCounters.job_execute_attempts.get();
+        return counters.jobExecuteAttempts().get();
     }
 
     /**
@@ -175,8 +176,8 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
         } else {
             LOG.error("clearJob: jobQueueMap did not contain the key for this entry: {}", jobEntry);
         }
-        JobCoordinatorCounters.jobs_cleared.inc();
-        JobCoordinatorCounters.jobs_incomplete.dec();
+        counters.jobsCleared().incrementAndGet();
+        counters.jobsIncomplete().decrementAndGet();
         signalForNexJob();
     }
 
@@ -260,7 +261,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
             }
 
             int retryCount = jobEntry.decrementRetryCountAndGet();
-            JobCoordinatorCounters.jobs_retries_for_failure.inc();
+            counters.jobsRetriesForFailure().incrementAndGet();
             if (retryCount > 0) {
                 long waitTime = RETRY_WAIT_BASE_TIME_MILLIS / retryCount;
                 scheduleTask(() -> {
@@ -269,7 +270,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
                 }, waitTime, TimeUnit.MILLISECONDS);
                 return;
             }
-            JobCoordinatorCounters.jobs_failed.inc();
+            counters.jobsFailed().incrementAndGet();
             if (jobEntry.getRollbackWorker() != null) {
                 jobEntry.setMainWorker(null);
                 RollbackTask rollbackTask = new RollbackTask(jobEntry);
@@ -350,7 +351,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
                 long jobExecutionTimeNanos = System.nanoTime() - jobStartTimestampNanos;
                 printJobs(jobEntry.getKey(), TimeUnit.NANOSECONDS.toMillis(jobExecutionTimeNanos));
             } catch (Exception e) {
-                JobCoordinatorCounters.jobs_failed.inc();
+                counters.jobsFailed().incrementAndGet();
                 LOG.error("Exception when executing jobEntry: {}", jobEntry, e);
             }
 
@@ -387,7 +388,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
 
                         JobQueue jobQueue = entry.getValue();
                         if (jobQueue.getExecutingEntry() != null) {
-                            JobCoordinatorCounters.job_execute_attempts.inc();
+                            counters.jobExecuteAttempts().incrementAndGet();
                             continue;
                         }
                         JobEntry jobEntry = jobQueue.poll();
@@ -400,7 +401,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
                         LOG.trace("Executing job {}", jobEntry.getKey());
 
                         if (executeTask(worker)) {
-                            JobCoordinatorCounters.jobs_pending.dec();
+                            counters.jobsPending().decrementAndGet();
                         }
                     }
 

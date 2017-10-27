@@ -7,31 +7,42 @@
  */
 package org.opendaylight.infrautils.jobcoordinator.internal;
 
-import org.opendaylight.infrautils.counters.api.OccurenceCounter;
+import java.util.concurrent.atomic.AtomicLong;
 
-enum JobCoordinatorCounters {
-    jobs_created, jobs_cleared, jobs_pending(true), jobs_incomplete(true), jobs_failed,
-    jobs_retries_for_failure, job_execute_attempts;
+class JobCoordinatorCounters {
+    private final AtomicLong jobsCreated = new AtomicLong();
+    private final AtomicLong jobsCleared = new AtomicLong();
+    private final AtomicLong jobsPending = new AtomicLong();
+    private final AtomicLong jobsIncomplete = new AtomicLong();
+    private final AtomicLong jobsFailed = new AtomicLong();
+    private final AtomicLong jobsRetriesForFailure = new AtomicLong();
+    private final AtomicLong jobExecuteAttempts = new AtomicLong();
 
-    private final OccurenceCounter counter;
-
-    JobCoordinatorCounters() {
-        counter = new OccurenceCounter(getClass().getSimpleName(), name(), name());
+    AtomicLong jobsCreated() {
+        return jobsCreated;
     }
 
-    JobCoordinatorCounters(boolean isState) {
-        counter = new OccurenceCounter(getClass().getSimpleName(), "dsjcc", name(), name(), false, null, true, true);
+    AtomicLong jobsCleared() {
+        return jobsCleared;
     }
 
-    public void inc() {
-        counter.inc();
+    AtomicLong jobsPending() {
+        return jobsPending;
     }
 
-    public void dec() {
-        counter.dec();
+    AtomicLong jobsIncomplete() {
+        return jobsIncomplete;
     }
 
-    public long get() {
-        return counter.get();
+    AtomicLong jobsFailed() {
+        return jobsFailed;
+    }
+
+    AtomicLong jobsRetriesForFailure() {
+        return jobsRetriesForFailure;
+    }
+
+    AtomicLong jobExecuteAttempts() {
+        return jobExecuteAttempts;
     }
 }
