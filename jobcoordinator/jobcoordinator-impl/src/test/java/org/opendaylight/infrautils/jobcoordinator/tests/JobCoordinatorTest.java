@@ -39,6 +39,7 @@ import org.slf4j.LoggerFactory;
  * Unit test for JobCoordinator.
  *
  * @author Michael Vorburger.ch
+ * @author Periyasamy Palanisamy
  */
 public class JobCoordinatorTest {
 
