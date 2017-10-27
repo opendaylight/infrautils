@@ -33,6 +33,8 @@ import org.opendaylight.infrautils.jobcoordinator.internal.JobCoordinatorImpl;
 import org.opendaylight.infrautils.testutils.LogRule;
 import org.opendaylight.infrautils.testutils.RunUntilFailureClassRule;
 import org.opendaylight.infrautils.testutils.RunUntilFailureRule;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Unit test for JobCoordinator.
@@ -40,6 +42,8 @@ import org.opendaylight.infrautils.testutils.RunUntilFailureRule;
  * @author Michael Vorburger.ch
  */
 public class JobCoordinatorTest {
+
+    private static final Logger LOG = LoggerFactory.getLogger(JobCoordinatorTest.class);
 
     private static final RuntimeException JOB_EXCEPTION = new JobException("Job is failed intentionally");
 
@@ -145,6 +149,7 @@ public class JobCoordinatorTest {
 
     @After
     public void tearDown() {
+        LOG.info("{}", jobCoordinator.toString());
         jobCoordinator.destroy();
         jobCoordinator.verifyJobQueueHandlerThreadStopped();
     }

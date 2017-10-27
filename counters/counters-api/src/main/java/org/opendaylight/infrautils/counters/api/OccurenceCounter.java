@@ -17,6 +17,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 
 public class OccurenceCounter implements Comparable<OccurenceCounter> {
+
     private final AtomicLong totalOccur = new AtomicLong(0);
     private final AtomicInteger occursSinceLastPrint = new AtomicInteger(0);
     private final AtomicInteger occursInLastBulk = new AtomicInteger(0);
