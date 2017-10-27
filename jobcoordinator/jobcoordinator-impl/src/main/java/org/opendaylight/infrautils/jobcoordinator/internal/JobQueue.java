@@ -7,6 +7,7 @@
  */
 package org.opendaylight.infrautils.jobcoordinator.internal;
 
+import com.google.common.base.MoreObjects;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import org.eclipse.jdt.annotation.Nullable;
@@ -37,5 +38,10 @@ public class JobQueue {
 
     public void setExecutingEntry(@Nullable JobEntry executingEntry) {
         this.executingEntry = executingEntry;
+    }
+
+    @Override
+    public String toString() {
+        return MoreObjects.toStringHelper(this).add("executing", executingEntry).add("queue", jobQueue).toString();
     }
 }

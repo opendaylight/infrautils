@@ -7,6 +7,7 @@
  */
 package org.opendaylight.infrautils.jobcoordinator.internal;
 
+import com.google.common.base.MoreObjects;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
@@ -361,5 +362,13 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
                 jobQueueMapLock.unlock();
             }
         }
+    }
+
+    @Override
+    public String toString() {
+        return MoreObjects.toStringHelper(this).add("fjPool", fjPool).add("jobQueueMap", jobQueueMap)
+                .add("jobQueueMapLock", jobQueueMapLock).add("jobQueueMapCondition", jobQueueMapCondition)
+                .add("scheduledExecutorService", scheduledExecutorService).add("isJobAvailable", isJobAvailable)
+                .toString();
     }
 }
