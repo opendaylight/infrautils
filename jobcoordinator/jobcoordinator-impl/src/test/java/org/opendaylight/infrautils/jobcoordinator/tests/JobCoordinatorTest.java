@@ -169,15 +169,6 @@ public class JobCoordinatorTest {
     }
 
     @Test
-    public void testAnException() {
-        TestCallable testCallable = new TestCallable(true, -1);
-        jobCoordinator.enqueueJob(getClass().getName(), testCallable);
-        Awaitility.await().until(() -> jobCoordinator.getIncompleteTaskCount(), is(0L));
-        assertFailed(1);
-        assertThat(testCallable.getRetries()).isEqualTo(1);
-    }
-
-    @Test
     public void testOneJob() {
         WaitingCallable waitingCallable = new WaitingCallable();
         jobCoordinator.enqueueJob(getClass().getName(), waitingCallable);
@@ -229,6 +220,15 @@ public class JobCoordinatorTest {
         waitingCallable2.stopWaiting();
         Awaitility.await().until(() -> jobCoordinator.getIncompleteTaskCount(), is(0L));
         assertCleared(2);
+    }
+
+    @Test
+    public void testAnException() {
+        TestCallable testCallable = new TestCallable(true, -1);
+        jobCoordinator.enqueueJob(getClass().getName(), testCallable);
+        Awaitility.await().until(() -> jobCoordinator.getIncompleteTaskCount(), is(0L));
+        assertFailed(1);
+        assertThat(testCallable.getRetries()).isEqualTo(1);
     }
 
     @Test
