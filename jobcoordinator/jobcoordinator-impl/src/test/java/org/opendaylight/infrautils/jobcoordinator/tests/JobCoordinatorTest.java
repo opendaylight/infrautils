@@ -43,6 +43,9 @@ public class JobCoordinatorTest {
 
     private static final Logger LOG = LoggerFactory.getLogger(JobCoordinatorTest.class);
 
+    // public static @ClassRule RunUntilFailureClassRule classRepeater = new RunUntilFailureClassRule();
+    // public @Rule RunUntilFailureRule repeater = new RunUntilFailureRule(classRepeater);
+
     private static final Exception JOB_EXCEPTION = new JobException("Job is failed intentionally");
 
     private static class WaitingCallable implements Callable<List<ListenableFuture<Void>>> {
@@ -167,6 +170,7 @@ public class JobCoordinatorTest {
         jobCoordinator.enqueueJob(getClass().getName(), testCallable);
         Awaitility.await().until(jobCoordinator::getIncompleteTaskCount, is(0L));
         assertThat(testCallable.getTries()).isEqualTo(1);
+        assertExecuteAttempts(1);
     }
 
     @Test
@@ -175,6 +179,7 @@ public class JobCoordinatorTest {
         jobCoordinator.enqueueJob(getClass().getName(), testCallable);
         Awaitility.await().until(jobCoordinator::getIncompleteTaskCount, is(0L));
         assertThat(testCallable.getTries()).isEqualTo(1);
+        assertExecuteAttempts(1);
     }
 
     @Test
@@ -187,6 +192,7 @@ public class JobCoordinatorTest {
         waitingCallable.stopWaiting();
         Awaitility.await().until(jobCoordinator::getIncompleteTaskCount, is(0L));
         assertCleared(1);
+        assertExecuteAttempts(1);
     }
 
     @Test
@@ -211,6 +217,7 @@ public class JobCoordinatorTest {
         waitingCallable2.stopWaiting();
         Awaitility.await().until(jobCoordinator::getIncompleteTaskCount, is(0L));
         assertCleared(2);
+        assertExecuteAttempts(2);
     }
 
     @Test
@@ -229,6 +236,7 @@ public class JobCoordinatorTest {
         waitingCallable2.stopWaiting();
         Awaitility.await().until(jobCoordinator::getIncompleteTaskCount, is(0L));
         assertCleared(2);
+        // TODO why does assertExecuteAttempts() fluctuate between 2 and 3 in this test?!
     }
 
     @Test
@@ -238,6 +246,7 @@ public class JobCoordinatorTest {
         Awaitility.await().until(jobCoordinator::getIncompleteTaskCount, is(0L));
         assertFailed(1);
         assertThat(testCallable.getTries()).isEqualTo(1);
+        assertExecuteAttempts(1);
     }
 
     @Test
@@ -256,6 +265,7 @@ public class JobCoordinatorTest {
         Awaitility.await().until(jobCoordinator::getIncompleteTaskCount, is(0L));
         assertFailed(1);
         assertThat(testCallable.getTries()).isEqualTo(1);
+        assertExecuteAttempts(1);
     }
 
     @Test
@@ -266,6 +276,7 @@ public class JobCoordinatorTest {
         assertThat(testCallable.getTries()).isEqualTo(3);
         assertRetry(3);
         assertFailed(1);
+        assertExecuteAttempts(1);
     }
 
     @Test
@@ -279,6 +290,7 @@ public class JobCoordinatorTest {
         // ====================================================================================
         assertThat(testCallable.getTries()).isEqualTo(1);
         assertRetry(0);
+        assertExecuteAttempts(1);
     }
 
     @Test
@@ -295,6 +307,7 @@ public class JobCoordinatorTest {
 
         assertRetry(6);
         assertFailed(2);
+        assertExecuteAttempts(1);
     }
 
     @Test
@@ -308,6 +321,7 @@ public class JobCoordinatorTest {
         assertThat(rollbackCallable.getRetries()).isEqualTo(1);
         assertRetry(3);
         assertFailed(1);
+        assertExecuteAttempts(1);
     }
 
     @Test
@@ -317,35 +331,34 @@ public class JobCoordinatorTest {
         Callable<List<ListenableFuture<Void>>> callableListWithNull = () -> Collections.singletonList(null);
         jobCoordinator.enqueueJob(getClass().getName(), callableListWithNull);
         Awaitility.await().until(jobCoordinator::getIncompleteTaskCount, is(1L));
+        assertExecuteAttempts(1);
     }
 
     private void assertCleared(int count) {
-        assertThat(jobCoordinator.getClearedTaskCount()).isEqualTo(count);
+        assertThat(jobCoordinator.getClearedTaskCount()).named("clearedTasks").isEqualTo(count);
     }
 
     private void assertCreated(int count) {
-        assertThat(jobCoordinator.getCreatedTaskCount()).isEqualTo(count);
+        assertThat(jobCoordinator.getCreatedTaskCount()).named("createdTasks").isEqualTo(count);
     }
 
     private void assertIncomplete(int count) {
-        assertThat(jobCoordinator.getIncompleteTaskCount()).isEqualTo(count);
+        assertThat(jobCoordinator.getIncompleteTaskCount()).named("incompleteTasks").isEqualTo(count);
     }
 
     private void assertPending(int count) {
-        assertThat(jobCoordinator.getPendingTaskCount()).isEqualTo(count);
+        assertThat(jobCoordinator.getPendingTaskCount()).named("pendingTasks").isEqualTo(count);
     }
 
     private void assertFailed(int count) {
-        assertThat(jobCoordinator.getFailedJobCount()).isEqualTo(count);
+        assertThat(jobCoordinator.getFailedJobCount()).named("failedTasks").isEqualTo(count);
     }
 
     private void assertRetry(int count) {
-        assertThat(jobCoordinator.getRetriesCount()).isEqualTo(count);
+        assertThat(jobCoordinator.getRetriesCount()).named("retries").isEqualTo(count);
     }
 
-/* TODO
     private void assertExecuteAttempts(int count) {
-        assertThat(jobCoordinator.getExecuteAttempts()).isEqualTo(count);
+        assertThat(jobCoordinator.getExecuteAttempts()).named("executeAttempts").isEqualTo(count);
     }
- */
 }
