@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a245df4_a0e80ce3",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobCoordinatorImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-10-29T16:30:20Z",
+      "side": 0,
+      "message": "\"Constructor invokes Thread.start()\" - leaks the instance before construction is complete. This should be OK in this case as all state used by the JobQueueHandlerhas has already been initialized at this point  and we don\u0027t expect this class to be sub-classed but it isn\u0027t good practice in general. We could add an init/@PostConstruct method but that would require changes in users so I changed it to start the thread lazily via the jobQueueHandlerThreadStarted atomic boolean.",
+      "revId": "12ec1270674b8349edb17b80946c5e1697f09f4d",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_80e34804",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/workaround/Activator.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-10-29T16:30:20Z",
+      "side": 0,
+      "message": "\"Field not initialized in constructor but dereferenced without null check\" - check for null to be complete.",
+      "revId": "12ec1270674b8349edb17b80946c5e1697f09f4d",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
