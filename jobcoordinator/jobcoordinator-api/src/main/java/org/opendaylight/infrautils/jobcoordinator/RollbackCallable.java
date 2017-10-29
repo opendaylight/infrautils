@@ -10,7 +10,7 @@ package org.opendaylight.infrautils.jobcoordinator;
 import com.google.common.util.concurrent.ListenableFuture;
 import java.util.List;
 import java.util.concurrent.Callable;
-import org.eclipse.jdt.annotation.Nullable;
+import javax.annotation.Nullable;
 
 /**
  * A callable which runs in case a job task fails. It holds the futures that

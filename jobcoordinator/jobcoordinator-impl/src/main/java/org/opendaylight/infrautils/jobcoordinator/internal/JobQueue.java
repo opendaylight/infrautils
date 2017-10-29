@@ -10,7 +10,7 @@ package org.opendaylight.infrautils.jobcoordinator.internal;
 import com.google.common.base.MoreObjects;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
-import org.eclipse.jdt.annotation.Nullable;
+import javax.annotation.Nullable;
 
 /**
  * A queue which holds job entries and the current running job.
@@ -18,7 +18,7 @@ import org.eclipse.jdt.annotation.Nullable;
 public class JobQueue {
 
     private final Queue<JobEntry> jobQueue = new ConcurrentLinkedQueue<>();
-    private volatile @Nullable JobEntry executingEntry;
+    private volatile @Nullable JobEntry executingEntry = null;
 
     public void addEntry(JobEntry entry) {
         jobQueue.add(entry);
