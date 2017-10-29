@@ -8,11 +8,10 @@
 package org.opendaylight.infrautils.jobcoordinator.internal;
 
 import com.google.common.util.concurrent.ListenableFuture;
-
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
-import org.eclipse.jdt.annotation.Nullable;
+import javax.annotation.Nullable;
 import org.opendaylight.infrautils.jobcoordinator.RollbackCallable;
 
 /**

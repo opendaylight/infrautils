@@ -10,7 +10,7 @@ package org.opendaylight.infrautils.jobcoordinator.internal;
 import com.google.common.base.MoreObjects;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
-import org.eclipse.jdt.annotation.Nullable;
+import javax.annotation.Nullable;
 
 /**
  * A queue which holds job entries and the current running job.

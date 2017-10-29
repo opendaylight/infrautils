@@ -52,10 +52,13 @@ public class Activator implements BundleActivator {
     @Override
     public void stop(BundleContext context) throws Exception {
         INSTANCE.destroy();
-        // context.ungetService(jobCoordinatorServiceRegistration.getReference());
-        // context.ungetService(jobCoordinatorMonitorServiceRegistration.getReference());
-        jobCoordinatorServiceRegistration.unregister();
-        jobCoordinatorMonitorServiceRegistration.unregister();
+        if (jobCoordinatorServiceRegistration != null) {
+            jobCoordinatorServiceRegistration.unregister();
+        }
+
+        if (jobCoordinatorMonitorServiceRegistration != null) {
+            jobCoordinatorMonitorServiceRegistration.unregister();
+        }
     }
 
 }
