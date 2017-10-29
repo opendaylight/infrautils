@@ -13,6 +13,7 @@ import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.common.util.concurrent.MoreExecutors;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
@@ -22,11 +23,12 @@ import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RejectedExecutionException;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
+import javax.annotation.Nullable;
 import javax.annotation.PreDestroy;
 import javax.annotation.concurrent.GuardedBy;
-import org.eclipse.jdt.annotation.Nullable;
 import org.opendaylight.infrautils.jobcoordinator.JobCoordinator;
 import org.opendaylight.infrautils.jobcoordinator.JobCoordinatorMonitor;
 import org.opendaylight.infrautils.jobcoordinator.RollbackCallable;
@@ -61,6 +63,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
             ThreadFactoryProvider.builder().namePrefix("JobCoordinator-ScheduledExecutor").logger(LOG).build().get());
 
     private final Thread jobQueueHandlerThread;
+    private final AtomicBoolean jobQueueHandlerThreadStarted = new AtomicBoolean(false);
 
     @GuardedBy("jobQueueMapLock")
     private boolean isJobAvailable = false;
@@ -73,7 +76,6 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
             .logger(LOG)
             .build().get()
             .newThread(new JobQueueHandler());
-        jobQueueHandlerThread.start();
     }
 
     @PreDestroy
@@ -183,6 +185,10 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
     }
 
     private void signalForNexJob() {
+        if (jobQueueHandlerThreadStarted.compareAndSet(false, true)) {
+            jobQueueHandlerThread.start();
+        }
+
         jobQueueMapLock.lock();
         try {
             isJobAvailable = true;
@@ -415,6 +421,9 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
             }
         }
 
+        // Suppress "Exceptional return value of java.util.concurrent.locks.Condition.await" - we really don't care
+        // if the Condition was signaled or timed out as we use isJobAvailable to break or continue waiting.
+        @SuppressFBWarnings("RV_RETURN_VALUE_IGNORED_BAD_PRACTICE")
         private boolean waitForJobIfNeeded() throws InterruptedException {
             jobQueueMapLock.lock();
             try {
