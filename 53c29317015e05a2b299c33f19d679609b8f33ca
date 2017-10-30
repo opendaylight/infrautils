@@ -16,6 +16,24 @@
       "revId": "53c29317015e05a2b299c33f19d679609b8f33ca",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_d7998320",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/CheckedCallable.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-10-30T10:40:25Z",
+      "side": 1,
+      "message": "but its really got little to do with .concurrent, don\u0027t you think?  However, thinking about this further and also considering https://git.opendaylight.org/gerrit/#/c/64676/ with the CheckedConsumer, I was wondering if you were OK if I started an infrautils.utils.function (à la java.util.function) package, for both of these?",
+      "parentUuid": "9a245df4_cf3a96cc",
+      "revId": "53c29317015e05a2b299c33f19d679609b8f33ca",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
