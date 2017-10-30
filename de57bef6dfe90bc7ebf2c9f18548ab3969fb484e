@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a245df4_37a1ff47",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/CheckedConsumer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-10-30T10:40:07Z",
+      "side": 1,
+      "message": "as per discussion over in https://git.opendaylight.org/gerrit/#/c/64768, how about having this in a new infrautils.utils.function package instead?",
+      "revId": "de57bef6dfe90bc7ebf2c9f18548ab3969fb484e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
