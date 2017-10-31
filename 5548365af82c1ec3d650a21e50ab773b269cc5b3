@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a245df4_a6f2dacf",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/concurrent/LockManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-10-31T22:29:21Z",
+      "side": 1,
+      "message": "how does anything ever get removed out of this Map?  Won\u0027t it keep getting filled up?  \n\nAlso, wouldn\u0027t you rather have some object instead of a String lockName, which can be misspelt, confused with others etc.",
+      "revId": "5548365af82c1ec3d650a21e50ab773b269cc5b3",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
