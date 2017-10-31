@@ -16,6 +16,24 @@
       "revId": "de57bef6dfe90bc7ebf2c9f18548ab3969fb484e",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_802b3e93",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/CheckedConsumer.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-10-31T17:35:54Z",
+      "side": 1,
+      "message": "sure",
+      "parentUuid": "9a245df4_37a1ff47",
+      "revId": "de57bef6dfe90bc7ebf2c9f18548ab3969fb484e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
