@@ -16,6 +16,24 @@
       "revId": "5548365af82c1ec3d650a21e50ab773b269cc5b3",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_2c0fe92f",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/concurrent/LockManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-11-01T12:40:14Z",
+      "side": 1,
+      "message": "If you look at NeutronUtils, it tries to remove from the Map on unlock using an AtomicInteger but the code isn\u0027t correct. It\u0027s tricky to get right and requires additional atomicity. However I don\u0027t think it\u0027s necessary as Lock objects are small and you can assume the same lockName will be locked/unlocked over and over (otherwise there\u0027s no point for locking).\n\nI recall similar discussion with Robert wrt service ID in cluster singleton and we made it an Identifier although everyone ends up passing a String Identifier. We could do he same here but we can\u0027t depend on yangtools. However String is already used in other such places like the genius LockManager I just found, JobCoordinator etc. The current potential users of NeutronUtils already have a String on hand (eg routerName). What else would you suggest?",
+      "parentUuid": "9a245df4_a6f2dacf",
+      "revId": "5548365af82c1ec3d650a21e50ab773b269cc5b3",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
