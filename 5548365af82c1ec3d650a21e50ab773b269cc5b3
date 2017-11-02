@@ -34,6 +34,24 @@
       "revId": "5548365af82c1ec3d650a21e50ab773b269cc5b3",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_9291cc9b",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/concurrent/LockManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-11-02T00:20:17Z",
+      "side": 1,
+      "message": "Disclaimer: I suck at concurrency and barely understand what a ReentrantLock is, and am coming at this more a more general design than concurrency correctness perspective.  With that out of the way:\n\nJust had a look at NeutronUtils\u0027 boolean lock(String lockName) and boolean unlock(String lockName), and some of its usages.  Actually scares the shit out of me how it\u0027s used, and wants me to even less have it ported as is into a general utility class with a String API as currently proposed here.. I mean, there\u0027s no \"scope\" or \"namespace\" - do you know what I mean?  So e.g. in NeutronFloatingToFixedIpMappingChangeListener\u0027s clearFromFloatingIpInfo it\u0027s used as lock(fixedIpAddress) .. but if another code, anywhere else, also happens to lock on an IP address, which may be something else related to that IP, they would interfere with each other!\n\nI would probably design something like this with two levels -  bit like I had done the CacheProvider and the Cache.. like a LockManagerProvider which a class such as NeutronFloatingToFixedIpMappingChangeListener must use, 3 times to create 3 isolate LockManager instances for its 3 distinct usage in it\u0027s 3 methods. You could then obtain Does this make sense?\n\nThen, perhaps the [try?]lock() method should return some sort of Lock object (not saying java.util.concurrent.locks.Lock; could be your own if you think that\u0027s better) which offers an unlock() method, instead of a String-based unlock. Because in all the usages I can see of NeutronUtils\u0027 lock, the respective unlock() follows in a finally block - so it isn\u0027t really like there is a use case here where they need to keep some sort of global lock state accross method invocations, is there?  Then why such a Map, which still worries me for how anything ever gets removed out of this Map?  Or could you remove() from Map on unlock() ?\n\nThe NeutronUtils doesn\u0027t even expose a tryLock BTW.",
+      "parentUuid": "9a245df4_2c0fe92f",
+      "revId": "5548365af82c1ec3d650a21e50ab773b269cc5b3",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
