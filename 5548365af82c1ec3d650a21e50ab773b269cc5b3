@@ -52,6 +52,24 @@
       "revId": "5548365af82c1ec3d650a21e50ab773b269cc5b3",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_b26210ab",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/concurrent/LockManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-11-02T00:41:39Z",
+      "side": 1,
+      "message": "To be honest I haven\u0027t looked at the usages - perhaps I should. Re: String key, well JobCoordinator and genius LockManger use arbitrary Strings as well so there is a precedence - not saying it\u0027s right but you don\u0027t seem to have a problem with those. As I mentioned above, no matter what type of Object you provide as a key, ppl will naturally narrow it down to a String. \n\nNeutronUtils lock is a tryLock - they just didn\u0027t name it that.\n\nI explained my thoughts on removal above.\n\nI think we both agree the lock/unlock code in NeutronUtils is horrendous and needs to go. Not only is it not completely thread-safe (FB spits at it) but the \"staticness\" is bad and in no way belongs in a general utils class.\n\nI\u0027ll look at the usages - hopefully the lock names are local to each class that uses it and isolated. If so I\u0027d just create local Lock instances.",
+      "parentUuid": "9a245df4_9291cc9b",
+      "revId": "5548365af82c1ec3d650a21e50ab773b269cc5b3",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
