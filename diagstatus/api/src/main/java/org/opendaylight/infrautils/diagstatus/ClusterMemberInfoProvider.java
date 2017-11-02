@@ -19,13 +19,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- *   This class provides utilities to derive ODL cluster information using some of the MBeans exposed by
- *   ODL akka framework.
+ * This class provides utilities to derive ODL cluster information using some of the MBeans exposed by
+ * ODL akka framework.
  *
- *  @author Faseela K
+ * @author Faseela K
  */
-public class ClusterMemberInfoProvider {
+public final class ClusterMemberInfoProvider {
+
     private static final Logger LOG = LoggerFactory.getLogger(ClusterMemberInfoProvider.class);
+
+    private ClusterMemberInfoProvider() { }
 
     public static Optional<String> getSelfAddress()  {
         Object clusterStatusMBeanValue = MBeanUtils.readMBeanAttribute("akka:type=Cluster", "ClusterStatus");
@@ -52,7 +55,7 @@ public class ClusterMemberInfoProvider {
     }
 
     public static boolean isValidIPAddress(String ipAddress) {
-        return (ipAddress != null && ipAddress.length() > 0);
+        return ipAddress != null && ipAddress.length() > 0;
     }
 
     public static boolean isIPAddressInCluster(String ipAddress) {

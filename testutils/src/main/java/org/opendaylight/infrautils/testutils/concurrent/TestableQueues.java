@@ -22,6 +22,8 @@ import org.awaitility.core.ConditionTimeoutException;
  */
 public final class TestableQueues {
 
+    private TestableQueues() { }
+
     /**
      * Await for a {@link Queue} to be empty.
      *
