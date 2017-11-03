@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a245df4_ab6a91eb",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/concurrent/KeyedLock.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-11-03T23:28:20Z",
+      "side": 1,
+      "message": "sorry for nit picking, but how would you feel about naming this e.g. KeyedLocks, with a plural *s?  Because (instances of) this class is not a Lock - it managed keyed locks..",
+      "revId": "05985feda6e3afbe651c85362422808f88d06ca6",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_0b6c7d07",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/concurrent/KeyedLock.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-11-03T23:28:20Z",
+      "side": 1,
+      "message": "for having lit me up in previous reviews ;) for not having put any JavaDoc anywhere (remember Caches..) may I return the favour to you here and suggest that the public methods in this class could do with doc?  \n\nSpecifically, I\u0027m guessing you assume everyone knows what tryLock VS lock does - but I don\u0027t actually know the difference, without looking it up - so some bla bla here about this would be cool IMHO!  \n\nOr perhaps not a long bla bla, but a @see or AFAIK better #link JavaDoc thing to.. somewhere in java.util.concurrent.locks, like the respective matching ReentrantLock methods?",
+      "revId": "05985feda6e3afbe651c85362422808f88d06ca6",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_cb65451f",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/concurrent/KeyedLock.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-11-03T23:28:20Z",
+      "side": 1,
+      "message": "shouldn\u0027t think this one here better be a LOG.warn?  Just in case it does get interrupted by something (like what?) wouldn\u0027t we want to know about it when scouting log files in case of future problems?  I know you COULD enable debug for this class, but typically nobody ever will, so unless you see a big disadvantage to having it on warn all the time (this is not something that should happen during \"normal operation, should it?), I\u0027d sleep better if this was warn instead of debug...",
+      "revId": "05985feda6e3afbe651c85362422808f88d06ca6",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_8b7fcdaa",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/concurrent/KeyedLock.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-11-03T23:28:20Z",
+      "side": 1,
+      "message": "shouldn\u0027t this be handled much more strictly?  A LOG.warn instead of debug, at the very least?  Why not even a throw new IllegalArgumentException() ?  Any code using this with a wrong lockKey got something really mixed up, no?  So it shouldn\u0027t just be silently ignored?",
+      "revId": "05985feda6e3afbe651c85362422808f88d06ca6",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
