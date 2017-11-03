@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a245df4_3d56e75c",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobCoordinatorCounters.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 5278
+      },
+      "writtenOn": "2017-11-03T15:54:35Z",
+      "side": 1,
+      "message": "can we use AtomicLongFieldUpdater instead of AtomicLong ?",
+      "revId": "12ec1270674b8349edb17b80946c5e1697f09f4d",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
