@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "9a245df4_8b56ad28",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/concurrent/KeyedLock.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-11-04T00:51:46Z",
+      "side": 1,
+      "message": "sure or KeyedLockManager which is what I originally had.",
+      "parentUuid": "9a245df4_ab6a91eb",
+      "revId": "05985feda6e3afbe651c85362422808f88d06ca6",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a245df4_0b6c7d07",
         "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/concurrent/KeyedLock.java",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2017-11-03T23:28:20Z",
       "side": 1,
       "message": "for having lit me up in previous reviews ;) for not having put any JavaDoc anywhere (remember Caches..) may I return the favour to you here and suggest that the public methods in this class could do with doc?  \n\nSpecifically, I\u0027m guessing you assume everyone knows what tryLock VS lock does - but I don\u0027t actually know the difference, without looking it up - so some bla bla here about this would be cool IMHO!  \n\nOr perhaps not a long bla bla, but a @see or AFAIK better #link JavaDoc thing to.. somewhere in java.util.concurrent.locks, like the respective matching ReentrantLock methods?",
+      "revId": "05985feda6e3afbe651c85362422808f88d06ca6",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_6b537939",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/concurrent/KeyedLock.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-11-04T00:51:46Z",
+      "side": 1,
+      "message": "yeah - I don\u0027t want to regurgitate Java\u0027s docs on this stuff so I can link to it.",
+      "parentUuid": "9a245df4_0b6c7d07",
       "revId": "05985feda6e3afbe651c85362422808f88d06ca6",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "9a245df4_ab38d1ef",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/concurrent/KeyedLock.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-11-04T00:51:46Z",
+      "side": 1,
+      "message": "sure - I can make it warn",
+      "parentUuid": "9a245df4_cb65451f",
+      "revId": "05985feda6e3afbe651c85362422808f88d06ca6",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a245df4_8b7fcdaa",
         "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/concurrent/KeyedLock.java",
         "patchSetId": 2
@@ -64,6 +118,24 @@
       "writtenOn": "2017-11-03T23:28:20Z",
       "side": 1,
       "message": "shouldn\u0027t this be handled much more strictly?  A LOG.warn instead of debug, at the very least?  Why not even a throw new IllegalArgumentException() ?  Any code using this with a wrong lockKey got something really mixed up, no?  So it shouldn\u0027t just be silently ignored?",
+      "revId": "05985feda6e3afbe651c85362422808f88d06ca6",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_8b2d0dab",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/concurrent/KeyedLock.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-11-04T00:51:46Z",
+      "side": 1,
+      "message": "I thought about throwing an exception but obviously didn\u0027t - but thinking about it more I agree it should. I\u0027ll make it IllegalMonitorStateException since Lock#unlock throws that \"if the current thread does not hold this lock\" which is what this case means too.",
+      "parentUuid": "9a245df4_8b7fcdaa",
       "revId": "05985feda6e3afbe651c85362422808f88d06ca6",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
