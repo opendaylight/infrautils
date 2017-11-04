@@ -283,8 +283,8 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
 
                     @Override
                     public void onFailure(Throwable throwable) {
-                        LOG.error("Rety of job failed; clearing job: {}", jobEntry, throwable);
-                        clearJob(jobEntry);
+                        LOG.error("Retry of job failed; rolling back or clearing job: {}", jobEntry, throwable);
+                        rollbackOrClear(jobEntry);
                     }
 
                     @Override
@@ -292,18 +292,21 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
                         LOG.debug("Retry of job succeeded: {}", jobEntry);
                     }
                 }, MoreExecutors.directExecutor());
-                return;
+            } else {
+                rollbackOrClear(jobEntry);
             }
-            counters.jobsFailed().incrementAndGet();
-            if (jobEntry.getRollbackWorker() != null) {
-                jobEntry.setMainWorker(null);
-                RollbackTask rollbackTask = new RollbackTask(jobEntry);
-                executeTask(rollbackTask);
-                return;
-            }
-
-            clearJob(jobEntry);
         }
+    }
+
+    private void rollbackOrClear(JobEntry jobEntry) {
+        counters.jobsFailed().incrementAndGet();
+        if (jobEntry.getRollbackWorker() != null) {
+            jobEntry.setMainWorker(null);
+            RollbackTask rollbackTask = new RollbackTask(jobEntry);
+            executeTask(rollbackTask);
+            return;
+        }
+        clearJob(jobEntry);
     }
 
     /**
