@@ -271,11 +271,14 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
             counters.jobsRetriesForFailure().incrementAndGet();
             if (retryCount > 0) {
                 long waitTime = RETRY_WAIT_BASE_TIME_MILLIS / retryCount;
-                scheduleTask(() -> {
+                if (scheduleTask(() -> {
                     MainTask worker = new MainTask(jobEntry);
                     executeTask(worker);
-                }, waitTime, TimeUnit.MILLISECONDS);
-                return;
+                }, waitTime, TimeUnit.MILLISECONDS)) {
+                    // return only if scheduleTask() didn't fail with a RejectedExecutionException
+                    // else fall through and let it fail the job as if it's out of retries.
+                    return;
+                }
             }
             counters.jobsFailed().incrementAndGet();
             if (jobEntry.getRollbackWorker() != null) {
