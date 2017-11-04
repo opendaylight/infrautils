@@ -204,16 +204,16 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
         }
     }
 
-    private boolean scheduleTask(Runnable task, long delay, TimeUnit unit) {
+    private void scheduleTask(Runnable task, long delay, TimeUnit unit) {
         try {
             scheduledExecutorService.schedule(task, delay, unit);
-            return true;
         } catch (RejectedExecutionException e) {
             if (!scheduledExecutorService.isShutdown()) {
                 LOG.error("ScheduledExecutorService task rejected", e);
+                throw e;
+            } else {
+                // silently ignore if we're already shut down
             }
-
-            return false;
         }
     }
 
