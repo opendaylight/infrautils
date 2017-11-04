@@ -57,7 +57,8 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
     private final Condition jobQueueMapCondition = jobQueueMapLock.newCondition();
     private final JobCoordinatorCounters counters = new JobCoordinatorCounters();
 
-    private final ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(5);
+    private final ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(5,
+            ThreadFactoryProvider.builder().namePrefix("JobCoordinator-ScheduledExecutor").logger(LOG).build().get());
 
     private final Thread jobQueueHandlerThread;
 
