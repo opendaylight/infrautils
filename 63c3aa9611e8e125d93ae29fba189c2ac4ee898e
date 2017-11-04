@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a245df4_c6d53c1d",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobCoordinatorImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-11-04T03:06:50Z",
+      "side": 1,
+      "message": "So this is only called by JobCallback#onFailure - it seems that should handle RejectedExecutionException as if it\u0027s out of retries.",
+      "revId": "63c3aa9611e8e125d93ae29fba189c2ac4ee898e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
