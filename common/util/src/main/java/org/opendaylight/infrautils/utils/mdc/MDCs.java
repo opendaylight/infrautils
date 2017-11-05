@@ -19,6 +19,9 @@ import org.slf4j.MDC.MDCCloseable;
  * @author Michael Vorburger.ch
  */
 @Beta
+// Runnable as last argument is clearer to read, but interferes with vararg
+// in putRunRemove(Runnable runnable, MDCEntry... keysValues)
+@SuppressWarnings("InconsistentOverloads")
 public final class MDCs {
 
     private MDCs() {
