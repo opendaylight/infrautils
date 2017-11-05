@@ -15,6 +15,7 @@ import com.google.common.util.concurrent.ListenableFuture;
 import com.google.common.util.concurrent.MoreExecutors;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionStage;
 
 // package local, not public
 final class ListenableToCompletableFutureWrapper<V> extends CompletableFuture<V> implements FutureCallback<V> {
@@ -22,21 +23,27 @@ final class ListenableToCompletableFutureWrapper<V> extends CompletableFuture<V>
     // This implementation is inspired by a spotify/futures-extra's class of the same name
     // remixed with https://blog.krecan.net/2014/06/11/converting-listenablefutures-to-completablefutures-and-back/
 
+    public static <T> CompletionStage<T> create(ListenableFuture<T> guavaListenableFuture) {
+        ListenableToCompletableFutureWrapper<T> instance
+            = new ListenableToCompletableFutureWrapper<>(guavaListenableFuture);
+        Futures.addCallback(guavaListenableFuture, instance, MoreExecutors.directExecutor());
+        return instance;
+    }
+
     private final ListenableFuture<V> guavaListenableFuture;
 
-    ListenableToCompletableFutureWrapper(final ListenableFuture<V> guavaListenableFuture) {
+    private ListenableToCompletableFutureWrapper(ListenableFuture<V> guavaListenableFuture) {
         this.guavaListenableFuture = checkNotNull(guavaListenableFuture, "guavaListenableFuture");
-        Futures.addCallback(guavaListenableFuture, this, MoreExecutors.directExecutor());
     }
 
     @Override
     @SuppressFBWarnings("NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE") // https://github.com/findbugsproject/findbugs/issues/79
-    public void onSuccess(final V result) {
+    public void onSuccess(V result) {
         complete(result);
     }
 
     @Override
-    public void onFailure(final Throwable throwable) {
+    public void onFailure(Throwable throwable) {
         completeExceptionally(throwable);
     }
 
@@ -46,4 +53,5 @@ final class ListenableToCompletableFutureWrapper<V> extends CompletableFuture<V>
         super.cancel(mayInterruptIfRunning);
         return result;
     }
+
 }
