@@ -26,7 +26,7 @@ public class StackTracesTest {
         assertThat(StackTraces.getCallerMethodName(1)).isEqualTo("invoke0"); // JUnit internal method name
     }
 
-    private void exampleMethodInsideSomeOtherUtility() {
+    private static void exampleMethodInsideSomeOtherUtility() {
         assertThat(StackTraces.getCallersCallerMethodName()).isEqualTo("testGetCallerMethodName");
     }
 
