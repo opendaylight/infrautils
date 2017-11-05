@@ -72,7 +72,7 @@ public final class ExecutionOrigin extends MDCEntry {
      * one of {@link MDCs}' methods.
      */
     public static ExecutionOrigin next() {
-        final long nextId = NEXT_ID.getAndIncrement();
+        long nextId = NEXT_ID.getAndIncrement();
         if (nextId == 0) {
             LOG.info("Origin ID is [re]starting at 0 (either the system just started, or it has now overflown)");
         }
@@ -127,8 +127,8 @@ public final class ExecutionOrigin extends MDCEntry {
     @Override
     public String mdcValueString() {
         if (idAsString == null) {
-            final String nextIdString = Long.toUnsignedString(id, RADIX).toUpperCase(Locale.ENGLISH);
-            final String paddedNextIdString = Strings.padStart(nextIdString, ID_STRING_MAX_LENGTH, '0');
+            String nextIdString = Long.toUnsignedString(id, RADIX).toUpperCase(Locale.ENGLISH);
+            String paddedNextIdString = Strings.padStart(nextIdString, ID_STRING_MAX_LENGTH, '0');
             this.idAsString = paddedNextIdString;
         }
         return idAsString;
@@ -136,10 +136,8 @@ public final class ExecutionOrigin extends MDCEntry {
 
     @Override
     public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + (int) (id ^ id >>> 32);
-        return result;
+        int prime = 31;
+        return prime + (int) (id ^ id >>> 32);
     }
 
     @Override

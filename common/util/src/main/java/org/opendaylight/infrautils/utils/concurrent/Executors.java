@@ -29,7 +29,7 @@ public final class Executors {
      * @param logger Logger used to log uncaught exceptions
      * @return the newly created single-threaded Executor
      */
-    public static ExecutorService newSingleThreadExecutor(final String namePrefix, final Logger logger) {
+    public static ExecutorService newSingleThreadExecutor(String namePrefix, Logger logger) {
         return java.util.concurrent.Executors.newSingleThreadExecutor(
                 ThreadFactoryProvider.builder()
                         .namePrefix(namePrefix)

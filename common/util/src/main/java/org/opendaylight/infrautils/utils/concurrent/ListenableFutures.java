@@ -29,7 +29,7 @@ public final class ListenableFutures {
      * Callers should not cast the returned CompletionStage by this method to CompletableFuture (as it may not be one).
      */
     public static <V> CompletionStage<V> toCompletionStage(ListenableFuture<V> future) {
-        return CompletionStageWrapper.wrap(new ListenableToCompletableFutureWrapper<>(future));
+        return CompletionStageWrapper.wrap(ListenableToCompletableFutureWrapper.create(future));
     }
 
     /**

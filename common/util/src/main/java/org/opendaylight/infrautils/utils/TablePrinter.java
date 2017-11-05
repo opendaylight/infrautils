@@ -36,7 +36,7 @@ public class TablePrinter {
     private String[] header = null;
     private Comparator<String[]> comparator;
 
-    public TablePrinter(final int sortByColumn) {
+    public TablePrinter(int sortByColumn) {
         this.comparator = new Comparator<String[]>() {
             @Override
             public int compare(String[] o1, String[] o2) {
@@ -156,7 +156,7 @@ public class TablePrinter {
         sb.append("\n");
     }
 
-    private static int sum(final int[] array) {
+    private static int sum(int[] array) {
         int ret = 0;
         for (int n : array) {
             ret += n;
@@ -164,8 +164,7 @@ public class TablePrinter {
         return ret;
     }
 
-    private static void printRow(final String separator, final int[] maxWidths, final StringBuilder sb,
-            final String[] row) {
+    private static void printRow(String separator, int[] maxWidths, StringBuilder sb, String[] row) {
         for (int i = 0; i < row.length; i++) {
             printSeparator(separator, sb, i);
             sb.append(row[i]);
@@ -187,7 +186,7 @@ public class TablePrinter {
         return maxWidths;
     }
 
-    private static void considerRow(final int[] maxWidths, final String[] row) {
+    private static void considerRow(int[] maxWidths, String[] row) {
         for (int i = 0; i < row.length; i++) {
             if (row[i].length() > maxWidths[i]) {
                 maxWidths[i] = row[i].length();
@@ -195,7 +194,7 @@ public class TablePrinter {
         }
     }
 
-    private static void printSeparator(final String separator, final StringBuilder sb, final int integer) {
+    private static void printSeparator(String separator, StringBuilder sb, int integer) {
         if (integer == 0) {
             sb.append(StringUtils.repeat(" ", SPACE_BETWEEN_COLUMNS));
         } else {
@@ -203,7 +202,7 @@ public class TablePrinter {
         }
     }
 
-    private String columnSeparator() {
+    private static String columnSeparator() {
         String space = StringUtils.repeat(" ", SPACE_BETWEEN_COLUMNS);
         return space + "|" + space;
     }
