@@ -17,13 +17,20 @@ import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.inject.Inject;
 import javax.inject.Singleton;
+import javax.management.InstanceNotFoundException;
+import javax.management.JMException;
+import javax.management.MBeanRegistrationException;
+import javax.management.MalformedObjectNameException;
+
 import org.apache.karaf.bundle.core.BundleService;
 import org.opendaylight.infrautils.ready.SystemReadyListener;
 import org.opendaylight.infrautils.ready.SystemReadyMonitor;
 import org.opendaylight.infrautils.ready.SystemState;
 import org.opendaylight.infrautils.utils.concurrent.ThreadFactoryProvider;
+import org.opendaylight.infrautils.utils.management.AbstractMXBean;
 import org.opendaylight.odlparent.bundlestest.lib.SystemStateFailureException;
 import org.opendaylight.odlparent.bundlestest.lib.TestBundleDiag;
 import org.ops4j.pax.cdi.api.OsgiService;
@@ -36,15 +43,18 @@ import org.slf4j.LoggerFactory;
  * Implementation of the "system ready" service.
  *
  * @author Michael Vorburger.ch
+ * @author Faseela K
  */
 @Singleton
 @OsgiServiceProvider(classes = SystemReadyMonitor.class)
-public class SystemReadyImpl implements SystemReadyMonitor, Runnable {
+public class SystemReadyImpl extends AbstractMXBean implements SystemReadyMonitor, Runnable {
 
     private static final Logger LOG = LoggerFactory.getLogger(SystemReadyImpl.class);
 
     private final Queue<SystemReadyListener> listeners = new ConcurrentLinkedQueue<>();
     private final AtomicReference<SystemState> currentSystemState = new AtomicReference<>(BOOTING);
+    private static final String JMX_OBJECT_NAME = "SystemState";
+    private static final String MBEAN_TYPE = "ready";
 
     private final ThreadFactory threadFactory = ThreadFactoryProvider.builder()
                                                     .namePrefix("SystemReadyService")
@@ -54,7 +64,10 @@ public class SystemReadyImpl implements SystemReadyMonitor, Runnable {
     private final TestBundleDiag testBundleDiag;
 
     @Inject
-    public SystemReadyImpl(BundleContext bundleContext, @OsgiService BundleService bundleService) {
+    public SystemReadyImpl(BundleContext bundleContext, @OsgiService BundleService bundleService)
+            throws JMException {
+        super(JMX_OBJECT_NAME, MBEAN_TYPE, null);
+        super.registerMBean();
         this.testBundleDiag = new TestBundleDiag(bundleContext, bundleService);
         LOG.info("Now starting to provide full system readiness status updates (see TestBundleDiag's logs)...");
     }
@@ -62,6 +75,11 @@ public class SystemReadyImpl implements SystemReadyMonitor, Runnable {
     @PostConstruct
     public void init() {
         threadFactory.newThread(this).start();
+    }
+
+    @PreDestroy
+    public void stop() throws MalformedObjectNameException, InstanceNotFoundException, MBeanRegistrationException {
+        super.unregisterMBean();
     }
 
     @Override
@@ -108,5 +126,4 @@ public class SystemReadyImpl implements SystemReadyMonitor, Runnable {
     public void registerListener(SystemReadyListener listener) {
         listeners.add(listener);
     }
-
 }
