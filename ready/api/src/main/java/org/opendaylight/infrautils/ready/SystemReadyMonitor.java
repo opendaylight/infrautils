@@ -23,13 +23,7 @@ import javax.annotation.concurrent.ThreadSafe;
  * @author Michael Vorburger.ch
  */
 @ThreadSafe
-public interface SystemReadyMonitor {
-
-    /**
-     * Obtain current system status as one of few possible enumerated values.
-     */
-    SystemState getSystemState();
-
+public interface SystemReadyMonitor extends SystemReadyMonitorMXBean {
     /**
      * Allows components to register a listener which will be notified when the
      * system ready state is changing.
