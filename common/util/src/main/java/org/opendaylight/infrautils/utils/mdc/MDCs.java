@@ -7,6 +7,8 @@
  */
 package org.opendaylight.infrautils.utils.mdc;
 
+import static java.util.Objects.requireNonNull;
+
 import com.google.common.annotations.Beta;
 import com.google.common.base.Preconditions;
 import java.util.Map;
@@ -19,6 +21,9 @@ import org.slf4j.MDC.MDCCloseable;
  * @author Michael Vorburger.ch
  */
 @Beta
+// Runnable as last argument is clearer to read, but interferes with vararg
+// in putRunRemove(Runnable runnable, MDCEntry... keysValues)
+@SuppressWarnings("InconsistentOverloads")
 public final class MDCs {
 
     private MDCs() {
@@ -31,14 +36,19 @@ public final class MDCs {
      * detect forgotten <code>remove</code>, instead of overwriting)
      * <li>does not accept <code>null</code> as <code>val</code>
      * </ul>
+     *
+     * @throws IllegalArgumentException
+     *             if val is value is already set (and was previously not
+     *             {@link MDC#remove(String)})
      */
-    public static void put(String key, String val) throws IllegalArgumentException {
+    public static void put(String key, String val) {
         validate(key, val);
         MDC.put(key, val);
     }
 
-    private static void validate(String key, String val) throws IllegalArgumentException {
-        Preconditions.checkArgument(val != null, "MDC value cannot be null, for key: %s", key);
+    private static void validate(String key, String val) {
+        requireNonNull(key, "key");
+        requireNonNull(val, () -> "MDC value cannot be null, for key: " + key);
         String oldValue = MDC.get(key);
         // If the IllegalArgumentException is ever proving to be too much of a nuisance, we should at the very least
         // keep it as a WARN log, but never completely remove it... If this occurs, it really is

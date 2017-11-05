@@ -31,7 +31,7 @@ public final class ListenableFutures {
      * and {@link CompletableFutures#toListenableFuture(java.util.concurrent.CompletableFuture)} for a related function.
      */
     public static <V> CompletionStage<V> toCompletionStage(ListenableFuture<V> future) {
-        return CompletionStageWrapper.wrap(new ListenableToCompletableFutureWrapper<>(future));
+        return CompletionStageWrapper.wrap(ListenableToCompletableFutureWrapper.create(future));
     }
 
     /**

@@ -72,7 +72,7 @@ public final class ExecutionOrigin extends MDCEntry {
      * one of {@link MDCs}' methods.
      */
     public static ExecutionOrigin next() {
-        final long nextId = NEXT_ID.getAndIncrement();
+        long nextId = NEXT_ID.getAndIncrement();
         if (nextId == 0) {
             LOG.info("Origin ID is [re]starting at 0 (either the system just started, or it has now overflown)");
         }
@@ -91,8 +91,10 @@ public final class ExecutionOrigin extends MDCEntry {
      *
      * <p>This method is really just a convenience short-cut around <code>MDC.get(MDC_KEY)</code>,
      * and can be used for more readable code.  It also does throw a clear error message instead of returning null.
+     *
+     * @throws IllegalStateException if there is no Origin ID set in the MDC
      */
-    public static String currentID() throws IllegalStateException {
+    public static String currentID() {
         String originID = MDC.get(MDC_KEY);
         if (originID == null) {
             throw new IllegalStateException("No Origin ID available in MDC :(");
@@ -127,8 +129,8 @@ public final class ExecutionOrigin extends MDCEntry {
     @Override
     public String mdcValueString() {
         if (idAsString == null) {
-            final String nextIdString = Long.toUnsignedString(id, RADIX).toUpperCase(Locale.ENGLISH);
-            final String paddedNextIdString = Strings.padStart(nextIdString, ID_STRING_MAX_LENGTH, '0');
+            String nextIdString = Long.toUnsignedString(id, RADIX).toUpperCase(Locale.ENGLISH);
+            String paddedNextIdString = Strings.padStart(nextIdString, ID_STRING_MAX_LENGTH, '0');
             this.idAsString = paddedNextIdString;
         }
         return idAsString;
@@ -136,10 +138,8 @@ public final class ExecutionOrigin extends MDCEntry {
 
     @Override
     public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + (int) (id ^ id >>> 32);
-        return result;
+        int prime = 31;
+        return prime + (int) (id ^ id >>> 32);
     }
 
     @Override
