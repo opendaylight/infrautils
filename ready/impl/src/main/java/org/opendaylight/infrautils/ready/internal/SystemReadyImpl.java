@@ -11,14 +11,26 @@ import static org.opendaylight.infrautils.ready.SystemState.ACTIVE;
 import static org.opendaylight.infrautils.ready.SystemState.BOOTING;
 import static org.opendaylight.infrautils.ready.SystemState.FAILURE;
 
+import java.lang.management.ManagementFactory;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.inject.Inject;
 import javax.inject.Singleton;
+import javax.management.InstanceAlreadyExistsException;
+import javax.management.InstanceNotFoundException;
+import javax.management.JMException;
+import javax.management.MBeanRegistrationException;
+import javax.management.MBeanServer;
+import javax.management.MalformedObjectNameException;
+import javax.management.NotCompliantMBeanException;
+import javax.management.ObjectName;
+import javax.management.StandardMBean;
+
 import org.apache.karaf.bundle.core.BundleService;
 import org.opendaylight.infrautils.ready.SystemReadyListener;
 import org.opendaylight.infrautils.ready.SystemReadyMonitor;
@@ -36,15 +48,17 @@ import org.slf4j.LoggerFactory;
  * Implementation of the "system ready" service.
  *
  * @author Michael Vorburger.ch
+ * @author Faseela K
  */
 @Singleton
 @OsgiServiceProvider(classes = SystemReadyMonitor.class)
-public class SystemReadyImpl implements SystemReadyMonitor, Runnable {
+public class SystemReadyImpl extends StandardMBean implements SystemReadyMonitor, SystemReadyMonitorMBean, Runnable {
 
     private static final Logger LOG = LoggerFactory.getLogger(SystemReadyImpl.class);
 
     private final Queue<SystemReadyListener> listeners = new ConcurrentLinkedQueue<>();
     private final AtomicReference<SystemState> currentSystemState = new AtomicReference<>(BOOTING);
+    private static final String JMX_OBJECT_NAME = "org.opendaylight.infrautils.ready:type=SystemState";
 
     private final ThreadFactory threadFactory = ThreadFactoryProvider.builder()
                                                     .namePrefix("SystemReadyService")
@@ -54,7 +68,10 @@ public class SystemReadyImpl implements SystemReadyMonitor, Runnable {
     private final TestBundleDiag testBundleDiag;
 
     @Inject
-    public SystemReadyImpl(BundleContext bundleContext, @OsgiService BundleService bundleService) {
+    public SystemReadyImpl(BundleContext bundleContext, @OsgiService BundleService bundleService)
+            throws JMException {
+        super(SystemReadyMonitorMBean.class);
+        registerServerMBean(this, JMX_OBJECT_NAME);
         this.testBundleDiag = new TestBundleDiag(bundleContext, bundleService);
         LOG.info("Now starting to provide full system readiness status updates (see TestBundleDiag's logs)...");
     }
@@ -62,6 +79,11 @@ public class SystemReadyImpl implements SystemReadyMonitor, Runnable {
     @PostConstruct
     public void init() {
         threadFactory.newThread(this).start();
+    }
+
+    @PreDestroy
+    public void stop() throws MalformedObjectNameException, InstanceNotFoundException, MBeanRegistrationException {
+        unregisterServerMBean(this, JMX_OBJECT_NAME);
     }
 
     @Override
@@ -109,4 +131,37 @@ public class SystemReadyImpl implements SystemReadyMonitor, Runnable {
         listeners.add(listener);
     }
 
+    @Override
+    public String getCurrentSystemState() {
+        return getSystemState().name();
+    }
+
+    private MBeanServer registerServerMBean(Object mxBeanImplementor, String objNameStr)
+            throws JMException {
+
+        LOG.debug("register MBean for {}", objNameStr);
+        MBeanServer mbs = ManagementFactory.getPlatformMBeanServer();
+        try {
+            ObjectName objName = new ObjectName(objNameStr);
+            mbs.registerMBean(mxBeanImplementor, objName);
+            LOG.info("MBean registration for {} SUCCESSFUL.", objNameStr);
+        } catch (InstanceAlreadyExistsException | MBeanRegistrationException | NotCompliantMBeanException
+                | MalformedObjectNameException ex) {
+            LOG.error("MBean registration for {} FAILED.", objNameStr, ex);
+            throw ex;
+        }
+        return mbs;
+    }
+
+    private void unregisterServerMBean(Object mxBeanImplementor, String objNameStr)
+            throws MalformedObjectNameException, InstanceNotFoundException, MBeanRegistrationException {
+        LOG.debug("unregister MBean for {}", objNameStr);
+        MBeanServer mplatformMbeanServer = ManagementFactory.getPlatformMBeanServer();
+        try {
+            mplatformMbeanServer.unregisterMBean(new ObjectName(objNameStr));
+        } catch (InstanceNotFoundException | MalformedObjectNameException | MBeanRegistrationException e) {
+            LOG.error("Error while unregistering MBean {}", objNameStr, e);
+            throw e;
+        }
+    }
 }
