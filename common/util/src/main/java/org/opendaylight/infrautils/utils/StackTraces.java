@@ -38,7 +38,7 @@ public final class StackTraces {
      */
     public static String getCallerMethodName(int depth) {
         // Add +2 to compensate for call into this method & getStackTrace() invocation:
-        final int realDepth = depth + 2;
+        int realDepth = depth + 2;
         StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
         if (stackTrace.length > realDepth) {
             StackTraceElement element = stackTrace[realDepth];
