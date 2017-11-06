@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a245df4_2c123757",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/SystemReadyImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2017-11-06T05:54:12Z",
+      "side": 1,
+      "message": "Should we have an MBeanUtils somewhere outside, so that diagstatus as well as ready can use the same? Ofcourse, only if you want MBeans inside system ready ;)",
+      "revId": "31e9b87576d488dfbbb14f25eae8cb3a1ff0ca94",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
