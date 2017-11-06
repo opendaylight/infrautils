@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "9a245df4_14ec958e",
+        "filename": "common/parent/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-11-06T21:54:48Z",
+      "side": 1,
+      "message": "yeah eventually in odlparent although I want to consider this more than just a local trial run.. I want to get this merged in ASAP, and start making a more projects use it, gain experience with it, and then propose it to odlparent as counter proposal to https://git.opendaylight.org/gerrit/#/c/62090/ because that\u0027s is warnings only, whereas this is enforcement, from the start.",
+      "parentUuid": "9a245df4_36956187",
+      "revId": "cd2a199b032c724b01b9fa8fb451712efd44504c",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a245df4_361f210a",
         "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/TablePrinter.java",
         "patchSetId": 1
@@ -48,6 +66,24 @@
       "writtenOn": "2017-11-06T15:44:26Z",
       "side": 1,
       "message": "This causes a false-positive :-/.",
+      "revId": "cd2a199b032c724b01b9fa8fb451712efd44504c",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_d432fd5d",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/TablePrinter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-11-06T21:54:48Z",
+      "side": 1,
+      "message": "Yup; see https://github.com/google/error-prone/issues/655 .. in the mean time, I\u0027ve just amended the change to set to completely OFF, to avoid any confusion.. makes sense?  Let\u0027s turn it into an ERROR when https://github.com/google/error-prone/issues/655, and perhaps even https://github.com/google/error-prone/issues/809, will be fixed..",
+      "parentUuid": "9a245df4_361f210a",
       "revId": "cd2a199b032c724b01b9fa8fb451712efd44504c",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -71,6 +107,24 @@
     },
     {
       "key": {
+        "uuid": "9a245df4_349ef907",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/TablePrinter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-11-06T21:54:48Z",
+      "side": 1,
+      "message": "Done. FYI, I\u0027d like to turn this from WARN into an error, once https://github.com/immutables/immutables/issues/716 is fixed.",
+      "parentUuid": "9a245df4_1625bd5b",
+      "revId": "cd2a199b032c724b01b9fa8fb451712efd44504c",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a245df4_9601adb1",
         "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/mdc/ExecutionOrigin.java",
         "patchSetId": 1
@@ -82,6 +136,24 @@
       "writtenOn": "2017-11-06T15:44:26Z",
       "side": 1,
       "message": "EP complains about “throws IllegalStateException” here.",
+      "revId": "cd2a199b032c724b01b9fa8fb451712efd44504c",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_14a3f54f",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/mdc/ExecutionOrigin.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-11-06T21:54:48Z",
+      "side": 1,
+      "message": "Yeah.. I was lazy.. ;) I\u0027ve fixed it up everywhere tune, and would like to turn it up from WARN to be an ERROR, after https://github.com/immutables/immutables/issues/720. I actually think everything should be either EROOR (or OFF), and no WARN.. ;-)",
+      "parentUuid": "9a245df4_9601adb1",
       "revId": "cd2a199b032c724b01b9fa8fb451712efd44504c",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -105,6 +177,24 @@
     },
     {
       "key": {
+        "uuid": "9a245df4_948ec5ce",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/mdc/MDCs.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-11-06T21:54:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a245df4_d62e8542",
+      "revId": "cd2a199b032c724b01b9fa8fb451712efd44504c",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a245df4_b63311aa",
         "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/mdc/MDCs.java",
         "patchSetId": 1
@@ -116,6 +206,24 @@
       "writtenOn": "2017-11-06T15:44:26Z",
       "side": 1,
       "message": "EP complains about “throws IllegalArgumentException” here.",
+      "revId": "cd2a199b032c724b01b9fa8fb451712efd44504c",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_f4be2164",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/mdc/MDCs.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-11-06T21:54:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a245df4_b63311aa",
       "revId": "cd2a199b032c724b01b9fa8fb451712efd44504c",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false

@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "9a245df4_f42d81ff",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/StackTraces.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-11-06T21:54:48Z",
+      "side": 0,
+      "message": "yup - best thing since life spread! ;)",
+      "parentUuid": "9a245df4_36c3a18a",
+      "range": {
+        "startLine": 41,
+        "startChar": 8,
+        "endLine": 41,
+        "endChar": 13
+      },
+      "revId": "3c4e4a425ac789cd8bd1ec0ee7f4fa2c81761d08",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a245df4_f623c9a4",
         "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/TablePrinter.java",
         "patchSetId": 1
