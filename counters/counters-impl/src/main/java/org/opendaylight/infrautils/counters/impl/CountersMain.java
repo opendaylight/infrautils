@@ -40,15 +40,15 @@ public class CountersMain {
         LOG.info("Counters thread started");
     }
 
-    public void setWritelog(boolean shouldWrite) {
+    public void setWritelog(boolean shouldWriteLog) {
         // Change from false to true, and not init time
-        if (!this.shouldWrite && shouldWrite && initialized) {
+        if (!this.shouldWrite && shouldWriteLog && initialized) {
             startDumpersThread();
             // Change from true to false
-        } else if (this.shouldWrite && !shouldWrite) {
+        } else if (this.shouldWrite && !shouldWriteLog) {
             stopTheCountersThread();
         }
-        this.shouldWrite = shouldWrite;
+        this.shouldWrite = shouldWriteLog;
     }
 
     public void setInterval(int interval) {
