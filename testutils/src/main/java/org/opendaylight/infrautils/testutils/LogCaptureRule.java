@@ -44,7 +44,7 @@ import org.slf4j.LoggerFactory;
 public class LogCaptureRule implements TestRule {
 
     private String expectedErrorLogMessage;
-    private int howManyMessagesBack;
+    private int expectedErrorHowManyMessagesBack;
 
     public LogCaptureRule() {
         classpathTest();
@@ -72,7 +72,7 @@ public class LogCaptureRule implements TestRule {
                     testFailingThrowable = t;
                 }
                 final Throwable finalTestFailingThrowable = testFailingThrowable;
-                RememberingLogger.getErrorMessage(howManyMessagesBack).ifPresent(lastErrorLogMessage -> {
+                RememberingLogger.getErrorMessage(expectedErrorHowManyMessagesBack).ifPresent(lastErrorLogMessage -> {
                     if (expectedErrorLogMessage == null) {
                         throw new LogCaptureRuleException(
                             "Expected no error log, but: " + lastErrorLogMessage,
@@ -82,7 +82,7 @@ public class LogCaptureRule implements TestRule {
                                 expectedErrorLogMessage, lastErrorLogMessage);
                     }
                 });
-                if (!RememberingLogger.getErrorMessage(howManyMessagesBack).isPresent()
+                if (!RememberingLogger.getErrorMessage(expectedErrorHowManyMessagesBack).isPresent()
                         && expectedErrorLogMessage != null) {
                     throw new LogCaptureRuleException("Expected error log message: "
                             + expectedErrorLogMessage, null, finalTestFailingThrowable);
@@ -100,7 +100,7 @@ public class LogCaptureRule implements TestRule {
 
     public void expectError(String message, int howManyMessagesBack) {
         this.expectedErrorLogMessage = message;
-        this.howManyMessagesBack = howManyMessagesBack;
+        this.expectedErrorHowManyMessagesBack = howManyMessagesBack;
     }
 
     public Throwable getLastErrorThrowable() {

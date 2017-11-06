@@ -346,7 +346,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
      * Execute the MainWorker callable.
      */
     private class MainTask extends LoggingUncaughtThreadDeathContextRunnable {
-        private static final int LONG_JOBS_THRESHOLD = 1000; // MS
+        private static final int LONG_JOBS_THRESHOLD_MS = 1000;
         private final JobEntry jobEntry;
 
         MainTask(JobEntry jobEntry) {
@@ -386,7 +386,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
         }
 
         private void printJobs(String key, long jobExecutionTime) {
-            if (jobExecutionTime > LONG_JOBS_THRESHOLD) {
+            if (jobExecutionTime > LONG_JOBS_THRESHOLD_MS) {
                 LOG.warn("Job {} took {}ms to complete", jobEntry.getKey(), jobExecutionTime);
                 return;
             }
