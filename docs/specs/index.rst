@@ -13,3 +13,4 @@ Contents:
    Design Specification Template <specs-template>
    job-coordinator
    status-and-diagnostics
+   clustered-metrics-aggregrator
