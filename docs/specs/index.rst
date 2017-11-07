@@ -12,3 +12,4 @@ Contents:
 
    Design Specification Template <specs-template>
    job-coordinator
+   clustered-metrics-service
