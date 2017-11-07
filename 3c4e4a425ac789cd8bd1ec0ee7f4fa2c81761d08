@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "9a245df4_4f5dd846",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/StackTraces.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-11-07T02:05:09Z",
+      "side": 0,
+      "message": "I get their point. I don\u0027t make local vars and params final unless they need to be but others (mainly Robert and the other folks at Pantheon) like to and enable the save action in eclipse to do so. So that will be an interesting conflict resolution if EP is enabled in projects where they have contributed :)",
+      "parentUuid": "9a245df4_f42d81ff",
+      "range": {
+        "startLine": 41,
+        "startChar": 8,
+        "endLine": 41,
+        "endChar": 13
+      },
+      "revId": "3c4e4a425ac789cd8bd1ec0ee7f4fa2c81761d08",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a245df4_f623c9a4",
         "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/TablePrinter.java",
         "patchSetId": 1
