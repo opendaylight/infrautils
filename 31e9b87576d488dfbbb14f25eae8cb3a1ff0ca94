@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "9a245df4_1e0dc737",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/SystemReadyImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2017-11-08T20:11:20Z",
+      "side": 1,
+      "message": "if we don\u0027t extend, the name of the class needs to be changed with some MBean naming convention",
+      "parentUuid": "9a245df4_832844e3",
+      "revId": "31e9b87576d488dfbbb14f25eae8cb3a1ff0ca94",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a245df4_e367804b",
         "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/SystemReadyImpl.java",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2017-11-08T18:21:19Z",
       "side": 1,
       "message": "Suggestion for optional bonus point: To make sure that this code works (simple, yes; but still, e.g. if JMX_OBJECT_NAME is illformed), I would love to see a SystemReadyImplTest as part of this change, if you could? ;) You probably have to mock BundleContext \u0026 BundleService, which hopefully isn\u0027t too hard?",
+      "revId": "31e9b87576d488dfbbb14f25eae8cb3a1ff0ca94",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_3e088b27",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/SystemReadyImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2017-11-08T20:11:20Z",
+      "side": 1,
+      "message": "sure will do that in the same patch :)",
+      "parentUuid": "9a245df4_e367804b",
       "revId": "31e9b87576d488dfbbb14f25eae8cb3a1ff0ca94",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -133,6 +169,24 @@
       "writtenOn": "2017-11-08T18:21:19Z",
       "side": 1,
       "message": "Why not use the SystemState enum instead of String?  From what I just found while quickly checking, this is allowed in JMX, and seems safer \u0026 more clear to me.\n\nTo be in line with SystemReadyMonitor why not drop the *Current* here and just call this getSystemState() instead?\n\nIn fact... once you\u0027ve aligned SystemReadyMonitorMBean to SystemReadyMonitor, then you could just make SystemReadyMonitor extends SystemReadyMonitorMXBean!  (And remove getSystemState() from SystemReadyMonitor because it will inherit.  And remove @author from here, because you didn\u0027t write this interface? ;)",
+      "revId": "31e9b87576d488dfbbb14f25eae8cb3a1ff0ca94",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_7e15e33e",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/SystemReadyMonitorMBean.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2017-11-08T20:11:20Z",
+      "side": 1,
+      "message": "Will do",
+      "parentUuid": "9a245df4_c347dcba",
       "revId": "31e9b87576d488dfbbb14f25eae8cb3a1ff0ca94",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
