@@ -11,13 +11,18 @@ import java.util.concurrent.Callable;
 
 /**
  * {@link Callable} which throws a specific generically parameterized type of
- * checked exception instead of a fixed {@link Exception}.
+ * checked exception instead of a fixed {@link Exception}.  (Not technically
+ * extending Callable, because of a javac generics bug; that's OK, it doesn't have to.)
  *
  * @author Michael Vorburger.ch
  */
-public interface CheckedCallable<V, E extends Exception> extends Callable<V> {
+public interface CheckedCallable<V, E extends Exception> /* extends Callable<V> */ {
 
-    @Override
+    // Huh - interesting, extends Callable<V>
+    //   OK : Eclipse JDT ECJ Photon Milestone 2 (4.8.0M2) Build id: 20170922-0530
+    //   NOK: OpenJDK javac 1.8.0_151-b12
+
+    // @Override
     V call() throws E;
 
 }

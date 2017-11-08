@@ -7,21 +7,17 @@
  */
 package org.opendaylight.infrautils.utils.function;
 
-import java.util.function.Consumer;
-
 /**
- * {@link Consumer} which can throw a checked exception.
+ * Functional interface similar to {@link Runnable} (but not technically
+ * extending Runnable, because it cannot; and doesn't have to) which can throw a
+ * generically parameterized type of checked exception.
  *
- * @param <T> the type of the input to the operation
  * @param <E> the type of the Exception to the operation
- *
- * @see Consumer
  *
  * @author Michael Vorburger.ch
  */
-@FunctionalInterface
-public interface CheckedConsumer<T, E extends Exception> {
+public interface CheckedRunnable<E extends Exception> {
 
-    void accept(T input) throws E;
+    void run() throws E;
 
 }
