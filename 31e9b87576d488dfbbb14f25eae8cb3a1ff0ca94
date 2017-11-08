@@ -2,6 +2,40 @@
   "comments": [
     {
       "key": {
+        "uuid": "9a245df4_832844e3",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/SystemReadyImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-11-08T18:21:19Z",
+      "side": 1,
+      "message": "are you sure extends StandardMBean is required?  I didn\u0027t think so... does it not work without this?",
+      "revId": "31e9b87576d488dfbbb14f25eae8cb3a1ff0ca94",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_e367804b",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/SystemReadyImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-11-08T18:21:19Z",
+      "side": 1,
+      "message": "Suggestion for optional bonus point: To make sure that this code works (simple, yes; but still, e.g. if JMX_OBJECT_NAME is illformed), I would love to see a SystemReadyImplTest as part of this change, if you could? ;) You probably have to mock BundleContext \u0026 BundleService, which hopefully isn\u0027t too hard?",
+      "revId": "31e9b87576d488dfbbb14f25eae8cb3a1ff0ca94",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a245df4_2c123757",
         "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/SystemReadyImpl.java",
         "patchSetId": 2
@@ -13,6 +47,92 @@
       "writtenOn": "2017-11-06T05:54:12Z",
       "side": 1,
       "message": "Should we have an MBeanUtils somewhere outside, so that diagstatus as well as ready can use the same? Ofcourse, only if you want MBeans inside system ready ;)",
+      "revId": "31e9b87576d488dfbbb14f25eae8cb3a1ff0ca94",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_0363b442",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/SystemReadyImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-11-08T18:21:19Z",
+      "side": 1,
+      "message": "yeah we really should... can you plz create, as part of this proposed change, a new package org.opendaylight.infrautils.utils.management (matching java.management) in infrautils/common/util and have such a MBeanUtil class with theese two method in there?  In fact haven\u0027t you copy/pasted this from somewhere in diagstatus?  Copy/paste is bad, so let\u0027s switch to using the new util from both places, this and diagstatus?",
+      "parentUuid": "9a245df4_2c123757",
+      "revId": "31e9b87576d488dfbbb14f25eae8cb3a1ff0ca94",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_e31940d8",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/SystemReadyMonitorMBean.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-11-08T18:21:19Z",
+      "side": 1,
+      "message": "nit: remove this ugly empty line plz",
+      "revId": "31e9b87576d488dfbbb14f25eae8cb3a1ff0ca94",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_0315749b",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/SystemReadyMonitorMBean.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-11-08T18:21:19Z",
+      "side": 1,
+      "message": "AFAIK this should best be annotated as @MXBean, read https://docs.oracle.com/javase/7/docs/api/javax/management/MXBean.html",
+      "revId": "31e9b87576d488dfbbb14f25eae8cb3a1ff0ca94",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_a34468b7",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/SystemReadyMonitorMBean.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-11-08T18:21:19Z",
+      "side": 1,
+      "message": "nit: empty line between interface and method, plz",
+      "revId": "31e9b87576d488dfbbb14f25eae8cb3a1ff0ca94",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_c347dcba",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/SystemReadyMonitorMBean.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-11-08T18:21:19Z",
+      "side": 1,
+      "message": "Why not use the SystemState enum instead of String?  From what I just found while quickly checking, this is allowed in JMX, and seems safer \u0026 more clear to me.\n\nTo be in line with SystemReadyMonitor why not drop the *Current* here and just call this getSystemState() instead?\n\nIn fact... once you\u0027ve aligned SystemReadyMonitorMBean to SystemReadyMonitor, then you could just make SystemReadyMonitor extends SystemReadyMonitorMXBean!  (And remove getSystemState() from SystemReadyMonitor because it will inherit.  And remove @author from here, because you didn\u0027t write this interface? ;)",
       "revId": "31e9b87576d488dfbbb14f25eae8cb3a1ff0ca94",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
