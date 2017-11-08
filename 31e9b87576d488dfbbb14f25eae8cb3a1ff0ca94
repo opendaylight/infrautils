@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "9a245df4_be6abb7e",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/SystemReadyImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-11-08T22:11:23Z",
+      "side": 1,
+      "message": "oh really, even the implemention not just the interface?  If you\u0027re sure, then just rename it, it\u0027s OK it\u0027s internal.  I think that\u0027s nicer than extending this huge weird StandardMBean parent class.",
+      "parentUuid": "9a245df4_1e0dc737",
+      "revId": "31e9b87576d488dfbbb14f25eae8cb3a1ff0ca94",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a245df4_e367804b",
         "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/SystemReadyImpl.java",
         "patchSetId": 2
