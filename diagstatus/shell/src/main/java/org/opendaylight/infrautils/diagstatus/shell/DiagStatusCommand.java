@@ -47,7 +47,7 @@ public class DiagStatusCommand extends OsgiCommandSupport {
                     } catch (Exception e) {
                         strBuilder.append("Remote Status retrieval JMX Operation failed for node ")
                                 .append(remoteIpAddr);
-                        LOG.error("Exception while reaching Host ::{}", remoteIpAddr);
+                        LOG.error("Exception while reaching Host {}", remoteIpAddr, e);
                     }
                 }
             } else {
