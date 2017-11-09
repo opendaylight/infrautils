@@ -42,6 +42,7 @@
         <module>samples</module>
         <module>ready</module>
         <module>diagstatus</module>
+        <module>metrics</module>
     </modules>
 
     <profiles>
