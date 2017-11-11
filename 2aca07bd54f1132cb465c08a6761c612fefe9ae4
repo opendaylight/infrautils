@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a245df4_13f01890",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/concurrent/JdkFutures.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-11-11T15:27:04Z",
+      "side": 1,
+      "message": "static - sigh...not a fan.  why not use directExecutor or let caller pass executor?",
+      "range": {
+        "startLine": 36,
+        "startChar": 12,
+        "endLine": 36,
+        "endChar": 18
+      },
+      "revId": "2aca07bd54f1132cb465c08a6761c612fefe9ae4",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
