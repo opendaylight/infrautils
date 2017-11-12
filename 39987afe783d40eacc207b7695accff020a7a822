@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a245df4_f648d2b4",
+        "filename": "ready/api/src/main/java/org/opendaylight/infrautils/ready/order/FunctionalityReadyNotifier.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-11-12T13:50:56Z",
+      "side": 1,
+      "message": "\"Register\"",
+      "range": {
+        "startLine": 18,
+        "startChar": 7,
+        "endLine": 18,
+        "endChar": 17
+      },
+      "revId": "39987afe783d40eacc207b7695accff020a7a822",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
