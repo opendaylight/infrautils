@@ -125,6 +125,24 @@
     },
     {
       "key": {
+        "uuid": "9a245df4_59762fa5",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/SystemReadyImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-11-12T15:00:17Z",
+      "side": 1,
+      "message": "controller has an AbstractMXBean that handles register/unregister.",
+      "parentUuid": "9a245df4_0363b442",
+      "revId": "31e9b87576d488dfbbb14f25eae8cb3a1ff0ca94",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a245df4_e31940d8",
         "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/SystemReadyMonitorMBean.java",
         "patchSetId": 2
