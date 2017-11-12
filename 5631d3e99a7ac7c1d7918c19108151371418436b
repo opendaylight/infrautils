@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a245df4_79a853db",
+        "filename": "testutils/src/test/java/org/opendaylight/infrautils/testutils/tests/AssertsTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-11-12T15:11:32Z",
+      "side": 1,
+      "message": "To be complete, should also verify it returns the IOException instance you throw.",
+      "range": {
+        "startLine": 27,
+        "startChar": 16,
+        "endLine": 27,
+        "endChar": 28
+      },
+      "revId": "5631d3e99a7ac7c1d7918c19108151371418436b",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
