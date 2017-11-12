@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a245df4_d65f8e3f",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/Nullables.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-11-12T14:02:38Z",
+      "side": 1,
+      "message": "What does Checks provide and why does this extend it...",
+      "range": {
+        "startLine": 21,
+        "startChar": 64,
+        "endLine": 21,
+        "endChar": 70
+      },
+      "revId": "8233bb89d8fea1a46ef339453613cfad780310ed",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
