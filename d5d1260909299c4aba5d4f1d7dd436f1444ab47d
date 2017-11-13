@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "9a245df4_08a8df75",
+        "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/Asserts.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-11-13T14:05:08Z",
+      "side": 1,
+      "message": "There is no copyright header in https://github.com/junit-team/junit4/blob/master/src/main/java/org/junit/Assert.java which SOMEONE (do you know who??) made me copy/paste from - the initial version was INTENTIONALLY written from scratch WITHOUT looking into JUnit sources - just API.\n\nPlease advise what needs to be put here to get your +1 ?\n\nAt the bottom of http://junit.org/junit4/license.html and http://junit.org/junit4/ there is a \"Copyright (c) 2002 - 2017 JUnit. All rights reserved.\" and at the bottom of http://junit.org/junit5/ there is \".. The JUnit Team..\" so I\u0027ve used that.",
+      "parentUuid": "9a245df4_2dbcd505",
+      "revId": "d5d1260909299c4aba5d4f1d7dd436f1444ab47d",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a245df4_6d39ada3",
         "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/Asserts.java",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2017-11-13T12:51:47Z",
       "side": 1,
       "message": "... as is this really ;-).\n\n(Careful with JUnit 4 v. 5, the licenses are different.)",
+      "revId": "d5d1260909299c4aba5d4f1d7dd436f1444ab47d",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_68dfdb0d",
+        "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/Asserts.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-11-13T14:05:08Z",
+      "side": 1,
+      "message": "Sure, now just completely removed this.",
+      "parentUuid": "9a245df4_6d39ada3",
       "revId": "d5d1260909299c4aba5d4f1d7dd436f1444ab47d",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
