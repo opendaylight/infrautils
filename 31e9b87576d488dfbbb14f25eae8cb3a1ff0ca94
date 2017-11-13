@@ -143,6 +143,24 @@
     },
     {
       "key": {
+        "uuid": "9a245df4_5c845d5d",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/SystemReadyImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2017-11-13T04:09:33Z",
+      "side": 1,
+      "message": "infrautils cannot depend on controller.. So planning to add utility in infrautils/common.. Will take this as reference while doing the same",
+      "parentUuid": "9a245df4_59762fa5",
+      "revId": "31e9b87576d488dfbbb14f25eae8cb3a1ff0ca94",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a245df4_e31940d8",
         "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/SystemReadyMonitorMBean.java",
         "patchSetId": 2
