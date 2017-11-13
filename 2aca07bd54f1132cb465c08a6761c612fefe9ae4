@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9a245df4_48893774",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/concurrent/JdkFutures.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-11-13T13:56:54Z",
+      "side": 1,
+      "message": "No, most \"normal\" developers have no idea what Executor to pass to such helpers, and what kind of Executor to best pass here, so I\u0027d like to keep this.  \n\nWe CAN have ANOTHER overloaded variant of the method which optionally takes an Executor - would you like that? I\u0027ve added one for you (but I don\u0027t think anyone will ever use it...) - OK for you?\n\nBTW I don\u0027t think passing a directExector is typically even a good idea in this case - addListener() will become blocking - one might as well just use get(), in that case, do you agree? I\u0027ve added this to the JavaDoc.\n\nBTW: I think you underestimate just how clueless and lost most real ODL developers are with all this async stuff, and Future they don\u0027t know what to do with, and magic Executor, and all that.  We have to have such utilities to simplify that.",
+      "parentUuid": "9a245df4_13f01890",
+      "range": {
+        "startLine": 36,
+        "startChar": 12,
+        "endLine": 36,
+        "endChar": 18
+      },
+      "revId": "2aca07bd54f1132cb465c08a6761c612fefe9ae4",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a245df4_5c061d87",
         "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/concurrent/JdkFutures.java",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2017-11-13T06:49:45Z",
       "side": 1,
       "message": "JdkFutureAdapters uses a static Executor internally so just use the version that takes no Executor.",
+      "range": {
+        "startLine": 44,
+        "startChar": 60,
+        "endLine": 44,
+        "endChar": 68
+      },
+      "revId": "2aca07bd54f1132cb465c08a6761c612fefe9ae4",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_482db794",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/concurrent/JdkFutures.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-11-13T13:56:54Z",
+      "side": 1,
+      "message": "No, see JavaDoc line 27-28 above: \"an Executor that would log any possible issues, and which will be metric monitored\"",
+      "parentUuid": "9a245df4_5c061d87",
       "range": {
         "startLine": 44,
         "startChar": 60,
