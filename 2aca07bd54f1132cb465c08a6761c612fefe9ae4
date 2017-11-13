@@ -22,6 +22,29 @@
       "revId": "2aca07bd54f1132cb465c08a6761c612fefe9ae4",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_5c061d87",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/concurrent/JdkFutures.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-11-13T06:49:45Z",
+      "side": 1,
+      "message": "JdkFutureAdapters uses a static Executor internally so just use the version that takes no Executor.",
+      "range": {
+        "startLine": 44,
+        "startChar": 60,
+        "endLine": 44,
+        "endChar": 68
+      },
+      "revId": "2aca07bd54f1132cb465c08a6761c612fefe9ae4",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
