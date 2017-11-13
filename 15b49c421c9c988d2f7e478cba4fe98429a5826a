@@ -25,6 +25,23 @@
     },
     {
       "key": {
+        "uuid": "9a245df4_edb0fd44",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/MetricProviderImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-11-13T12:36:10Z",
+      "side": 1,
+      "message": "Done. Anything else on this one, or +1 from you? ;) I want to build Step 2 ASAP...",
+      "revId": "15b49c421c9c988d2f7e478cba4fe98429a5826a",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a245df4_765d0279",
         "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/MetricProviderImpl.java",
         "patchSetId": 2
@@ -36,6 +53,24 @@
       "writtenOn": "2017-11-12T13:02:58Z",
       "side": 1,
       "message": "you can avoid the FB error and need for suppression by passing in null directly.",
+      "revId": "15b49c421c9c988d2f7e478cba4fe98429a5826a",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_8da861dc",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/MetricProviderImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-11-13T12:36:10Z",
+      "side": 1,
+      "message": "Uhu, but then you loose the clarity of the inline doc why the null is OK... so let me leave this as is.  (PS: This is one example where Eclipse null analysis is smarter than FindBugs; it would understand this \"flow\".)",
+      "parentUuid": "9a245df4_765d0279",
       "revId": "15b49c421c9c988d2f7e478cba4fe98429a5826a",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
