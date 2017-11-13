@@ -7,12 +7,15 @@
  */
 package org.opendaylight.infrautils.jobcoordinator.internal;
 
+import static com.google.common.util.concurrent.Futures.immediateFailedFuture;
+
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.MoreObjects;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.common.util.concurrent.MoreExecutors;
+import com.google.errorprone.annotations.Var;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +23,7 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.Future;
 import java.util.concurrent.RejectedExecutionException;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -32,6 +36,7 @@ import javax.annotation.concurrent.GuardedBy;
 import org.opendaylight.infrautils.jobcoordinator.JobCoordinator;
 import org.opendaylight.infrautils.jobcoordinator.JobCoordinatorMonitor;
 import org.opendaylight.infrautils.jobcoordinator.RollbackCallable;
+import org.opendaylight.infrautils.utils.concurrent.JdkFutures;
 import org.opendaylight.infrautils.utils.concurrent.LoggingThreadUncaughtExceptionHandler;
 import org.opendaylight.infrautils.utils.concurrent.LoggingUncaughtThreadDeathContextRunnable;
 import org.opendaylight.infrautils.utils.concurrent.ThreadFactoryProvider;
@@ -211,16 +216,14 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
         }
     }
 
-    private boolean scheduleTask(Runnable task, long delay, TimeUnit unit) {
+    private Future<?> scheduleTask(Runnable task, long delay, TimeUnit unit) {
         try {
-            scheduledExecutorService.schedule(task, delay, unit);
-            return true;
+            return scheduledExecutorService.schedule(task, delay, unit);
         } catch (RejectedExecutionException e) {
             if (!scheduledExecutorService.isShutdown()) {
-                LOG.error("ScheduledExecutorService task rejected", e);
+                LOG.error("ScheduledExecutorService rejected task", e);
             }
-
-            return false;
+            return immediateFailedFuture(e);
         }
     }
 
@@ -271,10 +274,22 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
             counters.jobsRetriesForFailure().incrementAndGet();
             if (retryCount > 0) {
                 long waitTime = RETRY_WAIT_BASE_TIME_MILLIS / retryCount;
-                scheduleTask(() -> {
+                Futures.addCallback(JdkFutures.toListenableFuture(scheduleTask(() -> {
                     MainTask worker = new MainTask(jobEntry);
                     executeTask(worker);
-                }, waitTime, TimeUnit.MILLISECONDS);
+                }, waitTime, TimeUnit.MILLISECONDS)), new FutureCallback<Object>() {
+
+                    @Override
+                    public void onFailure(Throwable throwable) {
+                        LOG.error("Rety of job failed; clearing job: {}", jobEntry, throwable);
+                        clearJob(jobEntry);
+                    }
+
+                    @Override
+                    public void onSuccess(Object result) {
+                        LOG.debug("Retry of job succeeded: {}", jobEntry);
+                    }
+                }, MoreExecutors.directExecutor());
                 return;
             }
             counters.jobsFailed().incrementAndGet();
@@ -305,7 +320,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
         @SuppressWarnings("checkstyle:IllegalCatch")
         public void runWithUncheckedExceptionLogging() {
             RollbackCallable rollbackWorker = jobEntry.getRollbackWorker();
-            List<ListenableFuture<Void>> futures = null;
+            @Var List<ListenableFuture<Void>> futures = null;
             if (rollbackWorker != null) {
                 try {
                     futures = rollbackWorker.apply(jobEntry.getFutures());
@@ -342,7 +357,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
         @Override
         @SuppressWarnings("checkstyle:illegalcatch")
         public void runWithUncheckedExceptionLogging() {
-            List<ListenableFuture<Void>> futures = null;
+            @Var List<ListenableFuture<Void>> futures = null;
             long jobStartTimestampNanos = System.nanoTime();
             LOG.trace("Running job {}", jobEntry.getKey());
 
@@ -438,12 +453,20 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
 
     @Override
     public String toString() {
+        boolean isJobAvailableFromLock;
+        jobQueueMapLock.lock();
+        try {
+            isJobAvailableFromLock = isJobAvailable;
+        } finally {
+            jobQueueMapLock.unlock();
+        }
+
         return MoreObjects.toStringHelper(this).add("incompleteTasks", getIncompleteTaskCount())
                 .add("pendingTasks", getPendingTaskCount()).add("failedJobs", getFailedJobCount())
                 .add("clearedTasks", getClearedTaskCount()).add("createdTasks", getCreatedTaskCount())
                 .add("executeAttempts", getExecuteAttempts()).add("retriesCount", getRetriesCount())
                 .add("fjPool", fjPool).add("jobQueueMap", jobQueueMap).add("jobQueueMapLock", jobQueueMapLock)
-                .add("scheduledExecutorService", scheduledExecutorService).add("isJobAvailable", isJobAvailable)
+                .add("scheduledExecutorService", scheduledExecutorService).add("isJobAvailable", isJobAvailableFromLock)
                 .add("jobQueueMapCondition", jobQueueMapCondition)
                 .toString();
     }
