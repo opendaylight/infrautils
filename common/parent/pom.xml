@@ -26,6 +26,12 @@
   <name>ODL :: infrautils :: ${project.artifactId}</name>
   <packaging>pom</packaging>
 
+  <properties>
+    <!-- Enforce all of odlparent's optional code quality checks: -->
+    <pmd.cpd.fail>true</pmd.cpd.fail>                    <!-- Fails build for copy/pasted code -->
+    <duplicate-finder.skip>false</duplicate-finder.skip> <!-- Fails build if duplicate classpath entries on dependencies (odlparent 3.0.0) -->
+  </properties>
+
   <dependencies>
     <dependency>
       <groupId>com.google.truth</groupId>
