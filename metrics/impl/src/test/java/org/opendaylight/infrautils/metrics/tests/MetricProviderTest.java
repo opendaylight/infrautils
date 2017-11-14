@@ -49,5 +49,4 @@ public class MetricProviderTest {
 
     // TODO testReadJMX() using org.opendaylight.infrautils.utils.management.MBeanUtil from https://git.opendaylight.org/gerrit/#/c/65153/
 
-
 }
