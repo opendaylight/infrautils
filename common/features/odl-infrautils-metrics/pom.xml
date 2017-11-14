@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.opendaylight.odlparent</groupId>
+    <artifactId>single-feature-parent</artifactId>
+    <version>2.0.5</version>
+    <relativePath />
+  </parent>
+
+  <groupId>org.opendaylight.infrautils</groupId>
+  <artifactId>odl-infrautils-metrics</artifactId>
+  <version>1.3.0-SNAPSHOT</version>
+  <packaging>feature</packaging>
+
+  <name>OpenDaylight :: Infrautils :: Metrics</name>
+
+  <dependencies>
+    <dependency>
+      <!-- TODO Remove this entire dependency (not just the version)
+           when we're on odlparent 3.0.0 where dropwizard.metrics is removed from odlparent's dependencyManagement.
+           It's currently only needed because odlparent's dependencyManagement gives us an older version of metrics-core
+           than the one we would to transitively inherit from metrics-impl, and this is causing us problems. -->
+      <groupId>io.dropwizard.metrics</groupId>
+      <artifactId>metrics-core</artifactId>
+      <version>3.2.5</version>
+    </dependency>
+
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>metrics-impl</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>odl-infrautils-utils</artifactId>
+      <version>${project.version}</version>
+      <classifier>features</classifier>
+      <type>xml</type>
+    </dependency>
+  </dependencies>
+
+</project>

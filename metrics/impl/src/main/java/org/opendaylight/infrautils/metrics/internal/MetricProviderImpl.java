@@ -7,8 +7,6 @@
  */
 package org.opendaylight.infrautils.metrics.internal;
 
-import static org.apache.logging.log4j.Level.ALL;
-
 import com.codahale.metrics.Counter;
 import com.codahale.metrics.Gauge;
 import com.codahale.metrics.Histogram;
@@ -17,22 +15,18 @@ import com.codahale.metrics.Meter;
 import com.codahale.metrics.MetricRegistry;
 import com.codahale.metrics.MetricRegistry.MetricSupplier;
 import com.codahale.metrics.Timer;
-import com.codahale.metrics.log4j2.InstrumentedAppender;
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import javax.annotation.PreDestroy;
-import org.apache.logging.log4j.Level;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.core.Filter;
-import org.apache.logging.log4j.core.LoggerContext;
-import org.apache.logging.log4j.core.config.Configuration;
-import org.apache.logging.log4j.core.layout.PatternLayout;
+import javax.inject.Singleton;
 import org.opendaylight.infrautils.metrics.MetricProvider;
+import org.ops4j.pax.cdi.api.OsgiServiceProvider;
 
 /**
  * Implementation of {@link MetricProvider}.
  *
  * @author Michael Vorburger.ch
  */
+@Singleton
+@OsgiServiceProvider(classes = MetricProvider.class)
 public class MetricProviderImpl implements MetricProvider {
 
     private final MetricRegistry registry;
@@ -47,8 +41,8 @@ public class MetricProviderImpl implements MetricProvider {
         jmxReporter = setUpJmxReporter(registry);
         // TODO setUpSlf4jReporter
 
-        // TODO test if this really works in Karaf through PAX Logging..
-        instrumentLog4jV2(registry);
+        // TODO really get this to work in Karaf, through PAX Logging.. (it's currently NOK)
+        // instrumentLog4jV2(registry);
     }
 
     @PreDestroy
@@ -62,23 +56,22 @@ public class MetricProviderImpl implements MetricProvider {
         return reporter;
     }
 
-    @SuppressFBWarnings("NP_LOAD_OF_KNOWN_NULL_VALUE") // null Filter and PatternLayout is cool with Log4j, so shut up
-    private static void instrumentLog4jV2(MetricRegistry registry) {
-        // TODO Confirm that Level ALL is a good idea?
-        Level level = ALL;
-
-        // http://metrics.dropwizard.io/3.1.0/manual/log4j/
-        Filter filter = null;        // That's fine if we don't use filters; https://logging.apache.org/log4j/2.x/manual/filters.html
-        PatternLayout layout = null; // The layout isn't used in InstrumentedAppender
-
-        InstrumentedAppender appender = new InstrumentedAppender(registry, filter, layout, false);
-        appender.start();
-
-        LoggerContext context = (LoggerContext) LogManager.getContext(false);
-        Configuration config = context.getConfiguration();
-        config.getLoggerConfig(LogManager.ROOT_LOGGER_NAME).addAppender(appender, level, filter);
-        context.updateLoggers(config);
-    }
+    // http://metrics.dropwizard.io/3.1.0/manual/log4j/
+//    private static void instrumentLog4jV2(MetricRegistry registry) {
+//        // TODO Confirm that Level ALL is a good idea?
+//        Level level = ALL;
+//
+//        InstrumentedAppender appender = new InstrumentedAppender(registry,
+//                null /* null Filter fine, because we don't use filters */,
+//                null /* null PatternLayout, because the layout isn't used in InstrumentedAppender */, false);
+//        appender.start();
+//
+//        LoggerContext context = (LoggerContext) LogManager.getContext(false);
+//        Configuration config = context.getConfiguration();
+//        config.getLoggerConfig(LogManager.ROOT_LOGGER_NAME).addAppender(appender, level,
+//                null /* null Filter fine, because we don't use filters */);
+//        context.updateLoggers(config);
+//    }
 
     @Override
     public Meter newMeter(Object anchor, String id) {
