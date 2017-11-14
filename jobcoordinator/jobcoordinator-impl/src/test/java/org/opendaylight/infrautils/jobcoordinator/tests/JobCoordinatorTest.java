@@ -194,7 +194,7 @@ public class JobCoordinatorTest {
 
         assertIncomplete(2);
         assertPending(1);
-        assertThat(!waitingCallable2.isWaiting);
+        assertThat(waitingCallable2.isWaiting).isFalse();
         waitingCallable1.stopWaiting();
         Awaitility.await().until(() -> jobCoordinator.getIncompleteTaskCount(), is(1L));
         Awaitility.await().until(() -> waitingCallable2.isWaiting);
