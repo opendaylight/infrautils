@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a245df4_8b10445a",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobCoordinatorImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-11-14T15:41:52Z",
+      "side": 1,
+      "message": "So this will get propagated out of onFailure - what will happen from there.... I think this should remain as is and in onFailure:\n\n  if (scheduleTask(...) {\n      return;\n  }\n\nelse fall through and let it fail the job as if it\u0027s out of retries.",
+      "revId": "86fcef74ce26bb1f9e2f030325ab44c93a85ec97",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
