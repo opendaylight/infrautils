@@ -31,7 +31,7 @@
       <artifactId>metrics-core</artifactId>
       <!-- This version must be kept in line with the one used in metrics-impl.
 
-           TODO Remove the paragraph below when dropwizard.metrics is removed from odlparent's dependencyManagement...
+           TODO Remove the paragraph below when when we're on odlparent 3.0.0 where dropwizard.metrics is removed from odlparent's dependencyManagement...
            This version does not have to match odlparent's (it's not up-to-date;
            and we would like to evolve and upgrade this independent of odlparent),
            because projects using metrics will just depend on this metrics-api artifact

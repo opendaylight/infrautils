@@ -44,5 +44,7 @@ public class MetricProviderTest {
     // TODO testDupeID
 
     // TODO testBadID .. startsWith("odl") no spaces only dots
+    // TODO             also enforce all lower case except String after last dot (before is package)
+    // TODO             also enforce only 4 parts? instead of String id have String project, String "bundle" (feature) ?
 
 }
