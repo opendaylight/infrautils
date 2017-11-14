@@ -44,5 +44,10 @@ public class MetricProviderTest {
     // TODO testDupeID
 
     // TODO testBadID .. startsWith("odl") no spaces only dots
+    // TODO             also enforce all lower case except String after last dot (before is package)
+    // TODO             also enforce only 4 parts? instead of String id have String project, String "bundle" (feature) ?
+
+    // TODO testReadJMX() using org.opendaylight.infrautils.utils.management.MBeanUtil from https://git.opendaylight.org/gerrit/#/c/65153/
+
 
 }

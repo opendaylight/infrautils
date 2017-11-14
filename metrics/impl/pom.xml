@@ -45,17 +45,22 @@
       <!-- This version must be kept in line with the one used in metrics-api. -->
       <version>3.2.5</version>
     </dependency>
+<!-- TODO
     <dependency>
       <groupId>io.dropwizard.metrics</groupId>
       <artifactId>metrics-log4j2</artifactId>
-      <!-- This version must be kept in line with the one used in metrics-api. -->
+      <!- - This version must be kept in line with the one used in metrics-api. - ->
       <version>3.2.5</version>
     </dependency>
-
+ -->
     <dependency>
       <groupId>org.opendaylight.infrautils</groupId>
       <artifactId>infrautils-util</artifactId>
       <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>javax.inject</groupId>
+      <artifactId>javax.inject</artifactId>
     </dependency>
     <dependency>
       <groupId>org.ops4j.pax.cdi</groupId>
