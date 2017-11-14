@@ -74,6 +74,24 @@
       "revId": "15b49c421c9c988d2f7e478cba4fe98429a5826a",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_469763ec",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/MetricProviderImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-11-14T19:00:00Z",
+      "side": 1,
+      "message": "I prefer not to suppress a warning unless absolutely necessary. It could mask an actual issue. In this case if it\u0027s just for docs then:\n\n  new InstrumentedAppender(registry, null /*Filter*/,\n                     null /*PatternLayout*/, false);\n\nBut it\u0027s not that big a deal if others are fine the suppression...",
+      "parentUuid": "9a245df4_8da861dc",
+      "revId": "15b49c421c9c988d2f7e478cba4fe98429a5826a",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
