@@ -28,6 +28,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.opendaylight.infrautils.jobcoordinator.RollbackCallable;
 import org.opendaylight.infrautils.jobcoordinator.internal.JobCoordinatorImpl;
+import org.opendaylight.infrautils.metrics.internal.MetricProviderImpl;
 import org.opendaylight.infrautils.testutils.LogRule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -137,8 +138,13 @@ public class JobCoordinatorTest {
     // public @Rule RunUntilFailureRule repeater = new RunUntilFailureRule(classRepeater);
 
     private static class TestJobCoordinatorImpl extends JobCoordinatorImpl {
+
+        TestJobCoordinatorImpl() {
+            super(new MetricProviderImpl());
+        }
+
         void verifyJobQueueHandlerThreadStopped() {
-            assertFalse("obQueueHandler was not stopped", getJobQueueHandlerThread().isAlive());
+            assertFalse("JobQueueHandler was not stopped", getJobQueueHandlerThread().isAlive());
         }
     }
 
