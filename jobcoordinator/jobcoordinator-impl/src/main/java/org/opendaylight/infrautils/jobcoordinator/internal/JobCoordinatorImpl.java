@@ -9,6 +9,7 @@ package org.opendaylight.infrautils.jobcoordinator.internal;
 
 import static com.google.common.util.concurrent.Futures.immediateFailedFuture;
 
+import com.codahale.metrics.Counter;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.MoreObjects;
 import com.google.common.util.concurrent.FutureCallback;
@@ -38,14 +39,18 @@ import javax.inject.Singleton;
 import org.opendaylight.infrautils.jobcoordinator.JobCoordinator;
 import org.opendaylight.infrautils.jobcoordinator.JobCoordinatorMonitor;
 import org.opendaylight.infrautils.jobcoordinator.RollbackCallable;
+import org.opendaylight.infrautils.metrics.MetricProvider;
 import org.opendaylight.infrautils.utils.concurrent.JdkFutures;
 import org.opendaylight.infrautils.utils.concurrent.LoggingThreadUncaughtExceptionHandler;
 import org.opendaylight.infrautils.utils.concurrent.LoggingUncaughtThreadDeathContextRunnable;
 import org.opendaylight.infrautils.utils.concurrent.ThreadFactoryProvider;
+import org.ops4j.pax.cdi.api.OsgiService;
+import org.ops4j.pax.cdi.api.OsgiServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Singleton
+@OsgiServiceProvider(classes = { JobCoordinator.class, JobCoordinatorMonitor.class })
 public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor {
 
     private static final Logger LOG = LoggerFactory.getLogger(JobCoordinatorImpl.class);
@@ -63,7 +68,14 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
     private final Map<String, JobQueue> jobQueueMap = new ConcurrentHashMap<>();
     private final ReentrantLock jobQueueMapLock = new ReentrantLock();
     private final Condition jobQueueMapCondition = jobQueueMapLock.newCondition();
-    private final JobCoordinatorCounters counters = new JobCoordinatorCounters();
+
+    private final Counter jobsCreated;
+    private final Counter jobsCleared;
+    private final Counter jobsPending;
+    private final Counter jobsIncomplete;
+    private final Counter jobsFailed;
+    private final Counter jobsRetriesForFailure;
+    private final Counter jobExecuteAttempts;
 
     private final ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(5,
             ThreadFactoryProvider.builder().namePrefix("JobCoordinator-ScheduledExecutor").logger(LOG).build().get());
@@ -77,7 +89,15 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
     private volatile boolean shutdown = false;
 
     @Inject
-    public JobCoordinatorImpl() {
+    public JobCoordinatorImpl(@OsgiService MetricProvider metricProvider) {
+        jobsCreated = metricProvider.newCounter(this, "odl.infrautils.jobcoordinator.jobsCreated");
+        jobsCleared = metricProvider.newCounter(this, "odl.infrautils.jobcoordinator.jobsCleared");
+        jobsPending = metricProvider.newCounter(this, "odl.infrautils.jobcoordinator.jobsPending");
+        jobsIncomplete = metricProvider.newCounter(this, "odl.infrautils.jobcoordinator.jobsIncomplete");
+        jobsFailed = metricProvider.newCounter(this, "odl.infrautils.jobcoordinator.jobsFailed");
+        jobsRetriesForFailure = metricProvider.newCounter(this, "odl.infrautils.jobcoordinator.jobsRetriesForFailure");
+        jobExecuteAttempts = metricProvider.newCounter(this, "odl.infrautils.jobcoordinator.jobExecuteAttempts");
+
         jobQueueHandlerThread = ThreadFactoryProvider.builder()
             .namePrefix("JobCoordinator-JobQueueHandler")
             .logger(LOG)
@@ -132,46 +152,46 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
         JobQueue jobQueue = jobQueueMap.computeIfAbsent(key, mapKey -> new JobQueue());
         jobQueue.addEntry(jobEntry);
 
-        counters.jobsPending().incrementAndGet();
-        counters.jobsIncomplete().incrementAndGet();
-        counters.jobsCreated().incrementAndGet();
+        jobsPending.inc();
+        jobsIncomplete.inc();
+        jobsCreated.inc();
 
         signalForNextJob();
     }
 
     @Override
     public long getClearedTaskCount() {
-        return counters.jobsCleared().get();
+        return jobsCleared.getCount();
     }
 
     @Override
     public long getCreatedTaskCount() {
-        return counters.jobsCreated().get();
+        return jobsCreated.getCount();
     }
 
     @Override
     public long getIncompleteTaskCount() {
-        return counters.jobsIncomplete().get();
+        return jobsIncomplete.getCount();
     }
 
     @Override
     public long getPendingTaskCount() {
-        return counters.jobsPending().get();
+        return jobsPending.getCount();
     }
 
     @Override
     public long getFailedJobCount() {
-        return counters.jobsFailed().get();
+        return jobsFailed.getCount();
     }
 
     @Override
     public long getRetriesCount() {
-        return counters.jobsRetriesForFailure().get();
+        return jobsRetriesForFailure.getCount();
     }
 
     @Override
     public long getExecuteAttempts() {
-        return counters.jobExecuteAttempts().get();
+        return jobExecuteAttempts.getCount();
     }
 
     /**
@@ -186,8 +206,8 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
         } else {
             LOG.error("clearJob: jobQueueMap did not contain the key for this entry: {}", jobEntry);
         }
-        counters.jobsCleared().incrementAndGet();
-        counters.jobsIncomplete().decrementAndGet();
+        jobsCleared.inc();
+        jobsIncomplete.dec();
         signalForNextJob();
     }
 
@@ -279,14 +299,13 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
             }
 
             int retryCount = jobEntry.decrementRetryCountAndGet();
-            counters.jobsRetriesForFailure().incrementAndGet();
+            jobsRetriesForFailure.inc();
             if (retryCount > 0) {
                 long waitTime = RETRY_WAIT_BASE_TIME_MILLIS / retryCount;
                 Futures.addCallback(JdkFutures.toListenableFuture(scheduleTask(() -> {
                     MainTask worker = new MainTask(jobEntry);
                     executeTask(worker);
                 }, waitTime, TimeUnit.MILLISECONDS)), new FutureCallback<Object>() {
-
                     @Override
                     public void onFailure(Throwable throwable) {
                         LOG.error("Retry of job failed; rolling back or clearing job: {}", jobEntry, throwable);
@@ -305,7 +324,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
     }
 
     private void rollbackOrClear(JobEntry jobEntry) {
-        counters.jobsFailed().incrementAndGet();
+        jobsFailed.inc();
         if (jobEntry.getRollbackWorker() != null) {
             jobEntry.setMainWorker(null);
             RollbackTask rollbackTask = new RollbackTask(jobEntry);
@@ -382,7 +401,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
                 long jobExecutionTimeNanos = System.nanoTime() - jobStartTimestampNanos;
                 printJobs(jobEntry.getKey(), TimeUnit.NANOSECONDS.toMillis(jobExecutionTimeNanos));
             } catch (Exception e) {
-                counters.jobsFailed().incrementAndGet();
+                jobsFailed.inc();
                 LOG.error("Exception when executing jobEntry: {}", jobEntry, e);
             }
 
@@ -419,7 +438,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
 
                         JobQueue jobQueue = entry.getValue();
                         if (jobQueue.getExecutingEntry() != null) {
-                            counters.jobExecuteAttempts().incrementAndGet();
+                            jobExecuteAttempts.inc();
                             continue;
                         }
                         JobEntry jobEntry = jobQueue.poll();
@@ -432,7 +451,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
                         LOG.trace("Executing job {}", jobEntry.getKey());
 
                         if (executeTask(worker)) {
-                            counters.jobsPending().decrementAndGet();
+                            jobsPending.dec();
                         }
                     }
 
