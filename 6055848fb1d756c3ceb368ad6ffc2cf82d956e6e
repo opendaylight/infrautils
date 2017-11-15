@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a245df4_34f7f05a",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/management/MBeanUtils.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-11-15T22:27:41Z",
+      "side": 1,
+      "message": "Why is this called updated? Isn\u0027t it the return value from the invocation? Also it\u0027s an Object - how can you assume an empty String? I think you want null here.",
+      "range": {
+        "startLine": 68,
+        "startChar": 15,
+        "endLine": 68,
+        "endChar": 22
+      },
+      "revId": "6055848fb1d756c3ceb368ad6ffc2cf82d956e6e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_d49db40b",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/management/MBeanUtils.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-11-15T22:27:41Z",
+      "side": 1,
+      "message": "I\u0027d think the caller would want to know it failed so propagate a checked exception.",
+      "revId": "6055848fb1d756c3ceb368ad6ffc2cf82d956e6e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_9497bceb",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/management/MBeanUtils.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-11-15T22:27:41Z",
+      "side": 1,
+      "message": "This should be error also you should log the exception.",
+      "range": {
+        "startLine": 74,
+        "startChar": 16,
+        "endLine": 74,
+        "endChar": 20
+      },
+      "revId": "6055848fb1d756c3ceb368ad6ffc2cf82d956e6e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_749cc80f",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/management/MBeanUtils.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-11-15T22:27:41Z",
+      "side": 1,
+      "message": "same here",
+      "revId": "6055848fb1d756c3ceb368ad6ffc2cf82d956e6e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
