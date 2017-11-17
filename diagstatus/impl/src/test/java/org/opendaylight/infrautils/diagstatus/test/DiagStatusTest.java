@@ -15,6 +15,7 @@ import org.junit.rules.MethodRule;
 import org.opendaylight.infrautils.diagstatus.DiagStatusService;
 import org.opendaylight.infrautils.diagstatus.ServiceDescriptor;
 import org.opendaylight.infrautils.diagstatus.ServiceState;
+import org.opendaylight.infrautils.diagstatus.DiagStatusServiceMBean;
 import org.opendaylight.infrautils.inject.guice.testutils.GuiceRule;
 import org.opendaylight.infrautils.testutils.LogCaptureRule;
 import org.opendaylight.infrautils.testutils.LogRule;
@@ -33,6 +34,9 @@ public class DiagStatusTest {
     @Inject
     DiagStatusService diagStatusService;
 
+    @Inject
+    DiagStatusServiceMBean diagStatusServiceMBean;
+
     @Test
     public void testDiagStatus() {
         String testService1 = "testService";
@@ -47,6 +51,9 @@ public class DiagStatusTest {
         diagStatusService.report(reportStatus);
         serviceDescriptor = diagStatusService.getServiceDescriptor(testService1);
         Assert.assertEquals(serviceDescriptor.getServiceState(), ServiceState.OPERATIONAL);
+
+        // What is the right way to do verification?
+        diagStatusServiceMBean.acquireServiceStatusDetailed();
 
         // TODO add JXM based Junits to see if the service state is getting retrieved properly.
     }
