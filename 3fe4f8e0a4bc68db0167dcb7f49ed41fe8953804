@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a245df4_7384d55d",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/MetricProviderImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 4922
+      },
+      "writtenOn": "2017-11-17T13:40:42Z",
+      "side": 1,
+      "message": "This makes the JMX reporter register all registry metrics mbean by default with domain name “metrics”\n\nJmxReporter provides method call to customize domain of the metrics to be registered in a registry.\n\nJmxReporter reporter \u003d JmxReporter.forRegistry(registry).inDomain(\"Domain.example\").build();\n\t \nCan changes be made to receive domain name registration from the applications. By doing this,\n1)It segregates and orders the application metrics in JMX.\n2)Also, to query particular domain metrics or Listener attachment upon particular domain for metrics registry.(This is something which is coming upon with our requirement)",
+      "revId": "3fe4f8e0a4bc68db0167dcb7f49ed41fe8953804",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
