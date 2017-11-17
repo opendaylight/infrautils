@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a245df4_73285586",
+        "filename": "diagstatus/impl/src/test/java/org/opendaylight/infrautils/diagstatus/test/DiagStatusTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-11-17T13:04:07Z",
+      "side": 1,
+      "message": "I don\u0027t think DiagStatusTest should use DiagStatusServiceMBean, but it should test and assert on the JMX \"effect\" of that.",
+      "revId": "3f48a21c08ee61b2529ddcf3aaea4d4212efe70d",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_532d5194",
+        "filename": "diagstatus/impl/src/test/java/org/opendaylight/infrautils/diagstatus/test/DiagStatusTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-11-17T13:04:07Z",
+      "side": 1,
+      "message": "as above",
+      "revId": "3f48a21c08ee61b2529ddcf3aaea4d4212efe70d",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_b31e4d5d",
+        "filename": "diagstatus/impl/src/test/java/org/opendaylight/infrautils/diagstatus/test/DiagStatusTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-11-17T13:04:07Z",
+      "side": 1,
+      "message": "could we make this use the infrautils/utils/management ?",
+      "revId": "3f48a21c08ee61b2529ddcf3aaea4d4212efe70d",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
