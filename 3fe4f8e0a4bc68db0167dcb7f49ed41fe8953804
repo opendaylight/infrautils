@@ -16,6 +16,24 @@
       "revId": "3fe4f8e0a4bc68db0167dcb7f49ed41fe8953804",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_1f5bdbf6",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/MetricProviderImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-11-17T17:17:45Z",
+      "side": 1,
+      "message": "Viji, the problem is that this here happens at start-up of this class (infrautils.metrics), where as the \"applications\" creatings new metrics happens as they [each] start-up... but we can\u0027t create a new JmxReporter for EACH new metrics (I think); agreed?  So I\u0027m not sure yet if and how that can easily be fit here - and also how critical it is?\n\nSo let me merge this change here already, which really was about something else (just the features), and we can pick up the idea you raised here separately? I hope you\u0027re OK with this, but given that you +1 and -1 with this comment, I\u0027m going to assume you\u0027re fine with proceeding like this... ;-)",
+      "parentUuid": "9a245df4_7384d55d",
+      "revId": "3fe4f8e0a4bc68db0167dcb7f49ed41fe8953804",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
