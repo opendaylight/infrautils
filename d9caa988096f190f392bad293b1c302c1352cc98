@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a245df4_d4b8022c",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobCoordinatorImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-11-20T18:05:53Z",
+      "side": 1,
+      "message": "Nit: technically we don\u0027t know if it was the scheduling that failed - the task could\u0027ve thrown an exception.  I thin it would be more accurate to say \"Retry of job {} failed\".",
+      "range": {
+        "startLine": 284,
+        "startChar": 35,
+        "endLine": 284,
+        "endChar": 71
+      },
+      "revId": "d9caa988096f190f392bad293b1c302c1352cc98",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
