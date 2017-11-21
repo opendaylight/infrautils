@@ -16,6 +16,24 @@
       "revId": "6999e64c281cb60d564ad5dd5be7562c422041ff",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_37d7db25",
+        "filename": "ready/impl/src/test/java/org/opendaylight/infrautils/ready/test/SystemReadyTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2017-11-21T16:35:44Z",
+      "side": 1,
+      "message": "You are right, anyways it was passing null.. But pushed the patch to know whether there is something else to be done.",
+      "parentUuid": "9a245df4_7cf3f809",
+      "revId": "6999e64c281cb60d564ad5dd5be7562c422041ff",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
