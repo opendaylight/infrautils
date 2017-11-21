@@ -22,6 +22,30 @@
       "revId": "d9caa988096f190f392bad293b1c302c1352cc98",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_81ada9eb",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobCoordinatorImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-11-21T09:59:40Z",
+      "side": 1,
+      "message": "Done (and also add LOG.debug for success)",
+      "parentUuid": "9a245df4_d4b8022c",
+      "range": {
+        "startLine": 284,
+        "startChar": 35,
+        "endLine": 284,
+        "endChar": 71
+      },
+      "revId": "d9caa988096f190f392bad293b1c302c1352cc98",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
