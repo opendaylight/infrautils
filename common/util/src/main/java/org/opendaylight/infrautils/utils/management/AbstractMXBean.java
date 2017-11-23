@@ -8,7 +8,12 @@
 
 package org.opendaylight.infrautils.utils.management;
 
+import java.io.IOException;
 import java.lang.management.ManagementFactory;
+import java.net.MalformedURLException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+import java.rmi.server.UnicastRemoteObject;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.management.AttributeNotFoundException;
@@ -22,6 +27,10 @@ import javax.management.NotCompliantMBeanException;
 import javax.management.ObjectName;
 import javax.management.ReflectionException;
 
+import javax.management.remote.JMXConnectorServer;
+import javax.management.remote.JMXConnectorServerFactory;
+import javax.management.remote.JMXServiceURL;
+import org.apache.commons.lang3.tuple.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -37,6 +46,10 @@ public abstract class AbstractMXBean {
     private static final Logger LOG = LoggerFactory.getLogger(AbstractMXBean.class);
 
     public static final String BASE_JMX_PREFIX = "org.opendaylight.infrautils:";
+    public static final String JMX_URL_PREFIX = "service:jmx:rmi:///jndi/rmi://";
+    public static final String JMX_URL_SUFFIX = "/server";
+    public static final String JMX_URL_SEPARATOR = ":";
+    public static final int RMI_REGISTRY_PORT = 6886;
 
     private final MBeanServer server = ManagementFactory.getPlatformMBeanServer();
 
@@ -171,6 +184,42 @@ public abstract class AbstractMXBean {
             LOG.info("Failed when reading MBean attribute", e);
         }
         return attributeObj;
+    }
+
+    public static JMXServiceURL getJMXUrl(String host) throws MalformedURLException {
+        String jmxUrl = constructJmxUrl(host, RMI_REGISTRY_PORT);
+        return new JMXServiceURL(jmxUrl);
+    }
+
+    private static String constructJmxUrl(String host, int port) {
+        return new StringBuilder().append(JMX_URL_PREFIX).append(host).append(JMX_URL_SEPARATOR).append(port)
+                .append(JMX_URL_SUFFIX).toString();
+    }
+
+    public Pair startRMIConnectorServer(String selfAddress) throws IOException {
+        JMXServiceURL url = getJMXUrl(selfAddress);
+        Registry registry = LocateRegistry.createRegistry(RMI_REGISTRY_PORT);
+        JMXConnectorServer cs;
+        try {
+            cs = JMXConnectorServerFactory.newJMXConnectorServer(url, null, server);
+            cs.start();
+        } catch (IOException e) {
+            LOG.error("Error while trying to create new JMX Connector for url {}", url, e);
+            throw e;
+        }
+        LOG.info("JMX Connector Server started for url {}", url);
+        return Pair.of(cs, registry);
+    }
+
+    public static void stopRMIConnectorServer(Pair<JMXConnectorServer, Registry> jmxConnector) throws IOException {
+        try {
+            jmxConnector.getLeft().stop();
+            LOG.info("JMX Connector Server stopped {}", jmxConnector);
+            UnicastRemoteObject.unexportObject(jmxConnector.getRight(), true);
+        } catch (IOException e) {
+            LOG.error("Error while trying to stop jmx connector server {}", jmxConnector);
+            throw e;
+        }
     }
 
     /**

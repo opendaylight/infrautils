@@ -7,12 +7,8 @@
  */
 package org.opendaylight.infrautils.diagstatus;
 
-import java.io.IOException;
 import java.lang.management.ManagementFactory;
 import java.net.MalformedURLException;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
-import java.rmi.server.UnicastRemoteObject;
 import javax.management.AttributeNotFoundException;
 import javax.management.InstanceAlreadyExistsException;
 import javax.management.InstanceNotFoundException;
@@ -28,11 +24,8 @@ import javax.management.ObjectName;
 import javax.management.ReflectionException;
 import javax.management.remote.JMXConnector;
 import javax.management.remote.JMXConnectorFactory;
-import javax.management.remote.JMXConnectorServer;
-import javax.management.remote.JMXConnectorServerFactory;
 import javax.management.remote.JMXServiceURL;
 
-import org.apache.commons.lang3.tuple.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -68,33 +61,6 @@ public final class MBeanUtils {
               .append(JMX_URL_SUFFIX).toString();
     }
 
-    public static Pair<JMXConnectorServer,Registry> startRMIConnectorServer(MBeanServer mbeanServer, String selfAddress)
-            throws IOException {
-        JMXServiceURL url = getJMXUrl(selfAddress);
-        Registry registry = LocateRegistry.createRegistry(RMI_REGISTRY_PORT);
-        JMXConnectorServer cs;
-        try {
-            cs = JMXConnectorServerFactory.newJMXConnectorServer(url, null, mbeanServer);
-            cs.start();
-        } catch (IOException e) {
-            LOG.error("Error while trying to create new JMX Connector for url {}", url, e);
-            throw e;
-        }
-        LOG.info("JMX Connector Server started for url {}", url);
-        return Pair.of(cs, registry);
-    }
-
-    public static void stopRMIConnectorServer(Pair<JMXConnectorServer, Registry> jmxConnector) throws IOException {
-        try {
-            jmxConnector.getLeft().stop();
-            LOG.info("JMX Connector Server stopped {}", jmxConnector);
-            UnicastRemoteObject.unexportObject(jmxConnector.getRight(), true);
-        } catch (IOException e) {
-            LOG.error("Error while trying to stop jmx connector server {}", jmxConnector);
-            throw e;
-        }
-    }
-
     public static MBeanServer registerServerMBean(Object mxBeanImplementor, String objNameStr)
             throws JMException {
 
@@ -110,18 +76,6 @@ public final class MBeanUtils {
             throw ex;
         }
         return mbs;
-    }
-
-    public static void unregisterServerMBean(Object mxBeanImplementor, String objNameStr)
-            throws MalformedObjectNameException, InstanceNotFoundException, MBeanRegistrationException {
-        LOG.debug("unregister MXBean for {}", objNameStr);
-        MBeanServer mplatformMbeanServer = ManagementFactory.getPlatformMBeanServer();
-        try {
-            mplatformMbeanServer.unregisterMBean(new ObjectName(objNameStr));
-        } catch (InstanceNotFoundException | MalformedObjectNameException | MBeanRegistrationException e) {
-            LOG.error("Error while unregistering MBean {}", objNameStr, e);
-            throw e;
-        }
     }
 
     public static Object invokeMBeanFunction(String objName, String functionName) {

@@ -12,8 +12,11 @@ import java.net.UnknownHostException;
 import java.util.Collections;
 import java.util.List;
 
-import org.opendaylight.infrautils.diagstatus.*;
-import org.opendaylight.infrautils.diagstatus.internal.*;
+import org.opendaylight.infrautils.diagstatus.DiagStatusService;
+import org.opendaylight.infrautils.diagstatus.DiagStatusServiceMBean;
+import org.opendaylight.infrautils.diagstatus.ServiceStatusProvider;
+import org.opendaylight.infrautils.diagstatus.internal.DiagStatusServiceImpl;
+import org.opendaylight.infrautils.diagstatus.internal.DiagStatusServiceMBeanImpl;
 import org.opendaylight.infrautils.inject.guice.testutils.AbstractGuiceJsr250Module;
 import org.opendaylight.infrautils.ready.SystemReadyListener;
 import org.opendaylight.infrautils.ready.SystemReadyMonitor;
