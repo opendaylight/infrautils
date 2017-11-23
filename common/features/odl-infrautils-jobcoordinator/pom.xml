@@ -13,7 +13,7 @@
 
     <groupId>org.opendaylight.infrautils</groupId>
     <artifactId>odl-infrautils-jobcoordinator</artifactId>
-    <version>1.2.1-SNAPSHOT</version>
+    <version>1.2.1</version>
     <packaging>feature</packaging>
 
     <name>OpenDaylight :: Infrautils :: DataStoreUtils</name>
