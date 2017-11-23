@@ -16,6 +16,24 @@
       "revId": "86fcef74ce26bb1f9e2f030325ab44c93a85ec97",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a245df4_eb6f17fa",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobCoordinatorImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-11-23T15:04:01Z",
+      "side": 1,
+      "message": "Done, I (think I) see what you mean.  Have a look - better now?  PS: It would be nice to cover this in JobCoordinatorTest.. but we would need to wrap the internal private ScheduledExecutorService to make it reject etc. It\u0027s doable but takes a bit more time than I have right now.",
+      "parentUuid": "9a245df4_8b10445a",
+      "revId": "86fcef74ce26bb1f9e2f030325ab44c93a85ec97",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
