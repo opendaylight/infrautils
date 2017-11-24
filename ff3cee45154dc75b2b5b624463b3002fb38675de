@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "9a245df4_1a8632db",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceMBeanImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 7622
+      },
+      "writtenOn": "2017-11-24T08:59:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a245df4_46161a4d",
+      "revId": "ff3cee45154dc75b2b5b624463b3002fb38675de",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a245df4_861c926b",
         "filename": "diagstatus/impl/src/test/java/org/opendaylight/infrautils/diagstatus/test/DiagStatusTest.java",
         "patchSetId": 1
