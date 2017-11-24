@@ -24,7 +24,6 @@ import org.awaitility.Duration;
 import org.eclipse.jdt.annotation.Nullable;
 import org.junit.After;
 import org.junit.ClassRule;
-import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.opendaylight.infrautils.jobcoordinator.RollbackCallable;
@@ -293,13 +292,6 @@ public class JobCoordinatorTest {
         assertFailed(1);
     }
 
-    // TODO That this test works is a best of a miracle.. the counters framework has static state :(
-    // The OccurenceCounter's clearAllCounters cannot be used, because JobCoordinatorCounters
-    // jobs_pending and jobs_incomplete are !isErasable ... we could introduce a new clear, but
-    // really, we should write a new counters framework, some day.  Until then, we have to ignore
-    // this test, because there is currently no clean way to reset the incompleteTaskCount, therefore
-    // it cannot run properly isolate, and will break the other existing tests here.
-    @Ignore
     @Test
     public void bug9238CallableListWithNull() {
         // This test didn't fail for https://bugs.opendaylight.org/show_bug.cgi?id=9238 even before its fix
