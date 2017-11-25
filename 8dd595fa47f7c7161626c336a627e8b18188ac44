@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a1969be_46b0b2f4",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/management/AbstractMXBean.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2017-11-25T01:53:33Z",
+      "side": 1,
+      "message": "not static",
+      "revId": "8dd595fa47f7c7161626c336a627e8b18188ac44",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a1969be_a6940645",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/management/AbstractMXBean.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2017-11-25T01:53:33Z",
+      "side": 1,
+      "message": "not static",
+      "revId": "8dd595fa47f7c7161626c336a627e8b18188ac44",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a1969be_86910a55",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/management/AbstractMXBean.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2017-11-25T01:53:33Z",
+      "side": 1,
+      "message": "not static",
+      "revId": "8dd595fa47f7c7161626c336a627e8b18188ac44",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a1969be_e69efe62",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/MBeanUtils.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2017-11-25T01:53:33Z",
+      "side": 1,
+      "message": "is it possible to move all usages of these remaining functions to AbstractMXBean and then remove this class?",
+      "revId": "8dd595fa47f7c7161626c336a627e8b18188ac44",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a1969be_c69b0271",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceMBeanImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2017-11-25T01:53:33Z",
+      "side": 1,
+      "message": "you have removed systemReadyMonitor.registerListener() too!!! Functionality is broken! Hope you are clear with the work, that you have to remove only the usage of MBeanUtils!! Don\u0027t touch anything else, it will break the functionality",
+      "revId": "8dd595fa47f7c7161626c336a627e8b18188ac44",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
