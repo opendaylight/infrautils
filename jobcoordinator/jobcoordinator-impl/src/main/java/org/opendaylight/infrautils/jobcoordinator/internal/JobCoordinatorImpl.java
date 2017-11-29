@@ -33,6 +33,8 @@ import java.util.concurrent.locks.ReentrantLock;
 import javax.annotation.Nullable;
 import javax.annotation.PreDestroy;
 import javax.annotation.concurrent.GuardedBy;
+import javax.inject.Inject;
+import javax.inject.Singleton;
 import org.opendaylight.infrautils.jobcoordinator.JobCoordinator;
 import org.opendaylight.infrautils.jobcoordinator.JobCoordinatorMonitor;
 import org.opendaylight.infrautils.jobcoordinator.RollbackCallable;
@@ -43,8 +45,7 @@ import org.opendaylight.infrautils.utils.concurrent.ThreadFactoryProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-// TODO uncomment this @Singleton when Activator is removed, when DataStoreJobCoordinator in genius is removed,
-// when dependency from mdsalutil-api to jobcoordinator-impl is removed
+@Singleton
 public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor {
 
     private static final Logger LOG = LoggerFactory.getLogger(JobCoordinatorImpl.class);
@@ -75,6 +76,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
 
     private volatile boolean shutdown = false;
 
+    @Inject
     public JobCoordinatorImpl() {
         jobQueueHandlerThread = ThreadFactoryProvider.builder()
             .namePrefix("JobCoordinator-JobQueueHandler")

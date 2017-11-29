@@ -15,21 +15,9 @@
 
   <build>
     <plugins>
-<!-- TODO uncomment this (and @Singleton in JobCoordinatorImpl) when Activator is removed, when DataStoreJobCoordinator in genius is removed
       <plugin>
         <groupId>org.apache.aries.blueprint</groupId>
         <artifactId>blueprint-maven-plugin</artifactId>
-      </plugin>
- -->
-      <plugin>
-        <!-- TODO Remove this again, together with above -->
-        <groupId>org.apache.felix</groupId>
-        <artifactId>maven-bundle-plugin</artifactId>
-        <configuration>
-          <instructions>
-            <Bundle-Activator>org.opendaylight.infrautils.jobcoordinator.workaround.Activator</Bundle-Activator>
-          </instructions>
-        </configuration>
       </plugin>
     </plugins>
   </build>
@@ -48,11 +36,6 @@
     <dependency>
       <groupId>javax.inject</groupId>
       <artifactId>javax.inject</artifactId>
-    </dependency>
-    <dependency>
-      <!-- TODO Remove this (and the Activator class using it) when DataStoreJobCoordinator is removed from genius -->
-      <groupId>org.osgi</groupId>
-      <artifactId>org.osgi.core</artifactId>
     </dependency>
 
     <dependency>
