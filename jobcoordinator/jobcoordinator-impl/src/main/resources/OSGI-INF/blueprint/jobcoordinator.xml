@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
 
-<!--
-    TODO uncomment this (and @Singleton in JobCoordinatorImpl) when Activator is removed,
-         when DataStoreJobCoordinator in genius is completely removed ...
-
-  <service ref="jobCoordinatorImpl" auto-export="interfaces" />
-
-  -->
+  <service ref="jobCoordinatorImpl">
+    <interfaces>
+      <value>org.opendaylight.infrautils.jobcoordinator.JobCoordinator</value>
+      <value>org.opendaylight.infrautils.jobcoordinator.JobCoordinatorMonitor</value>
+    </interfaces>
+  </service>
 
 </blueprint>
