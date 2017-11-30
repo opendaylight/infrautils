@@ -44,6 +44,7 @@ import org.slf4j.LoggerFactory;
 public class LogCaptureRule implements TestRule {
 
     private String expectedErrorLogMessage;
+    private int howManyMessagesBack;
 
     public LogCaptureRule() {
         classpathTest();
@@ -71,7 +72,7 @@ public class LogCaptureRule implements TestRule {
                     testFailingThrowable = t;
                 }
                 final Throwable finalTestFailingThrowable = testFailingThrowable;
-                RememberingLogger.getLastErrorMessage().ifPresent(lastErrorLogMessage -> {
+                RememberingLogger.getErrorMessage(howManyMessagesBack).ifPresent(lastErrorLogMessage -> {
                     if (expectedErrorLogMessage == null) {
                         throw new LogCaptureRuleException(
                             "Expected no error log, but: " + lastErrorLogMessage,
@@ -81,7 +82,8 @@ public class LogCaptureRule implements TestRule {
                                 expectedErrorLogMessage, lastErrorLogMessage);
                     }
                 });
-                if (!RememberingLogger.getLastErrorMessage().isPresent() && expectedErrorLogMessage != null) {
+                if (!RememberingLogger.getErrorMessage(howManyMessagesBack).isPresent()
+                        && expectedErrorLogMessage != null) {
                     throw new LogCaptureRuleException("Expected error log message: "
                             + expectedErrorLogMessage, null, finalTestFailingThrowable);
                 }
@@ -93,10 +95,19 @@ public class LogCaptureRule implements TestRule {
     }
 
     public void expectError(String message) {
+        expectError(message, 0);
+    }
+
+    public void expectError(String message, int howManyMessagesBack) {
         this.expectedErrorLogMessage = message;
+        this.howManyMessagesBack = howManyMessagesBack;
     }
 
     public Throwable getLastErrorThrowable() {
         return RememberingLogger.getLastErrorThrowable().get();
+    }
+
+    public Throwable getErrorThrowable(int howManyMessagesBack) {
+        return RememberingLogger.getErrorThrowable(howManyMessagesBack).get();
     }
 }
