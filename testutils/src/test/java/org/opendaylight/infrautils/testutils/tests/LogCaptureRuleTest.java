@@ -52,6 +52,13 @@ public class LogCaptureRuleTest {
     }
 
     @Test
+    public void logTwoErrors() {
+        logCaptureRule.expectError("boum", 1);
+        LOG.error("boum");
+        LOG.error("bam");
+    }
+
+    @Test
     public void logErrorWithException() {
         Exception ko = new IllegalArgumentException("KO");
         logCaptureRule.expectError("boum");
