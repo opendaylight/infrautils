@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a1969be_91c76d12",
+        "filename": "jobcoordinator/jobcoordinator-impl/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-12-04T13:30:56Z",
+      "side": 0,
+      "message": "please remove this as well, see https://git.opendaylight.org/gerrit/#/c/64663/3/jobcoordinator/jobcoordinator-impl/pom.xml",
+      "revId": "3acc53014fbd82486ebc3e6aa5e80017fe52d798",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
