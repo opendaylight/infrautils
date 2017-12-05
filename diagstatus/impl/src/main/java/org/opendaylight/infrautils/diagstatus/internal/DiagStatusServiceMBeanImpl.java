@@ -54,21 +54,25 @@ public class DiagStatusServiceMBeanImpl extends AbstractMXBean implements DiagSt
 
     private final DiagStatusService diagStatusService;
     private final SystemReadyMonitor systemReadyMonitor;
+    private final ClusterMemberInfoProvider clusterMemberInfoProvider;
+
     private Pair<JMXConnectorServer, Registry> jmxConnector = null;
 
     @Inject
     public DiagStatusServiceMBeanImpl(DiagStatusService diagStatusService,
-                                      @OsgiService SystemReadyMonitor systemReadyMonitor)
+                                      @OsgiService SystemReadyMonitor systemReadyMonitor, ClusterMemberInfoProvider clusterMemberInfoProvider)
             throws JMException, IOException {
         super(JMX_OBJECT_NAME, MBEAN_TYPE, null);
+        this.clusterMemberInfoProvider = clusterMemberInfoProvider;
         registerMBean();
         this.diagStatusService = diagStatusService;
         this.systemReadyMonitor = systemReadyMonitor;
+        systemReadyMonitor.registerListener(this);
     }
 
     @Override
     public void onSystemBootReady() {
-        Optional<String> host = ClusterMemberInfoProvider.getSelfAddress();
+        Optional<String> host = clusterMemberInfoProvider.getSelfAddress();
         if (host.isPresent()) {
             try {
                 startRMIConnectorServer(host.get());

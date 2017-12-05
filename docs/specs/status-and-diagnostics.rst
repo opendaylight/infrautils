@@ -37,25 +37,24 @@ Use Cases
 ---------
 This feature will support following use cases:
 
-* Use case 1: status-and-diag module exposes a config file which user can update.
-  This file will include a set of core networking services, that are necessary to
+* Use case 1: diagstatus module uses apis to create an application which can
   declare the system as UP.
 * Use case 2: Core services can include existing netvirt and genius services like
-  ELAN, L3VPN, ITM, interface-manager, and additional services may be ACL, QoS etc
+  ELAN, L3VPN, ITM, interface-manager, DataStore and additional services may be ACL, QoS etc
   as needed. Applications can take necessary actions based on the aggregate system status,
   for eg: OpenFlow port open, OVSDB port open, and S&D status
   update(for consumption by other NBs such as ODL Mechanism Driver)
-* Use case 3: Registered Service Modules should expose their status to status-and-diag
+* Use case 3: Registered Service Modules should expose their status to diagstatus
   module which inturn will use this information to expose the service status to others.
-* Use case 4: All southbound plugins should leverage the status provided by status-and-diag
+* Use case 4: All southbound plugins should leverage the status provided by diagstatus
   module, as well as config file settings, to block or unblock the southbound interface
-* Use case 5: status-and-diag module should monitor the health of all dependant
+* Use case 5: diagstatus module should monitor the health of all dependant
   services on a regular basis using JMX.
-* Use case 6: status-and-diag module should raise traps whenever health check on a
+* Use case 6: diagstatus module should raise traps whenever health check on a
   module fails.
-* Use case 7 : status-and-diag module should develop the capability to do a node/cluster
+* Use case 7 : diagstatus module should develop the capability to do a node/cluster
   reboot in future for scenarios mentioned in usecase 6.
-* Use case 8 : status-and-diag module should leverage on the counters support provided
+* Use case 8 : diagstatus module should leverage on the counters support provided
   by infrautils to expose some debug and diagnostics counters.
 
 
@@ -64,7 +63,7 @@ Proposed change
 
 The proposed feature adds a new module in infrautils called "diagstatus",
 which allows CLI or alternative suitable interface to query the status of the services running
-in context of the controller (interface like Openflow, OVSDB, ELAN,ITM etc.). This also allows
+in context of the controller (interface like Openflow, OVSDB, ELAN,ITM, ---IFM, Datastore--- etc.). This also allows
 individual services to push status-changes to this centralized module via suitable API-based notification.
 There shall be a generic set of events which application can report to the central monitoring module/service
 which shall be used by the service to update the latest/current status of the services.
@@ -101,7 +100,6 @@ Service Internal Functionality Requirements
   as and when first API invocation is made by the application-module towards the status/health monitoring service
 * Monitoring-Service shall internally store entries of service-statuses with URI style representation as following.
   This allows fair level of flattening of hierarchical data so that lookup for a specific key to be handled is made easier
-          /<cluster-node-name>/<module-name>:<service-name>
 * Read APIs of Monitoring-Service expose the service statuses on per cluster-node basis only. A separate
   module shall be developed as part of “cluster-services” user-story which can combine cross-cluster status collation
 * All output of the read-APIs shall return results as Map with URI as key and current service-status
@@ -126,6 +124,8 @@ In order to emulate a simpler state-machine, we can have services report followi
 * STARTING – at the start of onSessionInitiated() on instrumented service
 * OPERATIONAL – at the end of onSessionInitiated() on instrumented service
 * ERROR – during onSessionInitiated() of service if any exceptions are caught, then ERROR status is reported
+* REGISTER – on successful registration of instrumented service
+* UNREGISTER – during onSessionInitiated() of service if any exceptions are caught, then UNREGISTER status is reported
 
 YANG changes
 ------------
@@ -134,24 +134,16 @@ N/A
 Workflow
 --------
 
-Define Configuration file
-^^^^^^^^^^^^^^^^^^^^^^^^^
-diagstatusservice.properties file will be added which will list down all the
-mbean names which services are exposing. Sample format based on the mbeans to be
-exposed by Genius - ITM and interfacemanager modules can be as below:
+Register Service
+^^^^^^^^^^^^^^^^
 
-ITM=org.opendaylight.genius.itm.status:type=SvcItmService
-INTERFACE_SERVICE=org.opendaylight.genius.interfacemanager.status:type=SvcInterfaceService
+Whenever the new service comes up, the service provider should register new service in service
+registry.
 
-There is an implicit assumption that the content of the file is correct, if at all
-is not correct, the corresponding service will be shown in ERROR state.
+Report Status
+^^^^^^^^^^^^^
 
-Load Configuration file on startup
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Whenever the diagstatus bundle comes up, diagstatus.properties configuration file
-will be loaded and the properties will be maintained in an internal data structure.
-All the Mbeans read will be registered one by one.
+Status Monitor look status of service and update status of service in service registry.
 
 Read Service Status
 ^^^^^^^^^^^^^^^^^^^
@@ -159,11 +151,6 @@ Read Service Status
 Whenever applications/CLI try to fetch the service status, diagstatus module will query the
 status through the respective mbeans(both local and remote),and an aggregated result is provided
 as response.
-
-Configuration impact
----------------------
-The configuration file provided by diagstatus needs to be updated by user, so that
-their service will be tracked for status.
 
 Clustering considerations
 -------------------------
@@ -212,26 +199,31 @@ Usage
 
 Features to Install
 -------------------
-This feature doesn't add any new karaf feature.
+This feature adds a new karaf feature, which is odl-infrautils-diagstatus.
 
-REST API
+JAVA API
 --------
 Following are the service APIs which must be supported by the Framework :
+
 * Accept Service-status from services which invoke the framework
 * Get the current statuses of all services of a given cluster-node
 * A registration API to allow monitored service to register the callback
-* An interface which is to be implemented by monitored module which could be periodically
-  invoked by Status-Monitoring framework on each target module to check status
-* Each service implements their own logic to check the local-health status using the
-  interface and report the status
+* An interface which is to be implemented by monitored module which could be periodically invoked by Status-Monitoring framework on each target module to check status
+* Each service implements their own logic to check the local-health status using the interface and report the status
 
 
 CLI
 ---
 Following CLIs will be supported as part of this feature:
 
-* showstatus - get all service status
 * showSvcStatus - get remote service status
+
+OSGI Services
+-------------
+Following osgi services will be supported as part of this feature:
+
+* diagstatus - provides datastore status
+* ServiceStatusProvider - provide information of registered service from ServiceDescriptor
 
 Implementation
 ==============
@@ -250,11 +242,9 @@ Work Items
 #. spec review
 #. diagstatus module bring-up
 #. API definitions
-#. Addition of Configuration file
-#. initialize status monitoring service by loading the config file
-#. initialize services by registering mbeans
-#. Reading the status of Mbeans specified in config file
 #. Aggregate the status of services from each node
+#. Migrate All Application to Diagstatus
+#. Integrate all application
 #. Add CLI.
 #. Add UTs.
 #. Add Documentation
@@ -263,7 +253,7 @@ Dependencies
 ============
 This is a new module and requires the below libraries:
 
-* org.apache.httpcomponents
+* org.apache.maven.plugins
 * com.google.code.gson
 * com.google.guava
 

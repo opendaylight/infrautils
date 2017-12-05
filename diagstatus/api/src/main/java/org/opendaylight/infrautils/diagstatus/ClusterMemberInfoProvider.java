@@ -14,9 +14,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import org.opendaylight.infrautils.utils.management.AbstractMXBean;
 
 /**
  * This class provides utilities to derive ODL cluster information using some of the MBeans exposed by
@@ -24,14 +28,22 @@ import org.slf4j.LoggerFactory;
  *
  * @author Faseela K
  */
-public final class ClusterMemberInfoProvider {
+
+@Singleton
+public final class ClusterMemberInfoProvider extends AbstractMXBean {
+
+    private static final String JMX_OBJECT_NAME = "akka";
+    private static final String MBEAN_TYPE = "Cluster";
 
     private static final Logger LOG = LoggerFactory.getLogger(ClusterMemberInfoProvider.class);
 
-    private ClusterMemberInfoProvider() { }
+    @Inject
+    public ClusterMemberInfoProvider(ClusterMemberInfoProvider clusterMemberInfoProvider) {
+        super(JMX_OBJECT_NAME, MBEAN_TYPE, null);
+    }
 
-    public static Optional<String> getSelfAddress()  {
-        Object clusterStatusMBeanValue = MBeanUtils.readMBeanAttribute("akka:type=Cluster", "ClusterStatus");
+    public Optional<String> getSelfAddress()  {
+        Object clusterStatusMBeanValue = readMBeanAttribute("ClusterStatus");
         String selfAddress = null;
         if (clusterStatusMBeanValue != null) {
             String selfAddressMbean = StringUtils.substringBetween(clusterStatusMBeanValue.toString(),
@@ -41,9 +53,9 @@ public final class ClusterMemberInfoProvider {
         return Optional.ofNullable(selfAddress);
     }
 
-    public static List<String> getClusterMembers()  {
+    public List<String> getClusterMembers()  {
         List<String> clusterIPAddresses = new ArrayList<>();
-        Object clusterMemberMBeanValue = MBeanUtils.readMBeanAttribute("akka:type=Cluster", "Members");
+        Object clusterMemberMBeanValue = readMBeanAttribute("Members");
         if (clusterMemberMBeanValue != null) {
             List<String> clusterMembers = Arrays.asList(((String)clusterMemberMBeanValue).split(","));
             for (String clusterMember : clusterMembers) {
@@ -58,7 +70,7 @@ public final class ClusterMemberInfoProvider {
         return ipAddress != null && ipAddress.length() > 0;
     }
 
-    public static boolean isIPAddressInCluster(String ipAddress) {
+    public boolean isIPAddressInCluster(String ipAddress) {
         List<String> clusterIPAddresses = getClusterMembers();
         if (!clusterIPAddresses.contains(ipAddress)) {
             LOG.error("specified ip {} is not present in cluster", ipAddress);

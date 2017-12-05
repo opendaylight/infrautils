@@ -19,18 +19,23 @@ import javax.annotation.Nullable;
 import javax.management.AttributeNotFoundException;
 import javax.management.InstanceAlreadyExistsException;
 import javax.management.InstanceNotFoundException;
+import javax.management.JMX;
 import javax.management.MBeanException;
 import javax.management.MBeanRegistrationException;
 import javax.management.MBeanServer;
+import javax.management.MBeanServerConnection;
 import javax.management.MalformedObjectNameException;
 import javax.management.NotCompliantMBeanException;
 import javax.management.ObjectName;
 import javax.management.ReflectionException;
-
+import javax.management.remote.JMXConnector;
+import javax.management.remote.JMXConnectorFactory;
 import javax.management.remote.JMXConnectorServer;
 import javax.management.remote.JMXConnectorServerFactory;
 import javax.management.remote.JMXServiceURL;
+
 import org.apache.commons.lang3.tuple.Pair;
+import org.opendaylight.infrautils.diagstatus.DiagStatusServiceMBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -186,12 +191,12 @@ public abstract class AbstractMXBean {
         return attributeObj;
     }
 
-    public static JMXServiceURL getJMXUrl(String host) throws MalformedURLException {
+    public JMXServiceURL getJMXUrl(String host) throws MalformedURLException {
         String jmxUrl = constructJmxUrl(host, RMI_REGISTRY_PORT);
         return new JMXServiceURL(jmxUrl);
     }
 
-    private static String constructJmxUrl(String host, int port) {
+    private String constructJmxUrl(String host, int port) {
         return new StringBuilder().append(JMX_URL_PREFIX).append(host).append(JMX_URL_SEPARATOR).append(port)
                 .append(JMX_URL_SUFFIX).toString();
     }
@@ -211,7 +216,7 @@ public abstract class AbstractMXBean {
         return Pair.of(cs, registry);
     }
 
-    public static void stopRMIConnectorServer(Pair<JMXConnectorServer, Registry> jmxConnector) throws IOException {
+    public void stopRMIConnectorServer(Pair<JMXConnectorServer, Registry> jmxConnector) throws IOException {
         try {
             jmxConnector.getLeft().stop();
             LOG.info("JMX Connector Server stopped {}", jmxConnector);
@@ -220,6 +225,24 @@ public abstract class AbstractMXBean {
             LOG.error("Error while trying to stop jmx connector server {}", jmxConnector);
             throw e;
         }
+    }
+
+    public String invokeRemoteJMXOperation(String host, String mbeanName) throws Exception {
+        JMXServiceURL url = getJMXUrl(host);
+        String serviceStatus;
+        JMXConnector jmxc = JMXConnectorFactory.connect(url, null);
+        MBeanServerConnection mbsc = jmxc.getMBeanServerConnection();
+        ObjectName mbeanObj = new ObjectName(mbeanName);
+        // Create a dedicated proxy for the MBean instead of
+        // going directly through the MBean server connection
+        try {
+            DiagStatusServiceMBean mbeanProxy =
+                    JMX.newMBeanProxy(mbsc, mbeanObj, DiagStatusServiceMBean.class, true);
+            serviceStatus = mbeanProxy.acquireServiceStatusDetailed();
+        } finally {
+            jmxc.close();
+        }
+        return serviceStatus;
     }
 
     /**
