@@ -33,7 +33,7 @@ public final class Asserts {
      * <p>Back-ported from <a href=
      * "http://junit.org/junit5/docs/current/api/org/junit/jupiter/api/Assertions.html#assertThrows-java.lang.Class-org.junit.jupiter.api.function.Executable-">org.junit.jupiter.api.Assertions</a>.
      */
-    @SuppressWarnings({ "unchecked", "IllegalCatch" })
+    @SuppressWarnings({ "unchecked", "IllegalCatch", "AvoidHidingCauseException" }) // OK here
     public static <T extends Throwable> T assertThrows(Class<T> expectedThrowable, JUnitExecutable exec) {
         //
         // This implementation, and the following private methods, are copy/paste'd verbatim from

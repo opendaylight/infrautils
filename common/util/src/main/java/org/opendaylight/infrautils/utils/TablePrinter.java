@@ -94,8 +94,8 @@ public class TablePrinter {
         this(0);
     }
 
-    public void setColumnNumber(int ncols) {
-        this.ncols = ncols;
+    public void setColumnNumber(int columnNumber) {
+        this.ncols = columnNumber;
     }
 
     public void addRow(Object... array) {

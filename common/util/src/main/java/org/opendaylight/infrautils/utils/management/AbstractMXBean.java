@@ -86,20 +86,20 @@ public abstract class AbstractMXBean {
         boolean registered = false;
         try {
             // Object to identify MBean
-            final ObjectName mbeanName = this.getMBeanObjectName();
-            LOG.debug("Register MBean {}", mbeanName);
+            final ObjectName mBeanObjectName = this.getMBeanObjectName();
+            LOG.debug("Register MBean {}", mBeanObjectName);
             // unregistered if already registered
-            if (server.isRegistered(mbeanName)) {
-                LOG.debug("MBean {} found to be already registered", mbeanName);
+            if (server.isRegistered(mBeanObjectName)) {
+                LOG.debug("MBean {} found to be already registered", mBeanObjectName);
                 try {
-                    unregisterMBean(mbeanName);
+                    unregisterMBean(mBeanObjectName);
                 } catch (MBeanRegistrationException | InstanceNotFoundException e) {
-                    LOG.warn("unregister mbean {} resulted in exception {} ", mbeanName, e);
+                    LOG.warn("unregister mbean {} resulted in exception {} ", mBeanObjectName, e);
                 }
             }
-            server.registerMBean(this, mbeanName);
+            server.registerMBean(this, mBeanObjectName);
             registered = true;
-            LOG.debug("MBean {} registered successfully", mbeanName.getCanonicalName());
+            LOG.debug("MBean {} registered successfully", mBeanObjectName.getCanonicalName());
         } catch (InstanceAlreadyExistsException | MBeanRegistrationException | NotCompliantMBeanException
                 | MalformedObjectNameException e) {
             LOG.error("MBean {} registration failed", mbeanName, e);
@@ -123,8 +123,8 @@ public abstract class AbstractMXBean {
     public boolean unregisterMBean() {
         boolean unregister = false;
         try {
-            ObjectName mbeanName = this.getMBeanObjectName();
-            unregisterMBean(mbeanName);
+            ObjectName mbeanobjectname = this.getMBeanObjectName();
+            unregisterMBean(mbeanobjectname);
             unregister = true;
         } catch (InstanceNotFoundException | MBeanRegistrationException
                 | MalformedObjectNameException e) {
@@ -133,9 +133,9 @@ public abstract class AbstractMXBean {
         return unregister;
     }
 
-    private void unregisterMBean(ObjectName mbeanName) throws MBeanRegistrationException,
+    private void unregisterMBean(ObjectName mbeanObjectName) throws MBeanRegistrationException,
             InstanceNotFoundException {
-        server.unregisterMBean(mbeanName);
+        server.unregisterMBean(mbeanObjectName);
     }
 
     /**
