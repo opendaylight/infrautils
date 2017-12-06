@@ -160,7 +160,7 @@ public class MetricProviderImpl implements MetricProvider {
             }
 
             @Override
-            @SuppressWarnings({ "checkstyle:IllegalCatch", "unchecked" })
+            @SuppressWarnings({ "checkstyle:IllegalCatch", "checkstyle:AvoidHidingCauseException", "unchecked" })
             @SuppressFBWarnings("BC_UNCONFIRMED_CAST_OF_RETURN_VALUE") // getCause() will be Exception not Throwable
             public <E extends Exception> void time(CheckedRunnable<E> event) throws E {
                 checkIfClosed();
