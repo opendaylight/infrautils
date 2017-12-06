@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a1969be_f33a1e35",
+        "filename": "docs/specs/status-and-diagnostics.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2017-12-06T16:33:36Z",
+      "side": 1,
+      "message": "it is DiagStatusService not diagstatus",
+      "revId": "d6e4b14dea608b1722e91e44d2438cc1df64c75f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
