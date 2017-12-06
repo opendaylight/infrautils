@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a1969be_f0b054f6",
+        "filename": "caches/cli/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-12-06T13:10:49Z",
+      "side": 1,
+      "message": "we don\u0027t need this? It was removed in https://git.opendaylight.org/gerrit/#/c/65317/ ...",
+      "revId": "576fc99737ce95515bc0128867c6c40f912b2e2c",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a1969be_5095e83e",
+        "filename": "caches/sample/impl/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-12-06T13:10:49Z",
+      "side": 1,
+      "message": "we don\u0027t need this? It was removed in https://git.opendaylight.org/gerrit/#/c/65317/ ...",
+      "revId": "576fc99737ce95515bc0128867c6c40f912b2e2c",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
