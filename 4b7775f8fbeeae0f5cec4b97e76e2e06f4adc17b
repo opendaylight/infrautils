@@ -1,0 +1,140 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a1969be_cd3781af",
+        "filename": "docs/specs/status-and-diagnostics.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2017-12-06T07:05:30Z",
+      "side": 1,
+      "message": "why ---?",
+      "revId": "4b7775f8fbeeae0f5cec4b97e76e2e06f4adc17b",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a1969be_ad3cc594",
+        "filename": "docs/specs/status-and-diagnostics.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2017-12-06T07:05:30Z",
+      "side": 1,
+      "message": "we dont store URL style representation. Can we remove this point altogether?",
+      "revId": "4b7775f8fbeeae0f5cec4b97e76e2e06f4adc17b",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a1969be_4d4b912b",
+        "filename": "docs/specs/status-and-diagnostics.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2017-12-06T07:05:30Z",
+      "side": 1,
+      "message": "ERROR can be updated as - if any exception is caught during the service bring-up or if the service goes into an ERROR state dynamically",
+      "revId": "4b7775f8fbeeae0f5cec4b97e76e2e06f4adc17b",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a1969be_2d48d52c",
+        "filename": "docs/specs/status-and-diagnostics.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2017-12-06T07:05:30Z",
+      "side": 1,
+      "message": "UNREGISTER - when a service does unregister from diagstatus on its own",
+      "revId": "4b7775f8fbeeae0f5cec4b97e76e2e06f4adc17b",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a1969be_8d5589c8",
+        "filename": "docs/specs/status-and-diagnostics.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2017-12-06T07:05:30Z",
+      "side": 1,
+      "message": "Applications can report their status using diagstatus APIs",
+      "revId": "4b7775f8fbeeae0f5cec4b97e76e2e06f4adc17b",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a1969be_ed5d1deb",
+        "filename": "docs/specs/status-and-diagnostics.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2017-12-06T07:05:30Z",
+      "side": 1,
+      "message": "Whenever applications/CLI try to fetch the service status, diagstatus module will query the\nstatus through the respective OsgiService implementations exposed by each service,and an aggregated result is providedas response.",
+      "revId": "4b7775f8fbeeae0f5cec4b97e76e2e06f4adc17b",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a1969be_ad6325b0",
+        "filename": "docs/specs/status-and-diagnostics.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2017-12-06T07:05:30Z",
+      "side": 1,
+      "message": "DiagStatusService - provides APIs for applications to register and unregister services and report service status.",
+      "revId": "4b7775f8fbeeae0f5cec4b97e76e2e06f4adc17b",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a1969be_0d5999fe",
+        "filename": "docs/specs/status-and-diagnostics.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2017-12-06T07:05:30Z",
+      "side": 1,
+      "message": "Put your name here",
+      "revId": "4b7775f8fbeeae0f5cec4b97e76e2e06f4adc17b",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
