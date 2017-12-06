@@ -44,5 +44,4 @@
       <artifactId>org.osgi.core</artifactId>
     </dependency>
   </dependencies>
-
 </project>
