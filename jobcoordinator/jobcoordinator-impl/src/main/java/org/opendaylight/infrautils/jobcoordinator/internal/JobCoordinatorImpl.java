@@ -136,7 +136,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
         counters.jobsIncomplete().incrementAndGet();
         counters.jobsCreated().incrementAndGet();
 
-        signalForNexJob();
+        signalForNextJob();
     }
 
     @Override
@@ -188,10 +188,10 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
         }
         counters.jobsCleared().incrementAndGet();
         counters.jobsIncomplete().decrementAndGet();
-        signalForNexJob();
+        signalForNextJob();
     }
 
-    private void signalForNexJob() {
+    private void signalForNextJob() {
         if (jobQueueHandlerThreadStarted.compareAndSet(false, true)) {
             jobQueueHandlerThread.start();
         }
