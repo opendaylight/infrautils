@@ -265,7 +265,13 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
          */
         @Override
         public void onFailure(Throwable throwable) {
-            LOG.warn("Job: {} failed", jobEntry, throwable);
+            if (jobEntry.getRetryCount() == 0) {
+                LOG.warn("Job: {} failed", jobEntry, throwable);
+            } else {
+                // If retryCount > 0, then the log should not be polluted with confusing WARN messages (because we're
+                // about to retry it again, shortly; if it ultimately still fails, there will be a WARN); so DEBUG.
+                LOG.debug("Job: {} failed", jobEntry, throwable);
+            }
             if (jobEntry.getMainWorker() == null) {
                 LOG.error("Job: {} failed with Double-Fault. Bailing Out.", jobEntry);
                 clearJob(jobEntry);
