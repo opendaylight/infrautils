@@ -96,8 +96,6 @@ public class SystemReadyImpl extends AbstractMXBean implements SystemReadyMonito
                 LOG.info("Now notifying all its registered SystemReadyListeners...");
             }
 
-            // TODO functionalityReadyNotifier.register(BundlesBootedReady.class);
-
             @Var SystemReadyListener listener;
             while ((listener = listeners.poll()) != null) {
                 listener.onSystemBootReady();
