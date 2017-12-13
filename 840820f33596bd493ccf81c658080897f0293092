@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b44e7dbd_46444386",
+        "filename": "caches/api/src/main/java/org/opendaylight/infrautils/caches/BaseCacheConfig.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-12-13T22:46:43Z",
+      "side": 1,
+      "message": "why restrict this at all? it reduces  the usability of the API and adds frustration (it did for me) b/c the error just says Invalid ID and you don\u0027t know why it\u0027s invalid (it\u0027s not explained in the API) - so one has to dig thru the code.",
+      "revId": "840820f33596bd493ccf81c658080897f0293092",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
