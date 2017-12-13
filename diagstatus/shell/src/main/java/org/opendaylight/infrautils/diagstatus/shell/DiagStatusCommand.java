@@ -9,9 +9,9 @@ package org.opendaylight.infrautils.diagstatus.shell;
 
 import java.util.List;
 
+import org.apache.felix.service.command.CommandSession;
 import org.apache.karaf.shell.commands.Command;
 import org.apache.karaf.shell.commands.Option;
-import org.apache.karaf.shell.console.OsgiCommandSupport;
 import org.opendaylight.infrautils.diagstatus.ClusterMemberInfoProvider;
 import org.opendaylight.infrautils.diagstatus.MBeanUtils;
 import org.slf4j.Logger;
@@ -23,7 +23,7 @@ import org.slf4j.LoggerFactory;
  * @author Faseela K
  */
 @Command(scope = "diagstatus", name = "showSvcStatus", description = "show the status of registered services")
-public class DiagStatusCommand extends OsgiCommandSupport {
+public class DiagStatusCommand implements org.apache.karaf.shell.commands.Action {
 
     private static final Logger LOG = LoggerFactory.getLogger(DiagStatusCommand.class);
 
@@ -32,7 +32,7 @@ public class DiagStatusCommand extends OsgiCommandSupport {
 
     @Override
     @SuppressWarnings("checkstyle:IllegalCatch")
-    protected Object doExecute() throws Exception {
+    public Object execute(CommandSession session) throws Exception {
         StringBuilder strBuilder = new StringBuilder();
         strBuilder.append("Timestamp: " + new java.util.Date().toString() + "\n");
 
