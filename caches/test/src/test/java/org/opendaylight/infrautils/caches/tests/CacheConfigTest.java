@@ -47,6 +47,15 @@ public class CacheConfigTest {
                 .build();
     }
 
+    @Test
+    public void testBuildConfigWithUpperCaseID() {
+        new CacheConfigBuilder<Integer, String>()
+                .cacheFunction(i -> Integer.toHexString(i))
+                .anchor(this)
+                .id("first.Cache")
+                .build();
+    }
+
     @Test(expected = IllegalArgumentException.class)
     public void testBuildConfigWithIDWithDashInsteadOfDot() {
         new CacheConfigBuilder<Integer, String>()

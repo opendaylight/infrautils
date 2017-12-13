@@ -19,7 +19,7 @@ import org.immutables.value.Value.Default;
  */
 public abstract class BaseCacheConfig {
 
-    private static final Pattern ID_REGEXP = Pattern.compile("[a-z0-9\\.]+");
+    private static final Pattern ID_REGEXP = Pattern.compile("[a-zA-Z0-9\\.]+");
 
     /**
      * Instance of the class "containing" this Cache.
