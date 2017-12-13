@@ -14,7 +14,6 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.Locale;
 import java.util.concurrent.atomic.AtomicBoolean;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -102,7 +101,7 @@ public abstract class AbstractCacheProviderTest {
         CacheManager firstCachesManager = cachesMonitor.getAllCacheManagers().iterator().next();
 
         BaseCacheConfig config = firstCachesManager.getConfig();
-        assertThat(config.id()).isEqualTo(getClass().getName().toLowerCase(Locale.ENGLISH));
+        assertThat(config.id()).isEqualTo(getClass().getName());
     }
 
     @Test
