@@ -29,7 +29,7 @@ public class CacheConfigTest {
                 .build();
 
         // Test expected defaults
-        assertThat(config.id()).isEqualTo(getClass().getName().toLowerCase());
+        assertThat(config.id()).isEqualTo(getClass().getName());
         assertThat(config.description()).isEqualTo("");
     }
 
@@ -44,6 +44,15 @@ public class CacheConfigTest {
                 .cacheFunction(i -> Integer.toHexString(i))
                 .anchor(this)
                 .id("first.cache")
+                .build();
+    }
+
+    @Test
+    public void testBuildConfigWithUpperCaseID() {
+        new CacheConfigBuilder<Integer, String>()
+                .cacheFunction(i -> Integer.toHexString(i))
+                .anchor(this)
+                .id("first.Cache")
                 .build();
     }
 

@@ -7,7 +7,6 @@
  */
 package org.opendaylight.infrautils.caches;
 
-import java.util.Locale;
 import java.util.regex.Pattern;
 import org.immutables.value.Value;
 import org.immutables.value.Value.Default;
@@ -19,7 +18,7 @@ import org.immutables.value.Value.Default;
  */
 public abstract class BaseCacheConfig {
 
-    private static final Pattern ID_REGEXP = Pattern.compile("[a-z0-9\\.]+");
+    private static final Pattern ID_REGEXP = Pattern.compile("[a-zA-Z0-9\\.]+");
 
     /**
      * Instance of the class "containing" this Cache.
@@ -37,7 +36,7 @@ public abstract class BaseCacheConfig {
      * Must be all lower case letters only, may use dot as separator, but no spaces or other characters.
      */
     public @Default String id() {
-        return anchor().getClass().getName().toLowerCase(Locale.ENGLISH);
+        return anchor().getClass().getName();
     }
 
     /**
@@ -55,7 +54,8 @@ public abstract class BaseCacheConfig {
     @Value.Check
     protected void check() {
         if (!ID_REGEXP.matcher(id()).matches()) {
-            throw new IllegalArgumentException("Invalid ID: " + id());
+            throw new IllegalArgumentException(
+                    "Invalid ID: \"" + id() + "\"" + " must match regular expression " + ID_REGEXP.pattern());
         }
     }
 
