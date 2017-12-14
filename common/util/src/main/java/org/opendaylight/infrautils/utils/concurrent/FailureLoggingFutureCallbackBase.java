@@ -19,7 +19,7 @@ import org.slf4j.Logger;
 // package-local not public (for the time being)
 abstract class FailureLoggingFutureCallbackBase<V> implements FutureCallback<V> {
 
-    protected final Logger logger;
+    private final Logger logger;
 
     FailureLoggingFutureCallbackBase(Logger logger) {
         this.logger = Preconditions.checkNotNull(logger, "logger is null");
@@ -31,6 +31,10 @@ abstract class FailureLoggingFutureCallbackBase<V> implements FutureCallback<V> 
     @Override
     public final void onSuccess(V result) {
         // do nothing
+    }
+
+    protected Logger getLogger() {
+        return logger;
     }
 
 }
