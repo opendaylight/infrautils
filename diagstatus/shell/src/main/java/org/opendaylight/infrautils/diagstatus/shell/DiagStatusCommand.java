@@ -9,9 +9,9 @@ package org.opendaylight.infrautils.diagstatus.shell;
 
 import java.util.List;
 
+import org.apache.felix.service.command.CommandSession;
 import org.apache.karaf.shell.commands.Command;
 import org.apache.karaf.shell.commands.Option;
-import org.apache.karaf.shell.console.OsgiCommandSupport;
 import org.opendaylight.infrautils.diagstatus.ClusterMemberInfoProvider;
 import org.opendaylight.infrautils.diagstatus.MBeanUtils;
 import org.slf4j.Logger;
@@ -23,7 +23,15 @@ import org.slf4j.LoggerFactory;
  * @author Faseela K
  */
 @Command(scope = "diagstatus", name = "showSvcStatus", description = "show the status of registered services")
-public class DiagStatusCommand extends OsgiCommandSupport {
+public class DiagStatusCommand implements org.apache.karaf.shell.commands.Action {
+
+    public static final String JMX_URL_PREFIX = "service:jmx:rmi:///jndi/rmi://";
+    public static final String JMX_URL_SUFFIX = "/server";
+    public static final String JMX_URL_SEPARATOR = ":";
+    public static final int RMI_REGISTRY_PORT = 6886;
+
+    private static final String JMX_OBJECT_NAME = "akka";
+    private static final String MBEAN_TYPE = "Cluster";
 
     private static final Logger LOG = LoggerFactory.getLogger(DiagStatusCommand.class);
 
@@ -32,7 +40,7 @@ public class DiagStatusCommand extends OsgiCommandSupport {
 
     @Override
     @SuppressWarnings("checkstyle:IllegalCatch")
-    protected Object doExecute() throws Exception {
+    public Object execute(CommandSession session) throws Exception {
         StringBuilder strBuilder = new StringBuilder();
         strBuilder.append("Timestamp: " + new java.util.Date().toString() + "\n");
 
