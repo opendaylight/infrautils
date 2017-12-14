@@ -9,6 +9,7 @@ package org.opendaylight.infrautils.utils.concurrent;
 
 import com.google.common.base.Preconditions;
 import com.google.common.util.concurrent.FutureCallback;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.slf4j.Logger;
 
 /**
@@ -17,6 +18,7 @@ import org.slf4j.Logger;
  * @author Michael Vorburger.ch
  */
 // package-local not public (for the time being)
+@SuppressFBWarnings("SLF4J_LOGGER_SHOULD_BE_PRIVATE")
 abstract class FailureLoggingFutureCallbackBase<V> implements FutureCallback<V> {
 
     protected final Logger logger;
