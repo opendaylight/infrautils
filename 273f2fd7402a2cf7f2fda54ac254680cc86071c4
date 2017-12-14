@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4fd6ee1d_93794f34",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/concurrent/FailureFormat1ArgumentLoggingFutureCallback.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-12-14T12:16:06Z",
+      "side": 1,
+      "message": "Why not do the concat in the constructor so this becomes\n\n    logger.error(format, arg, throwable);\n\nwhich I assume should avoid the violation?",
+      "revId": "273f2fd7402a2cf7f2fda54ac254680cc86071c4",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee956c3b_c1e44591",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/concurrent/FailureLoggingFutureCallbackBase.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-12-14T12:16:06Z",
+      "side": 1,
+      "message": "Why not make it private and add accessor?",
+      "revId": "273f2fd7402a2cf7f2fda54ac254680cc86071c4",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
