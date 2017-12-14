@@ -5,7 +5,6 @@
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html
  */
-
 package org.opendaylight.infrautils.utils.management;
 
 import java.lang.management.ManagementFactory;
@@ -31,7 +30,6 @@ import org.slf4j.LoggerFactory;
  * @author Thomas Pantelis
  * @author Faseela K
  */
-
 public abstract class AbstractMXBean {
 
     private static final Logger LOG = LoggerFactory.getLogger(AbstractMXBean.class);
@@ -94,7 +92,7 @@ public abstract class AbstractMXBean {
                 try {
                     unregisterMBean(mBeanObjectName);
                 } catch (MBeanRegistrationException | InstanceNotFoundException e) {
-                    LOG.warn("unregister mbean {} resulted in exception {} ", mBeanObjectName, e);
+                    LOG.warn("unregister mbean {} caused exception", mBeanObjectName, e);
                 }
             }
             server.registerMBean(this, mBeanObjectName);
