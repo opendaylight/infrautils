@@ -22,13 +22,13 @@ final class FailureFormat1ArgumentLoggingFutureCallback<V> extends FailureLoggin
 
     FailureFormat1ArgumentLoggingFutureCallback(Logger logger, String format, Object arg) {
         super(logger);
-        this.format = Preconditions.checkNotNull(format, "format is null");
+        this.format = "Future (eventually) failed: " + Preconditions.checkNotNull(format, "format is null");
         this.arg = arg; // do *NOT* null check this one (that's valid)
     }
 
     @Override
     public void onFailure(Throwable throwable) {
-        logger.error("Future (eventually) failed: " + format, arg, throwable);
+        getLogger().error(format, arg, throwable);
     }
 
 }

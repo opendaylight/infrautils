@@ -26,7 +26,7 @@ final class FailureMessageLoggingFutureCallback<V> extends FailureLoggingFutureC
 
     @Override
     public void onFailure(Throwable throwable) {
-        logger.error("Future (eventually) failed: {}", message, throwable);
+        getLogger().error("Future (eventually) failed: {}", message, throwable);
     }
 
 }
