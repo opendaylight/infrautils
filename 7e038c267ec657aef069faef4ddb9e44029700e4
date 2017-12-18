@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8decf813_445e71b5",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusCommand.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-12-18T14:47:09Z",
+      "side": 1,
+      "message": "sorry but what does all of this (6 lines) have to do with this change? ;) Perhaps you would like to remove this, then we can merge this!",
+      "revId": "7e038c267ec657aef069faef4ddb9e44029700e4",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
