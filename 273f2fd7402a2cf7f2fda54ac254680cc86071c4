@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "38b4b044_8cc5db25",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/concurrent/FailureFormat1ArgumentLoggingFutureCallback.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-12-18T17:45:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4fd6ee1d_93794f34",
+      "revId": "273f2fd7402a2cf7f2fda54ac254680cc86071c4",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ee956c3b_c1e44591",
         "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/concurrent/FailureLoggingFutureCallbackBase.java",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2017-12-14T12:16:06Z",
       "side": 1,
       "message": "Why not make it private and add accessor?",
+      "revId": "273f2fd7402a2cf7f2fda54ac254680cc86071c4",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0d39d3a5_7f2b80d0",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/concurrent/FailureLoggingFutureCallbackBase.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-12-18T17:45:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ee956c3b_c1e44591",
       "revId": "273f2fd7402a2cf7f2fda54ac254680cc86071c4",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
