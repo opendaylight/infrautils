@@ -71,13 +71,13 @@ public abstract class AbstractIntegrationTest {
             // Good!
         }
 
-        final File targetPaxExam = new File("target/paxexam/");
+        File targetPaxExam = new File("target/paxexam/");
         FileUtils.delete(targetPaxExam);
 
         // This karafVersion must match the exact minor version of Karaf due to
         // https://bugs.opendaylight.org/show_bug.cgi?id=8578
         // (see also https://ops4j1.jira.com/projects/PAXEXAM/issues/PAXEXAM-598)
-        final String karafVersion = MavenUtils.getArtifactVersion("org.apache.karaf.features", "standard");
+        String karafVersion = MavenUtils.getArtifactVersion("org.apache.karaf.features", "standard");
 
         MavenUrlReference karafURL = getKarafURL();
         // TODO https://ops4j1.jira.com/browse/PAXEXAM-813
@@ -168,9 +168,9 @@ public abstract class AbstractIntegrationTest {
         return probe;
     }
 
-    private Option editKarafConfigurationFile(String source, String configurationFilePath, String key, String value) {
-        LOG.warn("{}: In {} change {} = {}", source, configurationFilePath, key, value);
-        return KarafDistributionOption.editConfigurationFilePut(configurationFilePath, key, value);
+    private static Option editKarafConfigurationFile(String source, String configFilePath, String key, String value) {
+        LOG.warn("{}: In {} change {} = {}", source, configFilePath, key, value);
+        return KarafDistributionOption.editConfigurationFilePut(configFilePath, key, value);
     }
 
     // TODO public @Rule LogRule logRule = new LogRule();
