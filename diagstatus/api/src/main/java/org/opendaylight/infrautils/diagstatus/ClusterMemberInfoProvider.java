@@ -32,13 +32,13 @@ public final class ClusterMemberInfoProvider {
 
     public static Optional<String> getSelfAddress()  {
         Object clusterStatusMBeanValue = MBeanUtils.readMBeanAttribute("akka:type=Cluster", "ClusterStatus");
-        String selfAddress = null;
         if (clusterStatusMBeanValue != null) {
             String selfAddressMbean = StringUtils.substringBetween(clusterStatusMBeanValue.toString(),
                     "\"self-address\": ", ",");
-            selfAddress = StringUtils.substringBetween(selfAddressMbean, "@", ":");
+            return Optional.of(StringUtils.substringBetween(selfAddressMbean, "@", ":"));
+        } else {
+            return Optional.empty();
         }
-        return Optional.ofNullable(selfAddress);
     }
 
     public static List<String> getClusterMembers()  {

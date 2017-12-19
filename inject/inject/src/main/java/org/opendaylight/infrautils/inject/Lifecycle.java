@@ -18,9 +18,19 @@ package org.opendaylight.infrautils.inject;
  */
 public interface Lifecycle {
 
-    void init() throws ModuleSetupRuntimeException;
+    /**
+     * Initialize the object.
+     *
+     * @throws ModuleSetupRuntimeException if initialization failed
+     */
+    void init();
 
-    void destroy() throws ModuleSetupRuntimeException;
+    /**
+     * Destroy the object.
+     *
+     * @throws ModuleSetupRuntimeException if destruction failed
+     */
+    void destroy();
 
     boolean isRunning();
 

@@ -11,6 +11,7 @@ import static org.opendaylight.infrautils.ready.SystemState.ACTIVE;
 import static org.opendaylight.infrautils.ready.SystemState.BOOTING;
 import static org.opendaylight.infrautils.ready.SystemState.FAILURE;
 
+import com.google.errorprone.annotations.Var;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ThreadFactory;
@@ -97,7 +98,7 @@ public class SystemReadyImpl extends AbstractMXBean implements SystemReadyMonito
 
             // TODO functionalityReadyNotifier.register(BundlesBootedReady.class);
 
-            SystemReadyListener listener;
+            @Var SystemReadyListener listener;
             while ((listener = listeners.poll()) != null) {
                 listener.onSystemBootReady();
             }

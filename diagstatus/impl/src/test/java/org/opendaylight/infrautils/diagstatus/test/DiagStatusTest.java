@@ -38,15 +38,15 @@ public class DiagStatusTest {
         String testService1 = "testService";
         diagStatusService.register(testService1);
         // Verify if "testService" got registered with STARTING state.
-        ServiceDescriptor serviceDescriptor = diagStatusService.getServiceDescriptor(testService1);
-        Assert.assertEquals(serviceDescriptor.getServiceState(), ServiceState.STARTING);
+        ServiceDescriptor serviceDescriptor1 = diagStatusService.getServiceDescriptor(testService1);
+        Assert.assertEquals(serviceDescriptor1.getServiceState(), ServiceState.STARTING);
 
         // Verify if "testService" status is updated as OPERATIONAL.
         ServiceDescriptor reportStatus = new ServiceDescriptor(testService1, ServiceState.OPERATIONAL,
                 "service is UP");
         diagStatusService.report(reportStatus);
-        serviceDescriptor = diagStatusService.getServiceDescriptor(testService1);
-        Assert.assertEquals(serviceDescriptor.getServiceState(), ServiceState.OPERATIONAL);
+        ServiceDescriptor serviceDescriptor2 = diagStatusService.getServiceDescriptor(testService1);
+        Assert.assertEquals(serviceDescriptor2.getServiceState(), ServiceState.OPERATIONAL);
 
         // TODO add JXM based Junits to see if the service state is getting retrieved properly.
     }

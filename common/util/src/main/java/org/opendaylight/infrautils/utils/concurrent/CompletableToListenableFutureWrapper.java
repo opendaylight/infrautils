@@ -16,6 +16,7 @@ class CompletableToListenableFutureWrapper<V> extends AbstractFuture<V> implemen
 
     // This implementation is "strongly inspired" ;) by spotify/futures-extra's class of the same name
 
+    @SuppressWarnings("FutureReturnValueIgnored") // We have no use for the CompletableFuture returned by whenComplete
     CompletableToListenableFutureWrapper(CompletableFuture<V> completableFuture) {
         completableFuture.whenComplete(this);
     }

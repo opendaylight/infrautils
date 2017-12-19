@@ -77,7 +77,7 @@ public abstract class AbstractCacheProviderTest {
 
     @Test
     public void testPut() throws Exception {
-        final AtomicBoolean cacheFunctionUsed = new AtomicBoolean(false);
+        AtomicBoolean cacheFunctionUsed = new AtomicBoolean(false);
         Cache<Integer, String> cache = cacheProvider.newCache(
             new CacheConfigBuilder<Integer, String>()
                 .cacheFunction(i -> {

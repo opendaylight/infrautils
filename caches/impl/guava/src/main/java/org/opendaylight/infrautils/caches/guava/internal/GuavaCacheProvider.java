@@ -73,7 +73,7 @@ public class GuavaCacheProvider extends AbstractProvider {
                 })));
     }
 
-    private <K, V> CacheBuilder<K, V> newCacheBuilder(BaseCacheConfig cacheConfig, CachePolicy initialPolicy) {
+    private static <K, V> CacheBuilder<K, V> newCacheBuilder(BaseCacheConfig cacheConfig, CachePolicy initialPolicy) {
         Objects.requireNonNull(cacheConfig, "cacheConfig");
         @SuppressWarnings("unchecked")
         // TODO support from(String) with CacheBuilderSpec for configuration from CachePolicy's extensions

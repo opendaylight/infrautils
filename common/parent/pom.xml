@@ -41,7 +41,7 @@
       <groupId>com.google.errorprone</groupId>
       <artifactId>error_prone_annotations</artifactId>
       <!-- Keep this version in line with the one of error_prone_core below -->
-      <version>2.1.2</version>
+      <version>2.1.3</version>
     </dependency>
   </dependencies>
 
@@ -77,22 +77,25 @@
           <compilerArgs combine.children="append">
             <!-- TODO evaluate further which other non-default error prone bug patterns could also be enabled...
                  http://errorprone.info/bugpatterns -->
+            <arg>-XepExcludedPaths:.*/target/.*</arg>
             <arg>-XepDisableWarningsInGeneratedCode</arg>
             <!-- TODO Do we need and want <arg>-Xep:OperatorPrecedence:OFF</arg> ? -->
             <!-- There are lots of disabled goodies in error-prone which only emit warnings (which nobody will ever look at!),
                  so let us enable them all as least as warnings, and then selectively turn some of them into ERROR, and suppress
                  those we really don't want (or can't enforce for whatever reason) with OFF. -->
             <arg>-XepAllDisabledChecksAsWarnings</arg>
+            <!-- StaticOrDefaultInterfaceMethod is an Android specific warning which we don't care about -->
+            <arg>-Xep:StaticOrDefaultInterfaceMethod:OFF</arg>
             <!-- FieldMissingNullable is badly broken :( https://github.com/google/error-prone/issues/708 -->
             <arg>-Xep:FieldMissingNullable:OFF</arg>
             <!-- ReturnMissingNullable is badly broken :( https://github.com/google/error-prone/issues/723 -->
             <arg>-Xep:ReturnMissingNullable:OFF</arg>
             <arg>-Xep:InconsistentOverloads:ERROR</arg>
             <arg>-Xep:ConstructorLeaksThis:OFF</arg><!-- TODO <arg>-Xep:ConstructorLeaksThis:ERROR</arg> after https://github.com/google/error-prone/pull/789 for https://github.com/google/error-prone/issues/655, and maybe also https://github.com/google/error-prone/issues/809? -->
-            <!-- TODO <arg>-Xep:MethodCanBeStatic:ERROR</arg> after https://github.com/immutables/immutables/issues/717 or https://github.com/google/error-prone/issues/808 -->
-            <!-- TODO <arg>-Xep:ThrowsUncheckedException:ERROR</arg> after https://github.com/immutables/immutables/issues/720 -->
-            <!-- TODO <arg>-Xep:TestExceptionChecker:ERROR</arg> once we've migrated from JUnit 4 to Junit 5 so we can use assertThrows - or just provide a similar testutils ourselves NOW? -->
-            <!-- TODO <arg>-Xep:Var:ERROR</arg> after https://github.com/google/error-prone/issues/808 or https://github.com/immutables/immutables/issues/716  -->
+            <arg>-Xep:MethodCanBeStatic:ERROR</arg>
+            <arg>-Xep:ThrowsUncheckedException:ERROR</arg>
+            <!-- TODO <arg>-Xep:TestExceptionChecker:ERROR</arg> once all @Test with expected use org.opendaylight.infrautils.testutils.Asserts.assertThrows() instead -->
+            <arg>-Xep:Var:ERROR</arg>
             <!-- Following are things which seem useful to enforce, found in other projects;
                  we could relax these again if during enforcement all over infrautils we find them to be too strict -->
             <arg>-Xep:ConstantField:ERROR</arg>
@@ -106,6 +109,8 @@
             <arg>-Xep:UnnecessaryStaticImport:ERROR</arg>
             <arg>-Xep:UseBinds:ERROR</arg>
             <arg>-Xep:WildcardImport:ERROR</arg>
+            <!-- FutureReturnValueIgnored is better (stronger) than error-prone's own (and FindBug's) @CheckReturnValue annotation, as it checks that ANY return Future are checked, not just those from methods annotated @CheckReturnValue -->
+            <arg>-Xep:FutureReturnValueIgnored:ERROR</arg>
           </compilerArgs>
         </configuration>
         <dependencies>
@@ -119,7 +124,7 @@
           <groupId>com.google.errorprone</groupId>
           <artifactId>error_prone_core</artifactId>
           <!-- Keep this version in line with the one of error_prone_annotations above -->
-          <version>2.1.2</version>
+          <version>2.1.3</version>
         </dependency>
       </dependencies>
       </plugin>

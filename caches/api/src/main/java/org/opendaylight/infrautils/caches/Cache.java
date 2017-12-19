@@ -54,7 +54,7 @@ public interface Cache<K, V> extends BaseCache<K, V> {
      * @throws BadCacheFunctionRuntimeException if the cache's function returned null value
      * @throws NullPointerException if the cache's users passed a null key
      */
-    @Nonnull V get(@Nonnull K key) throws BadCacheFunctionRuntimeException, NullPointerException;
+    @Nonnull V get(@Nonnull K key);
 
     /**
      * Get several cache entries, in one go.
@@ -64,14 +64,13 @@ public interface Cache<K, V> extends BaseCache<K, V> {
      * @throws BadCacheFunctionRuntimeException if the cache's function returned null value
      * @throws NullPointerException if the cache's users passed a null key
      */
-    @Nonnull Map<K, V> get(@Nonnull Iterable<? extends K> keys)
-            throws BadCacheFunctionRuntimeException, NullPointerException;
+    @Nonnull Map<K, V> get(@Nonnull Iterable<? extends K> keys);
 
     /**
      * Convenience short-cut to {@link #get(Iterable)} with vararg syntax.
      */
     @SuppressWarnings("unchecked")
-    default @Nonnull Map<K, V> get(@Nonnull K... keys) throws BadCacheFunctionRuntimeException, NullPointerException {
+    default @Nonnull Map<K, V> get(@Nonnull K... keys) {
         return get(Arrays.asList(keys));
     }
 
