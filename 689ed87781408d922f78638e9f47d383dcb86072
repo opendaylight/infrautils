@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4fc0eaa0_e10955af",
+        "filename": "common/parent/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-12-19T06:08:28Z",
+      "side": 1,
+      "message": "Is the plan to eventually put all these configurations in odlparent?",
+      "revId": "689ed87781408d922f78638e9f47d383dcb86072",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}

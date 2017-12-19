@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "90fc8132_2eb6a71a",
+        "filename": "caches/api/src/main/java/org/opendaylight/infrautils/caches/Cache.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-12-19T06:08:28Z",
+      "side": 0,
+      "message": "So EP complains about declaring unchecked exceptions. Why...  I actually prefer this. if you do Surround With -\u003e try/catch block in eclipse, it generates catches for all the declared exceptions which is convenient. Otherwise it just generates catch (Exception) which CS will complain about.",
+      "revId": "3d2a7c81b7d9b6fb4f2482890e41e05112876eb7",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
