@@ -235,9 +235,18 @@ public class JobCoordinatorTest {
     }
 
     @Test
-    public void testJobFailedFuture() {
+    public void testJobFailedFutureWithDefaultRetries() throws InterruptedException {
         TestCallable testCallable = new TestCallable(true, 1);
         jobCoordinator.enqueueJob(getClass().getName(), testCallable);
+        Awaitility.await().until(() -> jobCoordinator.getIncompleteTaskCount(), is(0L));
+        assertFailed(1);
+        assertThat(testCallable.getTries()).isEqualTo(3);
+    }
+
+    @Test
+    public void testJobFailedFutureWith0Retries() {
+        TestCallable testCallable = new TestCallable(true, 1);
+        jobCoordinator.enqueueJob(getClass().getName(), testCallable, 0);
         Awaitility.await().until(() -> jobCoordinator.getIncompleteTaskCount(), is(0L));
         assertFailed(1);
         assertThat(testCallable.getTries()).isEqualTo(1);

@@ -111,13 +111,13 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
 
     @Override
     public void enqueueJob(String key, Callable<List<ListenableFuture<Void>>> mainWorker) {
-        enqueueJob(key, mainWorker, null, 0);
+        enqueueJob(key, mainWorker, null, JobCoordinator.DEFAULT_MAX_RETRIES);
     }
 
     @Override
     public void enqueueJob(String key, Callable<List<ListenableFuture<Void>>> mainWorker,
             RollbackCallable rollbackWorker) {
-        enqueueJob(key, mainWorker, rollbackWorker, 0);
+        enqueueJob(key, mainWorker, rollbackWorker, JobCoordinator.DEFAULT_MAX_RETRIES);
     }
 
     @Override
