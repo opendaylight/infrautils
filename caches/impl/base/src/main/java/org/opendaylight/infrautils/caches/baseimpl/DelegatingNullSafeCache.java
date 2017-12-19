@@ -19,6 +19,7 @@ import org.opendaylight.infrautils.caches.CacheManager;
  *
  * @author Michael Vorburger.ch
  */
+@SuppressWarnings("CPD-START") // TODO DelegatingNullSafeBaseCache to avoid copy/paste with DelegatingNullSafeCache
 public final class DelegatingNullSafeCache<K, V> implements Cache<K, V> {
 
     private final Cache<K, V> delegate;
