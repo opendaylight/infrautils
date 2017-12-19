@@ -7,6 +7,8 @@
  */
 package org.opendaylight.infrautils.testutils;
 
+import com.google.errorprone.annotations.Var;
+
 /**
  * Assert extension for JUnit.
  *
@@ -47,9 +49,9 @@ public final class Asserts {
                 @SuppressWarnings("unchecked") T retVal = (T) actualThrown;
                 return retVal;
             } else {
-                String expected = formatClass(expectedThrowable);
+                @Var String expected = formatClass(expectedThrowable);
                 Class<? extends Throwable> actualThrowable = actualThrown.getClass();
-                String actual = formatClass(actualThrowable);
+                @Var String actual = formatClass(actualThrowable);
                 if (expected.equals(actual)) {
                     // There must be multiple class loaders. Add the identity hash code so the message
                     // doesn't say "expected: java.lang.String<my.package.MyException> ..."
@@ -81,7 +83,7 @@ public final class Asserts {
     }
 
     private static String format(String message, Object expected, Object actual) {
-        String formatted = "";
+        @Var String formatted = "";
         if (message != null && !"".equals(message)) {
             formatted = message + " ";
         }

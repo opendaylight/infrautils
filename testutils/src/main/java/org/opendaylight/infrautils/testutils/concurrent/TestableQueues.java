@@ -33,7 +33,7 @@ public final class TestableQueues {
      */
     public static void awaitEmpty(Queue<?> queue, long timeout, TimeUnit timeoutUnit) {
         Preconditions.checkArgument(timeout > 10, "timeout must be larger than 10ms");
-        final long pollIntervalMS = timeout <= 100 ? 10 : 50;
+        long pollIntervalMS = timeout <= 100 ? 10 : 50;
         try {
             Awaitility.await("TestableQueues.awaitEmpty()")
                 .pollDelay(0, MILLISECONDS)

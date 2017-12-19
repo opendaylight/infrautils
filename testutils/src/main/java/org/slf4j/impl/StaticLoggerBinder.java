@@ -7,6 +7,7 @@
  */
 package org.slf4j.impl;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.opendaylight.infrautils.testutils.internal.LogCaptureRuleLoggerFactory;
 import org.slf4j.ILoggerFactory;
 import org.slf4j.spi.LoggerFactoryBinder;
@@ -28,6 +29,8 @@ public final class StaticLoggerBinder implements LoggerFactoryBinder {
     }
 
     // to avoid constant folding by the compiler, this field must *not* be final
+    @SuppressFBWarnings({"MS_SHOULD_BE_FINAL", "URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD"})
+    @SuppressWarnings("ConstantField") // http://errorprone.info/bugpattern/ConstantField
     public static String REQUESTED_API_VERSION = "1.6.99"; // !final
 
     private static final String LOGGER_FACTORY_CLASS_NAME = LogCaptureRuleLoggerFactory.class.getName();

@@ -7,6 +7,8 @@
  */
 package org.opendaylight.infrautils.testutils;
 
+import com.google.errorprone.annotations.Var;
+import javax.annotation.Nullable;
 import org.junit.ComparisonFailure;
 import org.junit.rules.ExpectedException;
 import org.junit.rules.TestRule;
@@ -43,14 +45,14 @@ import org.slf4j.LoggerFactory;
  */
 public class LogCaptureRule implements TestRule {
 
-    private String expectedErrorLogMessage;
+    private @Nullable String expectedErrorLogMessage;
     private int expectedErrorHowManyMessagesBack;
 
     public LogCaptureRule() {
         classpathTest();
     }
 
-    private void classpathTest() {
+    private static void classpathTest() {
         Logger log = LoggerFactory.getLogger(LogCaptureRule.class);
         if (!(log instanceof RememberingLogger)) {
             throw new IllegalStateException("infrautils-testutils must be on classpath BEFORE slf4j-simple!");
@@ -65,13 +67,13 @@ public class LogCaptureRule implements TestRule {
             @SuppressWarnings("checkstyle:IllegalCatch")
             public void evaluate() throws Throwable {
                 RememberingLogger.resetLastError();
-                Throwable testFailingThrowable = null;
+                @Var Throwable testFailingThrowable = null;
                 try {
                     statement.evaluate();
                 } catch (Throwable t) {
                     testFailingThrowable = t;
                 }
-                final Throwable finalTestFailingThrowable = testFailingThrowable;
+                Throwable finalTestFailingThrowable = testFailingThrowable;
                 RememberingLogger.getErrorMessage(expectedErrorHowManyMessagesBack).ifPresent(lastErrorLogMessage -> {
                     if (expectedErrorLogMessage == null) {
                         throw new LogCaptureRuleException(

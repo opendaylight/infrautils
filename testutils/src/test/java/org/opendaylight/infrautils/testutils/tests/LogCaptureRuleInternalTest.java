@@ -88,8 +88,8 @@ public class LogCaptureRuleInternalTest {
         }
     }
 
-    @SuppressWarnings("checkstyle:RegexpSingleLineJava")
-    private String getStackTrace(Throwable throwable) {
+    @SuppressWarnings("checkstyle:RegexpSingleLineJava") // because printStackTrace is used to PrintWriter, not STDOUT
+    private static String getStackTrace(Throwable throwable) {
         StringWriter sw = new StringWriter();
         PrintWriter pw = new PrintWriter(sw);
         throwable.printStackTrace(pw);
