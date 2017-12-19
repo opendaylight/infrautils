@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "89df7d66_b15e96dd",
+        "filename": "testutils/src/test/java/org/opendaylight/infrautils/testutils/concurrent/AwaitableExecutorServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-12-19T04:41:42Z",
+      "side": 1,
+      "message": "Calls to submit that ignore the returned Future should be changed to call execute.",
+      "revId": "781170ff1fae5e3e387b0165baa1717f62ea19a9",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
