@@ -117,6 +117,11 @@
             <arg>-Xep:ConstructorInvokesOverridable:ERROR</arg>
             <arg>-Xep:ThreeLetterTimeZoneID:ERROR</arg>
             <arg>-Xep:UnsafeFinalization:ERROR</arg>
+            <arg>-Xep:MutableMethodReturnType:ERROR</arg>
+            <arg>-Xep:SynchronizeOnNonFinalField:ERROR</arg>
+            <arg>-Xep:WaitNotInLoop:ERROR</arg>
+            <arg>-Xep:SwitchDefault:ERROR</arg>
+            <arg>-Xep:ReachabilityFenceUsage:ERROR</arg>
           </compilerArgs>
         </configuration>
         <dependencies>

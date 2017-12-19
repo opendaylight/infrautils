@@ -7,11 +7,10 @@
  */
 package org.opendaylight.infrautils.caches;
 
-import java.util.Collections;
-import java.util.Map;
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.ImmutableMap.Builder;
 import java.util.function.Function;
 import javax.annotation.Nonnull;
-import org.opendaylight.infrautils.caches.internal.CacheImplUtils;
 
 /**
  * {@link Cache}'s Function.
@@ -41,12 +40,12 @@ public interface CacheFunction<K, V> {
      * @param keys list of keys of cache entries
      * @return Map of cache keys and values (neither ever null, but may be an Optional)
      */
-    default Map<K, V> get(Iterable<? extends K> keys) {
-        Map<K, V> map = CacheImplUtils.newLinkedHashMapWithExpectedSize(keys);
+    default ImmutableMap<K, V> get(Iterable<? extends K> keys) {
+        Builder<K, V> mapBuilder = ImmutableMap.builder();
         for (K key : keys) {
-            map.put(key, get(key));
+            mapBuilder.put(key, get(key));
         }
-        return Collections.unmodifiableMap(map);
+        return mapBuilder.build();
     }
 
     /**

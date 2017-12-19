@@ -9,8 +9,8 @@ package org.opendaylight.infrautils.caches.guava.internal;
 
 import com.google.common.cache.CacheLoader.InvalidCacheLoadException;
 import com.google.common.cache.LoadingCache;
+import com.google.common.collect.ImmutableMap;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import java.util.function.Function;
 import org.opendaylight.infrautils.caches.BadCacheFunctionRuntimeException;
@@ -51,7 +51,7 @@ final class CheckedCacheGuavaAdapter<K, V, E extends Exception>
     // Suppress CS because propagating getCause() is what we want
     @SuppressWarnings({"unchecked", "checkstyle:AvoidHidingCauseException"})
     @SuppressFBWarnings("BC_UNCONFIRMED_CAST_OF_RETURN_VALUE")
-    public Map<K, V> get(Iterable<? extends K> keys) throws E {
+    public ImmutableMap<K, V> get(Iterable<? extends K> keys) throws E {
         try {
             return guavaCache().getAll(keys);
         } catch (ExecutionException e) {

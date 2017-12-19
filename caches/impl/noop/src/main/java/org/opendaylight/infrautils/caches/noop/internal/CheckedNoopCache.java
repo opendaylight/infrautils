@@ -7,7 +7,7 @@
  */
 package org.opendaylight.infrautils.caches.noop.internal;
 
-import java.util.Map;
+import com.google.common.collect.ImmutableMap;
 import java.util.Objects;
 import org.opendaylight.infrautils.caches.CacheManager;
 import org.opendaylight.infrautils.caches.CheckedCache;
@@ -37,7 +37,7 @@ final class CheckedNoopCache<K, V, E extends Exception> implements CheckedCache<
     }
 
     @Override
-    public Map<K, V> get(Iterable<? extends K> keys) throws E {
+    public ImmutableMap<K, V> get(Iterable<? extends K> keys) throws E {
         return function.get(keys);
     }
 

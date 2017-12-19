@@ -7,8 +7,8 @@
  */
 package org.opendaylight.infrautils.caches.baseimpl;
 
+import com.google.common.collect.ImmutableMap;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-import java.util.Map;
 import java.util.Objects;
 import org.opendaylight.infrautils.caches.BadCacheFunctionRuntimeException;
 import org.opendaylight.infrautils.caches.Cache;
@@ -40,12 +40,12 @@ public final class DelegatingNullSafeCache<K, V> implements Cache<K, V> {
     }
 
     @Override
-    public Map<K, V> get(Iterable<? extends K> keys) {
+    public ImmutableMap<K, V> get(Iterable<? extends K> keys) {
         Objects.requireNonNull(keys, "null keys (not supported)");
         for (K key : keys) {
             Objects.requireNonNull(key, "null key in keys (not supported)");
         }
-        Map<K, V> map = delegate.get(keys);
+        ImmutableMap<K, V> map = delegate.get(keys);
         if (map == null) {
             throw new BadCacheFunctionRuntimeException("Cache's function returned null value instead of Map");
         }

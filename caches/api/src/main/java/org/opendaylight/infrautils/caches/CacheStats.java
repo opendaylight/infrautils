@@ -7,7 +7,7 @@
  */
 package org.opendaylight.infrautils.caches;
 
-import java.util.Map;
+import com.google.common.collect.ImmutableMap;
 
 /**
  * Statistics about a Cache.
@@ -41,6 +41,6 @@ public interface CacheStats {
      * Extensions provide implementation specific cache stats.
      * This is good enough for e.g. a CLI to dump and display to end-users.
      */
-    Map<String,Number> extensions();
+    ImmutableMap<String,Number> extensions();
 
 }

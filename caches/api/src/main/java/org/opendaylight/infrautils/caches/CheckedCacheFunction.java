@@ -7,10 +7,9 @@
  */
 package org.opendaylight.infrautils.caches;
 
-import java.util.Collections;
-import java.util.Map;
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.ImmutableMap.Builder;
 import java.util.function.Function;
-import org.opendaylight.infrautils.caches.internal.CacheImplUtils;
 
 /**
  * {@link CheckedCache}'s Function, can throw checked Exception.
@@ -33,12 +32,12 @@ public interface CheckedCacheFunction<K, V, E extends Exception> {
     /**
      * See {@link CacheFunction#get(Iterable)}.
      */
-    default Map<K, V> get(Iterable<? extends K> keys) throws E {
-        Map<K, V> map = CacheImplUtils.newLinkedHashMapWithExpectedSize(keys);
+    default ImmutableMap<K, V> get(Iterable<? extends K> keys) throws E {
+        Builder<K, V> mapBuilder = ImmutableMap.builder();
         for (K key : keys) {
-            map.put(key, get(key));
+            mapBuilder.put(key, get(key));
         }
-        return Collections.unmodifiableMap(map);
+        return mapBuilder.build();
     }
 
     /**

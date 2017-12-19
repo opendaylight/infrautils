@@ -19,6 +19,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.atomic.AtomicLong;
+import javax.annotation.concurrent.GuardedBy;
 import org.awaitility.Awaitility;
 import org.awaitility.Duration;
 import org.eclipse.jdt.annotation.Nullable;
@@ -48,23 +49,26 @@ public class JobCoordinatorTest {
 
     private static class WaitingCallable implements Callable<List<ListenableFuture<Void>>> {
 
+        @GuardedBy("this")
+        private boolean isNotified = false;
         public volatile boolean isWaiting = false;
-        Object lock = new Object();
 
         @Override
         public @Nullable List<ListenableFuture<Void>> call() throws Exception {
-            synchronized (lock) {
+            synchronized (this) {
                 isWaiting = true;
-                lock.wait();
+                while (!isNotified) {
+                    wait();
+                }
             }
-
             return null;
         }
 
         public void stopWaiting() {
-            synchronized (lock) {
+            synchronized (this) {
                 isWaiting = false;
-                lock.notify();
+                isNotified = true;
+                notify();
             }
         }
     }
