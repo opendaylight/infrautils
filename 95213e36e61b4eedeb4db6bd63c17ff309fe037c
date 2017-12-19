@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8f6eda2e_8ca55ba8",
+        "filename": "testutils/src/test/java/org/opendaylight/infrautils/testutils/concurrent/AwaitableExecutorServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-12-19T19:59:45Z",
+      "side": 1,
+      "message": "It\u0027s best to supply a timeout (I usually use 5 sec), otherwise if the future is never completed (bug in code) then the test will wait for ever. Been burned by that in the past...",
+      "revId": "95213e36e61b4eedeb4db6bd63c17ff309fe037c",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5b05aa59_fcca6481",
+        "filename": "testutils/src/test/java/org/opendaylight/infrautils/testutils/concurrent/AwaitableExecutorServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-12-19T19:59:45Z",
+      "side": 1,
+      "message": "Same here etc",
+      "revId": "95213e36e61b4eedeb4db6bd63c17ff309fe037c",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
