@@ -30,7 +30,7 @@ public final class DelegatingNullSafeCheckedCache<K, V, E extends Exception> imp
 
     @Override
     @SuppressFBWarnings("RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE")
-    public V get(K key) throws BadCacheFunctionRuntimeException, E {
+    public V get(K key) throws E {
         Objects.requireNonNull(key, "null key (not supported)");
         V value = delegate.get(key);
         if (value == null) {

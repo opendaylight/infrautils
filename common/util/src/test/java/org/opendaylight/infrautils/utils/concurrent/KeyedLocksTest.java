@@ -12,6 +12,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import com.google.common.util.concurrent.Uninterruptibles;
+import com.google.errorprone.annotations.Var;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -24,8 +25,10 @@ import org.junit.Test;
  * @author Thomas Pantelis
  */
 public class KeyedLocksTest {
+
     private static final String KEY1 = "key1";
     private static final String KEY2 = "key2";
+
     private final KeyedLocks<String> keyedLocks = new KeyedLocks<>();
 
     @Test(timeout = 20000)
@@ -40,10 +43,10 @@ public class KeyedLocksTest {
         keyedLocks.unlock(KEY2);
         assertEquals("KeyedLock size", 0, keyedLocks.size());
 
-        final AtomicReference<Throwable> uncaughtException = new AtomicReference<>();
-        final AtomicInteger counter = new AtomicInteger(0);
-        final CountDownLatch thread1Locked = new CountDownLatch(1);
-        final CountDownLatch thread1Continue = new CountDownLatch(1);
+        AtomicReference<Throwable> uncaughtException = new AtomicReference<>();
+        AtomicInteger counter = new AtomicInteger(0);
+        CountDownLatch thread1Locked = new CountDownLatch(1);
+        CountDownLatch thread1Continue = new CountDownLatch(1);
         Thread thread1 = new Thread() {
             @Override
             public void run() {
@@ -64,7 +67,7 @@ public class KeyedLocksTest {
 
         assertTrue("Lock on thread 1 did not complete", thread1Locked.await(3, TimeUnit.SECONDS));
 
-        final CountDownLatch thread2AtLock = new CountDownLatch(1);
+        CountDownLatch thread2AtLock = new CountDownLatch(1);
         Thread thread2 = new Thread() {
             @Override
             public void run() {
@@ -100,7 +103,7 @@ public class KeyedLocksTest {
 
     @Test(timeout = 20000)
     public void testTryLock() throws InterruptedException {
-        boolean locked = keyedLocks.tryLock(KEY1);
+        @Var boolean locked = keyedLocks.tryLock(KEY1);
         assertTrue("Expected tryLock to return true", locked);
         assertEquals("KeyedLock size", 1, keyedLocks.size());
 
@@ -111,19 +114,19 @@ public class KeyedLocksTest {
         assertTrue("Expected tryLock to return true", locked);
         assertEquals("KeyedLock size", 1, keyedLocks.size());
 
-        final AtomicReference<Throwable> uncaughtException = new AtomicReference<>();
-        final CountDownLatch thread1AtTryLock = new CountDownLatch(1);
+        AtomicReference<Throwable> uncaughtException = new AtomicReference<>();
+        CountDownLatch thread1AtTryLock = new CountDownLatch(1);
         Thread thread1 = new Thread() {
             @Override
             public void run() {
                 thread1AtTryLock.countDown();
 
-                boolean threadLocked = keyedLocks.tryLock(KEY1);
-                assertFalse("Expected tryLock to return false", threadLocked);
+                boolean threadLockedA = keyedLocks.tryLock(KEY1);
+                assertFalse("Expected tryLock to return false", threadLockedA);
                 assertEquals("KeyedLock size", 1, keyedLocks.size());
 
-                threadLocked = keyedLocks.tryLock(KEY1, 200, TimeUnit.MILLISECONDS);
-                assertFalse("Expected tryLock to return false", threadLocked);
+                boolean threadLockedB = keyedLocks.tryLock(KEY1, 200, TimeUnit.MILLISECONDS);
+                assertFalse("Expected tryLock to return false", threadLockedB);
                 assertEquals("KeyedLock size", 1, keyedLocks.size());
             }
         };

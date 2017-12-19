@@ -52,7 +52,7 @@ public class KeyedLocks<T> {
         LOG.debug("tryLock {}, time {}, unit: {}", lockKey, timeout, unit);
         return doLock(lockKey, lock -> {
             try {
-                final boolean locked = lock.tryLock(timeout, unit);
+                boolean locked = lock.tryLock(timeout, unit);
                 if (!locked) {
                     lock.useCount.decrementAndGet();
                     LOG.debug("tryLock {} - already locked - count: {}", lockKey, lock.useCount);
@@ -78,7 +78,7 @@ public class KeyedLocks<T> {
     public boolean tryLock(@Nonnull T lockKey) {
         LOG.debug("tryLock {}", lockKey);
         return doLock(lockKey, lock -> {
-            final boolean locked = lock.tryLock();
+            boolean locked = lock.tryLock();
             if (!locked) {
                 lock.useCount.decrementAndGet();
                 LOG.debug("tryLock {} - already locked - count: {}", lockKey, lock.useCount);
@@ -129,7 +129,7 @@ public class KeyedLocks<T> {
      */
     public void unlock(@Nonnull T lockKey) {
         LOG.debug("unlock {}", lockKey);
-        final CountingReentrantLock lock;
+        CountingReentrantLock lock;
         synchronized (locks) {
             lock = locks.get(lockKey);
             if (lock != null) {

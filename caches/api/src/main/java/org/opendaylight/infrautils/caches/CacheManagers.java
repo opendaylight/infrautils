@@ -26,7 +26,9 @@ public interface CacheManagers {
 
     /**
      * Get the {@link CacheManager} for a particular cache, via its ID.
+     *
+     * @throws IllegalArgumentException if argument is an invalid ID
      */
-    CacheManager getCacheManager(String cacheID) throws IllegalArgumentException;
+    CacheManager getCacheManager(String cacheID);
 
 }

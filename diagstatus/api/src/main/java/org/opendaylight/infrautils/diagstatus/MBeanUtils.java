@@ -7,6 +7,7 @@
  */
 package org.opendaylight.infrautils.diagstatus;
 
+import com.google.errorprone.annotations.Var;
 import java.io.IOException;
 import java.lang.management.ManagementFactory;
 import java.net.MalformedURLException;
@@ -125,7 +126,7 @@ public final class MBeanUtils {
     }
 
     public static Object invokeMBeanFunction(String objName, String functionName) {
-        Object udpated = "";
+        @Var Object udpated = "";
         try {
             ObjectName objectName = new ObjectName(objName);
             MBeanServer mplatformMbeanServer = ManagementFactory.getPlatformMBeanServer();
@@ -137,7 +138,7 @@ public final class MBeanUtils {
     }
 
     public static Object readMBeanAttribute(String objName, String attribute) {
-        Object attributeObj = null;
+        @Var Object attributeObj = null;
         try {
             ObjectName objectName = new ObjectName(objName);
             MBeanServer platformMbeanServer = ManagementFactory.getPlatformMBeanServer();

@@ -21,6 +21,6 @@ public interface ServiceRegistration {
      *
      * @throws IllegalStateException If this {@code ServiceRegistration} object has already been unregistered.
      */
-    void unregister() throws IllegalStateException;
+    void unregister();
 
 }

@@ -36,13 +36,13 @@ public class SampleServiceTest {
     @Test
     public void testSayHello() {
         // TODO use com.google.common.base.Stopwatch
-        final long t1 = System.currentTimeMillis();
+        long t1 = System.currentTimeMillis();
         assertThat(sampleService.sayHello("world")).isEqualTo("hello, world");
-        final long d1 = System.currentTimeMillis() - t1;
+        long d1 = System.currentTimeMillis() - t1;
 
-        final long t2 = System.currentTimeMillis();
+        long t2 = System.currentTimeMillis();
         assertThat(sampleService.sayHello("world")).isEqualTo("hello, world");
-        final long d2 = System.currentTimeMillis() - t2;
+        long d2 = System.currentTimeMillis() - t2;
 
         // The first call has to be A LOT faster the second, if there is a real cache
         assertThat(d1 > d2 * 10).isTrue();

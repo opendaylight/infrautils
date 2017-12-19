@@ -7,6 +7,7 @@
  */
 package org.opendaylight.infrautils.caches.internal;
 
+import com.google.errorprone.annotations.Var;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -44,7 +45,7 @@ public final class CacheImplUtils {
     // com.google.common.collect.Iterators
 
     private static int size(Iterator<?> iterator) {
-        int count = 0;
+        @Var int count = 0;
         while (iterator.hasNext()) {
             iterator.next();
             count++;

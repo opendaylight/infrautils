@@ -47,7 +47,7 @@ import org.slf4j.LoggerFactory;
 public class DiagStatusServiceMBeanImpl extends StandardMBean implements DiagStatusServiceMBean, SystemReadyListener {
 
     private static final String DEBUG_OUTPUT_FORMAT = "D";
-    private static final String BRIEF_OUTPUT_FORMAT = "B";
+    // private static final String BRIEF_OUTPUT_FORMAT = "B";
     private static final String VERBOSE_OUTPUT_FORMAT = "V";
     private static final String JMX_OBJECT_NAME = "org.opendaylight.infrautils.diagstatus:type=SvcStatus";
 
@@ -129,7 +129,7 @@ public class DiagStatusServiceMBeanImpl extends StandardMBean implements DiagSta
 
     @Override
     public String acquireServiceStatusBrief() {
-        final String errorState = "ERROR - ";
+        String errorState = "ERROR - ";
         StringBuilder statusSummary = new StringBuilder();
         statusSummary.append("System ready state: ").append(systemReadyMonitor.getSystemState()).append('\n');
         for (ServiceDescriptor stat : diagStatusService.getAllServiceDescriptors()) {
@@ -157,7 +157,6 @@ public class DiagStatusServiceMBeanImpl extends StandardMBean implements DiagSta
 
     @Override
     public String acquireServiceStatusAsJSON(String formatType) {
-        String result = "{}";
         try {
             StringWriter strWrtr = new StringWriter();
             JsonWriter writer = new JsonWriter(strWrtr);
@@ -186,10 +185,10 @@ public class DiagStatusServiceMBeanImpl extends StandardMBean implements DiagSta
             writer.endObject();
             writer.flush();
             writer.close();
-            result = strWrtr.getBuffer().toString();
+            return strWrtr.getBuffer().toString();
         } catch (IOException e) {
             LOG.error("Error while converting service status to JSON", e);
+            return "{}";
         }
-        return result;
     }
 }

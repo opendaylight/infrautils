@@ -28,7 +28,7 @@ public abstract class AbstractLifecycle implements Lifecycle {
         STARTED, STOPPED
     }
 
-    private AtomicReference<State> state = new AtomicReference<>(State.STOPPED);
+    private final AtomicReference<State> state = new AtomicReference<>(State.STOPPED);
 
     protected abstract void start() throws Exception;
 
@@ -40,7 +40,7 @@ public abstract class AbstractLifecycle implements Lifecycle {
     @Override
     @PostConstruct // NOTE: @PostConstruct is *NOT* inherited from interface, so must be here
     @SuppressWarnings("checkstyle:IllegalCatch")
-    public final void init() throws ModuleSetupRuntimeException {
+    public final void init() {
         if (state.compareAndSet(State.STOPPED, State.STARTED)) {
             try {
                 start();
@@ -58,7 +58,7 @@ public abstract class AbstractLifecycle implements Lifecycle {
     @Override
     @PreDestroy // NOTE: @PostConstruct is *NOT* inherited from interface, so must be here
     @SuppressWarnings("checkstyle:IllegalCatch")
-    public final void destroy() throws ModuleSetupRuntimeException {
+    public final void destroy() {
         if (state.compareAndSet(State.STARTED, State.STOPPED)) {
             try {
                 stop();
