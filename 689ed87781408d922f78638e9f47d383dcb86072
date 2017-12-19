@@ -16,6 +16,24 @@
       "revId": "689ed87781408d922f78638e9f47d383dcb86072",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1a095d_0b805892",
+        "filename": "common/parent/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-12-19T17:56:55Z",
+      "side": 1,
+      "message": "Yeah we could eventually .. but odlparent moves slowly, now that it\u0027s on a separate release track, so my primary interest here was to gain experience with EP in infrautils, first.\n\nBTW: I guess we could even make projects like genius and netvirt ust use this infrautils:parent instead of odlparent as \u003cparent\u003e, to run the same EP on them as well, what do you think?",
+      "parentUuid": "4fc0eaa0_e10955af",
+      "revId": "689ed87781408d922f78638e9f47d383dcb86072",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
