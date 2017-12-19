@@ -55,7 +55,7 @@ public class SampleServiceWithCachingImpl implements SampleService {
         return hellosCache.get(toWho);
     }
 
-    private String sayHelloThatIsExpensive(String toWho) {
+    private static String sayHelloThatIsExpensive(String toWho) {
         try {
             // Saying HELO is a really expensive operation... ;-)
             Thread.sleep(379);

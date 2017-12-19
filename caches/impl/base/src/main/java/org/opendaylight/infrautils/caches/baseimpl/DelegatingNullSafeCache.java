@@ -30,7 +30,7 @@ public final class DelegatingNullSafeCache<K, V> implements Cache<K, V> {
 
     @Override
     @SuppressFBWarnings("RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE")
-    public V get(K key) {
+    public V get(K key) throws BadCacheFunctionRuntimeException {
         Objects.requireNonNull(key, "null key (not supported)");
         V value = delegate.get(key);
         if (value == null) {
@@ -40,7 +40,7 @@ public final class DelegatingNullSafeCache<K, V> implements Cache<K, V> {
     }
 
     @Override
-    public Map<K, V> get(Iterable<? extends K> keys) {
+    public Map<K, V> get(Iterable<? extends K> keys) throws BadCacheFunctionRuntimeException {
         Objects.requireNonNull(keys, "null keys (not supported)");
         for (K key : keys) {
             Objects.requireNonNull(key, "null key in keys (not supported)");

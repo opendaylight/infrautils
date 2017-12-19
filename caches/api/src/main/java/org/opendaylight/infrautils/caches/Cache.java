@@ -71,7 +71,8 @@ public interface Cache<K, V> extends BaseCache<K, V> {
      * Convenience short-cut to {@link #get(Iterable)} with vararg syntax.
      */
     @SuppressWarnings("unchecked")
-    default @Nonnull Map<K, V> get(@Nonnull K... keys) throws BadCacheFunctionRuntimeException, NullPointerException {
+    default @Nonnull Map<K, V> get(@Nonnull K... keys)
+            throws BadCacheFunctionRuntimeException, NullPointerException {
         return get(Arrays.asList(keys));
     }
 

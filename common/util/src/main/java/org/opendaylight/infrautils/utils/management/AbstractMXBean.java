@@ -7,6 +7,7 @@
  */
 package org.opendaylight.infrautils.utils.management;
 
+import com.google.errorprone.annotations.Var;
 import java.lang.management.ManagementFactory;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -81,23 +82,23 @@ public abstract class AbstractMXBean {
      * @return true is successfully registered, false otherwise.
      */
     public boolean registerMBean() {
-        boolean registered = false;
+        @Var boolean registered = false;
         try {
             // Object to identify MBean
-            final ObjectName mBeanObjectName = this.getMBeanObjectName();
-            LOG.debug("Register MBean {}", mBeanObjectName);
+            ObjectName mbeanObjectName = this.getMBeanObjectName();
+            LOG.debug("Register MBean {}", mbeanObjectName);
             // unregistered if already registered
-            if (server.isRegistered(mBeanObjectName)) {
-                LOG.debug("MBean {} found to be already registered", mBeanObjectName);
+            if (server.isRegistered(mbeanObjectName)) {
+                LOG.debug("MBean {} found to be already registered", mbeanObjectName);
                 try {
-                    unregisterMBean(mBeanObjectName);
+                    unregisterMBean(mbeanObjectName);
                 } catch (MBeanRegistrationException | InstanceNotFoundException e) {
-                    LOG.warn("unregister mbean {} caused exception", mBeanObjectName, e);
+                    LOG.warn("unregister mbean {} caused exception", mbeanObjectName, e);
                 }
             }
-            server.registerMBean(this, mBeanObjectName);
+            server.registerMBean(this, mbeanObjectName);
             registered = true;
-            LOG.debug("MBean {} registered successfully", mBeanObjectName.getCanonicalName());
+            LOG.debug("MBean {} registered successfully", mbeanObjectName.getCanonicalName());
         } catch (InstanceAlreadyExistsException | MBeanRegistrationException | NotCompliantMBeanException
                 | MalformedObjectNameException e) {
             LOG.error("MBean {} registration failed", mbeanName, e);
@@ -119,7 +120,7 @@ public abstract class AbstractMXBean {
      * @return true is successfully unregistered, false otherwise.
      */
     public boolean unregisterMBean() {
-        boolean unregister = false;
+        @Var boolean unregister = false;
         try {
             ObjectName mbeanobjectname = this.getMBeanObjectName();
             unregisterMBean(mbeanobjectname);
@@ -142,7 +143,7 @@ public abstract class AbstractMXBean {
      * @return Object if successfully executed, "" otherwise.
      */
     public Object invokeMBeanFunction(String functionName) {
-        Object result = "";
+        @Var Object result = "";
         try {
             ObjectName objectName = this.getMBeanObjectName();
             MBeanServer mplatformMbeanServer = ManagementFactory.getPlatformMBeanServer();
@@ -154,12 +155,12 @@ public abstract class AbstractMXBean {
     }
 
     /**
-     * read an mbean attribute from the platform MBean server.
+     * Read an mbean attribute from the platform MBean server.
      *
      * @return Object if successfully executed, "" otherwise.
      */
     public Object readMBeanAttribute(String attribute) {
-        Object attributeObj = "";
+        @Var Object attributeObj = "";
         try {
             ObjectName objectName = this.getMBeanObjectName();
             MBeanServer platformMbeanServer = ManagementFactory.getPlatformMBeanServer();

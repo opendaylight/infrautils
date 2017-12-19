@@ -40,7 +40,7 @@ public final class DelegatingNullSafeCheckedCache<K, V, E extends Exception> imp
     }
 
     @Override
-    public Map<K, V> get(Iterable<? extends K> keys) throws E {
+    public Map<K, V> get(Iterable<? extends K> keys) throws BadCacheFunctionRuntimeException, E {
         Objects.requireNonNull(keys, "null keys (not supported)");
         for (K key : keys) {
             Objects.requireNonNull(key, "null key in keys (not supported)");

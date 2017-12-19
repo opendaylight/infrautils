@@ -38,7 +38,7 @@ public class CheckedRunnableTest {
         foo(() -> { });
     }
 
-    private <E extends Exception> void foo(CheckedRunnable<E> checkedCallable) throws E {
+    private static <E extends Exception> void foo(CheckedRunnable<E> checkedCallable) throws E {
         checkedCallable.run();
     }
 }

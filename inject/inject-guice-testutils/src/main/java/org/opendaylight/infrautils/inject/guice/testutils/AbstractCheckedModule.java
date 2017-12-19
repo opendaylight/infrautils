@@ -8,6 +8,7 @@
 package org.opendaylight.infrautils.inject.guice.testutils;
 
 import com.google.inject.AbstractModule;
+import com.google.inject.Binder;
 import org.opendaylight.infrautils.inject.ModuleSetupRuntimeException;
 
 /**
@@ -19,6 +20,11 @@ import org.opendaylight.infrautils.inject.ModuleSetupRuntimeException;
  */
 public abstract class AbstractCheckedModule extends AbstractModule {
 
+    /**
+     * Configures a {@link Binder} via the exposed methods.
+     *
+     * @throws ModuleSetupRuntimeException if binding failed
+     */
     @Override
     @SuppressWarnings("checkstyle:IllegalCatch")
     protected final void configure() throws ModuleSetupRuntimeException {

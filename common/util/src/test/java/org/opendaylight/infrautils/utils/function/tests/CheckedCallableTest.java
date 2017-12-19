@@ -39,7 +39,7 @@ public class CheckedCallableTest {
         assertThat(foo(() -> 43)).isEqualTo(43);
     }
 
-    private <T, E extends Exception> T foo(CheckedCallable<T, E> checkedCallable) throws E {
+    private static <T, E extends Exception> T foo(CheckedCallable<T, E> checkedCallable) throws E {
         return checkedCallable.call();
     }
 }
