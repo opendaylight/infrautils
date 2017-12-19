@@ -70,6 +70,24 @@
       "revId": "c5bbb1e66eaaafc0802b38301af295d427d5fee0",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a6fcd6a7_35600238",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/test/java/org/opendaylight/infrautils/jobcoordinator/tests/JobCoordinatorTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-12-19T18:47:26Z",
+      "side": 1,
+      "message": "I\u0027m fine w/ your change here - it\u0027s just test code and it\u0027s a private class. I was pointing that out in general, ie for future reference if you weren\u0027t already aware of it.",
+      "parentUuid": "be8fe869_a7d7497c",
+      "revId": "c5bbb1e66eaaafc0802b38301af295d427d5fee0",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
