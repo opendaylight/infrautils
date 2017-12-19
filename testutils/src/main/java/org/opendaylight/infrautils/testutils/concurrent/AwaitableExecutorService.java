@@ -9,6 +9,7 @@ package org.opendaylight.infrautils.testutils.concurrent;
 
 import com.google.common.base.Preconditions;
 import com.google.common.util.concurrent.ForwardingExecutorService;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -23,6 +24,7 @@ import java.util.stream.Collectors;
 /**
  * Executable service wrapper allowing callers to await completion.
  */
+@SuppressFBWarnings("JLM_JSR166_UTILCONCURRENT_MONITORENTER")
 public class AwaitableExecutorService extends ForwardingExecutorService {
     private final ExecutorService delegate;
     private final AtomicLong pendingJobs = new AtomicLong(0);

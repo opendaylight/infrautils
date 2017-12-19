@@ -8,6 +8,7 @@
 package org.opendaylight.infrautils.testutils;
 
 import com.google.common.base.Strings;
+import com.google.errorprone.annotations.Var;
 import org.junit.rules.TestRule;
 import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
@@ -51,7 +52,7 @@ public class LogRule implements TestRule {
                 testLog.info(MARKER, HEADER);
                 testLog.info(MARKER, "BEGIN @Test {}()", description.getMethodName());
                 long startTimeInMS = System.currentTimeMillis();
-                Throwable caughtThrowable = null;
+                @Var Throwable caughtThrowable = null;
                 try {
                     statement.evaluate();
                 } catch (Throwable throwable) {

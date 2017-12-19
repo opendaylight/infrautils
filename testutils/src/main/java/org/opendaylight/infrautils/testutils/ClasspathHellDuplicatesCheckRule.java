@@ -43,11 +43,11 @@ public class ClasspathHellDuplicatesCheckRule implements TestRule {
     }
 
     protected void checkClasspath() {
-        final boolean excludeSameSizeDups = false;
-        final ClasspathScanner scanner = new ClasspathScanner();
-        final List<ClasspathResource> resourcesWithDuplicates = scanner
+        boolean excludeSameSizeDups = false;
+        ClasspathScanner scanner = new ClasspathScanner();
+        List<ClasspathResource> resourcesWithDuplicates = scanner
                 .findAllResourcesWithDuplicates(excludeSameSizeDups);
-        final List<ClasspathResource> filteredResourcesWithDuplicates = filterHarmlessKnownIssues(
+        List<ClasspathResource> filteredResourcesWithDuplicates = filterHarmlessKnownIssues(
                 resourcesWithDuplicates);
         if (!filteredResourcesWithDuplicates.isEmpty()) {
             new JHades()
@@ -62,12 +62,11 @@ public class ClasspathHellDuplicatesCheckRule implements TestRule {
     }
 
     protected List<ClasspathResource> filterHarmlessKnownIssues(List<ClasspathResource> resourcesWithDuplicates) {
-        resourcesWithDuplicates = filterFindBugsAnnotation(resourcesWithDuplicates);
-        resourcesWithDuplicates = filterTXT(resourcesWithDuplicates);
-        return resourcesWithDuplicates;
+        List<ClasspathResource> filteredResourcesWithDuplicates = filterFindBugsAnnotation(resourcesWithDuplicates);
+        return filterTXT(filteredResourcesWithDuplicates);
     }
 
-    private List<ClasspathResource> filterTXT(List<ClasspathResource> resourcesWithDuplicates) {
+    private static List<ClasspathResource> filterTXT(List<ClasspathResource> resourcesWithDuplicates) {
         return resourcesWithDuplicates.stream()
                 .filter(classpathResource -> !classpathResource.getName().endsWith(".txt"))
                 .filter(classpathResource -> !classpathResource.getName().endsWith("LICENSE"))
@@ -83,7 +82,7 @@ public class ClasspathHellDuplicatesCheckRule implements TestRule {
                 .collect(Collectors.toList());
     }
 
-    private List<ClasspathResource> filterFindBugsAnnotation(List<ClasspathResource> resourcesWithDuplicates) {
+    private static List<ClasspathResource> filterFindBugsAnnotation(List<ClasspathResource> resourcesWithDuplicates) {
         return resourcesWithDuplicates.stream().filter(classpathResource -> {
             for (ClasspathResourceVersion classpathResourceVersion : classpathResource.getResourceFileVersions()) {
                 if (classpathResourceVersion.getClasspathEntry().getUrl().contains("findbugs")) {

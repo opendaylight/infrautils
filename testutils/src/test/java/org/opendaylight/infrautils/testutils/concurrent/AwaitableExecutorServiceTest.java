@@ -19,7 +19,9 @@ import java.util.concurrent.TimeoutException;
 import java.util.function.Consumer;
 import org.junit.Test;
 
+@SuppressWarnings("FutureReturnValueIgnored") // it's OK to ignore executorService.submit() return value in this test
 public class AwaitableExecutorServiceTest {
+
     @Test
     public void testBasicWait() {
         long millis = 500;
@@ -169,21 +171,21 @@ public class AwaitableExecutorServiceTest {
         }, millis, timeout);
     }
 
-    private void testAndVerifyTimeBounds(Consumer<ExecutorService> test, long executionMillis, long timeoutMillis) {
+    private static void testAndVerifyTimeBounds(Consumer<ExecutorService> test, long executionMS, long timeoutMS) {
         AwaitableExecutorService executorService = new AwaitableExecutorService(Executors.newFixedThreadPool(4));
         long start = System.currentTimeMillis();
         test.accept(executorService);
         try {
-            assertThat(executorService.awaitCompletion(timeoutMillis, TimeUnit.MILLISECONDS)).isEqualTo(
-                    executionMillis < timeoutMillis);
+            assertThat(executorService.awaitCompletion(timeoutMS, TimeUnit.MILLISECONDS)).isEqualTo(
+                    executionMS < timeoutMS);
         } catch (InterruptedException e) {
             // Ignored
         }
         long elapsed = System.currentTimeMillis() - start;
-        if (executionMillis < timeoutMillis) {
-            assertThat(elapsed).isAtLeast(executionMillis);
+        if (executionMS < timeoutMS) {
+            assertThat(elapsed).isAtLeast(executionMS);
         } else {
-            assertThat(elapsed).isAtLeast(timeoutMillis);
+            assertThat(elapsed).isAtLeast(timeoutMS);
         }
     }
 }

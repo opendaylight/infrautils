@@ -54,21 +54,35 @@ public final class CompletionStageTestAwaiter<T> {
     // TODO Google Truth integration, to be able to do assertThat(CompletionStage)
     //   .[eventually]CompletedWithValue(value) & .[eventually]CompletedWithFailure(Throwable)
 
-    public static <T> T await500ms(CompletionStage<T> completionStage)
-            throws CompletionException, CancellationException, TimeoutException {
+    /**
+     * Await max. 500ms for the CompletionStage argument to complete.
+     *
+     * @throws CompletionException if it completed unsuccessfully
+     * @throws CancellationException if it got cancelled while awaiting completion
+     * @throws TimeoutException if it timed out awaiting completion
+     */
+    // Suppress because (a) CS doesn't get initCause() and (b) CompletionException with getCause() is what we want
+    @SuppressWarnings("checkstyle:AvoidHidingCauseException")
+    public static <T> T await500ms(CompletionStage<T> completionStage) throws TimeoutException {
         return await(completionStage, 500, TimeUnit.MILLISECONDS);
     }
 
+    /**
+     * Await a configurable amount of time for the CompletionStage argument to complete.
+     *
+     * @throws CompletionException if it completed unsuccessfully
+     * @throws CancellationException if it got cancelled while awaiting completion
+     * @throws TimeoutException if it timed out awaiting completion
+     */
     // Suppress because (a) CS doesn't get initCause() and (b) CompletionException with getCause() is what we want
     @SuppressWarnings("checkstyle:AvoidHidingCauseException")
-    public static <T> T await(CompletionStage<T> completionStage, long timeout, TimeUnit unit)
-            throws CompletionException, CancellationException, TimeoutException {
+    public static <T> T await(CompletionStage<T> completionStage, long timeout, TimeUnit unit) throws TimeoutException {
         try {
             // we first try our luck and see if toCompletableFuture() is available:
             return completionStage.toCompletableFuture().get(timeout, unit);
         } catch (UnsupportedOperationException e) {
             // do NOT log, we're kinda half-expecting this, and can handle it (that's the whole point of this utility!)
-            return new CompletionStageTestAwaiter<>(completionStage).await(timeout, unit);
+            return new CompletionStageTestAwaiter<>(completionStage).wait(timeout, unit);
         // the following exceptions from get() need to be translated to fit the exceptions that
         // join()'s method signature would have thrown (but join does not have a timeout variant)
         } catch (InterruptedException e) {
@@ -90,7 +104,7 @@ public final class CompletionStageTestAwaiter<T> {
         });
     }
 
-    private T await(long timeout, TimeUnit unit) throws CompletionException, CancellationException {
+    private T wait(long timeout, TimeUnit unit) {
         Awaitility.await(getClass().getName())
             .pollDelay(0, MILLISECONDS)
             .pollInterval(100, MILLISECONDS)

@@ -8,6 +8,8 @@
 package org.opendaylight.infrautils.testutils;
 
 import com.google.common.base.Strings;
+import com.google.errorprone.annotations.Var;
+import javax.annotation.Nullable;
 import org.junit.rules.TestRule;
 import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
@@ -25,7 +27,7 @@ public class RunUntilFailureClassRule implements TestRule {
 
     // package local
     boolean isRunning = true;
-    private final Long maximumNumberOfTimesToRun;
+    private final @Nullable Long maximumNumberOfTimesToRun;
 
     public RunUntilFailureClassRule() {
         this.maximumNumberOfTimesToRun = null;
@@ -55,7 +57,7 @@ public class RunUntilFailureClassRule implements TestRule {
 
         @Override
         public void evaluate() throws Throwable {
-            int runNumber = 1;
+            @Var int runNumber = 1;
             do {
                 testLog.info(HEADER);
                 testLog.info("RunUntilFailureRule #{}/{}", runNumber++,
