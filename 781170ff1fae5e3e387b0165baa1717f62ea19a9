@@ -16,6 +16,24 @@
       "revId": "781170ff1fae5e3e387b0165baa1717f62ea19a9",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "34571482_c8f97754",
+        "filename": "testutils/src/test/java/org/opendaylight/infrautils/testutils/concurrent/AwaitableExecutorServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-12-19T05:28:54Z",
+      "side": 1,
+      "message": "In this particular case IMHO we cannot, because the very point of this unit test is to also exercise submit() of AwaitableExecutorService (and invokeAny) and not its just execute() implementation ... so if OK for you, +1 ?",
+      "parentUuid": "89df7d66_b15e96dd",
+      "revId": "781170ff1fae5e3e387b0165baa1717f62ea19a9",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
