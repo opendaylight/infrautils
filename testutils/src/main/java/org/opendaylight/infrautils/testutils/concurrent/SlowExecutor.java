@@ -37,6 +37,6 @@ public class SlowExecutor implements Executor {
     }
 
     private long random(int low, int high) {
-        return random.nextInt(high - low) + low;
+        return (long) random.nextInt(high - low) + low;
     }
 }
