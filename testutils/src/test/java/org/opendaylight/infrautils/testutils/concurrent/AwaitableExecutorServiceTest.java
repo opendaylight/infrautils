@@ -8,35 +8,38 @@
 package org.opendaylight.infrautils.testutils.concurrent;
 
 import static com.google.common.truth.Truth.assertThat;
+import static java.lang.Boolean.FALSE;
+import static java.util.Collections.singletonList;
 
+import com.google.common.util.concurrent.Futures;
 import java.util.Arrays;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
-import java.util.function.Consumer;
+import java.util.function.Function;
 import org.junit.Test;
 
-@SuppressWarnings("FutureReturnValueIgnored") // it's OK to ignore executorService.submit() return value in this test
 public class AwaitableExecutorServiceTest {
 
     @Test
-    public void testBasicWait() {
+    public void testBasicWait() throws InterruptedException, ExecutionException {
         long millis = 500;
         testAndVerifyTimeBounds(executorService ->
-                executorService.submit(() -> {
-                    try {
-                        Thread.sleep(millis);
-                    } catch (InterruptedException e) {
-                        // Ignored
-                    }
-                }), millis, 1000);
+            executorService.submit(() -> {
+                try {
+                    Thread.sleep(millis);
+                } catch (InterruptedException e) {
+                    // Ignored
+                }
+            }), millis, 1000).get();
     }
 
     @Test
-    public void testIncompleteWait() {
+    public void testIncompleteWait() throws InterruptedException, ExecutionException {
         long millis = 1500;
         testAndVerifyTimeBounds(executorService ->
                 executorService.submit(() -> {
@@ -45,20 +48,22 @@ public class AwaitableExecutorServiceTest {
                     } catch (InterruptedException e) {
                         // Ignored
                     }
-                }), millis, 1000);
+                }), millis, 1000).get();
     }
 
     @Test
     public void testExecute() {
         long millis = 500;
-        testAndVerifyTimeBounds(executorService ->
-                executorService.execute(() -> {
-                    try {
-                        Thread.sleep(millis);
-                    } catch (InterruptedException e) {
-                        // Ignored
-                    }
-                }), millis, 1000);
+        testAndVerifyTimeBounds(executorService -> {
+            executorService.execute(() -> {
+                try {
+                    Thread.sleep(millis);
+                } catch (InterruptedException e) {
+                    // Ignored
+                }
+            });
+            return null;
+        }, millis, 1000);
     }
 
     @Test
@@ -102,24 +107,26 @@ public class AwaitableExecutorServiceTest {
     }
 
     @Test
-    public void testInvokeAllWithoutTimeout() {
+    public void testInvokeAllWithoutTimeout() throws InterruptedException, ExecutionException {
         // Ensure we complete even with a single thread executing jobs
         long millis = 250;
         Callable<Boolean> task = () -> {
             Thread.sleep(millis);
             return true;
         };
-        testAndVerifyTimeBounds(executorService -> {
+        for (Future<Boolean> f : testAndVerifyTimeBounds(executorService -> {
             try {
-                executorService.invokeAll(Arrays.asList(task, task));
+                return executorService.invokeAll(Arrays.asList(task, task));
             } catch (InterruptedException e) {
-                // Ignored
+                return singletonList(Futures.<Boolean>immediateCancelledFuture());
             }
-        }, millis, 1000);
+        }, millis, 1000)) {
+            assertThat(f.get()).isTrue();
+        }
     }
 
     @Test
-    public void testInvokeAllWithTimeout() {
+    public void testInvokeAllWithTimeout() throws InterruptedException, ExecutionException {
         // Ensure we complete even with a single thread executing jobs
         long millis = 250;
         long timeout = 1000;
@@ -127,16 +134,19 @@ public class AwaitableExecutorServiceTest {
             Thread.sleep(millis);
             return true;
         };
-        testAndVerifyTimeBounds(executorService -> {
+        for (Future<Boolean> f : testAndVerifyTimeBounds(executorService -> {
             try {
-                executorService.invokeAll(Arrays.asList(task, task), timeout, TimeUnit.MILLISECONDS);
+                return executorService.invokeAll(Arrays.asList(task, task), timeout, TimeUnit.MILLISECONDS);
             } catch (InterruptedException e) {
-                // Ignored
+                return singletonList(Futures.<Boolean>immediateCancelledFuture());
             }
-        }, millis, timeout);
+        }, millis, timeout)) {
+            assertThat(f.get()).isTrue();
+        }
     }
 
     @Test
+    @SuppressWarnings("cast")
     public void testInvokeAnyWithoutTimeout() {
         // Ensure we complete even with a single thread executing jobs
         long millis = 250;
@@ -144,16 +154,17 @@ public class AwaitableExecutorServiceTest {
             Thread.sleep(millis);
             return true;
         };
-        testAndVerifyTimeBounds(executorService -> {
+        assertThat((Boolean) testAndVerifyTimeBounds(executorService -> {
             try {
-                executorService.invokeAny(Arrays.asList(task, task));
+                return executorService.invokeAny(Arrays.asList(task, task));
             } catch (InterruptedException | ExecutionException e) {
-                // Ignored
+                return FALSE;
             }
-        }, millis, 1000);
+        }, millis, 1000)).isTrue();
     }
 
     @Test
+    @SuppressWarnings("cast")
     public void testInvokeAnyWithTimeout() {
         // Ensure we complete even with a single thread executing jobs
         long millis = 250;
@@ -162,19 +173,19 @@ public class AwaitableExecutorServiceTest {
             Thread.sleep(millis);
             return true;
         };
-        testAndVerifyTimeBounds(executorService -> {
+        assertThat((Boolean) testAndVerifyTimeBounds(executorService -> {
             try {
-                executorService.invokeAny(Arrays.asList(task, task), timeout, TimeUnit.MILLISECONDS);
+                return executorService.invokeAny(Arrays.asList(task, task), timeout, TimeUnit.MILLISECONDS);
             } catch (InterruptedException | ExecutionException | TimeoutException e) {
-                // Ignored
+                return FALSE;
             }
-        }, millis, timeout);
+        }, millis, timeout)).isTrue();
     }
 
-    private static void testAndVerifyTimeBounds(Consumer<ExecutorService> test, long executionMS, long timeoutMS) {
+    private static <T> T testAndVerifyTimeBounds(Function<ExecutorService, T> test, long executionMS, long timeoutMS) {
         AwaitableExecutorService executorService = new AwaitableExecutorService(Executors.newFixedThreadPool(4));
         long start = System.currentTimeMillis();
-        test.accept(executorService);
+        T future = test.apply(executorService);
         try {
             assertThat(executorService.awaitCompletion(timeoutMS, TimeUnit.MILLISECONDS)).isEqualTo(
                     executionMS < timeoutMS);
@@ -187,5 +198,6 @@ public class AwaitableExecutorServiceTest {
         } else {
             assertThat(elapsed).isAtLeast(timeoutMS);
         }
+        return future;
     }
 }
