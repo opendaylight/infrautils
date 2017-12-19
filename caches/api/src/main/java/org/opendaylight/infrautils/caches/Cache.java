@@ -7,6 +7,7 @@
  */
 package org.opendaylight.infrautils.caches;
 
+import com.google.common.collect.ImmutableMap;
 import java.util.Arrays;
 import java.util.Map;
 import javax.annotation.Nonnull;
@@ -64,14 +65,14 @@ public interface Cache<K, V> extends BaseCache<K, V> {
      * @throws BadCacheFunctionRuntimeException if the cache's function returned null value
      * @throws NullPointerException if the cache's users passed a null key
      */
-    @Nonnull Map<K, V> get(@Nonnull Iterable<? extends K> keys)
+    @Nonnull ImmutableMap<K, V> get(@Nonnull Iterable<? extends K> keys)
             throws BadCacheFunctionRuntimeException, NullPointerException;
 
     /**
      * Convenience short-cut to {@link #get(Iterable)} with vararg syntax.
      */
     @SuppressWarnings("unchecked")
-    default @Nonnull Map<K, V> get(@Nonnull K... keys)
+    default @Nonnull ImmutableMap<K, V> get(@Nonnull K... keys)
             throws BadCacheFunctionRuntimeException, NullPointerException {
         return get(Arrays.asList(keys));
     }

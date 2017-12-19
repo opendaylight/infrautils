@@ -7,8 +7,7 @@
  */
 package org.opendaylight.infrautils.caches.noop.internal;
 
-import java.util.Collections;
-import java.util.Map;
+import com.google.common.collect.ImmutableMap;
 import org.opendaylight.infrautils.caches.CacheStats;
 
 /**
@@ -38,8 +37,8 @@ final class NoopCacheStats implements CacheStats {
     }
 
     @Override
-    public Map<String, Number> extensions() {
-        return Collections.emptyMap();
+    public ImmutableMap<String, Number> extensions() {
+        return ImmutableMap.of();
     }
 
 }

@@ -7,8 +7,8 @@
  */
 package org.opendaylight.infrautils.caches;
 
+import com.google.common.collect.ImmutableMap;
 import java.util.Arrays;
-import java.util.Map;
 
 /**
  * Cache of keys to values, for cache function which may throw a checked exception.
@@ -32,10 +32,10 @@ public interface CheckedCache<K, V, E extends Exception> extends BaseCache<K, V>
      */
     V get(K key) throws E;
 
-    Map<K, V> get(Iterable<? extends K> keys) throws E;
+    ImmutableMap<K, V> get(Iterable<? extends K> keys) throws E;
 
     @SuppressWarnings("unchecked")
-    default Map<K, V> get(K... keys) throws E {
+    default ImmutableMap<K, V> get(K... keys) throws E {
         return get(Arrays.asList(keys));
     }
 

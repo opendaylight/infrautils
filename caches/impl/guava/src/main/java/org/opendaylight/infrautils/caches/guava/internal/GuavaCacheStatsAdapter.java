@@ -9,7 +9,6 @@ package org.opendaylight.infrautils.caches.guava.internal;
 
 import com.google.common.cache.Cache;
 import com.google.common.collect.ImmutableMap;
-import java.util.Map;
 import org.opendaylight.infrautils.caches.CacheStats;
 
 /**
@@ -41,7 +40,7 @@ final class GuavaCacheStatsAdapter implements CacheStats {
     }
 
     @Override
-    public Map<String, Number> extensions() {
+    public ImmutableMap<String, Number> extensions() {
         com.google.common.cache.CacheStats guavaStats = guavaCache.stats();
         return ImmutableMap.<String, Number>builder()
                 .put("averageLoadPenalty", guavaStats.averageLoadPenalty())

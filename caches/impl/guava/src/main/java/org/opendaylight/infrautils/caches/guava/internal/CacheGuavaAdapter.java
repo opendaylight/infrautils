@@ -10,8 +10,8 @@ package org.opendaylight.infrautils.caches.guava.internal;
 import com.google.common.base.Throwables;
 import com.google.common.cache.CacheLoader.InvalidCacheLoadException;
 import com.google.common.cache.LoadingCache;
+import com.google.common.collect.ImmutableMap;
 import com.google.common.util.concurrent.UncheckedExecutionException;
-import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import java.util.function.Function;
 import org.opendaylight.infrautils.caches.BadCacheFunctionRuntimeException;
@@ -48,7 +48,7 @@ final class CacheGuavaAdapter<K, V> extends GuavaBaseCacheAdapter<K, V> implemen
     @Override
     // Suppress CS because propagating getCause() is what we want
     @SuppressWarnings("checkstyle:AvoidHidingCauseException")
-    public Map<K, V> get(Iterable<? extends K> keys) {
+    public ImmutableMap<K, V> get(Iterable<? extends K> keys) {
         try {
             return guavaCache().getAll(keys);
         } catch (UncheckedExecutionException e) {

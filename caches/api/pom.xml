@@ -23,6 +23,11 @@
 
   <dependencies>
     <dependency>
+      <groupId>com.google.guava</groupId>
+      <!-- just for its ImmutableMap -->
+      <artifactId>guava</artifactId>
+    </dependency>
+    <dependency>
       <groupId>org.immutables</groupId>
       <artifactId>value</artifactId>
     </dependency>
