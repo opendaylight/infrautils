@@ -19,6 +19,7 @@ import org.opendaylight.infrautils.caches.CheckedCache;
  *
  * @author Michael Vorburger.ch
  */
+@SuppressWarnings("CPD-START") // TODO DelegatingNullSafeBaseCache to avoid copy/paste with DelegatingNullSafeCache
 public final class DelegatingNullSafeCheckedCache<K, V, E extends Exception> implements CheckedCache<K, V, E> {
 
     private final CheckedCache<K, V, E> delegate;
