@@ -22,8 +22,10 @@ import java.util.concurrent.Callable;
  */
 public interface JobCoordinator { // do *NOT* extends JobCoordinatorMonitor
 
+    int DEFAULT_MAX_RETRIES = 3;
+
     /**
-     * Enqueues a job.
+     * Enqueues a job with DEFAULT_MAX_RETRIES (3) retries.
      *
      * @param key
      *            The job's key. Jobs with the same key are run sequentially.
@@ -34,7 +36,7 @@ public interface JobCoordinator { // do *NOT* extends JobCoordinatorMonitor
     void enqueueJob(String key, Callable<List<ListenableFuture<Void>>> mainWorker);
 
     /**
-     * Enqueues a job with a rollback task.
+     * Enqueues a job with a rollback task and DEFAULT_MAX_RETRIES (3) retries..
      *
      * @param rollbackWorker
      *            The rollback task which runs in case the job's main task
