@@ -23,14 +23,11 @@ import org.awaitility.Awaitility;
 import org.awaitility.Duration;
 import org.eclipse.jdt.annotation.Nullable;
 import org.junit.After;
-import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
 import org.opendaylight.infrautils.jobcoordinator.RollbackCallable;
 import org.opendaylight.infrautils.jobcoordinator.internal.JobCoordinatorImpl;
 import org.opendaylight.infrautils.testutils.LogRule;
-import org.opendaylight.infrautils.testutils.RunUntilFailureClassRule;
-import org.opendaylight.infrautils.testutils.RunUntilFailureRule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -130,8 +127,10 @@ public class JobCoordinatorTest {
     }
 
     public @Rule LogRule logRule = new LogRule();
-    public static @ClassRule RunUntilFailureClassRule classRepeater = new RunUntilFailureClassRule(7);
-    public @Rule RunUntilFailureRule repeater = new RunUntilFailureRule(classRepeater);
+
+    // Uncomment this to make all tests run x7 times; this can help find concurrency issues:
+    // public static @ClassRule RunUntilFailureClassRule classRepeater = new RunUntilFailureClassRule(7);
+    // public @Rule RunUntilFailureRule repeater = new RunUntilFailureRule(classRepeater);
 
     private static class TestJobCoordinatorImpl extends JobCoordinatorImpl {
         void verifyJobQueueHandlerThreadStopped() {
