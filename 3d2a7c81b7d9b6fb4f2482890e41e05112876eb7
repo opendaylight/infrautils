@@ -34,6 +34,24 @@
       "revId": "3d2a7c81b7d9b6fb4f2482890e41e05112876eb7",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "18a73c40_db052c0a",
+        "filename": "caches/api/src/main/java/org/opendaylight/infrautils/caches/Cache.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-12-19T16:31:37Z",
+      "side": 0,
+      "message": "cool. Let\u0027s  disable it altogether. Neither of us agrees with it and I suspect neither would Stephen et al.",
+      "parentUuid": "1f19f3c3_9599d223",
+      "revId": "3d2a7c81b7d9b6fb4f2482890e41e05112876eb7",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
