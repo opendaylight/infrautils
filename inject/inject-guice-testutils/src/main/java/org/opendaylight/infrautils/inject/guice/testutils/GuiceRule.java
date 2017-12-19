@@ -64,11 +64,11 @@ public class GuiceRule implements MethodRule {
         this.stage = DEFAULT_STAGE;
     }
 
-    protected Iterable<? extends Module> createModules(List<Class<? extends Module>> moduleClasses) {
+    private static Iterable<? extends Module> createModules(List<Class<? extends Module>> moduleClasses) {
         return moduleClasses.stream().map(klass -> {
             try {
-                return klass.newInstance();
-            } catch (InstantiationException | IllegalAccessException e) {
+                return klass.getConstructor().newInstance();
+            } catch (ReflectiveOperationException | IllegalArgumentException | SecurityException e) {
                 throw new IllegalArgumentException("newInstance() failed: " + klass.getName(), e);
             }
         }).collect(Collectors.toList());

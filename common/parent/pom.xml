@@ -111,6 +111,12 @@
             <arg>-Xep:WildcardImport:ERROR</arg>
             <!-- FutureReturnValueIgnored is better (stronger) than error-prone's own (and FindBug's) @CheckReturnValue annotation, as it checks that ANY return Future are checked, not just those from methods annotated @CheckReturnValue -->
             <arg>-Xep:FutureReturnValueIgnored:ERROR</arg>
+            <arg>-Xep:IntLongMath:ERROR</arg>
+            <arg>-Xep:FloatCast:ERROR</arg>
+            <arg>-Xep:ClassNewInstance:ERROR</arg>
+            <arg>-Xep:ConstructorInvokesOverridable:ERROR</arg>
+            <arg>-Xep:ThreeLetterTimeZoneID:ERROR</arg>
+            <arg>-Xep:UnsafeFinalization:ERROR</arg>
           </compilerArgs>
         </configuration>
         <dependencies>
