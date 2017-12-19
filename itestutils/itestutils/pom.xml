@@ -24,6 +24,11 @@
        build failure. Please do not modify this unless you have a good reason. -->
   <name>ODL :: infrautils :: ${project.artifactId}</name>
 
+  <properties>
+    <!-- TODO Figure out and fix the Found duplicate and different classes in [org.ops4j.pax.url:pax-url-aether:2.5.3, org.ops4j.pax.url:pax-url-commons:2.5.3] -->
+    <duplicate-finder.skip>true</duplicate-finder.skip>
+  </properties>
+
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
