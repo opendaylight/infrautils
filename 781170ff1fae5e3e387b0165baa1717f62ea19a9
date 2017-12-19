@@ -34,6 +34,24 @@
       "revId": "781170ff1fae5e3e387b0165baa1717f62ea19a9",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "21ebe994_8b597807",
+        "filename": "testutils/src/test/java/org/opendaylight/infrautils/testutils/concurrent/AwaitableExecutorServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-12-19T18:53:55Z",
+      "side": 1,
+      "message": "ok but can\u0027t we at least verify submit returns non-null? Or even verify the Future completes?",
+      "parentUuid": "34571482_c8f97754",
+      "revId": "781170ff1fae5e3e387b0165baa1717f62ea19a9",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
