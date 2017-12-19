@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5100b7fa_23b35b86",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/test/java/org/opendaylight/infrautils/jobcoordinator/tests/JobCoordinatorTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-12-19T07:40:12Z",
+      "side": 1,
+      "message": "I assume you changed it to sync on \u0027this\u0027 b/c lock wasn\u0027t final? That\u0027s fine as this is test code and the class is private. But in general, for public classes anyway, syncing on \u0027this\u0027 is discouraged b/c users could also sync on class instances resulting in unwanted contention.",
+      "revId": "c5bbb1e66eaaafc0802b38301af295d427d5fee0",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
