@@ -52,6 +52,24 @@
       "revId": "781170ff1fae5e3e387b0165baa1717f62ea19a9",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d2589106_56282e44",
+        "filename": "testutils/src/test/java/org/opendaylight/infrautils/testutils/concurrent/AwaitableExecutorServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-12-19T19:50:11Z",
+      "side": 1,
+      "message": "OK for you to +1 as is so that I can merge this and we pick this up in a dedicated follow-up change? Already done it in https://git.opendaylight.org/gerrit/#/c/66624/1/testutils/src/test/java/org/opendaylight/infrautils/testutils/concurrent/AwaitableExecutorServiceTest.java (just easier to create a new one instead of having to keep rebuilding this one and its 2 own follow-ups)",
+      "parentUuid": "21ebe994_8b597807",
+      "revId": "781170ff1fae5e3e387b0165baa1717f62ea19a9",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
