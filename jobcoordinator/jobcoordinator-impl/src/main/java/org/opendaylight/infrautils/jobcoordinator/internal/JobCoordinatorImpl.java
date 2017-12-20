@@ -179,7 +179,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
      **/
     private void clearJob(JobEntry jobEntry) {
         String jobKey = jobEntry.getKey();
-        LOG.trace("About to clear jobkey {}", jobKey);
+        LOG.trace("About to clear jobKey: {}", jobKey);
         JobQueue jobQueue = jobQueueMap.get(jobKey);
         if (jobQueue != null) {
             jobQueue.setExecutingEntry(null);
@@ -252,7 +252,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
          */
         @Override
         public void onSuccess(@Nullable List<Void> voids) {
-            LOG.trace("Job {} completed successfully", jobEntry.getKey());
+            LOG.trace("Job completed successfully: {}", jobEntry.getKey());
             clearJob(jobEntry);
         }
 
@@ -265,21 +265,24 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
          */
         @Override
         public void onFailure(Throwable throwable) {
-            if (jobEntry.getRetryCount() == 0) {
-                LOG.warn("Job: {} failed", jobEntry, throwable);
+            int retryCount = jobEntry.decrementRetryCountAndGet();
+            counters.jobsRetriesForFailure().incrementAndGet();
+
+            if (retryCount == 0 && jobEntry.getMaxRetries() > 0) {
+                LOG.error("Job still failed on final retry: {}", jobEntry, throwable);
+            } else if (retryCount == 0 && jobEntry.getMaxRetries() == 0) {
+                LOG.error("Job failed, no retries: {}", jobEntry, throwable);
             } else {
                 // If retryCount > 0, then the log should not be polluted with confusing WARN messages (because we're
                 // about to retry it again, shortly; if it ultimately still fails, there will be a WARN); so DEBUG.
-                LOG.debug("Job: {} failed", jobEntry, throwable);
+                LOG.debug("Job failed, will retry: {}", jobEntry, throwable);
             }
             if (jobEntry.getMainWorker() == null) {
-                LOG.error("Job: {} failed with Double-Fault. Bailing Out.", jobEntry);
+                LOG.error("Job failed with Double-Fault. Bailing Out: {}", jobEntry);
                 clearJob(jobEntry);
                 return;
             }
 
-            int retryCount = jobEntry.decrementRetryCountAndGet();
-            counters.jobsRetriesForFailure().incrementAndGet();
             if (retryCount > 0) {
                 long waitTime = RETRY_WAIT_BASE_TIME_MILLIS / retryCount;
                 Futures.addCallback(JdkFutures.toListenableFuture(scheduleTask(() -> {
@@ -336,7 +339,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
                 try {
                     futures = rollbackWorker.apply(jobEntry.getFutures());
                 } catch (Exception e) {
-                    LOG.error("Exception when executing jobEntry: {}", jobEntry, e);
+                    LOG.error("Exception when executing job's rollbackWorker: {}", jobEntry, e);
                 }
             } else {
                 LOG.error("Unexpected no (null) rollback worker on job: {}", jobEntry);
@@ -370,7 +373,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
         public void runWithUncheckedExceptionLogging() {
             @Var List<ListenableFuture<Void>> futures = null;
             long jobStartTimestampNanos = System.nanoTime();
-            LOG.trace("Running job {}", jobEntry.getKey());
+            LOG.trace("Running job with key: {}", jobEntry.getKey());
 
             try {
                 Callable<List<ListenableFuture<Void>>> mainWorker = jobEntry.getMainWorker();
@@ -383,7 +386,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
                 printJobs(jobEntry.getKey(), TimeUnit.NANOSECONDS.toMillis(jobExecutionTimeNanos));
             } catch (Exception e) {
                 counters.jobsFailed().incrementAndGet();
-                LOG.error("Exception when executing jobEntry: {}", jobEntry, e);
+                LOG.error("Direct Exception (not failed Future) when executing job, won't even retry: {}", jobEntry, e);
             }
 
             if (futures == null || futures.isEmpty()) {
@@ -429,7 +432,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
                         }
                         jobQueue.setExecutingEntry(jobEntry);
                         MainTask worker = new MainTask(jobEntry);
-                        LOG.trace("Executing job {}", jobEntry.getKey());
+                        LOG.trace("Executing job with key: {}", jobEntry.getKey());
 
                         if (executeTask(worker)) {
                             counters.jobsPending().decrementAndGet();
