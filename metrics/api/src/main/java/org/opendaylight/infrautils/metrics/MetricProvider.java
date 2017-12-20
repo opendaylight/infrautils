@@ -32,7 +32,12 @@ import javax.annotation.concurrent.ThreadSafe;
  * <p>The anchor Object parameter in each method is used to record which bundle registered the meter,
  * and you almost always just use <code>this</code> for that argument.
  * This is used in error messages if another bundle tries to register a duplicate ID, and could be
- * used in the future to un-register metrics on bundle reload.
+ * used in the future to un-register metrics on bundle reload automatically instead of explicitly.
+ *
+ * <p>The id String parameter in each method must be globally unique; an <tt>IllegalArgumentException</tt> is thrown
+ * if it has previously already been used.  The convention is to use
+ * <i>odl.&lt;projectName&gt;.&lt;moduleName&gt;.&lt;metricName&gt;</i>,
+ * so e.g. <tt>odl.infrautils.jobcoordinator.jobsPending</tt>.
  *
  * @author Michael Vorburger.ch
  */

@@ -7,6 +7,8 @@
  */
 package org.opendaylight.infrautils.metrics.internal;
 
+import static java.util.Objects.requireNonNull;
+
 import com.codahale.metrics.Counter;
 import com.codahale.metrics.Gauge;
 import com.codahale.metrics.Histogram;
@@ -75,33 +77,45 @@ public class MetricProviderImpl implements MetricProvider {
 
     @Override
     public Meter newMeter(Object anchor, String id) {
-        // TODO check if id has already been used
+        requireNonNull(anchor, "anchor == null");
+        checkID(id);
         return registry.meter(id);
     }
 
     @Override
     public Counter newCounter(Object anchor, String id) {
-        // TODO check if id has already been used
+        requireNonNull(anchor, "anchor == null");
+        checkID(id);
         return registry.counter(id);
     }
 
     @Override
     public Histogram newHistogram(Object anchor, String id) {
-        // TODO check if id has already been used
+        requireNonNull(anchor, "anchor == null");
+        checkID(id);
         return registry.histogram(id);
     }
 
     @Override
     public Timer newTimer(Object anchor, String id) {
-        // TODO check if id has already been used
+        requireNonNull(anchor, "anchor == null");
+        checkID(id);
         return registry.timer(id);
     }
 
     @Override
     @SuppressWarnings("rawtypes")
     public Gauge newGauge(Object anchor, String id, MetricSupplier<Gauge> supplier) {
-        // TODO check if id has already been used
+        requireNonNull(anchor, "anchor == null");
+        checkID(id);
         return registry.gauge(id, supplier);
+    }
+
+    private void checkID(String id) {
+        requireNonNull(id, "id == null");
+        if (registry.getNames().contains(id)) {
+            throw new IllegalArgumentException("Metric ID already used: " + id);
+        }
     }
 
 }
