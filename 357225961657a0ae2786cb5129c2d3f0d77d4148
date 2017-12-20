@@ -16,6 +16,24 @@
       "revId": "357225961657a0ae2786cb5129c2d3f0d77d4148",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "84b5d1f4_731aa9dc",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/concurrent/FailureFormatMoreArgumentsLoggingFutureCallback.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-12-20T15:52:01Z",
+      "side": 1,
+      "message": "actually.. on thinking about this again, for performance what you are suggesting isn\u0027t ideal - because with that change, just to appease SpotBugs for this special case instead of suppressing, we\u0027ll ALWAYS have to cost of String concat, instead of ONLY onFailure... is that really a good idea? Are you OK if I undo even the previous change and we get my original patch set in instead?",
+      "parentUuid": "32b7d52f_8cd06bee",
+      "revId": "357225961657a0ae2786cb5129c2d3f0d77d4148",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
