@@ -53,6 +53,24 @@
     },
     {
       "key": {
+        "uuid": "a246879a_ee3e94b1",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/MetricsFileReporter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-12-20T15:57:01Z",
+      "side": 1,
+      "message": "agree - we should use a .cfg file - see https://wiki.opendaylight.org/view/Using_Blueprint#Using_ConfigAdmin",
+      "parentUuid": "62ff2003_c8dcc955",
+      "revId": "546c605f79a33e3d708f815055af45f62c0f8373",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a7970180_330d8dca",
         "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/MetricsFileReporter.java",
         "patchSetId": 1
