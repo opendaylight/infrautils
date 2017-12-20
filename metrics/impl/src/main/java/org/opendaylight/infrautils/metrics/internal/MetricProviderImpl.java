@@ -20,6 +20,7 @@ import javax.inject.Singleton;
 import org.opendaylight.infrautils.metrics.MetricProvider;
 import org.ops4j.pax.cdi.api.OsgiServiceProvider;
 
+
 /**
  * Implementation of {@link MetricProvider}.
  *
@@ -31,6 +32,7 @@ public class MetricProviderImpl implements MetricProvider {
 
     private final MetricRegistry registry;
     private final JmxReporter jmxReporter;
+    private final MetricsFileReporter fileReporter;
 
     public MetricProviderImpl() {
         this.registry = new MetricRegistry();
@@ -39,6 +41,8 @@ public class MetricProviderImpl implements MetricProvider {
         // TODO ThreadDeadlockHealthCheck.. but are healthchecks exposed via reporters?
 
         jmxReporter = setUpJmxReporter(registry);
+
+        fileReporter = new MetricsFileReporter(registry);
         // TODO setUpSlf4jReporter
 
         // TODO really get this to work in Karaf, through PAX Logging.. (it's currently NOK)
@@ -48,6 +52,7 @@ public class MetricProviderImpl implements MetricProvider {
     @PreDestroy
     public void close() {
         jmxReporter.close();
+        fileReporter.close();
     }
 
     private static JmxReporter setUpJmxReporter(MetricRegistry registry) {
