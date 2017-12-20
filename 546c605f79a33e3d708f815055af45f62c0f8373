@@ -1,0 +1,174 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "30d202ea_1efcdaf4",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/MetricProviderImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-12-20T15:33:39Z",
+      "side": 1,
+      "message": "We should probably have a configuration (not by sytem property but something more appropriate) to make this opt-in and optional, not always on by default?",
+      "revId": "546c605f79a33e3d708f815055af45f62c0f8373",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1485446a_a23036e7",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/MetricsFileReporter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-12-20T15:33:39Z",
+      "side": 1,
+      "message": "would love to see a Test for this as part of this...",
+      "revId": "546c605f79a33e3d708f815055af45f62c0f8373",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "62ff2003_c8dcc955",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/MetricsFileReporter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-12-20T15:33:39Z",
+      "side": 1,
+      "message": "configuration by -D system properties isn\u0027t great in Karaf.. how will an end-user operator set these later? Hacking the bin/karaf startup script? An environment variable?  You can\u0027t that easily set those when you run Karaf from like a systemd service kind of thing.  Ideally, we should make this configurable through standard Karaf configuration; I\u0027ve never looked at how to do this in details yet, but I think it\u0027s based on the OSGi Configuration Admin service, and backed by http://karaf.apache.org/manual/latest/#_configuration_3 ... see how org.opendaylight.infrautils.counters.impl.CountersMain does it - I think somehow you can just have setter methods and it will call those for you? I\u0027m sure there is public documentation about this somewhere.",
+      "revId": "546c605f79a33e3d708f815055af45f62c0f8373",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a7970180_330d8dca",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/MetricsFileReporter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-12-20T15:33:39Z",
+      "side": 1,
+      "message": "are you sure we\u0027ll always want seconds for both rateUnit and durationUnit?",
+      "revId": "546c605f79a33e3d708f815055af45f62c0f8373",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "db9f6c90_8ed8e9dd",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/MetricsFileReporter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-12-20T15:33:39Z",
+      "side": 1,
+      "message": "just \"fold\" this private method called from only the constructor in the line immediately above directly into the constructor - just add start() as the last line, why separate it, it\u0027s only harder to read no?",
+      "revId": "546c605f79a33e3d708f815055af45f62c0f8373",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "31643ba1_474a0bf3",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/MetricsFileReporter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-12-20T15:33:39Z",
+      "side": 1,
+      "message": "erm.. OK, but what about everything else than counters? meters, timers, histograms, gauges? We can\u0027t do only counters  - if we do this, then we hvae to do this right and completely, agreed?  Will you add a similar for loop for the 4 other types?",
+      "revId": "546c605f79a33e3d708f815055af45f62c0f8373",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a1785fa1_2e8c835d",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/MetricsFileReporter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-12-20T15:33:39Z",
+      "side": 1,
+      "message": "LOG.error(\"Failed to report counters to files\", e);",
+      "revId": "546c605f79a33e3d708f815055af45f62c0f8373",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "40db4ac4_1954a926",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/MetricsFileReporter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-12-20T15:33:39Z",
+      "side": 1,
+      "message": "nit, typo: NameName has a lot of names... ;-)",
+      "revId": "546c605f79a33e3d708f815055af45f62c0f8373",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "941e571c_ec704117",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/MetricsFileReporter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-12-20T15:33:39Z",
+      "side": 1,
+      "message": "not RuntimeException, never; just IOException is fine here",
+      "revId": "546c605f79a33e3d708f815055af45f62c0f8373",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ea9fb294_b6f95aad",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/MetricsFileReporter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2017-12-20T15:33:39Z",
+      "side": 1,
+      "message": "IOException",
+      "revId": "546c605f79a33e3d708f815055af45f62c0f8373",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
