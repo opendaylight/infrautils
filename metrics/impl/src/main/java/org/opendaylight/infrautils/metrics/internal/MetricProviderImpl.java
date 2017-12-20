@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 Red Hat, Inc. and others. All rights reserved.
+ * Copyright (c) 2017 - 2018 Red Hat, Inc. and others. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
@@ -22,6 +22,7 @@ import org.ops4j.pax.cdi.api.OsgiServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+
 /**
  * Implementation of {@link MetricProvider}.
  *
@@ -35,6 +36,7 @@ public class MetricProviderImpl implements MetricProvider {
 
     private final MetricRegistry registry;
     private final JmxReporter jmxReporter;
+    private final MetricsFileReporter fileReporter;
 
     public MetricProviderImpl() {
         this.registry = new MetricRegistry();
@@ -43,6 +45,9 @@ public class MetricProviderImpl implements MetricProvider {
         // TODO ThreadDeadlockHealthCheck.. but are healthchecks exposed via reporters?
 
         jmxReporter = setUpJmxReporter(registry);
+
+        fileReporter = new MetricsFileReporter(registry);
+        fileReporter.startReporter(); //TODO make it optional
         // TODO setUpSlf4jReporter
 
         // TODO really get this to work in Karaf, through PAX Logging.. (it's currently NOK)
@@ -52,6 +57,7 @@ public class MetricProviderImpl implements MetricProvider {
     @PreDestroy
     public void close() {
         jmxReporter.close();
+        fileReporter.close();
     }
 
     private static JmxReporter setUpJmxReporter(MetricRegistry registry) {
