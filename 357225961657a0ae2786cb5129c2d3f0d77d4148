@@ -34,6 +34,24 @@
       "revId": "357225961657a0ae2786cb5129c2d3f0d77d4148",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2f0eaffc_9b03756a",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/concurrent/FailureFormatMoreArgumentsLoggingFutureCallback.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-12-20T16:01:17Z",
+      "side": 1,
+      "message": "good point. What about putting it in a local on line 37 - would that fake out and quiet FB/SB? If not then just suppress - just trying to see if there\u0027s a reasonable way to avoid suppressing.",
+      "parentUuid": "84b5d1f4_731aa9dc",
+      "revId": "357225961657a0ae2786cb5129c2d3f0d77d4148",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
