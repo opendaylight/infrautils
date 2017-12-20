@@ -23,6 +23,7 @@ class JobEntry {
     private final String key;
     private volatile @Nullable Callable<List<ListenableFuture<Void>>> mainWorker;
     private final @Nullable RollbackCallable rollbackWorker;
+    private final int maxRetries;
     private volatile int retryCount;
     private static final AtomicIntegerFieldUpdater<JobEntry> RETRY_COUNT_FIELD_UPDATER =
             AtomicIntegerFieldUpdater.newUpdater(JobEntry.class, "retryCount");
@@ -33,7 +34,8 @@ class JobEntry {
         this.key = key;
         this.mainWorker = mainWorker;
         this.rollbackWorker = rollbackWorker;
-        retryCount = maxRetries;
+        this.maxRetries = maxRetries;
+        this.retryCount = maxRetries;
     }
 
     /**
@@ -62,6 +64,10 @@ class JobEntry {
         return retryCount;
     }
 
+    public int getMaxRetries() {
+        return maxRetries;
+    }
+
     public int decrementRetryCountAndGet() {
         if (this.retryCount == 0) {
             return 0;
@@ -81,6 +87,6 @@ class JobEntry {
     @Override
     public String toString() {
         return "JobEntry{" + "key='" + key + '\'' + ", mainWorker=" + mainWorker + ", rollbackWorker=" + rollbackWorker
-                + ", retryCount=" + retryCount + ", futures=" + futures + '}';
+                + ", retryCount=" + (maxRetries - retryCount) + "/" + maxRetries + ", futures=" + futures + '}';
     }
 }
