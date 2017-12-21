@@ -7,11 +7,24 @@
  */
 package org.opendaylight.infrautils.metrics.internal;
 
+import static com.codahale.metrics.Slf4jReporter.LoggingLevel.INFO;
+import static java.lang.management.ManagementFactory.getThreadMXBean;
 import static java.util.Objects.requireNonNull;
+import static java.util.concurrent.TimeUnit.MILLISECONDS;
+import static java.util.concurrent.TimeUnit.SECONDS;
 
 import com.codahale.metrics.JmxReporter;
 import com.codahale.metrics.MetricRegistry;
+import com.codahale.metrics.Slf4jReporter;
+import com.codahale.metrics.jvm.BufferPoolMetricSet;
+import com.codahale.metrics.jvm.CachedThreadStatesGaugeSet;
+import com.codahale.metrics.jvm.ClassLoadingGaugeSet;
+import com.codahale.metrics.jvm.FileDescriptorRatioGauge;
+import com.codahale.metrics.jvm.GarbageCollectorMetricSet;
+import com.codahale.metrics.jvm.MemoryUsageGaugeSet;
+import com.codahale.metrics.jvm.ThreadDeadlockDetector;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+import java.lang.management.ManagementFactory;
 import javax.annotation.PreDestroy;
 import javax.inject.Singleton;
 import org.opendaylight.infrautils.metrics.CloseableMetric;
@@ -37,18 +50,19 @@ public class MetricProviderImpl implements MetricProvider {
     private final MetricRegistry registry;
     private final JmxReporter jmxReporter;
     private final MetricsFileReporter fileReporter;
+    private final Slf4jReporter slf4jReporter;
 
     public MetricProviderImpl() {
         this.registry = new MetricRegistry();
 
-        // TODO setUpJvmMetrics
-        // TODO ThreadDeadlockHealthCheck.. but are healthchecks exposed via reporters?
+        setUpJvmMetrics(registry);
 
         jmxReporter = setUpJmxReporter(registry);
 
         fileReporter = new MetricsFileReporter(registry);
         fileReporter.startReporter(); //TODO make it optional
-        // TODO setUpSlf4jReporter
+
+        slf4jReporter = setUpSlf4jReporter(registry);
 
         // TODO really get this to work in Karaf, through PAX Logging.. (it's currently NOK)
         // instrumentLog4jV2(registry);
@@ -58,12 +72,44 @@ public class MetricProviderImpl implements MetricProvider {
     public void close() {
         jmxReporter.close();
         fileReporter.close();
+        slf4jReporter.close();
+    }
+
+    private static void setUpJvmMetrics(MetricRegistry registry) {
+        ThreadDeadlockDetector threadDeadlockDetector = new ThreadDeadlockDetector();
+        FileDescriptorRatioGauge fileDescriptorRatioGauge = new FileDescriptorRatioGauge();
+
+        registry.registerAll(new GarbageCollectorMetricSet());
+        registry.registerAll(new BufferPoolMetricSet(ManagementFactory.getPlatformMBeanServer()));
+        registry.registerAll(new CachedThreadStatesGaugeSet(getThreadMXBean(), threadDeadlockDetector, 13, SECONDS));
+        registry.registerAll(new MemoryUsageGaugeSet());
+        registry.registerAll(new ClassLoadingGaugeSet());
+        registry.gauge("odl.infrautils.FileDescriptorRatio", () -> fileDescriptorRatioGauge);
     }
 
     private static JmxReporter setUpJmxReporter(MetricRegistry registry) {
         JmxReporter reporter = JmxReporter.forRegistry(registry).build();
         reporter.start();
+        LOG.info("JmxReporter started, ODL application's metrics are now available via JMX");
         return reporter;
+    }
+
+    private static Slf4jReporter setUpSlf4jReporter(MetricRegistry registry) {
+        Slf4jReporter slf4jReporter = Slf4jReporter.forRegistry(registry)
+                .convertDurationsTo(MILLISECONDS)
+                .convertRatesTo(SECONDS)
+                .outputTo(LOG)
+                .prefixedWith("JVM")
+                .withLoggingLevel(INFO)
+                .shutdownExecutorOnStop(true)
+                .build();
+        // NB: We do intentionally *NOT* start() the Slf4jReporter to log all metrics regularly;
+        // as that will spam the log, and we have our own file based reporting instead.
+        // We do log system metrics once at boot up:
+        LOG.info("One time system JVM metrics FYI; "
+                + "to watch continously, monitor via JMX or enable periodic file dump option");
+        slf4jReporter.report();
+        return slf4jReporter;
     }
 
     // http://metrics.dropwizard.io/3.1.0/manual/log4j/
