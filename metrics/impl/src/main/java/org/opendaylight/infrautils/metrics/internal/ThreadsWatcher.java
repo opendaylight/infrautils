@@ -32,11 +32,13 @@ class ThreadsWatcher implements Runnable {
 
     private static final Logger LOG = LoggerFactory.getLogger(ThreadsWatcher.class);
 
+    private final int maxThreads;
     private final ScheduledExecutorService scheduledExecutor;
     private final ThreadDeadlockDetector threadDeadlockDetector = new ThreadDeadlockDetector();
     private final ThreadDump threadDump = new ThreadDump(getThreadMXBean());
 
-    ThreadsWatcher(int interval, TimeUnit timeUnit) {
+    ThreadsWatcher(int maxThreads, int interval, TimeUnit timeUnit) {
+        this.maxThreads = maxThreads;
         scheduledExecutor = newSingleThreadScheduledExecutor("infrautils.metrics.ThreadsWatcher", LOG);
         addErrorLogging(scheduledExecutor.scheduleAtFixedRate(this, 0, interval, timeUnit), LOG, "scheduleAtFixedRate");
     }
@@ -53,6 +55,12 @@ class ThreadsWatcher implements Runnable {
             for (String deadlockedThreadStackTrace : deadlockedThreadsStackTrace) {
                 LOG.error("Deadlocked thread stack trace: {}", deadlockedThreadStackTrace);
             }
+            logAllThreads();
+
+        } else if (getThreadMXBean().getThreadCount() >= maxThreads) {
+            LOG.warn("Oh nose - there are now more than {} threads! (totalStarted: {}, peak: {}, daemons: {})",
+                    maxThreads, getThreadMXBean().getTotalStartedThreadCount(), getThreadMXBean().getPeakThreadCount(),
+                    getThreadMXBean().getDaemonThreadCount());
             logAllThreads();
         }
     }
