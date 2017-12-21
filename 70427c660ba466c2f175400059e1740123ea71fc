@@ -1,0 +1,198 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e198363_1cbb4740",
+        "filename": "metrics/api/src/main/java/org/opendaylight/infrautils/metrics/CloseableMetric.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-12-21T01:29:14Z",
+      "side": 1,
+      "message": "Why don\u0027t we just use the AutoCloseable interface?",
+      "revId": "70427c660ba466c2f175400059e1740123ea71fc",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4833061d_2f988877",
+        "filename": "metrics/api/src/main/java/org/opendaylight/infrautils/metrics/Counter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-12-21T01:29:14Z",
+      "side": 1,
+      "message": "Extend AutoCloseable?",
+      "range": {
+        "startLine": 10,
+        "startChar": 33,
+        "endLine": 10,
+        "endChar": 48
+      },
+      "revId": "70427c660ba466c2f175400059e1740123ea71fc",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "717bdbe3_577ae972",
+        "filename": "metrics/api/src/main/java/org/opendaylight/infrautils/metrics/Counter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-12-21T01:29:14Z",
+      "side": 1,
+      "message": "many -\u003e howMany?",
+      "range": {
+        "startLine": 14,
+        "startChar": 18,
+        "endLine": 14,
+        "endChar": 22
+      },
+      "revId": "70427c660ba466c2f175400059e1740123ea71fc",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6d7be18a_b3d1a703",
+        "filename": "metrics/api/src/main/java/org/opendaylight/infrautils/metrics/Counter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-12-21T01:29:14Z",
+      "side": 1,
+      "message": "Can we spell out increment and decrement?",
+      "revId": "70427c660ba466c2f175400059e1740123ea71fc",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "67dce773_973106fc",
+        "filename": "metrics/api/src/main/java/org/opendaylight/infrautils/metrics/Meter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-12-21T01:29:14Z",
+      "side": 1,
+      "message": "What is a Meter (javadocs)?",
+      "revId": "70427c660ba466c2f175400059e1740123ea71fc",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "98efb6bd_a7aff460",
+        "filename": "metrics/api/src/main/java/org/opendaylight/infrautils/metrics/Meter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-12-21T01:29:14Z",
+      "side": 1,
+      "message": "What does this method do (need javadocs)?",
+      "revId": "70427c660ba466c2f175400059e1740123ea71fc",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3d6f8cc6_6aa14196",
+        "filename": "metrics/api/src/main/java/org/opendaylight/infrautils/metrics/Meter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-12-21T01:29:14Z",
+      "side": 1,
+      "message": "many -\u003e howMany?",
+      "range": {
+        "startLine": 14,
+        "startChar": 19,
+        "endLine": 14,
+        "endChar": 23
+      },
+      "revId": "70427c660ba466c2f175400059e1740123ea71fc",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d525e119_1ecf90bd",
+        "filename": "metrics/api/src/main/java/org/opendaylight/infrautils/metrics/Timer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-12-21T01:29:14Z",
+      "side": 1,
+      "message": "AutoCloseable?",
+      "range": {
+        "startLine": 13,
+        "startChar": 31,
+        "endLine": 13,
+        "endChar": 46
+      },
+      "revId": "70427c660ba466c2f175400059e1740123ea71fc",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "29010a2d_0c8179ad",
+        "filename": "metrics/api/src/main/java/org/opendaylight/infrautils/metrics/Timer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-12-21T01:29:14Z",
+      "side": 1,
+      "message": "javadocs",
+      "revId": "70427c660ba466c2f175400059e1740123ea71fc",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "20a4f6e5_b37ea264",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/MetricProviderImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2017-12-21T01:29:14Z",
+      "side": 1,
+      "message": "This should be volatile, unless we want to assume that instances will only be used by a single thread.",
+      "revId": "70427c660ba466c2f175400059e1740123ea71fc",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
