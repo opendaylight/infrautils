@@ -193,6 +193,52 @@
       "revId": "70427c660ba466c2f175400059e1740123ea71fc",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3dda0ddb_41719c00",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/MetricProviderImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 7785
+      },
+      "writtenOn": "2017-12-21T09:29:25Z",
+      "side": 1,
+      "message": "missing close() should deregister this meter from registry",
+      "range": {
+        "startLine": 197,
+        "startChar": 8,
+        "endLine": 197,
+        "endChar": 9
+      },
+      "revId": "70427c660ba466c2f175400059e1740123ea71fc",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9426f3b8_f3e7e4e4",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/MetricProviderImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 7785
+      },
+      "writtenOn": "2017-12-21T09:29:25Z",
+      "side": 1,
+      "message": "missing close() should deregister this meter from registry",
+      "range": {
+        "startLine": 204,
+        "startChar": 8,
+        "endLine": 204,
+        "endChar": 9
+      },
+      "revId": "70427c660ba466c2f175400059e1740123ea71fc",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
