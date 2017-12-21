@@ -54,10 +54,13 @@ public class MetricProviderImpl implements MetricProvider {
     private final Slf4jReporter slf4jReporter;
 
     public MetricProviderImpl() {
+        // TODO Make this configurable...
+        int maxThreads = 1000;
+
         this.registry = new MetricRegistry();
 
         setUpJvmMetrics(registry);
-        threadsWatcher = new ThreadsWatcher(1, MINUTES);
+        threadsWatcher = new ThreadsWatcher(maxThreads, 1, MINUTES);
 
         jmxReporter = setUpJmxReporter(registry);
         slf4jReporter = setUpSlf4jReporter(registry);
