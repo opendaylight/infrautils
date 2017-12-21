@@ -9,18 +9,18 @@ package org.opendaylight.infrautils.metrics.internal;
 
 import static java.util.Objects.requireNonNull;
 
-import com.codahale.metrics.Counter;
-import com.codahale.metrics.Gauge;
-import com.codahale.metrics.Histogram;
 import com.codahale.metrics.JmxReporter;
-import com.codahale.metrics.Meter;
 import com.codahale.metrics.MetricRegistry;
-import com.codahale.metrics.MetricRegistry.MetricSupplier;
-import com.codahale.metrics.Timer;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import javax.annotation.PreDestroy;
 import javax.inject.Singleton;
+import org.opendaylight.infrautils.metrics.CloseableMetric;
 import org.opendaylight.infrautils.metrics.MetricProvider;
+import org.opendaylight.infrautils.utils.function.CheckedCallable;
+import org.opendaylight.infrautils.utils.function.CheckedRunnable;
 import org.ops4j.pax.cdi.api.OsgiServiceProvider;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Implementation of {@link MetricProvider}.
@@ -30,6 +30,8 @@ import org.ops4j.pax.cdi.api.OsgiServiceProvider;
 @Singleton
 @OsgiServiceProvider(classes = MetricProvider.class)
 public class MetricProviderImpl implements MetricProvider {
+
+    private static final Logger LOG = LoggerFactory.getLogger(MetricProviderImpl.class);
 
     private final MetricRegistry registry;
     private final JmxReporter jmxReporter;
@@ -76,39 +78,95 @@ public class MetricProviderImpl implements MetricProvider {
 //    }
 
     @Override
-    public Meter newMeter(Object anchor, String id) {
+    public org.opendaylight.infrautils.metrics.Meter newMeter(Object anchor, String id) {
         requireNonNull(anchor, "anchor == null");
         checkID(id);
-        return registry.meter(id);
+        com.codahale.metrics.Meter meter = registry.meter(id);
+        return new MeterImpl(id) {
+
+            @Override
+            public void mark() {
+                checkIfClosed();
+                meter.mark();
+            }
+
+            @Override
+            public void mark(long howMany) {
+                checkIfClosed();
+                meter.mark(howMany);
+            }
+        };
     }
 
     @Override
-    public Counter newCounter(Object anchor, String id) {
+    public org.opendaylight.infrautils.metrics.Counter newCounter(Object anchor, String id) {
         requireNonNull(anchor, "anchor == null");
         checkID(id);
-        return registry.counter(id);
+        com.codahale.metrics.Counter counter = registry.counter(id);
+        return new CounterImpl(id) {
+
+            @Override
+            public void increment() {
+                checkIfClosed();
+                counter.inc();
+            }
+
+            @Override
+            public void increment(long howMany) {
+                checkIfClosed();
+                counter.inc(howMany);
+            }
+
+            @Override
+            public void decrement() {
+                checkIfClosed();
+                counter.dec();
+            }
+
+            @Override
+            public void decrement(long howMany) {
+                checkIfClosed();
+                counter.dec(howMany);
+            }
+        };
     }
 
     @Override
-    public Histogram newHistogram(Object anchor, String id) {
+    public org.opendaylight.infrautils.metrics.Timer newTimer(Object anchor, String id) {
         requireNonNull(anchor, "anchor == null");
         checkID(id);
-        return registry.histogram(id);
-    }
+        com.codahale.metrics.Timer timer = registry.timer(id);
+        return new TimerImpl(id) {
 
-    @Override
-    public Timer newTimer(Object anchor, String id) {
-        requireNonNull(anchor, "anchor == null");
-        checkID(id);
-        return registry.timer(id);
-    }
+            @Override
+            @SuppressWarnings({ "checkstyle:IllegalCatch", "unchecked" })
+            public <T, E extends Exception> T time(CheckedCallable<T, E> event) throws E {
+                checkIfClosed();
+                try {
+                    return timer.time(() -> event.call());
+                } catch (Exception e) {
+                    throw (E) e;
+                }
+            }
 
-    @Override
-    @SuppressWarnings("rawtypes")
-    public Gauge newGauge(Object anchor, String id, MetricSupplier<Gauge> supplier) {
-        requireNonNull(anchor, "anchor == null");
-        checkID(id);
-        return registry.gauge(id, supplier);
+            @Override
+            @SuppressWarnings({ "checkstyle:IllegalCatch", "unchecked" })
+            @SuppressFBWarnings("BC_UNCONFIRMED_CAST_OF_RETURN_VALUE") // getCause() will be Exception not Throwable
+            public <E extends Exception> void time(CheckedRunnable<E> event) throws E {
+                checkIfClosed();
+                try {
+                    timer.time(() -> {
+                        try {
+                            event.run();
+                        } catch (Exception exception) {
+                            throw new InternalRuntimeException(exception);
+                        }
+                    });
+                } catch (InternalRuntimeException e) {
+                    throw (E) e.getCause();
+                }
+            }
+        };
     }
 
     private void checkID(String id) {
@@ -118,4 +176,57 @@ public class MetricProviderImpl implements MetricProvider {
         }
     }
 
+    private void remove(String id) {
+        if (!registry.remove(id)) {
+            LOG.warn("Metric remove did not actualy remove: {}", id);
+        }
+    }
+
+    private abstract class CloseableMetricImpl implements CloseableMetric {
+        private volatile boolean isClosed = false;
+        private final String id;
+
+        CloseableMetricImpl(String id) {
+            this.id = id;
+        }
+
+        protected void checkIfClosed() {
+            if (isClosed) {
+                throw new IllegalStateException("Meter closed: " + id);
+            }
+        }
+
+        @Override
+        public void close() {
+            isClosed = true;
+            remove(id);
+        }
+    }
+
+    private abstract class MeterImpl extends CloseableMetricImpl implements org.opendaylight.infrautils.metrics.Meter {
+        MeterImpl(String id) {
+            super(id);
+        }
+    }
+
+    private abstract class CounterImpl extends CloseableMetricImpl
+            implements org.opendaylight.infrautils.metrics.Counter {
+        CounterImpl(String id) {
+            super(id);
+        }
+    }
+
+    private abstract class TimerImpl extends CloseableMetricImpl implements org.opendaylight.infrautils.metrics.Timer {
+        TimerImpl(String id) {
+            super(id);
+        }
+    }
+
+    private static class InternalRuntimeException extends RuntimeException {
+        private static final long serialVersionUID = 1L;
+
+        InternalRuntimeException(Exception exception) {
+            super(exception);
+        }
+    }
 }

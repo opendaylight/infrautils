@@ -25,16 +25,6 @@
 
   <dependencies>
     <dependency>
-      <!-- TODO Remove this entire dependency (not just the version)
-           when we're on odlparent 3.0.0 where dropwizard.metrics is removed from odlparent's dependencyManagement.
-           It's currently only needed because odlparent's dependencyManagement gives us an older version of metrics-core
-           than the one we would to transitively inherit from metrics-api, and this is causing us problems. -->
-      <groupId>io.dropwizard.metrics</groupId>
-      <artifactId>metrics-core</artifactId>
-      <version>3.2.5</version>
-    </dependency>
-
-    <dependency>
       <groupId>org.opendaylight.infrautils</groupId>
       <artifactId>metrics-api</artifactId>
       <version>${project.version}</version>

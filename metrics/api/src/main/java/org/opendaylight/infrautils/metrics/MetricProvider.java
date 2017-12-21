@@ -7,20 +7,13 @@
  */
 package org.opendaylight.infrautils.metrics;
 
-import com.codahale.metrics.Counter;
-import com.codahale.metrics.Gauge;
-import com.codahale.metrics.Histogram;
-import com.codahale.metrics.Meter;
-import com.codahale.metrics.Metric;
-import com.codahale.metrics.MetricRegistry.MetricSupplier;
-import com.codahale.metrics.Timer;
 import javax.annotation.concurrent.ThreadSafe;
 
 /**
  * Factory to obtain a new metric for use by application code.
  *
  * <p>This is basically a mirror of (parts of) the Coda Hale's Dropwizard's MetricRegistry.
- * ODL application wanting to expose metrics are strongly encouraged to obtain new {@link Metric}
+ * ODL application wanting to expose metrics are strongly encouraged to obtain new metric
  * instances through this factory, instead of directly using new MetricRegistry themselves.
  * This allows infrautils.metrics to expose all applications' metrics together through
  * current and future reporters.  This API also includes some convenience such as preventing
@@ -44,15 +37,16 @@ import javax.annotation.concurrent.ThreadSafe;
 @ThreadSafe
 public interface MetricProvider {
 
+    Meter newMeter(Object anchor, String id);
+
     Counter newCounter(Object anchor, String id);
 
     Timer newTimer(Object anchor, String id);
 
-    Meter newMeter(Object anchor, String id);
+    // TODO Histogram newHistogram(Object anchor, String id);
 
-    Histogram newHistogram(Object anchor, String id);
-
-    @SuppressWarnings("rawtypes")
-    Gauge newGauge(Object anchor, String id, MetricSupplier<Gauge> supplier);
+    // @SuppressWarnings("rawtypes")
+    // TODO Gauge newGauge(Object anchor, String id, MetricSupplier<Gauge> supplier);
+    // TODO write a test to clarify how to use this with a MetricSupplier; what's that for?
 
 }

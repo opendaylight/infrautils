@@ -7,13 +7,12 @@
  */
 package org.opendaylight.infrautils.metrics.it;
 
-import static org.junit.Assert.assertEquals;
 import static org.ops4j.pax.exam.CoreOptions.maven;
 
-import com.codahale.metrics.Counter;
 import javax.inject.Inject;
 import org.junit.Test;
 import org.opendaylight.infrautils.itestutils.AbstractIntegrationTest;
+import org.opendaylight.infrautils.metrics.Counter;
 import org.opendaylight.infrautils.metrics.MetricProvider;
 import org.ops4j.pax.exam.options.UrlReference;
 
@@ -28,10 +27,9 @@ public class MetricsIntegrationTest extends AbstractIntegrationTest {
 
     @Test
     public void testMetrics() {
+        // The main point here is just to make sure that Dropwizard Codahale Metrics really works at runtime under OSGi
         Counter counter1 = metricProvider.newCounter(this, "odl.infrautils.metrics.IntegrationTest.counter1");
-        assertEquals(0, counter1.getCount());
-        counter1.inc();
-        assertEquals(1, counter1.getCount());
+        counter1.increment();
     }
 
     @Override

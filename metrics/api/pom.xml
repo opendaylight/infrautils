@@ -25,16 +25,9 @@
 
   <dependencies>
     <dependency>
-      <groupId>io.dropwizard.metrics</groupId>
-      <artifactId>metrics-core</artifactId>
-      <!-- This version must be kept in line with the one used in metrics-impl.
-
-           TODO Remove the paragraph below when dropwizard.metrics is removed from odlparent's dependencyManagement...
-           This version does not have to match odlparent's (it's not up-to-date;
-           and we would like to evolve and upgrade this independent of odlparent),
-           because projects using metrics will just depend on this metrics-api artifact
-           and inherit the dropwizard metrics version from here, instead of from odlparent. -->
-      <version>3.2.5</version>
+      <groupId>org.opendaylight.infrautils</groupId>
+      <artifactId>infrautils-util</artifactId>
+      <version>${project.version}</version>
     </dependency>
   </dependencies>
 
