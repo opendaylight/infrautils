@@ -7,16 +7,15 @@
  */
 package org.opendaylight.infrautils.metrics.internal;
 
-import static java.util.Objects.requireNonNull;
-
 import static com.codahale.metrics.Slf4jReporter.LoggingLevel.INFO;
 import static java.lang.management.ManagementFactory.getThreadMXBean;
+import static java.util.Objects.requireNonNull;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
+import static java.util.concurrent.TimeUnit.MINUTES;
 import static java.util.concurrent.TimeUnit.SECONDS;
 
 import com.codahale.metrics.JmxReporter;
 import com.codahale.metrics.MetricRegistry;
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import com.codahale.metrics.Slf4jReporter;
 import com.codahale.metrics.jvm.BufferPoolMetricSet;
 import com.codahale.metrics.jvm.CachedThreadStatesGaugeSet;
@@ -25,6 +24,7 @@ import com.codahale.metrics.jvm.FileDescriptorRatioGauge;
 import com.codahale.metrics.jvm.GarbageCollectorMetricSet;
 import com.codahale.metrics.jvm.MemoryUsageGaugeSet;
 import com.codahale.metrics.jvm.ThreadDeadlockDetector;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.lang.management.ManagementFactory;
 import javax.annotation.PreDestroy;
 import javax.inject.Singleton;
@@ -48,6 +48,7 @@ public class MetricProviderImpl implements MetricProvider {
     private static final Logger LOG = LoggerFactory.getLogger(MetricProviderImpl.class);
 
     private final MetricRegistry registry;
+    private final ThreadsWatcher threadsWatcher;
     private final JmxReporter jmxReporter;
     private final Slf4jReporter slf4jReporter;
 
@@ -55,6 +56,7 @@ public class MetricProviderImpl implements MetricProvider {
         this.registry = new MetricRegistry();
 
         setUpJvmMetrics(registry);
+        threadsWatcher = new ThreadsWatcher(1, MINUTES);
 
         jmxReporter = setUpJmxReporter(registry);
         slf4jReporter = setUpSlf4jReporter(registry);
@@ -67,6 +69,7 @@ public class MetricProviderImpl implements MetricProvider {
     public void close() {
         jmxReporter.close();
         slf4jReporter.close();
+        threadsWatcher.close();
     }
 
     private static void setUpJvmMetrics(MetricRegistry registry) {

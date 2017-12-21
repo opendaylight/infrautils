@@ -9,6 +9,7 @@
 package org.opendaylight.infrautils.utils.concurrent;
 
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ThreadFactory;
 import org.slf4j.Logger;
 
@@ -45,5 +46,15 @@ public final class Executors {
                         .logger(logger)
                         .build()
                         .get());
+    }
+
+    public static ScheduledExecutorService newSingleThreadScheduledExecutor(String namePrefix, Logger logger) {
+        return java.util.concurrent.Executors.unconfigurableScheduledExecutorService(
+                   java.util.concurrent.Executors.newSingleThreadScheduledExecutor(
+                    ThreadFactoryProvider.builder()
+                            .namePrefix(namePrefix)
+                            .logger(logger)
+                            .build()
+                            .get()));
     }
 }

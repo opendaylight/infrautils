@@ -26,7 +26,13 @@ final class FailureMessageLoggingFutureCallback<V> extends FailureLoggingFutureC
 
     @Override
     public void onFailure(Throwable throwable) {
-        getLogger().error("Future (eventually) failed: {}", message, throwable);
+        if (throwable instanceof java.util.concurrent.CancellationException) {
+            // CancellationException are (typically) no cause for alarm, and debug instead of error level is enough
+            // as these can happen during shutdown when we interrupt running threads, and should not pollute logs.
+            getLogger().debug("Future (eventually) failed with CancellationException: {}", message, throwable);
+        } else {
+            getLogger().error("Future (eventually) failed: {}", message, throwable);
+        }
     }
 
 }
