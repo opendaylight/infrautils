@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "af458902_fa9cdb4e",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/MetricProviderImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 7785
+      },
+      "writtenOn": "2017-12-21T09:34:36Z",
+      "side": 1,
+      "message": "This supports only static counters.\nIf we want to support dynamic counters (per dpn/vpn/network ) etc we either we should have getMeter() or let this method not throw error.\nor there should be an api which takes registrName as argument.\nMeter newMeter(String registryName, Object anchor, String id)\nso that multiple registries could be maintained.",
+      "range": {
+        "startLine": 81,
+        "startChar": 8,
+        "endLine": 81,
+        "endChar": 15
+      },
+      "revId": "b8f78cd1a5a6fa69959da7c5af178dcc108a0918",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
