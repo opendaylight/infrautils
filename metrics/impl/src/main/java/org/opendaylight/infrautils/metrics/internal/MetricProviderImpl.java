@@ -11,6 +11,7 @@ import static com.codahale.metrics.Slf4jReporter.LoggingLevel.INFO;
 import static java.lang.management.ManagementFactory.getThreadMXBean;
 import static java.util.Objects.requireNonNull;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
+import static java.util.concurrent.TimeUnit.MINUTES;
 import static java.util.concurrent.TimeUnit.SECONDS;
 
 import com.codahale.metrics.JmxReporter;
@@ -48,6 +49,7 @@ public class MetricProviderImpl implements MetricProvider {
     private static final Logger LOG = LoggerFactory.getLogger(MetricProviderImpl.class);
 
     private final MetricRegistry registry;
+    private final ThreadsWatcher threadsWatcher;
     private final JmxReporter jmxReporter;
     private final MetricsFileReporter fileReporter;
     private final Slf4jReporter slf4jReporter;
@@ -56,6 +58,7 @@ public class MetricProviderImpl implements MetricProvider {
         this.registry = new MetricRegistry();
 
         setUpJvmMetrics(registry);
+        threadsWatcher = new ThreadsWatcher(1, MINUTES);
 
         jmxReporter = setUpJmxReporter(registry);
 
@@ -73,6 +76,7 @@ public class MetricProviderImpl implements MetricProvider {
         jmxReporter.close();
         fileReporter.close();
         slf4jReporter.close();
+        threadsWatcher.close();
     }
 
     private static void setUpJvmMetrics(MetricRegistry registry) {
