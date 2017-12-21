@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "042fe5c8_bd79b911",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/MetricProviderImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2017-12-21T06:36:53Z",
+      "side": 1,
+      "message": "Make this configurable?",
+      "revId": "9db6c5cc72f0934584235350cae339735ac26ed4",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
