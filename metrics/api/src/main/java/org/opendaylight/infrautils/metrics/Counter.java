@@ -7,7 +7,9 @@
  */
 package org.opendaylight.infrautils.metrics;
 
-public interface Counter extends CloseableMetric {
+import org.opendaylight.infrautils.utils.UncheckedCloseable;
+
+public interface Counter extends UncheckedCloseable {
 
     default void increment() {
         increment(1);
