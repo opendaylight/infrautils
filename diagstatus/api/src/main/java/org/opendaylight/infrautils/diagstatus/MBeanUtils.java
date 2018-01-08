@@ -14,6 +14,7 @@ import java.net.MalformedURLException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import javax.annotation.Nullable;
 import javax.management.AttributeNotFoundException;
 import javax.management.InstanceAlreadyExistsException;
 import javax.management.InstanceNotFoundException;
@@ -137,6 +138,7 @@ public final class MBeanUtils {
         return udpated;
     }
 
+    @Nullable
     public static Object readMBeanAttribute(String objName, String attribute) {
         @Var Object attributeObj = null;
         try {

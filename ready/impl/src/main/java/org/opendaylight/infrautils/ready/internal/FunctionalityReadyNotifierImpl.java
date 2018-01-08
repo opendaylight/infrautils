@@ -7,6 +7,7 @@
  */
 package org.opendaylight.infrautils.ready.internal;
 
+import javax.annotation.Nullable;
 import org.opendaylight.infrautils.ready.order.FunctionalityReady;
 import org.opendaylight.infrautils.ready.order.FunctionalityReadyNotifier;
 import org.opendaylight.infrautils.ready.order.FunctionalityReadyRegistration;
@@ -19,6 +20,7 @@ import org.opendaylight.infrautils.ready.order.FunctionalityReadyRegistration;
 public class FunctionalityReadyNotifierImpl implements FunctionalityReadyNotifier {
 
     @Override
+    @Nullable
     public FunctionalityReadyRegistration<? extends FunctionalityReady>
         register(Class<? extends FunctionalityReady> markerInterface) {
         // TODO, incl. TDD IT
