@@ -14,8 +14,8 @@ import com.codahale.metrics.MetricRegistry;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import javax.annotation.PreDestroy;
 import javax.inject.Singleton;
-import org.opendaylight.infrautils.metrics.CloseableMetric;
 import org.opendaylight.infrautils.metrics.MetricProvider;
+import org.opendaylight.infrautils.utils.UncheckedCloseable;
 import org.opendaylight.infrautils.utils.function.CheckedCallable;
 import org.opendaylight.infrautils.utils.function.CheckedRunnable;
 import org.ops4j.pax.cdi.api.OsgiServiceProvider;
@@ -182,7 +182,7 @@ public class MetricProviderImpl implements MetricProvider {
         }
     }
 
-    private abstract class CloseableMetricImpl implements CloseableMetric {
+    private abstract class CloseableMetricImpl implements UncheckedCloseable {
         private volatile boolean isClosed = false;
         private final String id;
 

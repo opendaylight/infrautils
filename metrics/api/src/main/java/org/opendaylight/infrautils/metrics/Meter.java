@@ -7,10 +7,12 @@
  */
 package org.opendaylight.infrautils.metrics;
 
+import org.opendaylight.infrautils.utils.UncheckedCloseable;
+
 /**
  * A meter metric which measures throughput.
  */
-public interface Meter extends CloseableMetric {
+public interface Meter extends UncheckedCloseable {
 
     /**
      * Mark the occurrence of an event.
