@@ -7,13 +7,15 @@
  */
 package org.opendaylight.infrautils.metrics;
 
+import org.opendaylight.infrautils.utils.UncheckedCloseable;
+
 /**
  * Meter metric, which measures throughput.
  *
  * <p>Note that this with <tt>mark()</tt> measures the rate at which a set of events occur;
  * whereas {@link Counter} is for things which will <tt>increase()</tt> - and can also <tt>decrease()</tt>.
  */
-public interface Meter extends CloseableMetric {
+public interface Meter extends UncheckedCloseable {
 
     /**
      * Mark the occurrence of an event.

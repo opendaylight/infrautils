@@ -7,13 +7,14 @@
  */
 package org.opendaylight.infrautils.metrics;
 
+import org.opendaylight.infrautils.utils.UncheckedCloseable;
 import org.opendaylight.infrautils.utils.function.CheckedCallable;
 import org.opendaylight.infrautils.utils.function.CheckedRunnable;
 
 /**
  * A timer metric which aggregates timing durations.
  */
-public interface Timer extends CloseableMetric {
+public interface Timer extends UncheckedCloseable {
 
     /**
      * Times and records the duration of event which returns a value.
