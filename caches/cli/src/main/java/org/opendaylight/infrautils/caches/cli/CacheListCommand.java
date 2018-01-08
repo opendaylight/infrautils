@@ -8,6 +8,7 @@
 package org.opendaylight.infrautils.caches.cli;
 
 import java.util.Map.Entry;
+import javax.annotation.Nullable;
 import org.apache.karaf.shell.commands.Command;
 import org.apache.karaf.shell.console.OsgiCommandSupport;
 import org.opendaylight.infrautils.caches.BaseCacheConfig;
@@ -35,6 +36,7 @@ public class CacheListCommand extends OsgiCommandSupport {
     }
 
     @Override
+    @Nullable
     // TODO Karaf 4: public Object execute(CommandSession session) throws Exception {
     protected Object doExecute() throws Exception {
         Iterable<CacheManager> allCacheManagers = cacheManagers.getAllCacheManagers();

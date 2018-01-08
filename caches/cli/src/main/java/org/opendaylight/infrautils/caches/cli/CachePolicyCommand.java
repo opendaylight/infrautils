@@ -8,6 +8,7 @@
 package org.opendaylight.infrautils.caches.cli;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+import javax.annotation.Nullable;
 import org.apache.karaf.shell.commands.Argument;
 import org.apache.karaf.shell.commands.Command;
 import org.apache.karaf.shell.console.OsgiCommandSupport;
@@ -44,6 +45,7 @@ public class CachePolicyCommand extends OsgiCommandSupport {
     }
 
     @Override
+    @Nullable
     // TODO Karaf 4: public Object execute(CommandSession session) throws Exception {
     protected Object doExecute() throws Exception {
         CacheManager cacheManager = cacheManagers.getCacheManager(cacheID);

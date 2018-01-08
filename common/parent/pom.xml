@@ -88,8 +88,7 @@
             <arg>-Xep:StaticOrDefaultInterfaceMethod:OFF</arg>
             <!-- FieldMissingNullable is badly broken :( https://github.com/google/error-prone/issues/708 -->
             <arg>-Xep:FieldMissingNullable:OFF</arg>
-            <!-- ReturnMissingNullable is badly broken :( https://github.com/google/error-prone/issues/723 -->
-            <arg>-Xep:ReturnMissingNullable:OFF</arg>
+            <arg>-Xep:ReturnMissingNullable:ERROR</arg>
             <arg>-Xep:InconsistentOverloads:ERROR</arg>
             <arg>-Xep:ConstructorLeaksThis:OFF</arg><!-- TODO <arg>-Xep:ConstructorLeaksThis:ERROR</arg> after https://github.com/google/error-prone/pull/789 for https://github.com/google/error-prone/issues/655, and maybe also https://github.com/google/error-prone/issues/809? -->
             <arg>-Xep:MethodCanBeStatic:ERROR</arg>
