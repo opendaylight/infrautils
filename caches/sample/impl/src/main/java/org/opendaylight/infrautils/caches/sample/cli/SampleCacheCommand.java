@@ -10,6 +10,7 @@ package org.opendaylight.infrautils.caches.sample.cli;
 import com.google.common.base.Stopwatch;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.concurrent.TimeUnit;
+import javax.annotation.Nullable;
 import org.apache.karaf.shell.commands.Argument;
 import org.apache.karaf.shell.commands.Command;
 import org.apache.karaf.shell.console.OsgiCommandSupport;
@@ -36,6 +37,7 @@ public class SampleCacheCommand extends OsgiCommandSupport {
     }
 
     @Override
+    @Nullable
     // TODO Karaf 4: public Object execute(CommandSession session) throws Exception {
     protected Object doExecute() throws Exception {
         Stopwatch stopWatch = Stopwatch.createStarted();

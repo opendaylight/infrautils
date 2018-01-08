@@ -8,7 +8,7 @@
 package org.opendaylight.infrautils.diagstatus.shell;
 
 import java.util.List;
-
+import javax.annotation.Nullable;
 import org.apache.felix.service.command.CommandSession;
 import org.apache.karaf.shell.commands.Command;
 import org.apache.karaf.shell.commands.Option;
@@ -31,6 +31,7 @@ public class DiagStatusCommand implements org.apache.karaf.shell.commands.Action
     String nip;
 
     @Override
+    @Nullable
     @SuppressWarnings("checkstyle:IllegalCatch")
     public Object execute(CommandSession session) throws Exception {
         StringBuilder strBuilder = new StringBuilder();
@@ -91,7 +92,7 @@ public class DiagStatusCommand implements org.apache.karaf.shell.commands.Action
                         strBuilder.append(getRemoteStatusSummary(ipAddress));
                     } catch (Exception e) {
                         strBuilder.append("Remote Status retrieval JMX Operation failed for node ").append(ipAddress);
-                        LOG.error("Exception while reaching Host ::{}", ipAddress);
+                        LOG.error("Exception while reaching Host: {}", ipAddress, e);
                     }
                 }
             } else {
