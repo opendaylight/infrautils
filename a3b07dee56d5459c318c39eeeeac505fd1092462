@@ -22,6 +22,30 @@
       "revId": "a3b07dee56d5459c318c39eeeeac505fd1092462",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fba5b630_90c2121f",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/MetricProviderImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-01-08T21:04:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "33d3e53f_2f457318",
+      "range": {
+        "startLine": 104,
+        "startChar": 28,
+        "endLine": 104,
+        "endChar": 39
+      },
+      "revId": "a3b07dee56d5459c318c39eeeeac505fd1092462",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
