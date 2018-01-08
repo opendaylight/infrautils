@@ -22,6 +22,30 @@
       "revId": "b8f78cd1a5a6fa69959da7c5af178dcc108a0918",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a872c5f_6ca6c26e",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/MetricProviderImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-01-08T21:45:11Z",
+      "side": 1,
+      "message": "Suneelu, really sorry but I am struggling to put this comment from you here into the context of this proposed change...\n\nI\u0027m guess that maybe this is more of a general feedback on infrautils.metrics (which perhaps would fit more to a infrautils-dev list discussion or a private email thread) than really a code review feedback for this specific change?\n\nLet me try to reply to your points anyway though:\n\n\u003e This supports only static counters.\n\nHuh - how so?  When you say \"static\" how do you mean that?  As in the Java keyword static?  I\u0027m sorry but I don\u0027t see how you mean that.\n\n\u003e If we want to support dynamic counters (per dpn/vpn/network)\n\nAn application could very well use the current infrautils.metrics API as-is \"dynamically\", that is call newMeter() not just from a @Singleton component @PostConstruct but on creation of dpn/vpn/network - that could certainly work, right?\n\n\u003e etc we either we should have getMeter() or let this method not throw error.\n\nErm, so a method like getMeter() is exactly what I want to avoid the API having - because there should be no need for it, as per the Commit Message: \"guarantees that an ODL application cannot \u0027spy on\u0027 or \u0027steal\u0027 (and modify!) another one\u0027s metrics - they are intentionally only accessible to the creator.\"\n\nRight now one can \"cheat\" and use newMeter as a \"back door\" to getMeter, but that was never the intention! I\u0027d like to close this back door now to avoid future abuse of the API.\n\nI don\u0027t understand how a getMeter() and \"dynamic counters\" relate to each other.  Nor what it has to do with this change... ;-)\n\n\u003e or there should be an api which takes registrName as argument. Meter newMeter(String registryName, Object anchor, String id) so that multiple registries could be maintained.\n\nSo with that registryName you probably mean the JMX registry?  That, to me, is an implmentation detail which the API should not expose.  FYI I anticipate that there later will be an alternative implementation of the infrautils.metrics API which does not use Dropwizard at all, nor JMX - only send metrics to https://prometheus.io\n\nI think what you are really after is something else - you want a kind of more fine grained separation on JMX, or something like that?  Again I don\u0027t think that has anything to do with this change... but you could kick off a discussion on the infrautils-dev mailing list, if you would like to work on that.",
+      "parentUuid": "af458902_fa9cdb4e",
+      "range": {
+        "startLine": 81,
+        "startChar": 8,
+        "endLine": 81,
+        "endChar": 15
+      },
+      "revId": "b8f78cd1a5a6fa69959da7c5af178dcc108a0918",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
