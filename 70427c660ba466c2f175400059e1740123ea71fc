@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "140f6e77_ed87ceba",
+        "filename": "metrics/api/src/main/java/org/opendaylight/infrautils/metrics/CloseableMetric.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-01-08T21:57:43Z",
+      "side": 1,
+      "message": "I wouldn\u0027t insist...  I\u0027d rather we use an existing interface (as I know you would too).  I agree  throws Exception can be a pain but of course you can override and remove it.  This is really a general issue so if the throws is unbearable, I\u0027d rather we add a general Closeable interface in infrautils that omits the throws.",
+      "parentUuid": "c8694ca7_a82c993a",
+      "revId": "70427c660ba466c2f175400059e1740123ea71fc",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4833061d_2f988877",
         "filename": "metrics/api/src/main/java/org/opendaylight/infrautils/metrics/Counter.java",
         "patchSetId": 1
