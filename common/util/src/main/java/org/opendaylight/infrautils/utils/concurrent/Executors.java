@@ -9,11 +9,14 @@
 package org.opendaylight.infrautils.utils.concurrent;
 
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ThreadFactory;
 import org.slf4j.Logger;
 
 /**
  * Additional factory and utility methods for executors.
+ *
+ * <p>Use this instead of {@link java.util.concurrent.Executors}.
  */
 public final class Executors {
 
@@ -40,6 +43,15 @@ public final class Executors {
 
     public static ExecutorService newCachedThreadPool(String namePrefix, Logger logger) {
         return java.util.concurrent.Executors.newCachedThreadPool(
+                ThreadFactoryProvider.builder()
+                        .namePrefix(namePrefix)
+                        .logger(logger)
+                        .build()
+                        .get());
+    }
+
+    public static ScheduledExecutorService newScheduledThreadPool(int corePoolSize,String namePrefix, Logger logger) {
+        return java.util.concurrent.Executors.newScheduledThreadPool(corePoolSize,
                 ThreadFactoryProvider.builder()
                         .namePrefix(namePrefix)
                         .logger(logger)
