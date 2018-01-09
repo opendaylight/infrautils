@@ -95,6 +95,11 @@ public class MetricProviderImpl implements MetricProvider {
                 checkIfClosed();
                 meter.mark(howMany);
             }
+
+            @Override
+            public long get() {
+                return meter.getCount();
+            }
         };
     }
 
@@ -127,6 +132,11 @@ public class MetricProviderImpl implements MetricProvider {
             public void decrement(long howMany) {
                 checkIfClosed();
                 counter.dec(howMany);
+            }
+
+            @Override
+            public long get() {
+                return counter.getCount();
             }
         };
     }
