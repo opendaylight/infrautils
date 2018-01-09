@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "e087c331_ec46430a",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/MetricProviderImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-01-09T16:16:45Z",
+      "side": 1,
+      "message": "I want to make this configurable BEFORE merging this, based on some config file to be introduced in c/66690 ...",
+      "revId": "92c02607d6664ca18a55afb1b695de1d31a4d3c6",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "93dade7b_1e4d9913",
         "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/ThreadsWatcher.java",
         "patchSetId": 1
