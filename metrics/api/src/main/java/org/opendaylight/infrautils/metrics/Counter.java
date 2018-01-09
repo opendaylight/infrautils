@@ -21,4 +21,10 @@ public interface Counter extends CloseableMetric {
 
     void decrement(long howMany);
 
+    /**
+     * Gets the total number of events. Beware that this could have overflown.
+     * This is typically used in unit tests of metrics, more than to expose the metrics in production
+     * (because exposing metrics is really the role of the infrautils metrics implementation of this API).
+     */
+    long get();
 }
