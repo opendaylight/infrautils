@@ -16,6 +16,41 @@
       "revId": "840820f33596bd493ccf81c658080897f0293092",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2ac4f4b5_9d2b01c0",
+        "filename": "caches/api/src/main/java/org/opendaylight/infrautils/caches/BaseCacheConfig.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-01-09T16:28:35Z",
+      "side": 1,
+      "message": "because this ID is used e.g. in CLI commands for cache:clear, and could be used in future remote monitoring, and to integrate with metrics, I\u0027d like to have some restriction in place for this (and add the same e.g. for metrics ID as well), not just leave it a completely open String; where one could add [\\n \\t] or Unicode escapes or smileys or what not... does that make sense, and would you be OK with that?\n\nI am however totally open to further loosing it a bit - what particular character in the ID did you want to use but were surprised you couldn\u0027t?  \n\nRe. \"the error just says Invalid ID\" let me fix that by including the regexp in the IllegalArgumentException, that should help others in the future.  I will also explain it in the API via better JavaDoc.  Both after you confirm you would be OK to move forward like this.",
+      "parentUuid": "b44e7dbd_46444386",
+      "revId": "840820f33596bd493ccf81c658080897f0293092",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aa331601_da151b76",
+        "filename": "caches/api/src/main/java/org/opendaylight/infrautils/caches/BaseCacheConfig.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-01-09T16:28:35Z",
+      "side": 1,
+      "message": "TODO.self: remove the toLowerCase() here, now that we allowed upper case",
+      "revId": "840820f33596bd493ccf81c658080897f0293092",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
