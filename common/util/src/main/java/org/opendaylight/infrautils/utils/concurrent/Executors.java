@@ -5,7 +5,6 @@
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html
  */
-
 package org.opendaylight.infrautils.utils.concurrent;
 
 import java.util.concurrent.ExecutorService;
@@ -15,6 +14,8 @@ import org.slf4j.Logger;
 
 /**
  * Additional factory and utility methods for executors.
+ *
+ * <p>Use this instead of {@link java.util.concurrent.Executors}.
  */
 public final class Executors {
 
@@ -56,5 +57,14 @@ public final class Executors {
                             .logger(logger)
                             .build()
                             .get()));
+    }
+
+    public static ScheduledExecutorService newScheduledThreadPool(int corePoolSize, String namePrefix, Logger logger) {
+        return java.util.concurrent.Executors.newScheduledThreadPool(corePoolSize,
+                ThreadFactoryProvider.builder()
+                        .namePrefix(namePrefix)
+                        .logger(logger)
+                        .build()
+                        .get());
     }
 }
