@@ -16,6 +16,24 @@
       "revId": "e33f4db6a02535d025b490bd762545330a74c2d6",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4ae1429d_4cbc217b",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/Closeable.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-01-09T15:02:16Z",
+      "side": 1,
+      "message": "sure",
+      "parentUuid": "fb9fa569_d8d16a97",
+      "revId": "e33f4db6a02535d025b490bd762545330a74c2d6",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
