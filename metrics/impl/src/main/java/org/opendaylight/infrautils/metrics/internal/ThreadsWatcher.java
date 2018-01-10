@@ -8,6 +8,7 @@
 package org.opendaylight.infrautils.metrics.internal;
 
 import static java.lang.management.ManagementFactory.getThreadMXBean;
+import static java.util.concurrent.TimeUnit.NANOSECONDS;
 import static org.opendaylight.infrautils.utils.concurrent.Executors.newSingleThreadScheduledExecutor;
 import static org.opendaylight.infrautils.utils.concurrent.JdkFutures.addErrorLogging;
 
@@ -17,9 +18,9 @@ import com.google.common.annotations.VisibleForTesting;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.time.Duration;
 import java.util.Set;
 import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,14 +36,21 @@ class ThreadsWatcher implements Runnable {
     private final ScheduledExecutorService scheduledExecutor;
     private final ThreadDeadlockDetector threadDeadlockDetector = new ThreadDeadlockDetector();
     private final ThreadDump threadDump = new ThreadDump(getThreadMXBean());
+    private final Duration interval;
 
-    ThreadsWatcher(int interval, TimeUnit timeUnit) {
+    ThreadsWatcher(Duration interval) {
         scheduledExecutor = newSingleThreadScheduledExecutor("infrautils.metrics.ThreadsWatcher", LOG);
-        addErrorLogging(scheduledExecutor.scheduleAtFixedRate(this, 0, interval, timeUnit), LOG, "scheduleAtFixedRate");
+        addErrorLogging(scheduledExecutor.scheduleAtFixedRate(this, 0, interval.toNanos(), NANOSECONDS), LOG,
+                "scheduleAtFixedRate");
+        this.interval = interval;
     }
 
     void close() {
         scheduledExecutor.shutdown();
+    }
+
+    public Duration getInterval() {
+        return interval;
     }
 
     @Override
