@@ -16,6 +16,24 @@
       "revId": "9db6c5cc72f0934584235350cae339735ac26ed4",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c693e787_5e56b862",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/MetricProviderImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-01-10T12:56:13Z",
+      "side": 1,
+      "message": "That\u0027s coming up inhttps://git.opendaylight.org/gerrit/#/c/67011/ - do you want to +1 this so we can get it in as-is, if otherwise OK for you?",
+      "parentUuid": "042fe5c8_bd79b911",
+      "revId": "9db6c5cc72f0934584235350cae339735ac26ed4",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
