@@ -11,7 +11,6 @@ import static com.codahale.metrics.Slf4jReporter.LoggingLevel.INFO;
 import static java.lang.management.ManagementFactory.getThreadMXBean;
 import static java.util.Objects.requireNonNull;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
-import static java.util.concurrent.TimeUnit.MINUTES;
 import static java.util.concurrent.TimeUnit.SECONDS;
 
 import com.codahale.metrics.JmxReporter;
@@ -26,6 +25,7 @@ import com.codahale.metrics.jvm.MemoryUsageGaugeSet;
 import com.codahale.metrics.jvm.ThreadDeadlockDetector;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.lang.management.ManagementFactory;
+import java.time.Duration;
 import javax.annotation.PreDestroy;
 import javax.inject.Singleton;
 import org.opendaylight.infrautils.metrics.MetricProvider;
@@ -49,16 +49,16 @@ public class MetricProviderImpl implements MetricProvider {
     private static final Logger LOG = LoggerFactory.getLogger(MetricProviderImpl.class);
 
     private final MetricRegistry registry;
-    private final ThreadsWatcher threadsWatcher;
     private final JmxReporter jmxReporter;
     private final MetricsFileReporter fileReporter;
     private final Slf4jReporter slf4jReporter;
+
+    private volatile ThreadsWatcher threadsWatcher;
 
     public MetricProviderImpl() {
         this.registry = new MetricRegistry();
 
         setUpJvmMetrics(registry);
-        threadsWatcher = new ThreadsWatcher(1, MINUTES);
 
         jmxReporter = setUpJmxReporter(registry);
 
@@ -71,12 +71,32 @@ public class MetricProviderImpl implements MetricProvider {
         // instrumentLog4jV2(registry);
     }
 
+    public MetricProviderImpl(Configuration configuration) {
+        this();
+        updateConfiguration(configuration);
+    }
+
+    public final void updateConfiguration(Configuration configuration) {
+        if (threadsWatcher != null) {
+            threadsWatcher.close();
+        }
+        if (configuration.getThreadsDeadlockWatcherIntervalMS() > 0 && (threadsWatcher == null
+                || configuration.getThreadsDeadlockWatcherIntervalMS() != threadsWatcher.getInterval().toMillis())) {
+            threadsWatcher = new ThreadsWatcher(Duration.ofMillis(configuration.getThreadsDeadlockWatcherIntervalMS()));
+            threadsWatcher.start();
+        }
+
+        LOG.info("Updated: {}", configuration);
+    }
+
     @PreDestroy
     public void close() {
         jmxReporter.close();
         fileReporter.close();
         slf4jReporter.close();
-        threadsWatcher.close();
+        if (threadsWatcher != null) {
+            threadsWatcher.close();
+        }
     }
 
     private static void setUpJvmMetrics(MetricRegistry registry) {
@@ -295,4 +315,5 @@ public class MetricProviderImpl implements MetricProvider {
             super(exception);
         }
     }
+
 }
