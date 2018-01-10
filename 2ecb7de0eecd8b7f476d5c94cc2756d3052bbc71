@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0a2f7d2a_b49d0114",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/ThreadsWatcher.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-01-10T12:58:51Z",
+      "side": 1,
+      "message": "I need to remember to remove this, once it works.. ;)",
+      "revId": "2ecb7de0eecd8b7f476d5c94cc2756d3052bbc71",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
