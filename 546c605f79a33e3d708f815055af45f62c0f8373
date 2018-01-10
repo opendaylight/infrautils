@@ -71,6 +71,24 @@
     },
     {
       "key": {
+        "uuid": "9512ad09_1fa540c6",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/MetricsFileReporter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-01-10T11:34:53Z",
+      "side": 1,
+      "message": "Suneelu, FYI I\u0027m actively working on a cfg file configuration for metrics! Please wait for that and then use that here as well (or in a follow-up change)",
+      "parentUuid": "a246879a_ee3e94b1",
+      "revId": "546c605f79a33e3d708f815055af45f62c0f8373",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a7970180_330d8dca",
         "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/MetricsFileReporter.java",
         "patchSetId": 1
