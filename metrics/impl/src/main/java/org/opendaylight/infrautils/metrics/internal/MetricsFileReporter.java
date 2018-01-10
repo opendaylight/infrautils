@@ -162,7 +162,7 @@ public class MetricsFileReporter extends ScheduledReporter {
         }
         File file = new File(parentDirectory, getFileName(dayOfTheWeek, hourOfTheDay));
         if (!file.exists()) {
-            LOG.info("File does not exist, creating it: {}", file.getName());
+            LOG.info("File does not exist, creating it: {}", file.getPath());
             if (!file.createNewFile()) {
                 throw new IOException("Failed to create file: " + file.toString());
             }

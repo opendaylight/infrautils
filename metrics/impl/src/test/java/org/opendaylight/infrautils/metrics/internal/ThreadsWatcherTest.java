@@ -7,15 +7,15 @@
  */
 package org.opendaylight.infrautils.metrics.internal;
 
-import static java.util.concurrent.TimeUnit.NANOSECONDS;
-
+import java.time.Duration;
 import org.junit.Test;
 
 public class ThreadsWatcherTest {
 
     @Test
     public void testLogAllThreads() {
-        ThreadsWatcher threadsWatcher = new ThreadsWatcher(1, NANOSECONDS);
+        ThreadsWatcher threadsWatcher = new ThreadsWatcher(Duration.ofNanos(1));
+        threadsWatcher.start();
         threadsWatcher.logAllThreads();
         threadsWatcher.close();
     }
