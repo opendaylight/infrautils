@@ -16,6 +16,29 @@
       "revId": "2ecb7de0eecd8b7f476d5c94cc2756d3052bbc71",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f371884f_25929544",
+        "filename": "metrics/impl/src/main/resources/OSGI-INF/blueprint/blueprint.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-01-10T13:00:03Z",
+      "side": 1,
+      "message": "DUH! needs to be org.opendaylight.infrautils.metrics.internal.Configuration ... will change and re-test this tonight or tomorrow (meetings this afternoon)",
+      "range": {
+        "startLine": 15,
+        "startChar": 34,
+        "endLine": 15,
+        "endChar": 47
+      },
+      "revId": "2ecb7de0eecd8b7f476d5c94cc2756d3052bbc71",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
