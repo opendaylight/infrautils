@@ -8,7 +8,10 @@
 package org.opendaylight.infrautils.metrics;
 
 /**
- * A meter metric which measures throughput.
+ * Meter metric, which measures throughput.
+ *
+ * <p>Note that this with <tt>mark()</tt> measures the rate at which a set of events occur;
+ * whereas {@link Counter} is for things which will <tt>increase()</tt> - and can also <tt>decrease()</tt>.
  */
 public interface Meter extends CloseableMetric {
 
