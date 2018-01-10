@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d7c54cd1_175cbdf2",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/Configuration.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-01-10T16:03:52Z",
+      "side": 1,
+      "message": "The only problem with using container-managed is that if there are multiple properties, multiple setters will get invoked so you can\u0027t handle the changes atomically if need be and, in this case, would result in multiple invocations of updateConfiguration which probably wouldn\u0027t be desirable. If the properties aren\u0027t related and updates to each can be processed in isolation then container-managed isfine.\n\nHow about we omit this intermediate class and make the MetricProviderImpl container-managed directly. In the setThreadsDeadlockWatcherIntervalMS re-initialize the ThreadWatcher as you\u0027re doing in updateConfiguration.  If we add another property then  handle updates in its setter.",
+      "revId": "776e604a81889da5dc4c18932c0fff52cb22dada",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ee03bd76_8b91a844",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/MetricProviderImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-01-10T16:03:52Z",
+      "side": 1,
+      "message": "should be volatile",
+      "revId": "776e604a81889da5dc4c18932c0fff52cb22dada",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d67edfe3_49f9962c",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/MetricProviderImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-01-10T16:03:52Z",
+      "side": 1,
+      "message": "I think it would be good to make this thread safe wrt concurrency.  Make threadsWatcher an AtomicReference, then:\n\n  ThreadsWatcher oldWatcher \u003d threadsWatcherRef.getAndSet(null);\n  if (oldWatcher !\u003d null) {\n      oldWatcher.close();\n  }\n\n  ThreadsWatcher newWatcher \u003d new ThreadsWatcher(...);\n   if (threadsWatcherRef.compareAndSet(oldWatcher, newWatcher)) {\n       newWatcher.start();\n   }",
+      "revId": "776e604a81889da5dc4c18932c0fff52cb22dada",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4fbdd543_ec5fd2be",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/ThreadsWatcher.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-01-10T16:03:52Z",
+      "side": 1,
+      "message": "Move the above lines to a \u0027start\u0027 method so construction is cheap. This also avoids leaking \u0027this\u0027 from the ctor which generally is good to avoid.",
+      "revId": "776e604a81889da5dc4c18932c0fff52cb22dada",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "95bc47a9_bba0bb3f",
+        "filename": "metrics/impl/src/main/resources/OSGI-INF/blueprint/blueprint.xml",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-01-10T16:03:52Z",
+      "side": 1,
+      "message": "To be consistent, this file should be under org/opendaylight/blueprint.",
+      "revId": "776e604a81889da5dc4c18932c0fff52cb22dada",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ad784f78_b2176281",
+        "filename": "metrics/impl/src/main/resources/OSGI-INF/blueprint/blueprint.xml",
+        "patchSetId": 4
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-01-10T16:03:52Z",
+      "side": 1,
+      "message": "What is this for since you\u0027re using managed-properties below?",
+      "revId": "776e604a81889da5dc4c18932c0fff52cb22dada",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
