@@ -8,6 +8,7 @@
 package org.opendaylight.infrautils.metrics;
 
 import javax.annotation.concurrent.ThreadSafe;
+import com.codahale.metrics.MetricRegistry.MetricSupplier;
 
 /**
  * Factory to obtain a new metric for use by application code.
@@ -48,5 +49,6 @@ public interface MetricProvider {
     // @SuppressWarnings("rawtypes")
     // TODO Gauge newGauge(Object anchor, String id, MetricSupplier<Gauge> supplier);
     // TODO write a test to clarify how to use this with a MetricSupplier; what's that for?
+    Gauge newGauge(Object anchor, String id, MetricSupplier<com.codahale.metrics.Gauge> supplier);
 
 }

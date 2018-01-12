@@ -9,8 +9,10 @@ package org.opendaylight.infrautils.metrics.internal;
 
 import static java.util.Objects.requireNonNull;
 
+import com.codahale.metrics.Gauge;
 import com.codahale.metrics.JmxReporter;
 import com.codahale.metrics.MetricRegistry;
+import com.codahale.metrics.MetricRegistry.MetricSupplier;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import javax.annotation.PreDestroy;
 import javax.inject.Singleton;
@@ -179,6 +181,20 @@ public class MetricProviderImpl implements MetricProvider {
         };
     }
 
+    @Override
+    public org.opendaylight.infrautils.metrics.Gauge newGauge(Object anchor, String id, MetricSupplier<Gauge> supplier) {
+        requireNonNull(anchor, "anchor == null");
+        checkID(id);
+        com.codahale.metrics.Gauge gauge = registry.gauge(id, supplier);
+        return new GaugeImpl(id) {
+            @Override
+            public Object getValue() {
+                checkIfClosed();
+                return gauge.getValue();
+            }
+        };
+    }
+
     private void checkID(String id) {
         requireNonNull(id, "id == null");
         if (registry.getNames().contains(id)) {
@@ -228,6 +244,12 @@ public class MetricProviderImpl implements MetricProvider {
 
     private abstract class TimerImpl extends CloseableMetricImpl implements org.opendaylight.infrautils.metrics.Timer {
         TimerImpl(String id) {
+            super(id);
+        }
+    }
+
+    private abstract class GaugeImpl extends CloseableMetricImpl implements org.opendaylight.infrautils.metrics.Gauge {
+        GaugeImpl(String id) {
             super(id);
         }
     }

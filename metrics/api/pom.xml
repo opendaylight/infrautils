@@ -25,6 +25,19 @@
 
   <dependencies>
     <dependency>
+      <!-- Required to repeat here even though it's already in metrics-api to fix version... :( PITA!  -->
+      <!-- TODO Remove this dependency from here once it's removed from odlparent's dependencyManagement -->
+      <groupId>io.dropwizard.metrics</groupId>
+      <artifactId>metrics-core</artifactId>
+      <version>3.2.5</version>
+    </dependency>
+    <dependency>
+      <groupId>io.dropwizard.metrics</groupId>
+      <artifactId>metrics-jvm</artifactId>
+      <!-- This version must be kept in line with the one used in metrics-api. -->
+      <version>3.2.5</version>
+    </dependency>
+    <dependency>
       <groupId>org.opendaylight.infrautils</groupId>
       <artifactId>infrautils-util</artifactId>
       <version>${project.version}</version>
