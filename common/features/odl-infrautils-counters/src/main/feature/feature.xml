@@ -8,6 +8,7 @@
  -->
 <features name="odl-infrautils-${project.version}" xmlns="http://karaf.apache.org/xmlns/features/v1.2.0">
     <feature name="odl-infrautils-counters" version="${project.version}">
+        <feature version="[3.0.0,4)">odl-guava-23</feature>
         <configfile finalname="etc/org.opendaylight.counters.cfg">mvn:org.opendaylight.infrautils/counters-impl/${project.version}/cfg/countersconf/</configfile>
     </feature>
 </features>
