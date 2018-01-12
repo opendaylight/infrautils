@@ -16,6 +16,11 @@ import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 
+/**
+ * CounterGroup.
+ * @deprecated Please use infrautils' metrics instead of counters.
+ */
+@Deprecated
 public class OccurenceCounter implements Comparable<OccurenceCounter> {
 
     private final AtomicLong totalOccur = new AtomicLong(0);

@@ -17,6 +17,11 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeMap;
 
+/**
+ * CounterGroup.
+ * @deprecated Please use infrautils' metrics instead of counters.
+ */
+@Deprecated
 @SuppressWarnings("serial")
 public class CountersGroup implements Serializable {
 
