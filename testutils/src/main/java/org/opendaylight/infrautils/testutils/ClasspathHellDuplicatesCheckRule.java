@@ -21,7 +21,7 @@ import org.junit.runners.model.Statement;
 /**
  * JUnit Rule to run <a href="http://jhades.github.io">JHades</a>. Usage:
  *
- * <pre>public static {@literal @}ClassRule JHadesRule jHades = new JHadesRule();</pre>
+ * <pre>public static {@literal @}ClassRule ClasspathHellDuplicatesCheckRule dupes = new ClasspathHellDuplicatesCheckRule();</pre>
  *
  * <p>NB that the basepom/duplicate-finder-maven-plugin already runs as part of odlparent.
  * (The org.codehaus.mojo:extra-enforcer-rules is a very similar alternative Maven plugin).
@@ -73,6 +73,7 @@ public class ClasspathHellDuplicatesCheckRule implements TestRule {
                 .filter(classpathResource -> !classpathResource.getName().endsWith("/about.html"))
                 .filter(classpathResource -> !classpathResource.getName().endsWith("/META-INF/NOTICE"))
                 .filter(classpathResource -> !classpathResource.getName().endsWith("/META-INF/LICENSE"))
+                .filter(classpathResource -> !classpathResource.getName().contains("/META-INF/services"))
                 .filter(classpathResource -> !classpathResource.getName().endsWith("/META-INF/DEPENDENCIES"))
                 .filter(classpathResource -> !classpathResource.getName().endsWith("/META-INF/git.properties"))
                 .filter(classpathResource -> !classpathResource.getName().endsWith(".txt"))
