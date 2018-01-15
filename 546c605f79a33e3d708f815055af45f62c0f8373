@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "b382805d_b016b0b5",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/MetricProviderImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 7785
+      },
+      "writtenOn": "2018-01-15T05:39:03Z",
+      "side": 1,
+      "message": "TODO in next patch",
+      "parentUuid": "30d202ea_1efcdaf4",
+      "revId": "546c605f79a33e3d708f815055af45f62c0f8373",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1485446a_a23036e7",
         "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/MetricsFileReporter.java",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2017-12-20T15:33:39Z",
       "side": 1,
       "message": "would love to see a Test for this as part of this...",
+      "revId": "546c605f79a33e3d708f815055af45f62c0f8373",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "36b3e15f_99945967",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/MetricsFileReporter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 7785
+      },
+      "writtenOn": "2018-01-15T05:39:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1485446a_a23036e7",
       "revId": "546c605f79a33e3d708f815055af45f62c0f8373",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -107,6 +143,24 @@
     },
     {
       "key": {
+        "uuid": "ef13656d_12d03f7d",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/MetricsFileReporter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7785
+      },
+      "writtenOn": "2018-01-15T05:39:03Z",
+      "side": 1,
+      "message": "Thx michael will address this in the followup patch",
+      "parentUuid": "0cc43263_267a55eb",
+      "revId": "546c605f79a33e3d708f815055af45f62c0f8373",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a7970180_330d8dca",
         "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/MetricsFileReporter.java",
         "patchSetId": 1
@@ -118,6 +172,24 @@
       "writtenOn": "2017-12-20T15:33:39Z",
       "side": 1,
       "message": "are you sure we\u0027ll always want seconds for both rateUnit and durationUnit?",
+      "revId": "546c605f79a33e3d708f815055af45f62c0f8373",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8929db47_ae7d49a8",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/MetricsFileReporter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 7785
+      },
+      "writtenOn": "2018-01-15T05:39:03Z",
+      "side": 1,
+      "message": "These variables are not really used in ScheduledReporter.",
+      "parentUuid": "a7970180_330d8dca",
       "revId": "546c605f79a33e3d708f815055af45f62c0f8373",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -141,6 +213,24 @@
     },
     {
       "key": {
+        "uuid": "83de6781_9a6b0dd4",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/MetricsFileReporter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 7785
+      },
+      "writtenOn": "2018-01-15T05:39:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "db9f6c90_8ed8e9dd",
+      "revId": "546c605f79a33e3d708f815055af45f62c0f8373",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "31643ba1_474a0bf3",
         "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/MetricsFileReporter.java",
         "patchSetId": 1
@@ -152,6 +242,24 @@
       "writtenOn": "2017-12-20T15:33:39Z",
       "side": 1,
       "message": "erm.. OK, but what about everything else than counters? meters, timers, histograms, gauges? We can\u0027t do only counters  - if we do this, then we hvae to do this right and completely, agreed?  Will you add a similar for loop for the 4 other types?",
+      "revId": "546c605f79a33e3d708f815055af45f62c0f8373",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cec3601f_5cbae592",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/MetricsFileReporter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 7785
+      },
+      "writtenOn": "2018-01-15T05:39:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "31643ba1_474a0bf3",
       "revId": "546c605f79a33e3d708f815055af45f62c0f8373",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -175,6 +283,24 @@
     },
     {
       "key": {
+        "uuid": "3c41b3d2_7e7cbc51",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/MetricsFileReporter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 7785
+      },
+      "writtenOn": "2018-01-15T05:39:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a1785fa1_2e8c835d",
+      "revId": "546c605f79a33e3d708f815055af45f62c0f8373",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "40db4ac4_1954a926",
         "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/MetricsFileReporter.java",
         "patchSetId": 1
@@ -186,6 +312,24 @@
       "writtenOn": "2017-12-20T15:33:39Z",
       "side": 1,
       "message": "nit, typo: NameName has a lot of names... ;-)",
+      "revId": "546c605f79a33e3d708f815055af45f62c0f8373",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "77788469_82c742dd",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/MetricsFileReporter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 7785
+      },
+      "writtenOn": "2018-01-15T05:39:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "40db4ac4_1954a926",
       "revId": "546c605f79a33e3d708f815055af45f62c0f8373",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -209,6 +353,24 @@
     },
     {
       "key": {
+        "uuid": "bf675ff4_61dec66e",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/MetricsFileReporter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 7785
+      },
+      "writtenOn": "2018-01-15T05:39:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "941e571c_ec704117",
+      "revId": "546c605f79a33e3d708f815055af45f62c0f8373",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ea9fb294_b6f95aad",
         "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/MetricsFileReporter.java",
         "patchSetId": 1
@@ -220,6 +382,24 @@
       "writtenOn": "2017-12-20T15:33:39Z",
       "side": 1,
       "message": "IOException",
+      "revId": "546c605f79a33e3d708f815055af45f62c0f8373",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1e07746b_f3daa93a",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/MetricsFileReporter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 7785
+      },
+      "writtenOn": "2018-01-15T05:39:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ea9fb294_b6f95aad",
       "revId": "546c605f79a33e3d708f815055af45f62c0f8373",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
