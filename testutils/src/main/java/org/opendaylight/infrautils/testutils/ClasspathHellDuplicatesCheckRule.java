@@ -13,6 +13,7 @@ import junit.framework.AssertionFailedError;
 import org.jhades.JHades;
 import org.jhades.model.ClasspathResource;
 import org.jhades.model.ClasspathResourceVersion;
+import org.jhades.reports.DuplicatesReport;
 import org.jhades.service.ClasspathScanner;
 import org.junit.rules.TestRule;
 import org.junit.runner.Description;
@@ -21,7 +22,8 @@ import org.junit.runners.model.Statement;
 /**
  * JUnit Rule to run <a href="http://jhades.github.io">JHades</a>. Usage:
  *
- * <pre>public static {@literal @}ClassRule JHadesRule jHades = new JHadesRule();</pre>
+ * <pre>public static {@literal @}ClassRule ClasspathHellDuplicatesCheckRule
+ *     dupes = new ClasspathHellDuplicatesCheckRule();</pre>
  *
  * <p>NB that the basepom/duplicate-finder-maven-plugin already runs as part of odlparent.
  * (The org.codehaus.mojo:extra-enforcer-rules is a very similar alternative Maven plugin).
@@ -51,13 +53,12 @@ public class ClasspathHellDuplicatesCheckRule implements TestRule {
                 resourcesWithDuplicates);
         if (!filteredResourcesWithDuplicates.isEmpty()) {
             new JHades()
-                .printClassLoaderNames()
+                // .printClassLoaderNames()
                 .printClasspath()
-                .overlappingJarsReport()
-                .multipleClassVersionsReport(excludeSameSizeDups);
-            throw new AssertionFailedError("Classpath errors detected "
-                    + "(see full report printed to STDOUT; but note some dupes are filtered): "
-                    + filteredResourcesWithDuplicates);
+                .overlappingJarsReport();
+            // Instead of JHades.multipleClassVersionsReport() we call our own, to report only filtered dupes:
+            new DuplicatesReport(filteredResourcesWithDuplicates).print();
+            throw new AssertionFailedError("Classpath errors detected (see full report printed to STDOUT)");
         }
     }
 
@@ -70,12 +71,24 @@ public class ClasspathHellDuplicatesCheckRule implements TestRule {
         return resourcesWithDuplicates.stream()
                 .filter(classpathResource -> !classpathResource.getName().endsWith(".txt"))
                 .filter(classpathResource -> !classpathResource.getName().endsWith("LICENSE"))
+                .filter(classpathResource -> !classpathResource.getName().endsWith("/license.html"))
                 .filter(classpathResource -> !classpathResource.getName().endsWith("/about.html"))
+                .filter(classpathResource -> !classpathResource.getName().endsWith("/readme.html"))
                 .filter(classpathResource -> !classpathResource.getName().endsWith("/META-INF/NOTICE"))
                 .filter(classpathResource -> !classpathResource.getName().endsWith("/META-INF/LICENSE"))
+                .filter(classpathResource -> !classpathResource.getName().contains("/META-INF/services"))
                 .filter(classpathResource -> !classpathResource.getName().endsWith("/META-INF/DEPENDENCIES"))
                 .filter(classpathResource -> !classpathResource.getName().endsWith("/META-INF/git.properties"))
                 .filter(classpathResource -> !classpathResource.getName().endsWith(".txt"))
+                .filter(r -> !r.getName().endsWith("/META-INF/io.netty.versions.properties"))
+                .filter(r -> !r.getName().endsWith("/META-INF/jersey-module-version"))
+                .filter(r -> !r.getName().startsWith("/org/opendaylight/blueprint/"))
+                .filter(r -> !r.getName().endsWith("/WEB-INF/web.xml"))
+                .filter(r -> !r.getName().endsWith("/reference.conf")) // in Akka's JARs
+                .filter(r -> !r.getName().endsWith("/META-INF/eclipse.inf"))
+                .filter(r -> !r.getName().endsWith("/META-INF/ECLIPSE_.SF"))
+                .filter(r -> !r.getName().endsWith("/META-INF/ECLIPSE_.RSA"))
+                .filter(r -> !r.getName().endsWith("/OSGI-INF/bundle.info"))
                 // Something doesn't to be a perfectly clean in Maven Surefire:
                 .filter(classpathResource -> !classpathResource.getName().contains("/META-INF/maven/"))
                 .filter(classpathResource -> !classpathResource.getName().contains("surefire"))
