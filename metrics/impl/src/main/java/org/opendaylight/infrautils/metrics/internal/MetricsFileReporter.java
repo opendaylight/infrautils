@@ -38,9 +38,9 @@ public class MetricsFileReporter extends ScheduledReporter {
 
     private static final Logger LOG = LoggerFactory.getLogger(MetricsFileReporter.class);
 
-    private static final String COUNTER_FILE_PREFIX = "counter.";
     private static final String DATA_DIRECTORY = "data";
-    private static final String COUNTERS_DIRECTORY = "counters";
+    private static final String COUNTERS_DIRECTORY = "metrics";
+    private static final String COUNTER_FILE_PREFIX = "metrics.";
     private static final String DEFAULT_ENCODING = "UTF-8";
     private static final Integer METRICS_INTERVAL = 120; // TODO make it cfg variable
     private static final String SEPARATOR = ",";
