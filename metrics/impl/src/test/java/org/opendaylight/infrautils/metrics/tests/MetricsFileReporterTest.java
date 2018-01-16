@@ -21,13 +21,12 @@ import java.util.List;
 import org.junit.Test;
 import org.opendaylight.infrautils.metrics.internal.MetricsFileReporter;
 
-public class FileReporterTest {
-
-    MetricRegistry registry = new MetricRegistry();
-    MetricsFileReporter fileReporter = new MetricsFileReporter(registry);
+public class MetricsFileReporterTest {
 
     @Test
     public void testReporter() throws IOException {
+        MetricRegistry registry = new MetricRegistry();
+        MetricsFileReporter fileReporter = new MetricsFileReporter(registry);
         Counter counter = registry.counter("test.counter");
         counter.inc();
         Calendar calendar = Calendar.getInstance();
@@ -44,5 +43,6 @@ public class FileReporterTest {
             assertTrue(fileLines.contains("test.counter,count,1,diff,1"));
             file.deleteOnExit();
         }
+        fileReporter.close();
     }
 }
