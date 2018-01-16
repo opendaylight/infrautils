@@ -45,7 +45,7 @@ public class ClasspathHellDuplicatesCheckRule implements TestRule {
     }
 
     protected void checkClasspath() {
-        boolean excludeSameSizeDups = false;
+        boolean excludeSameSizeDups = true;
         ClasspathScanner scanner = new ClasspathScanner();
         List<ClasspathResource> resourcesWithDuplicates = scanner
                 .findAllResourcesWithDuplicates(excludeSameSizeDups);
