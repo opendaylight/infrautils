@@ -54,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "85638332_4644f39f",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/Configuration.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-01-17T01:26:21Z",
+      "side": 1,
+      "message": "\"component-managed\" is the way to get atomic updates and the Map\u003cString, String\u003e update method signature may seem stupid but is the way for Aries to handle it generically.  So this class is a way to keep MetricProviderImpl agnostic of the Map\u003cString, String\u003e semantics which is fine.  So you can handle the \"component-managed\" semantics here and translate the Map\u003cString, String\u003e  to the appropriate fields and invoke metricProvider.updateConfiguration(this). That seems the simplest approach w/o complicate the MetricProviderImpl by trying to correlate between setter calls.",
+      "parentUuid": "93bfc38c_a0059d21",
+      "revId": "776e604a81889da5dc4c18932c0fff52cb22dada",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ee03bd76_8b91a844",
         "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/MetricProviderImpl.java",
         "patchSetId": 4
@@ -118,6 +136,24 @@
       "side": 1,
       "message": "OK, thanks; can do.. but do we have to go through an intermediate null to cycle to a new one?  Is doing something more like this wrong:\n\n  ThreadsWatcher newWatcher \u003d new ThreadsWatcher(...);\n  newWatcher.start();\nThreadsWatcher oldWatcher \u003d threadsWatcherRef.getAndSet(newWatcher);\n  if (oldWatcher !\u003d null) {\n      oldWatcher.close();\n  }\n\nbut what are we actually protecting against.. concurrent calls to updateConfiguration?  Couldn\u0027t those be a problem in both aproaches - because the in your case there are two separate accesses to threadsWatcherRef instead of one, and in mine there could be a new \u0026 start from two threads? Can\u0027t we just trust that BP OSGi Config Admin probably will not concurrently set us two configs? ;-)",
       "parentUuid": "d67edfe3_49f9962c",
+      "revId": "776e604a81889da5dc4c18932c0fff52cb22dada",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9688b3d6_5161d73c",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/MetricProviderImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-01-17T01:26:21Z",
+      "side": 1,
+      "message": "At the very least the ThreadsWatcher needs to be volatile. Config Admin probably wouldn\u0027t call it concurrently. But you\u0027ve isolated this from Config Admin - maybe this might get called from another source in the future? It doesn\u0027t hurt to make it thread-safe.  You\u0027re way is fine too - I was trying to avoid starting an instance that might get immediately closed but that would be highly uncommon and likely impossible with Config Admin-driven updates.",
+      "parentUuid": "5822910e_89115fac",
       "revId": "776e604a81889da5dc4c18932c0fff52cb22dada",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -228,6 +264,24 @@
       "side": 1,
       "message": "I saw this in an example and assumed it was still needed.. is it not? I\u0027ve tested with it and it works.. but I can remove and re-test to make sure that even without it it\u0027s fine.",
       "parentUuid": "ad784f78_b2176281",
+      "revId": "776e604a81889da5dc4c18932c0fff52cb22dada",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "536524f1_18c050e4",
+        "filename": "metrics/impl/src/main/resources/OSGI-INF/blueprint/blueprint.xml",
+        "patchSetId": 4
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-01-17T01:26:21Z",
+      "side": 1,
+      "message": "It\u0027s not needed - this is for placeholder replacement which you\u0027re not using - it\u0027s not related to cm:managed-properties below.",
+      "parentUuid": "5d23aa6b_b4046b6a",
       "revId": "776e604a81889da5dc4c18932c0fff52cb22dada",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
