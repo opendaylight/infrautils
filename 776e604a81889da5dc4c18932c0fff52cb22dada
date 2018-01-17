@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "093b36c0_cca4a929",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/Times.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-01-17T00:39:23Z",
+      "side": 1,
+      "message": "I needed this for something here, but it looks like I then changed things and now no longer do?! I\u0027ll remove it from this review and the next round, we can look at this separately, in https://git.opendaylight.org/gerrit/#/c/67223/.",
+      "revId": "776e604a81889da5dc4c18932c0fff52cb22dada",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d7c54cd1_175cbdf2",
         "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/Configuration.java",
         "patchSetId": 4
@@ -13,6 +30,24 @@
       "writtenOn": "2018-01-10T16:03:52Z",
       "side": 1,
       "message": "The only problem with using container-managed is that if there are multiple properties, multiple setters will get invoked so you can\u0027t handle the changes atomically if need be and, in this case, would result in multiple invocations of updateConfiguration which probably wouldn\u0027t be desirable. If the properties aren\u0027t related and updates to each can be processed in isolation then container-managed isfine.\n\nHow about we omit this intermediate class and make the MetricProviderImpl container-managed directly. In the setThreadsDeadlockWatcherIntervalMS re-initialize the ThreadWatcher as you\u0027re doing in updateConfiguration.  If we add another property then  handle updates in its setter.",
+      "revId": "776e604a81889da5dc4c18932c0fff52cb22dada",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "93bfc38c_a0059d21",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/Configuration.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-01-17T00:39:23Z",
+      "side": 1,
+      "message": "FYI we WILL have other properties ASAP; Suneela promised that as soon as we can get this in, he\u0027ll follow-up on https://git.opendaylight.org/gerrit/#/c/66642/ with a change to add configuration for that..\n\nThere may well be properties that belong together, say the MetricsFileReporter\u0027s interval, path and perhaps filters.. how do you think we could best do something like that?With separate setters for each of those on MetricProviderImpl, and then in each of them doing a new MetricsFileReporter() with previous properties kept in fields seems kind of bit dumb, no?\n\nOriginally I did actually look at using another update-strategy like \"component-managed\" (?) instead of container-managed for atomic configuration changes, but learnt that needs a refresh(Map\u003cString, String\u003e properties) method... and that\u0027s just stupid, no? Or is there a way I didn\u0027t understand to combine that with a class like this, with Map\u003cString,String\u003e AKA Properties?  I guess I kind of tried to emulate that here.. \n\nBTW: I\u0027ve compensated for multiple invocations of updateConfiguration() by checking inside there if values actually changed, did you notice? Maybe that would be more obvious by using a Configuration previousConfig field isntead. Or perhaps I went a bit overboard? ;)  But you need something like that, don\u0027t you - or is CM smart enough to not call setters again if values haven\u0027t changed?!\n\nI do like this intermediate class, with its toString(), as a clear statically typed place for all config knobs, not mixed up with the to-be-configured MetricProviderImpl, if only for readability of the code.. can we keep, or simplify?\n\nWe could combine things of course and instead of a general updateConfiguration() call a specific setter.. but then this perhaps you\u0027re right that there is no point to a separate class.\n\nLet me know what you think.",
+      "parentUuid": "d7c54cd1_175cbdf2",
       "revId": "776e604a81889da5dc4c18932c0fff52cb22dada",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -36,6 +71,24 @@
     },
     {
       "key": {
+        "uuid": "5af56281_c08f4271",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/MetricProviderImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-01-17T00:39:23Z",
+      "side": 1,
+      "message": "OK, thanks; but would be moot with the AtomicReference (below)",
+      "parentUuid": "ee03bd76_8b91a844",
+      "revId": "776e604a81889da5dc4c18932c0fff52cb22dada",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d67edfe3_49f9962c",
         "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/MetricProviderImpl.java",
         "patchSetId": 4
@@ -47,6 +100,24 @@
       "writtenOn": "2018-01-10T16:03:52Z",
       "side": 1,
       "message": "I think it would be good to make this thread safe wrt concurrency.  Make threadsWatcher an AtomicReference, then:\n\n  ThreadsWatcher oldWatcher \u003d threadsWatcherRef.getAndSet(null);\n  if (oldWatcher !\u003d null) {\n      oldWatcher.close();\n  }\n\n  ThreadsWatcher newWatcher \u003d new ThreadsWatcher(...);\n   if (threadsWatcherRef.compareAndSet(oldWatcher, newWatcher)) {\n       newWatcher.start();\n   }",
+      "revId": "776e604a81889da5dc4c18932c0fff52cb22dada",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5822910e_89115fac",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/MetricProviderImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-01-17T00:39:23Z",
+      "side": 1,
+      "message": "OK, thanks; can do.. but do we have to go through an intermediate null to cycle to a new one?  Is doing something more like this wrong:\n\n  ThreadsWatcher newWatcher \u003d new ThreadsWatcher(...);\n  newWatcher.start();\nThreadsWatcher oldWatcher \u003d threadsWatcherRef.getAndSet(newWatcher);\n  if (oldWatcher !\u003d null) {\n      oldWatcher.close();\n  }\n\nbut what are we actually protecting against.. concurrent calls to updateConfiguration?  Couldn\u0027t those be a problem in both aproaches - because the in your case there are two separate accesses to threadsWatcherRef instead of one, and in mine there could be a new \u0026 start from two threads? Can\u0027t we just trust that BP OSGi Config Admin probably will not concurrently set us two configs? ;-)",
+      "parentUuid": "d67edfe3_49f9962c",
       "revId": "776e604a81889da5dc4c18932c0fff52cb22dada",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -70,6 +141,24 @@
     },
     {
       "key": {
+        "uuid": "4268e107_207dcd0c",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/ThreadsWatcher.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-01-17T00:39:23Z",
+      "side": 1,
+      "message": "OK, thanks; will do..",
+      "parentUuid": "4fbdd543_ec5fd2be",
+      "revId": "776e604a81889da5dc4c18932c0fff52cb22dada",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "95bc47a9_bba0bb3f",
         "filename": "metrics/impl/src/main/resources/OSGI-INF/blueprint/blueprint.xml",
         "patchSetId": 4
@@ -87,6 +176,29 @@
     },
     {
       "key": {
+        "uuid": "ee48adc8_3ea300f9",
+        "filename": "metrics/impl/src/main/resources/OSGI-INF/blueprint/blueprint.xml",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-01-17T00:39:23Z",
+      "side": 1,
+      "message": "NOK; the problem is that the extender for this is in controller, and infrautils cannot depend on controller.. even if, so far, typically, it will be installed together, we cannot depend, if only for both local manual and automated IT tests; it won\u0027t work in org/opendaylight/blueprint (I\u0027ve, painfully, learnt this, some time last year).  All BP XML in infrautils are in the OSGi standard location.  It\u0027s fine, because we don\u0027t need the BP extension for mdsal in infrautils, of course, so no problem.",
+      "range": {
+        "startLine": 1,
+        "startChar": 20,
+        "endLine": 1,
+        "endChar": 28
+      },
+      "revId": "776e604a81889da5dc4c18932c0fff52cb22dada",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ad784f78_b2176281",
         "filename": "metrics/impl/src/main/resources/OSGI-INF/blueprint/blueprint.xml",
         "patchSetId": 4
@@ -98,6 +210,24 @@
       "writtenOn": "2018-01-10T16:03:52Z",
       "side": 1,
       "message": "What is this for since you\u0027re using managed-properties below?",
+      "revId": "776e604a81889da5dc4c18932c0fff52cb22dada",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5d23aa6b_b4046b6a",
+        "filename": "metrics/impl/src/main/resources/OSGI-INF/blueprint/blueprint.xml",
+        "patchSetId": 4
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-01-17T00:39:23Z",
+      "side": 1,
+      "message": "I saw this in an example and assumed it was still needed.. is it not? I\u0027ve tested with it and it works.. but I can remove and re-test to make sure that even without it it\u0027s fine.",
+      "parentUuid": "ad784f78_b2176281",
       "revId": "776e604a81889da5dc4c18932c0fff52cb22dada",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
