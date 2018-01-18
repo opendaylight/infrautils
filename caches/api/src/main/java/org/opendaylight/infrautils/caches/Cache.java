@@ -14,7 +14,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.concurrent.ThreadSafe;
 
 /**
- * Cache of keys to values.
+ * TEST Cache of keys to values.
  *
  * <p>Users typically obtain implementations from the {@link CacheProvider}.
  *
