@@ -42,13 +42,17 @@ public class DiagStatusCommand implements org.apache.karaf.shell.commands.Action
         } else {
             List<String> clusterIPAddresses = ClusterMemberInfoProvider.getClusterMembers();
             if (!clusterIPAddresses.isEmpty()) {
-                for (String remoteIpAddr : clusterIPAddresses) {
+                for (String ipAddress : clusterIPAddresses) {
                     try {
-                        strBuilder.append(getRemoteStatusSummary(remoteIpAddr));
+                        if(ClusterMemberInfoProvider.isLocalIPAddress(ipAddress)) {
+                            strBuilder.append(getLocalStatusSummary("localhost"));
+                        } else {
+                            strBuilder.append(getRemoteStatusSummary(ipAddress));
+                        }
                     } catch (Exception e) {
                         strBuilder.append("Remote Status retrieval JMX Operation failed for node ")
-                                .append(remoteIpAddr);
-                        LOG.error("Exception while reaching Host {}", remoteIpAddr, e);
+                                .append(ipAddress);
+                        LOG.error("Exception while reaching Host {}", ipAddress, e);
                     }
                 }
             } else {
