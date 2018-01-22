@@ -26,7 +26,8 @@
 
   <properties>
     <!-- TODO Figure out and fix the Found duplicate and different classes in [org.ops4j.pax.url:pax-url-aether:2.5.3, org.ops4j.pax.url:pax-url-commons:2.5.3] -->
-    <duplicate-finder.skip>true</duplicate-finder.skip>
+    <!-- This currently breaks autorelease because duplicate-finder tries to find dependencies in ~/.m2 -->
+    <duplicate-finder.skip>false</duplicate-finder.skip>
   </properties>
 
   <dependencies>
