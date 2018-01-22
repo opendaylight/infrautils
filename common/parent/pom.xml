@@ -29,7 +29,8 @@
   <properties>
     <!-- Enforce all of odlparent's optional code quality checks: -->
     <pmd.cpd.fail>true</pmd.cpd.fail>                    <!-- Fails build for copy/pasted code -->
-    <duplicate-finder.skip>false</duplicate-finder.skip> <!-- Fails build if duplicate classpath entries on dependencies (odlparent 3.0.0) -->
+    <!-- This currently breaks autorelease because duplicate-finder tries to find dependencies in ~/.m2 -->
+    <duplicate-finder.skip>true</duplicate-finder.skip>  <!-- Fails build if duplicate classpath entries on dependencies (odlparent 3.0.0) -->
   </properties>
 
   <dependencies>
