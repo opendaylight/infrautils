@@ -12,9 +12,9 @@ import javax.annotation.concurrent.ThreadSafe;
 /**
  * Factory to obtain a new metric for use by application code.
  *
- * <p>This is basically a mirror of (parts of) the Coda Hale's Dropwizard's MetricRegistry.
+ * <p>This API is a mix of (parts of) the Coda Hale's Dropwizard's MetricRegistry, and Prometheus' API.
  * ODL application wanting to expose metrics are strongly encouraged to obtain new metric
- * instances through this factory, instead of directly using new MetricRegistry themselves.
+ * instances through this factory, instead of directly using Dropwizard new MetricRegistry themselves.
  * This allows infrautils.metrics to expose all applications' metrics together through
  * current and future reporters.  This API also includes some convenience such as preventing
  * accidental re-use of Metric IDs by different ODL applications, as well as (perhaps more importantly)
@@ -37,11 +37,18 @@ import javax.annotation.concurrent.ThreadSafe;
 @ThreadSafe
 public interface MetricProvider {
 
+    // TODO @Deprecated
     Meter newMeter(Object anchor, String id);
+
+    Meter newMeter(MetricDescriptor descriptor);
 
     Counter newCounter(Object anchor, String id);
 
+    // Counter newCounter(MetricDescriptor descriptor);
+
     Timer newTimer(Object anchor, String id);
+
+    // Timer newTimer(MetricDescriptor descriptor);
 
     // TODO Histogram newHistogram(Object anchor, String id);
 
