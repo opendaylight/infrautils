@@ -38,14 +38,20 @@ import javax.inject.Singleton;
 import org.opendaylight.infrautils.jobcoordinator.JobCoordinator;
 import org.opendaylight.infrautils.jobcoordinator.JobCoordinatorMonitor;
 import org.opendaylight.infrautils.jobcoordinator.RollbackCallable;
+import org.opendaylight.infrautils.metrics.Counter;
+import org.opendaylight.infrautils.metrics.Meter;
+import org.opendaylight.infrautils.metrics.MetricProvider;
 import org.opendaylight.infrautils.utils.concurrent.JdkFutures;
 import org.opendaylight.infrautils.utils.concurrent.LoggingThreadUncaughtExceptionHandler;
 import org.opendaylight.infrautils.utils.concurrent.LoggingUncaughtThreadDeathContextRunnable;
 import org.opendaylight.infrautils.utils.concurrent.ThreadFactoryProvider;
+import org.ops4j.pax.cdi.api.OsgiService;
+import org.ops4j.pax.cdi.api.OsgiServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Singleton
+@OsgiServiceProvider(classes = { JobCoordinator.class, JobCoordinatorMonitor.class })
 public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor {
 
     private static final Logger LOG = LoggerFactory.getLogger(JobCoordinatorImpl.class);
@@ -63,7 +69,14 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
     private final Map<String, JobQueue> jobQueueMap = new ConcurrentHashMap<>();
     private final ReentrantLock jobQueueMapLock = new ReentrantLock();
     private final Condition jobQueueMapCondition = jobQueueMapLock.newCondition();
-    private final JobCoordinatorCounters counters = new JobCoordinatorCounters();
+
+    private final Meter jobsCreated;
+    private final Meter jobsCleared;
+    private final Counter jobsPending;
+    private final Counter jobsIncomplete;
+    private final Meter jobsFailed;
+    private final Meter jobsRetriesForFailure;
+    private final Meter jobExecuteAttempts;
 
     private final ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(5,
             ThreadFactoryProvider.builder().namePrefix("JobCoordinator-ScheduledExecutor").logger(LOG).build().get());
@@ -77,7 +90,15 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
     private volatile boolean shutdown = false;
 
     @Inject
-    public JobCoordinatorImpl() {
+    public JobCoordinatorImpl(@OsgiService MetricProvider metricProvider) {
+        jobsCreated = metricProvider.newMeter(this, "odl.infrautils.jobcoordinator.jobsCreated");
+        jobsCleared = metricProvider.newMeter(this, "odl.infrautils.jobcoordinator.jobsCleared");
+        jobsPending = metricProvider.newCounter(this, "odl.infrautils.jobcoordinator.jobsPending");
+        jobsIncomplete = metricProvider.newCounter(this, "odl.infrautils.jobcoordinator.jobsIncomplete");
+        jobsFailed = metricProvider.newMeter(this, "odl.infrautils.jobcoordinator.jobsFailed");
+        jobsRetriesForFailure = metricProvider.newMeter(this, "odl.infrautils.jobcoordinator.jobsRetriesForFailure");
+        jobExecuteAttempts = metricProvider.newMeter(this, "odl.infrautils.jobcoordinator.jobExecuteAttempts");
+
         jobQueueHandlerThread = ThreadFactoryProvider.builder()
             .namePrefix("JobCoordinator-JobQueueHandler")
             .logger(LOG)
@@ -132,46 +153,46 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
         JobQueue jobQueue = jobQueueMap.computeIfAbsent(key, mapKey -> new JobQueue());
         jobQueue.addEntry(jobEntry);
 
-        counters.jobsPending().incrementAndGet();
-        counters.jobsIncomplete().incrementAndGet();
-        counters.jobsCreated().incrementAndGet();
+        jobsPending.increment();
+        jobsIncomplete.increment();
+        jobsCreated.mark();
 
         signalForNextJob();
     }
 
     @Override
     public long getClearedTaskCount() {
-        return counters.jobsCleared().get();
+        return jobsCleared.get();
     }
 
     @Override
     public long getCreatedTaskCount() {
-        return counters.jobsCreated().get();
+        return jobsCreated.get();
     }
 
     @Override
     public long getIncompleteTaskCount() {
-        return counters.jobsIncomplete().get();
+        return jobsIncomplete.get();
     }
 
     @Override
     public long getPendingTaskCount() {
-        return counters.jobsPending().get();
+        return jobsPending.get();
     }
 
     @Override
     public long getFailedJobCount() {
-        return counters.jobsFailed().get();
+        return jobsFailed.get();
     }
 
     @Override
     public long getRetriesCount() {
-        return counters.jobsRetriesForFailure().get();
+        return jobsRetriesForFailure.get();
     }
 
     @Override
     public long getExecuteAttempts() {
-        return counters.jobExecuteAttempts().get();
+        return jobExecuteAttempts.get();
     }
 
     /**
@@ -186,8 +207,8 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
         } else {
             LOG.error("clearJob: jobQueueMap did not contain the key for this entry: {}", jobEntry);
         }
-        counters.jobsCleared().incrementAndGet();
-        counters.jobsIncomplete().decrementAndGet();
+        jobsCleared.mark();
+        jobsIncomplete.decrement();
         signalForNextJob();
     }
 
@@ -266,7 +287,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
         @Override
         public void onFailure(Throwable throwable) {
             int retryCount = jobEntry.decrementRetryCountAndGet();
-            counters.jobsRetriesForFailure().incrementAndGet();
+            jobsRetriesForFailure.mark();
 
             if (retryCount == 0 && jobEntry.getMaxRetries() > 0) {
                 LOG.error("Job still failed on final retry: {}", jobEntry, throwable);
@@ -289,7 +310,6 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
                     MainTask worker = new MainTask(jobEntry);
                     executeTask(worker);
                 }, waitTime, TimeUnit.MILLISECONDS)), new FutureCallback<Object>() {
-
                     @Override
                     public void onFailure(Throwable throwable) {
                         LOG.error("Retry of job failed; rolling back or clearing job: {}", jobEntry, throwable);
@@ -308,7 +328,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
     }
 
     private void rollbackOrClear(JobEntry jobEntry) {
-        counters.jobsFailed().incrementAndGet();
+        jobsFailed.mark();
         if (jobEntry.getRollbackWorker() != null) {
             jobEntry.setMainWorker(null);
             RollbackTask rollbackTask = new RollbackTask(jobEntry);
@@ -385,7 +405,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
                 long jobExecutionTimeNanos = System.nanoTime() - jobStartTimestampNanos;
                 printJobs(jobEntry.getKey(), TimeUnit.NANOSECONDS.toMillis(jobExecutionTimeNanos));
             } catch (Exception e) {
-                counters.jobsFailed().incrementAndGet();
+                jobsFailed.mark();
                 LOG.error("Direct Exception (not failed Future) when executing job, won't even retry: {}", jobEntry, e);
             }
 
@@ -422,7 +442,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
 
                         JobQueue jobQueue = entry.getValue();
                         if (jobQueue.getExecutingEntry() != null) {
-                            counters.jobExecuteAttempts().incrementAndGet();
+                            jobExecuteAttempts.mark();
                             continue;
                         }
                         JobEntry jobEntry = jobQueue.poll();
@@ -435,7 +455,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
                         LOG.trace("Executing job with key: {}", jobEntry.getKey());
 
                         if (executeTask(worker)) {
-                            counters.jobsPending().decrementAndGet();
+                            jobsPending.decrement();
                         }
                     }
 
