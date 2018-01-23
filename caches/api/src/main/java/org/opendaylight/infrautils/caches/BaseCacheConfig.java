@@ -7,9 +7,9 @@
  */
 package org.opendaylight.infrautils.caches;
 
-import java.util.regex.Pattern;
 import org.immutables.value.Value;
 import org.immutables.value.Value.Default;
+import org.opendaylight.infrautils.utils.types.IDs;
 
 /**
  * Base class for {@link CacheConfig} and {@link CheckedCacheConfig}.
@@ -17,8 +17,6 @@ import org.immutables.value.Value.Default;
  * @author Michael Vorburger.ch
  */
 public abstract class BaseCacheConfig {
-
-    private static final Pattern ID_REGEXP = Pattern.compile("[a-zA-Z0-9\\.]+");
 
     /**
      * Instance of the class "containing" this Cache.
@@ -53,10 +51,7 @@ public abstract class BaseCacheConfig {
      */
     @Value.Check
     protected void check() {
-        if (!ID_REGEXP.matcher(id()).matches()) {
-            throw new IllegalArgumentException(
-                    "Invalid ID: \"" + id() + "\"" + " must match regular expression " + ID_REGEXP.pattern());
-        }
+        IDs.checkOnlyAZ09Dot(id());
     }
 
 }
