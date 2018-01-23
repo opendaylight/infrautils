@@ -23,6 +23,9 @@
   <name>ODL :: infrautils :: ${project.artifactId}</name>
 
   <dependencies>
+    <!-- Do *NOT* use scope test here... the project which depends on this project will use scope test for
+         its testutils dependency, but here we do not want that (that's the whole point of this POM).
+         Instead, we set scope compile, to override scope test which at least some of these have as default. -->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -48,6 +51,7 @@
       <artifactId>guava</artifactId>
       <scope>compile</scope>
     </dependency>
+    <!--suppress MavenDuplicateDependenciesInspection -->
     <dependency>
       <groupId>com.google.truth</groupId>
       <artifactId>truth</artifactId>
