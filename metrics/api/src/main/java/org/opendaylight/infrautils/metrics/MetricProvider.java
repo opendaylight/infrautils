@@ -158,6 +158,7 @@ public interface MetricProvider {
                                                                 String secondLabelName, String thirdLabelName,
                                                                 String fourthLabelName, String fifthLabelName);
 
+    @Deprecated
     Timer newTimer(Object anchor, String id);
 
     /**
