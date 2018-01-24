@@ -1,0 +1,164 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b4db68c4_df938801",
+        "filename": "metrics/api/src/main/java/org/opendaylight/infrautils/metrics/Labeled.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-01-24T22:07:22Z",
+      "side": 1,
+      "message": "2018 - need to update your eclipse template (you don\u0027t use ${year}?).",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 21
+      },
+      "revId": "cc44c38f929ac097fbb8fc92621bccfffa3c17cb",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "67da23ea_4c12c388",
+        "filename": "metrics/api/src/main/java/org/opendaylight/infrautils/metrics/Labeled.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-01-24T22:07:22Z",
+      "side": 1,
+      "message": "This looks like a factory that creates new instances of T so can we name it \"newInstance\" for clarity.  \"label\" seems like it would  return a label.",
+      "range": {
+        "startLine": 19,
+        "startChar": 6,
+        "endLine": 19,
+        "endChar": 11
+      },
+      "revId": "cc44c38f929ac097fbb8fc92621bccfffa3c17cb",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "47df5f2b_387dcab7",
+        "filename": "metrics/api/src/main/java/org/opendaylight/infrautils/metrics/MetricProvider.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-01-24T22:07:22Z",
+      "side": 1,
+      "message": "\"lableName\" (there is no second etc)?",
+      "range": {
+        "startLine": 49,
+        "startChar": 64,
+        "endLine": 49,
+        "endChar": 78
+      },
+      "revId": "cc44c38f929ac097fbb8fc92621bccfffa3c17cb",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e0fe5c9a_cebb3132",
+        "filename": "metrics/api/src/main/java/org/opendaylight/infrautils/metrics/MetricProvider.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-01-24T22:07:22Z",
+      "side": 1,
+      "message": "I think I\u0027m clear on what a Labeled\u003cMeter\u003e is - it\u0027s more or less a factory for creating Meters that share a common base label/id ...",
+      "revId": "cc44c38f929ac097fbb8fc92621bccfffa3c17cb",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5c5d870e_eef63605",
+        "filename": "metrics/api/src/main/java/org/opendaylight/infrautils/metrics/MetricProvider.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-01-24T22:07:22Z",
+      "side": 1,
+      "message": "...but Labeled\u003cLabeled\u003cMeter\u003e\u003e  looks a bit confusing...",
+      "revId": "cc44c38f929ac097fbb8fc92621bccfffa3c17cb",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b4e1e4bd_a0d8db4a",
+        "filename": "metrics/api/src/main/java/org/opendaylight/infrautils/metrics/MetricProvider.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-01-24T22:07:22Z",
+      "side": 1,
+      "message": ".. and even more so here.",
+      "range": {
+        "startLine": 53,
+        "startChar": 3,
+        "endLine": 53,
+        "endChar": 36
+      },
+      "revId": "cc44c38f929ac097fbb8fc92621bccfffa3c17cb",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4557eeb0_5ac182ff",
+        "filename": "metrics/api/src/main/java/org/opendaylight/infrautils/metrics/MetricProvider.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-01-24T22:07:22Z",
+      "side": 1,
+      "message": "I\u0027m wondering if we can incorporate the optional label names into \nMetricDescriptor, eg:\n\n  public abstract String labels(String... labelNames);\n\nthen in Labeled:\n\n  T newInstance(String... labels);\n\nOr have separate newInstance methods for 1, 2 , 3 labels.",
+      "revId": "cc44c38f929ac097fbb8fc92621bccfffa3c17cb",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c1230534_b1a37fda",
+        "filename": "metrics/api/src/main/java/org/opendaylight/infrautils/metrics/MetricProvider.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-01-24T22:07:22Z",
+      "side": 1,
+      "message": "Can you add javadocs for all these methods?",
+      "revId": "cc44c38f929ac097fbb8fc92621bccfffa3c17cb",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
