@@ -46,22 +46,27 @@ public class MetricsExample implements Runnable {
     @Inject
     public MetricsExample(MetricProvider metricProvider) {
         meterWithoutLabel = metricProvider.newMeter(MetricDescriptor.builder().anchor(this)
-                .project("infrautils").module("metrics").id("example_meter").build());
+                .project("infrautils").module("metrics").id("example_meter_without_labels")
+                .description("Example meter metric without any labels").build());
 
         meterWithOneFixedLabel = metricProvider.newMeter(MetricDescriptor.builder().anchor(this)
-                .project("infrautils").module("metrics").id("example_meter").build(),
+                .project("infrautils").module("metrics").id("example_meter_1_label")
+                .description("Example meter metric with 1 label and a fixed label value").build(),
                 "port").label("123");
 
         meterWithTwoFixedLabels = metricProvider.newMeter(MetricDescriptor.builder().anchor(this)
-                .project("infrautils").module("metrics").id("example_meter").build(),
+                .project("infrautils").module("metrics").id("example_meter_2_labels")
+                .description("Example meter metric with 2 labels and fixed label values").build(),
                 "port", "mac").label("123").label("6C:0D:E6:67:7E:68");
 
         meterWithOneDynamicLabel = metricProvider.newMeter(MetricDescriptor.builder().anchor(this)
-                .project("infrautils").module("metrics").id("example_meter").build(),
+                .project("infrautils").module("metrics").id("example_meter_1_dynlabel")
+                .description("Example meter metric with 1 label and label value set in using code").build(),
                 "port");
 
         meterWithTwoDynamicLabels = metricProvider.newMeter(MetricDescriptor.builder().anchor(this)
-                .project("infrautils").module("metrics").id("example_meter").build(),
+                .project("infrautils").module("metrics").id("example_meter_2_dynlabels")
+                .description("Example meter metric with 2 labels and its label values set in using code").build(),
                 "port", "mac");
     }
 
@@ -72,6 +77,12 @@ public class MetricsExample implements Runnable {
 
     @PreDestroy
     public void close() {
+        meterWithoutLabel.close();
+        meterWithOneFixedLabel.close();
+        meterWithTwoFixedLabels.close();
+        // TODO meterWithOneDynamicLabel.close() how to?
+        // TODO meterWithTwoDynamicLabels.close() how to?
+
         executor.shutdownNow();
     }
 

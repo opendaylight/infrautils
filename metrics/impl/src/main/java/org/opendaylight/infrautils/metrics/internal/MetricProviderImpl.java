@@ -44,9 +44,8 @@ import org.ops4j.pax.cdi.api.OsgiServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 /**
- * Implementation of {@link MetricProvider}.
+ * Implementation of {@link MetricProvider} based on <a href="http://metrics.dropwizard.io">Coda Hale's Dropwizard Metrics</a>.
  *
  * @author Michael Vorburger.ch
  */
