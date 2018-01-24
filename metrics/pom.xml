@@ -30,6 +30,7 @@
     <module>api</module>
     <module>impl</module>
     <!-- <module>cli</module> -->
+    <module>sample/impl</module>
     <module>it</module>
   </modules>
 </project>
