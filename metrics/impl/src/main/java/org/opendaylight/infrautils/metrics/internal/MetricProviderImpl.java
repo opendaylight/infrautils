@@ -26,8 +26,13 @@ import com.codahale.metrics.jvm.ThreadDeadlockDetector;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.lang.management.ManagementFactory;
 import java.time.Duration;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import javax.annotation.PreDestroy;
 import javax.inject.Singleton;
+import org.opendaylight.infrautils.metrics.Labeled;
+import org.opendaylight.infrautils.metrics.Meter;
+import org.opendaylight.infrautils.metrics.MetricDescriptor;
 import org.opendaylight.infrautils.metrics.MetricProvider;
 import org.opendaylight.infrautils.utils.UncheckedCloseable;
 import org.opendaylight.infrautils.utils.function.CheckedCallable;
@@ -48,6 +53,7 @@ public class MetricProviderImpl implements MetricProvider {
 
     private static final Logger LOG = LoggerFactory.getLogger(MetricProviderImpl.class);
 
+    private final Map<String, MeterImpl> meters = new ConcurrentHashMap<>();
     private final MetricRegistry registry;
     private final JmxReporter jmxReporter;
     private final MetricsFileReporter fileReporter;
@@ -114,7 +120,8 @@ public class MetricProviderImpl implements MetricProvider {
     }
 
     private static JmxReporter setUpJmxReporter(MetricRegistry registry) {
-        JmxReporter reporter = JmxReporter.forRegistry(registry).build();
+        JmxReporter reporter = JmxReporter.forRegistry(registry)
+                .createsObjectNamesWith(new CustomObjectNameFactory()).build();
         reporter.start();
         LOG.info("JmxReporter started, ODL application's metrics are now available via JMX");
         return reporter;
@@ -155,124 +162,78 @@ public class MetricProviderImpl implements MetricProvider {
 //        context.updateLoggers(config);
 //    }
 
+    private org.opendaylight.infrautils.metrics.Meter newOrExistingMeter(Object anchor, String id) {
+        return meters.computeIfAbsent(id, newId -> {
+            LOG.debug("New Meter metric: {}", id);
+            return new MeterImpl(newId);
+        });
+    }
+
     @Override
     public org.opendaylight.infrautils.metrics.Meter newMeter(Object anchor, String id) {
         requireNonNull(anchor, "anchor == null");
-        checkID(id);
-        com.codahale.metrics.Meter meter = registry.meter(id);
-        return new MeterImpl(id) {
+        checkForExistingID(id);
+        return newOrExistingMeter(anchor, id);
+    }
 
-            @Override
-            public void mark() {
-                checkIfClosed();
-                meter.mark();
-            }
+    @Override
+    public Meter newMeter(MetricDescriptor descriptor) {
+        return newMeter(descriptor.anchor(), makeCodahaleID(descriptor));
+    }
 
-            @Override
-            public void mark(long howMany) {
-                checkIfClosed();
-                meter.mark(howMany);
-            }
+    @Override
+    public Labeled<Meter> newMeter(MetricDescriptor descriptor, String labelName) {
+        return labelValue -> newOrExistingMeter(descriptor.anchor(),
+                makeCodahaleID(descriptor) + "{" + labelName + "=" + labelValue + "}");
+    }
 
-            @Override
-            public long get() {
-                return meter.getCount();
-            }
-        };
+    @Override
+    public Labeled<Labeled<Meter>> newMeter(MetricDescriptor descriptor,
+            String firstLabelName, String secondLabelName) {
+        return firstLabelValue -> secondLabelValue -> newOrExistingMeter(descriptor.anchor(), makeCodahaleID(descriptor)
+                + "{" + firstLabelName + "=" + firstLabelValue + "," + secondLabelName + "=" + secondLabelValue + "}");
+    }
+
+    @Override
+    public Labeled<Labeled<Labeled<Meter>>> newMeter(MetricDescriptor descriptor,
+            String firstLabelName, String secondLabelName, String thirdLabelName) {
+        return firstLabelValue -> secondLabelValue -> thirdLabelValue ->
+        newOrExistingMeter(descriptor.anchor(), makeCodahaleID(descriptor) + "{"
+                + firstLabelName + "=" + firstLabelValue + "," + secondLabelName + "=" + secondLabelValue  + ","
+                + thirdLabelName + "=" + thirdLabelValue + "}");
     }
 
     @Override
     public org.opendaylight.infrautils.metrics.Counter newCounter(Object anchor, String id) {
         requireNonNull(anchor, "anchor == null");
-        checkID(id);
-        com.codahale.metrics.Counter counter = registry.counter(id);
-        return new CounterImpl(id) {
-
-            @Override
-            public void increment() {
-                checkIfClosed();
-                counter.inc();
-            }
-
-            @Override
-            public void increment(long howMany) {
-                checkIfClosed();
-                counter.inc(howMany);
-            }
-
-            @Override
-            public void decrement() {
-                checkIfClosed();
-                counter.dec();
-            }
-
-            @Override
-            public void decrement(long howMany) {
-                checkIfClosed();
-                counter.dec(howMany);
-            }
-
-            @Override
-            public long get() {
-                return counter.getCount();
-            }
-        };
+        checkForExistingID(id);
+        return new CounterImpl(id);
     }
 
     @Override
     public org.opendaylight.infrautils.metrics.Timer newTimer(Object anchor, String id) {
         requireNonNull(anchor, "anchor == null");
-        checkID(id);
-        com.codahale.metrics.Timer timer = registry.timer(id);
-        return new TimerImpl(id) {
-
-            @Override
-            @SuppressWarnings({ "checkstyle:IllegalCatch", "unchecked" })
-            public <T, E extends Exception> T time(CheckedCallable<T, E> event) throws E {
-                checkIfClosed();
-                try {
-                    return timer.time(() -> event.call());
-                } catch (Exception e) {
-                    throw (E) e;
-                }
-            }
-
-            @Override
-            @SuppressWarnings({ "checkstyle:IllegalCatch", "checkstyle:AvoidHidingCauseException", "unchecked" })
-            @SuppressFBWarnings("BC_UNCONFIRMED_CAST_OF_RETURN_VALUE") // getCause() will be Exception not Throwable
-            public <E extends Exception> void time(CheckedRunnable<E> event) throws E {
-                checkIfClosed();
-                try {
-                    timer.time(() -> {
-                        try {
-                            event.run();
-                        } catch (Exception exception) {
-                            throw new InternalRuntimeException(exception);
-                        }
-                    });
-                } catch (InternalRuntimeException e) {
-                    throw (E) e.getCause();
-                }
-            }
-        };
+        checkForExistingID(id);
+        return new TimerImpl(id);
     }
 
-    private void checkID(String id) {
+    private static String makeCodahaleID(MetricDescriptor descriptor) {
+        // We're ignoring descriptor.description() because Codahale Dropwizard Metrics
+        // doesn't have it but other future metrics API implementations (e.g. Prometheus.io), or a
+        // possible future metrics:list kind of CLI here, will use it.
+        return MetricRegistry.name(descriptor.project(), descriptor.module(), descriptor.id());
+    }
+
+    private void checkForExistingID(String id) {
         requireNonNull(id, "id == null");
         if (registry.getNames().contains(id)) {
             throw new IllegalArgumentException("Metric ID already used: " + id);
         }
     }
 
-    private void remove(String id) {
-        if (!registry.remove(id)) {
-            LOG.warn("Metric remove did not actualy remove: {}", id);
-        }
-    }
-
     private abstract class CloseableMetricImpl implements UncheckedCloseable {
         private volatile boolean isClosed = false;
-        private final String id;
+        protected final String id;
 
         CloseableMetricImpl(String id) {
             this.id = id;
@@ -286,27 +247,123 @@ public class MetricProviderImpl implements MetricProvider {
 
         @Override
         public void close() {
+            checkIfClosed();
             isClosed = true;
-            remove(id);
+            if (!registry.remove(id)) {
+                LOG.warn("Metric remove did not actualy remove: {}", id);
+            }
         }
     }
 
-    private abstract class MeterImpl extends CloseableMetricImpl implements org.opendaylight.infrautils.metrics.Meter {
+    private final class MeterImpl extends CloseableMetricImpl implements org.opendaylight.infrautils.metrics.Meter {
+
+        private final com.codahale.metrics.Meter meter;
+
         MeterImpl(String id) {
             super(id);
+            this.meter = registry.meter(id);
+        }
+
+        @Override
+        public void mark() {
+            checkIfClosed();
+            meter.mark();
+        }
+
+        @Override
+        public void mark(long howMany) {
+            checkIfClosed();
+            meter.mark(howMany);
+        }
+
+        @Override
+        public long get() {
+            return meter.getCount();
+        }
+
+        @Override
+        public void close() {
+            super.close();
+            meters.remove(id);
         }
     }
 
-    private abstract class CounterImpl extends CloseableMetricImpl
+    private final class CounterImpl extends CloseableMetricImpl
             implements org.opendaylight.infrautils.metrics.Counter {
+
+        private final com.codahale.metrics.Counter counter;
+
         CounterImpl(String id) {
             super(id);
+            this.counter = registry.counter(id);
+        }
+
+        @Override
+        public void increment() {
+            checkIfClosed();
+            counter.inc();
+        }
+
+        @Override
+        public void increment(long howMany) {
+            checkIfClosed();
+            counter.inc(howMany);
+        }
+
+        @Override
+        public void decrement() {
+            checkIfClosed();
+            counter.dec();
+        }
+
+        @Override
+        public void decrement(long howMany) {
+            checkIfClosed();
+            counter.dec(howMany);
+        }
+
+        @Override
+        public long get() {
+            return counter.getCount();
         }
     }
 
-    private abstract class TimerImpl extends CloseableMetricImpl implements org.opendaylight.infrautils.metrics.Timer {
+    private class TimerImpl extends CloseableMetricImpl implements org.opendaylight.infrautils.metrics.Timer {
+
+        private final com.codahale.metrics.Timer timer;
+
         TimerImpl(String id) {
             super(id);
+            this.timer = registry.timer(id);
+        }
+
+        @Override
+        @SuppressWarnings({ "checkstyle:IllegalCatch", "unchecked" })
+        public <T, E extends Exception> T time(CheckedCallable<T, E> event) throws E {
+            checkIfClosed();
+            try {
+                return timer.time(() -> event.call());
+            } catch (Exception e) {
+                throw (E) e;
+            }
+        }
+
+        @Override
+        @SuppressWarnings({ "checkstyle:IllegalCatch", "checkstyle:AvoidHidingCauseException", "unchecked" })
+        @SuppressFBWarnings("BC_UNCONFIRMED_CAST_OF_RETURN_VALUE") // getCause() will be Exception not Throwable
+        public <E extends Exception> void time(CheckedRunnable<E> event) throws E {
+            checkIfClosed();
+            try {
+                timer.time(() -> {
+                    try {
+                        event.run();
+                    } catch (Exception exception) {
+                        throw new InternalRuntimeException(exception);
+                    }
+                });
+            } catch (InternalRuntimeException e) {
+                throw (E) e.getCause();
+            }
         }
     }
 
