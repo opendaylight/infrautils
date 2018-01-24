@@ -187,6 +187,24 @@
     },
     {
       "key": {
+        "uuid": "c66f19da_df56c06e",
+        "filename": "metrics/api/src/main/java/org/opendaylight/infrautils/metrics/MetricProvider.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-01-24T23:08:40Z",
+      "side": 1,
+      "message": "yeah - that\u0027\u0027s why I also suggested overloaded methods for 1, 2 , 3 labels on Labeled instead of newMeter. My initial thought is that MetricDescriptor should contain all the descriptor config rather than passing a  MetricDescriptor plus additional descriptor info to newMeter.",
+      "parentUuid": "1c057fa3_b74e58af",
+      "revId": "cc44c38f929ac097fbb8fc92621bccfffa3c17cb",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c1230534_b1a37fda",
         "filename": "metrics/api/src/main/java/org/opendaylight/infrautils/metrics/MetricProvider.java",
         "patchSetId": 3
