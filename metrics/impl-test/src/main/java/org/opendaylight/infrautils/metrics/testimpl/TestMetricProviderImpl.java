@@ -9,7 +9,9 @@ package org.opendaylight.infrautils.metrics.testimpl;
 
 import java.util.concurrent.atomic.AtomicLong;
 import org.opendaylight.infrautils.metrics.Counter;
+import org.opendaylight.infrautils.metrics.Labeled;
 import org.opendaylight.infrautils.metrics.Meter;
+import org.opendaylight.infrautils.metrics.MetricDescriptor;
 import org.opendaylight.infrautils.metrics.MetricProvider;
 import org.opendaylight.infrautils.metrics.Timer;
 import org.opendaylight.infrautils.utils.function.CheckedCallable;
@@ -44,6 +46,28 @@ public class TestMetricProviderImpl implements MetricProvider {
                 // ignore
             }
         };
+    }
+
+    @Override
+    public Meter newMeter(MetricDescriptor descriptor) {
+        return newMeter((Object) null, (String) null);
+    }
+
+    @Override
+    public Labeled<Meter> newMeter(MetricDescriptor descriptor, String labelName) {
+        return labelValue -> newMeter((Object) null, (String) null);
+    }
+
+    @Override
+    public Labeled<Labeled<Meter>> newMeter(MetricDescriptor descriptor, String firstLabelName,
+            String secondLabelName) {
+        return firstLabelValue -> secondLabelValue -> newMeter((Object) null, (String) null);
+    }
+
+    @Override
+    public Labeled<Labeled<Labeled<Meter>>> newMeter(MetricDescriptor descriptor, String firstLabelName,
+            String secondLabelName, String thirdLabelName) {
+        return firstLabelValue -> secondLabelValue -> thirdLabelValue -> newMeter((Object) null, (String) null);
     }
 
     @Override

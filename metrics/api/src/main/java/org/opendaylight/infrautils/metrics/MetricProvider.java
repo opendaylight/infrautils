@@ -12,9 +12,9 @@ import javax.annotation.concurrent.ThreadSafe;
 /**
  * Factory to obtain a new metric for use by application code.
  *
- * <p>This is basically a mirror of (parts of) the Coda Hale's Dropwizard's MetricRegistry.
+ * <p>This API is a mix of (parts of) the Coda Hale's Dropwizard's MetricRegistry, and Prometheus' API.
  * ODL application wanting to expose metrics are strongly encouraged to obtain new metric
- * instances through this factory, instead of directly using new MetricRegistry themselves.
+ * instances through this factory, instead of directly using Dropwizard new MetricRegistry themselves.
  * This allows infrautils.metrics to expose all applications' metrics together through
  * current and future reporters.  This API also includes some convenience such as preventing
  * accidental re-use of Metric IDs by different ODL applications, as well as (perhaps more importantly)
@@ -37,11 +37,60 @@ import javax.annotation.concurrent.ThreadSafe;
 @ThreadSafe
 public interface MetricProvider {
 
+    /**
+     * Create new Meter metric.
+     * @deprecated use {@link #newMeter(MetricDescriptor)} instead.
+     */
+    @Deprecated
     Meter newMeter(Object anchor, String id);
+
+    /**
+     * Create new Meter metric without labels.
+     * @param descriptor a MetricDescriptor, typically created via <code>MetricDescriptor.builder().anchor(this)
+     *           .project("&lt;projectName&gt;").module("&lt;moduleName&gt;").id("&lt;metricName&gt;").build()</code>
+     * @return the Meter
+     */
+    Meter newMeter(MetricDescriptor descriptor);
+
+    /**
+     * Create new Meter metric with 1 label.
+     * @param descriptor a MetricDescriptor, typically created via <code>MetricDescriptor.builder().anchor(this)
+     *           .project("&lt;projectName&gt;").module("&lt;moduleName&gt;").id("&lt;metricName&gt;").build()</code>
+     * @param labelName name of the (only) label of this metric
+     * @return an object from which a Meter can be obtained, given 1 label value
+     */
+    Labeled<Meter> newMeter(MetricDescriptor descriptor, String labelName);
+
+    /**
+     * Create new Meter metric with 2 labels.
+     * @param descriptor a MetricDescriptor, typically created via <code>MetricDescriptor.builder().anchor(this)
+     *           .project("&lt;projectName&gt;").module("&lt;moduleName&gt;").id("&lt;metricName&gt;").build()</code>
+     * @param firstLabelName name of the 1st label of this metric
+     * @param secondLabelName name of the 2nd label of this metric
+     * @return an object from which a Meter can be obtained, given 2 label values
+     */
+    Labeled<Labeled<Meter>> newMeter(MetricDescriptor descriptor, String firstLabelName, String secondLabelName);
+
+    /**
+     * Create new Meter metric with 3 labels.
+     * @param descriptor a MetricDescriptor, typically created via <code>MetricDescriptor.builder().anchor(this)
+     *           .project("&lt;projectName&gt;").module("&lt;moduleName&gt;").id("&lt;metricName&gt;").build()</code>
+     * @param firstLabelName name of the 1st label of this metric
+     * @param secondLabelName name of the 2nd label of this metric
+     * @param thirdLabelName name of the 3rd label of this metric
+     * @return an object from which a Meter can be obtained, given 3 label values
+     */
+    Labeled<Labeled<Labeled<Meter>>> newMeter(MetricDescriptor descriptor, String firstLabelName,
+            String secondLabelName, String thirdLabelName);
 
     Counter newCounter(Object anchor, String id);
 
+    // TODO Counter newCounter(MetricDescriptor descriptor);
+    // TODO Counter newCounter(MetricDescriptor descriptor, String firstLabelName);
+
     Timer newTimer(Object anchor, String id);
+
+    // Timer newTimer(MetricDescriptor descriptor);
 
     // TODO Histogram newHistogram(Object anchor, String id);
 

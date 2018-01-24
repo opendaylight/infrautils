@@ -15,7 +15,9 @@ import java.io.FileNotFoundException;
 import org.junit.After;
 import org.junit.Rule;
 import org.junit.Test;
+import org.opendaylight.infrautils.metrics.Labeled;
 import org.opendaylight.infrautils.metrics.Meter;
+import org.opendaylight.infrautils.metrics.MetricDescriptor;
 import org.opendaylight.infrautils.metrics.MetricProvider;
 import org.opendaylight.infrautils.metrics.internal.MetricProviderImpl;
 import org.opendaylight.infrautils.testutils.LogCaptureRule;
@@ -41,10 +43,29 @@ public class MetricProviderTest {
     }
 
     @Test
-    public void testMetricProviderImpl() {
+    public void testMeter() {
         Meter meter1 = metrics.newMeter(this, "test.meter1");
         meter1.mark();
         meter1.mark(2);
+        assertThat(meter1.get()).isEqualTo(3);
+    }
+
+    @Test
+    public void testMeterWith2Labels() {
+        Labeled<Labeled<Meter>> meterWithTwoLabels = metrics.newMeter(MetricDescriptor.builder().anchor(this)
+                .project("infrautils").module("metrics").id("test_meter1").build(),
+                "port", "mac");
+        Meter meterA = meterWithTwoLabels.label(/* port */ "456").label(/* MAC */ "1A:0B:F2:25:1C:68");
+        meterA.mark(3);
+        assertThat(meterA.get()).isEqualTo(3);
+
+        Meter meterB = meterWithTwoLabels.label(/* port */ "789").label(/* MAC */ "1A:0B:F2:25:1C:68");
+        meterB.mark(1);
+        assertThat(meterB.get()).isEqualTo(1);
+        assertThat(meterA.get()).isEqualTo(3);
+
+        Meter againMeterA = meterWithTwoLabels.label(/* port */ "456").label(/* MAC */ "1A:0B:F2:25:1C:68");
+        assertThat(againMeterA.get()).isEqualTo(3);
     }
 
     @Test
@@ -60,6 +81,21 @@ public class MetricProviderTest {
         Meter meter1 = metrics.newMeter(this, "test.meter1");
         meter1.close();
         assertThrows(IllegalStateException.class, () -> meter1.mark());
+        // Closing an already closed metric throws an IllegalStateException
+        assertThrows(IllegalStateException.class, () -> meter1.close());
+    }
+
+    @Test
+    public void testUseClosedLabeledMeter() {
+        Labeled<Meter> meterWithLabel = metrics.newMeter(MetricDescriptor.builder().anchor(this)
+                .project("infrautils").module("metrics").id("test_meter1").build(), "label1");
+        meterWithLabel.label("label1value").mark();
+        assertThat(meterWithLabel.label("label1value").get()).isEqualTo(1);
+        meterWithLabel.label("label1value").close();
+        // NOT assertThrows(IllegalStateException.class, () -> meterWithLabel.label("label1value").mark());
+        // because we can recreate a metric with the same label, but it will be a new one:
+        meterWithLabel.label("label1value").mark();
+        assertThat(meterWithLabel.label("label1value").get()).isEqualTo(1);
     }
 
     @Test
@@ -149,12 +185,6 @@ public class MetricProviderTest {
             metrics.newCounter(this, "test.meter1");
         });
     }
-
-    // TODO testCloseMeter() - newMeter, close it, same ID should work again
-
-    // TODO testBadID .. startsWith("odl") no spaces only dots
-    // TODO             also enforce all lower case except String after last dot (before is package)
-    // TODO             also enforce only 4 parts? instead of String id have String project, String "bundle" (feature) ?
 
     // TODO testReadJMX() using org.opendaylight.infrautils.utils.management.MBeanUtil from https://git.opendaylight.org/gerrit/#/c/65153/
 
