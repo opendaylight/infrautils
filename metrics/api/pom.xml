@@ -29,6 +29,10 @@
       <artifactId>infrautils-util</artifactId>
       <version>${project.version}</version>
     </dependency>
+    <dependency>
+      <groupId>org.immutables</groupId>
+      <artifactId>value</artifactId>
+    </dependency>
   </dependencies>
 
 </project>
