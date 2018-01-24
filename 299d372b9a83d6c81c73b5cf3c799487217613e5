@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4b758eb9_e07feb61",
+        "filename": "caches/test/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-01-24T13:00:43Z",
+      "side": 0,
+      "message": "OK, apparently.. even though this changes \u003cscope\u003e from compile to test, but as it was never used in src/main/java in this project, that\u0027s actually fine.",
+      "revId": "299d372b9a83d6c81c73b5cf3c799487217613e5",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "40bdfd7c_5db5e9d3",
+        "filename": "itestutils/itestutils/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-01-24T13:00:43Z",
+      "side": 0,
+      "message": "OK (it anyway inherits it with scope compile from testutils)",
+      "revId": "299d372b9a83d6c81c73b5cf3c799487217613e5",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e39dc872_2fc1b519",
+        "filename": "testutils/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-01-24T13:00:43Z",
+      "side": 0,
+      "message": "NOK; in odlparent it\u0027s \u003cscope\u003etest, but here it has to be \u003cscope\u003ecompile... (because projects dependant on this one should inherit it; e.g. genius.testutils).  Perhaps an inline  comment to clarify that here would be in order... ;-)",
+      "revId": "299d372b9a83d6c81c73b5cf3c799487217613e5",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
