@@ -128,6 +128,30 @@
     },
     {
       "key": {
+        "uuid": "ded71bf2_05609bd7",
+        "filename": "metrics/api/src/main/java/org/opendaylight/infrautils/metrics/MetricProvider.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-01-24T22:52:22Z",
+      "side": 1,
+      "message": "I think this probably looks much more confusing here than it is to use in practice... let me do one thing, and first thing add an example / test illustrating how this would be used? That will help to clarify...",
+      "parentUuid": "b4e1e4bd_a0d8db4a",
+      "range": {
+        "startLine": 53,
+        "startChar": 3,
+        "endLine": 53,
+        "endChar": 36
+      },
+      "revId": "cc44c38f929ac097fbb8fc92621bccfffa3c17cb",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4557eeb0_5ac182ff",
         "filename": "metrics/api/src/main/java/org/opendaylight/infrautils/metrics/MetricProvider.java",
         "patchSetId": 3
@@ -139,6 +163,24 @@
       "writtenOn": "2018-01-24T22:07:22Z",
       "side": 1,
       "message": "I\u0027m wondering if we can incorporate the optional label names into \nMetricDescriptor, eg:\n\n  public abstract String labels(String... labelNames);\n\nthen in Labeled:\n\n  T newInstance(String... labels);\n\nOr have separate newInstance methods for 1, 2 , 3 labels.",
+      "revId": "cc44c38f929ac097fbb8fc92621bccfffa3c17cb",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1c057fa3_b74e58af",
+        "filename": "metrics/api/src/main/java/org/opendaylight/infrautils/metrics/MetricProvider.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-01-24T22:52:22Z",
+      "side": 1,
+      "message": "The trouble with String... labelNames is that then you can only runtime not compile time check the matching of label names and values.  Again, let me add some usage examples, to clarify..",
+      "parentUuid": "4557eeb0_5ac182ff",
       "revId": "cc44c38f929ac097fbb8fc92621bccfffa3c17cb",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
