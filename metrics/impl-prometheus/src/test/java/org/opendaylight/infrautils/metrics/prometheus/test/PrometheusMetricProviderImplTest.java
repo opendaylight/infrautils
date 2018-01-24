@@ -1,0 +1,37 @@
+/*
+ * Copyright (c) 2017 Red Hat, Inc. and others. All rights reserved.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License v1.0 which accompanies this distribution,
+ * and is available at http://www.eclipse.org/legal/epl-v10.html
+ */
+package org.opendaylight.infrautils.metrics.prometheus.test;
+
+import org.junit.Test;
+import org.opendaylight.infrautils.metrics.Meter;
+import org.opendaylight.infrautils.metrics.MetricProvider;
+import org.opendaylight.infrautils.metrics.prometheus.impl.PrometheusMetricProviderImpl;
+
+/**
+ * Unit test for {@link PrometheusMetricProviderImpl}.
+ *
+ * @author Michael Vorburger.ch
+ */
+public class PrometheusMetricProviderImplTest {
+
+    @Test
+    public void testNewMetricProvider() {
+        new PrometheusMetricProviderImpl();
+    }
+
+    @Test
+    public void testNewMeter() {
+        MetricProvider metricProvider = new PrometheusMetricProviderImpl();
+        Meter meter = metricProvider.newMeter(this, "demo");
+        meter.mark(123);
+        meter.close();
+    }
+
+    // TODO more..
+
+}
