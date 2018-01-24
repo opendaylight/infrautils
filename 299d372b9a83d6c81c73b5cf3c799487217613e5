@@ -50,6 +50,24 @@
       "revId": "299d372b9a83d6c81c73b5cf3c799487217613e5",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a28439d_2b0160b2",
+        "filename": "testutils/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 4540
+      },
+      "writtenOn": "2018-01-24T13:39:59Z",
+      "side": 0,
+      "message": "I’ve copied the comment from genius!",
+      "parentUuid": "e39dc872_2fc1b519",
+      "revId": "299d372b9a83d6c81c73b5cf3c799487217613e5",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
