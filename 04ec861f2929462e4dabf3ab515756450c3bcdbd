@@ -16,6 +16,24 @@
       "revId": "04ec861f2929462e4dabf3ab515756450c3bcdbd",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "41df9367_e806b861",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/types/IDs.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-01-24T17:30:03Z",
+      "side": 1,
+      "message": "cauz in CacheConfig for the ID we currently have AZ09DOT_REGEXP whereas in c/67535 there are validations which require further constraining to AZ09_LOWERCASE_REGEXP and AZ_09_REGEXP (because of https://prometheus.io/docs/concepts/data_model/).  That leaves only AZ09_REGEXP as not actually currently (or about to) be used.. it seemed useful to be me for future use, but if I need to remove that for a +1 then I could do that... ;-) Or you could +1 it as is - up to you!",
+      "parentUuid": "e76e37f1_0caad789",
+      "revId": "04ec861f2929462e4dabf3ab515756450c3bcdbd",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
