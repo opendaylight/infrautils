@@ -42,6 +42,13 @@ public interface MetricProvider {
 
     Meter newMeter(MetricDescriptor descriptor);
 
+    Labeled<Meter> newMeter(MetricDescriptor descriptor, String firstLabelName);
+
+    Labeled<Labeled<Meter>> newMeter(MetricDescriptor descriptor, String firstLabelName, String secondLabelName);
+
+    Labeled<Labeled<Labeled<Meter>>> newMeter(MetricDescriptor descriptor, String firstLabelName,
+            String secondLabelName, String thirdLabelName);
+
     Counter newCounter(Object anchor, String id);
 
     // Counter newCounter(MetricDescriptor descriptor);
