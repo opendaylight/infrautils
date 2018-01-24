@@ -31,6 +31,7 @@
     <module>impl</module>
     <module>impl-test</module>
     <!-- <module>cli</module> -->
+    <module>sample/impl</module>
     <module>it</module>
   </modules>
 </project>

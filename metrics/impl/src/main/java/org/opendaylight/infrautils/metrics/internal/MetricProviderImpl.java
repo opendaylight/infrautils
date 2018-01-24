@@ -28,6 +28,9 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.lang.management.ManagementFactory;
 import javax.annotation.PreDestroy;
 import javax.inject.Singleton;
+import org.opendaylight.infrautils.metrics.Labeled;
+import org.opendaylight.infrautils.metrics.Meter;
+import org.opendaylight.infrautils.metrics.MetricDescriptor;
 import org.opendaylight.infrautils.metrics.MetricProvider;
 import org.opendaylight.infrautils.utils.UncheckedCloseable;
 import org.opendaylight.infrautils.utils.function.CheckedCallable;
@@ -92,7 +95,8 @@ public class MetricProviderImpl implements MetricProvider {
     }
 
     private static JmxReporter setUpJmxReporter(MetricRegistry registry) {
-        JmxReporter reporter = JmxReporter.forRegistry(registry).build();
+        JmxReporter reporter = JmxReporter.forRegistry(registry)
+                .createsObjectNamesWith(new CustomObjectNameFactory()).build();
         reporter.start();
         LOG.info("JmxReporter started, ODL application's metrics are now available via JMX");
         return reporter;
@@ -157,6 +161,33 @@ public class MetricProviderImpl implements MetricProvider {
                 return meter.getCount();
             }
         };
+    }
+
+    @Override
+    public Meter newMeter(MetricDescriptor descriptor) {
+        return newMeter(descriptor.anchor(), makeCodahaleID(descriptor));
+    }
+
+    @Override
+    public Labeled<Meter> newMeter(MetricDescriptor descriptor, String labelName) {
+        return labelValue -> newMeter(descriptor.anchor(),
+                makeCodahaleID(descriptor) + "{" + labelName + "=" + labelValue + "}");
+    }
+
+    @Override
+    public Labeled<Labeled<Meter>> newMeter(MetricDescriptor descriptor,
+            String firstLabelName, String secondLabelName) {
+        return firstLabelValue -> secondLabelValue -> newMeter(descriptor.anchor(), makeCodahaleID(descriptor) + "{"
+                + firstLabelName + "=" + firstLabelValue + "," + secondLabelName + "=" + secondLabelValue + "}");
+    }
+
+    @Override
+    public Labeled<Labeled<Labeled<Meter>>> newMeter(MetricDescriptor descriptor,
+            String firstLabelName, String secondLabelName, String thirdLabelName) {
+        return firstLabelValue -> secondLabelValue -> thirdLabelValue ->
+            newMeter(descriptor.anchor(), makeCodahaleID(descriptor) + "{"
+                + firstLabelName + "=" + firstLabelValue + "," + secondLabelName + "=" + secondLabelValue  + ","
+                + thirdLabelName + "=" + thirdLabelValue + "}");
     }
 
     @Override
@@ -233,6 +264,13 @@ public class MetricProviderImpl implements MetricProvider {
                 }
             }
         };
+    }
+
+    private static String makeCodahaleID(MetricDescriptor descriptor) {
+        // We're ignoring descriptor.description() because Codahale Dropwizard Metrics
+        // doesn't have it but other future metrics API implementations (e.g. Prometheus.io), or a
+        // possible future metrics:list kind of CLI here, will use it.
+        return MetricRegistry.name(descriptor.project(), descriptor.module(), descriptor.id());
     }
 
     private void checkID(String id) {
