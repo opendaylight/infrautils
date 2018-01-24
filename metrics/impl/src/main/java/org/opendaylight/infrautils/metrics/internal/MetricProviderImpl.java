@@ -29,6 +29,9 @@ import java.lang.management.ManagementFactory;
 import javax.annotation.PreDestroy;
 import javax.inject.Singleton;
 import org.opendaylight.infrautils.metrics.CloseableMetric;
+import org.opendaylight.infrautils.metrics.Labeled;
+import org.opendaylight.infrautils.metrics.Meter;
+import org.opendaylight.infrautils.metrics.MetricDescriptor;
 import org.opendaylight.infrautils.metrics.MetricProvider;
 import org.opendaylight.infrautils.utils.function.CheckedCallable;
 import org.opendaylight.infrautils.utils.function.CheckedRunnable;
@@ -160,6 +163,32 @@ public class MetricProviderImpl implements MetricProvider {
     }
 
     @Override
+    public Meter newMeter(MetricDescriptor descriptor) {
+        return newMeter(descriptor.anchor(), makeCodahaleID(descriptor));
+    }
+
+    @Override
+    public Labeled<Meter> newMeter(MetricDescriptor descriptor, String firstLabelName) {
+        return firstLabelValue -> newMeter(descriptor.anchor(),
+                makeCodahaleID(descriptor) + "{" + firstLabelName + "=" + firstLabelValue + "}");
+    }
+
+    @Override
+    public Labeled<Labeled<Meter>> newMeter(MetricDescriptor descriptor,
+            String firstLabelName, String secondLabelName) {
+        // TODO write a test to make sure the first and second are not mixed up here..
+        return firstLabelValue -> secondLabelValue -> newMeter(descriptor.anchor(), makeCodahaleID(descriptor) + "{"
+                + firstLabelName + "=" + firstLabelValue + "," + secondLabelName + "=" + secondLabelValue + "}");
+    }
+
+    @Override
+    public Labeled<Labeled<Labeled<Meter>>> newMeter(MetricDescriptor descriptor,
+            String firstLabelName, String secondLabelName, String thirdLabelName) {
+        // TODO IMPLEMENT ME
+        return null;
+    }
+
+    @Override
     public org.opendaylight.infrautils.metrics.Counter newCounter(Object anchor, String id) {
         requireNonNull(anchor, "anchor == null");
         checkID(id);
@@ -233,6 +262,13 @@ public class MetricProviderImpl implements MetricProvider {
                 }
             }
         };
+    }
+
+    private String makeCodahaleID(MetricDescriptor descriptor) {
+        // We're ignoring descriptor.description() because Codahale Dropwizard Metrics
+        // doesn't have it but other future metrics API implementations (e.g. Prometheus.io), or a
+        // possible future metrics:list kind of CLI here, will use it.
+        return descriptor.project() + "." + descriptor.module() + "." + descriptor.id();
     }
 
     private void checkID(String id) {
