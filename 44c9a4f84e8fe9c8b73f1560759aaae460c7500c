@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c9a6fd80_3bc9c587",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobCoordinatorImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 7865
+      },
+      "writtenOn": "2018-01-24T11:25:41Z",
+      "side": 1,
+      "message": "Any specific requirements around Meter usage ? We also track rate measurements in addition to count ?",
+      "revId": "44c9a4f84e8fe9c8b73f1560759aaae460c7500c",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
