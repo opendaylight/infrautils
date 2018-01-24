@@ -30,6 +30,7 @@
     <module>api</module>
     <module>impl</module>
     <module>impl-test</module>
+    <module>impl-prometheus</module>
     <!-- <module>cli</module> -->
     <module>sample/impl</module>
     <module>it</module>

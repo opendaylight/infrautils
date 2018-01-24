@@ -46,7 +46,8 @@ public class MetricProviderTest {
 
     @Test
     public void testMeter() {
-        Meter meter1 = metrics.newMeter(this, "test.meter1");
+        Meter meter1 = metrics.newMeter(MetricDescriptor.builder().anchor(this).project("infrautils").module("metrics")
+                .id("test_meter1").build());
         meter1.mark();
         meter1.mark(2);
         assertThat(meter1.get()).isEqualTo(3);
