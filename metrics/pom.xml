@@ -29,6 +29,7 @@
   <modules>
     <module>api</module>
     <module>impl</module>
+    <module>impl-test</module>
     <!-- <module>cli</module> -->
     <module>it</module>
   </modules>
