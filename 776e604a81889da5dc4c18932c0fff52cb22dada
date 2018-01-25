@@ -108,6 +108,24 @@
     },
     {
       "key": {
+        "uuid": "c9b979cf_ff4455ea",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/Configuration.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-01-25T22:53:50Z",
+      "side": 1,
+      "message": "Done, so like this now - make sense and OK for you, +1 ?",
+      "parentUuid": "85638332_4644f39f",
+      "revId": "776e604a81889da5dc4c18932c0fff52cb22dada",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ee03bd76_8b91a844",
         "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/MetricProviderImpl.java",
         "patchSetId": 4
