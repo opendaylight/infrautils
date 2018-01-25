@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "71eddd31_04fb5018",
+        "filename": "metrics/api/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-01-25T13:39:36Z",
+      "side": 1,
+      "message": "hang on - the API cannot depend on dropwizard... (only the impl).  But you could just provide the equivalent of that interface from the dropwizard API which you need here in the API?\n\nPS: Apart from above, recently merge and ongoing WI changes also mean that you\u0027ll have to rebase this and adjust.",
+      "revId": "6ab3140934f00aa5b84d392fb831942ebc652aa3",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
