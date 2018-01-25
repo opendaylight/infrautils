@@ -16,6 +16,24 @@
       "revId": "90fe59680d65c87a953345f040e5b05858cf006d",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "498ba442_6ea292e4",
+        "filename": "ready/impl/src/test/java/org/opendaylight/infrautils/ready/tests/FunctionalityReadyNotifierTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-01-25T14:13:47Z",
+      "side": 1,
+      "message": "I was hoping that the JavaDoc on FunctionalityReadyRegistration and FunctionalityReady would clarify that? ;-)",
+      "parentUuid": "9a245df4_1fa8fbd9",
+      "revId": "90fe59680d65c87a953345f040e5b05858cf006d",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
