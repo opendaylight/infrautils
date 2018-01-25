@@ -205,6 +205,24 @@
     },
     {
       "key": {
+        "uuid": "decb94df_a3479a80",
+        "filename": "metrics/api/src/main/java/org/opendaylight/infrautils/metrics/MetricProvider.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 7865
+      },
+      "writtenOn": "2018-01-25T04:49:12Z",
+      "side": 1,
+      "message": "\u003e yeah - that\u0027\u0027s why I also suggested overloaded methods for 1, 2 , 3\n \u003e labels on Labeled instead of newMeter. My initial thought is that\n \u003e MetricDescriptor should contain all the descriptor config rather\n \u003e than passing a  MetricDescriptor plus additional descriptor info to\n \u003e newMeter.\n\nI agree with Tom. If MetricDescriptor acts as a single point of including metadata like module, id and any other String holder for naming the metric at Dropwizard level, it would be more intuitive for consumers from API perspective",
+      "parentUuid": "c66f19da_df56c06e",
+      "revId": "cc44c38f929ac097fbb8fc92621bccfffa3c17cb",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c1230534_b1a37fda",
         "filename": "metrics/api/src/main/java/org/opendaylight/infrautils/metrics/MetricProvider.java",
         "patchSetId": 3
@@ -216,6 +234,23 @@
       "writtenOn": "2018-01-24T22:07:22Z",
       "side": 1,
       "message": "Can you add javadocs for all these methods?",
+      "revId": "cc44c38f929ac097fbb8fc92621bccfffa3c17cb",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7b5b30a8_c2bdcbf3",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/MetricProviderImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 7865
+      },
+      "writtenOn": "2018-01-25T04:49:12Z",
+      "side": 1,
+      "message": "Since it is very specific backend for dropwizard, can this be http://metrics.dropwizard.io/3.1.0/apidocs/com/codahale/metrics/MetricRegistry.html#name-java.lang.String-java.lang.String...-\n\nOr we want to keep this method as much away from any specific backend as possible ?",
       "revId": "cc44c38f929ac097fbb8fc92621bccfffa3c17cb",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
