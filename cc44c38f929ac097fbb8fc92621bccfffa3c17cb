@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "b86cd8c0_541e009e",
+        "filename": "metrics/api/src/main/java/org/opendaylight/infrautils/metrics/Labeled.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-01-25T18:04:54Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "4d6b5657_ac2e3a4b",
+      "range": {
+        "startLine": 19,
+        "startChar": 6,
+        "endLine": 19,
+        "endChar": 11
+      },
+      "revId": "cc44c38f929ac097fbb8fc92621bccfffa3c17cb",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "47df5f2b_387dcab7",
         "filename": "metrics/api/src/main/java/org/opendaylight/infrautils/metrics/MetricProvider.java",
         "patchSetId": 3
