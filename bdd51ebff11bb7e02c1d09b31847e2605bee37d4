@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "54f00f46_3deb5609",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/FunctionalityReadyNotifierImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-01-26T15:14:16Z",
+      "side": 1,
+      "message": "This can throw IllegalStateException so should catch and log to debug.",
+      "range": {
+        "startLine": 65,
+        "startChar": 34,
+        "endLine": 65,
+        "endChar": 44
+      },
+      "revId": "bdd51ebff11bb7e02c1d09b31847e2605bee37d4",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "41fc2b53_0e78b653",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/FunctionalityReadyNotifierImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-01-26T15:14:16Z",
+      "side": 1,
+      "message": "What about toString, hashCode? \n\nConsider a SwitchFunctionalityReady where one wants to further clarify the instance with, say,  getId() or getAddress()  methods. In that case though, the user would need to pass an instance and not the class. In fact users could just register the OSGi services directly although this class does hide the OSGi aspects.",
+      "revId": "bdd51ebff11bb7e02c1d09b31847e2605bee37d4",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
