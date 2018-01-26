@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3aa6835d_7de86836",
+        "filename": "metrics/impl/src/main/resources/OSGI-INF/blueprint/blueprint.xml",
+        "patchSetId": 6
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-01-26T03:45:44Z",
+      "side": 1,
+      "message": "The only thing with component-managed is that it doesn\u0027t call the update-method initially on startup or at least it didn\u0027t  in the past. Have you tested that? If it doesn\u0027t then you need to also use:\n\n  \u003ccm:cm-properties id\u003d\"...\"\n                  persistent-id\u003d\"org.opendaylight.infrautils.metrics\"/\u003e\n\nand inject into Configuration. I believe the cm-properties bean yields a Properties instance (if not then def a Map\u003cString, String\u003e).",
+      "revId": "b4399a7554f5642394dc020142874ba989f17110",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
