@@ -16,6 +16,24 @@
       "revId": "b4399a7554f5642394dc020142874ba989f17110",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6625c0d8_bc4c6336",
+        "filename": "metrics/impl/src/main/resources/OSGI-INF/blueprint/blueprint.xml",
+        "patchSetId": 6
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-01-29T17:21:23Z",
+      "side": 1,
+      "message": "I\u0027ve tested it, but only with feature:install, where it worked.. you are absolutely right to point out that in a shutdown and restart it actually did not work - thank you! The just push amendment takes care of this, and now also better handles defaults, as we discussed.",
+      "parentUuid": "3aa6835d_7de86836",
+      "revId": "b4399a7554f5642394dc020142874ba989f17110",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
