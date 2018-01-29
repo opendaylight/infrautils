@@ -16,6 +16,24 @@
       "revId": "170bb1e79d416237bb9d37f0ff215c108e332361",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "642d9eb3_437ff9a7",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/ThreadsWatcher.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-01-29T14:12:58Z",
+      "side": 1,
+      "message": "nope - if we cannot have fun in a log statement which all going well will never be printed, then were can we?! ;)",
+      "parentUuid": "01ebc083_eb82644d",
+      "revId": "170bb1e79d416237bb9d37f0ff215c108e332361",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
