@@ -30,6 +30,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import javax.annotation.PreDestroy;
 import javax.inject.Singleton;
+import org.opendaylight.infrautils.metrics.Counter;
 import org.opendaylight.infrautils.metrics.Labeled;
 import org.opendaylight.infrautils.metrics.Meter;
 import org.opendaylight.infrautils.metrics.MetricDescriptor;
@@ -54,6 +55,7 @@ public class MetricProviderImpl implements MetricProvider {
     private static final Logger LOG = LoggerFactory.getLogger(MetricProviderImpl.class);
 
     private final Map<String, MeterImpl> meters = new ConcurrentHashMap<>();
+    private final Map<String, CounterImpl> counters = new ConcurrentHashMap<>();
     private final MetricRegistry registry;
     private final JmxReporter jmxReporter;
     private final MetricsFileReporter fileReporter;
@@ -203,11 +205,69 @@ public class MetricProviderImpl implements MetricProvider {
                 + thirdLabelName + "=" + thirdLabelValue + "}");
     }
 
+    private org.opendaylight.infrautils.metrics.Counter newOrExistingCounter(Object anchor, String id) {
+        return counters.computeIfAbsent(id, newId -> {
+            LOG.debug("New Counter metric: {}", id);
+            return new CounterImpl(newId);
+        });
+    }
+
     @Override
     public org.opendaylight.infrautils.metrics.Counter newCounter(Object anchor, String id) {
         requireNonNull(anchor, "anchor == null");
         checkForExistingID(id);
         return new CounterImpl(id);
+    }
+
+    @Override
+    public Counter newCounter(MetricDescriptor descriptor) {
+        return newCounter(descriptor.anchor(), makeCodahaleID(descriptor));
+    }
+
+    @Override
+    public Labeled<Counter> newCounter(MetricDescriptor descriptor, String labelName) {
+        return labelValue -> newOrExistingCounter(descriptor.anchor(),
+                makeCodahaleID(descriptor) + "{" + labelName + "=" + labelValue + "}");
+    }
+
+    @Override
+    public Labeled<Labeled<Counter>> newCounter(MetricDescriptor descriptor,
+                                            String firstLabelName, String secondLabelName) {
+        return firstLabelValue -> secondLabelValue -> newOrExistingCounter(descriptor.anchor(),
+                makeCodahaleID(descriptor) + "{" + firstLabelName + "=" + firstLabelValue + ","
+                    + secondLabelName + "=" + secondLabelValue + "}");
+    }
+
+    @Override
+    public Labeled<Labeled<Labeled<Counter>>> newCounter(MetricDescriptor descriptor, String firstLabelName,
+                                                         String secondLabelName, String thirdLabelName) {
+        return firstLabelValue -> secondLabelValue -> thirdLabelValue ->
+                newOrExistingCounter(descriptor.anchor(), makeCodahaleID(descriptor) + "{"
+                        + firstLabelName + "=" + firstLabelValue + "," + secondLabelName + "=" + secondLabelValue  + ","
+                        + thirdLabelName + "=" + thirdLabelValue + "}");
+    }
+
+    @Override
+    public Labeled<Labeled<Labeled<Labeled<Counter>>>> newCounter(MetricDescriptor descriptor,
+                                                         String firstLabelName, String secondLabelName,
+                                                         String thirdLabelName, String fourthLabelName) {
+        return firstLabelValue -> secondLabelValue -> thirdLabelValue -> fourthLabelValue ->
+                newOrExistingCounter(descriptor.anchor(), makeCodahaleID(descriptor) + "{"
+                        + firstLabelName + "=" + firstLabelValue + "," + secondLabelName + "=" + secondLabelValue  + ","
+                        + thirdLabelName + "=" + thirdLabelValue + ","
+                        + fourthLabelName + "=" + fourthLabelValue + "}");
+    }
+
+    @Override
+    public Labeled<Labeled<Labeled<Labeled<Labeled<Counter>>>>> newCounter(MetricDescriptor descriptor,
+                                                                  String firstLabelName, String secondLabelName,
+                                                                  String thirdLabelName, String fourthLabelName,
+                                                                  String fifthLabelName) {
+        return firstLabelValue -> secondLabelValue -> thirdLabelValue -> fourthLabelValue -> fifthLabelValue ->
+                newOrExistingCounter(descriptor.anchor(), makeCodahaleID(descriptor) + "{"
+                        + firstLabelName + "=" + firstLabelValue + "," + secondLabelName + "=" + secondLabelValue  + ","
+                        + thirdLabelName + "=" + thirdLabelValue + "," + fourthLabelName + "=" + fourthLabelValue + ","
+                        + fifthLabelName + "=" + fifthLabelValue + "}");
     }
 
     @Override
@@ -241,7 +301,7 @@ public class MetricProviderImpl implements MetricProvider {
 
         protected void checkIfClosed() {
             if (isClosed) {
-                throw new IllegalStateException("Meter closed: " + id);
+                throw new IllegalStateException("Metric closed: " + id);
             }
         }
 
@@ -325,6 +385,12 @@ public class MetricProviderImpl implements MetricProvider {
         @Override
         public long get() {
             return counter.getCount();
+        }
+
+        @Override
+        public void close() {
+            super.close();
+            counters.remove(id);
         }
     }
 
