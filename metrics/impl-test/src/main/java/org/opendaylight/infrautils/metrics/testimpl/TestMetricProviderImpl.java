@@ -99,6 +99,45 @@ public class TestMetricProviderImpl implements MetricProvider {
     }
 
     @Override
+    public Counter newCounter(MetricDescriptor descriptor) {
+        return newCounter((Object) null, (String) null);
+    }
+
+    @Override
+    public Labeled<Counter> newCounter(MetricDescriptor descriptor, String labelName) {
+        return labelValue -> newCounter((Object) null, (String) null);
+    }
+
+    @Override
+    public Labeled<Labeled<Counter>> newCounter(MetricDescriptor descriptor, String firstLabelName,
+                                            String secondLabelName) {
+        return firstLabelValue -> secondLabelValue -> newCounter((Object) null, (String) null);
+    }
+
+    @Override
+    public Labeled<Labeled<Labeled<Counter>>> newCounter(MetricDescriptor descriptor, String firstLabelName,
+                                                     String secondLabelName, String thirdLabelName) {
+        return firstLabelValue -> secondLabelValue -> thirdLabelValue -> newCounter((Object) null, (String) null);
+    }
+
+    @Override
+    public Labeled<Labeled<Labeled<Labeled<Counter>>>> newCounter(MetricDescriptor descriptor, String firstLabelName,
+                                                         String secondLabelName, String thirdLabelName,
+                                                         String fourthLabelName) {
+        return firstLabelValue -> secondLabelValue -> thirdLabelValue -> fourthLabelValue -> newCounter((Object) null,
+            (String) null);
+    }
+
+    @Override
+    public Labeled<Labeled<Labeled<Labeled<Labeled<Counter>>>>> newCounter(MetricDescriptor descriptor,
+                                                                  String firstLabelName, String secondLabelName,
+                                                                  String thirdLabelName, String fourthLabelName,
+                                                                  String fifthLabelName) {
+        return firstLabelValue -> secondLabelValue -> thirdLabelValue -> fourthLabelValue -> fifthLabelValue ->
+            newCounter((Object) null, (String) null);
+    }
+
+    @Override
     public Timer newTimer(Object anchor, String id) {
         return new Timer() {
 
