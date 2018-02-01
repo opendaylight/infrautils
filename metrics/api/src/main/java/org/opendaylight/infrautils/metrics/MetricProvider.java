@@ -83,10 +83,80 @@ public interface MetricProvider {
     Labeled<Labeled<Labeled<Meter>>> newMeter(MetricDescriptor descriptor, String firstLabelName,
             String secondLabelName, String thirdLabelName);
 
+    /**
+     * Create new Counter metric.
+     * @deprecated use {@link #newCounter(MetricDescriptor)} instead.
+     */
+    @Deprecated
     Counter newCounter(Object anchor, String id);
 
-    // TODO Counter newCounter(MetricDescriptor descriptor);
-    // TODO Counter newCounter(MetricDescriptor descriptor, String firstLabelName);
+    /**
+     * Create new Counter metric without labels.
+     * @param descriptor a MetricDescriptor, typically created via <code>MetricDescriptor.builder().anchor(this)
+     *           .project("&lt;projectName&gt;").module("&lt;moduleName&gt;").id("&lt;metricName&gt;").build()</code>
+     * @return the Counter
+     */
+    Counter newCounter(MetricDescriptor descriptor);
+
+    /**
+     * Create new Counter metric with 1 label.
+     * @param descriptor a MetricDescriptor, typically created via <code>MetricDescriptor.builder().anchor(this)
+     *           .project("&lt;projectName&gt;").module("&lt;moduleName&gt;").id("&lt;metricName&gt;").build()</code>
+     * @param labelName name of the (only) label of this metric
+     * @return an object from which a Counter can be obtained, given 1 label value
+     */
+    Labeled<Counter> newCounter(MetricDescriptor descriptor, String labelName);
+
+    /**
+     * Create new Counter metric with 2 labels.
+     * @param descriptor a MetricDescriptor, typically created via <code>MetricDescriptor.builder().anchor(this)
+     *           .project("&lt;projectName&gt;").module("&lt;moduleName&gt;").id("&lt;metricName&gt;").build()</code>
+     * @param firstLabelName name of the 1st label of this metric
+     * @param secondLabelName name of the 2nd label of this metric
+     * @return an object from which a Counter can be obtained, given 2 label values
+     */
+    Labeled<Labeled<Counter>> newCounter(MetricDescriptor descriptor, String firstLabelName, String secondLabelName);
+
+    /**
+     * Create new Counter metric with 3 labels.
+     * @param descriptor a MetricDescriptor, typically created via <code>MetricDescriptor.builder().anchor(this)
+     *           .project("&lt;projectName&gt;").module("&lt;moduleName&gt;").id("&lt;metricName&gt;").build()</code>
+     * @param firstLabelName name of the 1st label of this metric
+     * @param secondLabelName name of the 2nd label of this metric
+     * @param thirdLabelName name of the 3rd label of this metric
+     * @return an object from which a Counter can be obtained, given 3 label values
+     */
+    Labeled<Labeled<Labeled<Counter>>> newCounter(MetricDescriptor descriptor, String firstLabelName,
+                                              String secondLabelName, String thirdLabelName);
+
+    /**
+     * Create new Counter metric with 4 labels.
+     * @param descriptor a MetricDescriptor, typically created via <code>MetricDescriptor.builder().anchor(this)
+     *           .project("&lt;projectName&gt;").module("&lt;moduleName&gt;").id("&lt;metricName&gt;").build()</code>
+     * @param firstLabelName name of the 1st label of this metric
+     * @param secondLabelName name of the 2nd label of this metric
+     * @param thirdLabelName name of the 3rd label of this metric
+     * @param fourthLabelName name of the 4th label of this metric
+     * @return an object from which a Counter can be obtained, given 4 label values
+     */
+    Labeled<Labeled<Labeled<Labeled<Counter>>>> newCounter(MetricDescriptor descriptor, String firstLabelName,
+                                                       String secondLabelName, String thirdLabelName,
+                                                       String fourthLabelName);
+
+    /**
+     * Create new Counter metric with 5 labels.
+     * @param descriptor a MetricDescriptor, typically created via <code>MetricDescriptor.builder().anchor(this)
+     *           .project("&lt;projectName&gt;").module("&lt;moduleName&gt;").id("&lt;metricName&gt;").build()</code>
+     * @param firstLabelName name of the 1st label of this metric
+     * @param secondLabelName name of the 2nd label of this metric
+     * @param thirdLabelName name of the 3rd label of this metric
+     * @param fourthLabelName name of the 4th label of this metric
+     * @param fifthLabelName name of the 5th label of this metric
+     * @return an object from which a Counter can be obtained, given 5 label values
+     */
+    Labeled<Labeled<Labeled<Labeled<Labeled<Counter>>>>> newCounter(MetricDescriptor descriptor, String firstLabelName,
+                                                                String secondLabelName, String thirdLabelName,
+                                                                String fourthLabelName, String fifthLabelName);
 
     Timer newTimer(Object anchor, String id);
 

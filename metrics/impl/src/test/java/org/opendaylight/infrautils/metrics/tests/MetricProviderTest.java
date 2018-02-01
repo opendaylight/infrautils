@@ -15,6 +15,7 @@ import java.io.FileNotFoundException;
 import org.junit.After;
 import org.junit.Rule;
 import org.junit.Test;
+import org.opendaylight.infrautils.metrics.Counter;
 import org.opendaylight.infrautils.metrics.Labeled;
 import org.opendaylight.infrautils.metrics.Meter;
 import org.opendaylight.infrautils.metrics.MetricDescriptor;
@@ -69,6 +70,89 @@ public class MetricProviderTest {
     }
 
     @Test
+    public void testCounterWith2Labels() {
+        Labeled<Labeled<Counter>> counterWithTwoLabels = metrics.newCounter(MetricDescriptor.builder().anchor(this)
+                        .project("infrautils").module("metrics").id("test_counter1").build(),
+                "port", "mac");
+        Counter counterA = counterWithTwoLabels.label(/* port */ "456").label(/* MAC */ "1A:0B:F2:25:1C:68");
+        counterA.increment(3);
+        assertThat(counterA.get()).isEqualTo(3);
+
+        Counter counterB = counterWithTwoLabels.label(/* port */ "789").label(/* MAC */ "1A:0B:F2:25:1C:68");
+        counterB.increment(1);
+        assertThat(counterB.get()).isEqualTo(1);
+        assertThat(counterA.get()).isEqualTo(3);
+
+        Counter againCounterA = counterWithTwoLabels.label(/* port */ "456").label(/* MAC */ "1A:0B:F2:25:1C:68");
+        assertThat(againCounterA.get()).isEqualTo(3);
+    }
+
+    @Test
+    public void testCounterWith5Labels() {
+        Labeled<Labeled<Labeled<Labeled<Labeled<Counter>>>>> counterWithFiveLabels =
+                metrics.newCounter(MetricDescriptor.builder().anchor(this).project("infrautils").module("metrics")
+                                .id("test_counter2").build(), "label1", "label2",
+                                 "label3", "label4", "label5");
+        Counter counterA = counterWithFiveLabels.label("l1").label("l2").label("l3")
+                .label("l4").label("l5");
+        counterA.increment(5);
+        assertThat(counterA.get()).isEqualTo(5);
+
+        Counter againCounterA = counterWithFiveLabels.label("l1").label("l2").label("l3")
+                .label("l4").label("l5");
+        assertThat(againCounterA.get()).isEqualTo(5);
+    }
+
+    @Test
+    public void testCounterOperationsWithLabels() {
+        Labeled<Labeled<Counter>> counterWithTwoLabels = metrics.newCounter(MetricDescriptor.builder().anchor(this)
+                        .project("infrautils").module("metrics").id("test_counter_opers").build(),
+                "l1", "l2");
+        Counter counterA = counterWithTwoLabels.label("l1value").label("l2value");
+        counterA.increment();
+        counterA.increment();
+        assertThat(counterA.get()).isEqualTo(2);
+
+        counterA.decrement();
+        assertThat(counterA.get()).isEqualTo(1);
+
+        counterA.increment(5);
+        assertThat(counterA.get()).isEqualTo(6);
+        counterA.decrement(2);
+        assertThat(counterA.get()).isEqualTo(4);
+
+        counterA.close();
+    }
+
+    @Test
+    public void testSameCounterUpdateOperationsWithLabels() {
+        Labeled<Labeled<Counter>> counterWithTwoLabels = metrics.newCounter(MetricDescriptor.builder().anchor(this)
+                        .project("infrautils").module("metrics").id("test_counter_upd_opers").build(),
+                "l1", "l2");
+        Counter counterA = counterWithTwoLabels.label("l1value").label("l2value");
+        counterA.increment(51);
+        assertThat(counterA.get()).isEqualTo(51);
+
+        counterA.decrement();
+        assertThat(counterA.get()).isEqualTo(50);
+
+        Labeled<Labeled<Counter>> sameCounterWithTwoLabels = metrics.newCounter(MetricDescriptor.builder().anchor(this)
+                        .project("infrautils").module("metrics").id("test_counter_upd_opers").build(),
+                "l1", "l2");
+        Counter sameCounterA = sameCounterWithTwoLabels.label("l1value").label("l2value");
+
+        assertThat(sameCounterA).isEqualTo(counterA);
+        assertThat(sameCounterA.get()).isEqualTo(50);
+        sameCounterA.increment(5);
+        assertThat(sameCounterA.get()).isEqualTo(55);
+
+        sameCounterA.decrement(10);
+        assertThat(sameCounterA.get()).isEqualTo(45);
+
+        sameCounterA.close();
+    }
+
+    @Test
     public void testCloseMeterAndCreateNewOneWithSameID() {
         Meter meter = metrics.newMeter(this, "test.meter");
         meter.close();
@@ -96,6 +180,18 @@ public class MetricProviderTest {
         // because we can recreate a metric with the same label, but it will be a new one:
         meterWithLabel.label("label1value").mark();
         assertThat(meterWithLabel.label("label1value").get()).isEqualTo(1);
+    }
+
+    @Test
+    public void testUseClosedLabeledCounter() {
+        Labeled<Counter> counterWithLabel = metrics.newCounter(MetricDescriptor.builder().anchor(this)
+                .project("infrautils").module("metrics").id("test_meter1").build(), "label1");
+        counterWithLabel.label("label1value").increment();
+        assertThat(counterWithLabel.label("label1value").get()).isEqualTo(1);
+        counterWithLabel.label("label1value").close();
+        // use counter after close operation
+        counterWithLabel.label("label1value").increment();
+        assertThat(counterWithLabel.label("label1value").get()).isEqualTo(1);
     }
 
     @Test
