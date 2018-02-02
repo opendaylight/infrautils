@@ -140,7 +140,17 @@
                 <arg>-Xep:WaitNotInLoop:ERROR</arg>
                 <arg>-Xep:SwitchDefault:ERROR</arg>
                 <arg>-Xep:ReachabilityFenceUsage:ERROR</arg>
+                <!-- NullAway (https://github.com/uber/NullAway/wiki/Configuration) -->
+                <arg>-Xep:NullAway:ERROR</arg>
+                <arg>-XepOpt:NullAway:AnnotatedPackages=org.opendaylight</arg>
               </compilerArgs>
+              <annotationProcessorPaths>
+                <dependency>
+                  <groupId>com.uber.nullaway</groupId>
+                  <artifactId>nullaway</artifactId>
+                  <version>0.3.2</version>
+                </dependency>
+              </annotationProcessorPaths>
             </configuration>
             <dependencies>
               <dependency>
