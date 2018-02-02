@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f84cbb4a_c060f6d5",
+        "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/concurrent/CompletionStageTestAwaiter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-02-02T02:10:41Z",
+      "side": 1,
+      "message": "Why not use the javax.annotation version?",
+      "revId": "1c9e50778725e2625515d4c1d7299a45d7eb7910",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "afc097ed_c246bd99",
+        "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/internal/RememberingLogger.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-02-02T02:10:41Z",
+      "side": 1,
+      "message": "LogCaptureRuleException uses the javax.annotation version - why not here? From the docs, \"NullAway allows for any @Nullable annotation to be used\".",
+      "revId": "1c9e50778725e2625515d4c1d7299a45d7eb7910",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
