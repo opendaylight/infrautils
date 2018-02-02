@@ -91,10 +91,48 @@
           <failOnError>true</failOnError>
         </configuration>
       </plugin>
+<!--
+    Uncomment this when modernizer-maven-plugin releases 1.7.0 (not 1.6.0),
+    to have https://github.com/gaul/modernizer-maven-plugin/issues/64;
+    from https://github.com/gaul/modernizer-maven-plugin/pull/67,
+    watch https://github.com/gaul/modernizer-maven-plugin/issues/69
+      <plugin>
+        <groupId>org.gaul</groupId>
+        <artifactId>modernizer-maven-plugin</artifactId>
+        <version>1.7.0-SNAPSHOT</version>
+        <configuration>
+          <javaVersion>1.8</javaVersion>
+          <ignoreClassNamePatterns>
+            < ! - - due to https://github.com/immutables/immutables/issues/749 (or exclusion java.util.ArrayList) - - >
+            <ignoreClassNamePattern>.*Immutable.*\$Builder</ignoreClassNamePattern>
+            <ignoreClassNamePattern>.*Builder\$Immutable.*</ignoreClassNamePattern>
+            <ignoreClassNamePattern>.*Builder</ignoreClassNamePattern>
+          </ignoreClassNamePatterns>
+        </configuration>
+        <executions>
+          <execution>
+            <id>modernizer</id>
+            <phase>process-test-classes</phase>
+            <goals>
+              <goal>modernizer</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+ -->
     </plugins>
   </build>
 
   <profiles>
+<!-- TODO how to get this working so that -Pq has everything from odlparent-lite PLUS this?
+    <profile combine.children="merge">
+      <id>q</id>
+      <properties>
+        <modernizer.skip>true</modernizer.skip>
+      </properties>
+    </profile>
+  -->
+
     <profile>
       <id>errorprone-unless-ide</id>
       <!-- Run Error Prone (see http://errorprone.info)

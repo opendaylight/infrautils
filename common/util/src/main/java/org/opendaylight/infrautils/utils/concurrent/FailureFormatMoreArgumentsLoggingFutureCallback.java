@@ -7,7 +7,8 @@
  */
 package org.opendaylight.infrautils.utils.concurrent;
 
-import com.google.common.base.Preconditions;
+import static java.util.Objects.requireNonNull;
+
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.slf4j.Logger;
 
@@ -23,7 +24,7 @@ final class FailureFormatMoreArgumentsLoggingFutureCallback<V> extends FailureLo
 
     FailureFormatMoreArgumentsLoggingFutureCallback(Logger logger, String format, Object... arguments) {
         super(logger);
-        this.format = Preconditions.checkNotNull(format, "format is null");
+        this.format = requireNonNull(format, "format is null");
         // do *NOT* null check these (it's valid)
         this.arguments = arguments;
     }
