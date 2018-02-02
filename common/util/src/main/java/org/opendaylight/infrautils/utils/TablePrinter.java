@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 import javax.annotation.RegEx;
 import org.apache.commons.lang3.StringUtils;
+import org.eclipse.jdt.annotation.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,8 +34,8 @@ public class TablePrinter {
 
     private int ncols;
     private final List<String[]> table = new ArrayList<>();
-    private String title = null;
-    private String[] header = null;
+    private @Nullable String title = null;
+    private @Nullable String[] header = null;
     private Comparator<String[]> comparator;
 
     public TablePrinter(int sortByColumn) {
