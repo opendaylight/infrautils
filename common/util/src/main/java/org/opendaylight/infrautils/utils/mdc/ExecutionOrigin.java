@@ -12,6 +12,7 @@ import com.google.common.base.Strings;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.Locale;
 import java.util.concurrent.atomic.AtomicLong;
+import org.eclipse.jdt.annotation.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
@@ -110,7 +111,7 @@ public final class ExecutionOrigin extends MDCEntry {
     private final long id;
 
     @SuppressFBWarnings("SE_TRANSIENT_FIELD_NOT_RESTORED") // OK and intentional, as null check in mdcValueString()
-    private transient String idAsString;
+    private transient @Nullable String idAsString;
 
     private ExecutionOrigin(long id) {
         this.id = id;
