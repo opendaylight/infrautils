@@ -30,7 +30,25 @@
     <!-- Enforce all of odlparent's optional code quality checks: -->
     <pmd.cpd.fail>true</pmd.cpd.fail>                    <!-- Fails build for copy/pasted code -->
     <duplicate-finder.skip>false</duplicate-finder.skip> <!-- Fails build if duplicate classpath entries on dependencies (odlparent 3.0.0) -->
+
+    <immutables.version>2.5.6</immutables.version>
   </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <!-- Because of https://github.com/uber/NullAway/issues/118 and
+             the use of Immutables.org in the annotationProcessorPaths below,
+             we MUST make sure that any module using org.immutables:value
+             as a <dependency> has exactly the same version as we used below
+             in annotationProcessorPaths, and not the one from odlparent,
+             which could be different version. -->
+        <groupId>org.immutables</groupId>
+        <artifactId>value</artifactId>
+        <version>${immutables.version}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 
   <dependencies>
     <dependency>
@@ -140,7 +158,23 @@
                 <arg>-Xep:WaitNotInLoop:ERROR</arg>
                 <arg>-Xep:SwitchDefault:ERROR</arg>
                 <arg>-Xep:ReachabilityFenceUsage:ERROR</arg>
+                <!-- NullAway (https://github.com/uber/NullAway/wiki/Configuration) -->
+                <arg>-Xep:NullAway:ERROR</arg>
+                <arg>-XepOpt:NullAway:AnnotatedPackages=org.opendaylight</arg>
               </compilerArgs>
+              <annotationProcessorPaths>
+                <dependency>
+                  <groupId>com.uber.nullaway</groupId>
+                  <artifactId>nullaway</artifactId>
+                  <version>0.3.2</version>
+                </dependency>
+                <dependency>
+                  <!-- https://github.com/uber/NullAway/issues/118 -->
+                  <groupId>org.immutables</groupId>
+                  <artifactId>value</artifactId>
+                  <version>${immutables.version}</version>
+                </dependency>
+              </annotationProcessorPaths>
             </configuration>
             <dependencies>
               <dependency>

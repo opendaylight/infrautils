@@ -10,6 +10,7 @@ package org.opendaylight.infrautils.ready.internal;
 import static org.opendaylight.infrautils.ready.SystemState.ACTIVE;
 import static org.opendaylight.infrautils.ready.SystemState.BOOTING;
 import static org.opendaylight.infrautils.ready.SystemState.FAILURE;
+import static org.opendaylight.infrautils.utils.lastnpe.NonNulls.castToNonNull;
 
 import com.google.errorprone.annotations.Var;
 import java.util.Queue;
@@ -122,7 +123,7 @@ public class SystemReadyImpl extends AbstractMXBean implements SystemReadyMonito
 
     @Override
     public SystemState getSystemState() {
-        return currentSystemState.get();
+        return castToNonNull(currentSystemState.get());
     }
 
     @Override
