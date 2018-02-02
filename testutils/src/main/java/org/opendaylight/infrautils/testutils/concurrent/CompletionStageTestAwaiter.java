@@ -20,6 +20,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.concurrent.atomic.AtomicReference;
 import org.awaitility.Awaitility;
+import org.eclipse.jdt.annotation.NonNull;
 
 /**
  * Test utility to await the completion of a {@link CompletionStage}.
@@ -104,6 +105,7 @@ public final class CompletionStageTestAwaiter<T> {
         });
     }
 
+    @SuppressWarnings("NullAway")
     private T wait(long timeout, TimeUnit unit) {
         Awaitility.await(getClass().getName())
             .pollDelay(0, MILLISECONDS)
@@ -117,7 +119,10 @@ public final class CompletionStageTestAwaiter<T> {
             Throwables.propagateIfPossible(throwable);
             throw new CompletionException(throwable);
         } else {
-            return eventualValue.get();
+            // Should use org.opendaylight.infrautils.utils.lastnpe.NonNulls.castToNonNull(T) here
+            // instead of @SuppressWarnings("NullAway") above, but cannot just because testutils
+            // cannot depend on utils (which depends on testutils).
+            return (@NonNull T) eventualValue.get();
         }
     }
 
