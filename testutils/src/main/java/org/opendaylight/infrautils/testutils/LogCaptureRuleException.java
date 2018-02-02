@@ -27,7 +27,7 @@ public class LogCaptureRuleException extends RuntimeException {
     }
 
     public LogCaptureRuleException(String lastLoggedErrorMessage, @Nullable Throwable lastLoggedErrorThrowable,
-            Throwable testFailingThrowable) {
+            @Nullable Throwable testFailingThrowable) {
         super(lastLoggedErrorMessage, lastLoggedErrorThrowable);
         if (testFailingThrowable != null) {
             addSuppressed(testFailingThrowable);

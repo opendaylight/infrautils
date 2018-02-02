@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import javax.annotation.concurrent.ThreadSafe;
+import org.eclipse.jdt.annotation.Nullable;
 import org.opendaylight.infrautils.testutils.LogRule;
 import org.slf4j.Logger;
 import org.slf4j.Marker;
@@ -28,10 +29,10 @@ import org.slf4j.helpers.MessageFormatter;
 public class RememberingLogger extends DelegatingLogger {
 
     private static class LogMessageAndCause {
-        final String message;
-        final Throwable cause;
+        private final String message;
+        private final @Nullable Throwable cause;
 
-        LogMessageAndCause(String message, Throwable cause) {
+        LogMessageAndCause(String message, @Nullable Throwable cause) {
             this.message = message;
             this.cause = cause;
         }
