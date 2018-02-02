@@ -7,7 +7,8 @@
  */
 package org.opendaylight.infrautils.utils.concurrent;
 
-import com.google.common.base.Preconditions;
+import static java.util.Objects.requireNonNull;
+
 import com.google.common.util.concurrent.FutureCallback;
 import org.slf4j.Logger;
 
@@ -22,7 +23,7 @@ abstract class FailureLoggingFutureCallbackBase<V> implements FutureCallback<V> 
     private final Logger logger;
 
     FailureLoggingFutureCallbackBase(Logger logger) {
-        this.logger = Preconditions.checkNotNull(logger, "logger is null");
+        this.logger = requireNonNull(logger, "logger is null");
     }
 
     @Override

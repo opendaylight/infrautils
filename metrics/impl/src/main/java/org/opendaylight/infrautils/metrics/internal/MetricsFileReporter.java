@@ -18,12 +18,13 @@ import com.codahale.metrics.Sampling;
 import com.codahale.metrics.ScheduledReporter;
 import com.codahale.metrics.Snapshot;
 import com.codahale.metrics.Timer;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.util.Calendar;
 import java.util.Date;
@@ -31,7 +32,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.SortedMap;
 import java.util.concurrent.TimeUnit;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -42,7 +42,7 @@ public class MetricsFileReporter extends ScheduledReporter {
     private static final String DATA_DIRECTORY = "data";
     private static final String COUNTERS_DIRECTORY = "metrics";
     private static final String COUNTER_FILE_PREFIX = "metrics.";
-    private static final String DEFAULT_ENCODING = "UTF-8";
+    private static final Charset DEFAULT_ENCODING = StandardCharsets.UTF_8;
     private static final String SEPARATOR = ",";
 
     private final File parentDirectory;
