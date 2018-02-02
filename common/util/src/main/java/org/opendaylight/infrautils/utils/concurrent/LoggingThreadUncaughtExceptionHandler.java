@@ -7,7 +7,8 @@
  */
 package org.opendaylight.infrautils.utils.concurrent;
 
-import com.google.common.base.Preconditions;
+import static java.util.Objects.requireNonNull;
+
 import java.lang.Thread.UncaughtExceptionHandler;
 import org.slf4j.Logger;
 
@@ -28,7 +29,7 @@ public final class LoggingThreadUncaughtExceptionHandler implements UncaughtExce
     private final Logger logger;
 
     private LoggingThreadUncaughtExceptionHandler(Logger logger) {
-        this.logger = Preconditions.checkNotNull(logger, "logger");
+        this.logger = requireNonNull(logger, "logger");
     }
 
     @Override
