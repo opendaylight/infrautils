@@ -7,7 +7,7 @@
  */
 package org.opendaylight.infrautils.utils.concurrent;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import static java.util.Objects.requireNonNull;
 
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
@@ -33,7 +33,7 @@ final class ListenableToCompletableFutureWrapper<V> extends CompletableFuture<V>
     private final ListenableFuture<V> guavaListenableFuture;
 
     private ListenableToCompletableFutureWrapper(ListenableFuture<V> guavaListenableFuture) {
-        this.guavaListenableFuture = checkNotNull(guavaListenableFuture, "guavaListenableFuture");
+        this.guavaListenableFuture = requireNonNull(guavaListenableFuture, "guavaListenableFuture");
     }
 
     @Override

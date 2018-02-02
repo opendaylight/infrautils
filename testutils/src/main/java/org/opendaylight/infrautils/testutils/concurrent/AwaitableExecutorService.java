@@ -7,7 +7,8 @@
  */
 package org.opendaylight.infrautils.testutils.concurrent;
 
-import com.google.common.base.Preconditions;
+import static java.util.Objects.requireNonNull;
+
 import com.google.common.util.concurrent.ForwardingExecutorService;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.Collection;
@@ -36,7 +37,7 @@ public class AwaitableExecutorService extends ForwardingExecutorService {
      * @param delegate The executor service to wrap.
      */
     public AwaitableExecutorService(ExecutorService delegate) {
-        this.delegate = Preconditions.checkNotNull(delegate);
+        this.delegate = requireNonNull(delegate);
     }
 
     @Override
