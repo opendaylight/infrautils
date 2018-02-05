@@ -7,7 +7,9 @@
  */
 package org.opendaylight.infrautils.testutils;
 
+import com.google.common.collect.ImmutableList;
 import com.google.errorprone.annotations.Var;
+import java.util.function.Consumer;
 import javax.annotation.Nullable;
 import org.junit.ComparisonFailure;
 import org.junit.rules.ExpectedException;
@@ -47,6 +49,7 @@ public class LogCaptureRule implements TestRule {
 
     private @Nullable String expectedErrorLogMessage;
     private int expectedErrorHowManyMessagesBack;
+    private @Nullable Consumer<ImmutableList<LogCapture>> logConsumer;
 
     public LogCaptureRule() {
         classpathTest();
@@ -74,6 +77,11 @@ public class LogCaptureRule implements TestRule {
                     testFailingThrowable = t;
                 }
                 Throwable finalTestFailingThrowable = testFailingThrowable;
+
+                if (logConsumer != null) {
+                    logConsumer.accept(RememberingLogger.getErrorLogCaptures());
+                }
+
                 RememberingLogger.getErrorMessage(expectedErrorHowManyMessagesBack).ifPresent(lastErrorLogMessage -> {
                     if (expectedErrorLogMessage == null) {
                         throw new LogCaptureRuleException(
@@ -94,6 +102,10 @@ public class LogCaptureRule implements TestRule {
                 }
             }
         };
+    }
+
+    public void expectErrorLogs(Consumer<ImmutableList<LogCapture>> newLogConsumer) {
+        this.logConsumer = newLogConsumer;
     }
 
     public void expectError(String message) {

@@ -84,6 +84,26 @@ public class LogCaptureRuleTest {
         LOG.error("{} boum {} {}", "bada", "kadum", "tabam");
     }
 
+    @Test
+    public void logErrorExpectAnyError() {
+        logCaptureRule.expectErrorLogs(logCaptures -> { });
+        LOG.error("boum");
+        assertThat(logCaptureRule.getLastErrorThrowable()).isNull();
+    }
+
+    @Test
+    public void logErrorExpectWithSpecificMatcher() {
+        Exception ko = new IllegalArgumentException("KO");
+        logCaptureRule.expectErrorLogs(logCaptures -> {
+            assertThat(logCaptures).hasSize(1);
+            assertThat(logCaptures.get(0).getMessage()).isEqualTo("boum");
+            assertThat(logCaptures.get(0).getCause() instanceof IllegalArgumentException).isTrue();
+            assertThat(logCaptures.get(0).getMessage()).isEqualTo("KO");
+        });
+        LOG.error("boum", ko);
+        assertThat(logCaptureRule.getLastErrorThrowable()).isEqualTo(ko);
+    }
+
     // TODO logErrorInBackgroundThread
 
     @Test
