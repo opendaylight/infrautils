@@ -22,13 +22,13 @@ public class LogCaptureRuleException extends RuntimeException {
         super(lastLoggedErrorMessage);
     }
 
-    public LogCaptureRuleException(String lastLoggedErrorMessage, Throwable lastLoggedErrorThrowable) {
+    public LogCaptureRuleException(String lastLoggedErrorMessage, @Nullable Throwable lastLoggedErrorThrowable) {
         super(lastLoggedErrorMessage, lastLoggedErrorThrowable);
     }
 
     public LogCaptureRuleException(String lastLoggedErrorMessage, @Nullable Throwable lastLoggedErrorThrowable,
-            Throwable testFailingThrowable) {
-        super(lastLoggedErrorMessage, lastLoggedErrorThrowable);
+            @Nullable Throwable testFailingThrowable) {
+        this(lastLoggedErrorMessage, lastLoggedErrorThrowable);
         if (testFailingThrowable != null) {
             addSuppressed(testFailingThrowable);
         }
