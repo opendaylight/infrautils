@@ -41,6 +41,7 @@ import org.opendaylight.infrautils.jobcoordinator.RollbackCallable;
 import org.opendaylight.infrautils.metrics.Counter;
 import org.opendaylight.infrautils.metrics.Meter;
 import org.opendaylight.infrautils.metrics.MetricProvider;
+import org.opendaylight.infrautils.metrics.testimpl.TestMetricProviderImpl;
 import org.opendaylight.infrautils.utils.concurrent.JdkFutures;
 import org.opendaylight.infrautils.utils.concurrent.LoggingThreadUncaughtExceptionHandler;
 import org.opendaylight.infrautils.utils.concurrent.LoggingUncaughtThreadDeathContextRunnable;
@@ -88,6 +89,20 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
     private boolean isJobAvailable = false;
 
     private volatile boolean shutdown = false;
+
+    /**
+     * Deprecated constructor with ugly temporary hack.
+     *
+     * @deprecated This no-arg constructor (and related changes) temporarily
+     *             allowing a JobCoordinatorImpl without specifying a global shared
+     *             MetricProvider will be removed again as soon as https://git.opendaylight.org/gerrit/#/c/67516/
+     *             and https://git.opendaylight.org/gerrit/#/c/67641/ are finally merged...
+     */
+    @Deprecated
+    @VisibleForTesting
+    public JobCoordinatorImpl() {
+        this(new TestMetricProviderImpl());
+    }
 
     @Inject
     public JobCoordinatorImpl(@OsgiService MetricProvider metricProvider) {
