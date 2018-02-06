@@ -7,6 +7,8 @@
  */
 package org.opendaylight.infrautils.testutils;
 
+import static java.util.Objects.requireNonNull;
+
 import com.google.common.collect.ImmutableList;
 import com.google.errorprone.annotations.Var;
 import java.util.Objects;
@@ -102,7 +104,10 @@ public class LogCaptureRule implements TestRule {
     }
 
     public void handleErrorLogs(Consumer<ImmutableList<LogCapture>> newErrorLogHandler) {
-        this.errorLogHandler = newErrorLogHandler;
+        if (this.errorLogHandler != null) {
+            throw new IllegalStateException("errorLogHandler already set, can only set once per @Test method");
+        }
+        this.errorLogHandler = requireNonNull(newErrorLogHandler, "newErrorLogHandler");
     }
 
     public void expectLastErrorMessageContains(String partialErrorMessage) {
