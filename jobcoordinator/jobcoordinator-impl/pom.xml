@@ -48,19 +48,6 @@
       <optional>true</optional>
     </dependency>
 
-    <!-- TODO remove this again once we are finally completely through with
-         the https://git.opendaylight.org/gerrit/#/q/topic:jc-metrics mess,
-         because this is of course utterly wrong; there should be no such
-         dependency here at all, and certainly not with <scope>compile
-         instead of test, but it's the best we can do now to finally finish
-         this cross project change up without someone loosing all his hair. -->
-    <dependency>
-      <groupId>org.opendaylight.infrautils</groupId>
-      <artifactId>metrics-impl-test</artifactId>
-      <version>${project.version}</version>
-      <scope>compile</scope>
-    </dependency>
-
     <dependency>
       <groupId>org.opendaylight.infrautils</groupId>
       <artifactId>infrautils-testutils</artifactId>
