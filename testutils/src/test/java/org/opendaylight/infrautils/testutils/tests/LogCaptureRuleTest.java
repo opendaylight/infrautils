@@ -85,6 +85,12 @@ public class LogCaptureRuleTest {
     }
 
     @Test
+    public void logErrorExpectContaining() {
+        logCaptureRule.expectLastErrorMessageContains("kadum");
+        LOG.error("{} boum {} {}", "bada", "kadum", "tabam");
+    }
+
+    @Test
     public void logErrorExpectAnyError() {
         logCaptureRule.handleErrorLogs(logCaptures -> { });
         LOG.error("boum");
