@@ -31,6 +31,7 @@ public final class Configuration {
     // (Just for clarity; they are commented out there, so these are the real defaults.)
     private int threadsWatcherIntervalMS = 500;
     private int maxThreads = 1000;
+    private int fileReporterIntervalSecs = 120;
 
     public Configuration(MetricProviderImpl metricProvider, Map<String, String> initialProperties) {
         this(metricProvider);
@@ -47,7 +48,17 @@ public final class Configuration {
             setThreadsWatcherIntervalMS(newThreadsWatcherIntervalMS));
         doIfIntPropertyIsPresent(properties, "maxThreads", newMaxThreads ->
             setThreadsWatcherIntervalMS(newMaxThreads));
+        doIfIntPropertyIsPresent(properties, "fileReporterIntervalSecs", newFileReporterIntervalSecs ->
+                setFileReporterIntervalSecs(newFileReporterIntervalSecs));
         metricProvider.updateConfiguration(this);
+    }
+
+    public void setFileReporterIntervalSecs(int fileReporterIntervalSecs) {
+        this.fileReporterIntervalSecs = fileReporterIntervalSecs;
+    }
+
+    public int getFileReporterIntervalSecs() {
+        return fileReporterIntervalSecs;
     }
 
     public void setThreadsWatcherIntervalMS(int ms) {
@@ -88,5 +99,4 @@ public final class Configuration {
             }
         }
     }
-
 }
