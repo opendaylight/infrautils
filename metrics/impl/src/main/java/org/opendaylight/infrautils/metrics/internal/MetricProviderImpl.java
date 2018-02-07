@@ -58,9 +58,9 @@ public class MetricProviderImpl implements MetricProvider {
     private final Map<String, CounterImpl> counters = new ConcurrentHashMap<>();
     private final MetricRegistry registry;
     private final JmxReporter jmxReporter;
-    private final MetricsFileReporter fileReporter;
     private final Slf4jReporter slf4jReporter;
 
+    private volatile MetricsFileReporter fileReporter;
     private volatile ThreadsWatcher threadsWatcher;
 
     public MetricProviderImpl() {
@@ -69,9 +69,6 @@ public class MetricProviderImpl implements MetricProvider {
         setUpJvmMetrics(registry);
 
         jmxReporter = setUpJmxReporter(registry);
-
-        fileReporter = new MetricsFileReporter(registry);
-        fileReporter.startReporter(); //TODO make it optional
 
         slf4jReporter = setUpSlf4jReporter(registry);
 
@@ -96,13 +93,26 @@ public class MetricProviderImpl implements MetricProvider {
             threadsWatcher.start();
         }
 
+        if (fileReporter != null) {
+            fileReporter.close();
+        }
+        int fileReporterInterval = fileReporter != null ? (int)fileReporter.getInterval().getSeconds() : 0;
+        if (fileReporterInterval != configuration.getFileReporterIntervalSecs()) {
+            if (configuration.getFileReporterIntervalSecs() > 0) {
+                fileReporter = new MetricsFileReporter(registry,
+                        Duration.ofSeconds(configuration.getFileReporterIntervalSecs()));
+                fileReporter.startReporter();
+            }
+        }
         LOG.info("Updated: {}", configuration);
     }
 
     @PreDestroy
     public void close() {
         jmxReporter.close();
-        fileReporter.close();
+        if (fileReporter != null) {
+            fileReporter.close();
+        }
         slf4jReporter.close();
         if (threadsWatcher != null) {
             threadsWatcher.close();
