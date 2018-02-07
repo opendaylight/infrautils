@@ -24,6 +24,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.time.Duration;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -42,19 +43,24 @@ public class MetricsFileReporter extends ScheduledReporter {
     private static final String COUNTERS_DIRECTORY = "metrics";
     private static final String COUNTER_FILE_PREFIX = "metrics.";
     private static final String DEFAULT_ENCODING = "UTF-8";
-    private static final Integer METRICS_INTERVAL = 120; // TODO make it cfg variable
     private static final String SEPARATOR = ",";
 
     private final File parentDirectory;
     private final Map<String, Long> oldCounters = new HashMap<>();
+    private final Duration interval;
 
-    public MetricsFileReporter(MetricRegistry registry) {
+    public MetricsFileReporter(MetricRegistry registry, Duration interval) {
         super(registry, "file-reporter", MetricFilter.ALL, TimeUnit.SECONDS, TimeUnit.SECONDS);
         this.parentDirectory = new File(DATA_DIRECTORY, COUNTERS_DIRECTORY);
+        this.interval = interval;
     }
 
     public void startReporter() {
-        start(METRICS_INTERVAL, TimeUnit.SECONDS);
+        start(interval.getSeconds(), TimeUnit.SECONDS);
+    }
+
+    Duration getInterval() {
+        return interval;
     }
 
     @Override
