@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "85d230ca_4bee7c3d",
+        "filename": "metrics/impl/src/main/resources/etc/org.opendaylight.infrautils.metrics.cfg",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-02-07T13:46:31Z",
+      "side": 1,
+      "message": "\"to local files in the data/metrics/ directory\" ?",
+      "revId": "52fab7ee1c3271fb9595ebbc888aad97c721b5cd",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
