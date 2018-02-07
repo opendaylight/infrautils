@@ -31,6 +31,7 @@ public final class Configuration {
     // (Just for clarity; they are commented out there, so these are the real defaults.)
     private int threadsWatcherIntervalMS = 500;
     private int maxThreads = 1000;
+    private int fileReporterIntervalSecs = 0;
 
     public Configuration(MetricProviderImpl metricProvider, Map<String, String> initialProperties) {
         this(metricProvider);
@@ -47,7 +48,17 @@ public final class Configuration {
             setThreadsWatcherIntervalMS(newThreadsWatcherIntervalMS));
         doIfIntPropertyIsPresent(properties, "maxThreads", newMaxThreads ->
             setThreadsWatcherIntervalMS(newMaxThreads));
+        doIfIntPropertyIsPresent(properties, "fileReporterIntervalSecs", newFileReporterIntervalSecs ->
+                setFileReporterIntervalSecs(newFileReporterIntervalSecs));
         metricProvider.updateConfiguration(this);
+    }
+
+    public void setFileReporterIntervalSecs(int fileReporterIntervalSecs) {
+        this.fileReporterIntervalSecs = fileReporterIntervalSecs;
+    }
+
+    public int getFileReporterIntervalSecs() {
+        return fileReporterIntervalSecs;
     }
 
     public void setThreadsWatcherIntervalMS(int ms) {
@@ -78,15 +89,15 @@ public final class Configuration {
     private static void doIfIntPropertyIsPresent(
             Map<String, String> properties, String propertyName, Consumer<Integer> consumer) {
         String propertyValueAsString = properties.get(propertyName);
+        Integer propertyValueAsInt = 0;//If the value is commented out or removed then disable it
         if (propertyValueAsString != null) {
             try {
-                Integer propertyValueAsInt = Integer.parseInt(propertyValueAsString);
-                consumer.accept(propertyValueAsInt);
+                propertyValueAsInt = Integer.parseInt(propertyValueAsString);
             } catch (NumberFormatException nfe) {
                 LOG.warn("Ignored property '{}' that was expected to be an Integer but was not: {}", propertyName,
                         propertyValueAsString, nfe);
             }
         }
+        consumer.accept(propertyValueAsInt);
     }
-
 }
