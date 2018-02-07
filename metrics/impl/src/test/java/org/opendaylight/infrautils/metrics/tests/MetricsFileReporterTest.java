@@ -15,6 +15,7 @@ import com.google.common.io.Files;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.time.Duration;
 import java.util.Calendar;
 import java.util.List;
 
@@ -26,7 +27,7 @@ public class MetricsFileReporterTest {
     @Test
     public void testReporter() throws IOException {
         MetricRegistry registry = new MetricRegistry();
-        MetricsFileReporter fileReporter = new MetricsFileReporter(registry);
+        MetricsFileReporter fileReporter = new MetricsFileReporter(registry, Duration.ofSeconds(120));
         Counter counter = registry.counter("test.counter");
         counter.inc();
         Calendar calendar = Calendar.getInstance();
