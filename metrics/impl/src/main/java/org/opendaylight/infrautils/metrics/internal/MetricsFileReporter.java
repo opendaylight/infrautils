@@ -42,19 +42,24 @@ public class MetricsFileReporter extends ScheduledReporter {
     private static final String COUNTERS_DIRECTORY = "metrics";
     private static final String COUNTER_FILE_PREFIX = "metrics.";
     private static final String DEFAULT_ENCODING = "UTF-8";
-    private static final Integer METRICS_INTERVAL = 120; // TODO make it cfg variable
     private static final String SEPARATOR = ",";
 
     private final File parentDirectory;
     private final Map<String, Long> oldCounters = new HashMap<>();
+    private final Integer interval;
 
-    public MetricsFileReporter(MetricRegistry registry) {
+    public MetricsFileReporter(MetricRegistry registry, Integer interval) {
         super(registry, "file-reporter", MetricFilter.ALL, TimeUnit.SECONDS, TimeUnit.SECONDS);
         this.parentDirectory = new File(DATA_DIRECTORY, COUNTERS_DIRECTORY);
+        this.interval = interval;
     }
 
     public void startReporter() {
-        start(METRICS_INTERVAL, TimeUnit.SECONDS);
+        start(interval, TimeUnit.SECONDS);
+    }
+
+    Integer getInterval() {
+        return interval;
     }
 
     @Override

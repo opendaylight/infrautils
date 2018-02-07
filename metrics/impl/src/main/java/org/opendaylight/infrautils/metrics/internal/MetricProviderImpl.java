@@ -9,6 +9,7 @@ package org.opendaylight.infrautils.metrics.internal;
 
 import static com.codahale.metrics.Slf4jReporter.LoggingLevel.INFO;
 import static java.lang.management.ManagementFactory.getThreadMXBean;
+import static java.util.Objects.compare;
 import static java.util.Objects.requireNonNull;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 import static java.util.concurrent.TimeUnit.SECONDS;
@@ -58,9 +59,10 @@ public class MetricProviderImpl implements MetricProvider {
     private final Map<String, CounterImpl> counters = new ConcurrentHashMap<>();
     private final MetricRegistry registry;
     private final JmxReporter jmxReporter;
-    private final MetricsFileReporter fileReporter;
     private final Slf4jReporter slf4jReporter;
 
+    private volatile MetricsFileReporter fileReporter;
+    private volatile boolean enableMetricsFileReporter = false;
     private volatile ThreadsWatcher threadsWatcher;
 
     public MetricProviderImpl() {
@@ -69,9 +71,6 @@ public class MetricProviderImpl implements MetricProvider {
         setUpJvmMetrics(registry);
 
         jmxReporter = setUpJmxReporter(registry);
-
-        fileReporter = new MetricsFileReporter(registry);
-        fileReporter.startReporter(); //TODO make it optional
 
         slf4jReporter = setUpSlf4jReporter(registry);
 
@@ -96,6 +95,21 @@ public class MetricProviderImpl implements MetricProvider {
             threadsWatcher.start();
         }
 
+        if (configuration.isEnableMetricsFileReporter() != enableMetricsFileReporter) {
+            enableMetricsFileReporter = configuration.isEnableMetricsFileReporter();
+            if (enableMetricsFileReporter) {
+                fileReporter = new MetricsFileReporter(registry, configuration.getFileReporterIntervalSecs());
+                fileReporter.startReporter();
+            } else {
+                fileReporter.close();
+                fileReporter = null;
+            }
+        }
+        if (fileReporter != null && fileReporter.getInterval() != configuration.getFileReporterIntervalSecs()) {
+            fileReporter.close();
+            fileReporter = new MetricsFileReporter(registry, configuration.getFileReporterIntervalSecs());
+            fileReporter.startReporter();
+        }
         LOG.info("Updated: {}", configuration);
     }
 

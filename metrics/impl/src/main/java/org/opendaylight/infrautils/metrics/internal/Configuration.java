@@ -31,6 +31,8 @@ public final class Configuration {
     // (Just for clarity; they are commented out there, so these are the real defaults.)
     private int threadsWatcherIntervalMS = 500;
     private int maxThreads = 1000;
+    private boolean enableMetricsFileReporter = false;
+    private int fileReporterIntervalSecs = 120;
 
     public Configuration(MetricProviderImpl metricProvider, Map<String, String> initialProperties) {
         this(metricProvider);
@@ -47,7 +49,27 @@ public final class Configuration {
             setThreadsWatcherIntervalMS(newThreadsWatcherIntervalMS));
         doIfIntPropertyIsPresent(properties, "maxThreads", newMaxThreads ->
             setThreadsWatcherIntervalMS(newMaxThreads));
+        doIfBooleanPropertyIsPresent(properties, "enableMetricsFileReporter", enableMetricsFileReporter ->
+                setEnableMetricsFileReporter(enableMetricsFileReporter));
+        doIfIntPropertyIsPresent(properties, "fileReporterIntervalSecs", fileReporterIntervalSecs ->
+                setFileReporterIntervalSecs(fileReporterIntervalSecs));
         metricProvider.updateConfiguration(this);
+    }
+
+    public void setFileReporterIntervalSecs(int fileReporterIntervalSecs) {
+        this.fileReporterIntervalSecs = fileReporterIntervalSecs;
+    }
+
+    public Integer getFileReporterIntervalSecs() {
+        return fileReporterIntervalSecs;
+    }
+
+    public boolean isEnableMetricsFileReporter() {
+        return enableMetricsFileReporter;
+    }
+
+    public void setEnableMetricsFileReporter(boolean enableMetricsFileReporter) {
+        this.enableMetricsFileReporter = enableMetricsFileReporter;
     }
 
     public void setThreadsWatcherIntervalMS(int ms) {
@@ -89,4 +111,12 @@ public final class Configuration {
         }
     }
 
+    private static void doIfBooleanPropertyIsPresent(
+            Map<String, String> properties, String propertyName, Consumer<Boolean> consumer) {
+        String propertyValueAsString = properties.get(propertyName);
+        if (propertyValueAsString != null) {
+            Boolean propertyValueAsInt = Boolean.parseBoolean(propertyValueAsString);
+            consumer.accept(propertyValueAsInt);
+        }
+    }
 }
