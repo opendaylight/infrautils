@@ -16,6 +16,24 @@
       "revId": "5fc4dfce12b671789f3f12317a54bd28a539e233",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "daf9ae24_2445ec21",
+        "filename": "metrics/impl/src/main/resources/etc/org.opendaylight.infrautils.metrics.cfg",
+        "patchSetId": 5
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 7785
+      },
+      "writtenOn": "2018-02-08T15:14:40Z",
+      "side": 1,
+      "message": "It is already commented out right ? what is the other way of commenting this ?",
+      "parentUuid": "83b651a9_59a969c3",
+      "revId": "5fc4dfce12b671789f3f12317a54bd28a539e233",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
