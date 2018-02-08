@@ -10,7 +10,6 @@ package org.opendaylight.infrautils.testutils;
 import com.google.common.collect.ImmutableList;
 import com.google.errorprone.annotations.Var;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.function.Consumer;
 import javax.annotation.Nullable;
 import org.junit.ComparisonFailure;
@@ -108,16 +107,12 @@ public class LogCaptureRule implements TestRule {
     public void expectLastErrorMessageContains(String partialErrorMessage) {
         Objects.requireNonNull(partialErrorMessage, "partialErrorMessage");
         handleErrorLogs(logCaptures -> {
-            Optional<String> errorMessage = RememberingLogger.getLastErrorMessage();
-            errorMessage.ifPresent(lastErrorLogMessage -> {
-                if (!lastErrorLogMessage.contains(partialErrorMessage)) {
-                    throw new AssertionError("LogCaptureRule expected error message containing: "
-                            + partialErrorMessage + " but was: " + lastErrorLogMessage);
-                }
-            });
-            if (!errorMessage.isPresent()) {
-                throw new LogCaptureRuleException(
-                        "Expected error log message to contain: " + partialErrorMessage, null);
+            String errorMessage = RememberingLogger.getLastErrorMessage().orElseThrow(
+                () -> new LogCaptureRuleException("Expected error log message to contain: " + partialErrorMessage,
+                        null));
+            if (!errorMessage.contains(partialErrorMessage)) {
+                throw new AssertionError("LogCaptureRule expected error message containing: "
+                        + partialErrorMessage + " but was: " + errorMessage);
             }
         });
     }
@@ -125,15 +120,11 @@ public class LogCaptureRule implements TestRule {
     public void expectError(String message, int howManyMessagesBack) {
         Objects.requireNonNull(message, "message");
         handleErrorLogs(logCaptures -> {
-            Optional<String> errorMessage = RememberingLogger.getErrorMessage(howManyMessagesBack);
-            errorMessage.ifPresent(lastErrorLogMessage -> {
-                if (!lastErrorLogMessage.equals(message)) {
-                    throw new ComparisonFailure("LogCaptureRule expected different error message",
-                            message, lastErrorLogMessage);
-                }
-            });
-            if (!errorMessage.isPresent()) {
-                throw new LogCaptureRuleException("Expected error log message: " + message, null);
+            String errorMessage = RememberingLogger.getErrorMessage(howManyMessagesBack).orElseThrow(
+                () -> new LogCaptureRuleException("Expected error log message: " + message, null));
+            if (!errorMessage.equals(message)) {
+                throw new ComparisonFailure("LogCaptureRule expected different error message",
+                        message, errorMessage);
             }
         });
     }
