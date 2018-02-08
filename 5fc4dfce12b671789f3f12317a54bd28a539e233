@@ -34,6 +34,24 @@
       "revId": "5fc4dfce12b671789f3f12317a54bd28a539e233",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3b1a0bea_c28964aa",
+        "filename": "metrics/impl/src/main/resources/etc/org.opendaylight.infrautils.metrics.cfg",
+        "patchSetId": 5
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-02-08T15:19:57Z",
+      "side": 1,
+      "message": "I\u0027m referring to this comment above \"commenting out doesn\u0027t work if previously enabled\".  If it\u0027s disabled when initially commented out then it should also disable when subsequently commented out for consistency.",
+      "parentUuid": "daf9ae24_2445ec21",
+      "revId": "5fc4dfce12b671789f3f12317a54bd28a539e233",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
