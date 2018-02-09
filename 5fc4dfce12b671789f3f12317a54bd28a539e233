@@ -88,6 +88,24 @@
       "revId": "5fc4dfce12b671789f3f12317a54bd28a539e233",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c6047b08_4c01ba97",
+        "filename": "metrics/impl/src/main/resources/etc/org.opendaylight.infrautils.metrics.cfg",
+        "patchSetId": 5
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-02-09T11:27:39Z",
+      "side": 1,
+      "message": "\u003d\u003d\u003e https://git.opendaylight.org/gerrit/#/c/68101/",
+      "parentUuid": "6b0d0de1_1c26a4f7",
+      "revId": "5fc4dfce12b671789f3f12317a54bd28a539e233",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
