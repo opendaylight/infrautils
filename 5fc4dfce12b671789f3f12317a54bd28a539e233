@@ -52,6 +52,24 @@
       "revId": "5fc4dfce12b671789f3f12317a54bd28a539e233",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2a0bbeb7_ffa440f2",
+        "filename": "metrics/impl/src/main/resources/etc/org.opendaylight.infrautils.metrics.cfg",
+        "patchSetId": 5
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 7785
+      },
+      "writtenOn": "2018-02-09T03:56:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3b1a0bea_c28964aa",
+      "revId": "5fc4dfce12b671789f3f12317a54bd28a539e233",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
