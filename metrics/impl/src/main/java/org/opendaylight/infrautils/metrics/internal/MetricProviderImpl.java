@@ -23,6 +23,7 @@ import com.codahale.metrics.jvm.FileDescriptorRatioGauge;
 import com.codahale.metrics.jvm.GarbageCollectorMetricSet;
 import com.codahale.metrics.jvm.MemoryUsageGaugeSet;
 import com.codahale.metrics.jvm.ThreadDeadlockDetector;
+import com.google.common.annotations.VisibleForTesting;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.lang.management.ManagementFactory;
 import java.time.Duration;
@@ -84,9 +85,20 @@ public class MetricProviderImpl implements MetricProvider {
         updateConfiguration(configuration);
     }
 
+    @VisibleForTesting
+    @Nullable MetricsFileReporter getMetricsFileReporter() {
+        return fileReporter;
+    }
+
+    @VisibleForTesting
+    @Nullable ThreadsWatcher getThreadsWatcher() {
+        return threadsWatcher;
+    }
+
     public final void updateConfiguration(Configuration configuration) {
         if (threadsWatcher != null) {
             threadsWatcher.close();
+            threadsWatcher = null;
         }
         if (configuration.getThreadsWatcherIntervalMS() > 0 && (threadsWatcher == null
                 || configuration.getThreadsWatcherIntervalMS() != threadsWatcher.getInterval().toMillis()
@@ -98,6 +110,7 @@ public class MetricProviderImpl implements MetricProvider {
 
         if (fileReporter != null) {
             fileReporter.close();
+            fileReporter = null;
         }
         int fileReporterInterval = fileReporter != null ? (int)fileReporter.getInterval().getSeconds() : 0;
         if (fileReporterInterval != configuration.getFileReporterIntervalSecs()) {
