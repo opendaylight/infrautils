@@ -70,6 +70,24 @@
       "revId": "5fc4dfce12b671789f3f12317a54bd28a539e233",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6b0d0de1_1c26a4f7",
+        "filename": "metrics/impl/src/main/resources/etc/org.opendaylight.infrautils.metrics.cfg",
+        "patchSetId": 5
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-02-09T10:34:34Z",
+      "side": 1,
+      "message": "hang on guys, the change that you Suneelu made for Tom here then breaks the default threadsWatcherIntervalMS.. with Change Set 6 that as 0 instead of 500... can we please deal with the (good!) point you are raising here separately in a follow-up, so that we can get this merged ASAP?  (Stephen, yes I do want this still in Oxygen; thanks Sam for the vote of support.)\n\nI\u0027ll take the liberty of amending this change basically reverting Change Set 6, and then raise a new Gerrit to make a start to address this point here - via proper TDD...",
+      "parentUuid": "2a0bbeb7_ffa440f2",
+      "revId": "5fc4dfce12b671789f3f12317a54bd28a539e233",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
