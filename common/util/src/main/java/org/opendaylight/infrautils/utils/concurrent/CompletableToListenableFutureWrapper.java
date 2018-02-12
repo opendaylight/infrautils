@@ -8,6 +8,7 @@
 package org.opendaylight.infrautils.utils.concurrent;
 
 import com.google.common.util.concurrent.AbstractFuture;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.BiConsumer;
 
@@ -22,6 +23,7 @@ class CompletableToListenableFutureWrapper<V> extends AbstractFuture<V> implemen
     }
 
     @Override
+    @SuppressFBWarnings("RV_RETURN_VALUE_IGNORED") // OK because guaranteed only once; also https://github.com/spotbugs/spotbugs/issues/518
     public void accept(V value, Throwable throwable) {
         if (throwable != null) {
             setException(throwable);
