@@ -85,8 +85,18 @@
         </configuration>
       </plugin>
       <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>findbugs-maven-plugin</artifactId>
+        <groupId>com.github.spotbugs</groupId>
+        <artifactId>spotbugs-maven-plugin</artifactId>
+        <version>3.1.2</version>
+        <!-- TODO remove version above and dependencies below when we bump to odlparent;
+             with newer spotbugs, see https://git.opendaylight.org/gerrit/#/c/68775/ -->
+        <dependencies>
+          <dependency>
+            <groupId>com.github.spotbugs</groupId>
+            <artifactId>spotbugs</artifactId>
+            <version>3.1.2</version>
+          </dependency>
+        </dependencies>
         <configuration>
           <failOnError>true</failOnError>
         </configuration>
