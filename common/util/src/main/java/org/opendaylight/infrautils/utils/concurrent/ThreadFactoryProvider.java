@@ -8,6 +8,7 @@
 package org.opendaylight.infrautils.utils.concurrent;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.Optional;
 import java.util.concurrent.ThreadFactory;
 import org.immutables.value.Value;
@@ -53,11 +54,12 @@ public abstract class ThreadFactoryProvider {
         return true;
     }
 
+    @SuppressFBWarnings("RV_RETURN_VALUE_IGNORED") // OK to ignore guavaBuilder.setPriority's return this in ifPresent()
     public ThreadFactory get() {
-        ThreadFactoryBuilder guavaBuilder = new ThreadFactoryBuilder();
-        guavaBuilder.setNameFormat(namePrefix() + "-%d");
-        guavaBuilder.setUncaughtExceptionHandler(LoggingThreadUncaughtExceptionHandler.toLogger(logger()));
-        guavaBuilder.setDaemon(daemon());
+        ThreadFactoryBuilder guavaBuilder = new ThreadFactoryBuilder()
+            .setNameFormat(namePrefix() + "-%d")
+            .setUncaughtExceptionHandler(LoggingThreadUncaughtExceptionHandler.toLogger(logger()))
+            .setDaemon(daemon());
         priority().ifPresent(guavaBuilder::setPriority);
         logger().info("ThreadFactory created: {}", namePrefix());
         return guavaBuilder.build();
