@@ -7,6 +7,8 @@
  */
 package org.opendaylight.infrautils.jobcoordinator.internal;
 
+import static java.util.Collections.emptyList;
+
 import com.google.common.util.concurrent.ListenableFuture;
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -76,8 +78,13 @@ class JobEntry {
         return RETRY_COUNT_FIELD_UPDATER.decrementAndGet(this);
     }
 
-    public @Nullable List<ListenableFuture<Void>> getFutures() {
-        return futures;
+    public List<ListenableFuture<Void>> getFutures() {
+        List<ListenableFuture<Void>> nullableFutures = futures;
+        if (nullableFutures != null) {
+            return nullableFutures;
+        } else {
+            return emptyList();
+        }
     }
 
     public void setFutures(List<ListenableFuture<Void>> futures) {

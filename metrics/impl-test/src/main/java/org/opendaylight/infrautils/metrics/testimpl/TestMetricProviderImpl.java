@@ -8,6 +8,7 @@
 package org.opendaylight.infrautils.metrics.testimpl;
 
 import java.util.concurrent.atomic.AtomicLong;
+import javax.annotation.Nullable;
 import org.opendaylight.infrautils.metrics.Counter;
 import org.opendaylight.infrautils.metrics.Labeled;
 import org.opendaylight.infrautils.metrics.Meter;
@@ -26,7 +27,7 @@ import org.opendaylight.infrautils.utils.function.CheckedRunnable;
 public class TestMetricProviderImpl implements MetricProvider {
 
     @Override
-    public Meter newMeter(Object anchor, String id) {
+    public Meter newMeter(@Nullable Object anchor, @Nullable String id) {
         return new Meter() {
 
             private final AtomicLong meter = new AtomicLong(0);
@@ -71,7 +72,7 @@ public class TestMetricProviderImpl implements MetricProvider {
     }
 
     @Override
-    public Counter newCounter(Object anchor, String id) {
+    public Counter newCounter(@Nullable Object anchor, @Nullable String id) {
         return new Counter() {
 
             private final AtomicLong meter = new AtomicLong(0);
@@ -138,7 +139,7 @@ public class TestMetricProviderImpl implements MetricProvider {
     }
 
     @Override
-    public Timer newTimer(Object anchor, String id) {
+    public Timer newTimer(@Nullable Object anchor, @Nullable String id) {
         return new Timer() {
 
             @Override

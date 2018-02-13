@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.regex.Pattern;
+import javax.annotation.Nullable;
 import javax.annotation.RegEx;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -147,14 +148,11 @@ public class TablePrinter {
             if (title != null) {
                 sb.append(StringUtils.repeat(" ", SPACE_BEFORE_TABLES_WITH_TITLE));
             }
-            printHeaderUnderline(separator, maxWidths, sb);
+            // Header underline
+            int rowLength = SPACE_BETWEEN_COLUMNS + separator.length() * (header.length - 1) + sum(maxWidths);
+            sb.append(StringUtils.repeat("-", rowLength));
+            sb.append("\n");
         }
-    }
-
-    private void printHeaderUnderline(String separator, int[] maxWidths, StringBuilder sb) {
-        int rowLength = SPACE_BETWEEN_COLUMNS + separator.length() * (header.length - 1) + sum(maxWidths);
-        sb.append(StringUtils.repeat("-", rowLength));
-        sb.append("\n");
     }
 
     private static int sum(int[] array) {
