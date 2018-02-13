@@ -16,6 +16,24 @@
       "revId": "68dd4e850422b37a69855d1afaedd1b33505efaa",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d2f0c251_4601ae1f",
+        "filename": "common/parent/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-02-13T11:36:10Z",
+      "side": 1,
+      "message": "see https://git.opendaylight.org/gerrit/#/c/67437/",
+      "parentUuid": "b33a912a_6b430b7e",
+      "revId": "68dd4e850422b37a69855d1afaedd1b33505efaa",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
