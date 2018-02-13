@@ -35,6 +35,7 @@ import org.opendaylight.infrautils.metrics.Labeled;
 import org.opendaylight.infrautils.metrics.Meter;
 import org.opendaylight.infrautils.metrics.MetricDescriptor;
 import org.opendaylight.infrautils.metrics.MetricProvider;
+import org.opendaylight.infrautils.metrics.Timer;
 import org.opendaylight.infrautils.utils.UncheckedCloseable;
 import org.opendaylight.infrautils.utils.function.CheckedCallable;
 import org.opendaylight.infrautils.utils.function.CheckedRunnable;
@@ -56,6 +57,7 @@ public class MetricProviderImpl implements MetricProvider {
 
     private final Map<String, MeterImpl> meters = new ConcurrentHashMap<>();
     private final Map<String, CounterImpl> counters = new ConcurrentHashMap<>();
+    private final Map<String, TimerImpl> timers = new ConcurrentHashMap<>();
     private final MetricRegistry registry;
     private final JmxReporter jmxReporter;
     private final Slf4jReporter slf4jReporter;
@@ -280,11 +282,37 @@ public class MetricProviderImpl implements MetricProvider {
                         + fifthLabelName + "=" + fifthLabelValue + "}");
     }
 
+    private org.opendaylight.infrautils.metrics.Timer newOrExistingTimer(Object anchor, String id) {
+        return timers.computeIfAbsent(id, newId -> {
+            LOG.debug("New Timer metric: {}", id);
+            return new TimerImpl(newId);
+        });
+    }
+
     @Override
     public org.opendaylight.infrautils.metrics.Timer newTimer(Object anchor, String id) {
         requireNonNull(anchor, "anchor == null");
         checkForExistingID(id);
         return new TimerImpl(id);
+    }
+
+    @Override
+    public Timer newTimer(MetricDescriptor descriptor) {
+        return newTimer(descriptor.anchor(), makeCodahaleID(descriptor));
+    }
+
+    @Override
+    public Labeled<Timer> newTimer(MetricDescriptor descriptor, String labelName) {
+        return labelValue -> newOrExistingTimer(descriptor.anchor(),
+                makeCodahaleID(descriptor) + "{" + labelName + "=" + labelValue + "}");
+    }
+
+    @Override
+    public Labeled<Labeled<Timer>> newTimer(MetricDescriptor descriptor,
+                                                String firstLabelName, String secondLabelName) {
+        return firstLabelValue -> secondLabelValue -> newOrExistingTimer(descriptor.anchor(),
+                makeCodahaleID(descriptor) + "{" + firstLabelName + "=" + firstLabelValue + ","
+                        + secondLabelName + "=" + secondLabelValue + "}");
     }
 
     private static String makeCodahaleID(MetricDescriptor descriptor) {

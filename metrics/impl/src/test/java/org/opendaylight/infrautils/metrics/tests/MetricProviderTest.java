@@ -20,6 +20,7 @@ import org.opendaylight.infrautils.metrics.Labeled;
 import org.opendaylight.infrautils.metrics.Meter;
 import org.opendaylight.infrautils.metrics.MetricDescriptor;
 import org.opendaylight.infrautils.metrics.MetricProvider;
+import org.opendaylight.infrautils.metrics.Timer;
 import org.opendaylight.infrautils.metrics.internal.MetricProviderImpl;
 import org.opendaylight.infrautils.testutils.LogCaptureRule;
 import org.opendaylight.infrautils.testutils.LogRule;
@@ -206,6 +207,34 @@ public class MetricProviderTest {
     @Test
     public void testTimeCallableOK() {
         assertThat(metrics.newTimer(this, "test.timer").time(() -> {
+            @Var int sum = 0;
+            for (int i = 1; i < 101; i++) {
+                sum += i;
+            }
+            return sum;
+        })).isEqualTo(5050);
+    }
+
+    @Test
+    public void testTimeRunnableOKWithLabels() {
+        Labeled<Labeled<Timer>> timerWithTwoLabels = metrics.newTimer(MetricDescriptor.builder().anchor(this)
+                        .project("infrautils").module("metrics").id("test_timer_with_labels").build(),
+                "l1", "l2");
+        Timer timerA = timerWithTwoLabels.label("l1value").label("l2value");
+        timerA.time(() -> {
+            for (@SuppressWarnings("unused") int sum = 0, i = 1; i < 101; i++) {
+                sum += i;
+            }
+        });
+    }
+
+    @Test
+    public void testTimeCallableWithLabels() {
+        Labeled<Labeled<Timer>> timerWithTwoLabels = metrics.newTimer(MetricDescriptor.builder().anchor(this)
+                        .project("infrautils").module("metrics").id("test_timer_with_labels").build(),
+                "l1", "l2");
+        Timer timerA = timerWithTwoLabels.label("l1value").label("l2value");
+        assertThat(timerA.time(() -> {
             @Var int sum = 0;
             for (int i = 1; i < 101; i++) {
                 sum += i;

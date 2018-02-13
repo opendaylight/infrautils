@@ -160,7 +160,32 @@ public interface MetricProvider {
 
     Timer newTimer(Object anchor, String id);
 
-    // Timer newTimer(MetricDescriptor descriptor);
+    /**
+     * Create new Timer metric without labels.
+     * @param descriptor a MetricDescriptor, typically created via <code>MetricDescriptor.builder().anchor(this)
+     *           .project("&lt;projectName&gt;").module("&lt;moduleName&gt;").id("&lt;metricName&gt;").build()</code>
+     * @return the Timer
+     */
+    Timer newTimer(MetricDescriptor descriptor);
+
+    /**
+     * Create new Timer metric with 1 label.
+     * @param descriptor a MetricDescriptor, typically created via <code>MetricDescriptor.builder().anchor(this)
+     *           .project("&lt;projectName&gt;").module("&lt;moduleName&gt;").id("&lt;metricName&gt;").build()</code>
+     * @param labelName name of the (only) label of this metric
+     * @return an object from which a Timer can be obtained, given 1 label value
+     */
+    Labeled<Timer> newTimer(MetricDescriptor descriptor, String labelName);
+
+    /**
+     * Create new Timer metric with 2 labels.
+     * @param descriptor a MetricDescriptor, typically created via <code>MetricDescriptor.builder().anchor(this)
+     *           .project("&lt;projectName&gt;").module("&lt;moduleName&gt;").id("&lt;metricName&gt;").build()</code>
+     * @param firstLabelName name of the 1st label of this metric
+     * @param secondLabelName name of the 2nd label of this metric
+     * @return an object from which a Timer can be obtained, given 2 label values
+     */
+    Labeled<Labeled<Timer>> newTimer(MetricDescriptor descriptor, String firstLabelName, String secondLabelName);
 
     // TODO Histogram newHistogram(Object anchor, String id);
 

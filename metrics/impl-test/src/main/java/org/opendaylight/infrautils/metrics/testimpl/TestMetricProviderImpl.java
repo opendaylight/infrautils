@@ -157,4 +157,20 @@ public class TestMetricProviderImpl implements MetricProvider {
         };
     }
 
+    @Override
+    public Timer newTimer(MetricDescriptor descriptor) {
+        return newTimer((Object) null, (String) null);
+    }
+
+    @Override
+    public Labeled<Timer> newTimer(MetricDescriptor descriptor, String labelName) {
+        return labelValue -> newTimer((Object) null, (String) null);
+    }
+
+    @Override
+    public Labeled<Labeled<Timer>> newTimer(MetricDescriptor descriptor, String firstLabelName,
+                                                String secondLabelName) {
+        return firstLabelValue -> secondLabelValue -> newTimer((Object) null, (String) null);
+    }
+
 }
