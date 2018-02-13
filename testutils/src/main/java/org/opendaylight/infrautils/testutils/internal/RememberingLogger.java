@@ -60,7 +60,7 @@ public class RememberingLogger extends DelegatingLogger {
 
     public static Optional<Throwable> getErrorThrowable(int howManyMessagesBack) {
         if (ERRORS.size() > howManyMessagesBack) {
-            return Optional.ofNullable(ERRORS.get(ERRORS.size() - howManyMessagesBack - 1).getCause());
+            return ERRORS.get(ERRORS.size() - howManyMessagesBack - 1).getCause();
         } else {
             return Optional.empty();
         }
