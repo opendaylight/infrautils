@@ -28,6 +28,7 @@ import java.lang.management.ManagementFactory;
 import java.time.Duration;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import javax.annotation.Nullable;
 import javax.annotation.PreDestroy;
 import javax.inject.Singleton;
 import org.opendaylight.infrautils.metrics.Counter;
@@ -62,8 +63,8 @@ public class MetricProviderImpl implements MetricProvider {
     private final JmxReporter jmxReporter;
     private final Slf4jReporter slf4jReporter;
 
-    private volatile MetricsFileReporter fileReporter;
-    private volatile ThreadsWatcher threadsWatcher;
+    private volatile @Nullable MetricsFileReporter fileReporter;
+    private volatile @Nullable ThreadsWatcher threadsWatcher;
 
     public MetricProviderImpl() {
         this.registry = new MetricRegistry();
