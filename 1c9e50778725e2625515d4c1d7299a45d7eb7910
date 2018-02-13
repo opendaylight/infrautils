@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "15bea5b1_1f9e358f",
+        "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/concurrent/CompletionStageTestAwaiter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-02-13T12:37:32Z",
+      "side": 1,
+      "message": "NOK, that doesn\u0027t work, because \"Annotation types that do not specify explicit target element types cannot be applied here\", see also https://wiki.opendaylight.org/view/BestPractices/Coding_Guidelines#null_annotations_from_org.eclipse.jdt.annotation_instead_of_javax.annotation",
+      "parentUuid": "f84cbb4a_c060f6d5",
+      "revId": "1c9e50778725e2625515d4c1d7299a45d7eb7910",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "afc097ed_c246bd99",
         "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/internal/RememberingLogger.java",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2018-02-02T02:10:41Z",
       "side": 1,
       "message": "LogCaptureRuleException uses the javax.annotation version - why not here? From the docs, \"NullAway allows for any @Nullable annotation to be used\".",
+      "revId": "1c9e50778725e2625515d4c1d7299a45d7eb7910",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d1ecb30b_40300384",
+        "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/internal/RememberingLogger.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-02-13T12:37:32Z",
+      "side": 1,
+      "message": "Done - but FYI this is now in class LogCapture instead of here, where I\u0027ve already used javax.annotation.Nullable, out of fear of you ;)",
+      "parentUuid": "afc097ed_c246bd99",
       "revId": "1c9e50778725e2625515d4c1d7299a45d7eb7910",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
