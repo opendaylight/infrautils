@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4528f72c_cdfa9813",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/TablePrinter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 4540
+      },
+      "writtenOn": "2018-02-13T13:53:08Z",
+      "side": 1,
+      "message": "I don’t see where this is used now ;-).",
+      "revId": "5ef6998af49a736946040fe56d269a0fb028d232",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c071f090_96ac20ba",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobEntry.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 4540
+      },
+      "writtenOn": "2018-02-13T13:53:08Z",
+      "side": 1,
+      "message": "Having a nullable collection feels weird, but that’s a topic for another patch.",
+      "revId": "5ef6998af49a736946040fe56d269a0fb028d232",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
