@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "d33802d1_7e29a106",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/FunctionalityReadyNotifierImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-02-13T14:24:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "54f00f46_3deb5609",
+      "range": {
+        "startLine": 65,
+        "startChar": 34,
+        "endLine": 65,
+        "endChar": 44
+      },
+      "revId": "bdd51ebff11bb7e02c1d09b31847e2605bee37d4",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "41fc2b53_0e78b653",
         "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/FunctionalityReadyNotifierImpl.java",
         "patchSetId": 6
@@ -36,6 +60,24 @@
       "writtenOn": "2018-01-26T15:14:16Z",
       "side": 1,
       "message": "What about toString, hashCode? \n\nConsider a SwitchFunctionalityReady where one wants to further clarify the instance with, say,  getId() or getAddress()  methods. In that case though, the user would need to pass an instance and not the class. In fact users could just register the OSGi services directly although this class does hide the OSGi aspects.",
+      "revId": "bdd51ebff11bb7e02c1d09b31847e2605bee37d4",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bb87c491_e1b8d0af",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/FunctionalityReadyNotifierImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-02-13T14:24:13Z",
+      "side": 1,
+      "message": "Done, added correct support for toString() hashCode() AND (!) equals, via TDD.\n\nI\u0027ll raise a follow-up change adding a method to register a FunctionalityReady where one wants to further clarify the instance.  The fact that this API hides the OSGi aspect is intentional and important so that application code can be written against this and run outside of OSGi.",
+      "parentUuid": "41fc2b53_0e78b653",
       "revId": "bdd51ebff11bb7e02c1d09b31847e2605bee37d4",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
