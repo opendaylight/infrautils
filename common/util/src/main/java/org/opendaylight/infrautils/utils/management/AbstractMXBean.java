@@ -41,7 +41,7 @@ public abstract class AbstractMXBean {
 
     private final String mbeanName;
     private final String mbeanType;
-    private final String mbeanCategory;
+    private final @Nullable String mbeanCategory;
 
     /**
      * Constructor.
@@ -189,7 +189,7 @@ public abstract class AbstractMXBean {
     /**
      * Returns the <code>Category</code> property of the bean's ObjectName.
      */
-    public String getMBeanCategory() {
+    public @Nullable String getMBeanCategory() {
         return mbeanCategory;
     }
 }

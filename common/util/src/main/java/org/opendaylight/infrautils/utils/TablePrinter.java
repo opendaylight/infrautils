@@ -147,14 +147,11 @@ public class TablePrinter {
             if (title != null) {
                 sb.append(StringUtils.repeat(" ", SPACE_BEFORE_TABLES_WITH_TITLE));
             }
-            printHeaderUnderline(separator, maxWidths, sb);
+            // Header underline
+            int rowLength = SPACE_BETWEEN_COLUMNS + separator.length() * (header.length - 1) + sum(maxWidths);
+            sb.append(StringUtils.repeat("-", rowLength));
+            sb.append("\n");
         }
-    }
-
-    private void printHeaderUnderline(String separator, int[] maxWidths, StringBuilder sb) {
-        int rowLength = SPACE_BETWEEN_COLUMNS + separator.length() * (header.length - 1) + sum(maxWidths);
-        sb.append(StringUtils.repeat("-", rowLength));
-        sb.append("\n");
     }
 
     private static int sum(int[] array) {
