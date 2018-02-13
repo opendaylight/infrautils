@@ -32,6 +32,7 @@ public class FutureListenerLogTest {
     public @Rule LogCaptureRule logCaptureRule = new LogCaptureRule();
 
     @Test
+    @SuppressWarnings("FutureReturnValueIgnored")
     public void testFailingListenableFuture() {
         logCaptureRule.expectError("Future (eventually) failed: duh");
         ListenableFuture<Void> failedFuture = Futures.immediateFailedFuture(new Exception("some problem"));
@@ -39,12 +40,14 @@ public class FutureListenerLogTest {
     }
 
     @Test
+    @SuppressWarnings("FutureReturnValueIgnored")
     public void testPassingListenableFuture() {
         ListenableFuture<String> stringFuture = Futures.immediateFuture("hello");
         addErrorLogging(stringFuture, LOG, "huh?!");
     }
 
     @Test
+    @SuppressWarnings("FutureReturnValueIgnored")
     public void testFailingListenableFutureWithOneMessageFormatArgument() {
         logCaptureRule.expectError("Future (eventually) failed: duh dah");
         ListenableFuture<Integer> failedFuture = Futures.immediateFailedFuture(new Exception("some problem"));
@@ -52,6 +55,7 @@ public class FutureListenerLogTest {
     }
 
     @Test
+    @SuppressWarnings("FutureReturnValueIgnored")
     public void testFailingListenableFutureWithTwoMessageFormatArguments() {
         logCaptureRule.expectError("Future (eventually) failed: duh bah doo");
         ListenableFuture<Integer> failedFuture = Futures.immediateFailedFuture(new Exception("some problem"));
@@ -60,6 +64,7 @@ public class FutureListenerLogTest {
     }
 
     @Test
+    @SuppressWarnings("FutureReturnValueIgnored")
     public void testFailingListenableFutureWithThreeMessageFormatArguments() {
         logCaptureRule.expectError("Future (eventually) failed: ho/he/do");
         ListenableFuture<Integer> failedFuture = Futures.immediateFailedFuture(new Exception("some problem"));

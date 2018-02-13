@@ -47,22 +47,29 @@ public final class ListenableFutures {
      * java.util.concurrent.Executor)} to add a callback which does real error recovery in case of a failure instead
      * of just logging an error, if you can.
      */
-    public static <V> void addErrorLogging(ListenableFuture<V> future, Logger logger, String message) {
+    @SuppressWarnings("FutureReturnValueIgnored")
+    public static <V> ListenableFuture<V> addErrorLogging(ListenableFuture<V> future, Logger logger, String message) {
         Futures.addCallback(future, new FailureMessageLoggingFutureCallback<>(logger, message),
                 MoreExecutors.directExecutor());
+        return future;
     }
 
-    public static <V> void addErrorLogging(ListenableFuture<V> future, Logger logger, String format, Object arg) {
+    @SuppressWarnings("FutureReturnValueIgnored")
+    public static <V> ListenableFuture<V> addErrorLogging(ListenableFuture<V> future, Logger logger, String format,
+            Object arg) {
         Futures.addCallback(future,
                 new FailureFormat1ArgumentLoggingFutureCallback<V>(logger, format, arg),
                 MoreExecutors.directExecutor());
+        return future;
     }
 
-    public static <V> void addErrorLogging(
+    @SuppressWarnings("FutureReturnValueIgnored")
+    public static <V> ListenableFuture<V> addErrorLogging(
             ListenableFuture<V> future, Logger logger, String format, Object... arguments) {
         Futures.addCallback(future,
                 new FailureFormatMoreArgumentsLoggingFutureCallback<V>(logger, format, arguments),
                 MoreExecutors.directExecutor());
+        return future;
     }
 
     public static <V, E extends Exception> V checkedGet(ListenableFuture<V> future,
@@ -73,9 +80,7 @@ public final class ListenableFutures {
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
             throw mapper.apply(e);
-        } catch (CancellationException e) {
-            throw mapper.apply(e);
-        } catch (ExecutionException e) {
+        } catch (CancellationException | ExecutionException e) {
             throw mapper.apply(e);
         }
     }
@@ -88,9 +93,7 @@ public final class ListenableFutures {
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
             throw mapper.apply(e);
-        } catch (CancellationException e) {
-            throw mapper.apply(e);
-        } catch (ExecutionException e) {
+        } catch (CancellationException | ExecutionException e) {
             throw mapper.apply(e);
         }
     }
