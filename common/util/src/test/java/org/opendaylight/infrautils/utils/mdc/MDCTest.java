@@ -43,6 +43,7 @@ public class MDCTest {
         MDC.put("yo", null);
     }
 
+    @SuppressWarnings("NullAway") // The wrong null is the point of this test
     @Test(expected = NullPointerException.class)
     public void testPutNullValueMDCs() {
         // Whereas this will throw an IllegalArgumentException
