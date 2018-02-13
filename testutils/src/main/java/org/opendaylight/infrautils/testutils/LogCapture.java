@@ -10,6 +10,7 @@ package org.opendaylight.infrautils.testutils;
 import static java.util.Objects.requireNonNull;
 
 import com.google.errorprone.annotations.Var;
+import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
@@ -39,8 +40,8 @@ public class LogCapture {
         return message;
     }
 
-    public @Nullable Throwable getCause() {
-        return cause;
+    public Optional<Throwable> getCause() {
+        return Optional.ofNullable(cause);
     }
 
     @Override

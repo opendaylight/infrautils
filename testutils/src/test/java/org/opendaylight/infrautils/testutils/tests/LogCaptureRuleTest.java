@@ -102,8 +102,8 @@ public class LogCaptureRuleTest {
         logCaptureRule.handleErrorLogs(logCaptures -> {
             assertThat(logCaptures).hasSize(1);
             assertThat(logCaptures.get(0).getMessage()).isEqualTo("boum");
-            assertThat(logCaptures.get(0).getCause() instanceof IllegalArgumentException).isTrue();
-            assertThat(logCaptures.get(0).getCause().getMessage()).isEqualTo("KO");
+            assertThat(logCaptures.get(0).getCause().get() instanceof IllegalArgumentException).isTrue();
+            assertThat(logCaptures.get(0).getCause().get().getMessage()).isEqualTo("KO");
         });
         LOG.error("boum", ko);
         assertThat(logCaptureRule.getLastErrorThrowable()).isEqualTo(ko);
