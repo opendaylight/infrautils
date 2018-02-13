@@ -81,6 +81,24 @@
       "revId": "bdd51ebff11bb7e02c1d09b31847e2605bee37d4",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f06ae44_e7a431cd",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/FunctionalityReadyNotifierImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-02-13T14:30:32Z",
+      "side": 1,
+      "message": "actually, can we defer this to when (if) we ever need it?  This would need further discussion, and is way beyond what I wanted to initially offer here, because... would you allow several different instances of the same type?  If so, how would one be able to await them - a standard (BP or Guice) @Inject is by type name.. let\u0027s forget about this possible extension idea, for now.",
+      "parentUuid": "bb87c491_e1b8d0af",
+      "revId": "bdd51ebff11bb7e02c1d09b31847e2605bee37d4",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
