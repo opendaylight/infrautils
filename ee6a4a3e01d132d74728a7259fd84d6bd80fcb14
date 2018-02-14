@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e4cd1943_e5e6501b",
+        "filename": "common/util/src/test/java/org/opendaylight/infrautils/utils/concurrent/tests/FutureListenerLogTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-02-14T10:40:09Z",
+      "side": 1,
+      "message": "This looks a little bit worrying... will we have to add this everywhere we are already using addErrorLogging() ?  Perhaps there is a better solution.. is it FindBugs or Error-Prone that is giving you grief here?  Have you tried @com.google.errorprone.annotations.CanIgnoreReturnValue ?  But beware of https://github.com/spotbugs/spotbugs/issues/518 ... ;-)",
+      "revId": "ee6a4a3e01d132d74728a7259fd84d6bd80fcb14",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
