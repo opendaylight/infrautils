@@ -107,12 +107,15 @@
                 <arg>-Xep:StaticOrDefaultInterfaceMethod:OFF</arg>
                 <!-- FieldMissingNullable is badly broken :( https://github.com/google/error-prone/issues/708 -->
                 <arg>-Xep:FieldMissingNullable:OFF</arg>
+                <!-- To "Use parameter comments to document ambiguous literals" is unrealistic on a large existing code base -->
+                <arg>-Xep:BooleanParameter:OFF</arg>
                 <arg>-Xep:ReturnMissingNullable:ERROR</arg>
                 <arg>-Xep:InconsistentOverloads:ERROR</arg>
                 <arg>-Xep:ConstructorLeaksThis:OFF</arg><!-- TODO <arg>-Xep:ConstructorLeaksThis:ERROR</arg> after https://github.com/google/error-prone/pull/789 for https://github.com/google/error-prone/issues/655, and maybe also https://github.com/google/error-prone/issues/809? -->
                 <arg>-Xep:MethodCanBeStatic:ERROR</arg>
                 <arg>-Xep:ThrowsUncheckedException:OFF</arg>
                 <!-- TODO <arg>-Xep:TestExceptionChecker:ERROR</arg> once all @Test with expected use org.opendaylight.infrautils.testutils.Asserts.assertThrows() instead -->
+                <arg>-Xep:RedundantThrows:ERROR</arg>
                 <arg>-Xep:Var:ERROR</arg>
                 <!-- Following are things which seem useful to enforce, found in other projects;
                      we could relax these again if during enforcement all over infrautils we find them to be too strict -->
