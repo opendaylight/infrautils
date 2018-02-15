@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "de19ad25_59a1f50c",
+        "filename": "common/parent/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-02-15T17:34:38Z",
+      "side": 1,
+      "message": "Done",
+      "revId": "68dd4e850422b37a69855d1afaedd1b33505efaa",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "74ac69c6_58adc1cb",
         "filename": "common/parent/pom.xml",
         "patchSetId": 2
@@ -13,6 +30,24 @@
       "writtenOn": "2018-02-13T11:49:47Z",
       "side": 1,
       "message": "TODO remove SNAPSHOT and NB comment here",
+      "revId": "68dd4e850422b37a69855d1afaedd1b33505efaa",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bb865b56_91df60fb",
+        "filename": "common/parent/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-02-15T17:34:38Z",
+      "side": 1,
+      "message": "Done; as the release of modernizer-maven-plugin 1.7.0 may take some time, I\u0027d like to get this change merge with this commented out (I\u0027ll follow up with a change to un-comment it as soon as 1.7.0 is released)",
+      "parentUuid": "74ac69c6_58adc1cb",
       "revId": "68dd4e850422b37a69855d1afaedd1b33505efaa",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -48,6 +83,24 @@
       "side": 1,
       "message": "see https://git.opendaylight.org/gerrit/#/c/67437/",
       "parentUuid": "b33a912a_6b430b7e",
+      "revId": "68dd4e850422b37a69855d1afaedd1b33505efaa",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f7cec74a_c28de2a9",
+        "filename": "common/parent/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-02-15T17:34:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d2f0c251_4601ae1f",
       "revId": "68dd4e850422b37a69855d1afaedd1b33505efaa",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
