@@ -15,7 +15,7 @@ package org.opendaylight.infrautils.ready.order;
  * ServiceReference is irrelevant, there are no properties (we would want any
  * multiple instances to be distinguished by static type, not properties, to make
  * it easier to integrate with other Dependency Injection frameworks), and to avoid
- * an otherwise unncessary dependency of ready-api to OSGi Core
+ * an otherwise unnecessary dependency of ready-api to the OSGi Core API.
  *
  * @author Michael Vorburger.ch
  */
