@@ -136,10 +136,7 @@ public class MetricProviderTest {
         counterA.decrement();
         assertThat(counterA.get()).isEqualTo(50);
 
-        Labeled<Labeled<Counter>> sameCounterWithTwoLabels = metrics.newCounter(MetricDescriptor.builder().anchor(this)
-                        .project("infrautils").module("metrics").id("test_counter_upd_opers").build(),
-                "l1", "l2");
-        Counter sameCounterA = sameCounterWithTwoLabels.label("l1value").label("l2value");
+        Counter sameCounterA = counterWithTwoLabels.label("l1value").label("l2value");
 
         assertThat(sameCounterA).isEqualTo(counterA);
         assertThat(sameCounterA.get()).isEqualTo(50);
@@ -281,6 +278,17 @@ public class MetricProviderTest {
             metrics.newCounter(this, "test.meter1");
         });
     }
+
+    @Test
+    public void testDupeLabeledMeterID() {
+        MetricDescriptor descriptor = MetricDescriptor.builder().anchor(this).project("infrautils").module("metrics")
+                .id("test_meter").build();
+        metrics.newMeter(descriptor);
+        assertThrows(IllegalArgumentException.class, () -> {
+            metrics.newMeter(descriptor, "label1");
+        });
+    }
+
 
     // TODO testReadJMX() using org.opendaylight.infrautils.utils.management.MBeanUtil from https://git.opendaylight.org/gerrit/#/c/65153/
 
