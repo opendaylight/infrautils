@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6c5ce7eb_8be6356e",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/MetricProviderImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-02-15T14:11:06Z",
+      "side": 1,
+      "message": "why did you add line 101? - this will always be null here now.",
+      "range": {
+        "startLine": 103,
+        "startChar": 64,
+        "endLine": 103,
+        "endChar": 78
+      },
+      "revId": "1475af842673501986e315063637d71072971144",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
