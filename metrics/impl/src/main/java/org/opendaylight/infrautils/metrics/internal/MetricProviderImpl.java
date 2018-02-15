@@ -23,10 +23,12 @@ import com.codahale.metrics.jvm.FileDescriptorRatioGauge;
 import com.codahale.metrics.jvm.GarbageCollectorMetricSet;
 import com.codahale.metrics.jvm.MemoryUsageGaugeSet;
 import com.codahale.metrics.jvm.ThreadDeadlockDetector;
+import com.google.common.collect.Sets;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.lang.management.ManagementFactory;
 import java.time.Duration;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import javax.annotation.Nullable;
 import javax.annotation.PreDestroy;
@@ -55,6 +57,7 @@ public class MetricProviderImpl implements MetricProvider {
 
     private static final Logger LOG = LoggerFactory.getLogger(MetricProviderImpl.class);
 
+    private final Set<String> metricIDsWithoutLabels = Sets.newConcurrentHashSet();
     private final Map<String, MeterImpl> meters = new ConcurrentHashMap<>();
     private final Map<String, CounterImpl> counters = new ConcurrentHashMap<>();
     private final Map<String, TimerImpl> timers = new ConcurrentHashMap<>();
@@ -182,9 +185,10 @@ public class MetricProviderImpl implements MetricProvider {
 //        context.updateLoggers(config);
 //    }
 
-    private org.opendaylight.infrautils.metrics.Meter newOrExistingMeter(Object anchor, String id) {
-        return meters.computeIfAbsent(id, newId -> {
-            LOG.debug("New Meter metric: {}", id);
+    private org.opendaylight.infrautils.metrics.Meter newOrExistingMeter(Object anchor, String id, String fqID) {
+        return meters.computeIfAbsent(fqID, newId -> {
+            LOG.debug("New Meter metric: {}", fqID);
+            metricIDsWithoutLabels.add(id);
             return new MeterImpl(newId);
         });
     }
@@ -193,32 +197,41 @@ public class MetricProviderImpl implements MetricProvider {
     public org.opendaylight.infrautils.metrics.Meter newMeter(Object anchor, String id) {
         requireNonNull(anchor, "anchor == null");
         checkForExistingID(id);
-        return newOrExistingMeter(anchor, id);
+        return newOrExistingMeter(anchor, id, id);
     }
 
     @Override
     public Meter newMeter(MetricDescriptor descriptor) {
-        return newMeter(descriptor.anchor(), makeCodahaleID(descriptor));
+        String idWithoutLabels = makeCodahaleID(descriptor);
+        checkForExistingID(idWithoutLabels);
+        return newMeter(descriptor.anchor(), idWithoutLabels);
     }
 
     @Override
     public Labeled<Meter> newMeter(MetricDescriptor descriptor, String labelName) {
-        return labelValue -> newOrExistingMeter(descriptor.anchor(),
-                makeCodahaleID(descriptor) + "{" + labelName + "=" + labelValue + "}");
+        String idWithoutLabels = makeCodahaleID(descriptor);
+        checkForExistingID(idWithoutLabels);
+        return labelValue -> newOrExistingMeter(descriptor.anchor(), idWithoutLabels,
+                    idWithoutLabels + "{" + labelName + "=" + labelValue + "}");
     }
 
     @Override
     public Labeled<Labeled<Meter>> newMeter(MetricDescriptor descriptor,
             String firstLabelName, String secondLabelName) {
-        return firstLabelValue -> secondLabelValue -> newOrExistingMeter(descriptor.anchor(), makeCodahaleID(descriptor)
-                + "{" + firstLabelName + "=" + firstLabelValue + "," + secondLabelName + "=" + secondLabelValue + "}");
+        String idWithoutLabels = makeCodahaleID(descriptor);
+        checkForExistingID(idWithoutLabels);
+        return firstLabelValue -> secondLabelValue -> newOrExistingMeter(descriptor.anchor(), idWithoutLabels,
+                    idWithoutLabels + "{" + firstLabelName + "=" + firstLabelValue + "," + secondLabelName + "="
+                    + secondLabelValue + "}");
     }
 
     @Override
     public Labeled<Labeled<Labeled<Meter>>> newMeter(MetricDescriptor descriptor,
             String firstLabelName, String secondLabelName, String thirdLabelName) {
+        String idWithoutLabels = makeCodahaleID(descriptor);
+        checkForExistingID(idWithoutLabels);
         return firstLabelValue -> secondLabelValue -> thirdLabelValue ->
-        newOrExistingMeter(descriptor.anchor(), makeCodahaleID(descriptor) + "{"
+            newOrExistingMeter(descriptor.anchor(), idWithoutLabels, idWithoutLabels + "{"
                 + firstLabelName + "=" + firstLabelValue + "," + secondLabelName + "=" + secondLabelValue  + ","
                 + thirdLabelName + "=" + thirdLabelValue + "}");
     }
@@ -226,8 +239,10 @@ public class MetricProviderImpl implements MetricProvider {
     @Override
     public Labeled<Labeled<Labeled<Labeled<Meter>>>> newMeter(MetricDescriptor descriptor,
             String firstLabelName, String secondLabelName, String thirdLabelName, String fourthLabelName) {
+        String idWithoutLabels = makeCodahaleID(descriptor);
+        checkForExistingID(idWithoutLabels);
         return firstLabelValue -> secondLabelValue -> thirdLabelValue -> fourthLabelValue ->
-                newOrExistingMeter(descriptor.anchor(), makeCodahaleID(descriptor) + "{"
+                newOrExistingMeter(descriptor.anchor(), idWithoutLabels, idWithoutLabels + "{"
                         + firstLabelName + "=" + firstLabelValue + "," + secondLabelName + "=" + secondLabelValue  + ","
                         + thirdLabelName + "=" + thirdLabelValue + ","
                         + fourthLabelName + "=" + fourthLabelValue + "}");
@@ -237,17 +252,20 @@ public class MetricProviderImpl implements MetricProvider {
     public Labeled<Labeled<Labeled<Labeled<Labeled<Meter>>>>> newMeter(MetricDescriptor descriptor,
             String firstLabelName, String secondLabelName, String thirdLabelName,
             String fourthLabelName, String fifthLabelName) {
+        String idWithoutLabels = makeCodahaleID(descriptor);
+        checkForExistingID(idWithoutLabels);
         return firstLabelValue -> secondLabelValue -> thirdLabelValue -> fourthLabelValue -> fifthLabelValue ->
-                newOrExistingMeter(descriptor.anchor(), makeCodahaleID(descriptor) + "{"
+                newOrExistingMeter(descriptor.anchor(), idWithoutLabels, idWithoutLabels + "{"
                         + firstLabelName + "=" + firstLabelValue + "," + secondLabelName + "=" + secondLabelValue  + ","
                         + thirdLabelName + "=" + thirdLabelValue + ","
                         + fourthLabelName + "=" + fourthLabelValue + ","
                         + fifthLabelName + "=" + fifthLabelValue + "}");
     }
 
-    private org.opendaylight.infrautils.metrics.Counter newOrExistingCounter(Object anchor, String id) {
+    private org.opendaylight.infrautils.metrics.Counter newOrExistingCounter(Object anchor, String id, String fqID) {
         return counters.computeIfAbsent(id, newId -> {
             LOG.debug("New Counter metric: {}", id);
+            metricIDsWithoutLabels.add(id);
             return new CounterImpl(newId);
         });
     }
@@ -256,33 +274,41 @@ public class MetricProviderImpl implements MetricProvider {
     public org.opendaylight.infrautils.metrics.Counter newCounter(Object anchor, String id) {
         requireNonNull(anchor, "anchor == null");
         checkForExistingID(id);
-        return newOrExistingCounter(anchor, id);
+        return newOrExistingCounter(anchor, id, id);
     }
 
     @Override
     public Counter newCounter(MetricDescriptor descriptor) {
-        return newCounter(descriptor.anchor(), makeCodahaleID(descriptor));
+        String idWithoutLabels = makeCodahaleID(descriptor);
+        checkForExistingID(idWithoutLabels);
+        return newCounter(descriptor.anchor(), idWithoutLabels);
     }
 
     @Override
     public Labeled<Counter> newCounter(MetricDescriptor descriptor, String labelName) {
-        return labelValue -> newOrExistingCounter(descriptor.anchor(),
-                makeCodahaleID(descriptor) + "{" + labelName + "=" + labelValue + "}");
+        String idWithoutLabels = makeCodahaleID(descriptor);
+        checkForExistingID(idWithoutLabels);
+        return labelValue -> newOrExistingCounter(descriptor.anchor(), idWithoutLabels,
+                idWithoutLabels + "{" + labelName + "=" + labelValue + "}");
     }
 
     @Override
     public Labeled<Labeled<Counter>> newCounter(MetricDescriptor descriptor,
                                             String firstLabelName, String secondLabelName) {
-        return firstLabelValue -> secondLabelValue -> newOrExistingCounter(descriptor.anchor(),
-                makeCodahaleID(descriptor) + "{" + firstLabelName + "=" + firstLabelValue + ","
+        String idWithoutLabels = makeCodahaleID(descriptor);
+        checkForExistingID(idWithoutLabels);
+        return firstLabelValue -> secondLabelValue -> newOrExistingCounter(descriptor.anchor(), idWithoutLabels,
+                idWithoutLabels + "{" + firstLabelName + "=" + firstLabelValue + ","
                     + secondLabelName + "=" + secondLabelValue + "}");
     }
 
     @Override
     public Labeled<Labeled<Labeled<Counter>>> newCounter(MetricDescriptor descriptor, String firstLabelName,
                                                          String secondLabelName, String thirdLabelName) {
+        String idWithoutLabels = makeCodahaleID(descriptor);
+        checkForExistingID(idWithoutLabels);
         return firstLabelValue -> secondLabelValue -> thirdLabelValue ->
-                newOrExistingCounter(descriptor.anchor(), makeCodahaleID(descriptor) + "{"
+                newOrExistingCounter(descriptor.anchor(), idWithoutLabels, idWithoutLabels + "{"
                         + firstLabelName + "=" + firstLabelValue + "," + secondLabelName + "=" + secondLabelValue  + ","
                         + thirdLabelName + "=" + thirdLabelValue + "}");
     }
@@ -291,8 +317,10 @@ public class MetricProviderImpl implements MetricProvider {
     public Labeled<Labeled<Labeled<Labeled<Counter>>>> newCounter(MetricDescriptor descriptor,
                                                          String firstLabelName, String secondLabelName,
                                                          String thirdLabelName, String fourthLabelName) {
+        String idWithoutLabels = makeCodahaleID(descriptor);
+        checkForExistingID(idWithoutLabels);
         return firstLabelValue -> secondLabelValue -> thirdLabelValue -> fourthLabelValue ->
-                newOrExistingCounter(descriptor.anchor(), makeCodahaleID(descriptor) + "{"
+                newOrExistingCounter(descriptor.anchor(), idWithoutLabels, idWithoutLabels + "{"
                         + firstLabelName + "=" + firstLabelValue + "," + secondLabelName + "=" + secondLabelValue  + ","
                         + thirdLabelName + "=" + thirdLabelValue + ","
                         + fourthLabelName + "=" + fourthLabelValue + "}");
@@ -303,16 +331,19 @@ public class MetricProviderImpl implements MetricProvider {
                                                                   String firstLabelName, String secondLabelName,
                                                                   String thirdLabelName, String fourthLabelName,
                                                                   String fifthLabelName) {
+        String idWithoutLabels = makeCodahaleID(descriptor);
+        checkForExistingID(idWithoutLabels);
         return firstLabelValue -> secondLabelValue -> thirdLabelValue -> fourthLabelValue -> fifthLabelValue ->
-                newOrExistingCounter(descriptor.anchor(), makeCodahaleID(descriptor) + "{"
+                newOrExistingCounter(descriptor.anchor(), idWithoutLabels, idWithoutLabels + "{"
                         + firstLabelName + "=" + firstLabelValue + "," + secondLabelName + "=" + secondLabelValue  + ","
                         + thirdLabelName + "=" + thirdLabelValue + "," + fourthLabelName + "=" + fourthLabelValue + ","
                         + fifthLabelName + "=" + fifthLabelValue + "}");
     }
 
-    private org.opendaylight.infrautils.metrics.Timer newOrExistingTimer(Object anchor, String id) {
-        return timers.computeIfAbsent(id, newId -> {
+    private org.opendaylight.infrautils.metrics.Timer newOrExistingTimer(Object anchor, String id, String fqID) {
+        return timers.computeIfAbsent(fqID, newId -> {
             LOG.debug("New Timer metric: {}", id);
+            metricIDsWithoutLabels.add(id);
             return new TimerImpl(newId);
         });
     }
@@ -321,25 +352,31 @@ public class MetricProviderImpl implements MetricProvider {
     public org.opendaylight.infrautils.metrics.Timer newTimer(Object anchor, String id) {
         requireNonNull(anchor, "anchor == null");
         checkForExistingID(id);
-        return newOrExistingTimer(anchor, id);
+        return newOrExistingTimer(anchor, id, id);
     }
 
     @Override
     public Timer newTimer(MetricDescriptor descriptor) {
-        return newOrExistingTimer(descriptor.anchor(), makeCodahaleID(descriptor));
+        String idWithoutLabels = makeCodahaleID(descriptor);
+        checkForExistingID(idWithoutLabels);
+        return newTimer(descriptor.anchor(), idWithoutLabels);
     }
 
     @Override
     public Labeled<Timer> newTimer(MetricDescriptor descriptor, String labelName) {
-        return labelValue -> newOrExistingTimer(descriptor.anchor(),
-                makeCodahaleID(descriptor) + "{" + labelName + "=" + labelValue + "}");
+        String idWithoutLabels = makeCodahaleID(descriptor);
+        checkForExistingID(idWithoutLabels);
+        return labelValue -> newOrExistingTimer(descriptor.anchor(), idWithoutLabels,
+                idWithoutLabels + "{" + labelName + "=" + labelValue + "}");
     }
 
     @Override
     public Labeled<Labeled<Timer>> newTimer(MetricDescriptor descriptor,
                                                 String firstLabelName, String secondLabelName) {
-        return firstLabelValue -> secondLabelValue -> newOrExistingTimer(descriptor.anchor(),
-                makeCodahaleID(descriptor) + "{" + firstLabelName + "=" + firstLabelValue + ","
+        String idWithoutLabels = makeCodahaleID(descriptor);
+        checkForExistingID(idWithoutLabels);
+        return firstLabelValue -> secondLabelValue -> newOrExistingTimer(descriptor.anchor(), idWithoutLabels,
+                idWithoutLabels + "{" + firstLabelName + "=" + firstLabelValue + ","
                         + secondLabelName + "=" + secondLabelValue + "}");
     }
 
@@ -350,10 +387,10 @@ public class MetricProviderImpl implements MetricProvider {
         return MetricRegistry.name(descriptor.project(), descriptor.module(), descriptor.id());
     }
 
-    private void checkForExistingID(String id) {
-        requireNonNull(id, "id == null");
-        if (registry.getNames().contains(id)) {
-            throw new IllegalArgumentException("Metric ID already used: " + id);
+    private void checkForExistingID(String idWithoutLabels) {
+        requireNonNull(idWithoutLabels, "id == null");
+        if (metricIDsWithoutLabels.contains(idWithoutLabels)) {
+            throw new IllegalArgumentException("Metric ID already used: " + idWithoutLabels);
         }
     }
 
@@ -412,6 +449,11 @@ public class MetricProviderImpl implements MetricProvider {
             super.close();
             meters.remove(id);
         }
+
+        @Override
+        public String toString() {
+            return "Meter{id=" + id + ", value=" + get() + "}";
+        }
     }
 
     private final class CounterImpl extends CloseableMetricImpl
@@ -458,6 +500,11 @@ public class MetricProviderImpl implements MetricProvider {
             super.close();
             counters.remove(id);
         }
+
+        @Override
+        public String toString() {
+            return "Counter{id=" + id + ", value=" + get() + "}";
+        }
     }
 
     private class TimerImpl extends CloseableMetricImpl implements org.opendaylight.infrautils.metrics.Timer {
@@ -496,6 +543,11 @@ public class MetricProviderImpl implements MetricProvider {
             } catch (InternalRuntimeException e) {
                 throw (E) e.getCause();
             }
+        }
+
+        @Override
+        public String toString() {
+            return "Timer{id=" + id + "}";
         }
     }
 
