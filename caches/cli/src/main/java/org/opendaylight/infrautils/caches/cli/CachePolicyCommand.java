@@ -47,15 +47,19 @@ public class CachePolicyCommand extends OsgiCommandSupport {
     @Override
     @Nullable
     // TODO Karaf 4: public Object execute(CommandSession session) throws Exception {
-    protected Object doExecute() throws Exception {
+    protected Object doExecute() {
         CacheManager cacheManager = cacheManagers.getCacheManager(cacheID);
         CachePolicyBuilder cachePolicyBuilder = new CachePolicyBuilder().from(cacheManager.getPolicy());
-        if ("maxEntries".equals(policyKey)) {
-            cachePolicyBuilder.maxEntries(Long.parseLong(policyValue));
-        } else if ("statsEnabled".equals(policyKey)) {
-            cachePolicyBuilder.statsEnabled(Boolean.parseBoolean(policyValue));
-        } else {
-            throw new UnsupportedOperationException("TODO: Implementation specific cache policies to be implemented..");
+        switch (policyKey) {
+            case "maxEntries":
+                cachePolicyBuilder.maxEntries(Long.parseLong(policyValue));
+                break;
+            case "statsEnabled":
+                cachePolicyBuilder.statsEnabled(Boolean.parseBoolean(policyValue));
+                break;
+            default:
+                throw new UnsupportedOperationException(
+                        "TODO: Implementation specific cache policies to be implemented..");
         }
         cacheManager.setPolicy(cachePolicyBuilder.build());
         session.getConsole().println("Succesfully updated cache policy");
