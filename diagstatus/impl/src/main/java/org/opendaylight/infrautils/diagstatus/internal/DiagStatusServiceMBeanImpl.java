@@ -18,7 +18,6 @@ import java.io.StringWriter;
 import java.rmi.registry.Registry;
 import java.util.Date;
 import java.util.Map;
-import java.util.Optional;
 import javax.annotation.PreDestroy;
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -71,14 +70,13 @@ public class DiagStatusServiceMBeanImpl extends StandardMBean implements DiagSta
 
     @Override
     public void onSystemBootReady() {
-        Optional<String> host = ClusterMemberInfoProvider.getSelfAddress();
-        if (host.isPresent()) {
+        ClusterMemberInfoProvider.getSelfAddress().ifPresent(host -> {
             try {
-                jmxConnector = MBeanUtils.startRMIConnectorServer(mbeanServer, host.get());
+                jmxConnector = MBeanUtils.startRMIConnectorServer(mbeanServer, host);
             } catch (IOException e) {
-                LOG.error("unable to start jmx connector for host {}", host.get());
+                LOG.error("unable to start jmx connector for host {}", host);
             }
-        }
+        });
     }
 
     @PreDestroy
