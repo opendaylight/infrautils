@@ -47,20 +47,17 @@ public class KeyedLocksTest {
         AtomicInteger counter = new AtomicInteger(0);
         CountDownLatch thread1Locked = new CountDownLatch(1);
         CountDownLatch thread1Continue = new CountDownLatch(1);
-        Thread thread1 = new Thread() {
-            @Override
-            public void run() {
-                keyedLocks.lock(KEY1);
-                thread1Locked.countDown();
+        Thread thread1 = new Thread(() -> {
+            keyedLocks.lock(KEY1);
+            thread1Locked.countDown();
 
-                counter.incrementAndGet();
-                Uninterruptibles.awaitUninterruptibly(thread1Continue);
+            counter.incrementAndGet();
+            Uninterruptibles.awaitUninterruptibly(thread1Continue);
 
-                Uninterruptibles.sleepUninterruptibly(500, TimeUnit.MILLISECONDS);
+            Uninterruptibles.sleepUninterruptibly(500, TimeUnit.MILLISECONDS);
 
-                keyedLocks.unlock(KEY1);
-            }
-        };
+            keyedLocks.unlock(KEY1);
+        });
 
         thread1.setUncaughtExceptionHandler((th, ex) -> uncaughtException.set(ex));
         thread1.start();
@@ -68,17 +65,14 @@ public class KeyedLocksTest {
         assertTrue("Lock on thread 1 did not complete", thread1Locked.await(3, TimeUnit.SECONDS));
 
         CountDownLatch thread2AtLock = new CountDownLatch(1);
-        Thread thread2 = new Thread() {
-            @Override
-            public void run() {
-                thread2AtLock.countDown();
-                keyedLocks.lock(KEY1);
+        Thread thread2 = new Thread(() -> {
+            thread2AtLock.countDown();
+            keyedLocks.lock(KEY1);
 
-                counter.incrementAndGet();
+            counter.incrementAndGet();
 
-                keyedLocks.unlock(KEY1);
-            }
-        };
+            keyedLocks.unlock(KEY1);
+        });
 
         thread2.setUncaughtExceptionHandler((th, ex) -> uncaughtException.set(ex));
         thread2.start();
@@ -116,20 +110,17 @@ public class KeyedLocksTest {
 
         AtomicReference<Throwable> uncaughtException = new AtomicReference<>();
         CountDownLatch thread1AtTryLock = new CountDownLatch(1);
-        Thread thread1 = new Thread() {
-            @Override
-            public void run() {
-                thread1AtTryLock.countDown();
+        Thread thread1 = new Thread(() -> {
+            thread1AtTryLock.countDown();
 
-                boolean threadLockedA = keyedLocks.tryLock(KEY1);
-                assertFalse("Expected tryLock to return false", threadLockedA);
-                assertEquals("KeyedLock size", 1, keyedLocks.size());
+            boolean threadLockedA = keyedLocks.tryLock(KEY1);
+            assertFalse("Expected tryLock to return false", threadLockedA);
+            assertEquals("KeyedLock size", 1, keyedLocks.size());
 
-                boolean threadLockedB = keyedLocks.tryLock(KEY1, 200, TimeUnit.MILLISECONDS);
-                assertFalse("Expected tryLock to return false", threadLockedB);
-                assertEquals("KeyedLock size", 1, keyedLocks.size());
-            }
-        };
+            boolean threadLockedB = keyedLocks.tryLock(KEY1, 200, TimeUnit.MILLISECONDS);
+            assertFalse("Expected tryLock to return false", threadLockedB);
+            assertEquals("KeyedLock size", 1, keyedLocks.size());
+        });
 
         thread1.setUncaughtExceptionHandler((th, ex) -> uncaughtException.set(ex));
         thread1.start();

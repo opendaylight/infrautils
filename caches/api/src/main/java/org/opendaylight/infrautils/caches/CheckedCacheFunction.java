@@ -44,7 +44,7 @@ public interface CheckedCacheFunction<K, V, E extends Exception> {
      * See {@link CacheFunction#from(Function)}.
      */
     default CacheFunction<K, V> from(Function<K, V> function) throws E {
-        return key -> function.apply(key);
+        return function::apply;
     }
 
 }

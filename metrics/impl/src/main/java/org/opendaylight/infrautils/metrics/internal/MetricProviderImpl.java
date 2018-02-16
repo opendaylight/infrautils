@@ -452,7 +452,7 @@ public class MetricProviderImpl implements MetricProvider {
         public <T, E extends Exception> T time(CheckedCallable<T, E> event) throws E {
             checkIfClosed();
             try {
-                return timer.time(() -> event.call());
+                return timer.time(event::call);
             } catch (Exception e) {
                 throw (E) e;
             }
