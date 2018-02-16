@@ -8,6 +8,7 @@
 package org.opendaylight.infrautils.utils.concurrent;
 
 import com.google.common.base.Preconditions;
+import javax.annotation.Nonnull;
 import org.slf4j.Logger;
 
 /**
@@ -27,7 +28,7 @@ final class FailureFormat1ArgumentLoggingFutureCallback<V> extends FailureLoggin
     }
 
     @Override
-    public void onFailure(Throwable throwable) {
+    public void onFailure(@Nonnull Throwable throwable) {
         getLogger().error(format, arg, throwable);
     }
 

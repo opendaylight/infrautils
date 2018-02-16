@@ -16,6 +16,7 @@ import com.google.common.util.concurrent.MoreExecutors;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
+import javax.annotation.Nonnull;
 
 // package local, not public
 final class ListenableToCompletableFutureWrapper<V> extends CompletableFuture<V> implements FutureCallback<V> {
@@ -43,7 +44,7 @@ final class ListenableToCompletableFutureWrapper<V> extends CompletableFuture<V>
     }
 
     @Override
-    public void onFailure(Throwable throwable) {
+    public void onFailure(@Nonnull Throwable throwable) {
         completeExceptionally(throwable);
     }
 

@@ -9,6 +9,7 @@ package org.opendaylight.infrautils.caches.noop.internal;
 
 import com.google.common.collect.ImmutableMap;
 import java.util.Objects;
+import javax.annotation.Nonnull;
 import org.opendaylight.infrautils.caches.Cache;
 import org.opendaylight.infrautils.caches.CacheConfig;
 import org.opendaylight.infrautils.caches.CacheFunction;
@@ -32,26 +33,24 @@ final class NoopCache<K, V> implements Cache<K, V> {
     }
 
     @Override
-    public V get(K key) {
+    public @Nonnull V get(@Nonnull K key) {
         return function.get(key);
     }
 
     @Override
-    public ImmutableMap<K, V> get(Iterable<? extends K> keys) {
+    public @Nonnull ImmutableMap<K, V> get(@Nonnull Iterable<? extends K> keys) {
         return function.get(keys);
     }
 
     @Override
-    public void put(K key, V value) {
+    public void put(@Nonnull K key, @Nonnull V value) {
         Objects.requireNonNull(key, "key");
         Objects.requireNonNull(value, "value");
         // Ignore!
     }
 
     @Override
-    public void evict(K key) {
-        return;
-    }
+    public void evict(K key) { }
 
     @Override
     public CacheManager getManager() {

@@ -30,6 +30,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.annotation.PreDestroy;
 import javax.annotation.concurrent.GuardedBy;
@@ -300,7 +301,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
          * and ignored.
          */
         @Override
-        public void onFailure(Throwable throwable) {
+        public void onFailure(@Nonnull Throwable throwable) {
             int retryCount = jobEntry.decrementRetryCountAndGet();
             jobsRetriesForFailure.mark();
 
@@ -326,7 +327,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
                     executeTask(worker);
                 }, waitTime, TimeUnit.MILLISECONDS)), new FutureCallback<Object>() {
                     @Override
-                    public void onFailure(Throwable throwable) {
+                    public void onFailure(@Nonnull Throwable throwable) {
                         LOG.error("Retry of job failed; rolling back or clearing job: {}", jobEntry, throwable);
                         rollbackOrClear(jobEntry);
                     }

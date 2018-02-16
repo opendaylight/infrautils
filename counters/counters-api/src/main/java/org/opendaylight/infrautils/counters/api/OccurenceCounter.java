@@ -15,6 +15,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
+import javax.annotation.Nonnull;
 
 /**
  * CounterGroup.
@@ -207,7 +208,7 @@ public class OccurenceCounter implements Comparable<OccurenceCounter> {
     }
 
     @Override
-    public int compareTo(OccurenceCounter occurenceCounter) {
+    public int compareTo(@Nonnull OccurenceCounter occurenceCounter) {
         int groupCompare = group.compareTo(occurenceCounter.group);
         if (groupCompare != 0) {
             return groupCompare;

@@ -10,6 +10,7 @@ package org.opendaylight.infrautils.caches.baseimpl;
 import com.google.common.collect.ImmutableMap;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.Objects;
+import javax.annotation.Nonnull;
 import org.opendaylight.infrautils.caches.BadCacheFunctionRuntimeException;
 import org.opendaylight.infrautils.caches.CacheManager;
 import org.opendaylight.infrautils.caches.CheckedCache;
@@ -58,14 +59,14 @@ public final class DelegatingNullSafeCheckedCache<K, V, E extends Exception> imp
     }
 
     @Override
-    public void put(K key, V value) {
+    public void put(@Nonnull K key, @Nonnull V value) {
         Objects.requireNonNull(key, "key");
         Objects.requireNonNull(value, "value");
         delegate.put(key, value);
     }
 
     @Override
-    public void evict(K key) {
+    public void evict(@Nonnull K key) {
         Objects.requireNonNull(key, "null key (not supported)");
         delegate.evict(key);
     }

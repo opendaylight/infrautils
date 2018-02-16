@@ -20,11 +20,14 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
+import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
 
 /**
  * Executable service wrapper allowing callers to await completion.
  */
 @SuppressFBWarnings("JLM_JSR166_UTILCONCURRENT_MONITORENTER")
+@ParametersAreNonnullByDefault
 public class AwaitableExecutorService extends ForwardingExecutorService {
     private final ExecutorService delegate;
     private final AtomicLong pendingJobs = new AtomicLong(0);
@@ -45,31 +48,31 @@ public class AwaitableExecutorService extends ForwardingExecutorService {
     }
 
     @Override
-    public <T> Future<T> submit(Callable<T> task) {
+    public @Nonnull <T> Future<T> submit(Callable<T> task) {
         pendingJobs.incrementAndGet();
         return delegate.submit(wrapCallable(task));
     }
 
     @Override
-    public <T> Future<T> submit(Runnable task, T result) {
+    public @Nonnull <T> Future<T> submit(Runnable task, T result) {
         pendingJobs.incrementAndGet();
         return delegate.submit(wrapRunnable(task), result);
     }
 
     @Override
-    public Future<?> submit(Runnable task) {
+    public @Nonnull Future<?> submit(Runnable task) {
         pendingJobs.incrementAndGet();
         return delegate.submit(wrapRunnable(task));
     }
 
     @Override
-    public <T> List<Future<T>> invokeAll(Collection<? extends Callable<T>> tasks) throws InterruptedException {
+    public @Nonnull <T> List<Future<T>> invokeAll(Collection<? extends Callable<T>> tasks) throws InterruptedException {
         pendingJobs.addAndGet(tasks.size());
         return delegate.invokeAll(tasks.stream().map(this::wrapCallable).collect(Collectors.toList()));
     }
 
     @Override
-    public <T> List<Future<T>> invokeAll(Collection<? extends Callable<T>> tasks, long timeout, TimeUnit unit)
+    public @Nonnull <T> List<Future<T>> invokeAll(Collection<? extends Callable<T>> tasks, long timeout, TimeUnit unit)
             throws InterruptedException {
         pendingJobs.addAndGet(tasks.size());
         return delegate.invokeAll(tasks.stream().map(this::wrapCallable).collect(Collectors.toList()), timeout,
@@ -77,13 +80,14 @@ public class AwaitableExecutorService extends ForwardingExecutorService {
     }
 
     @Override
-    public <T> T invokeAny(Collection<? extends Callable<T>> tasks) throws InterruptedException, ExecutionException {
+    public @Nonnull <T> T invokeAny(Collection<? extends Callable<T>> tasks)
+            throws InterruptedException, ExecutionException {
         pendingJobs.addAndGet(tasks.size());
         return delegate.invokeAny(tasks.stream().map(this::wrapCallable).collect(Collectors.toList()));
     }
 
     @Override
-    public <T> T invokeAny(Collection<? extends Callable<T>> tasks, long timeout, TimeUnit unit)
+    public @Nonnull <T> T invokeAny(Collection<? extends Callable<T>> tasks, long timeout, TimeUnit unit)
             throws InterruptedException, ExecutionException, TimeoutException {
         pendingJobs.addAndGet(tasks.size());
         return delegate.invokeAny(tasks.stream().map(this::wrapCallable).collect(Collectors.toList()), timeout,

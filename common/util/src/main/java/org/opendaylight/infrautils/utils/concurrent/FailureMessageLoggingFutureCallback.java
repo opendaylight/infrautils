@@ -8,6 +8,7 @@
 package org.opendaylight.infrautils.utils.concurrent;
 
 import com.google.common.base.Preconditions;
+import javax.annotation.Nonnull;
 import org.slf4j.Logger;
 
 /**
@@ -25,7 +26,7 @@ final class FailureMessageLoggingFutureCallback<V> extends FailureLoggingFutureC
     }
 
     @Override
-    public void onFailure(Throwable throwable) {
+    public void onFailure(@Nonnull Throwable throwable) {
         if (throwable instanceof java.util.concurrent.CancellationException) {
             // CancellationException are (typically) no cause for alarm, and debug instead of error level is enough
             // as these can happen during shutdown when we interrupt running threads, and should not pollute logs.

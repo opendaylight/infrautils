@@ -31,8 +31,8 @@ class JobEntry {
             AtomicIntegerFieldUpdater.newUpdater(JobEntry.class, "retryCount");
     private volatile @Nullable List<ListenableFuture<Void>> futures;
 
-    JobEntry(String key, Callable<List<ListenableFuture<Void>>> mainWorker, @Nullable RollbackCallable rollbackWorker,
-            int maxRetries) {
+    JobEntry(String key, @Nullable Callable<List<ListenableFuture<Void>>> mainWorker,
+            @Nullable RollbackCallable rollbackWorker, int maxRetries) {
         this.key = key;
         this.mainWorker = mainWorker;
         this.rollbackWorker = rollbackWorker;
@@ -87,7 +87,7 @@ class JobEntry {
         }
     }
 
-    public void setFutures(List<ListenableFuture<Void>> futures) {
+    public void setFutures(@Nullable List<ListenableFuture<Void>> futures) {
         this.futures = futures;
     }
 

@@ -9,6 +9,7 @@ package org.opendaylight.infrautils.caches.noop.internal;
 
 import com.google.common.collect.ImmutableMap;
 import java.util.Objects;
+import javax.annotation.Nonnull;
 import org.opendaylight.infrautils.caches.CacheManager;
 import org.opendaylight.infrautils.caches.CheckedCache;
 import org.opendaylight.infrautils.caches.CheckedCacheConfig;
@@ -42,16 +43,14 @@ final class CheckedNoopCache<K, V, E extends Exception> implements CheckedCache<
     }
 
     @Override
-    public void put(K key, V value) {
+    public void put(@Nonnull K key, @Nonnull V value) {
         Objects.requireNonNull(key, "key");
         Objects.requireNonNull(value, "value");
         // Ignore!
     }
 
     @Override
-    public void evict(K key) {
-        return;
-    }
+    public void evict(K key) { }
 
     @Override
     public CacheManager getManager() {

@@ -14,6 +14,7 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.util.concurrent.UncheckedExecutionException;
 import java.util.concurrent.ExecutionException;
 import java.util.function.Function;
+import javax.annotation.Nonnull;
 import org.opendaylight.infrautils.caches.BadCacheFunctionRuntimeException;
 import org.opendaylight.infrautils.caches.Cache;
 import org.opendaylight.infrautils.caches.CacheConfig;
@@ -34,7 +35,7 @@ final class CacheGuavaAdapter<K, V> extends GuavaBaseCacheAdapter<K, V> implemen
     @Override
     // Suppress CS because propagating getCause() is what we want
     @SuppressWarnings("checkstyle:AvoidHidingCauseException")
-    public V get(K key) {
+    public @Nonnull V get(@Nonnull K key) {
         try {
             return guavaCache().getUnchecked(key);
         } catch (UncheckedExecutionException e) {
@@ -48,7 +49,7 @@ final class CacheGuavaAdapter<K, V> extends GuavaBaseCacheAdapter<K, V> implemen
     @Override
     // Suppress CS because propagating getCause() is what we want
     @SuppressWarnings("checkstyle:AvoidHidingCauseException")
-    public ImmutableMap<K, V> get(Iterable<? extends K> keys) {
+    public @Nonnull ImmutableMap<K, V> get(@Nonnull Iterable<? extends K> keys) {
         try {
             return guavaCache().getAll(keys);
         } catch (UncheckedExecutionException e) {

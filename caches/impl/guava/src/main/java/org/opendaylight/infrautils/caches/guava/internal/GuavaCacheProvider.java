@@ -12,6 +12,7 @@ import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import java.util.Map;
 import java.util.Objects;
+import javax.annotation.Nonnull;
 import javax.inject.Inject;
 import org.opendaylight.infrautils.caches.BaseCacheConfig;
 import org.opendaylight.infrautils.caches.Cache;
@@ -43,12 +44,12 @@ public class GuavaCacheProvider extends AbstractProvider {
             new CacheGuavaAdapter<>(cacheConfig, initialPolicy, policy ->
                 newCacheBuilder(cacheConfig, policy).build(new CacheLoader<K, V>() {
                     @Override
-                    public V load(K key) throws Exception {
+                    public V load(@Nonnull K key) {
                         return cacheConfig.cacheFunction().get(key);
                     }
 
                     @Override
-                    public Map<K, V> loadAll(Iterable<? extends K> keys) throws Exception {
+                    public Map<K, V> loadAll(Iterable<? extends K> keys) {
                         return cacheConfig.cacheFunction().get(keys);
                     }
                 })));
@@ -62,7 +63,7 @@ public class GuavaCacheProvider extends AbstractProvider {
             new CheckedCacheGuavaAdapter<>(cacheConfig, initialPolicy, policy ->
                 newCacheBuilder(cacheConfig, policy).build(new CacheLoader<K, V>() {
                     @Override
-                    public V load(K key) throws Exception {
+                    public V load(@Nonnull K key) throws Exception {
                         return cacheConfig.cacheFunction().get(key);
                     }
 

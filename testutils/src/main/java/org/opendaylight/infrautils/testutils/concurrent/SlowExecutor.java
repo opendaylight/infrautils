@@ -12,6 +12,7 @@ import static java.util.concurrent.TimeUnit.MILLISECONDS;
 import com.google.common.util.concurrent.Uninterruptibles;
 import java.util.Random;
 import java.util.concurrent.Executor;
+import javax.annotation.Nonnull;
 
 /**
  * An {@link Executor} that is intentionally slow.
@@ -29,7 +30,7 @@ public class SlowExecutor implements Executor {
     }
 
     @Override
-    public void execute(Runnable command) {
+    public void execute(@Nonnull Runnable command) {
         delegate.execute(() -> {
             Uninterruptibles.sleepUninterruptibly(random(30, 100), MILLISECONDS);
             command.run();

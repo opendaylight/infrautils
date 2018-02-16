@@ -9,6 +9,7 @@ package org.opendaylight.infrautils.utils.concurrent;
 
 import com.google.common.base.Preconditions;
 import com.google.common.util.concurrent.FutureCallback;
+import javax.annotation.Nonnull;
 import org.slf4j.Logger;
 
 /**
@@ -26,7 +27,7 @@ abstract class FailureLoggingFutureCallbackBase<V> implements FutureCallback<V> 
     }
 
     @Override
-    public abstract void onFailure(Throwable throwable);
+    public abstract void onFailure(@Nonnull Throwable throwable);
 
     @Override
     public final void onSuccess(V result) {

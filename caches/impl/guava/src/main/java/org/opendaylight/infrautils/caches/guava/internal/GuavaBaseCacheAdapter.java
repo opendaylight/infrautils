@@ -10,6 +10,7 @@ package org.opendaylight.infrautils.caches.guava.internal;
 import com.google.common.cache.LoadingCache;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Function;
+import javax.annotation.Nonnull;
 import org.opendaylight.infrautils.caches.BaseCache;
 import org.opendaylight.infrautils.caches.BaseCacheConfig;
 import org.opendaylight.infrautils.caches.CacheManager;
@@ -55,7 +56,7 @@ abstract class GuavaBaseCacheAdapter<K, V> implements BaseCache<K, V>, CacheMana
     }
 
     @Override
-    public void put(K key, V value) {
+    public void put(@Nonnull K key, @Nonnull V value) {
         guavaCache().put(key, value);
     }
 

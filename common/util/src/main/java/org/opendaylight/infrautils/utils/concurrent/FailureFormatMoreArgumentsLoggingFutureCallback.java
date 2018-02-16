@@ -9,6 +9,7 @@ package org.opendaylight.infrautils.utils.concurrent;
 
 import com.google.common.base.Preconditions;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+import javax.annotation.Nonnull;
 import org.slf4j.Logger;
 
 /**
@@ -30,7 +31,7 @@ final class FailureFormatMoreArgumentsLoggingFutureCallback<V> extends FailureLo
 
     @Override
     @SuppressFBWarnings({"SLF4J_FORMAT_SHOULD_BE_CONST", "SLF4J_UNKNOWN_ARRAY"})
-    public void onFailure(Throwable throwable) {
+    public void onFailure(@Nonnull Throwable throwable) {
         Object[] argumentsIncludingThrowable = new Object[arguments.length + 1];
         System.arraycopy(arguments, 0, argumentsIncludingThrowable, 0, arguments.length);
         argumentsIncludingThrowable[arguments.length] = throwable;
