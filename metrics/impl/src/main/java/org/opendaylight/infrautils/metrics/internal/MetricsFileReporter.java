@@ -126,7 +126,7 @@ public class MetricsFileReporter extends ScheduledReporter {
         } catch (IOException e) {
             LOG.error("Failed to report counters to files", e);
         }
-        counters.entrySet().forEach(entry -> oldCounters.put(entry.getKey(), entry.getValue().getCount()));
+        counters.forEach((key, value) -> oldCounters.put(key, value.getCount()));
     }
 
     private static void printSampling(PrintWriter pw, Sampling sampling) {
