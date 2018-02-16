@@ -51,13 +51,13 @@ public abstract class AbstractCacheProviderTest {
     void init() {
         firstUncheckedCache = cacheProvider.newCache(
                 new CacheConfigBuilder<Integer, String>()
-                    .cacheFunction(i -> Integer.toHexString(i))
+                    .cacheFunction(Integer::toHexString)
                     .anchor(this)
                     .build());
 
         secondUncheckedCache = cacheProvider.newCache(
             new CacheConfigBuilder<Double, BigDecimal>()
-                .cacheFunction(d -> BigDecimal.valueOf(d))
+                .cacheFunction(BigDecimal::valueOf)
                 .anchor(this)
                 .build());
     }

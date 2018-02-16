@@ -53,7 +53,7 @@ public interface CacheFunction<K, V> {
      * Typically never overridden.
      */
     default CacheFunction<K, V> from(Function<K, V> function) {
-        return key -> function.apply(key);
+        return function::apply;
     }
 
 }

@@ -23,7 +23,7 @@ public class CacheConfigTest {
     @Test
     public void testBuildSimplestConfig() {
         CacheConfig<Integer, String> config = new CacheConfigBuilder<Integer, String>()
-                .cacheFunction(i -> Integer.toHexString(i))
+                .cacheFunction(Integer::toHexString)
                 .anchor(this)
                 // id() & description() are optional!
                 .build();
@@ -41,7 +41,7 @@ public class CacheConfigTest {
     @Test
     public void testBuildConfigWithID() {
         new CacheConfigBuilder<Integer, String>()
-                .cacheFunction(i -> Integer.toHexString(i))
+                .cacheFunction(Integer::toHexString)
                 .anchor(this)
                 .id("first.cache")
                 .build();
@@ -50,7 +50,7 @@ public class CacheConfigTest {
     @Test
     public void testBuildConfigWithUpperCaseID() {
         new CacheConfigBuilder<Integer, String>()
-                .cacheFunction(i -> Integer.toHexString(i))
+                .cacheFunction(Integer::toHexString)
                 .anchor(this)
                 .id("first.Cache")
                 .build();
@@ -59,7 +59,7 @@ public class CacheConfigTest {
     @Test(expected = IllegalArgumentException.class)
     public void testBuildConfigWithIDWithDashInsteadOfDot() {
         new CacheConfigBuilder<Integer, String>()
-                .cacheFunction(i -> Integer.toHexString(i))
+                .cacheFunction(Integer::toHexString)
                 .anchor(this)
                 .id("first-cache")
                 .build();
@@ -68,7 +68,7 @@ public class CacheConfigTest {
     @Test(expected = IllegalArgumentException.class)
     public void testBuildConfigWithTooLongNameWithSpaces() {
         new CacheConfigBuilder<Integer, String>()
-                .cacheFunction(i -> Integer.toHexString(i))
+                .cacheFunction(Integer::toHexString)
                 .anchor(this)
                 .id("this really is a description rather than a name")
                 .build();
@@ -77,7 +77,7 @@ public class CacheConfigTest {
     @Test
     public void testBuildConfigWithNameAndDescription() {
         new CacheConfigBuilder<Integer, String>()
-                .cacheFunction(i -> Integer.toHexString(i))
+                .cacheFunction(Integer::toHexString)
                 .anchor(this)
                 .id("another.cache")
                 .description("Great cache; really great, it's HUGE. #FakeNews")
@@ -87,7 +87,7 @@ public class CacheConfigTest {
     @Test
     public void testToString() {
         CacheConfig<Integer, String> config = new CacheConfigBuilder<Integer, String>()
-            .cacheFunction(i -> Integer.toHexString(i))
+            .cacheFunction(Integer::toHexString)
             .anchor(this)
             .build();
         // Make sure implementation has a custom toString(), not Object's default
