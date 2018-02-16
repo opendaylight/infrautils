@@ -33,6 +33,6 @@ public enum SystemState {
     // TODO this is not implemented, yet; but could be, once we have Robert's hooks into Karaf's shutdown available
     // STOPPING,
 
-    FAILURE
+    FAILURE,
 
 }

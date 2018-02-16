@@ -49,7 +49,8 @@ public class SampleCountersMain {
     enum SampleCounters {
         INITIAL_COUNTER,
         LOW_FREQUENCY_EVENT,
-        HIGH_FREQUENCY_EVENT;
+        HIGH_FREQUENCY_EVENT,
+        ;
 
         private final OccurenceCounter counter;
 
