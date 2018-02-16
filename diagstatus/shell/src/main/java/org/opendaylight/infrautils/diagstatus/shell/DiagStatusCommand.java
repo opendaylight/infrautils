@@ -35,7 +35,7 @@ public class DiagStatusCommand implements org.apache.karaf.shell.commands.Action
     @SuppressWarnings("checkstyle:IllegalCatch")
     public Object execute(CommandSession session) throws Exception {
         StringBuilder strBuilder = new StringBuilder();
-        strBuilder.append("Timestamp: " + new java.util.Date().toString() + "\n");
+        strBuilder.append("Timestamp: ").append(new java.util.Date().toString()).append("\n");
 
         if (null != nip) {
             strBuilder.append(getNodeSpecificStatus(nip));
@@ -62,18 +62,16 @@ public class DiagStatusCommand implements org.apache.karaf.shell.commands.Action
     }
 
     public static String getLocalStatusSummary(String localIPAddress) {
-        StringBuilder strBuilder = new StringBuilder();
-        strBuilder.append("Node IP Address: " + localIPAddress + "\n");
-        strBuilder.append(MBeanUtils.invokeMBeanFunction(MBeanUtils.JMX_OBJECT_NAME,
-                MBeanUtils.JMX_SVCSTATUS_OPERATION_DETAILED));
-        return strBuilder.toString();
+        return "Node IP Address: " + localIPAddress + "\n"
+                + MBeanUtils.invokeMBeanFunction(MBeanUtils.JMX_OBJECT_NAME,
+                MBeanUtils.JMX_SVCSTATUS_OPERATION_DETAILED);
     }
 
     public static String getRemoteStatusSummary(String ipAddress) throws Exception {
         String remoteJMXOperationResult;
         StringBuilder strBuilder = new StringBuilder();
         remoteJMXOperationResult = MBeanUtils.invokeRemoteJMXOperation(ipAddress, MBeanUtils.JMX_OBJECT_NAME);
-        strBuilder.append("Node IP Address: " + ipAddress + "\n");
+        strBuilder.append("Node IP Address: ").append(ipAddress).append("\n");
         strBuilder.append(remoteJMXOperationResult);
         return strBuilder.toString();
     }

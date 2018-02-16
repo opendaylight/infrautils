@@ -66,8 +66,7 @@ public final class MBeanUtils {
     }
 
     private static String constructJmxUrl(String host, int port) {
-        return new StringBuilder().append(JMX_URL_PREFIX).append(host).append(JMX_URL_SEPARATOR).append(port)
-              .append(JMX_URL_SUFFIX).toString();
+        return JMX_URL_PREFIX + host + JMX_URL_SEPARATOR + port + JMX_URL_SUFFIX;
     }
 
     public static Pair<JMXConnectorServer,Registry> startRMIConnectorServer(MBeanServer mbeanServer, String selfAddress)
