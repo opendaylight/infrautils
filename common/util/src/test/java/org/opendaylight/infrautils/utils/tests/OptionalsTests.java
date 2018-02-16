@@ -23,7 +23,7 @@ public class OptionalsTests {
 
     @Test
     public void testIfPresentWithoutException() {
-        Optionals.ifPresent(Optional.<String>empty(), s -> s.length());
+        Optionals.ifPresent(Optional.<String>empty(), String::length);
     }
 
     @Test
