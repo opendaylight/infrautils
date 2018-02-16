@@ -53,12 +53,7 @@ public class CountersGroup implements Serializable {
     }
 
     public CountersGroup put(String groupName, String counterName, UnsignedLong counterValue) {
-        Map<String, UnsignedLong> group = groups.get(groupName);
-        if (group == null) {
-            group = new HashMap<>();
-            groups.put(groupName, group);
-        }
-        group.put(counterName, counterValue);
+        groups.computeIfAbsent(groupName, k -> new HashMap<>()).put(counterName, counterValue);
         return this;
     }
 
