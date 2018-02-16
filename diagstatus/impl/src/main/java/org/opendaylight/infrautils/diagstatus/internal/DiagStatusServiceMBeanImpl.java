@@ -71,14 +71,13 @@ public class DiagStatusServiceMBeanImpl extends StandardMBean implements DiagSta
 
     @Override
     public void onSystemBootReady() {
-        Optional<String> host = ClusterMemberInfoProvider.getSelfAddress();
-        if (host.isPresent()) {
+        ClusterMemberInfoProvider.getSelfAddress().ifPresent(host -> {
             try {
-                jmxConnector = MBeanUtils.startRMIConnectorServer(mbeanServer, host.get());
+                jmxConnector = MBeanUtils.startRMIConnectorServer(mbeanServer, host);
             } catch (IOException e) {
-                LOG.error("unable to start jmx connector for host {}", host.get());
+                LOG.error("unable to start jmx connector for host {}", host);
             }
-        }
+        });
     }
 
     @PreDestroy
