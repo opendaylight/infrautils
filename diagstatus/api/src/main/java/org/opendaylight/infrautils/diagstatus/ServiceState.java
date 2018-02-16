@@ -20,5 +20,5 @@ public enum ServiceState {
     OPERATIONAL,    // This state is used only by the monitored services for reactive and proactive reporting.
     SUSPECTED,      // This state is used only by the monitor implementation and not by monitored services.
     RECOVERED,      // This state is used only by the monitor implementation and not by monitored services.
-    ERROR;          // This state is used only by the monitored services for reactive and proactive reporting.
+    ERROR,          // This state is used only by the monitored services for reactive and proactive reporting.
 }
