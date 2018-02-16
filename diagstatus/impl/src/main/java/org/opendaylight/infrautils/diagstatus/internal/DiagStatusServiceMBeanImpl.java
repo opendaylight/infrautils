@@ -167,17 +167,21 @@ public class DiagStatusServiceMBeanImpl extends StandardMBean implements DiagSta
             writer.beginArray(); //[
             for (ServiceDescriptor status : diagStatusService.getAllServiceDescriptors()) {
                 writer.beginObject(); // {
-                if (formatType.equals(DEBUG_OUTPUT_FORMAT)) {
-                    writer.name("serviceName").value(status.getModuleServiceName());
-                    writer.name("lastReportedStatus").value(status.getServiceState().name());
-                    writer.name("effectiveStatus").value(status.getServiceState().name());
-                    writer.name("reportedStatusDes").value(status.getStatusDesc());
-                    writer.name("statusTimestamp").value(status.getTimestamp().toString());
-                } else if (formatType.equals(VERBOSE_OUTPUT_FORMAT)) {
-                    writer.name("serviceName").value(status.getModuleServiceName());
-                    writer.name("effectiveStatus").value(status.getServiceState().name());
-                } else {
-                    writer.name("statusBrief").value(acquireServiceStatusBrief());
+                switch (formatType) {
+                    case DEBUG_OUTPUT_FORMAT:
+                        writer.name("serviceName").value(status.getModuleServiceName());
+                        writer.name("lastReportedStatus").value(status.getServiceState().name());
+                        writer.name("effectiveStatus").value(status.getServiceState().name());
+                        writer.name("reportedStatusDes").value(status.getStatusDesc());
+                        writer.name("statusTimestamp").value(status.getTimestamp().toString());
+                        break;
+                    case VERBOSE_OUTPUT_FORMAT:
+                        writer.name("serviceName").value(status.getModuleServiceName());
+                        writer.name("effectiveStatus").value(status.getServiceState().name());
+                        break;
+                    default:
+                        writer.name("statusBrief").value(acquireServiceStatusBrief());
+                        break;
                 }
                 writer.endObject();
             }
