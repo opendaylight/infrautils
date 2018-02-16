@@ -46,15 +46,12 @@ public final class Configuration {
 
     public void updateProperties(Map<String, String> properties) {
         LOG.info("updateProperties({})", properties);
-        doIfIntPropertyIsPresent(properties, "threadsWatcherIntervalMS", newThreadsWatcherIntervalMS ->
-            setThreadsWatcherIntervalMS(newThreadsWatcherIntervalMS));
-        doIfIntPropertyIsPresent(properties, "maxThreads", newMaxThreads -> setMaxThreads(newMaxThreads));
-        doIfIntPropertyIsPresent(properties, "fileReporterIntervalSecs", newFileReporterIntervalSecs ->
-                setFileReporterIntervalSecs(newFileReporterIntervalSecs));
-        doIfIntPropertyIsPresent(properties, "maxThreadsMaxLogIntervalSecs", newMaxThreadsMaxLogIntervalSecs ->
-                setMaxThreadsMaxLogIntervalSecs(newMaxThreadsMaxLogIntervalSecs));
-        doIfIntPropertyIsPresent(properties, "deadlockedThreadsMaxLogIntervalSecs", newInterval ->
-            setDeadlockedThreadsMaxLogIntervalSecs(newInterval));
+        doIfIntPropertyIsPresent(properties, "threadsWatcherIntervalMS", this::setThreadsWatcherIntervalMS);
+        doIfIntPropertyIsPresent(properties, "maxThreads", this::setMaxThreads);
+        doIfIntPropertyIsPresent(properties, "fileReporterIntervalSecs", this::setFileReporterIntervalSecs);
+        doIfIntPropertyIsPresent(properties, "maxThreadsMaxLogIntervalSecs", this::setMaxThreadsMaxLogIntervalSecs);
+        doIfIntPropertyIsPresent(properties, "deadlockedThreadsMaxLogIntervalSecs",
+                this::setDeadlockedThreadsMaxLogIntervalSecs);
 
         metricProvider.updateConfiguration(this);
     }

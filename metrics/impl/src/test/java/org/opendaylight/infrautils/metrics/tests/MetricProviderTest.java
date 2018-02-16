@@ -166,9 +166,9 @@ public class MetricProviderTest {
     public void testUseClosedMeter() {
         Meter meter1 = metrics.newMeter(this, "test.meter1");
         meter1.close();
-        assertThrows(IllegalStateException.class, () -> meter1.mark());
+        assertThrows(IllegalStateException.class, meter1::mark);
         // Closing an already closed metric throws an IllegalStateException
-        assertThrows(IllegalStateException.class, () -> meter1.close());
+        assertThrows(IllegalStateException.class, meter1::close);
     }
 
     @Test
@@ -246,26 +246,22 @@ public class MetricProviderTest {
 
     @Test
     public void testTimeCheckedCallableNOK() {
-        assertThrows(FileNotFoundException.class, () -> {
-            metrics.newTimer(this, "test.timer").time(() -> {
-                throw new FileNotFoundException();
-            });
-        });
+        assertThrows(FileNotFoundException.class, () -> metrics.newTimer(this, "test.timer").time(() -> {
+            throw new FileNotFoundException();
+        }));
     }
 
     @Test
     public void testTimeCallableNOK() {
-        assertThrows(ArithmeticException.class, () -> {
-            metrics.newTimer(this, "test.timer").time(() -> {
-                throw new ArithmeticException();
-            });
-        });
+        assertThrows(ArithmeticException.class, () -> metrics.newTimer(this, "test.timer").time(() -> {
+            throw new ArithmeticException();
+        }));
     }
 
     @Test
     public void testTimeCheckedRunnableNOK() {
-        assertThrows(FileNotFoundException.class, () -> {
-            metrics.newTimer(this, "test.timer").time(new CheckedRunnable<FileNotFoundException>() {
+        assertThrows(FileNotFoundException.class,
+            () -> metrics.newTimer(this, "test.timer").time(new CheckedRunnable<FileNotFoundException>() {
                 @Override
                 public void run() throws FileNotFoundException {
                     throw new FileNotFoundException();
@@ -275,32 +271,30 @@ public class MetricProviderTest {
                 // because if it is a lambda, then it will invoked the variant of time() which takes a
                 // CheckedCallable instead of the CheckedRunnable one we want to test here.
                 @SuppressWarnings("unused")
-                private void foo() { }
-            });
-        });
+                private void foo() {
+                }
+            }));
     }
 
     @Test
     public void testTimeRunnableNOK() {
-        assertThrows(ArithmeticException.class, () -> {
-            metrics.newTimer(this, "test.timer").time(new CheckedRunnable<FileNotFoundException>() {
+        assertThrows(ArithmeticException.class,
+            () -> metrics.newTimer(this, "test.timer").time(new CheckedRunnable<FileNotFoundException>() {
                 @Override
-                public void run() throws FileNotFoundException {
+                public void run() {
                     throw new ArithmeticException();
                 }
 
                 @SuppressWarnings("unused")
-                private void foo() { }
-            });
-        });
+                private void foo() {
+                }
+            }));
     }
 
     @Test
     public void testDupeMeterID() {
         metrics.newMeter(this, "test.meter1");
-        assertThrows(IllegalArgumentException.class, () -> {
-            metrics.newMeter(this, "test.meter1");
-        });
+        assertThrows(IllegalArgumentException.class, () -> metrics.newMeter(this, "test.meter1"));
     }
 
     @Test
