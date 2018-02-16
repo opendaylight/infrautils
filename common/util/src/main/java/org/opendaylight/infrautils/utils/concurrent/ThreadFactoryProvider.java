@@ -58,7 +58,7 @@ public abstract class ThreadFactoryProvider {
         guavaBuilder.setNameFormat(namePrefix() + "-%d");
         guavaBuilder.setUncaughtExceptionHandler(LoggingThreadUncaughtExceptionHandler.toLogger(logger()));
         guavaBuilder.setDaemon(daemon());
-        priority().ifPresent(priority -> guavaBuilder.setPriority(priority));
+        priority().ifPresent(guavaBuilder::setPriority);
         logger().info("ThreadFactory created: {}", namePrefix());
         return guavaBuilder.build();
     }

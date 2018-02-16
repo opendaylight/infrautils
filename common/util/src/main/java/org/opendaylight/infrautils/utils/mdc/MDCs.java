@@ -80,7 +80,7 @@ public final class MDCs {
      * {@link MDC#remove(String)}'d (even if there was an exception).
      */
     public static void putRunRemove(Map<String, String> keysValues, Runnable runnable) {
-        keysValues.forEach((key, val) -> MDCs.put(key, val));
+        keysValues.forEach(MDCs::put);
         try {
             runnable.run();
         } finally {

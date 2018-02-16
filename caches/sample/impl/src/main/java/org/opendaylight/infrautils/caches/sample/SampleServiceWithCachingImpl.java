@@ -37,7 +37,7 @@ public class SampleServiceWithCachingImpl implements SampleService {
         hellosCache = cacheProvider.newCache(
                 new CacheConfigBuilder<String, String>()
                     .anchor(this)
-                    .cacheFunction(key -> sayHelloThatIsExpensive(key))
+                    .cacheFunction(SampleServiceWithCachingImpl::sayHelloThatIsExpensive)
                     .id("hellos") // optional
                     .description("world's very first ODL infrautils cache!") // optional
                     .build(),

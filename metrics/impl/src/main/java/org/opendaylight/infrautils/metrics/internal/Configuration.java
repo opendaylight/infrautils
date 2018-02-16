@@ -44,12 +44,9 @@ public final class Configuration {
 
     public void updateProperties(Map<String, String> properties) {
         LOG.info("updateProperties({})", properties);
-        doIfIntPropertyIsPresent(properties, "threadsWatcherIntervalMS", newThreadsWatcherIntervalMS ->
-            setThreadsWatcherIntervalMS(newThreadsWatcherIntervalMS));
-        doIfIntPropertyIsPresent(properties, "maxThreads", newMaxThreads ->
-            setThreadsWatcherIntervalMS(newMaxThreads));
-        doIfIntPropertyIsPresent(properties, "fileReporterIntervalSecs", newFileReporterIntervalSecs ->
-                setFileReporterIntervalSecs(newFileReporterIntervalSecs));
+        doIfIntPropertyIsPresent(properties, "threadsWatcherIntervalMS", this::setThreadsWatcherIntervalMS);
+        doIfIntPropertyIsPresent(properties, "maxThreads", this::setThreadsWatcherIntervalMS);
+        doIfIntPropertyIsPresent(properties, "fileReporterIntervalSecs", this::setFileReporterIntervalSecs);
         metricProvider.updateConfiguration(this);
     }
 
