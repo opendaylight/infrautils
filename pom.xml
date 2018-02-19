@@ -43,6 +43,7 @@
         <module>ready</module>
         <module>diagstatus</module>
         <module>metrics</module>
+        <module>web</module>
     </modules>
 
     <profiles>
