@@ -13,6 +13,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.MethodRule;
 import org.opendaylight.infrautils.diagstatus.DiagStatusService;
+import org.opendaylight.infrautils.diagstatus.DiagStatusServiceMBean;
 import org.opendaylight.infrautils.diagstatus.ServiceDescriptor;
 import org.opendaylight.infrautils.diagstatus.ServiceState;
 import org.opendaylight.infrautils.inject.guice.testutils.GuiceRule;
@@ -32,6 +33,8 @@ public class DiagStatusTest {
 
     @Inject
     DiagStatusService diagStatusService;
+    @Inject
+    DiagStatusServiceMBean diagStatusServiceMBean;
 
     @Test
     public void testDiagStatus() {
@@ -39,15 +42,21 @@ public class DiagStatusTest {
         diagStatusService.register(testService1);
         // Verify if "testService" got registered with STARTING state.
         ServiceDescriptor serviceDescriptor1 = diagStatusService.getServiceDescriptor(testService1);
-        Assert.assertEquals(serviceDescriptor1.getServiceState(), ServiceState.STARTING);
+        Assert.assertEquals(ServiceState.STARTING, serviceDescriptor1.getServiceState());
 
         // Verify if "testService" status is updated as OPERATIONAL.
         ServiceDescriptor reportStatus = new ServiceDescriptor(testService1, ServiceState.OPERATIONAL,
                 "service is UP");
         diagStatusService.report(reportStatus);
         ServiceDescriptor serviceDescriptor2 = diagStatusService.getServiceDescriptor(testService1);
-        Assert.assertEquals(serviceDescriptor2.getServiceState(), ServiceState.OPERATIONAL);
+        Assert.assertEquals(ServiceState.OPERATIONAL, serviceDescriptor2.getServiceState());
 
-        // TODO add JXM based Junits to see if the service state is getting retrieved properly.
+        // Verify if "testService" status is updated as UNREGISTERED.
+        diagStatusService.report(new ServiceDescriptor(testService1, ServiceState.UNREGISTERED,
+                "service is Unregistered"));
+
+        //JXM based Junits to see if the service state is getting retrieved properly.
+        Assert.assertEquals(ServiceState.UNREGISTERED.name(),
+               diagStatusServiceMBean.acquireServiceStatusMap().get(testService1));
     }
 }
