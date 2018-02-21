@@ -144,10 +144,10 @@ public class DiagStatusServiceMBeanImpl extends StandardMBean implements DiagSta
         Builder<String, String> mapBuilder = ImmutableMap.builder();
         for (ServiceDescriptor status : diagStatusService.getAllServiceDescriptors()) {
             ServiceState state = status.getServiceState();
-            if (state == null || state.equals(ServiceState.ERROR) || state.equals(ServiceState.UNREGISTERED)) {
-                mapBuilder.put(status.getModuleServiceName(), "ERROR");
+            if (state == null) {
+                mapBuilder.put(status.getModuleServiceName(), ServiceState.UNREGISTERED.name());
             } else {
-                mapBuilder.put(status.getModuleServiceName(), "OPERATIONAL");
+                mapBuilder.put(status.getModuleServiceName(), state.name());
             }
         }
         return mapBuilder.build();

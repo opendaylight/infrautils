@@ -13,8 +13,10 @@ import java.util.Collections;
 import java.util.List;
 
 import org.opendaylight.infrautils.diagstatus.DiagStatusService;
+import org.opendaylight.infrautils.diagstatus.DiagStatusServiceMBean;
 import org.opendaylight.infrautils.diagstatus.ServiceStatusProvider;
 import org.opendaylight.infrautils.diagstatus.internal.DiagStatusServiceImpl;
+import org.opendaylight.infrautils.diagstatus.internal.DiagStatusServiceMBeanImpl;
 import org.opendaylight.infrautils.inject.guice.testutils.AbstractGuiceJsr250Module;
 import org.opendaylight.infrautils.ready.SystemReadyListener;
 import org.opendaylight.infrautils.ready.SystemReadyMonitor;
@@ -44,6 +46,6 @@ public class DiagStatusTestModule extends AbstractGuiceJsr250Module {
                 return SystemState.ACTIVE;
             }
         });
-        // not currently needed, maybe later: bind(DiagStatusServiceMBean.class).to(DiagStatusServiceMBeanImpl.class);
+        bind(DiagStatusServiceMBean.class).to(DiagStatusServiceMBeanImpl.class);
     }
 }

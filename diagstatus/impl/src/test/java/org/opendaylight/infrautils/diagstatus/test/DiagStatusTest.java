@@ -13,6 +13,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.MethodRule;
 import org.opendaylight.infrautils.diagstatus.DiagStatusService;
+import org.opendaylight.infrautils.diagstatus.DiagStatusServiceMBean;
 import org.opendaylight.infrautils.diagstatus.ServiceDescriptor;
 import org.opendaylight.infrautils.diagstatus.ServiceState;
 import org.opendaylight.infrautils.inject.guice.testutils.GuiceRule;
@@ -32,6 +33,8 @@ public class DiagStatusTest {
 
     @Inject
     DiagStatusService diagStatusService;
+    @Inject
+    DiagStatusServiceMBean diagStatusServiceMBean;
 
     @Test
     public void testDiagStatus() {
@@ -48,6 +51,13 @@ public class DiagStatusTest {
         ServiceDescriptor serviceDescriptor2 = diagStatusService.getServiceDescriptor(testService1);
         Assert.assertEquals(serviceDescriptor2.getServiceState(), ServiceState.OPERATIONAL);
 
-        // TODO add JXM based Junits to see if the service state is getting retrieved properly.
+        // Verify if "testService" status is updated as UNREGISTERED.
+        reportStatus = new ServiceDescriptor(testService1, ServiceState.UNREGISTERED,
+                "service is Unregistered");
+        diagStatusService.report(reportStatus);
+
+        //JXM based Junits to see if the service state is getting retrieved properly.
+       Assert.assertEquals(ServiceState.UNREGISTERED.name(),
+               diagStatusServiceMBean.acquireServiceStatusMap().get(testService1));
     }
 }
