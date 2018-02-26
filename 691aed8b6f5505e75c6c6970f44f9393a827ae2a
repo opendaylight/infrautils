@@ -22,6 +22,30 @@
       "revId": "691aed8b6f5505e75c6c6970f44f9393a827ae2a",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5dc790cf_e863fecd",
+        "filename": "web/api/src/main/java/org/opendaylight/infrautils/web/FilterDetails.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-02-26T10:23:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b1672089_e666a063",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 21
+      },
+      "revId": "691aed8b6f5505e75c6c6970f44f9393a827ae2a",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
