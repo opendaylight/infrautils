@@ -111,7 +111,7 @@
                 <arg>-Xep:BooleanParameter:OFF</arg>
                 <arg>-Xep:ReturnMissingNullable:ERROR</arg>
                 <arg>-Xep:InconsistentOverloads:ERROR</arg>
-                <arg>-Xep:ConstructorLeaksThis:OFF</arg><!-- TODO <arg>-Xep:ConstructorLeaksThis:ERROR</arg> after https://github.com/google/error-prone/pull/789 for https://github.com/google/error-prone/issues/655, and maybe also https://github.com/google/error-prone/issues/809? -->
+                <arg>-Xep:ConstructorLeaksThis:ERROR</arg>
                 <arg>-Xep:MethodCanBeStatic:ERROR</arg>
                 <arg>-Xep:ThrowsUncheckedException:OFF</arg>
                 <!-- TODO <arg>-Xep:TestExceptionChecker:ERROR</arg> once all @Test with expected use org.opendaylight.infrautils.testutils.Asserts.assertThrows() instead -->
@@ -156,7 +156,7 @@
                 <groupId>com.google.errorprone</groupId>
                 <artifactId>error_prone_core</artifactId>
                 <!-- Keep this version in line with the one of error_prone_annotations above -->
-                <version>2.2.0</version>
+                <version>2.2.1-SNAPSHOT</version>
               </dependency>
             </dependencies>
           </plugin>
