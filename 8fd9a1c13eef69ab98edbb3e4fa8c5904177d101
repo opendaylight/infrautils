@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a64a72e_fffc38d2",
+        "filename": "metrics/impl-prometheus/src/test/java/org/opendaylight/infrautils/metrics/prometheus/test/PrometheusMetricProviderImplTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-02-27T09:00:33Z",
+      "side": 1,
+      "message": "Copyright 2018",
+      "revId": "8fd9a1c13eef69ab98edbb3e4fa8c5904177d101",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
