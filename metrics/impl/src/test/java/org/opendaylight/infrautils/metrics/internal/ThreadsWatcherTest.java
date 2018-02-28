@@ -7,7 +7,10 @@
  */
 package org.opendaylight.infrautils.metrics.internal;
 
+import static com.google.common.truth.Truth.assertThat;
+
 import java.time.Duration;
+import java.time.Instant;
 import org.junit.Test;
 
 public class ThreadsWatcherTest {
@@ -18,5 +21,16 @@ public class ThreadsWatcherTest {
         threadsWatcher.start();
         threadsWatcher.logAllThreads();
         threadsWatcher.close();
+    }
+
+    @Test
+    public void testIsConsidered() {
+        Instant now = Instant.now();
+        ThreadsWatcher tw = new ThreadsWatcher(100, Duration.ofNanos(1));
+
+        assertThat(tw.isConsidered(null, now, Duration.ofMinutes(1))).isTrue();
+        assertThat(tw.isConsidered(now, now, Duration.ofMinutes(1))).isFalse();
+        assertThat(tw.isConsidered(now, now.plusSeconds(30), Duration.ofMinutes(1))).isFalse();
+        assertThat(tw.isConsidered(now, now.plusSeconds(60), Duration.ofMinutes(1))).isTrue();
     }
 }

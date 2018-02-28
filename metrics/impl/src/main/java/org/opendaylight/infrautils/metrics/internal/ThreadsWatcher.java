@@ -19,6 +19,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.time.Duration;
+import java.time.Instant;
 import java.util.Set;
 import java.util.concurrent.ScheduledExecutorService;
 import org.slf4j.Logger;
@@ -37,12 +38,20 @@ class ThreadsWatcher implements Runnable {
     private final ScheduledExecutorService scheduledExecutor;
     private final ThreadDeadlockDetector threadDeadlockDetector = new ThreadDeadlockDetector();
     private final ThreadDump threadDump = new ThreadDump(getThreadMXBean());
+
     private final Duration interval;
+    private final Duration maxDeadlockLog;
+    private final Duration maxMaxThreadsLog;
+    private Instant lastDeadlockLog;
+    private Instant lastMaxThreadsLog;
 
     ThreadsWatcher(int maxThreads, Duration interval) {
         this.maxThreads = maxThreads;
         this.interval = interval;
-        scheduledExecutor = newSingleThreadScheduledExecutor("infrautils.metrics.ThreadsWatcher", LOG);
+        // TODO make configurable!
+        this.maxDeadlockLog = Duration.ofMinutes(1);
+        this.maxMaxThreadsLog = Duration.ofMinutes(1);
+        this.scheduledExecutor = newSingleThreadScheduledExecutor("infrautils.metrics.ThreadsWatcher", LOG);
     }
 
     void start() {
@@ -71,15 +80,26 @@ class ThreadsWatcher implements Runnable {
             for (String deadlockedThreadStackTrace : deadlockedThreadsStackTrace) {
                 LOG.error("Deadlocked thread stack trace: {}", deadlockedThreadStackTrace);
             }
-            logAllThreads();
+            if (isConsidered(lastDeadlockLog, Instant.now(), maxDeadlockLog)) {
+                logAllThreads();
+                lastDeadlockLog = Instant.now();
+            }
 
         } else if (currentNumberOfThreads >= maxThreads) {
             LOG.warn("Oh nose - there are now {} threads, more than maximum threshold {}! "
                     + "(totalStarted: {}, peak: {}, daemons: {})",
                     currentNumberOfThreads, maxThreads, getThreadMXBean().getTotalStartedThreadCount(),
                     getThreadMXBean().getPeakThreadCount(), getThreadMXBean().getDaemonThreadCount());
-            logAllThreads();
+            if (isConsidered(lastMaxThreadsLog, Instant.now(), maxMaxThreadsLog)) {
+                logAllThreads();
+                lastMaxThreadsLog = Instant.now();
+            }
         }
+    }
+
+    @VisibleForTesting
+    boolean isConsidered(Instant lastOccurence, Instant now, Duration maxFrequency) {
+        return lastOccurence == null || Duration.between(lastOccurence, now).compareTo(maxFrequency) >= 0;
     }
 
     @VisibleForTesting
