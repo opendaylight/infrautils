@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8eb4e3ee_090f00c2",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/ThreadsWatcher.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-02-28T16:19:34Z",
+      "side": 1,
+      "message": "I should\u0027ve mentioned this in the previous patch - these should really be volatile.",
+      "revId": "2d0c79c83799e0449cb6a2cbdf2ae308124b0468",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
