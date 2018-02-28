@@ -7,12 +7,15 @@
  */
 package org.opendaylight.infrautils.ready.internal;
 
+import static org.apache.karaf.bundle.core.BundleState.Active;
 import static org.opendaylight.infrautils.ready.SystemState.ACTIVE;
 import static org.opendaylight.infrautils.ready.SystemState.BOOTING;
 import static org.opendaylight.infrautils.ready.SystemState.FAILURE;
 
 import com.google.errorprone.annotations.Var;
+import java.util.Map;
 import java.util.Queue;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
@@ -27,11 +30,13 @@ import javax.management.MBeanRegistrationException;
 import javax.management.MalformedObjectNameException;
 
 import org.apache.karaf.bundle.core.BundleService;
+import org.apache.karaf.bundle.core.BundleState;
 import org.opendaylight.infrautils.ready.SystemReadyListener;
 import org.opendaylight.infrautils.ready.SystemReadyMonitor;
 import org.opendaylight.infrautils.ready.SystemState;
 import org.opendaylight.infrautils.utils.concurrent.ThreadFactoryProvider;
 import org.opendaylight.infrautils.utils.management.AbstractMXBean;
+import org.opendaylight.odlparent.bundlestest.lib.BundleSymbolicNameWithVersion;
 import org.opendaylight.odlparent.bundlestest.lib.SystemStateFailureException;
 import org.opendaylight.odlparent.bundlestest.lib.TestBundleDiag;
 import org.ops4j.pax.cdi.api.OsgiService;
@@ -52,10 +57,12 @@ public class SystemReadyImpl extends AbstractMXBean implements SystemReadyMonito
 
     private static final Logger LOG = LoggerFactory.getLogger(SystemReadyImpl.class);
 
-    private final Queue<SystemReadyListener> listeners = new ConcurrentLinkedQueue<>();
-    private final AtomicReference<SystemState> currentSystemState = new AtomicReference<>(BOOTING);
     private static final String JMX_OBJECT_NAME = "SystemState";
     private static final String MBEAN_TYPE = "ready";
+
+    private final Queue<SystemReadyListener> listeners = new ConcurrentLinkedQueue<>();
+    private final AtomicReference<SystemState> currentSystemState = new AtomicReference<>(BOOTING);
+    private final Map<BundleSymbolicNameWithVersion, BundleState> currentBundleStates = new ConcurrentHashMap<>();
 
     private final ThreadFactory threadFactory = ThreadFactoryProvider.builder()
                                                     .namePrefix("SystemReadyService")
@@ -88,11 +95,13 @@ public class SystemReadyImpl extends AbstractMXBean implements SystemReadyMonito
     public void run() {
         try {
             // 5 minutes really ought to be enough for the whole circus to completely boot up?!
-            testBundleDiag.checkBundleDiagInfos(5, TimeUnit.MINUTES, (timeInfo, bundleDiagInfos) ->
+            testBundleDiag.checkBundleDiagInfos(5, TimeUnit.MINUTES, (timeInfo, bundleDiagInfos) -> {
                 LOG.info("checkBundleDiagInfos: Elapsed time {}s, remaining time {}s, {}",
                     timeInfo.getElapsedTimeInMS() / 1000, timeInfo.getRemainingTimeInMS() / 1000,
                     // INFRAUTILS-17: getSummaryText() instead getFullDiagnosticText() because ppl found log confusing
-                    bundleDiagInfos.getSummaryText()));
+                    bundleDiagInfos.getSummaryText());
+                notifyBundleStateChangeListeners(bundleDiagInfos.getBundlesStateMap());
+            });
             currentSystemState.set(ACTIVE);
             LOG.info("System ready; AKA: Aye captain, all warp coils are now operating at peak efficiency! [M.]");
 
@@ -118,6 +127,20 @@ public class SystemReadyImpl extends AbstractMXBean implements SystemReadyMonito
             // and now we do re-throw it!
             throw throwable;
         }
+    }
+
+    private void notifyBundleStateChangeListeners(Map<BundleSymbolicNameWithVersion, BundleState> latestBundlesState) {
+        latestBundlesState.forEach((bundle, latestBundleState) -> {
+            BundleState previousBundleState = currentBundleStates.put(bundle, latestBundleState);
+            if (previousBundleState == null || !previousBundleState.equals(latestBundleState)) {
+                if (latestBundleState.equals(Active)) {
+                    @Var SystemReadyListener listener;
+                    while ((listener = listeners.poll()) != null) {
+                        listener.onBundleActive(bundle.getSymbolicName(), bundle.getVersion());
+                    }
+                }
+            }
+        });
     }
 
     @Override
