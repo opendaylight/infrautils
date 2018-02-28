@@ -17,16 +17,16 @@ public class ThreadsWatcherTest {
 
     @Test
     public void testLogAllThreads() {
-        ThreadsWatcher threadsWatcher = new ThreadsWatcher(100, Duration.ofNanos(1));
-        threadsWatcher.start();
-        threadsWatcher.logAllThreads();
-        threadsWatcher.close();
+        ThreadsWatcher tw = new ThreadsWatcher(100, Duration.ofNanos(1), Duration.ofMinutes(1), Duration.ofMinutes(1));
+        tw.start();
+        tw.logAllThreads();
+        tw.close();
     }
 
     @Test
     public void testIsConsidered() {
         Instant now = Instant.now();
-        ThreadsWatcher tw = new ThreadsWatcher(100, Duration.ofNanos(1));
+        ThreadsWatcher tw = new ThreadsWatcher(100, Duration.ofNanos(1), Duration.ofMinutes(1), Duration.ofMinutes(1));
 
         assertThat(tw.isConsidered(null, now, Duration.ofMinutes(1))).isTrue();
         assertThat(tw.isConsidered(now, now, Duration.ofMinutes(1))).isFalse();
