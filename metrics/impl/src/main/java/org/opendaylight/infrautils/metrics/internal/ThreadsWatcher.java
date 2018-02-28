@@ -42,15 +42,16 @@ class ThreadsWatcher implements Runnable {
     private final Duration interval;
     private final Duration maxDeadlockLog;
     private final Duration maxMaxThreadsLog;
-    private Instant lastDeadlockLog;
-    private Instant lastMaxThreadsLog;
 
-    ThreadsWatcher(int maxThreads, Duration interval) {
+    private volatile Instant lastDeadlockLog;
+    private volatile Instant lastMaxThreadsLog;
+
+    ThreadsWatcher(int maxThreads, Duration interval,
+            Duration maxThreadsMaxLogInterval, Duration deadlockedThreadsMaxLogInterval) {
         this.maxThreads = maxThreads;
         this.interval = interval;
-        // TODO make configurable!
-        this.maxDeadlockLog = Duration.ofMinutes(1);
-        this.maxMaxThreadsLog = Duration.ofMinutes(1);
+        this.maxDeadlockLog = deadlockedThreadsMaxLogInterval;
+        this.maxMaxThreadsLog = maxThreadsMaxLogInterval;
         this.scheduledExecutor = newSingleThreadScheduledExecutor("infrautils.metrics.ThreadsWatcher", LOG);
     }
 
@@ -69,6 +70,14 @@ class ThreadsWatcher implements Runnable {
 
     public Duration getInterval() {
         return interval;
+    }
+
+    public Duration getMaxThreadsMaxLogInterval() {
+        return maxMaxThreadsLog;
+    }
+
+    public Duration getDeadlockedThreadsMaxLogInterval() {
+        return maxDeadlockLog;
     }
 
     @Override
@@ -119,4 +128,5 @@ class ThreadsWatcher implements Runnable {
             LOG.warn("Thread Dump:\n{}", lines);
         }
     }
+
 }

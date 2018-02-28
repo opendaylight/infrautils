@@ -32,6 +32,8 @@ public final class Configuration {
     private int threadsWatcherIntervalMS = 500;
     private int maxThreads = 1000;
     private int fileReporterIntervalSecs = 0;
+    private int maxThreadsMaxLogIntervalSecs = 60;
+    private int deadlockedThreadsMaxLogIntervalSecs = 60;
 
     public Configuration(MetricProviderImpl metricProvider, Map<String, String> initialProperties) {
         this(metricProvider);
@@ -50,6 +52,11 @@ public final class Configuration {
             setThreadsWatcherIntervalMS(newMaxThreads));
         doIfIntPropertyIsPresent(properties, "fileReporterIntervalSecs", newFileReporterIntervalSecs ->
                 setFileReporterIntervalSecs(newFileReporterIntervalSecs));
+        doIfIntPropertyIsPresent(properties, "maxThreadsMaxLogIntervalSecs", newMaxThreadsMaxLogIntervalSecs ->
+                setMaxThreadsMaxLogIntervalSecs(maxThreadsMaxLogIntervalSecs));
+        doIfIntPropertyIsPresent(properties, "deadlockedThreadsMaxLogIntervalSecs", newInterval ->
+            setDeadlockedThreadsMaxLogIntervalSecs(newInterval));
+
         metricProvider.updateConfiguration(this);
     }
 
@@ -77,11 +84,29 @@ public final class Configuration {
         return this.maxThreads;
     }
 
+    public void setMaxThreadsMaxLogIntervalSecs(int maxThreadsMaxLogIntervalSecs) {
+        this.maxThreadsMaxLogIntervalSecs = maxThreadsMaxLogIntervalSecs;
+    }
+
+    public int getMaxThreadsMaxLogIntervalSecs() {
+        return maxThreadsMaxLogIntervalSecs;
+    }
+
+    public void setDeadlockedThreadsMaxLogIntervalSecs(int deadlockedThreadsMaxLogIntervalSecs) {
+        this.deadlockedThreadsMaxLogIntervalSecs = deadlockedThreadsMaxLogIntervalSecs;
+    }
+
+    public int getDeadlockedThreadsMaxLogIntervalSecs() {
+        return deadlockedThreadsMaxLogIntervalSecs;
+    }
+
     @Override
     public String toString() {
         return MoreObjects.toStringHelper(this)
                 .add("threadsWatcherIntervalMS", threadsWatcherIntervalMS)
                 .add("maxThreads", maxThreads)
+                .add("maxThreadsMaxLogIntervalSecs", maxThreadsMaxLogIntervalSecs)
+                .add("deadlockedThreadsMaxLogIntervalSecs", deadlockedThreadsMaxLogIntervalSecs)
                 .add("fileReporterIntervalSecs", fileReporterIntervalSecs)
                 .toString();
     }
