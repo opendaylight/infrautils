@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5759f05f_df852c40",
+        "filename": "ready/api/src/main/java/org/opendaylight/infrautils/ready/SystemReadyListener.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-02-28T13:59:27Z",
+      "side": 1,
+      "message": "how do we indicate that I want notification only for a specific bundle symbolicName? Or do I have to get this notification and then check if the symbolicName is what I have in my META-INF ?",
+      "revId": "a67556ccb30cc2571903557a9113bec06a1a40cf",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
