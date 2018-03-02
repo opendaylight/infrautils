@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "02aaf563_15b6ccd6",
+        "filename": "metrics/sample/impl/src/test/java/org/opendaylight/infrautils/metrics/sample/MetricsPrometheusExampleMain.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 5278
+      },
+      "writtenOn": "2018-03-02T06:32:37Z",
+      "side": 1,
+      "message": "Just out of curiosity: how Prometheus pulls these metrics ? Is it being run in separate new OSGi bundle ? \nDoes infrautils provide facility for defining alert rules for applications ?",
+      "revId": "27ca79b4f0acadc324e71fee2d1fdf3cb8d769a8",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
