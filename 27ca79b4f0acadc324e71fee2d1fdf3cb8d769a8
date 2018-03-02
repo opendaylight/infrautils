@@ -16,6 +16,24 @@
       "revId": "27ca79b4f0acadc324e71fee2d1fdf3cb8d769a8",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cb0f9fef_00f0d42a",
+        "filename": "metrics/sample/impl/src/test/java/org/opendaylight/infrautils/metrics/sample/MetricsPrometheusExampleMain.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-03-02T11:17:24Z",
+      "side": 1,
+      "message": "thanks for your interest; does https://wiki.opendaylight.org/view/Infrastructure_Utilities:Main#Implementation_based_on_Prometheus_.28Cloud_Native_Computing_Foundation.2C_Linux_Foundation.29 help to clarify? ;-)\n\nThis class may be missleading you, this is just a launcher for and demo of simple standalone metrics example; FYI in a follow-up Gerrit change there will a Karaf feature for this including registration of the Servlet offered by the Prometheus client library.",
+      "parentUuid": "02aaf563_15b6ccd6",
+      "revId": "27ca79b4f0acadc324e71fee2d1fdf3cb8d769a8",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
