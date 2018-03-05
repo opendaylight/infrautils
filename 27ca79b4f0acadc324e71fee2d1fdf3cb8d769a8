@@ -34,6 +34,24 @@
       "revId": "27ca79b4f0acadc324e71fee2d1fdf3cb8d769a8",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cde8f167_4e0b744e",
+        "filename": "metrics/sample/impl/src/test/java/org/opendaylight/infrautils/metrics/sample/MetricsPrometheusExampleMain.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 5278
+      },
+      "writtenOn": "2018-03-05T15:54:22Z",
+      "side": 1,
+      "message": "ah! yes, its better to export ODL metrics with MetricsServlet. who is responsible for defining the alerting rules for each modules ?\nis it being defined by each module owners and given it to  prometheus server administrator ?",
+      "parentUuid": "cb0f9fef_00f0d42a",
+      "revId": "27ca79b4f0acadc324e71fee2d1fdf3cb8d769a8",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
