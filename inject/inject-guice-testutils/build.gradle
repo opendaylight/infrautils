@@ -1,0 +1,8 @@
+
+description = 'ODL :: infrautils :: inject.guice.testutils'
+dependencies {
+    compile group: 'javax.inject', name: 'javax.inject', version:'1'
+    compile group: 'com.mycila.guice.extensions', name: 'mycila-guice-jsr250', version:'4.0.rc1'
+    compile group: 'com.google.inject', name: 'guice', version:'4.1.0'
+  compile project(':parent:inject')
+}

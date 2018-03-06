@@ -1,0 +1,7 @@
+
+description = ''
+dependencies {
+    compile(group: 'com.google.guava', name: 'guava', version:'23.3-jre') {
+exclude(module: 'jsr305')
+    }
+}

@@ -1,0 +1,9 @@
+
+description = ''
+dependencies {
+    compile group: 'javax.inject', name: 'javax.inject', version:'1'
+  compile project(':parent:caches-impl-base')
+    compile(group: 'com.google.guava', name: 'guava', version:'23.3-jre') {
+exclude(module: 'jsr305')
+    }
+}

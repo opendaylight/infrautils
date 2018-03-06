@@ -1,0 +1,8 @@
+
+description = ''
+dependencies {
+  compile project(':parent:metrics-api')
+    compile group: 'javax.inject', name: 'javax.inject', version:'1'
+  testCompile project(':parent:metrics-impl')
+  testCompile project(':parent:inject.guice.testutils')
+}
