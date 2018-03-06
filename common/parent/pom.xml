@@ -64,7 +64,26 @@
         <artifactId>findbugs-maven-plugin</artifactId>
         <configuration>
           <failOnError>true</failOnError>
+          <excludeFilterFile>infrautils-findbugs-exclude.xml</excludeFilterFile>
+          <plugins>
+            <plugin>
+              <!-- This can be removed again when we are on an odlparent including
+                   https://git.opendaylight.org/gerrit/#/c/66449/ (that is *NOT* the same as c/69135, see below) -->
+              <groupId>jp.skypencil.findbugs.slf4j</groupId>
+              <artifactId>bug-pattern</artifactId>
+              <version>1.4.0</version>
+            </plugin>
+          </plugins>
         </configuration>
+        <dependencies>
+          <dependency>
+            <!-- This file is forked from odlparent's findbugs. It can be removed again when we are on an odlparent
+                 with https://git.opendaylight.org/gerrit/#/c/69135/ (which is *NOT* the same as c/66449, see above) -->
+            <groupId>org.opendaylight.infrautils</groupId>
+            <artifactId>findbugs</artifactId>
+            <version>${project.version}</version>
+          </dependency>
+        </dependencies>
       </plugin>
     </plugins>
   </build>
