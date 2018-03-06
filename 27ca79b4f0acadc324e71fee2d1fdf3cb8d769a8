@@ -52,6 +52,24 @@
       "revId": "27ca79b4f0acadc324e71fee2d1fdf3cb8d769a8",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3eb7f1_4cef6a87",
+        "filename": "metrics/sample/impl/src/test/java/org/opendaylight/infrautils/metrics/sample/MetricsPrometheusExampleMain.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-03-06T10:33:31Z",
+      "side": 1,
+      "message": "Yes, that is how I would image this being used.  It\u0027s more of... \"deployment governance\" question how exactly you would handle such a process, I guess. (I won\u0027t see further comments on this now merged Gerrit; can you raise other questions on infrautils-dev mailing list?)",
+      "parentUuid": "cde8f167_4e0b744e",
+      "revId": "27ca79b4f0acadc324e71fee2d1fdf3cb8d769a8",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
