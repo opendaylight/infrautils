@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9c960398_defe9b49",
+        "filename": "common/parent/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-03-06T18:12:17Z",
+      "side": 1,
+      "message": "https://git.opendaylight.org/gerrit/#/c/69153/",
+      "revId": "653f4b77ae347e84c62ecc5e1fb1aa052e50f340",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
