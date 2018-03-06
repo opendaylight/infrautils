@@ -1,0 +1,12 @@
+
+description = ''
+dependencies {
+  compile project(':parent:jobcoordinator-api')
+  compile project(':parent:metrics-api')
+  compile project(':parent:infrautils-util')
+    compile group: 'javax.inject', name: 'javax.inject', version:'1'
+    compile group: 'org.ops4j.pax.cdi', name: 'pax-cdi-api', version:'1.0.0.RC2'
+  testCompile project(':parent:infrautils-testutils')
+    testCompile group: 'org.awaitility', name: 'awaitility', version:'3.0.0'
+  testCompile project(':parent:metrics-impl')
+}

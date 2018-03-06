@@ -1,0 +1,58 @@
+rootProject.name = 'infrautils'
+include ':parent:infrautils-util'
+include ':parent:infrautils-testutils'
+// include ':parent:itestutils'
+// include ':itestutils-parent:itestutils-it'
+include ':parent:jobcoordinator-api'
+include ':parent:jobcoordinator-impl'
+include ':parent:inject'
+include ':parent:inject.guice.testutils'
+include ':parent:caches-api'
+include ':parent:caches-impl-base'
+include ':parent:caches-standard-impl'
+include ':parent:caches-noop-impl'
+include ':parent:caches-guava-impl'
+include ':parent:caches-test'
+include ':parent:caches-cli'
+include ':parent:caches-sample'
+include ':parent:ready-api'
+include ':parent:ready-impl'
+// include ':itestutils-parent:ready-it'
+include ':parent:diagstatus-api'
+include ':parent:diagstatus-impl'
+// include ':itestutils-parent:diagstatus-it'
+include ':parent:diagstatus-shell'
+include ':parent:metrics-api'
+include ':parent:metrics-impl'
+include ':parent:metrics-impl-test'
+include ':parent:metrics-sample'
+// include ':itestutils-parent:metrics-it'
+
+project(':parent:infrautils-util').projectDir = "$rootDir/common/util" as File
+project(':parent:infrautils-testutils').projectDir = "$rootDir/testutils" as File
+// project(':parent:itestutils').projectDir = "$rootDir/itestutils/itestutils" as File
+// project(':itestutils-parent:itestutils-it').projectDir = "$rootDir/itestutils/it" as File
+project(':parent:jobcoordinator-api').projectDir = "$rootDir/jobcoordinator/jobcoordinator-api" as File
+project(':parent:jobcoordinator-impl').projectDir = "$rootDir/jobcoordinator/jobcoordinator-impl" as File
+project(':parent:inject').projectDir = "$rootDir/inject/inject" as File
+project(':parent:inject.guice.testutils').projectDir = "$rootDir/inject/inject-guice-testutils" as File
+project(':parent:caches-api').projectDir = "$rootDir/caches/api" as File
+project(':parent:caches-impl-base').projectDir = "$rootDir/caches/impl/base" as File
+project(':parent:caches-standard-impl').projectDir = "$rootDir/caches/impl/standard" as File
+project(':parent:caches-noop-impl').projectDir = "$rootDir/caches/impl/noop" as File
+project(':parent:caches-guava-impl').projectDir = "$rootDir/caches/impl/guava" as File
+project(':parent:caches-test').projectDir = "$rootDir/caches/test" as File
+project(':parent:caches-cli').projectDir = "$rootDir/caches/cli" as File
+project(':parent:caches-sample').projectDir = "$rootDir/caches/sample/impl" as File
+project(':parent:ready-api').projectDir = "$rootDir/ready/api" as File
+project(':parent:ready-impl').projectDir = "$rootDir/ready/impl" as File
+// project(':itestutils-parent:ready-it').projectDir = "$rootDir/ready/it" as File
+project(':parent:diagstatus-api').projectDir = "$rootDir/diagstatus/api" as File
+project(':parent:diagstatus-impl').projectDir = "$rootDir/diagstatus/impl" as File
+// project(':itestutils-parent:diagstatus-it').projectDir = "$rootDir/diagstatus/it" as File
+project(':parent:diagstatus-shell').projectDir = "$rootDir/diagstatus/shell" as File
+project(':parent:metrics-api').projectDir = "$rootDir/metrics/api" as File
+project(':parent:metrics-impl').projectDir = "$rootDir/metrics/impl" as File
+project(':parent:metrics-impl-test').projectDir = "$rootDir/metrics/impl-test" as File
+project(':parent:metrics-sample').projectDir = "$rootDir/metrics/sample/impl" as File
+// project(':itestutils-parent:metrics-it').projectDir = "$rootDir/metrics/it" as File

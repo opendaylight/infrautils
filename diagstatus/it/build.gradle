@@ -1,0 +1,6 @@
+
+description = 'ODL :: infrautils :: diagstatus-it'
+dependencies {
+  compile project(':parent:diagstatus-api')
+  compile project(':infrautils-features')
+}

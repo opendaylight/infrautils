@@ -1,0 +1,9 @@
+
+description = ''
+dependencies {
+  compile project(':parent:caches-api')
+    compile(group: 'org.apache.karaf.shell', name: 'org.apache.karaf.shell.console', version:'4.1.3') {
+exclude(module: '*')
+    }
+    compileOnly group: 'org.osgi', name: 'org.osgi.core', version:'5.0.0'
+}

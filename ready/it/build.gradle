@@ -1,0 +1,6 @@
+
+description = 'ODL :: infrautils :: ready-it'
+dependencies {
+  compile project(':parent:ready-api')
+  compile project(':infrautils-features')
+}

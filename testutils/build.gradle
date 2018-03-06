@@ -1,0 +1,11 @@
+
+description = 'ODL :: infrautils :: infrautils-testutils'
+dependencies {
+    compile group: 'org.hamcrest', name: 'hamcrest-core', version:'1.3'
+    compile group: 'org.hamcrest', name: 'hamcrest-library', version:'1.3'
+    compile group: 'org.awaitility', name: 'awaitility', version:'3.0.0'
+    compile(group: 'com.google.guava', name: 'guava', version:'23.3-jre') {
+exclude(module: 'jsr305')
+    }
+    compile group: 'org.jhades', name: 'jhades', version:'1.0.4'
+}

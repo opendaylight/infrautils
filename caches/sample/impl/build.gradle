@@ -1,0 +1,16 @@
+
+description = ''
+dependencies {
+  compile project(':parent:caches-api')
+    compile(group: 'org.apache.karaf.shell', name: 'org.apache.karaf.shell.console', version:'4.1.3') {
+exclude(module: '*')
+    }
+    compile group: 'javax.inject', name: 'javax.inject', version:'1'
+    compile(group: 'com.google.guava', name: 'guava', version:'23.3-jre') {
+exclude(module: 'jsr305')
+    }
+  testCompile project(':parent:inject.guice.testutils')
+  testCompile project(':parent:caches-test')
+  testCompile project(':parent:caches-noop-impl')
+    compileOnly group: 'org.osgi', name: 'org.osgi.core', version:'5.0.0'
+}
