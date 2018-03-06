@@ -64,6 +64,21 @@
         <artifactId>findbugs-maven-plugin</artifactId>
         <configuration>
           <failOnError>true</failOnError>
+          <excludeFilterFile>infrautils-findbugs-exclude.xml</excludeFilterFile>
+          <plugins>
+            <plugin>
+              <groupId>jp.skypencil.findbugs.slf4j</groupId>
+              <artifactId>bug-pattern</artifactId>
+              <version>1.4.0</version>
+            </plugin>
+          </plugins>
+          <dependencies>
+            <dependency>
+              <groupId>org.opendaylight.infrautils</groupId>
+              <artifactId>findbugs</artifactId>
+              <version>${infrautils.version}</version>
+            </dependency>
+          </dependencies>
         </configuration>
       </plugin>
     </plugins>

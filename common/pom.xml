@@ -31,6 +31,7 @@
         <module>util</module>
         <module>features</module>
         <module>karaf</module>
+        <module>findbugs</module>
         <module>parent</module>
     </modules>
 
