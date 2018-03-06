@@ -9,6 +9,7 @@ package org.opendaylight.infrautils.testutils;
 
 import com.google.common.base.Strings;
 import com.google.errorprone.annotations.Var;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import javax.annotation.Nullable;
 import org.junit.rules.TestRule;
 import org.junit.runner.Description;
@@ -45,6 +46,9 @@ public class RunUntilFailureClassRule implements TestRule {
         return new RunUntilFailureStatement(statement, description);
     }
 
+    // findbugs-slf4j does not understand that a static final String IS a Constant, so SLF4J_FORMAT_SHOULD_BE_CONST
+    // findbugs-slf4j cannot understand  what we are doing here with a Logger variable instead of class field, so:
+    @SuppressFBWarnings({ "SLF4J_FORMAT_SHOULD_BE_CONST", "SLF4J_LOGGER_SHOULD_BE_PRIVATE" })
     private class RunUntilFailureStatement extends Statement {
 
         final Statement statement;

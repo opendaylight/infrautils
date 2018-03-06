@@ -7,6 +7,7 @@
  */
 package org.opendaylight.infrautils.testutils.internal;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.slf4j.Logger;
 import org.slf4j.Marker;
 import org.slf4j.helpers.SubstituteLogger;
@@ -19,6 +20,8 @@ import org.slf4j.helpers.SubstituteLogger;
  *
  * @author Michael Vorburger.ch
  */
+// findbugs-slf4j cannot understand  what we are doing here, so:
+@SuppressFBWarnings({ "SLF4J_FORMAT_SHOULD_BE_CONST", "SLF4J_UNKNOWN_ARRAY" })
 // package-local not public (for the time being)
 class DelegatingLogger implements Logger {
 

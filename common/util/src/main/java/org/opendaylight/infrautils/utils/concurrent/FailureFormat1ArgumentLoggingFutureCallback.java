@@ -8,6 +8,7 @@
 package org.opendaylight.infrautils.utils.concurrent;
 
 import com.google.common.base.Preconditions;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.slf4j.Logger;
 
 /**
@@ -27,6 +28,7 @@ final class FailureFormat1ArgumentLoggingFutureCallback<V> extends FailureLoggin
     }
 
     @Override
+    @SuppressFBWarnings("SLF4J_FORMAT_SHOULD_BE_CONST")
     public void onFailure(Throwable throwable) {
         getLogger().error(format, arg, throwable);
     }

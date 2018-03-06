@@ -9,6 +9,7 @@ package org.opendaylight.infrautils.testutils;
 
 import com.google.common.base.Strings;
 import com.google.errorprone.annotations.Var;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.junit.rules.TestRule;
 import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
@@ -42,12 +43,16 @@ public class LogRule implements TestRule {
     }
 
     @Override
+    // findbugs-slf4j does not understand that a static final String IS a Constant, so SLF4J_FORMAT_SHOULD_BE_CONST
+    // findbugs-slf4j cannot understand  what we are doing here with a Logger variable instead of class field, so:
+    @SuppressFBWarnings({ "SLF4J_FORMAT_SHOULD_BE_CONST", "SLF4J_LOGGER_SHOULD_BE_PRIVATE" })
     public Statement apply(Statement statement, Description description) {
         Logger testLog = LoggerFactory.getLogger(description.getTestClass());
         return new Statement() {
 
             @Override
             @SuppressWarnings("checkstyle:IllegalCatch")
+            @SuppressFBWarnings("SLF4J_FORMAT_SHOULD_BE_CONST")
             public void evaluate() throws Throwable {
                 testLog.info(MARKER, HEADER);
                 testLog.info(MARKER, "BEGIN @Test {}()", description.getMethodName());
