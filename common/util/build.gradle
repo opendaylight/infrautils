@@ -1,0 +1,10 @@
+
+description = 'ODL :: infrautils :: infrautils-util'
+dependencies {
+    compile(group: 'com.google.guava', name: 'guava', version:'23.3-jre') {
+exclude(module: 'jsr305')
+    }
+    compile group: 'org.apache.commons', name: 'commons-lang3', version:'3.6'
+  testCompile project(':parent:infrautils-testutils')
+    compileOnly group: 'org.immutables', name: 'value', version:'2.5.6'
+}

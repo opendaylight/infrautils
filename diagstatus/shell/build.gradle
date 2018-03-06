@@ -1,0 +1,8 @@
+
+description = ''
+dependencies {
+  compile project(':parent:diagstatus-api')
+    compile(group: 'org.apache.karaf.shell', name: 'org.apache.karaf.shell.console', version:'4.1.3') {
+exclude(module: '*')
+    }
+}

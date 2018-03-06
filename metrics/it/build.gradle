@@ -1,0 +1,6 @@
+
+description = 'ODL :: infrautils :: metrics-it'
+dependencies {
+  compile project(':parent:metrics-api')
+  compile project(':infrautils-features')
+}

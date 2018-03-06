@@ -15,7 +15,7 @@
     <groupId>org.opendaylight.odlparent</groupId>
     <artifactId>bundle-parent</artifactId>
     <version>3.0.2</version>
-    <relativePath />
+    <relativePath/>
   </parent>
 
   <groupId>org.opendaylight.infrautils</groupId>

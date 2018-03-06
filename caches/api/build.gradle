@@ -1,0 +1,9 @@
+
+description = ''
+dependencies {
+  compile project(':parent:infrautils-util')
+    compile(group: 'com.google.guava', name: 'guava', version:'23.3-jre') {
+exclude(module: 'jsr305')
+    }
+    compileOnly group: 'org.immutables', name: 'value', version:'2.5.6'
+}
