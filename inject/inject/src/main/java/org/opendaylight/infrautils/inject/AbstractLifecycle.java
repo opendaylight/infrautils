@@ -75,4 +75,10 @@ public abstract class AbstractLifecycle implements Lifecycle {
         return state.get() == State.STARTED;
     }
 
+    protected void checkIsRunning() {
+        if (!isRunning()) {
+            throw new IllegalStateException("Lifecycled object is already stopped: " + this.toString());
+        }
+    }
+
 }
