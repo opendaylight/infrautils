@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b2a0c647_33e4ee56",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/Configuration.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-03-07T11:31:33Z",
+      "side": 1,
+      "message": "duh!  OK yeah now I see it.. sorry for confusion in Change-Id: I2ee9e2f35f1e5b76132178f0d2bb36f057d0ee36, but it *IS* easier to spot here than intermingled with the mechanical tool based syntax coversions ... also this lets me back patch this fix (but not the clean up)",
+      "revId": "43aed7429efc4616834d3f925dcec3f4641dfe71",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7b3d0a9d_dd11152b",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/Configuration.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-03-07T11:31:33Z",
+      "side": 1,
+      "message": "duh II",
+      "revId": "43aed7429efc4616834d3f925dcec3f4641dfe71",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
