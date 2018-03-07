@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "d483cff3_c62d7b2a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 4540
+      },
+      "writtenOn": "2018-03-07T11:16:02Z",
+      "side": 1,
+      "message": "I think you read the patch too quickly. Anyway, see https://git.opendaylight.org/gerrit/69200",
+      "parentUuid": "8768ca0d_d9382dea",
+      "revId": "47870188eb6dcf76fde56938da13d715ba628b4c",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9e20a6fa_beddf217",
         "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/Configuration.java",
         "patchSetId": 3
@@ -30,6 +48,41 @@
       "writtenOn": "2018-03-07T11:04:47Z",
       "side": 1,
       "message": "nope!",
+      "revId": "47870188eb6dcf76fde56938da13d715ba628b4c",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "619d2e84_3d7b2f25",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/Configuration.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 4540
+      },
+      "writtenOn": "2018-03-07T11:16:02Z",
+      "side": 1,
+      "message": "Well, that’s what your code does...",
+      "parentUuid": "9e20a6fa_beddf217",
+      "revId": "47870188eb6dcf76fde56938da13d715ba628b4c",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f12aa505_7609c7f0",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/Configuration.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 4540
+      },
+      "writtenOn": "2018-03-07T11:16:02Z",
+      "side": 1,
+      "message": "This is the line I was referring to in my commit message.",
       "revId": "47870188eb6dcf76fde56938da13d715ba628b4c",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
