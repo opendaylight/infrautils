@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8768ca0d_d9382dea",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-03-07T11:04:47Z",
+      "side": 1,
+      "message": "how do you mean? I think you\u0027re breaking not fixing it? ;-)  Oh and also if I was a PITA reviewer like others, then I would say that any fixes should definitely be submitted separately from any mechanical tool based syntax coversions... but of course I\u0027m not.. ;-)",
+      "revId": "47870188eb6dcf76fde56938da13d715ba628b4c",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9e20a6fa_beddf217",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/Configuration.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-03-07T11:04:47Z",
+      "side": 1,
+      "message": "nope!",
+      "revId": "47870188eb6dcf76fde56938da13d715ba628b4c",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
