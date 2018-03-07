@@ -48,12 +48,11 @@ public final class Configuration {
         LOG.info("updateProperties({})", properties);
         doIfIntPropertyIsPresent(properties, "threadsWatcherIntervalMS", newThreadsWatcherIntervalMS ->
             setThreadsWatcherIntervalMS(newThreadsWatcherIntervalMS));
-        doIfIntPropertyIsPresent(properties, "maxThreads", newMaxThreads ->
-            setThreadsWatcherIntervalMS(newMaxThreads));
+        doIfIntPropertyIsPresent(properties, "maxThreads", newMaxThreads -> setMaxThreads(newMaxThreads));
         doIfIntPropertyIsPresent(properties, "fileReporterIntervalSecs", newFileReporterIntervalSecs ->
                 setFileReporterIntervalSecs(newFileReporterIntervalSecs));
         doIfIntPropertyIsPresent(properties, "maxThreadsMaxLogIntervalSecs", newMaxThreadsMaxLogIntervalSecs ->
-                setMaxThreadsMaxLogIntervalSecs(maxThreadsMaxLogIntervalSecs));
+                setMaxThreadsMaxLogIntervalSecs(newMaxThreadsMaxLogIntervalSecs));
         doIfIntPropertyIsPresent(properties, "deadlockedThreadsMaxLogIntervalSecs", newInterval ->
             setDeadlockedThreadsMaxLogIntervalSecs(newInterval));
 
