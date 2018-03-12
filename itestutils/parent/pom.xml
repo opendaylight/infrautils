@@ -28,9 +28,11 @@
 
   <dependencies>
     <dependency>
-      <groupId>${project.groupId}</groupId>
+      <groupId>org.opendaylight.infrautils</groupId>
       <artifactId>itestutils</artifactId>
-      <version>${project.version}</version>
+      <!-- Must hard-code both groupId and version and cannot use ${project.groupId} and ${project.version} here,
+           as that would break POM of child projects who have this as parent. -->
+      <version>1.4.0-SNAPSHOT</version>
     </dependency>
   </dependencies>
 
