@@ -8,6 +8,8 @@
 package org.opendaylight.infrautils.caches.noop.internal;
 
 import com.google.common.collect.ImmutableMap;
+import java.util.Collections;
+import java.util.Map;
 import java.util.Objects;
 import org.opendaylight.infrautils.caches.CacheManager;
 import org.opendaylight.infrautils.caches.CheckedCache;
@@ -51,6 +53,11 @@ final class CheckedNoopCache<K, V, E extends Exception> implements CheckedCache<
     @Override
     public void evict(K key) {
         return;
+    }
+
+    @Override
+    public Map<K, V> asMap() {
+        return Collections.emptyMap();
     }
 
     @Override

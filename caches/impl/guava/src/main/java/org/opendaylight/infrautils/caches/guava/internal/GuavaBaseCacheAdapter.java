@@ -8,6 +8,8 @@
 package org.opendaylight.infrautils.caches.guava.internal;
 
 import com.google.common.cache.LoadingCache;
+import java.util.Collections;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Function;
 import org.opendaylight.infrautils.caches.BaseCache;
@@ -57,6 +59,11 @@ abstract class GuavaBaseCacheAdapter<K, V> implements BaseCache<K, V>, CacheMana
     @Override
     public void put(K key, V value) {
         guavaCache().put(key, value);
+    }
+
+    @Override
+    public Map<K, V> asMap() {
+        return Collections.unmodifiableMap(guavaCache().asMap());
     }
 
     @Override

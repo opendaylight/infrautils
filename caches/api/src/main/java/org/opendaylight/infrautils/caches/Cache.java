@@ -76,5 +76,4 @@ public interface Cache<K, V> extends BaseCache<K, V> {
             throws BadCacheFunctionRuntimeException, NullPointerException {
         return get(Arrays.asList(keys));
     }
-
 }
