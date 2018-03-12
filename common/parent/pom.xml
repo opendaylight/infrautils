@@ -162,6 +162,7 @@
                 <arg>-Xep:WaitNotInLoop:ERROR</arg>
                 <arg>-Xep:SwitchDefault:ERROR</arg>
                 <arg>-Xep:ReachabilityFenceUsage:ERROR</arg>
+                <arg>-Xep:BoxedPrimitiveConstructor:ERROR</arg>
               </compilerArgs>
             </configuration>
             <dependencies>
