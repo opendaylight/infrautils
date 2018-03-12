@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "02bbebc5_e77bae34",
+        "filename": "itestutils/itestutils/src/main/java/org/opendaylight/infrautils/itestutils/AbstractIntegrationTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-03-12T22:15:26Z",
+      "side": 1,
+      "message": "Why was this made overridable?",
+      "range": {
+        "startLine": 139,
+        "startChar": 27,
+        "endLine": 139,
+        "endChar": 42
+      },
+      "revId": "58f79f2239354e6c6996aeea7eb3948b64d32bcb",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
