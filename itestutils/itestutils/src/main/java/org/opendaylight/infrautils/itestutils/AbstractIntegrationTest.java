@@ -22,6 +22,7 @@ import org.ops4j.io.FileUtils;
 import org.ops4j.pax.exam.Configuration;
 import org.ops4j.pax.exam.MavenUtils;
 import org.ops4j.pax.exam.Option;
+import org.ops4j.pax.exam.OptionUtils;
 import org.ops4j.pax.exam.ProbeBuilder;
 import org.ops4j.pax.exam.TestProbeBuilder;
 import org.ops4j.pax.exam.junit.PaxExam;
@@ -60,7 +61,7 @@ public abstract class AbstractIntegrationTest {
     private static final String KARAF_DEBUG_PORT = "5005";
 
     @Configuration
-    public Option[] config() {
+    public final Option[] config() {
         // check that the Karaf distribution is not on the classpath:
         try {
             getClass().getClassLoader().loadClass("org.apache.karaf.main.Main");
@@ -74,17 +75,13 @@ public abstract class AbstractIntegrationTest {
         File targetPaxExam = new File("target/paxexam/");
         FileUtils.delete(targetPaxExam);
 
-        // This karafVersion must match the exact minor version of Karaf due to
-        // https://bugs.opendaylight.org/show_bug.cgi?id=8578
-        // (see also https://ops4j1.jira.com/projects/PAXEXAM/issues/PAXEXAM-598)
-        String karafVersion = MavenUtils.getArtifactVersion("org.apache.karaf.features", "standard");
-
+        String karafVersion = getKarafVersion();
         MavenUrlReference karafURL = getKarafURL();
         // TODO https://ops4j1.jira.com/browse/PAXEXAM-813
         // String? karafURL = [url(]"link:classpath:" + karafArtifactId + ".link";
         LOG.info("Karaf v{} used: {}", karafVersion, karafURL.toString());
 
-        return new Option[] {
+        Option[] defaultOptions = new Option[] {
             // We need this, for the moment, because the feature repo is read from the local Maven repo
             // TODO remove this, and make all ITs use a Karaf dist which has the feature already
             //      so there would be no need to access repo; that would lead to better isolation
@@ -122,29 +119,28 @@ public abstract class AbstractIntegrationTest {
                                        // screw up the Console view in Eclipse when running test there... :(
                 .ignoreRemoteShell(),  // remoteShell defaults to true (?), so save time, as not required
 
-            // TODO remove this when wrappedBundle(Truth) below is removed (it's just for that; auto.w.odl-testutils)
-            features(maven("org.apache.karaf.features","standard", karafVersion)
-                        .classifier("features").type("xml"), "wrap"),
-
             // TODO Experiment with not needing this by scanning this call via reflection, find dependencies,
             // and injecting 'em all via a @ProbeBuilder probe.addTest ... that could be cool!
             // or https://ops4j1.jira.com/projects/PAXEXAM/issues/PAXEXAM-543 ?
+            // features(maven("org.apache.karaf.features","standard",
+            //         karafVersion).classifier("features").type("xml"), "wrap"),
             // wrappedBundle(maven("com.google.truth", "truth").versionAsInProject()),
             // TODO Guava is "just" a dependency of Truth.. ideally it should not be loaded like this here
             // because that could hide problems in feature definitions.. we should probably repackage it inside truth?
             // mavenBundle(maven("com.google.guava", "guava").versionAsInProject()),
 
-            // TODO don't specify this here like this, but in pom.xml and read from there (veithen/alta ?)
-            // features(maven("org.opendaylight.infrautils","infrautils-features", "1.3.0-SNAPSHOT")
-            //        .classifier("features").type("xml"), "odl-infrautils-caches-sample"),
-
-            // TODO why does this, intentionally with a bad feature name, not fail the test???
-            // features(maven("org.opendaylight.infrautils","infrautils-features", "1.1.0-SNAPSHOT")
-            //       .classifier("features").type("xml"), "odl-infrautils-caches-sampleXXX")
-
             when(featureRepositoryURL() != null)
                 .useOptions(features(featureRepositoryURL(), featureNames()))
         };
+
+        return OptionUtils.combine(defaultOptions, getAdditionalPaxExamOptions());
+    }
+
+    protected final String getKarafVersion() {
+        // This karafVersion must match the exact minor version of Karaf due to
+        // https://bugs.opendaylight.org/show_bug.cgi?id=8578
+        // (see also https://ops4j1.jira.com/projects/PAXEXAM/issues/PAXEXAM-598)
+        return MavenUtils.getArtifactVersion("org.apache.karaf.features", "standard");
     }
 
     protected MavenUrlReference getKarafURL() {
@@ -160,6 +156,15 @@ public abstract class AbstractIntegrationTest {
     }
 
     protected abstract String featureName();
+
+    /**
+     * Override this method to provide more options to config.
+     *
+     * @return An array of additional config options
+     */
+    protected Option[] getAdditionalPaxExamOptions() {
+        return new Option[0];
+    }
 
     @ProbeBuilder
     public TestProbeBuilder probeConfiguration(TestProbeBuilder probe) {
