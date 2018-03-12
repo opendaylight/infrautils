@@ -9,6 +9,7 @@ package org.opendaylight.infrautils.caches.baseimpl;
 
 import com.google.common.collect.ImmutableMap;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+import java.util.Map;
 import java.util.Objects;
 import org.opendaylight.infrautils.caches.BadCacheFunctionRuntimeException;
 import org.opendaylight.infrautils.caches.Cache;
@@ -71,6 +72,11 @@ public final class DelegatingNullSafeCache<K, V> implements Cache<K, V> {
     }
 
     @Override
+    public Map<K, V> asMap() {
+        return delegate.asMap();
+    }
+
+    @Override
     public CacheManager getManager() {
         return delegate.getManager();
     }
@@ -84,5 +90,4 @@ public final class DelegatingNullSafeCache<K, V> implements Cache<K, V> {
     public String toString() {
         return delegate.toString();
     }
-
 }
