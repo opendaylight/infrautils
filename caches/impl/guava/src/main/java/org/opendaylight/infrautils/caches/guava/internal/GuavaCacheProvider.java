@@ -82,7 +82,12 @@ public class GuavaCacheProvider extends AbstractProvider {
         if (initialPolicy.statsEnabled()) {
             builder.recordStats();
         }
-        builder.maximumSize(initialPolicy.maxEntries());
+
+        long maxEntries = initialPolicy.maxEntries();
+        if (maxEntries != CachePolicy.UNLIMITED_ENTRIES) {
+            builder.maximumSize(maxEntries);
+        }
+
         // TODO @see CachePolicy
         //   * TODO builder.concurrencyLevel(initialPolicy.?.concurrencyLevel);
         //   * TODO builder.initialCapacity(initialPolicy.?.initialCapacity)

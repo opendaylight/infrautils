@@ -20,6 +20,7 @@ import org.immutables.value.Value.Default;
 @Value.Immutable
 @Value.Style(visibility = PRIVATE, strictBuilder = false)
 public interface CachePolicy {
+    long UNLIMITED_ENTRIES = -1;
 
     /**
      * Whether this cache has it statics enabled.
@@ -31,14 +32,17 @@ public interface CachePolicy {
     }
 
     /**
-     * How many entries this cache holds.
-     * The default is an arbitrary value (currently 743).
-     * Users are encourage to set the maximum entries policy suitable
-     * to their actual usage of the cache; either programmatically in code,
-     * or by runtime configuration.
+     * Specifies the maximum number of entries the cache may contain. When this limit is reached, existing entries
+     * are evicted to accomodate new entries.
+     *
+     * <p>
+     * The default is {@link UNLIMITED_ENTRIES}.
+     *
+     * <p>
+     * Users are encourage to set the maximum entries policy suitable to their actual usage of the cache; either
+     * programmatically in code, or by runtime configuration.
      */
     @Default default long maxEntries() {
-        return 743; // arbitrary
+        return UNLIMITED_ENTRIES;
     }
-
 }
