@@ -22,6 +22,30 @@
       "revId": "58f79f2239354e6c6996aeea7eb3948b64d32bcb",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5d396e32_481fb3fe",
+        "filename": "itestutils/itestutils/src/main/java/org/opendaylight/infrautils/itestutils/AbstractIntegrationTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-03-12T23:10:26Z",
+      "side": 1,
+      "message": "erm, it\u0027s NOT overridable because it\u0027s final, but it\u0027s expose so that sub classes users of getAdditionalPaxExamOptions() can use it; see the c/69404 for why... that c/69404 is DRAFT and WIP and still complicated broken though, but illustrates why this is needed.",
+      "parentUuid": "02bbebc5_e77bae34",
+      "range": {
+        "startLine": 139,
+        "startChar": 27,
+        "endLine": 139,
+        "endChar": 42
+      },
+      "revId": "58f79f2239354e6c6996aeea7eb3948b64d32bcb",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
