@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "821bb860_64475ef0",
+        "filename": "caches/api/src/main/java/org/opendaylight/infrautils/caches/BaseCache.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-03-13T03:11:22Z",
+      "side": 1,
+      "message": "\u003e Doc nit picking - how about: \"Returns a *snapshot* view of the\n \u003e entries *currently* stored in this Cace {upper case} as an\n \u003e immutable Map {upper case}.\" and something along the lines of:\n\nI took this sentence from guava cache\u0027s java doc but I can clarify further. \n\n \u003e \"\u003cp\u003eRemember that due to an explicit {@link #evict(Object)}, or\n \u003e implicit eviction due to size limitation, any entry previously\n \u003e loaded via {@link Cache#get(Object)} (or {@link CheckedCache#get(Object)},\n \u003e or explicity {@link #put(Object, Object)} into this Cache, could\n \u003e subseqently already have been removed by an implementation before\n \u003e this is used.\"\n\nThis part doesn\u0027t seem relevant here as all that seems to me to be implied by \"snapshot view\". But I can add it...",
+      "parentUuid": "08c24cdc_1337bd13",
+      "revId": "1ff12bac75e73703cc9e15fa5ed84d9b29d5f86e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f4180346_18098c46",
         "filename": "caches/api/src/main/java/org/opendaylight/infrautils/caches/BaseCache.java",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2018-03-13T01:04:07Z",
       "side": 1,
       "message": "(a) weren\u0027t we going to name this getAllPresent(), like in DataObjectCache\u0027s, rather than asMap(), just for clarity about what this new method is and isn\u0027t?\n\n(b) return an ImmutableMap even in the API, not just to impl, to make it really clear that it cannot be used as a \"back door\" to put entries in?  Just a thought, if you have good reasons not to (save the copy which ImmutableMap does, for performance? but wouldn\u0027t the copy be safer than a Collections.unmodifiableMap() wrap around Guava\u0027s internal ConcurrentHashMap returned by guavaCache().asMap() ?), then I don\u0027t feel super stronlgy, but it would seem better, to me.\n\n(c) unless you feel strongly about it, could we please loose the @Nonnull here?  Even if we agree to disagree on that, for now? ;) It\u0027s the default assumption.  All other methods don\u0027t have it either.",
+      "revId": "1ff12bac75e73703cc9e15fa5ed84d9b29d5f86e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3db99731_88fd783a",
+        "filename": "caches/api/src/main/java/org/opendaylight/infrautils/caches/BaseCache.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-03-13T03:11:22Z",
+      "side": 1,
+      "message": "\u003e (a) weren\u0027t we going to name this getAllPresent(), like in\n \u003e DataObjectCache\u0027s, rather than asMap(), just for clarity about what\n \u003e this new method is and isn\u0027t?\n\nI thought we agreed on asMap as that\u0027s what guava calls it. The semantics of getAllPresent() is relevant for DataObjectCache, ie that it returns what\u0027s in the cache and doesn\u0027t query the DS, but ti doesn\u0027t apply to Cache. Also getAllPresent() returns just the values.\n\n \u003e \n \u003e (b) return an ImmutableMap even in the API, not just to impl, to\n \u003e make it really clear that it cannot be used as a \"back door\" to put\n \u003e entries in?  Just a thought, if you have good reasons not to (save\n \u003e the copy which ImmutableMap does, for performance? but wouldn\u0027t the\n \u003e copy be safer than a Collections.unmodifiableMap() wrap around\n \u003e Guava\u0027s internal ConcurrentHashMap returned by guavaCache().asMap()\n \u003e ?), then I don\u0027t feel super stronlgy, but it would seem better, to\n \u003e me.\n\nI thought about ImmutableMap but was a little wary of the copy. Not sure how often this will be called and how big caches will get.  I don\u0027t think the live nature of the map is an issue, ie if an entry got added/removed  while iterating. That modification could just as easily have occurred a split second before asMap was called. Plus it\u0027s common in our code base to iterate live ConcurrentMaps - DataObjectCache does that right now. \n\n \u003e \n \u003e (c) unless you feel strongly about it, could we please loose the\n \u003e @Nonnull here?  Even if we agree to disagree on that, for now? ;)\n\nWell @Nonnull is used in the other methods in BaseCache and Cache so I was following suit.  I can remove it if you feel strongly enough but then it would be inconsistent with the rest of the API.\n\n \u003e It\u0027s the default assumption.  All other methods don\u0027t have it\n \u003e either.\n\nDefault assumption by whom? Certainly not this code base as evidenced by the number of FB null check violations I\u0027ve fixed and the many, many methods that return null w/o @Nullable. Maybe if we were starting fresh and everyone agreed on default assumptions but we\u0027re way past that.\n\nBut what is wrong with explicit documentation anyway? It\u0027s also documentation for implementors and not just users. Also this API is open source and can be used by anyone downstream who may not be aware of default assumptions imposed by the original devs - same with our successors once we retire from ODL :)",
+      "parentUuid": "f4180346_18098c46",
       "revId": "1ff12bac75e73703cc9e15fa5ed84d9b29d5f86e",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
