@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "08c24cdc_1337bd13",
+        "filename": "caches/api/src/main/java/org/opendaylight/infrautils/caches/BaseCache.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-03-13T01:04:07Z",
+      "side": 1,
+      "message": "Doc nit picking - how about: \"Returns a *snapshot* view of the entries *currently* stored in this Cace {upper case} as an immutable Map {upper case}.\" and something along the lines of: \"\u003cp\u003eRemember that due to an explicit {@link #evict(Object)}, or implicit eviction due to size limitation, any entry previously loaded via {@link Cache#get(Object)} (or {@link CheckedCache#get(Object)}, or explicity {@link #put(Object, Object)} into this Cache, could subseqently already have been removed by an implementation before this is used.\"",
+      "revId": "1ff12bac75e73703cc9e15fa5ed84d9b29d5f86e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f4180346_18098c46",
+        "filename": "caches/api/src/main/java/org/opendaylight/infrautils/caches/BaseCache.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-03-13T01:04:07Z",
+      "side": 1,
+      "message": "(a) weren\u0027t we going to name this getAllPresent(), like in DataObjectCache\u0027s, rather than asMap(), just for clarity about what this new method is and isn\u0027t?\n\n(b) return an ImmutableMap even in the API, not just to impl, to make it really clear that it cannot be used as a \"back door\" to put entries in?  Just a thought, if you have good reasons not to (save the copy which ImmutableMap does, for performance? but wouldn\u0027t the copy be safer than a Collections.unmodifiableMap() wrap around Guava\u0027s internal ConcurrentHashMap returned by guavaCache().asMap() ?), then I don\u0027t feel super stronlgy, but it would seem better, to me.\n\n(c) unless you feel strongly about it, could we please loose the @Nonnull here?  Even if we agree to disagree on that, for now? ;) It\u0027s the default assumption.  All other methods don\u0027t have it either.",
+      "revId": "1ff12bac75e73703cc9e15fa5ed84d9b29d5f86e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
