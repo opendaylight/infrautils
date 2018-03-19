@@ -13,6 +13,7 @@ import org.junit.Test;
 import org.opendaylight.infrautils.metrics.Meter;
 import org.opendaylight.infrautils.metrics.MetricDescriptor;
 import org.opendaylight.infrautils.metrics.MetricProvider;
+import org.opendaylight.infrautils.metrics.prometheus.impl.CollectorRegistrySingleton;
 import org.opendaylight.infrautils.metrics.prometheus.impl.PrometheusMetricProviderImpl;
 
 /**
@@ -26,12 +27,12 @@ public class PrometheusMetricProviderImplTest {
 
     @Test
     public void testNewMetricProvider() {
-        new PrometheusMetricProviderImpl();
+        new PrometheusMetricProviderImpl(new CollectorRegistrySingleton());
     }
 
     @Test
     public void testNewMeter() {
-        MetricProvider metricProvider = new PrometheusMetricProviderImpl();
+        MetricProvider metricProvider = new PrometheusMetricProviderImpl(new CollectorRegistrySingleton());
         Meter meter = metricProvider.newMeter(
                 MetricDescriptor.builder().anchor(this).project("infrautils").module("metrics").id("test").build());
         meter.mark(123);
@@ -41,7 +42,7 @@ public class PrometheusMetricProviderImplTest {
 
     @Test
     public void testNewMeterWith1Label() {
-        MetricProvider metricProvider = new PrometheusMetricProviderImpl();
+        MetricProvider metricProvider = new PrometheusMetricProviderImpl(new CollectorRegistrySingleton());
         Meter meter = metricProvider.newMeter(
                 MetricDescriptor.builder().anchor(this).project("infrautils").module("metrics").id("test").build(),
                 "label1").label("value1");
@@ -52,7 +53,7 @@ public class PrometheusMetricProviderImplTest {
 
     @Test
     public void testGetOverflownMeter() {
-        MetricProvider metricProvider = new PrometheusMetricProviderImpl();
+        MetricProvider metricProvider = new PrometheusMetricProviderImpl(new CollectorRegistrySingleton());
         Meter meter = metricProvider.newMeter(
                 MetricDescriptor.builder().anchor(this).project("infrautils").module("metrics").id("test").build());
         meter.mark(Double.doubleToRawLongBits(Double.MAX_VALUE));

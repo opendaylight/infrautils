@@ -37,6 +37,8 @@
         <module>odl-infrautils-caches-sample</module>
         <module>odl-infrautils-diagstatus</module>
         <module>odl-infrautils-metrics</module>
+        <module>odl-infrautils-metrics-prometheus</module>
+       	<module>odl-infrautils-metrics-sample</module>
     </modules>
 
     <url>${odl.site.url}/${project.groupId}/${stream}/${project.artifactId}/</url>
