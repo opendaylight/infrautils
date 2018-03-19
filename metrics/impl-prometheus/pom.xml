@@ -40,15 +40,28 @@
       <artifactId>simpleclient_hotspot</artifactId>
       <version>0.1.0</version>
     </dependency>
+<!-- TODO integrate with caches/impl/guava/ (or, better, straight go for Caffeine Cache)
+    <dependency>
+      <groupId>io.prometheus</groupId>
+      <artifactId>simpleclient_guava</artifactId>
+      <version>0.1.0</version>
+    </dependency>
+-->
+
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+    </dependency>
     <dependency>
       <groupId>io.prometheus</groupId>
       <artifactId>simpleclient_servlet</artifactId>
       <version>0.1.0</version>
     </dependency>
     <dependency>
-      <groupId>io.prometheus</groupId>
-      <artifactId>simpleclient_guava</artifactId>
-      <version>0.1.0</version>
+      <!-- TODO remove this when we can use the WebServer/WebContext API,
+           instead of directly the raw OSGi HttpService, in OsgiWebInitializer: -->
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.compendium</artifactId>
     </dependency>
 
     <dependency>
