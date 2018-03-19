@@ -7,9 +7,11 @@
  */
 package org.opendaylight.infrautils.metrics.sample;
 
+import io.prometheus.client.CollectorRegistry;
 import io.prometheus.client.exporter.HTTPServer;
 import java.io.IOException;
 import java.net.InetSocketAddress;
+import org.opendaylight.infrautils.metrics.prometheus.impl.CollectorRegistrySingleton;
 import org.opendaylight.infrautils.metrics.prometheus.impl.PrometheusMetricProviderImpl;
 
 /**
@@ -22,12 +24,13 @@ public final class MetricsPrometheusExampleMain {
     private MetricsPrometheusExampleMain() { }
 
     public static void main(String[] args) throws IOException {
-        PrometheusMetricProviderImpl metricProvider = new PrometheusMetricProviderImpl();
+        // see also OsgiWebInitializer
+        CollectorRegistry collectorRegistry = new CollectorRegistrySingleton();
+        PrometheusMetricProviderImpl metricProvider = new PrometheusMetricProviderImpl(collectorRegistry);
         MetricsExample metricsExample = new MetricsExample(metricProvider);
         metricsExample.init();
 
-        HTTPServer server = new HTTPServer(new InetSocketAddress("localhost", 1234),
-                metricProvider.getPrometheusRegistry());
+        HTTPServer server = new HTTPServer(new InetSocketAddress("localhost", 1234), collectorRegistry);
 
         System.in.read();
 

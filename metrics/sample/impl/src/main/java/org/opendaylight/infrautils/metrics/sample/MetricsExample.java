@@ -21,6 +21,7 @@ import org.opendaylight.infrautils.metrics.Meter;
 import org.opendaylight.infrautils.metrics.MetricDescriptor;
 import org.opendaylight.infrautils.metrics.MetricProvider;
 import org.opendaylight.infrautils.utils.concurrent.Executors;
+import org.ops4j.pax.cdi.api.OsgiService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -44,7 +45,7 @@ public class MetricsExample implements Runnable {
     private final Random random = new Random();
 
     @Inject
-    public MetricsExample(MetricProvider metricProvider) {
+    public MetricsExample(@OsgiService MetricProvider metricProvider) {
         meterWithoutLabel = metricProvider.newMeter(MetricDescriptor.builder().anchor(this)
                 .project("infrautils").module("metrics").id("example_meter_without_labels")
                 .description("Example meter metric without any labels").build());

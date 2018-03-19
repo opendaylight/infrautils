@@ -11,12 +11,12 @@ import static com.google.common.collect.ImmutableList.of;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
 
-import com.google.common.annotations.VisibleForTesting;
 import io.prometheus.client.CollectorRegistry;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import javax.annotation.PreDestroy;
+import javax.inject.Inject;
 import javax.inject.Singleton;
 import org.opendaylight.infrautils.metrics.Counter;
 import org.opendaylight.infrautils.metrics.Labeled;
@@ -24,6 +24,7 @@ import org.opendaylight.infrautils.metrics.Meter;
 import org.opendaylight.infrautils.metrics.MetricDescriptor;
 import org.opendaylight.infrautils.metrics.MetricProvider;
 import org.opendaylight.infrautils.metrics.Timer;
+import org.ops4j.pax.cdi.api.OsgiServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,7 +34,7 @@ import org.slf4j.LoggerFactory;
  * @author Michael Vorburger.ch
  */
 @Singleton
-// TODO more thoughts re. how to this vs other impl. @OsgiServiceProvider(classes = MetricProvider.class)
+@OsgiServiceProvider(classes = MetricProvider.class)
 public class PrometheusMetricProviderImpl implements MetricProvider {
 
     private static final Logger LOG = LoggerFactory.getLogger(PrometheusMetricProviderImpl.class);
@@ -43,12 +44,12 @@ public class PrometheusMetricProviderImpl implements MetricProvider {
     // TODO see if we could share this field and more of below with MetricProviderImpl
     private final Map<String, MeterAdapter> meters = new ConcurrentHashMap<>();
 
-    public PrometheusMetricProviderImpl() {
-        // We use new CollectorRegistry instead of CollectorRegistry.defaultRegistry
-        // because defaultRegistry is static, which is a problem for us e.g. in tests.
-        this(new CollectorRegistry(true));
-    }
-
+    /**
+     * Constructor. We force passing an existing CollectorRegistry instead of
+     * CollectorRegistry.defaultRegistry because defaultRegistry is static, which is
+     * a problem for use e.g. in tests.
+     */
+    @Inject
     public PrometheusMetricProviderImpl(CollectorRegistry prometheusRegistry) {
         this.prometheusRegistry = prometheusRegistry;
     }
@@ -56,11 +57,6 @@ public class PrometheusMetricProviderImpl implements MetricProvider {
     @PreDestroy
     public void close() {
         prometheusRegistry.clear();
-    }
-
-    @VisibleForTesting
-    public CollectorRegistry getPrometheusRegistry() {
-        return prometheusRegistry;
     }
 
     private org.opendaylight.infrautils.metrics.Meter newOrExistingMeter(
