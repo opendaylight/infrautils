@@ -42,7 +42,8 @@ public class PrometheusMetricProviderImpl implements MetricProvider {
     private final CollectorRegistry prometheusRegistry;
 
     // TODO see if we could share this field and more of below with MetricProviderImpl
-    private final Map<String, MeterAdapter> meters = new ConcurrentHashMap<>();
+    private final Map<String, MeterNoChildAdapter> meterParents = new ConcurrentHashMap<>();
+    private final Map<List<String>, MeterAdapter> meterChildren = new ConcurrentHashMap<>();
 
     /**
      * Constructor. We force passing an existing CollectorRegistry instead of
@@ -61,25 +62,30 @@ public class PrometheusMetricProviderImpl implements MetricProvider {
 
     private org.opendaylight.infrautils.metrics.Meter newOrExistingMeter(
             MetricDescriptor descriptor, List<String> labelNames, List<String> labelValues) {
-        // TODO see below, don't make this a String but a real (Immutables) class spi.MetricID
-        String fullId = makeID(descriptor, labelNames, labelValues);
-        return meters.computeIfAbsent(fullId, newId -> {
-            LOG.debug("New Meter metric: {}", fullId);
-            return new MeterAdapter(prometheusRegistry, descriptor, labelNames, labelValues);
-        });
-    }
-
-    // TODO Wait, this is stupid.. ;) we don't need a String, just a hash-/equal-able object as key for the Map!
-    private static String makeID(MetricDescriptor descriptor, List<String> labelNames, List<String> labelValues) {
         if (labelNames.size() != labelValues.size()) {
             throw new IllegalArgumentException();
         }
+        // TODO see below, don't make this a String but a real (Immutables) class spi.MetricID
+        String fullId = makeID(descriptor, labelNames);
+        MeterNoChildAdapter parent = meterParents.computeIfAbsent(fullId, newId -> {
+            LOG.debug("New parent Meter metric: {}", fullId);
+            return new MeterNoChildAdapter(prometheusRegistry, descriptor, labelNames);
+        });
+        if (labelValues.isEmpty()) {
+            return parent;
+        } else {
+            return meterChildren.computeIfAbsent(labelValues, newLabelValues ->
+                new MeterAdapter(parent.prometheusCounter, labelValues));
+        }
+    }
+
+    // TODO Wait, this is stupid.. ;) we don't need a String, just a hash-/equal-able object as key for the Map!
+    private static String makeID(MetricDescriptor descriptor, List<String> labelNames) {
+        // This ID here in the Prometheus impl must *NOT* contain the label values
         StringBuilder sb = new StringBuilder(
                 descriptor.project() + "/" + descriptor.module() + "/" + descriptor.id() + "{");
         for (int i = 0; i < labelNames.size(); i++) {
             sb.append(labelNames.get(0));
-            sb.append('=');
-            sb.append(labelValues.get(0));
             sb.append(',');
         }
         sb.append("}");
@@ -94,7 +100,7 @@ public class PrometheusMetricProviderImpl implements MetricProvider {
 
     @Override
     public Meter newMeter(MetricDescriptor descriptor) {
-        return new MeterAdapter(prometheusRegistry, descriptor, emptyList(), emptyList());
+        return newOrExistingMeter(descriptor, emptyList(), emptyList());
     }
 
     @Override

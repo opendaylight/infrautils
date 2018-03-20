@@ -10,6 +10,7 @@ package org.opendaylight.infrautils.metrics.prometheus.test;
 import static com.google.common.truth.Truth.assertThat;
 
 import org.junit.Test;
+import org.opendaylight.infrautils.metrics.Labeled;
 import org.opendaylight.infrautils.metrics.Meter;
 import org.opendaylight.infrautils.metrics.MetricDescriptor;
 import org.opendaylight.infrautils.metrics.MetricProvider;
@@ -41,7 +42,7 @@ public class PrometheusMetricProviderImplTest {
     }
 
     @Test
-    public void testNewMeterWith1Label() {
+    public void testNewMeterWith1FixedLabel() {
         MetricProvider metricProvider = new PrometheusMetricProviderImpl(new CollectorRegistrySingleton());
         Meter meter = metricProvider.newMeter(
                 MetricDescriptor.builder().anchor(this).project("infrautils").module("metrics").id("test").build(),
@@ -49,6 +50,25 @@ public class PrometheusMetricProviderImplTest {
         meter.mark(123);
         assertThat(meter.get()).isEqualTo(123L);
         meter.close();
+    }
+
+    @Test
+    public void testNewMeterWith1DynamicLabel() {
+        MetricProvider metricProvider = new PrometheusMetricProviderImpl(new CollectorRegistrySingleton());
+        Labeled<Meter> meterWithLabel = metricProvider.newMeter(MetricDescriptor.builder().anchor(this)
+                .project("infrautils").module("metrics").id("test_meter1").build(), "jobKey");
+
+        Meter meterA = meterWithLabel.label("ABC");
+        meterA.mark(3);
+        assertThat(meterA.get()).isEqualTo(3);
+
+        Meter meterB = meterWithLabel.label("DEF");
+        meterB.mark(1);
+        assertThat(meterB.get()).isEqualTo(1);
+        assertThat(meterA.get()).isEqualTo(3);
+
+        Meter againMeterA = meterWithLabel.label("ABC");
+        assertThat(againMeterA.get()).isEqualTo(3);
     }
 
     @Test
