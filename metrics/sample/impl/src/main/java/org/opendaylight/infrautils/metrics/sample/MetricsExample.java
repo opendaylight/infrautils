@@ -28,6 +28,13 @@ import org.slf4j.LoggerFactory;
 /**
  * Example illustrating usage of metrics API, and demo.
  *
+ * <p>This can be run either via a simple (standalone) main(),
+ * see MetricsExampleMain and MetricsPrometheusExampleMain,
+ * or in Karaf under OSGi by "<code>feature:install
+ * odl-infrautils-metrics-sample</code>" (in which case you
+ * will need to feature:install an implementation of
+ * MetricProvider, first).
+ *
  * @author Michael Vorburger.ch
  */
 @Singleton
@@ -62,7 +69,7 @@ public class MetricsExample implements Runnable {
         meterWithOneDynamicLabel = metricProvider.newMeter(MetricDescriptor.builder().anchor(this)
                 .project("infrautils").module("metrics").id("example_meter_1_dynlabel")
                 .description("Example meter metric with 1 label and label value set in using code").build(),
-                "port");
+                "jobKey");
     }
 
     @PostConstruct
@@ -86,7 +93,8 @@ public class MetricsExample implements Runnable {
         meterWithOneFixedLabel.mark(random.nextInt(100));
         meterWithTwoFixedLabels.mark(random.nextInt(100));
 
-        meterWithOneDynamicLabel.label(/* port */ "456").mark(random.nextInt(100));
+        meterWithOneDynamicLabel.label(/* jobKey */ "ABC").mark(random.nextInt(100));
+        meterWithOneDynamicLabel.label(/* jobKey */ "DEF").mark(random.nextInt(1000));
 
         // see the MetricsAdvancedExample for how to do meter.port(456).mac("1A:0B:F2:25:1C:68").mark();
     }
