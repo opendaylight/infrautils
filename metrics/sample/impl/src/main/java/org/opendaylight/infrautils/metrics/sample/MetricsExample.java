@@ -39,7 +39,6 @@ public class MetricsExample implements Runnable {
     private final Meter meterWithOneFixedLabel;
     private final Meter meterWithTwoFixedLabels;
     private final Labeled<Meter> meterWithOneDynamicLabel;
-    private final Labeled<Labeled<Meter>> meterWithTwoDynamicLabels;
 
     private final ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor("cron", LOG);
     private final Random random = new Random();
@@ -64,11 +63,6 @@ public class MetricsExample implements Runnable {
                 .project("infrautils").module("metrics").id("example_meter_1_dynlabel")
                 .description("Example meter metric with 1 label and label value set in using code").build(),
                 "port");
-
-        meterWithTwoDynamicLabels = metricProvider.newMeter(MetricDescriptor.builder().anchor(this)
-                .project("infrautils").module("metrics").id("example_meter_2_dynlabels")
-                .description("Example meter metric with 2 labels and its label values set in using code").build(),
-                "port", "mac");
     }
 
     @PostConstruct
@@ -82,7 +76,6 @@ public class MetricsExample implements Runnable {
         meterWithOneFixedLabel.close();
         meterWithTwoFixedLabels.close();
         // TODO meterWithOneDynamicLabel.close() how to?
-        // TODO meterWithTwoDynamicLabels.close() how to?
 
         executor.shutdownNow();
     }
@@ -94,9 +87,6 @@ public class MetricsExample implements Runnable {
         meterWithTwoFixedLabels.mark(random.nextInt(100));
 
         meterWithOneDynamicLabel.label(/* port */ "456").mark(random.nextInt(100));
-        meterWithTwoDynamicLabels
-            .label(/* port */ "456").label(/* MAC */ "1A:0B:F2:25:1C:68")
-            .mark(random.nextInt(100));
 
         // see the MetricsAdvancedExample for how to do meter.port(456).mac("1A:0B:F2:25:1C:68").mark();
     }
