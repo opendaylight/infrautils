@@ -10,7 +10,6 @@ package org.opendaylight.infrautils.jobcoordinator.tests;
 import static com.google.common.truth.Truth.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertFalse;
-
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.common.util.concurrent.SettableFuture;
@@ -39,8 +38,8 @@ import org.slf4j.LoggerFactory;
  * @author Michael Vorburger.ch
  * @author Periyasamy Palanisamy
  */
+@SuppressWarnings("FutureReturnValueIgnored")
 public class JobCoordinatorTest {
-
     private static final Logger LOG = LoggerFactory.getLogger(JobCoordinatorTest.class);
 
     // public static @ClassRule RunUntilFailureClassRule classRepeater = new RunUntilFailureClassRule();
