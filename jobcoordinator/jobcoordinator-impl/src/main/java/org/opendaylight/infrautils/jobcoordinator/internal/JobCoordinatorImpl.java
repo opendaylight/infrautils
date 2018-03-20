@@ -134,24 +134,25 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
     }
 
     @Override
-    public void enqueueJob(String key, Callable<List<ListenableFuture<Void>>> mainWorker) {
-        enqueueJob(key, mainWorker, null, JobCoordinator.DEFAULT_MAX_RETRIES);
+    public <T> List<ListenableFuture<T>> enqueueJob(String key, Callable<List<ListenableFuture<T>>> mainWorker) {
+        return enqueueJob(key, mainWorker, null, JobCoordinator.DEFAULT_MAX_RETRIES);
     }
 
     @Override
-    public void enqueueJob(String key, Callable<List<ListenableFuture<Void>>> mainWorker,
-            RollbackCallable rollbackWorker) {
-        enqueueJob(key, mainWorker, rollbackWorker, JobCoordinator.DEFAULT_MAX_RETRIES);
+    public <T> List<ListenableFuture<T>> enqueueJob(String key, Callable<List<ListenableFuture<T>>> mainWorker,
+                                                    RollbackCallable rollbackWorker) {
+        return enqueueJob(key, mainWorker, rollbackWorker, JobCoordinator.DEFAULT_MAX_RETRIES);
     }
 
     @Override
-    public void enqueueJob(String key, Callable<List<ListenableFuture<Void>>> mainWorker, int maxRetries) {
-        enqueueJob(key, mainWorker, null, maxRetries);
+    public <T> List<ListenableFuture<T>> enqueueJob(String key, Callable<List<ListenableFuture<T>>> mainWorker,
+                                                    int maxRetries) {
+        return enqueueJob(key, mainWorker, null, maxRetries);
     }
 
     @Override
-    public void enqueueJob(String key, Callable<List<ListenableFuture<Void>>> mainWorker,
-            @Nullable RollbackCallable rollbackWorker, int maxRetries) {
+    public <T> List<ListenableFuture<T>> enqueueJob(String key, Callable<List<ListenableFuture<T>>> mainWorker,
+                                                    @Nullable RollbackCallable rollbackWorker, int maxRetries) {
         JobEntry jobEntry = new JobEntry(key, mainWorker, rollbackWorker, maxRetries);
         JobQueue jobQueue = jobQueueMap.computeIfAbsent(key, mapKey -> new JobQueue());
         jobQueue.addEntry(jobEntry);
@@ -161,6 +162,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
         jobsCreated.mark();
 
         signalForNextJob();
+        return jobEntry.getFutures();
     }
 
     @Override
@@ -263,7 +265,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
      * JobCallback class is used as a future callback for main and rollback
      * workers to handle success and failure.
      */
-    private class JobCallback implements FutureCallback<List<Void>> {
+    private class JobCallback<T> implements FutureCallback<List<T>> {
         private final JobEntry jobEntry;
 
         JobCallback(JobEntry jobEntry) {
@@ -275,7 +277,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
          * TODO: Confirm this
          */
         @Override
-        public void onSuccess(@Nullable List<Void> voids) {
+        public void onSuccess(@Nullable List<T> voids) {
             LOG.trace("Job completed successfully: {}", jobEntry.getKey());
             clearJob(jobEntry);
         }
@@ -345,7 +347,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
      * RollbackTask is used to execute the RollbackCallable provided by the
      * application in the eventuality of a failure.
      */
-    private class RollbackTask extends LoggingUncaughtThreadDeathContextRunnable {
+    private class RollbackTask<T> extends LoggingUncaughtThreadDeathContextRunnable {
         private final JobEntry jobEntry;
 
         RollbackTask(JobEntry jobEntry) {
@@ -357,7 +359,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
         @SuppressWarnings("checkstyle:IllegalCatch")
         public void runWithUncheckedExceptionLogging() {
             RollbackCallable rollbackWorker = jobEntry.getRollbackWorker();
-            @Var List<ListenableFuture<Void>> futures = null;
+            @Var List<ListenableFuture<T>> futures = null;
             if (rollbackWorker != null) {
                 try {
                     futures = rollbackWorker.apply(jobEntry.getFutures());
@@ -374,7 +376,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
             }
 
             jobEntry.setFutures(futures);
-            ListenableFuture<List<Void>> listenableFuture = Futures.allAsList(futures);
+            ListenableFuture<List<T>> listenableFuture = Futures.allAsList(futures);
             Futures.addCallback(listenableFuture, new JobCallback(jobEntry), MoreExecutors.directExecutor());
         }
     }
@@ -382,7 +384,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
     /**
      * Execute the MainWorker callable.
      */
-    private class MainTask extends LoggingUncaughtThreadDeathContextRunnable {
+    private class MainTask<T> extends LoggingUncaughtThreadDeathContextRunnable {
         private static final int LONG_JOBS_THRESHOLD_MS = 1000;
         private final JobEntry jobEntry;
 
@@ -394,12 +396,12 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
         @Override
         @SuppressWarnings("checkstyle:illegalcatch")
         public void runWithUncheckedExceptionLogging() {
-            @Var List<ListenableFuture<Void>> futures = null;
+            @Var List<ListenableFuture<T>> futures = null;
             long jobStartTimestampNanos = System.nanoTime();
             LOG.trace("Running job with key: {}", jobEntry.getKey());
 
             try {
-                Callable<List<ListenableFuture<Void>>> mainWorker = jobEntry.getMainWorker();
+                Callable<List<ListenableFuture<T>>> mainWorker = jobEntry.getMainWorker();
                 if (mainWorker != null) {
                     futures = mainWorker.call();
                 } else {
@@ -417,9 +419,12 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
                 return;
             }
 
-            jobEntry.setFutures(futures);
-            ListenableFuture<List<Void>> listenableFuture = Futures.allAsList(futures);
+            ListenableFuture<List<T>> listenableFuture = Futures.allAsList(futures);
+            if (jobEntry.getRetryCount() > 0) {
+                jobEntry.setFutures(futures);
+            }
             Futures.addCallback(listenableFuture, new JobCallback(jobEntry), MoreExecutors.directExecutor());
+
         }
 
         private void printJobs(String key, long jobExecutionTime) {
@@ -455,7 +460,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
                         }
                         jobQueue.setExecutingEntry(jobEntry);
                         MainTask worker = new MainTask(jobEntry);
-                        LOG.trace("Executing job with key: {}", jobEntry.getKey());
+                        LOG.trace("Executing job {} with key: {}", jobEntry.getKey(), jobEntry.getMainWorker());
 
                         if (executeTask(worker)) {
                             jobsPending.decrement();
