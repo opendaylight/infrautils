@@ -7,12 +7,9 @@
  */
 package org.opendaylight.infrautils.metrics.prometheus.impl;
 
-import io.prometheus.client.CollectorRegistry;
 import io.prometheus.client.Counter.Child;
 import java.util.List;
-import javax.annotation.Nullable;
 import org.opendaylight.infrautils.metrics.Meter;
-import org.opendaylight.infrautils.metrics.MetricDescriptor;
 
 /**
  * Package private {@link Meter} adapter.
@@ -22,28 +19,13 @@ import org.opendaylight.infrautils.metrics.MetricDescriptor;
 class MeterAdapter implements Meter {
     // TODO re-use metrics.impl CounterImpl extends CloseableMetricImpl by intro. metrics.spi
 
-    // private final CollectorRegistry prometheusRegistry;
-    private final io.prometheus.client.Counter prometheusCounter;
-    private final @Nullable Child prometheusChild;
+    private final Child prometheusChild;
 
-    MeterAdapter(CollectorRegistry prometheusRegistry, MetricDescriptor descriptor, List<String> labelNames,
-            List<String> labelValues) {
-        // this.prometheusRegistry = prometheusRegistry;
-        this.prometheusCounter = io.prometheus.client.Counter.build()
-                // https://prometheus.io/docs/practices/naming/#metric-names: "application prefix relevant to
-                // the domain the metric belongs to. The prefix is sometimes referred to as namespace by client
-                // libraries. For metrics specific to an application, the prefix is usually the application name."
-                .namespace("opendaylight")
-                .subsystem(descriptor.project())
-                .name(descriptor.module() + "_" + descriptor.id())
-                .help(descriptor.description())
-                .labelNames(labelNames.toArray(new String[labelNames.size()]))
-                .register(prometheusRegistry);
-        if (!labelValues.isEmpty()) {
-            this.prometheusChild = prometheusCounter.labels(labelValues.toArray(new String[labelValues.size()]));
-        } else {
-            this.prometheusChild = null;
+    MeterAdapter(io.prometheus.client.Counter prometheusCounter, List<String> labelValues) {
+        if (labelValues.isEmpty()) {
+            throw new IllegalArgumentException();
         }
+        this.prometheusChild = prometheusCounter.labels(labelValues.toArray(new String[labelValues.size()]));
     }
 
     @Override
@@ -54,11 +36,7 @@ class MeterAdapter implements Meter {
 
     @Override
     public void mark(long howMany) {
-        if (prometheusChild != null) {
-            prometheusChild.inc(howMany);
-        } else {
-            prometheusCounter.inc(howMany);
-        }
+        prometheusChild.inc(howMany);
     }
 
     @Override
@@ -66,10 +44,7 @@ class MeterAdapter implements Meter {
         // TODO see PrometheusMetricProviderImplTest.testGetOverflownMeter
         // TODO Is this cast from double to long safe?? We only ever increment by long howMany, but..
         // it could overflow!  So use Double.doubleToRawLongBits / doubleToLongBits?
-        if (prometheusChild != null) {
-            return (long) prometheusChild.get();
-        } else {
-            return (long) prometheusCounter.get();
-        }
+        // apply the same in MeterNoChildAdapter
+        return (long) prometheusChild.get();
     }
 }
