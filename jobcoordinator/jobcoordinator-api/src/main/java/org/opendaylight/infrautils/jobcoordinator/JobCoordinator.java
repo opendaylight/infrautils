@@ -11,6 +11,7 @@ import com.google.common.util.concurrent.ListenableFuture;
 
 import java.util.List;
 import java.util.concurrent.Callable;
+import java.util.concurrent.Future;
 
 /**
  * This interface defines methods for a JobCoordinator which enables executing
@@ -33,7 +34,7 @@ public interface JobCoordinator { // do *NOT* extends JobCoordinatorMonitor
      * @param mainWorker
      *            The task that runs for the job.
      */
-    void enqueueJob(String key, Callable<List<ListenableFuture<Void>>> mainWorker);
+    <T> List<Future<T>> enqueueJob(String key, Callable<List<ListenableFuture<T>>> mainWorker);
 
     /**
      * Enqueues a job with a rollback task and DEFAULT_MAX_RETRIES (3) retries..
@@ -43,7 +44,7 @@ public interface JobCoordinator { // do *NOT* extends JobCoordinatorMonitor
      *            fails.
      * @see JobCoordinator#enqueueJob(String, Callable)
      */
-    void enqueueJob(String key, Callable<List<ListenableFuture<Void>>> mainWorker, RollbackCallable rollbackWorker);
+    <T> List<Future<T>> enqueueJob(String key, Callable<List<ListenableFuture<T>>> mainWorker, RollbackCallable rollbackWorker);
 
     /**
      * Enqueues a job with max retries. In case the job's main task fails, it
@@ -55,7 +56,7 @@ public interface JobCoordinator { // do *NOT* extends JobCoordinatorMonitor
      *            succeeds.
      * @see JobCoordinator#enqueueJob(String, Callable)
      */
-    void enqueueJob(String key, Callable<List<ListenableFuture<Void>>> mainWorker, int maxRetries);
+    <T> List<Future<T>> enqueueJob(String key, Callable<List<ListenableFuture<T>>> mainWorker, int maxRetries);
 
     /**
      * Enqueues a job with a rollback task and max retries.
@@ -69,6 +70,6 @@ public interface JobCoordinator { // do *NOT* extends JobCoordinatorMonitor
      * @see JobCoordinator#enqueueJob(String, Callable, RollbackCallable)
      * @see JobCoordinator#enqueueJob(String, Callable, int)
      */
-    void enqueueJob(String key, Callable<List<ListenableFuture<Void>>> mainWorker, RollbackCallable rollbackWorker,
+    <T> List<Future<T>> enqueueJob(String key, Callable<List<ListenableFuture<T>>> mainWorker, RollbackCallable rollbackWorker,
             int maxRetries);
 }
