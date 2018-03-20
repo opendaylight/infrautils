@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "53fa2a3d_6a94fd96",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-03-20T13:56:05Z",
+      "side": 1,
+      "message": "mention what it enhances? ;-)\n\nmention INFRAUTILS-16",
+      "revId": "6c440242bc0cc49623900642bda7ad5a7c70e158",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "148f283e_369b4912",
+        "filename": "jobcoordinator/jobcoordinator-api/src/main/java/org/opendaylight/infrautils/jobcoordinator/JobCoordinator.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-03-20T13:56:05Z",
+      "side": 1,
+      "message": "JobCoordinatorTest should expand coverage with a new test for testing this return list of futures.  It is important to keep the existing tests as is, to \"prove\" that we are not breaking the existing API and code using it with this change.",
+      "revId": "6c440242bc0cc49623900642bda7ad5a7c70e158",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8b49cbc7_aa3247ef",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobEntry.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-03-20T13:56:05Z",
+      "side": 1,
+      "message": "nit pick just re format: remove weird leaving double space before class, as well as the space after JobEntry class name and \u003cT\u003e - they are typically glued together",
+      "revId": "6c440242bc0cc49623900642bda7ad5a7c70e158",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d02c1167_628d591b",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobEntry.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-03-20T13:56:05Z",
+      "side": 1,
+      "message": "I\u0027m wondering if replacing the emptyList() by a singletonList(SettableFuture.create()) is right.. I\u0027m not saying yet that this is wrong, but why is this needed?  And why now and in this change?  At the very least, this should be introduced via TDD, with a (new) test in JobCoordinatorTest that illustrates what is expected and how emptyList() is wrong, and fails, and then with the fix for that by changing it to singletonList(SettableFuture.create()).  Probably best in a small separate new change, if this does not (directly) related to the INFRAUTILS-16 other changes here?",
+      "revId": "6c440242bc0cc49623900642bda7ad5a7c70e158",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "14b074e3_0829aca4",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobEntry.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-03-20T13:56:05Z",
+      "side": 1,
+      "message": "nit pick just re format: This seems to be indented wrong?",
+      "revId": "6c440242bc0cc49623900642bda7ad5a7c70e158",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
