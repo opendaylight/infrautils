@@ -7,31 +7,32 @@
  */
 package org.opendaylight.infrautils.jobcoordinator.internal;
 
-import static java.util.Collections.emptyList;
-
 import com.google.common.util.concurrent.ListenableFuture;
+import com.google.common.util.concurrent.SettableFuture;
+import org.opendaylight.infrautils.jobcoordinator.RollbackCallable;
+
+import javax.annotation.Nullable;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
-import javax.annotation.Nullable;
-import org.opendaylight.infrautils.jobcoordinator.RollbackCallable;
 
 /**
  * JobEntry is the entity built per job submitted by the application and
  * enqueued to the book-keeping data structure.
  */
-class JobEntry {
+  class JobEntry<T> {
 
     private final String key;
-    private volatile @Nullable Callable<List<ListenableFuture<Void>>> mainWorker;
+    private volatile @Nullable Callable<List<ListenableFuture<T>>> mainWorker;
     private final @Nullable RollbackCallable rollbackWorker;
     private final int maxRetries;
     private volatile int retryCount;
     private static final AtomicIntegerFieldUpdater<JobEntry> RETRY_COUNT_FIELD_UPDATER =
             AtomicIntegerFieldUpdater.newUpdater(JobEntry.class, "retryCount");
-    private volatile @Nullable List<ListenableFuture<Void>> futures;
+    private volatile @Nullable List<ListenableFuture<T>> futures;
 
-    JobEntry(String key, Callable<List<ListenableFuture<Void>>> mainWorker, @Nullable RollbackCallable rollbackWorker,
+    JobEntry(String key, Callable<List<ListenableFuture<T>>> mainWorker, @Nullable RollbackCallable rollbackWorker,
             int maxRetries) {
         this.key = key;
         this.mainWorker = mainWorker;
@@ -50,11 +51,11 @@ class JobEntry {
         return key;
     }
 
-    public @Nullable Callable<List<ListenableFuture<Void>>> getMainWorker() {
+    public @Nullable Callable<List<ListenableFuture<T>>> getMainWorker() {
         return mainWorker;
     }
 
-    public void setMainWorker(@Nullable Callable<List<ListenableFuture<Void>>> mainWorker) {
+    public void setMainWorker(@Nullable Callable<List<ListenableFuture<T>>> mainWorker) {
         this.mainWorker = mainWorker;
     }
 
@@ -78,16 +79,17 @@ class JobEntry {
         return RETRY_COUNT_FIELD_UPDATER.decrementAndGet(this);
     }
 
-    public List<ListenableFuture<Void>> getFutures() {
-        List<ListenableFuture<Void>> nullableFutures = futures;
+    public List<ListenableFuture<T>> getFutures() {
+        List<ListenableFuture<T>> nullableFutures = futures;
         if (nullableFutures != null) {
             return nullableFutures;
         } else {
-            return emptyList();
+            this.futures = Collections.singletonList(SettableFuture.create());
+            return futures;
         }
     }
 
-    public void setFutures(List<ListenableFuture<Void>> futures) {
+    public void setFutures(List<ListenableFuture<T>> futures) {
         this.futures = futures;
     }
 
