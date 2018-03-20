@@ -16,6 +16,7 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.inject.Inject;
 import javax.inject.Singleton;
+import org.opendaylight.infrautils.metrics.Counter;
 import org.opendaylight.infrautils.metrics.Labeled;
 import org.opendaylight.infrautils.metrics.Meter;
 import org.opendaylight.infrautils.metrics.MetricDescriptor;
@@ -42,6 +43,7 @@ public class MetricsExample implements Runnable {
 
     private static final Logger LOG = LoggerFactory.getLogger(MetricsExample.class);
 
+    private final Counter counterWithoutLabel;
     private final Meter meterWithoutLabel;
     private final Meter meterWithOneFixedLabel;
     private final Meter meterWithTwoFixedLabels;
@@ -52,6 +54,10 @@ public class MetricsExample implements Runnable {
 
     @Inject
     public MetricsExample(@OsgiService MetricProvider metricProvider) {
+        counterWithoutLabel = metricProvider.newCounter(MetricDescriptor.builder().anchor(this)
+                .project("infrautils").module("metrics").id("example_counter_without_labels")
+                .description("Example counter metric without any labels").build());
+
         meterWithoutLabel = metricProvider.newMeter(MetricDescriptor.builder().anchor(this)
                 .project("infrautils").module("metrics").id("example_meter_without_labels")
                 .description("Example meter metric without any labels").build());
@@ -79,6 +85,7 @@ public class MetricsExample implements Runnable {
 
     @PreDestroy
     public void close() {
+        counterWithoutLabel.close();
         meterWithoutLabel.close();
         meterWithOneFixedLabel.close();
         meterWithTwoFixedLabels.close();
@@ -89,6 +96,8 @@ public class MetricsExample implements Runnable {
 
     @Override
     public void run() {
+        counterWithoutLabel.increment(random.nextInt(200) - 100);
+
         meterWithoutLabel.mark(random.nextInt(100));
         meterWithOneFixedLabel.mark(random.nextInt(100));
         meterWithTwoFixedLabels.mark(random.nextInt(100));
