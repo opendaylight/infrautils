@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a8c2fa3_fcbef9ac",
+        "filename": "metrics/sample/impl/src/test/java/org/opendaylight/infrautils/metrics/sample/MetricsExampleTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-03-21T02:06:34Z",
+      "side": 1,
+      "message": "The code is not properly testable ;)",
+      "revId": "fc04397f7003c7e7793edbf3882dd32ce0bfa8e0",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
