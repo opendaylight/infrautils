@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3f315c7a_48fc22d7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-03-21T00:48:57Z",
+      "side": 1,
+      "message": "Can you add more detail as to what this simplifies?",
+      "revId": "c0d6f6231445b02b4393a0287d17c07c44b75583",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
