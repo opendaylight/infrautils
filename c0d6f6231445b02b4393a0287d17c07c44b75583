@@ -16,6 +16,24 @@
       "revId": "c0d6f6231445b02b4393a0287d17c07c44b75583",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba7324ae_c1bfc3d9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-03-21T01:19:48Z",
+      "side": 1,
+      "message": "just reducing something from an example which is not needed to illustrate the point which the example is trying to make",
+      "parentUuid": "3f315c7a_48fc22d7",
+      "revId": "c0d6f6231445b02b4393a0287d17c07c44b75583",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
