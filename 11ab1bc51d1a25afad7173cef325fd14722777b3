@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f8c2532f_37025cb6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-03-21T00:52:38Z",
+      "side": 1,
+      "message": "Can you provide more detail as to the nature of the bug?",
+      "revId": "11ab1bc51d1a25afad7173cef325fd14722777b3",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
