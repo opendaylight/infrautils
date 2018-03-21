@@ -234,7 +234,7 @@ public class MetricProviderImpl implements MetricProvider {
     public org.opendaylight.infrautils.metrics.Counter newCounter(Object anchor, String id) {
         requireNonNull(anchor, "anchor == null");
         checkForExistingID(id);
-        return new CounterImpl(id);
+        return newOrExistingCounter(anchor, id);
     }
 
     @Override
@@ -299,12 +299,12 @@ public class MetricProviderImpl implements MetricProvider {
     public org.opendaylight.infrautils.metrics.Timer newTimer(Object anchor, String id) {
         requireNonNull(anchor, "anchor == null");
         checkForExistingID(id);
-        return new TimerImpl(id);
+        return newOrExistingTimer(anchor, id);
     }
 
     @Override
     public Timer newTimer(MetricDescriptor descriptor) {
-        return newTimer(descriptor.anchor(), makeCodahaleID(descriptor));
+        return newOrExistingTimer(descriptor.anchor(), makeCodahaleID(descriptor));
     }
 
     @Override
