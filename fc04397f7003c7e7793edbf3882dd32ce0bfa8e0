@@ -16,6 +16,24 @@
       "revId": "fc04397f7003c7e7793edbf3882dd32ce0bfa8e0",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "53da189c_6124ef18",
+        "filename": "metrics/sample/impl/src/test/java/org/opendaylight/infrautils/metrics/sample/MetricsExampleTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-03-22T14:46:15Z",
+      "side": 1,
+      "message": "Done, because you were absolutely right - but why don\u0027t you -1 me? ;-)",
+      "parentUuid": "9a8c2fa3_fcbef9ac",
+      "revId": "fc04397f7003c7e7793edbf3882dd32ce0bfa8e0",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
