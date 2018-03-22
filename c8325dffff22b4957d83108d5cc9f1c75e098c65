@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "792077bb_13e10c35",
+        "filename": "jobcoordinator/jobcoordinator-api/src/main/java/org/opendaylight/infrautils/jobcoordinator/JobCoordinator.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 4540
+      },
+      "writtenOn": "2018-03-22T15:01:15Z",
+      "side": 1,
+      "message": "All of these are missing documentation explaining the return value.",
+      "revId": "c8325dffff22b4957d83108d5cc9f1c75e098c65",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a24ca17a_f73022c6",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobEntry.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 4540
+      },
+      "writtenOn": "2018-03-22T15:01:15Z",
+      "side": 1,
+      "message": "You need to use the settable future here, don’t you? Otherwise, the initial caller will have stored a set of Futures which won’t actually match what the jobs end up doing...",
+      "revId": "c8325dffff22b4957d83108d5cc9f1c75e098c65",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
