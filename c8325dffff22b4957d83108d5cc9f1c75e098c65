@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "28724cb6_c7a9cd41",
+        "filename": "jobcoordinator/jobcoordinator-api/src/main/java/org/opendaylight/infrautils/jobcoordinator/JobCoordinator.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 4540
+      },
+      "writtenOn": "2018-03-22T15:02:55Z",
+      "side": 1,
+      "message": "In particular, I think the rollback behaviour will end up producing funky results with the futures provided to the callers here...",
+      "parentUuid": "792077bb_13e10c35",
+      "revId": "c8325dffff22b4957d83108d5cc9f1c75e098c65",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a24ca17a_f73022c6",
         "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobEntry.java",
         "patchSetId": 5
