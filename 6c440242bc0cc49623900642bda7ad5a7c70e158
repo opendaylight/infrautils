@@ -54,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "18b16764_6d6c576c",
+        "filename": "jobcoordinator/jobcoordinator-api/src/main/java/org/opendaylight/infrautils/jobcoordinator/JobCoordinator.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-03-22T14:42:48Z",
+      "side": 1,
+      "message": "Gobinath, I\u0027m really sorry and hope that this does not come across is being a pain ;-) but I\u0027m afraid in infrautils I have to insist on tests for any bug fixes and improvements.  If you prefer raising separate patches for the feature work and the test for it, you can, but I find it easier to see them together in a single change.  To state it plainly: I would not be able to accept this contribution without full test coverage (for several cases, at the very least single and multiple futures) - hope you understand?",
+      "parentUuid": "fbaa98ae_f8e95ff8",
+      "revId": "6c440242bc0cc49623900642bda7ad5a7c70e158",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8b49cbc7_aa3247ef",
         "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobEntry.java",
         "patchSetId": 3
@@ -118,6 +136,24 @@
       "side": 1,
       "message": "The applications would wait and act upon the future result we get on enqueueJob(). The listenablefuture returned would be an empty list till the job is executed(waiting in the queue). So, instead creating a pending future object(Settablefuture.create()) which would later be replaced the actual result future upon the execution of the callable. Is there a better way of achieving this(enqueueJob should return a future right after the call rather than when the enqueued job is actually executed)?",
       "parentUuid": "d02c1167_628d591b",
+      "revId": "6c440242bc0cc49623900642bda7ad5a7c70e158",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "201c1713_461cca20",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobEntry.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-03-22T14:42:48Z",
+      "side": 1,
+      "message": "Oh.. I think you are right - but why only 1 Future - what if the Callable mainWorker is for several futures?  I think that this only underlines that we have to do this via Test Driven Development (TDD)... as per other comment, would you be OK to do that?",
+      "parentUuid": "1d95d5a6_24805657",
       "revId": "6c440242bc0cc49623900642bda7ad5a7c70e158",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
