@@ -95,6 +95,48 @@
     },
     {
       "key": {
+        "uuid": "7120e7b8_45a102ca",
+        "filename": "jobcoordinator/jobcoordinator-api/src/main/java/org/opendaylight/infrautils/jobcoordinator/JobCoordinator.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6328
+      },
+      "writtenOn": "2018-03-27T07:43:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "05e76281_574f7ac9",
+      "range": {
+        "startLine": 37,
+        "startChar": 13,
+        "endLine": 37,
+        "endChar": 19
+      },
+      "revId": "6c440242bc0cc49623900642bda7ad5a7c70e158",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c35ad5f5_dddd6805",
+        "filename": "jobcoordinator/jobcoordinator-api/src/main/java/org/opendaylight/infrautils/jobcoordinator/JobCoordinator.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 6328
+      },
+      "writtenOn": "2018-03-27T07:43:46Z",
+      "side": 1,
+      "message": "I actually had meant subsequent versions of this same review.I would soon update this patch with the tests.",
+      "parentUuid": "18b16764_6d6c576c",
+      "revId": "6c440242bc0cc49623900642bda7ad5a7c70e158",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8b49cbc7_aa3247ef",
         "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobEntry.java",
         "patchSetId": 3
@@ -177,6 +219,24 @@
       "side": 1,
       "message": "Oh.. I think you are right - but why only 1 Future - what if the Callable mainWorker is for several futures?  I think that this only underlines that we have to do this via Test Driven Development (TDD)... as per other comment, would you be OK to do that?",
       "parentUuid": "1d95d5a6_24805657",
+      "revId": "6c440242bc0cc49623900642bda7ad5a7c70e158",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "308a51f3_6d6d2408",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobEntry.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 6328
+      },
+      "writtenOn": "2018-03-27T07:43:46Z",
+      "side": 1,
+      "message": "I had wanted to make use of this 1 \"dummy\" future use for the sake of waiting on the future (pending). But I\u0027ve realized while writing the tests like you suggested that the callers might be expecting multiple futures. But there seems to be no way to know the number of future results the jobs would be adding to the list. Is it possible to include it in the method params? Or is it okay just to return a single future like this Futures.allAsList(futures)?",
+      "parentUuid": "201c1713_461cca20",
       "revId": "6c440242bc0cc49623900642bda7ad5a7c70e158",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
