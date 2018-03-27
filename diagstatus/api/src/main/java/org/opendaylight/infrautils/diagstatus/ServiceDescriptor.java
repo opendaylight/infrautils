@@ -13,6 +13,8 @@ import com.google.common.base.MoreObjects;
 
 import java.time.Instant;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 import javax.annotation.concurrent.Immutable;
 
 /**
@@ -22,6 +24,7 @@ import javax.annotation.concurrent.Immutable;
  */
 @Immutable
 @com.google.errorprone.annotations.Immutable
+@SuppressWarnings("Immutable") // Throwable is not really immutable (although maybe it should have been)
 public final class ServiceDescriptor {
 
     private final String moduleServiceName;
@@ -29,12 +32,23 @@ public final class ServiceDescriptor {
     private final Instant timestamp;
     // In case of ERROR state specific error message to aid troubleshooting can be provided by monitored service:
     private final String statusDesc;
+    private final @Nullable Throwable errorCause;
 
-    public ServiceDescriptor(String moduleServiceName, ServiceState svcState, String statusDesc) {
+    private ServiceDescriptor(String moduleServiceName, ServiceState svcState, String statusDesc,
+                              Throwable errorCause) {
         this.moduleServiceName = requireNonNull(moduleServiceName, "moduleServiceName");
         this.serviceState = requireNonNull(svcState, "svcState");
         this.statusDesc = requireNonNull(statusDesc, "statusDesc");
         this.timestamp = Instant.now();
+        this.errorCause = errorCause;
+    }
+
+    public ServiceDescriptor(String moduleServiceName, ServiceState svcState, String statusDesc) {
+        this(moduleServiceName, svcState, statusDesc, null);
+    }
+
+    public ServiceDescriptor(String moduleServiceName, Throwable errorCause) {
+        this(moduleServiceName, ServiceState.ERROR, "", errorCause);
     }
 
     public String getModuleServiceName() {
@@ -53,11 +67,18 @@ public final class ServiceDescriptor {
         return statusDesc;
     }
 
+    public Optional<Throwable> getErrorCause() {
+        return Optional.ofNullable(errorCause);
+    }
+
     @Override
     public String toString() {
-        return MoreObjects.toStringHelper(this).add("serviceName", getModuleServiceName())
-                .add("serviceState", getServiceState()).add("statusDesc", getStatusDesc())
-                .add("timeStamp", getTimestamp()).toString();
+        MoreObjects.ToStringHelper toStringHelper = MoreObjects.toStringHelper(this)
+                .add("serviceName", getModuleServiceName())
+                .add("serviceState", getServiceState())
+                .add("statusDesc", getStatusDesc());
+        getErrorCause().ifPresent(cause -> toStringHelper.add("errorCause", cause));
+        return toStringHelper.toString();
     }
 
     @Override
@@ -84,11 +105,15 @@ public final class ServiceDescriptor {
         if (!timestamp.equals(other.timestamp)) {
             return false;
         }
+        if (!Objects.equals(errorCause, other.errorCause)) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getModuleServiceName(), getServiceState(), getStatusDesc(), getTimestamp());
+        return Objects.hash(getModuleServiceName(), getServiceState(), getStatusDesc(), getTimestamp(),
+                getErrorCause());
     }
 }
