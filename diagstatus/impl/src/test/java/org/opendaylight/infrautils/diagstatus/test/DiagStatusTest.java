@@ -9,6 +9,7 @@ package org.opendaylight.infrautils.diagstatus.test;
 
 import static com.google.common.truth.Truth.assertThat;
 
+import java.util.Optional;
 import javax.inject.Inject;
 import org.junit.Assert;
 import org.junit.Rule;
@@ -48,6 +49,9 @@ public class DiagStatusTest {
         // JSON should be formatted
         assertThat(diagStatusService.getAllServiceDescriptorsAsJSON()).contains("\n");
 
+        // Verify that we get _something_ from getErrorCause()
+        assertThat(serviceDescriptor1.getErrorCause()).isEqualTo(Optional.empty());
+
         // Verify if "testService" status is updated as OPERATIONAL.
         ServiceDescriptor reportStatus = new ServiceDescriptor(testService1, ServiceState.OPERATIONAL,
                 "service is UP");
@@ -64,6 +68,16 @@ public class DiagStatusTest {
         // JMX based Junits to see if the service state is getting retrieved properly.
         Assert.assertEquals(ServiceState.UNREGISTERED.name(),
                diagStatusServiceMBean.acquireServiceStatusMap().get(testService1));
+
+    }
+
+    @Test
+    public void testErrorCause() {
+        String testService1 = "testService";
+        ServiceDescriptor reportStatus = new ServiceDescriptor(testService1,
+                new NullPointerException("This is totally borked!"));
+
+        assertThat(reportStatus.getErrorCause().get().getMessage()).isEqualTo("This is totally borked!");
 
     }
 }
