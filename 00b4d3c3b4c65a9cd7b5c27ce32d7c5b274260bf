@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fabd2cfa_0cf0fd6c",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobCoordinatorImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 421,
+      "author": {
+        "id": 5278
+      },
+      "writtenOn": "2018-03-27T16:27:11Z",
+      "side": 1,
+      "message": "you are trying to mix retries provided by job coordinator and also returning future to caller. is it a good idea ? I don\u0027t think so.",
+      "revId": "00b4d3c3b4c65a9cd7b5c27ce32d7c5b274260bf",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "02aba9e4_66407756",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobEntry.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 5278
+      },
+      "writtenOn": "2018-03-27T16:27:11Z",
+      "side": 1,
+      "message": "you are setting totally different futures object, but callers would be waiting on futures set at L#41.",
+      "revId": "00b4d3c3b4c65a9cd7b5c27ce32d7c5b274260bf",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
