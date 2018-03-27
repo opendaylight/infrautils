@@ -120,6 +120,7 @@ public class DiagStatusServiceMBeanImpl extends StandardMBean implements DiagSta
                     .append("  ")
                     .append(String.format("%-20s%-20s", status.getModuleServiceName(), ": "
                             + status.getServiceState()))
+                    .append(status.getErrorCause())
                     .append("\n");
         }
         return statusSummary.toString();
