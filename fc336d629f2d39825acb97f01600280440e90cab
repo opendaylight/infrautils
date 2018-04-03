@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7b3a72c1_9f435bf7",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ServiceDescriptor.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 7865
+      },
+      "writtenOn": "2018-04-03T05:51:30Z",
+      "side": 1,
+      "message": "This will always return toString of Optional which will have the format Optional[XYZ] for non-empty Throwable and will return Optional.empty for empty Throwable. So, the observation in OFP gerrit is correct unless we want to do formatting here or in toString below",
+      "revId": "fc336d629f2d39825acb97f01600280440e90cab",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
