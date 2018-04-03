@@ -16,6 +16,24 @@
       "revId": "a67556ccb30cc2571903557a9113bec06a1a40cf",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3ec004cf_fa0229ab",
+        "filename": "ready/api/src/main/java/org/opendaylight/infrautils/ready/SystemReadyListener.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-04-03T06:49:49Z",
+      "side": 1,
+      "message": "Do the latter (\"check if ...\"); I think it\u0027s best if this API can notify you of any bundles that became active, and whatever registers for this can then do filtering based on what they are interested in.",
+      "parentUuid": "5759f05f_df852c40",
+      "revId": "a67556ccb30cc2571903557a9113bec06a1a40cf",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
