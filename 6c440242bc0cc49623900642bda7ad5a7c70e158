@@ -137,6 +137,48 @@
     },
     {
       "key": {
+        "uuid": "66ae972e_a09f0ddb",
+        "filename": "jobcoordinator/jobcoordinator-api/src/main/java/org/opendaylight/infrautils/jobcoordinator/JobCoordinator.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-04-04T11:12:57Z",
+      "side": 1,
+      "message": "Great; thanks - looking forward to that update!",
+      "parentUuid": "c35ad5f5_dddd6805",
+      "revId": "6c440242bc0cc49623900642bda7ad5a7c70e158",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e9fb4d8d_3135777b",
+        "filename": "jobcoordinator/jobcoordinator-api/src/main/java/org/opendaylight/infrautils/jobcoordinator/JobCoordinator.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-04-04T11:12:57Z",
+      "side": 1,
+      "message": "agreed; use ListenableFuture instead Future here",
+      "parentUuid": "05e76281_574f7ac9",
+      "range": {
+        "startLine": 37,
+        "startChar": 13,
+        "endLine": 37,
+        "endChar": 19
+      },
+      "revId": "6c440242bc0cc49623900642bda7ad5a7c70e158",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8b49cbc7_aa3247ef",
         "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobEntry.java",
         "patchSetId": 3
@@ -237,6 +279,24 @@
       "side": 1,
       "message": "I had wanted to make use of this 1 \"dummy\" future use for the sake of waiting on the future (pending). But I\u0027ve realized while writing the tests like you suggested that the callers might be expecting multiple futures. But there seems to be no way to know the number of future results the jobs would be adding to the list. Is it possible to include it in the method params? Or is it okay just to return a single future like this Futures.allAsList(futures)?",
       "parentUuid": "201c1713_461cca20",
+      "revId": "6c440242bc0cc49623900642bda7ad5a7c70e158",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f6207067_044a0feb",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobEntry.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-04-04T11:12:57Z",
+      "side": 1,
+      "message": "\u003e no way to know the number of future results the jobs would be adding to the list.\n\nHm...\n\n\u003e Is it possible to include it in the method params? \n\nSure!  Note that this JobEntry class is in the jobcoordinator-impl bundle in an .internal package - you can do whatever you want here, this is not the public API (jobcoordinator-api) - you have no backwards compability restrictions, here.\n\n\u003e Or is it okay just to return a single future like this Futures.allAsList(futures)?\n\nDoubt Futures.allAsList() is what you want here.. that gives a ListenableFuture\u003cList\u003cV\u003e\u003e and not the  List\u003cListenableFuture\u003cV\u003e\u003e you want here?",
+      "parentUuid": "308a51f3_6d6d2408",
       "revId": "6c440242bc0cc49623900642bda7ad5a7c70e158",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
