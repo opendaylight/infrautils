@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b3fd51dd_40b5779a",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusCommand.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-04-06T16:32:39Z",
+      "side": 1,
+      "message": "this ipAddress is part of the command output (line 75) as well, so you anyway see it there, right?  But if you have any use for ALSO seeing it in the log, I don\u0027t see any harm either - no objection from me.",
+      "revId": "515ca26022907f28f9eabc81100e898863d6fa96",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
