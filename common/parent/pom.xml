@@ -165,6 +165,8 @@
                 <arg>-Xep:ReachabilityFenceUsage:ERROR</arg>
                 <arg>-Xep:BoxedPrimitiveConstructor:ERROR</arg>
                 <arg>-Xep:InjectOnConstructorOfAbstractClass:ERROR</arg>
+                <arg>-Xep:StringSplit:ERROR</arg>
+                <arg>-Xep:StringSplitter:ERROR</arg>
               </compilerArgs>
             </configuration>
             <dependencies>
