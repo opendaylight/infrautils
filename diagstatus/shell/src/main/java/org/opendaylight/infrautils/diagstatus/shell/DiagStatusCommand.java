@@ -70,6 +70,7 @@ public class DiagStatusCommand implements org.apache.karaf.shell.commands.Action
     public static String getRemoteStatusSummary(String ipAddress) throws Exception {
         String remoteJMXOperationResult;
         StringBuilder strBuilder = new StringBuilder();
+        LOG.info("fetching status summary for node : {}", ipAddress);
         remoteJMXOperationResult = MBeanUtils.invokeRemoteJMXOperation(ipAddress, MBeanUtils.JMX_OBJECT_NAME);
         strBuilder.append("Node IP Address: ").append(ipAddress).append("\n");
         strBuilder.append(remoteJMXOperationResult);

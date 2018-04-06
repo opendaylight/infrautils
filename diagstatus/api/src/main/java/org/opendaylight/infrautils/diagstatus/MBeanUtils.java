@@ -153,6 +153,7 @@ public final class MBeanUtils {
 
     public static String invokeRemoteJMXOperation(String host, String mbeanName) throws Exception {
         JMXServiceURL url = getJMXUrl(host);
+        LOG.info("jmx service url generated : {}", url);
         String serviceStatus;
         JMXConnector jmxc = JMXConnectorFactory.connect(url, null);
         MBeanServerConnection mbsc = jmxc.getMBeanServerConnection();
