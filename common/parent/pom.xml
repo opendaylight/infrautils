@@ -167,6 +167,7 @@
                 <arg>-Xep:InjectOnConstructorOfAbstractClass:ERROR</arg>
                 <arg>-Xep:StringSplit:ERROR</arg>
                 <arg>-Xep:StringSplitter:ERROR</arg>
+                <arg>-Xep:UnnecessaryDefaultInEnumSwitch:ERROR</arg>
               </compilerArgs>
             </configuration>
             <dependencies>
