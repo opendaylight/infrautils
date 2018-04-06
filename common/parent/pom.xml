@@ -164,6 +164,7 @@
                 <arg>-Xep:SwitchDefault:ERROR</arg>
                 <arg>-Xep:ReachabilityFenceUsage:ERROR</arg>
                 <arg>-Xep:BoxedPrimitiveConstructor:ERROR</arg>
+                <arg>-Xep:InjectOnConstructorOfAbstractClass:ERROR</arg>
               </compilerArgs>
             </configuration>
             <dependencies>
