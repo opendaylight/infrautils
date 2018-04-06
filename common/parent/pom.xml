@@ -81,7 +81,8 @@
                  with https://git.opendaylight.org/gerrit/#/c/69135/ (which is *NOT* the same as c/66449, see above) -->
             <groupId>org.opendaylight.infrautils</groupId>
             <artifactId>findbugs</artifactId>
-            <version>${project.version}</version>
+            <!-- Do *NOT* use ${project.version} here, but fix version; otherwise this cannot be used as parent POM in projects other than infrautils -->
+            <version>1.4.0-SNAPSHOT</version>
           </dependency>
         </dependencies>
       </plugin>
