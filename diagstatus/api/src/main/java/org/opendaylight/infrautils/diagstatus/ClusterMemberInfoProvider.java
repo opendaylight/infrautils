@@ -45,7 +45,7 @@ public final class ClusterMemberInfoProvider {
         List<String> clusterIPAddresses = new ArrayList<>();
         Object clusterMemberMBeanValue = MBeanUtils.readMBeanAttribute("akka:type=Cluster", "Members");
         if (clusterMemberMBeanValue != null) {
-            List<String> clusterMembers = Arrays.asList(((String)clusterMemberMBeanValue).split(","));
+            List<String> clusterMembers = Arrays.asList(((String)clusterMemberMBeanValue).split(",", -1));
             for (String clusterMember : clusterMembers) {
                 String nodeIp = StringUtils.substringBetween(clusterMember, "@", ":");
                 clusterIPAddresses.add(nodeIp);
