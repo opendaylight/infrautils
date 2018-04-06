@@ -53,6 +53,11 @@
               <artifactId>ready-api</artifactId>
               <version>${project.version}</version>
             </dependency>
+            <dependency>
+              <groupId>${project.groupId}</groupId>
+              <artifactId>metrics-api</artifactId>
+              <version>${project.version}</version>
+            </dependency>
 
             <!-- Test utilities -->
             <dependency>
