@@ -52,7 +52,8 @@ public final class MBeanUtils {
 
     public static final String JMX_OBJECT_NAME = "org.opendaylight.infrautils.diagstatus:type=SvcStatus";
     public static final String JMX_SVCSTATUS_OPERATION_DETAILED = "acquireServiceStatusDetailed";
-    public static final String JMX_URL_PREFIX = "service:jmx:rmi:///jndi/rmi://";
+    public static final String JMX_HOST_PREFIX = "service:jmx:rmi://";
+    public static final String JMX_TARGET_PREFIX = "/jndi/rmi://";
     public static final String JMX_URL_SUFFIX = "/server";
     public static final String JMX_URL_SEPARATOR = ":";
     public static final int RMI_REGISTRY_PORT = 6886;
@@ -60,13 +61,14 @@ public final class MBeanUtils {
     private MBeanUtils() {
     }
 
-    public static JMXServiceURL getJMXUrl(String host) throws MalformedURLException {
-        String jmxUrl = constructJmxUrl(host, RMI_REGISTRY_PORT);
+    public static JMXServiceURL getJMXUrl(String targetHost) throws MalformedURLException {
+        String jmxUrl = constructJmxUrl(targetHost, RMI_REGISTRY_PORT);
         return new JMXServiceURL(jmxUrl);
     }
 
-    private static String constructJmxUrl(String host, int port) {
-        return JMX_URL_PREFIX + host + JMX_URL_SEPARATOR + port + JMX_URL_SUFFIX;
+    private static String constructJmxUrl(String targetHost, int rmiRegistryPort) {
+        return JMX_HOST_PREFIX + targetHost + JMX_TARGET_PREFIX
+                + targetHost + JMX_URL_SEPARATOR + rmiRegistryPort + JMX_URL_SUFFIX;
     }
 
     public static Pair<JMXConnectorServer,Registry> startRMIConnectorServer(MBeanServer mbeanServer, String selfAddress)
