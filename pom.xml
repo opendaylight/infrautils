@@ -32,17 +32,17 @@
     </scm>
 
     <modules>
-        <module>common</module>
-        <module>testutils</module>
-        <module>itestutils</module>
-        <module>counters</module>
-        <module>jobcoordinator</module>
-        <module>inject</module>
         <module>caches</module>
-        <module>samples</module>
-        <module>ready</module>
+        <module>common</module>
+        <module>counters</module>
         <module>diagstatus</module>
+        <module>inject</module>
+        <module>itestutils</module>
+        <module>jobcoordinator</module>
         <module>metrics</module>
+        <module>ready</module>
+        <module>samples</module>
+        <module>testutils</module>
     </modules>
 
     <profiles>
