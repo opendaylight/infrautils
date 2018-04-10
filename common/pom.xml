@@ -27,10 +27,11 @@
 
     <modules>
         <module>artifacts</module>
-        <module>util</module>
+        <module>checkstyle</module>
         <module>features</module>
-        <module>karaf</module>
         <module>findbugs</module>
+        <module>karaf</module>
         <module>parent</module>
+        <module>util</module>
     </modules>
 </project>
