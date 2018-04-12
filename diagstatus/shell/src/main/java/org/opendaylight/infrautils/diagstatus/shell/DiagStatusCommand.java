@@ -8,6 +8,7 @@
 package org.opendaylight.infrautils.diagstatus.shell;
 
 import java.util.List;
+import java.util.Optional;
 import javax.annotation.Nullable;
 import org.apache.felix.service.command.CommandSession;
 import org.apache.karaf.shell.commands.Command;
@@ -42,15 +43,24 @@ public class DiagStatusCommand implements org.apache.karaf.shell.commands.Action
         } else {
             List<String> clusterIPAddresses = ClusterMemberInfoProvider.getClusterMembers();
             if (!clusterIPAddresses.isEmpty()) {
-                for (String remoteIpAddr : clusterIPAddresses) {
-                    try {
-                        strBuilder.append(getRemoteStatusSummary(remoteIpAddr));
-                    } catch (Exception e) {
-                        strBuilder.append("Remote Status retrieval JMX Operation failed for node ")
-                                .append(remoteIpAddr);
-                        LOG.error("Exception while reaching Host {}", remoteIpAddr, e);
+                Optional<String> selfAddrOpt = ClusterMemberInfoProvider.getSelfAddress();
+                if (selfAddrOpt.isPresent()) {
+                    String selfAddr = selfAddrOpt.get();
+                    for (String memberAddress : clusterIPAddresses) {
+                        try {
+                            if (memberAddress.equals(selfAddr)) {
+                                strBuilder.append(getLocalStatusSummary(memberAddress));
+                            } else {
+                                strBuilder.append(getRemoteStatusSummary(memberAddress));
+                            }
+                        } catch (Exception e) {
+                            strBuilder.append("Status retrieval JMX Operation failed for node ")
+                                    .append(memberAddress);
+                            LOG.error("Exception while reaching Host {}", memberAddress, e);
+                        }
                     }
                 }
+
             } else {
                 LOG.info("Could not obtain cluster members or the cluster-command is being executed locally\n");
                 strBuilder.append(getLocalStatusSummary("localhost"));
