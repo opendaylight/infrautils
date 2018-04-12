@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "44c7e006_86aa929c",
+        "filename": "checkstyle/src/test/java/org/opendaylight/infrautils/checkstyle/ForbiddenMethodCheckTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-04-12T10:38:28Z",
+      "side": 1,
+      "message": "this Copyright is surprising and seems wrong?",
+      "range": {
+        "startLine": 2,
+        "startChar": 14,
+        "endLine": 2,
+        "endChar": 15
+      },
+      "revId": "324d7a4e5a97e7624a0e18a2dd4dc1382b93824b",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dc3671e4_9d1c8284",
+        "filename": "checkstyle/src/test/java/org/opendaylight/infrautils/checkstyle/ForbiddenMethodCheckTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-04-12T10:38:28Z",
+      "side": 1,
+      "message": "nit: remove empty line?",
+      "revId": "324d7a4e5a97e7624a0e18a2dd4dc1382b93824b",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8353671b_e3e2515b",
+        "filename": "pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-04-12T10:38:28Z",
+      "side": 1,
+      "message": "would I be a huge PITA if I asked that checkstyle/ be in common/ (where we already have findbugs/) instead of at the root here?",
+      "revId": "324d7a4e5a97e7624a0e18a2dd4dc1382b93824b",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
