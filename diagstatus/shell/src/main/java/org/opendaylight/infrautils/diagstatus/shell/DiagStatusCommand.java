@@ -7,7 +7,9 @@
  */
 package org.opendaylight.infrautils.diagstatus.shell;
 
+import com.google.errorprone.annotations.Var;
 import java.util.List;
+import java.util.Optional;
 import javax.annotation.Nullable;
 import org.apache.felix.service.command.CommandSession;
 import org.apache.karaf.shell.commands.Command;
@@ -42,13 +44,22 @@ public class DiagStatusCommand implements org.apache.karaf.shell.commands.Action
         } else {
             List<String> clusterIPAddresses = ClusterMemberInfoProvider.getClusterMembers();
             if (!clusterIPAddresses.isEmpty()) {
-                for (String remoteIpAddr : clusterIPAddresses) {
+                Optional<String> selfAddrOpt = ClusterMemberInfoProvider.getSelfAddress();
+                @Var String selfAddr = "localhost";
+                if (selfAddrOpt.isPresent()) {
+                    selfAddr = selfAddrOpt.get();
+                }
+                for (String memberAddress : clusterIPAddresses) {
                     try {
-                        strBuilder.append(getRemoteStatusSummary(remoteIpAddr));
+                        if (memberAddress.equals(selfAddr)) {
+                            strBuilder.append(getLocalStatusSummary(memberAddress));
+                        } else {
+                            strBuilder.append(getRemoteStatusSummary(memberAddress));
+                        }
                     } catch (Exception e) {
-                        strBuilder.append("Remote Status retrieval JMX Operation failed for node ")
-                                .append(remoteIpAddr);
-                        LOG.error("Exception while reaching Host {}", remoteIpAddr, e);
+                        strBuilder.append("Status retrieval JMX Operation failed for node ")
+                                .append(memberAddress);
+                        LOG.error("Exception while reaching Host {}", memberAddress, e);
                     }
                 }
             } else {
