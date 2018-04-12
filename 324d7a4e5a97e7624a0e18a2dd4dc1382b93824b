@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "d297cd18_dcf7f638",
+        "filename": "checkstyle/src/test/java/org/opendaylight/infrautils/checkstyle/ForbiddenMethodCheckTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 4540
+      },
+      "writtenOn": "2018-04-12T11:15:20Z",
+      "side": 1,
+      "message": "Why jump to conclusions?\n\nhttps://git.opendaylight.org/gerrit/gitweb?p\u003dyangtools.git;a\u003dblob;f\u003dcommon/checkstyle-logging/src/test/java/org/opendaylight/yangtools/checkstyle/CheckstyleTest.java;h\u003d1b7880bf64f800528cebacf89c005fc9d9af30dc;hb\u003dHEAD",
+      "parentUuid": "44c7e006_86aa929c",
+      "range": {
+        "startLine": 2,
+        "startChar": 14,
+        "endLine": 2,
+        "endChar": 15
+      },
+      "revId": "324d7a4e5a97e7624a0e18a2dd4dc1382b93824b",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "dc3671e4_9d1c8284",
         "filename": "checkstyle/src/test/java/org/opendaylight/infrautils/checkstyle/ForbiddenMethodCheckTest.java",
         "patchSetId": 3
