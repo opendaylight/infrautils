@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3d55e0a7_8a62717a",
+        "filename": "common/checkstyle/src/main/java/org/opendaylight/infrautils/checkstyle/ForbiddenMethodCheck.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-04-12T12:36:53Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this also take into account the class of the method?",
+      "revId": "d596d4aff384c6df3f4e4bfbc8d2f4d479f47527",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
