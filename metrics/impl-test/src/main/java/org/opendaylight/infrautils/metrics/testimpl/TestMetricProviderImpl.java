@@ -9,6 +9,9 @@ package org.opendaylight.infrautils.metrics.testimpl;
 
 import java.util.concurrent.atomic.AtomicLong;
 import javax.annotation.Nullable;
+import org.opendaylight.infrautils.metrics.AbstractCounter;
+import org.opendaylight.infrautils.metrics.AbstractMeter;
+import org.opendaylight.infrautils.metrics.AbstractTimer;
 import org.opendaylight.infrautils.metrics.Counter;
 import org.opendaylight.infrautils.metrics.Labeled;
 import org.opendaylight.infrautils.metrics.Meter;
@@ -28,7 +31,7 @@ public class TestMetricProviderImpl implements MetricProvider {
 
     @Override
     public Meter newMeter(@Nullable Object anchor, @Nullable String id) {
-        return new Meter() {
+        return new AbstractMeter() {
 
             private final AtomicLong meter = new AtomicLong(0);
 
@@ -43,7 +46,7 @@ public class TestMetricProviderImpl implements MetricProvider {
             }
 
             @Override
-            public void close() {
+            protected void removeRegistration() {
                 // ignore
             }
         };
@@ -90,7 +93,7 @@ public class TestMetricProviderImpl implements MetricProvider {
 
     @Override
     public Counter newCounter(@Nullable Object anchor, @Nullable String id) {
-        return new Counter() {
+        return new AbstractCounter() {
 
             private final AtomicLong meter = new AtomicLong(0);
 
@@ -110,7 +113,7 @@ public class TestMetricProviderImpl implements MetricProvider {
             }
 
             @Override
-            public void close() {
+            protected void removeRegistration() {
                 // ignore
             }
         };
@@ -157,11 +160,7 @@ public class TestMetricProviderImpl implements MetricProvider {
 
     @Override
     public Timer newTimer(@Nullable Object anchor, @Nullable String id) {
-        return new Timer() {
-
-            @Override
-            public void close() {
-            }
+        return new AbstractTimer() {
 
             @Override
             public <E extends Exception> void time(CheckedRunnable<E> event) throws E {
@@ -171,6 +170,11 @@ public class TestMetricProviderImpl implements MetricProvider {
             @Override
             public <T, E extends Exception> T time(CheckedCallable<T, E> event) throws E {
                 return event.call();
+            }
+
+            @Override
+            protected void removeRegistration() {
+
             }
         };
     }
