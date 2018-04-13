@@ -64,10 +64,10 @@ public class ClasspathHellDuplicatesCheckRule implements TestRule {
 
     protected List<ClasspathResource> filterHarmlessKnownIssues(List<ClasspathResource> resourcesWithDuplicates) {
         List<ClasspathResource> filteredResourcesWithDuplicates = filterFindBugsAnnotation(resourcesWithDuplicates);
-        return filterTXT(filteredResourcesWithDuplicates);
+        return filterMore(filteredResourcesWithDuplicates);
     }
 
-    private static List<ClasspathResource> filterTXT(List<ClasspathResource> resourcesWithDuplicates) {
+    private static List<ClasspathResource> filterMore(List<ClasspathResource> resourcesWithDuplicates) {
         return resourcesWithDuplicates.stream()
                 .filter(classpathResource -> !classpathResource.getName().endsWith(".txt"))
                 .filter(classpathResource -> !classpathResource.getName().endsWith("LICENSE"))
@@ -96,6 +96,8 @@ public class ClasspathHellDuplicatesCheckRule implements TestRule {
                 // Something doesn't to be a perfectly clean in Maven Surefire:
                 .filter(classpathResource -> !classpathResource.getName().contains("/META-INF/maven/"))
                 .filter(classpathResource -> !classpathResource.getName().contains("surefire"))
+                // org.slf4j.impl.StaticLoggerBinder.class in testutils for the LogCaptureRule
+                .filter(r -> !r.getName().contains("/org/slf4j/impl/StaticLoggerBinder.class"))
                 .collect(Collectors.toList());
     }
 
