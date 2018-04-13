@@ -7,7 +7,7 @@
  */
 package org.opendaylight.infrautils.metrics;
 
-import org.opendaylight.infrautils.utils.UncheckedCloseable;
+import org.opendaylight.yangtools.concepts.Registration;
 
 /**
  * Counter metric, which is a simple incrementing and decrementing number.
@@ -15,7 +15,7 @@ import org.opendaylight.infrautils.utils.UncheckedCloseable;
  * <p>Note that if you find you only use its <tt>increase()</tt> and never <tt>decrease()</tt>
  * methods, then you probably want to use {@link Meter} with <tt>mark()</tt> instead of this.
  */
-public interface Counter extends UncheckedCloseable {
+public interface Counter extends Registration {
 
     default void increment() {
         increment(1);
