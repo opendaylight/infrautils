@@ -7,13 +7,13 @@
  */
 package org.opendaylight.infrautils.utils;
 
+import com.google.common.base.Strings;
 import com.google.errorprone.annotations.Var;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.regex.Pattern;
 import javax.annotation.RegEx;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,11 +31,20 @@ public class TablePrinter {
     private static final String  DPLUS_DPLUS_STR = "^\\D+\\d+$";
     private static final Pattern DPLUS_DPLUS = Pattern.compile(DPLUS_DPLUS_STR);
 
-    private int ncols;
+    @RegEx
+    private static final String DPLUS_REMOVE_STR = "\\d+$";
+    private static final Pattern DPLUS_REMOVE = Pattern.compile(DPLUS_REMOVE_STR);
+
+    @RegEx
+    private static final String NON_DIGITS_STR = "^\\D*";
+    private static final Pattern NON_DIGITS = Pattern.compile(NON_DIGITS_STR);
+
     private final List<String[]> table = new ArrayList<>();
+    private final Comparator<String[]> comparator;
+
     private String title = null;
     private String[] header = null;
-    private Comparator<String[]> comparator;
+    private int ncols;
 
     public TablePrinter(int sortByColumn) {
         this.comparator = new Comparator<String[]>() {
@@ -51,18 +60,18 @@ public class TablePrinter {
                     if (DPLUS.matcher(o1[i]).matches() && DPLUS.matcher(o2[i]).matches()) {
                         // strings are actually numbers, compare numbers
                         int compareInt = extractInt(o1[i]) - extractInt(o2[i]);
-                        if (compareInt == 0) {
-                            // identical numbers, move to next column
-                            continue;
-                        } else {
+                        if (compareInt != 0) {
                             return compareInt;
                         }
+
+                        // identical numbers, move to next column
+                        continue;
                     }
 
                     if (DPLUS_DPLUS.matcher(o1[i]).matches() && DPLUS_DPLUS.matcher(o2[i]).matches()) {
-                        // strings are strings with trailing numbers (e.g. "odl2 and odl10")
-                        String o1StringPart = o1[i].replaceAll("\\d+$", ""); // remove digits from end of string
-                        String o2StringPart = o2[i].replaceAll("\\d+$", ""); // remove digits from end of string
+                        // strings are strings with trailing numbers (e.g. "odl2 and odl10"), remove them from the end
+                        String o1StringPart = DPLUS_REMOVE.matcher(o1[i]).replaceAll("");
+                        String o2StringPart = DPLUS_REMOVE.matcher(o2[i]).replaceAll("");
                         if (o1StringPart.equals(o2StringPart)) {
                             // string parts are identical, compare integers
                             int compareInt = extractInt(o1[i]) - extractInt(o2[i]);
@@ -77,7 +86,7 @@ public class TablePrinter {
             }
 
             int extractInt(String str) {
-                String numStr = str.replaceAll("^\\D*", ""); // remove non-digits
+                String numStr = NON_DIGITS.matcher(str).replaceAll(""); // remove non-digits
                 // return 0 if no digits found
                 try {
                     return Integer.parseInt(numStr);
@@ -116,15 +125,13 @@ public class TablePrinter {
         int[] maxWidths = calculateWidths();
         StringBuilder sb = new StringBuilder();
 
-        if (comparator != null) {
-            table.sort(comparator);
-        }
+        table.sort(comparator);
 
         printTitle(sb);
         printHeader(separator, maxWidths, sb);
         for (String[] row : table) {
             if (title != null) {
-                sb.append(StringUtils.repeat(" ", SPACE_BEFORE_TABLES_WITH_TITLE));
+                sb.append(Strings.repeat(" ", SPACE_BEFORE_TABLES_WITH_TITLE));
             }
             printRow(separator, maxWidths, sb, row);
         }
@@ -141,15 +148,15 @@ public class TablePrinter {
     private void printHeader(String separator, int[] maxWidths, StringBuilder sb) {
         if (header != null) {
             if (title != null) {
-                sb.append(StringUtils.repeat(" ", SPACE_BEFORE_TABLES_WITH_TITLE));
+                sb.append(Strings.repeat(" ", SPACE_BEFORE_TABLES_WITH_TITLE));
             }
             printRow(separator, maxWidths, sb, header);
             if (title != null) {
-                sb.append(StringUtils.repeat(" ", SPACE_BEFORE_TABLES_WITH_TITLE));
+                sb.append(Strings.repeat(" ", SPACE_BEFORE_TABLES_WITH_TITLE));
             }
             // Header underline
             int rowLength = SPACE_BETWEEN_COLUMNS + separator.length() * (header.length - 1) + sum(maxWidths);
-            sb.append(StringUtils.repeat("-", rowLength));
+            sb.append(Strings.repeat("-", rowLength));
             sb.append("\n");
         }
     }
@@ -166,7 +173,7 @@ public class TablePrinter {
         for (int i = 0; i < row.length; i++) {
             printSeparator(separator, sb, i);
             sb.append(row[i]);
-            sb.append(StringUtils.repeat(" ", maxWidths[i] - row[i].length()));
+            sb.append(Strings.repeat(" ", maxWidths[i] - row[i].length()));
         }
         sb.append("\n");
     }
@@ -194,14 +201,14 @@ public class TablePrinter {
 
     private static void printSeparator(String separator, StringBuilder sb, int integer) {
         if (integer == 0) {
-            sb.append(StringUtils.repeat(" ", SPACE_BETWEEN_COLUMNS));
+            sb.append(Strings.repeat(" ", SPACE_BETWEEN_COLUMNS));
         } else {
             sb.append(separator);
         }
     }
 
     private static String columnSeparator() {
-        String space = StringUtils.repeat(" ", SPACE_BETWEEN_COLUMNS);
+        String space = Strings.repeat(" ", SPACE_BETWEEN_COLUMNS);
         return space + "|" + space;
     }
 
