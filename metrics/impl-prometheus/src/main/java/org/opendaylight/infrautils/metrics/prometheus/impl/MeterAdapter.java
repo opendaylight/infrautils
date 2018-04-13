@@ -9,6 +9,7 @@ package org.opendaylight.infrautils.metrics.prometheus.impl;
 
 import io.prometheus.client.Counter.Child;
 import java.util.List;
+import org.opendaylight.infrautils.metrics.AbstractMeter;
 import org.opendaylight.infrautils.metrics.Meter;
 
 /**
@@ -16,7 +17,7 @@ import org.opendaylight.infrautils.metrics.Meter;
  *
  * @author Michael Vorburger.ch
  */
-class MeterAdapter implements Meter {
+class MeterAdapter extends AbstractMeter {
     // TODO re-use metrics.impl CounterImpl extends CloseableMetricImpl by intro. metrics.spi
 
     private final Child prometheusChild;
@@ -29,7 +30,7 @@ class MeterAdapter implements Meter {
     }
 
     @Override
-    public void close() {
+    protected void removeRegistration() {
         // TODO This... is a PITA - we should only unregister after the last of many label'd metric is unregistered...
         // prometheusRegistry.unregister(prometheusCounter);
     }

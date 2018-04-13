@@ -212,8 +212,6 @@ public class MetricProviderTest {
         Meter meter1 = metrics.newMeter(this, "test.meter1");
         meter1.close();
         assertThrows(IllegalStateException.class, meter1::mark);
-        // Closing an already closed metric throws an IllegalStateException
-        assertThrows(IllegalStateException.class, meter1::close);
     }
 
     @Test
