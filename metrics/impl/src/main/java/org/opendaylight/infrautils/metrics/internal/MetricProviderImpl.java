@@ -39,9 +39,9 @@ import org.opendaylight.infrautils.metrics.Meter;
 import org.opendaylight.infrautils.metrics.MetricDescriptor;
 import org.opendaylight.infrautils.metrics.MetricProvider;
 import org.opendaylight.infrautils.metrics.Timer;
-import org.opendaylight.infrautils.utils.UncheckedCloseable;
 import org.opendaylight.infrautils.utils.function.CheckedCallable;
 import org.opendaylight.infrautils.utils.function.CheckedRunnable;
+import org.opendaylight.yangtools.concepts.AbstractRegistration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -363,8 +363,7 @@ public class MetricProviderImpl implements MetricProvider {
         }
     }
 
-    private abstract class CloseableMetricImpl implements UncheckedCloseable {
-        private volatile boolean isClosed = false;
+    private abstract class CloseableMetricImpl extends AbstractRegistration {
         protected final String id;
 
         CloseableMetricImpl(String id) {
@@ -372,15 +371,12 @@ public class MetricProviderImpl implements MetricProvider {
         }
 
         protected void checkIfClosed() {
-            if (isClosed) {
+            if (isClosed()) {
                 throw new IllegalStateException("Metric closed: " + id);
             }
         }
 
-        @Override
-        public void close() {
-            checkIfClosed();
-            isClosed = true;
+        protected void removeRegistration() {
             if (!registry.remove(id)) {
                 LOG.warn("Metric remove did not actualy remove: {}", id);
             }
@@ -414,8 +410,8 @@ public class MetricProviderImpl implements MetricProvider {
         }
 
         @Override
-        public void close() {
-            super.close();
+        protected void removeRegistration() {
+            super.removeRegistration();
             meters.remove(id);
         }
     }
@@ -460,8 +456,8 @@ public class MetricProviderImpl implements MetricProvider {
         }
 
         @Override
-        public void close() {
-            super.close();
+        protected void removeRegistration() {
+            super.removeRegistration();
             counters.remove(id);
         }
     }

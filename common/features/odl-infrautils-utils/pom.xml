@@ -16,6 +16,18 @@
 
     <name>OpenDaylight :: Infrautils :: Utils</name>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.opendaylight.yangtools</groupId>
+                <artifactId>yangtools-artifacts</artifactId>
+                <version>2.1.2</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
@@ -23,8 +35,8 @@
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.opendaylight.odlparent</groupId>
-            <artifactId>odl-guava</artifactId>
+            <groupId>org.opendaylight.yangtools</groupId>
+            <artifactId>odl-yangtools-util</artifactId>
             <classifier>features</classifier>
             <type>xml</type>
         </dependency>
