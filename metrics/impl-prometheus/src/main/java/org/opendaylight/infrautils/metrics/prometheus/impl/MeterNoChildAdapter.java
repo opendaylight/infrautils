@@ -9,6 +9,7 @@ package org.opendaylight.infrautils.metrics.prometheus.impl;
 
 import io.prometheus.client.CollectorRegistry;
 import java.util.List;
+import org.opendaylight.infrautils.metrics.AbstractMeter;
 import org.opendaylight.infrautils.metrics.Meter;
 import org.opendaylight.infrautils.metrics.MetricDescriptor;
 
@@ -19,7 +20,7 @@ import org.opendaylight.infrautils.metrics.MetricDescriptor;
  * @author Michael Vorburger.ch
  */
 @SuppressWarnings("javadoc")
-class MeterNoChildAdapter implements Meter {
+class MeterNoChildAdapter extends AbstractMeter {
 
     final io.prometheus.client.Counter prometheusCounter;
 
@@ -48,7 +49,7 @@ class MeterNoChildAdapter implements Meter {
     }
 
     @Override
-    public void close() {
+    protected void removeRegistration() {
         // TODO implement this correctly... see MeterAdapter#close
     }
 }
