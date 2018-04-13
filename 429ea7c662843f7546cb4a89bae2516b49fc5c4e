@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8b873fde_f3b2dcf5",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusCommand.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-04-13T15:57:51Z",
+      "side": 1,
+      "message": "more FYI and for your learning, if you like, than a big real problem:\n\nYou can write these 5 lines *much* more nicely in 1, like this:\n\n  String selfAddress \u003d ClusterMemberInfoProvider.getSelfAddress().orElse(\"localhost\");\n\nI would also speall out \"address\" and not abbreviate it, it\u0027s clearer, especically given memberAddress \u0026 clusterIPAddresses.",
+      "revId": "429ea7c662843f7546cb4a89bae2516b49fc5c4e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
