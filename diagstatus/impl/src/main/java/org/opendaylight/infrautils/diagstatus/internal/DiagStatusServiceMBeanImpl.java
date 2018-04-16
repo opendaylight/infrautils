@@ -12,11 +12,8 @@ import static org.opendaylight.infrautils.diagstatus.ServiceState.UNREGISTERED;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableMap.Builder;
-import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
-import java.io.StringWriter;
 import java.rmi.registry.Registry;
-import java.util.Date;
 import java.util.Map;
 import javax.annotation.PreDestroy;
 import javax.inject.Inject;
@@ -45,9 +42,6 @@ import org.slf4j.LoggerFactory;
 @Singleton
 public class DiagStatusServiceMBeanImpl extends StandardMBean implements DiagStatusServiceMBean, SystemReadyListener {
 
-    private static final String DEBUG_OUTPUT_FORMAT = "D";
-    // private static final String BRIEF_OUTPUT_FORMAT = "B";
-    private static final String VERBOSE_OUTPUT_FORMAT = "V";
     private static final String JMX_OBJECT_NAME = "org.opendaylight.infrautils.diagstatus:type=SvcStatus";
 
     private static final Logger LOG = LoggerFactory.getLogger(DiagStatusServiceMBeanImpl.class);
@@ -154,43 +148,13 @@ public class DiagStatusServiceMBeanImpl extends StandardMBean implements DiagSta
     }
 
     @Override
-    public String acquireServiceStatusAsJSON(String formatType) {
-        try {
-            StringWriter strWrtr = new StringWriter();
-            JsonWriter writer = new JsonWriter(strWrtr);
-            writer.beginObject();
-            writer.name("timeStamp").value(new Date().toString());
-            writer.name("systemReadyState").value(systemReadyMonitor.getSystemState().name());
-            writer.name("statusSummary");
-            writer.beginArray(); //[
-            for (ServiceDescriptor status : diagStatusService.getAllServiceDescriptors()) {
-                writer.beginObject(); // {
-                switch (formatType) {
-                    case DEBUG_OUTPUT_FORMAT:
-                        writer.name("serviceName").value(status.getModuleServiceName());
-                        writer.name("lastReportedStatus").value(status.getServiceState().name());
-                        writer.name("effectiveStatus").value(status.getServiceState().name());
-                        writer.name("reportedStatusDes").value(status.getStatusDesc());
-                        writer.name("statusTimestamp").value(status.getTimestamp().toString());
-                        break;
-                    case VERBOSE_OUTPUT_FORMAT:
-                        writer.name("serviceName").value(status.getModuleServiceName());
-                        writer.name("effectiveStatus").value(status.getServiceState().name());
-                        break;
-                    default:
-                        writer.name("statusBrief").value(acquireServiceStatusBrief());
-                        break;
-                }
-                writer.endObject();
-            }
-            writer.endArray();
-            writer.endObject();
-            writer.flush();
-            writer.close();
-            return strWrtr.getBuffer().toString();
-        } catch (IOException e) {
-            LOG.error("Error while converting service status to JSON", e);
-            return "{}";
-        }
+    @Deprecated
+    public String acquireServiceStatusAsJSON(String outputType) {
+        return this.acquireServiceStatusAsJSON();
+    }
+
+    @Override
+    public String acquireServiceStatusAsJSON() {
+        return diagStatusService.getAllServiceDescriptorsAsJSON();
     }
 }
