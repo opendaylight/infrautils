@@ -10,7 +10,11 @@ package org.opendaylight.infrautils.diagstatus.internal;
 import static org.opendaylight.infrautils.diagstatus.ServiceState.STARTING;
 
 import com.google.common.collect.ImmutableList;
+import com.google.gson.stream.JsonWriter;
+import java.io.IOException;
+import java.io.StringWriter;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -20,6 +24,8 @@ import org.opendaylight.infrautils.diagstatus.DiagStatusService;
 import org.opendaylight.infrautils.diagstatus.ServiceDescriptor;
 import org.opendaylight.infrautils.diagstatus.ServiceRegistration;
 import org.opendaylight.infrautils.diagstatus.ServiceStatusProvider;
+import org.opendaylight.infrautils.ready.SystemReadyMonitor;
+import org.ops4j.pax.cdi.api.OsgiService;
 import org.ops4j.pax.cdi.api.OsgiServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,8 +45,12 @@ public class DiagStatusServiceImpl implements DiagStatusService {
 
     private final List<ServiceStatusProvider> serviceStatusProviders;
 
+    private final SystemReadyMonitor systemReadyMonitor;
+
     @Inject
-    public DiagStatusServiceImpl(List<ServiceStatusProvider> serviceStatusProviders) {
+    public DiagStatusServiceImpl(List<ServiceStatusProvider> serviceStatusProviders,
+            @OsgiService SystemReadyMonitor systemReadyMonitor) {
+        this.systemReadyMonitor = systemReadyMonitor;
         this.serviceStatusProviders = serviceStatusProviders;
         LOG.info("{} started", getClass().getSimpleName());
     }
@@ -71,6 +81,35 @@ public class DiagStatusServiceImpl implements DiagStatusService {
     public Collection<ServiceDescriptor> getAllServiceDescriptors() {
         updateServiceStatusMap();
         return ImmutableList.copyOf(statusMap.values());
+    }
+
+    @Override
+    public String getAllServiceDescriptorsAsJSON() {
+        try (StringWriter stringWriter = new StringWriter()) {
+            try (JsonWriter writer = new JsonWriter(stringWriter)) {
+                writer.beginObject();
+                writer.name("timeStamp").value(new Date().toString());
+                writer.name("systemReadyState").value(systemReadyMonitor.getSystemState().name());
+                writer.name("statusSummary");
+                writer.beginArray();
+                for (ServiceDescriptor status : getAllServiceDescriptors()) {
+                    writer.beginObject();
+                    writer.name("serviceName").value(status.getModuleServiceName());
+                    writer.name("effectiveStatus").value(status.getServiceState().name());
+                    writer.name("reportedStatusDescription").value(status.getStatusDesc());
+                    writer.name("statusTimestamp").value(status.getTimestamp().toString());
+                    writer.endObject();
+                }
+                writer.endArray();
+                writer.endObject();
+                writer.flush();
+                writer.close();
+                return stringWriter.getBuffer().toString();
+            }
+        } catch (IOException e) {
+            LOG.error("Error while converting service status to JSON", e);
+            return "{}";
+        }
     }
 
     private void updateServiceStatusMap() {
