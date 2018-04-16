@@ -37,7 +37,6 @@ public interface DiagStatusService {
      *
      * @param serviceDescriptor
      *            description of the service state
-     *
      */
     void report(ServiceDescriptor serviceDescriptor);
 
@@ -46,15 +45,22 @@ public interface DiagStatusService {
      *
      * @param serviceIdentifier
      *            unique identifier for a service
-     *
      */
     ServiceDescriptor getServiceDescriptor(String serviceIdentifier);
 
     /**
      * Retrieve the status of all services registered so far.
      *
-     * @return  status set for all registered services
-     *
+     * @return status set for all registered services
      */
     Collection<ServiceDescriptor> getAllServiceDescriptors();
+
+    /**
+     * Retrieve the status of all services registered so far as a JSON String with a
+     * fixed format which external systems can rely on.
+     *
+     * @return JSON formatted String with all service descriptions and all of the
+     *         details available for each of them as well as the global system ready status
+     */
+    String getAllServiceDescriptorsAsJSON();
 }
