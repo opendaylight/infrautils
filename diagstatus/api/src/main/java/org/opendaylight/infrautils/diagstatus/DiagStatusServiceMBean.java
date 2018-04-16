@@ -22,7 +22,10 @@ public interface DiagStatusServiceMBean {
 
     String acquireServiceStatusBrief();
 
+    @Deprecated
     String acquireServiceStatusAsJSON(String outputType);
+
+    String acquireServiceStatusAsJSON();
 
     Map<String, String> acquireServiceStatusMap();
 }
