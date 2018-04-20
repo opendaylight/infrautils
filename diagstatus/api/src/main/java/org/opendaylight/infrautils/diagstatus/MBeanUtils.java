@@ -134,7 +134,7 @@ public final class MBeanUtils {
             MBeanServer mplatformMbeanServer = ManagementFactory.getPlatformMBeanServer();
             udpated = mplatformMbeanServer.invoke(objectName, functionName, null, null);
         } catch (InstanceNotFoundException | MBeanException | ReflectionException | MalformedObjectNameException t) {
-            LOG.info("CRITICAL : Exception in executing MBean function");
+            LOG.error("CRITICAL : Exception in executing MBean function", t);
         }
         return udpated;
     }
@@ -148,7 +148,7 @@ public final class MBeanUtils {
             attributeObj = platformMbeanServer.getAttribute(objectName, attribute);
         } catch (AttributeNotFoundException | InstanceNotFoundException | MBeanException
                 | ReflectionException | MalformedObjectNameException t) {
-            LOG.info("CRITICAL : Exception in executing MXBean function");
+            LOG.error("CRITICAL : Exception in executing MXBean function", t);
         }
         return attributeObj;
     }
