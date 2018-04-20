@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d4c43354_5ec9ca5f",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceMBeanImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-04-20T13:45:39Z",
+      "side": 1,
+      "message": "this will break current genius CSIT, as there is some pattern matching done based on the output\n\nhttps://github.com/opendaylight/integration-test/blob/master/csit/libraries/Genius.robot#L91",
+      "revId": "bfcdd8beb63704e4e428b6dd5fa21ea155cee764",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
