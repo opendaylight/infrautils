@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9ea7b904_8fc67f75",
+        "filename": "common/util/src/test/java/org/opendaylight/infrautils/utils/tests/ClasspathHellDuplicatesCheckRuleTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-04-20T07:41:44Z",
+      "side": 1,
+      "message": "the point of ClasspathHellDuplicatesCheckRuleTest is just to make sure that the usage of the ClasspathHellDuplicatesCheckRule doesn\u0027t cause any problems in the build, as it did before this fix; see also class level JavaDoc above.",
+      "revId": "b7b85d5cced3cc4ef91bcf18bd80b20326656ca5",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
