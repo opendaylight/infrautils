@@ -23,8 +23,10 @@ import javax.inject.Singleton;
 import org.opendaylight.infrautils.diagstatus.DiagStatusService;
 import org.opendaylight.infrautils.diagstatus.ServiceDescriptor;
 import org.opendaylight.infrautils.diagstatus.ServiceRegistration;
+import org.opendaylight.infrautils.diagstatus.ServiceState;
 import org.opendaylight.infrautils.diagstatus.ServiceStatusProvider;
 import org.opendaylight.infrautils.ready.SystemReadyMonitor;
+import org.opendaylight.infrautils.ready.SystemState;
 import org.ops4j.pax.cdi.api.OsgiService;
 import org.ops4j.pax.cdi.api.OsgiServiceProvider;
 import org.slf4j.Logger;
@@ -84,11 +86,25 @@ public class DiagStatusServiceImpl implements DiagStatusService {
     }
 
     @Override
+    public boolean isOperational() {
+        if (!systemReadyMonitor.getSystemState().equals(SystemState.ACTIVE)) {
+            return false;
+        }
+        for (ServiceDescriptor serviceDescriptor : getAllServiceDescriptors()) {
+            if (!serviceDescriptor.getServiceState().equals(ServiceState.OPERATIONAL)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @Override
     public String getAllServiceDescriptorsAsJSON() {
         try (StringWriter stringWriter = new StringWriter()) {
             try (JsonWriter writer = new JsonWriter(stringWriter)) {
                 writer.beginObject();
                 writer.name("timeStamp").value(new Date().toString());
+                writer.name("isOperational").value(isOperational());
                 writer.name("systemReadyState").value(systemReadyMonitor.getSystemState().name());
                 writer.name("statusSummary");
                 writer.beginArray();
