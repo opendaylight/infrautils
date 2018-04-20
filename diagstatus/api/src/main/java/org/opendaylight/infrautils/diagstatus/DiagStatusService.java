@@ -9,6 +9,8 @@ package org.opendaylight.infrautils.diagstatus;
 
 import java.util.Collection;
 import javax.annotation.concurrent.ThreadSafe;
+import org.opendaylight.infrautils.ready.SystemReadyMonitorMXBean;
+import org.opendaylight.infrautils.ready.SystemState;
 
 /**
  * DiagStatus ServiceDescriptor which lets users register/retrieve for particular service status details.
@@ -63,4 +65,15 @@ public interface DiagStatusService {
      *         details available for each of them as well as the global system ready status
      */
     String getAllServiceDescriptorsAsJSON();
+
+    /**
+     * Retrieve single true/false boolean indicating if the system is operational to
+     * the best of diagstatus' knowledge. Being operational in this context is
+     * defined as the global {@link SystemReadyMonitorMXBean}'s {@link SystemState}
+     * being ACTIVE, and all of the currently reported {@link ServiceDescriptor}'s
+     * {@link ServiceState} being OPERATIONAL.
+     *
+     * @return true if system is operational, false if not
+     */
+    boolean isOperational();
 }
