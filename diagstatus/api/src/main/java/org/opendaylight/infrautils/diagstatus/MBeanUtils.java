@@ -15,7 +15,6 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import javax.annotation.Nullable;
-import javax.management.AttributeNotFoundException;
 import javax.management.InstanceAlreadyExistsException;
 import javax.management.InstanceNotFoundException;
 import javax.management.JMException;
@@ -144,28 +143,6 @@ public final class MBeanUtils {
         ObjectName objectName = new ObjectName(objName);
         MBeanServer platformMbeanServer = ManagementFactory.getPlatformMBeanServer();
         return platformMbeanServer.getAttribute(objectName, attribute);
-    }
-
-    /**
-     * TODO remove this as soon as the usage in
-     * org.opendaylight.genius.mdsalutil.diagstatus.internal.DatastoreServiceStatusProvider.getServiceDescriptor()
-     * is removed.
-     *
-     * @deprecated Use {@link #getMBeanAttribute(String, String)} instead.
-     */
-    @Nullable
-    @Deprecated
-    public static Object readMBeanAttribute(String objName, String attribute) {
-        @Var Object attributeObj = null;
-        try {
-            ObjectName objectName = new ObjectName(objName);
-            MBeanServer platformMbeanServer = ManagementFactory.getPlatformMBeanServer();
-            attributeObj = platformMbeanServer.getAttribute(objectName, attribute);
-        } catch (AttributeNotFoundException | InstanceNotFoundException | MBeanException
-                | ReflectionException | MalformedObjectNameException t) {
-            LOG.error("CRITICAL : Exception in executing MXBean function", t);
-        }
-        return attributeObj;
     }
 
     public static String invokeRemoteJMXOperation(String host, String mbeanName) throws Exception {
