@@ -85,22 +85,23 @@ public class DiagStatusServiceMBeanImpl extends StandardMBean implements DiagSta
     @Override
     public String acquireServiceStatus() {
         StringBuilder statusSummary = new StringBuilder();
+        statusSummary.append("System is operational: ").append(diagStatusService.isOperational()).append('\n');
         statusSummary.append("System ready state: ").append(systemReadyMonitor.getSystemState()).append('\n');
         for (ServiceDescriptor status : diagStatusService.getAllServiceDescriptors()) {
-            statusSummary.append("ServiceName          : ").append(status.getModuleServiceName()).append("\n");
+            statusSummary.append("ServiceName          : ").append(status.getModuleServiceName()).append('\n');
             if (status.getServiceState() != null) {
                 statusSummary.append("Last Reported Status : ")
-                        .append(status.getServiceState().name()).append("\n");
+                        .append(status.getServiceState().name()).append('\n');
             }
             if (status.getStatusDesc() != null) {
                 statusSummary.append("Reported Status Desc : ").append(status.getStatusDesc())
-                        .append("\n");
+                        .append('\n');
             }
             if (status.getTimestamp() != null) {
                 statusSummary.append("Status Timestamp     : ").append(status.getTimestamp().toString()).append("\n\n");
             }
         }
-        statusSummary.append("\n");
+        statusSummary.append('\n');
 
         return statusSummary.toString();
     }
@@ -108,13 +109,17 @@ public class DiagStatusServiceMBeanImpl extends StandardMBean implements DiagSta
     @Override
     public String acquireServiceStatusDetailed() {
         StringBuilder statusSummary = new StringBuilder();
+        // Commented out for now because the CSIT tests have hard-coded fixed line numbers of the CLI output instead
+        // of properly "parsing" it; see the "Split To Lines 3 7" in https://github.com/opendaylight/integration-test/blob/cd5f528e527a47790a06b442d0e73e8ef95cb39a/csit/libraries/Genius.robot#L91
+        // if anyone ever wants to activate this, please coordinate a change together with CSIT and then uncomment this:
+        // TODO statusSummary.append("System is operational: ").append(diagStatusService.isOperational()).append('\n');
         statusSummary.append("System ready state: ").append(systemReadyMonitor.getSystemState()).append('\n');
         for (ServiceDescriptor status : diagStatusService.getAllServiceDescriptors()) {
             statusSummary
                     .append("  ")
                     .append(String.format("%-20s%-20s", status.getModuleServiceName(), ": "
                             + status.getServiceState()))
-                    .append("\n");
+                    .append('\n');
         }
         return statusSummary.toString();
     }
@@ -123,6 +128,7 @@ public class DiagStatusServiceMBeanImpl extends StandardMBean implements DiagSta
     public String acquireServiceStatusBrief() {
         String errorState = "ERROR - ";
         StringBuilder statusSummary = new StringBuilder();
+        statusSummary.append("System is operational: ").append(diagStatusService.isOperational()).append('\n');
         statusSummary.append("System ready state: ").append(systemReadyMonitor.getSystemState()).append('\n');
         for (ServiceDescriptor stat : diagStatusService.getAllServiceDescriptors()) {
             ServiceState state = stat.getServiceState();
