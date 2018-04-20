@@ -16,6 +16,23 @@
       "revId": "05873ae49083313e54be92c6cea16ce53285f079",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d6b85de2_9b229f7a",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/MBeanUtils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-04-20T15:53:41Z",
+      "side": 1,
+      "message": "Many of the catch exception here are the results of such feedbacks from customer",
+      "revId": "05873ae49083313e54be92c6cea16ce53285f079",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
