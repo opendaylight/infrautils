@@ -34,6 +34,24 @@
       "revId": "bfcdd8beb63704e4e428b6dd5fa21ea155cee764",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e18e20e7_6634850d",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceMBeanImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 2264
+      },
+      "writtenOn": "2018-04-20T20:57:03Z",
+      "side": 1,
+      "message": "https://git.opendaylight.org/gerrit/#/c/71183/",
+      "parentUuid": "f986a936_1dd11b52",
+      "revId": "bfcdd8beb63704e4e428b6dd5fa21ea155cee764",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
