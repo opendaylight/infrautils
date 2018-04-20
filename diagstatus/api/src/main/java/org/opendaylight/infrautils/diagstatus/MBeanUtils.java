@@ -127,15 +127,11 @@ public final class MBeanUtils {
         }
     }
 
-    public static Object invokeMBeanFunction(String objName, String functionName) {
+    public static Object invokeMBeanFunction(String objName, String functionName) throws JMException {
         @Var Object udpated = "";
-        try {
-            ObjectName objectName = new ObjectName(objName);
-            MBeanServer mplatformMbeanServer = ManagementFactory.getPlatformMBeanServer();
-            udpated = mplatformMbeanServer.invoke(objectName, functionName, null, null);
-        } catch (InstanceNotFoundException | MBeanException | ReflectionException | MalformedObjectNameException t) {
-            LOG.error("CRITICAL : Exception in executing MBean function", t);
-        }
+        ObjectName objectName = new ObjectName(objName);
+        MBeanServer mplatformMbeanServer = ManagementFactory.getPlatformMBeanServer();
+        udpated = mplatformMbeanServer.invoke(objectName, functionName, null, null);
         return udpated;
     }
 

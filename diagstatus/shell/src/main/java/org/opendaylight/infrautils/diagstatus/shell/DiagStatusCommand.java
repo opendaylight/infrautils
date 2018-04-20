@@ -9,6 +9,7 @@ package org.opendaylight.infrautils.diagstatus.shell;
 
 import java.util.List;
 import javax.annotation.Nullable;
+import javax.management.JMException;
 import org.apache.felix.service.command.CommandSession;
 import org.apache.karaf.shell.commands.Command;
 import org.apache.karaf.shell.commands.Option;
@@ -66,13 +67,13 @@ public class DiagStatusCommand implements org.apache.karaf.shell.commands.Action
         return null;
     }
 
-    public static String getLocalStatusSummary(String localIPAddress) {
+    private static String getLocalStatusSummary(String localIPAddress) throws JMException {
         return "Node IP Address: " + localIPAddress + "\n"
                 + MBeanUtils.invokeMBeanFunction(MBeanUtils.JMX_OBJECT_NAME,
                 MBeanUtils.JMX_SVCSTATUS_OPERATION_DETAILED);
     }
 
-    public static String getRemoteStatusSummary(String ipAddress) throws Exception {
+    private static String getRemoteStatusSummary(String ipAddress) throws Exception {
         String remoteJMXOperationResult;
         StringBuilder strBuilder = new StringBuilder();
         LOG.info("fetching status summary for node : {}", ipAddress);
@@ -83,7 +84,7 @@ public class DiagStatusCommand implements org.apache.karaf.shell.commands.Action
     }
 
     @SuppressWarnings("checkstyle:IllegalCatch")
-    public static String getNodeSpecificStatus(String ipAddress) throws Exception {
+    private static String getNodeSpecificStatus(String ipAddress) throws Exception {
         StringBuilder strBuilder = new StringBuilder();
         if (ClusterMemberInfoProvider.isValidIPAddress(ipAddress)) {
             if (ClusterMemberInfoProvider.isIPAddressInCluster(ipAddress)) {
