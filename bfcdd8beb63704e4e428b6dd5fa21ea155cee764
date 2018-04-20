@@ -16,6 +16,24 @@
       "revId": "bfcdd8beb63704e4e428b6dd5fa21ea155cee764",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f986a936_1dd11b52",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceMBeanImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-04-20T14:43:57Z",
+      "side": 1,
+      "message": "Wow, nice catch - you think of everything!  I\u0027ve added this new isOperational I\u0027m introducing for the JSON for the Web API for INFRAUTILS-33 just as a convenience to the CLI command also, but we don\u0027t strictly needed it there of course, so I\u0027ll just comment this line out for now.",
+      "parentUuid": "d4c43354_5ec9ca5f",
+      "revId": "bfcdd8beb63704e4e428b6dd5fa21ea155cee764",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
