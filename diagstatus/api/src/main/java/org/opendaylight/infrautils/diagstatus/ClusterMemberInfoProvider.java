@@ -11,16 +11,18 @@ package org.opendaylight.infrautils.diagstatus;
 import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-
+import javax.management.JMException;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * This class provides utilities to derive ODL cluster information using some of the MBeans exposed by
- * ODL akka framework.
+ * This class provides utilities to derive ODL cluster information.
+ *
+ * <p>It is currently implemented using some of the JMX MBeans exposed by Akka framework used in ODL controller.
  *
  * @author Faseela K
  */
@@ -31,19 +33,33 @@ public final class ClusterMemberInfoProvider {
     private ClusterMemberInfoProvider() { }
 
     public static Optional<String> getSelfAddress()  {
-        Object clusterStatusMBeanValue = MBeanUtils.readMBeanAttribute("akka:type=Cluster", "ClusterStatus");
+        Object clusterStatusMBeanValue;
+        try {
+            clusterStatusMBeanValue = MBeanUtils.getMBeanAttribute("akka:type=Cluster", "ClusterStatus");
+        } catch (JMException e) {
+            LOG.error("Problem to getMBeanAttribute(\"akka:type=Cluster\", \"ClusterStatus\"); returning empty.", e);
+            return Optional.empty();
+        }
         if (clusterStatusMBeanValue != null) {
             String selfAddressMbean = StringUtils.substringBetween(clusterStatusMBeanValue.toString(),
                     "\"self-address\": ", ",");
             return Optional.of(StringUtils.substringBetween(selfAddressMbean, "@", ":"));
         } else {
+            LOG.error("getMBeanAttribute(\"akka:type=Cluster\", \"ClusterStatus\"); unexepected returned null");
             return Optional.empty();
         }
     }
 
     public static List<String> getClusterMembers()  {
+        Object clusterMemberMBeanValue;
+        try {
+            clusterMemberMBeanValue = MBeanUtils.getMBeanAttribute("akka:type=Cluster", "Members");
+        } catch (JMException e) {
+            LOG.error("Problem to getMBeanAttribute(\"akka:type=Cluster\", \"Members\"); returning empty List", e);
+            return Collections.emptyList();
+        }
+
         List<String> clusterIPAddresses = new ArrayList<>();
-        Object clusterMemberMBeanValue = MBeanUtils.readMBeanAttribute("akka:type=Cluster", "Members");
         if (clusterMemberMBeanValue != null) {
             List<String> clusterMembers = Arrays.asList(((String)clusterMemberMBeanValue).split(",", -1));
             for (String clusterMember : clusterMembers) {

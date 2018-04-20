@@ -140,6 +140,21 @@ public final class MBeanUtils {
     }
 
     @Nullable
+    public static Object getMBeanAttribute(String objName, String attribute) throws JMException {
+        ObjectName objectName = new ObjectName(objName);
+        MBeanServer platformMbeanServer = ManagementFactory.getPlatformMBeanServer();
+        return platformMbeanServer.getAttribute(objectName, attribute);
+    }
+
+    /**
+     * TODO remove this as soon as the usage in
+     * org.opendaylight.genius.mdsalutil.diagstatus.internal.DatastoreServiceStatusProvider.getServiceDescriptor()
+     * is removed.
+     *
+     * @deprecated Use {@link #getMBeanAttribute(String, String)} instead.
+     */
+    @Nullable
+    @Deprecated
     public static Object readMBeanAttribute(String objName, String attribute) {
         @Var Object attributeObj = null;
         try {
