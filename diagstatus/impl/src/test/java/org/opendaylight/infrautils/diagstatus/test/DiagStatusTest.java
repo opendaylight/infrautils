@@ -7,6 +7,8 @@
  */
 package org.opendaylight.infrautils.diagstatus.test;
 
+import static com.google.common.truth.Truth.assertThat;
+
 import javax.inject.Inject;
 import org.junit.Assert;
 import org.junit.Rule;
@@ -31,10 +33,8 @@ public class DiagStatusTest {
     public @Rule LogCaptureRule logCaptureRule = new LogCaptureRule();
     public @Rule MethodRule guice = new GuiceRule(new DiagStatusTestModule());
 
-    @Inject
-    DiagStatusService diagStatusService;
-    @Inject
-    DiagStatusServiceMBean diagStatusServiceMBean;
+    @Inject DiagStatusService diagStatusService;
+    @Inject DiagStatusServiceMBean diagStatusServiceMBean;
 
     @Test
     public void testDiagStatus() {
@@ -43,6 +43,10 @@ public class DiagStatusTest {
         // Verify if "testService" got registered with STARTING state.
         ServiceDescriptor serviceDescriptor1 = diagStatusService.getServiceDescriptor(testService1);
         Assert.assertEquals(ServiceState.STARTING, serviceDescriptor1.getServiceState());
+        assertThat(diagStatusService.isOperational()).isFalse();
+
+        // JSON should be formatted
+        assertThat(diagStatusService.getAllServiceDescriptorsAsJSON()).contains("\n");
 
         // Verify if "testService" status is updated as OPERATIONAL.
         ServiceDescriptor reportStatus = new ServiceDescriptor(testService1, ServiceState.OPERATIONAL,
@@ -50,13 +54,16 @@ public class DiagStatusTest {
         diagStatusService.report(reportStatus);
         ServiceDescriptor serviceDescriptor2 = diagStatusService.getServiceDescriptor(testService1);
         Assert.assertEquals(ServiceState.OPERATIONAL, serviceDescriptor2.getServiceState());
+        assertThat(diagStatusService.isOperational()).isTrue();
 
         // Verify if "testService" status is updated as UNREGISTERED.
         diagStatusService.report(new ServiceDescriptor(testService1, ServiceState.UNREGISTERED,
                 "service is Unregistered"));
+        assertThat(diagStatusService.isOperational()).isFalse();
 
-        //JXM based Junits to see if the service state is getting retrieved properly.
+        // JMX based Junits to see if the service state is getting retrieved properly.
         Assert.assertEquals(ServiceState.UNREGISTERED.name(),
                diagStatusServiceMBean.acquireServiceStatusMap().get(testService1));
+
     }
 }
