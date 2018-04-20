@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c9ace17d_12918ec5",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/MBeanUtils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-04-20T15:52:42Z",
+      "side": 1,
+      "message": "this is a customer facing CLI, and it was decided that the CLI should not have exception stack traces, we should log them, but still have better readable output for the CLI",
+      "revId": "05873ae49083313e54be92c6cea16ce53285f079",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
