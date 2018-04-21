@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "791e32f4_bf1c5262",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceMBeanImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-04-21T06:18:48Z",
+      "side": 1,
+      "message": "CSIT change looks good. This can be merged after that goes in.",
+      "revId": "4382cca288ed44d5f24d44243a8da15fa6efcb2b",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
