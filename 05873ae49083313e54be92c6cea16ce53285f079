@@ -51,6 +51,40 @@
       "revId": "05873ae49083313e54be92c6cea16ce53285f079",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ebe5c65e_9ec49925",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusCommand.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-04-21T03:47:41Z",
+      "side": 1,
+      "message": "this is outside try..catch",
+      "revId": "05873ae49083313e54be92c6cea16ce53285f079",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c3d590e6_d952a876",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusCommand.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-04-21T03:47:41Z",
+      "side": 1,
+      "message": "this is outside try..catch",
+      "revId": "05873ae49083313e54be92c6cea16ce53285f079",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
