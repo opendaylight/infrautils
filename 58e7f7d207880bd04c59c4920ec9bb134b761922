@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b8aeed9d_58792ab6",
+        "filename": "diagstatus/web/src/main/java/org/opendaylight/infrautils/diagstatus/web/DiagStatusServlet.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2018-04-22T22:02:04Z",
+      "side": 1,
+      "message": "A constant providing citing HttpServletResponse lack of a constant for this code would be nice.",
+      "range": {
+        "startLine": 51,
+        "startChar": 31,
+        "endLine": 51,
+        "endChar": 34
+      },
+      "revId": "58e7f7d207880bd04c59c4920ec9bb134b761922",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
