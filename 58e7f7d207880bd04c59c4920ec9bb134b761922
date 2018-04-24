@@ -22,6 +22,30 @@
       "revId": "58e7f7d207880bd04c59c4920ec9bb134b761922",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f3f8d7ce_ffbd0b20",
+        "filename": "diagstatus/web/src/main/java/org/opendaylight/infrautils/diagstatus/web/DiagStatusServlet.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-04-24T09:40:31Z",
+      "side": 1,
+      "message": "will do nice next time - am in a rush (stress downstream)",
+      "parentUuid": "b8aeed9d_58792ab6",
+      "range": {
+        "startLine": 51,
+        "startChar": 31,
+        "endLine": 51,
+        "endChar": 34
+      },
+      "revId": "58e7f7d207880bd04c59c4920ec9bb134b761922",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
