@@ -70,6 +70,24 @@
       "revId": "bfcdd8beb63704e4e428b6dd5fa21ea155cee764",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c46b9fbc_1d3f7197",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceMBeanImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-04-24T01:26:34Z",
+      "side": 1,
+      "message": "This is the CLI output Jamo, Michael has not changed the CLI output, and your gerrit will solve that : https://git.opendaylight.org/gerrit/#/c/71184/",
+      "parentUuid": "cba7c0a1_35f3cc56",
+      "revId": "bfcdd8beb63704e4e428b6dd5fa21ea155cee764",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
