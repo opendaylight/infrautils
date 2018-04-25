@@ -98,6 +98,8 @@ public class ClasspathHellDuplicatesCheckRule implements TestRule {
                 .filter(classpathResource -> !classpathResource.getName().contains("surefire"))
                 // org.slf4j.impl.StaticLoggerBinder.class in testutils for the LogCaptureRule
                 .filter(r -> !r.getName().contains("/org/slf4j/impl/StaticLoggerBinder.class"))
+                // INFRAUTILS-35: JavaLaunchHelper is both in java and libinstrument.dylib (?) on Mac OS X
+                .filter(r -> !r.getName().contains("JavaLaunchHelper"))
                 .collect(Collectors.toList());
     }
 
