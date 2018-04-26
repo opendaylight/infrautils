@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c4b7daa2_f426b630",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/TablePrinter.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-04-26T10:14:37Z",
+      "side": 0,
+      "message": "cauz it\u0027s final non null anyway",
+      "revId": "84dda62d0d2a46c8fa964f8454cea5881af39767",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b601c0f0_70470013",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/TablePrinter.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-04-26T10:14:37Z",
+      "side": 0,
+      "message": "we\u0027ll assume that com.google.common.base.Strings does exactly the same as org.apache.commons.lang3.StringUtils in all corner cases... ;-)",
+      "revId": "84dda62d0d2a46c8fa964f8454cea5881af39767",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
