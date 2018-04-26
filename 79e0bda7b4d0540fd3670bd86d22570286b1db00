@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "56720b01_39a836b8",
+        "filename": "jobcoordinator/jobcoordinator-api/src/main/java/org/opendaylight/infrautils/jobcoordinator/JobCoordinator.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-04-26T12:12:52Z",
+      "side": 1,
+      "message": "...Futures returned from the Callable task have...",
+      "range": {
+        "startLine": 19,
+        "startChar": 41,
+        "endLine": 19,
+        "endChar": 47
+      },
+      "revId": "79e0bda7b4d0540fd3670bd86d22570286b1db00",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "941056ef_aac38394",
+        "filename": "jobcoordinator/jobcoordinator-api/src/main/java/org/opendaylight/infrautils/jobcoordinator/JobCoordinator.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-04-26T12:12:52Z",
+      "side": 1,
+      "message": "as returning a failed Future",
+      "range": {
+        "startLine": 21,
+        "startChar": 26,
+        "endLine": 21,
+        "endChar": 51
+      },
+      "revId": "79e0bda7b4d0540fd3670bd86d22570286b1db00",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
