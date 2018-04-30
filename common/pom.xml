@@ -29,8 +29,20 @@
         <module>artifacts</module>
         <module>util</module>
         <module>features</module>
-        <module>karaf</module>
         <module>findbugs</module>
         <module>parent</module>
     </modules>
+
+    <profiles>
+        <profile>
+            <id>karaf</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+
+            <modules>
+                <module>karaf</module>
+            </modules>
+        </profile>
+    </profiles>
 </project>
