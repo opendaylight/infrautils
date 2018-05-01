@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "774242c8_727a21f6",
+        "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/mockito/CallsRealOrExceptionAnswer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-05-01T04:37:01Z",
+      "side": 1,
+      "message": "2018?",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 21
+      },
+      "revId": "2655d0f0f02597fb4aa1bde5420a487625b3c776",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7e3ece4a_4385ae1c",
+        "filename": "testutils/src/test/java/org/opendaylight/infrautils/testutils/mockito/MikitoTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-05-01T04:37:01Z",
+      "side": 1,
+      "message": "not Mockito?",
+      "range": {
+        "startLine": 27,
+        "startChar": 13,
+        "endLine": 27,
+        "endChar": 19
+      },
+      "revId": "2655d0f0f02597fb4aa1bde5420a487625b3c776",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
