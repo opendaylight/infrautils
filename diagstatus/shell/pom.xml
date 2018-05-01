@@ -9,7 +9,7 @@
     </parent>
     <groupId>org.opendaylight.infrautils</groupId>
     <artifactId>diagstatus-shell</artifactId>
-    <version>1.2.3-SNAPSHOT</version>
+    <version>1.2.3</version>
     <packaging>bundle</packaging>
     <build>
         <plugins>

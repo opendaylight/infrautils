@@ -12,7 +12,7 @@
     <groupId>org.opendaylight.infrautils</groupId>
     <artifactId>diagstatus-api</artifactId>
     <packaging>bundle</packaging>
-    <version>1.2.3-SNAPSHOT</version>
+    <version>1.2.3</version>
     <build>
         <plugins>
             <plugin>
@@ -33,7 +33,7 @@
         <dependency>
             <groupId>org.opendaylight.yangtools</groupId>
             <artifactId>util</artifactId>
-            <version>1.2.3-SNAPSHOT</version>
+            <version>1.2.3</version>
         </dependency>
     </dependencies>
     <!--
