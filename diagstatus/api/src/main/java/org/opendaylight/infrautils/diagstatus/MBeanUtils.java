@@ -7,7 +7,6 @@
  */
 package org.opendaylight.infrautils.diagstatus;
 
-import com.google.errorprone.annotations.Var;
 import java.io.IOException;
 import java.lang.management.ManagementFactory;
 import java.net.MalformedURLException;
@@ -19,14 +18,12 @@ import javax.management.InstanceAlreadyExistsException;
 import javax.management.InstanceNotFoundException;
 import javax.management.JMException;
 import javax.management.JMX;
-import javax.management.MBeanException;
 import javax.management.MBeanRegistrationException;
 import javax.management.MBeanServer;
 import javax.management.MBeanServerConnection;
 import javax.management.MalformedObjectNameException;
 import javax.management.NotCompliantMBeanException;
 import javax.management.ObjectName;
-import javax.management.ReflectionException;
 import javax.management.remote.JMXConnector;
 import javax.management.remote.JMXConnectorFactory;
 import javax.management.remote.JMXConnectorServer;
@@ -50,7 +47,6 @@ public final class MBeanUtils {
     private static final Logger LOG = LoggerFactory.getLogger(MBeanUtils.class);
 
     public static final String JMX_OBJECT_NAME = "org.opendaylight.infrautils.diagstatus:type=SvcStatus";
-    public static final String JMX_SVCSTATUS_OPERATION_DETAILED = "acquireServiceStatusDetailed";
     public static final String JMX_HOST_PREFIX = "service:jmx:rmi://";
     public static final String JMX_TARGET_PREFIX = "/jndi/rmi://";
     public static final String JMX_URL_SUFFIX = "/server";
@@ -124,18 +120,6 @@ public final class MBeanUtils {
             LOG.error("Error while unregistering MBean {}", objNameStr, e);
             throw e;
         }
-    }
-
-    public static Object invokeMBeanFunction(String objName, String functionName) {
-        @Var Object udpated = "";
-        try {
-            ObjectName objectName = new ObjectName(objName);
-            MBeanServer mplatformMbeanServer = ManagementFactory.getPlatformMBeanServer();
-            udpated = mplatformMbeanServer.invoke(objectName, functionName, null, null);
-        } catch (InstanceNotFoundException | MBeanException | ReflectionException | MalformedObjectNameException t) {
-            LOG.error("CRITICAL : Exception in executing MBean function", t);
-        }
-        return udpated;
     }
 
     @Nullable
