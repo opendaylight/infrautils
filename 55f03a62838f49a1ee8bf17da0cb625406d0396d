@@ -33,6 +33,24 @@
       "revId": "55f03a62838f49a1ee8bf17da0cb625406d0396d",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "89876e9e_05eaaac9",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusCommand.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-05-02T15:58:26Z",
+      "side": 1,
+      "message": "I\u0027m not sure what you mean - the invokeMBeanFunction() method in class MBeanUtils (which this change also proposes to be removed just because it is not used anymore else) *DOES* use JMX - ManagementFactory.getPlatformMBeanServer().invoke() ... or are we misunderstanding each other and you agree that it is using JMX but not JMX *RMI* ?  I still think it would be simpler to just call acquireServiceStatusDetailed() directly, no?",
+      "parentUuid": "c29ebf28_e1bc556a",
+      "revId": "55f03a62838f49a1ee8bf17da0cb625406d0396d",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
