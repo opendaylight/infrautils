@@ -16,6 +16,24 @@
       "revId": "239a8c9561264f7d997e128fcb2a849383cea6bf",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "940e4d3e_c9357418",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceMBeanImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 2264
+      },
+      "writtenOn": "2018-05-02T18:12:48Z",
+      "side": 1,
+      "message": "yeah, was just working/learning on this based on your comments one step at a time, where .get() was the first step and this\nlambda magic was the next/better step.\n\nstuck on INFRAUTILS-37 and 38 now, but will get back to this\nas well.",
+      "parentUuid": "4d6a8e02_c65bf4ff",
+      "revId": "239a8c9561264f7d997e128fcb2a849383cea6bf",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
