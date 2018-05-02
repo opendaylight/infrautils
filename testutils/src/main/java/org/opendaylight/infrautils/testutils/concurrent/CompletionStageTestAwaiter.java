@@ -122,7 +122,7 @@ public final class CompletionStageTestAwaiter<T> {
             // Should use org.opendaylight.infrautils.utils.lastnpe.NonNulls.castToNonNull(T) here
             // instead of @SuppressWarnings("NullAway") above, but cannot just because testutils
             // cannot depend on utils (which depends on testutils).
-            return (@NonNull T) eventualValue.get();
+            return eventualValue.get();
         }
     }
 

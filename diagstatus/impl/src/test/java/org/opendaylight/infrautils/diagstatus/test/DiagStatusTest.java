@@ -8,17 +8,25 @@
 package org.opendaylight.infrautils.diagstatus.test;
 
 import static com.google.common.truth.Truth.assertThat;
+import static org.opendaylight.infrautils.diagstatus.MBeanUtils.getJMXUrl;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.Optional;
 import javax.inject.Inject;
+import javax.management.JMX;
+import javax.management.MBeanServerConnection;
+import javax.management.MalformedObjectNameException;
+import javax.management.ObjectName;
+import javax.management.remote.JMXConnector;
+import javax.management.remote.JMXConnectorFactory;
+import javax.management.remote.JMXServiceURL;
+
 import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.MethodRule;
-import org.opendaylight.infrautils.diagstatus.DiagStatusService;
-import org.opendaylight.infrautils.diagstatus.DiagStatusServiceMBean;
-import org.opendaylight.infrautils.diagstatus.ServiceDescriptor;
-import org.opendaylight.infrautils.diagstatus.ServiceState;
+import org.opendaylight.infrautils.diagstatus.*;
 import org.opendaylight.infrautils.inject.guice.testutils.GuiceRule;
 import org.opendaylight.infrautils.testutils.LogCaptureRule;
 import org.opendaylight.infrautils.testutils.LogRule;
@@ -72,12 +80,19 @@ public class DiagStatusTest {
     }
 
     @Test
-    public void testErrorCause() {
+    public void testErrorCause() throws IOException, MalformedObjectNameException {
         String testService1 = "testService";
         ServiceDescriptor reportStatus = new ServiceDescriptor(testService1,
                 new NullPointerException("This is totally borked!"));
 
         assertThat(reportStatus.getErrorCause().get().getMessage()).isEqualTo("This is totally borked!");
 
+        JMXServiceURL url = getJMXUrl("127.0.0.1");
+        JMXConnector jmxc = JMXConnectorFactory.connect(url, null);
+        MBeanServerConnection mbsc = jmxc.getMBeanServerConnection();
+        ObjectName mbeanObj = new ObjectName(MBeanUtils.JMX_OBJECT_NAME);
+        DiagStatusServiceMBean mbeanProxy =
+            JMX.newMBeanProxy(mbsc, mbeanObj, DiagStatusServiceMBean.class, true);
+        String serviceStatus = mbeanProxy.acquireServiceStatusDetailed();
     }
 }
