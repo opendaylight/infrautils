@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4077b287_a2f507fc",
+        "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/concurrent/CompletionStageTestAwaiter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 2264
+      },
+      "writtenOn": "2018-05-02T21:52:06Z",
+      "side": 0,
+      "message": "I did this because of [0] so I could run UT in my IDE.\n\n[0] https://discuss.gradle.org/t/funky-javac-crash-java-lang-assertionerror-xclassname-at-com-sun-tools-javac-jvm-classwriter-xclassname-classwriter-java-358/26363/2",
+      "range": {
+        "startLine": 125,
+        "startChar": 19,
+        "endLine": 125,
+        "endChar": 31
+      },
+      "revId": "50f89cea09ed3647aecd7ede2d2a64767d4a42f8",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}

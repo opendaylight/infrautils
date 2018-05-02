@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8259c5cf_184da2f7",
+        "filename": "diagstatus/impl/src/test/java/org/opendaylight/infrautils/diagstatus/test/DiagStatusTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 2264
+      },
+      "writtenOn": "2018-05-02T21:52:06Z",
+      "side": 1,
+      "message": "if you run this test, you will get:\n\nhttp://termbin.com/ebdy\n\nwhich has something similar to the trace in INFRAUTILS-36,\nwhich is:\n\njava.util.NoSuchElementException: No value present\n\nI got in over my head though, so not sure it\u0027s even\nreplicating the same problem I see with my patch that\nadds the .get() :\n\nhttps://git.opendaylight.org/gerrit/#/c/70220\n\nand I say that, because even when I remove that .get()\nI still get that NSEE.\n\nbut, I figured to share what I tried to do just in case it\ntriggered any ideas. I assume this patch is trash.",
+      "range": {
+        "startLine": 83,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 73
+      },
+      "revId": "4e084a0e15e309197140755312a6376c20814f61",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
