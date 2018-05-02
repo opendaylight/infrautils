@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "f6090496_a6d51efc",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusCommand.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-05-02T15:12:05Z",
+      "side": 1,
+      "message": "it would be better to check if 127.0.0.1 is not what is given by this self-address API",
+      "revId": "55f03a62838f49a1ee8bf17da0cb625406d0396d",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c29ebf28_e1bc556a",
         "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusCommand.java",
         "patchSetId": 1
