@@ -13,6 +13,7 @@ import org.apache.felix.service.command.CommandSession;
 import org.apache.karaf.shell.commands.Command;
 import org.apache.karaf.shell.commands.Option;
 import org.opendaylight.infrautils.diagstatus.ClusterMemberInfoProvider;
+import org.opendaylight.infrautils.diagstatus.DiagStatusServiceMBean;
 import org.opendaylight.infrautils.diagstatus.MBeanUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,8 +28,14 @@ public class DiagStatusCommand implements org.apache.karaf.shell.commands.Action
 
     private static final Logger LOG = LoggerFactory.getLogger(DiagStatusCommand.class);
 
+    private final DiagStatusServiceMBean diagStatusServiceMBean;
+
     @Option(name = "-n", aliases = {"--node"})
     String nip;
+
+    public DiagStatusCommand(DiagStatusServiceMBean diagStatusServiceMBean) {
+        this.diagStatusServiceMBean = diagStatusServiceMBean;
+    }
 
     @Override
     @Nullable
@@ -66,13 +73,11 @@ public class DiagStatusCommand implements org.apache.karaf.shell.commands.Action
         return null;
     }
 
-    public static String getLocalStatusSummary(String localIPAddress) {
-        return "Node IP Address: " + localIPAddress + "\n"
-                + MBeanUtils.invokeMBeanFunction(MBeanUtils.JMX_OBJECT_NAME,
-                MBeanUtils.JMX_SVCSTATUS_OPERATION_DETAILED);
+    private String getLocalStatusSummary(String localIPAddress) {
+        return "Node IP Address: " + localIPAddress + "\n" + diagStatusServiceMBean.acquireServiceStatusDetailed();
     }
 
-    public static String getRemoteStatusSummary(String ipAddress) throws Exception {
+    private static String getRemoteStatusSummary(String ipAddress) throws Exception {
         String remoteJMXOperationResult;
         StringBuilder strBuilder = new StringBuilder();
         LOG.info("fetching status summary for node : {}", ipAddress);
@@ -83,7 +88,7 @@ public class DiagStatusCommand implements org.apache.karaf.shell.commands.Action
     }
 
     @SuppressWarnings("checkstyle:IllegalCatch")
-    public static String getNodeSpecificStatus(String ipAddress) throws Exception {
+    private String getNodeSpecificStatus(String ipAddress) throws Exception {
         StringBuilder strBuilder = new StringBuilder();
         if (ClusterMemberInfoProvider.isValidIPAddress(ipAddress)) {
             if (ClusterMemberInfoProvider.isIPAddressInCluster(ipAddress)) {

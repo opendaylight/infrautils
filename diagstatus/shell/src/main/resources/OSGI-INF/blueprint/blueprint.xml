@@ -1,7 +1,12 @@
 <blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
+
+    <reference id="diagStatusServiceMBean" interface="org.opendaylight.infrautils.diagstatus.DiagStatusServiceMBean"/>
+
     <command-bundle xmlns="http://karaf.apache.org/xmlns/shell/v1.1.0">
         <command>
-            <action class="org.opendaylight.infrautils.diagstatus.shell.DiagStatusCommand"/>
+            <action class="org.opendaylight.infrautils.diagstatus.shell.DiagStatusCommand">
+              <argument ref="diagStatusServiceMBean" />
+            </action>
         </command>
     </command-bundle>
 </blueprint>
