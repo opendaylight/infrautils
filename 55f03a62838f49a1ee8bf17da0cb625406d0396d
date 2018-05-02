@@ -51,6 +51,24 @@
       "revId": "55f03a62838f49a1ee8bf17da0cb625406d0396d",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "acc433e9_f8a128bf",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusCommand.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-05-02T16:05:53Z",
+      "side": 1,
+      "message": "There is no issue in calling this directly :) But what I am saying is, the error mentioned in JIRA is coming from JMX RMI Connector.. which will come only if the call goes to getRemoteStatusSummary(). I am wondering why it goes to that path for 127.0.0.1",
+      "parentUuid": "89876e9e_05eaaac9",
+      "revId": "55f03a62838f49a1ee8bf17da0cb625406d0396d",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
