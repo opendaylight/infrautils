@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4d6a8e02_c65bf4ff",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceMBeanImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-05-02T10:53:31Z",
+      "side": 1,
+      "message": "Jamo, this is causing you that INFRAUTILS-36 problem, you instead have to do:\n\n  status.getErrorCause().ifPresent(cause -\u003e\n        statusSummary.append(cause))",
+      "revId": "239a8c9561264f7d997e128fcb2a849383cea6bf",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
