@@ -69,6 +69,24 @@
       "revId": "55f03a62838f49a1ee8bf17da0cb625406d0396d",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "305d037e_a7198873",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusCommand.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-05-02T16:14:51Z",
+      "side": 1,
+      "message": "\u003e There is no issue in calling this directly \n\nthen why -1 instead of +2 and merge? ;)\n\n\u003e the error mentioned in JIRA\n\noh!  OK *NOW* I get what you are saying - \"sure, why not this, but this won\u0027t fix Jamo\u0027s problem\"; you are right, of course; the stack trace shows it goes through getRemoteStatusSummary() not through getLocalStatusSummary().\n\nLet\u0027s (re)separate the two JIRAs to avoid confusion.\n\nStill, +2 this? :)  Now understood it won\u0027t help Jamo.",
+      "parentUuid": "acc433e9_f8a128bf",
+      "revId": "55f03a62838f49a1ee8bf17da0cb625406d0396d",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
