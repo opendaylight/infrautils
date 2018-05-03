@@ -16,6 +16,24 @@
       "revId": "815ac0a4b7f6bcfeaec04c06b4b5b6111521b63c",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fe1d7fc3_20b26c23",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/MBeanUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-05-03T09:08:50Z",
+      "side": 0,
+      "message": "I am against having a general JMX utility class/method for other apps in diagstatus-api, which is not even used by diagstatus itself.  This class should always have been in diagstatus-impl instead of -api from the start.  IFF we do have widespread general need for JMX utilities, then we sholdhave that in infrautils.utils.management.  However I do not believe that we have such a requirement.  And we should not create utilities which are unused.",
+      "parentUuid": "cec206ed_d74e2c3f",
+      "revId": "815ac0a4b7f6bcfeaec04c06b4b5b6111521b63c",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
