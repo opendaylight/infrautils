@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "e4aad4fd_757435eb",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ServiceDescriptor.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 2264
+      },
+      "writtenOn": "2018-05-07T17:34:49Z",
+      "side": 1,
+      "message": "is ps7 doing what we want here now?",
+      "parentUuid": "5915c492_bf6ed8ae",
+      "revId": "fc336d629f2d39825acb97f01600280440e90cab",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a78d1bd_a1ff1e60",
         "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ServiceDescriptor.java",
         "patchSetId": 1
