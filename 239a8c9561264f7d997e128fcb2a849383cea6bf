@@ -52,6 +52,24 @@
       "revId": "239a8c9561264f7d997e128fcb2a849383cea6bf",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "18183765_053a9ed1",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceMBeanImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 2264
+      },
+      "writtenOn": "2018-05-07T17:05:19Z",
+      "side": 1,
+      "message": "thank you Michael. I\u0027m learning a lot with these exercises.",
+      "parentUuid": "5604a570_aa07dd71",
+      "revId": "239a8c9561264f7d997e128fcb2a849383cea6bf",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
