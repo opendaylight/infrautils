@@ -52,6 +52,24 @@
       "revId": "a67556ccb30cc2571903557a9113bec06a1a40cf",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d37d7931_f46a0666",
+        "filename": "ready/api/src/main/java/org/opendaylight/infrautils/ready/SystemReadyListener.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-05-07T12:19:05Z",
+      "side": 1,
+      "message": "yeah",
+      "parentUuid": "c8ed38cb_1cc42935",
+      "revId": "a67556ccb30cc2571903557a9113bec06a1a40cf",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
