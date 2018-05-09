@@ -72,6 +72,23 @@ public class TestMetricProviderImpl implements MetricProvider {
     }
 
     @Override
+    public Labeled<Labeled<Labeled<Labeled<Meter>>>> newMeter(MetricDescriptor descriptor, String firstLabelName,
+                                                              String secondLabelName, String thirdLabelName,
+                                                              String fourthLabelName) {
+        return firstLabelValue -> secondLabelValue -> thirdLabelValue -> fourthLabelValue ->
+                newMeter((Object) null, (String) null);
+    }
+
+    @Override
+    public Labeled<Labeled<Labeled<Labeled<Labeled<Meter>>>>> newMeter(MetricDescriptor descriptor,
+                                                                       String firstLabelName, String secondLabelName,
+                                                                       String thirdLabelName, String fourthLabelName,
+                                                                       String fifthLabelName) {
+        return firstLabelValue -> secondLabelValue -> thirdLabelValue -> fourthLabelValue -> fifthLabelValue ->
+                newMeter((Object) null, (String) null);
+    }
+
+    @Override
     public Counter newCounter(@Nullable Object anchor, @Nullable String id) {
         return new Counter() {
 
