@@ -84,6 +84,34 @@ public interface MetricProvider {
             String secondLabelName, String thirdLabelName);
 
     /**
+     * Create new Meter metric with 4 labels.
+     * @param descriptor a MetricDescriptor, typically created via <code>MetricDescriptor.builder().anchor(this)
+     *           .project("&lt;projectName&gt;").module("&lt;moduleName&gt;").id("&lt;metricName&gt;").build()</code>
+     * @param firstLabelName name of the 1st label of this metric
+     * @param secondLabelName name of the 2nd label of this metric
+     * @param thirdLabelName name of the 3rd label of this metric
+     * @param fourthLabelName name of the 4th label of this metric
+     * @return an object from which a Meter can be obtained, given 3 label values
+     */
+    Labeled<Labeled<Labeled<Labeled<Meter>>>> newMeter(MetricDescriptor descriptor, String firstLabelName,
+                                              String secondLabelName, String thirdLabelName, String fourthLabelName);
+
+    /**
+     * Create new Meter metric with 5 labels.
+     * @param descriptor a MetricDescriptor, typically created via <code>MetricDescriptor.builder().anchor(this)
+     *           .project("&lt;projectName&gt;").module("&lt;moduleName&gt;").id("&lt;metricName&gt;").build()</code>
+     * @param firstLabelName name of the 1st label of this metric
+     * @param secondLabelName name of the 2nd label of this metric
+     * @param thirdLabelName name of the 3rd label of this metric
+     * @param fourthLabelName name of the 4th label of this metric
+     * @param fifthLabelName name of the 5th label of this metric
+     * @return an object from which a Meter can be obtained, given 3 label values
+     */
+    Labeled<Labeled<Labeled<Labeled<Labeled<Meter>>>>> newMeter(MetricDescriptor descriptor, String firstLabelName,
+                                              String secondLabelName, String thirdLabelName, String fourthLabelName,
+                                              String fifthLabelName);
+
+    /**
      * Create new Counter metric.
      * @deprecated use {@link #newCounter(MetricDescriptor)} instead.
      */
