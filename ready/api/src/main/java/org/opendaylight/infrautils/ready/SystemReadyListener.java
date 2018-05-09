@@ -26,8 +26,6 @@ public interface SystemReadyListener {
      */
     void onSystemBootReady();
 
-    default void onBundleActive(String symbolicName, String version) { }
-
     /**
      * Called back when the system becomes (temporarily, hopefully) 'un-ready'.
      * In an OSGi context like a Karaf container environment, this typically happens
