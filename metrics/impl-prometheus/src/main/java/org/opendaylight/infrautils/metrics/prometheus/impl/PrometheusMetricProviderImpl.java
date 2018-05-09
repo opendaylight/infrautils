@@ -124,6 +124,27 @@ public class PrometheusMetricProviderImpl implements MetricProvider {
     }
 
     @Override
+    public Labeled<Labeled<Labeled<Labeled<Meter>>>> newMeter(MetricDescriptor descriptor, String firstLabelName,
+                                                              String secondLabelName, String thirdLabelName,
+                                                              String fourthLabelName) {
+        return firstLabelValue -> secondLabelValue -> thirdLabelValue -> fourthLabelValue ->
+                newOrExistingMeter(descriptor,
+                        of(firstLabelName, secondLabelName, thirdLabelName, fourthLabelName),
+                        of(firstLabelValue, secondLabelValue, thirdLabelValue, fourthLabelValue));
+    }
+
+    @Override
+    public Labeled<Labeled<Labeled<Labeled<Labeled<Meter>>>>> newMeter(MetricDescriptor descriptor,
+                                                                       String firstLabelName, String secondLabelName,
+                                                                       String thirdLabelName, String fourthLabelName,
+                                                                       String fifthLabelName) {
+        return firstLabelValue -> secondLabelValue -> thirdLabelValue -> fourthLabelValue -> fifthLabelValue ->
+                newOrExistingMeter(descriptor,
+                        of(firstLabelName, secondLabelName, thirdLabelName, fourthLabelName, fifthLabelName),
+                        of(firstLabelValue, secondLabelValue, thirdLabelValue, fourthLabelValue, fifthLabelValue));
+    }
+
+    @Override
     public Counter newCounter(Object anchor, String id) {
         // The idea is that this method is removed as soon as all current usages have switched to the new signatures
         throw new UnsupportedOperationException("TODO Remove this (use the non-@Deprecated alternative method)");
