@@ -223,6 +223,28 @@ public class MetricProviderImpl implements MetricProvider {
                 + thirdLabelName + "=" + thirdLabelValue + "}");
     }
 
+    @Override
+    public Labeled<Labeled<Labeled<Labeled<Meter>>>> newMeter(MetricDescriptor descriptor,
+            String firstLabelName, String secondLabelName, String thirdLabelName, String fourthLabelName) {
+        return firstLabelValue -> secondLabelValue -> thirdLabelValue -> fourthLabelValue ->
+                newOrExistingMeter(descriptor.anchor(), makeCodahaleID(descriptor) + "{"
+                        + firstLabelName + "=" + firstLabelValue + "," + secondLabelName + "=" + secondLabelValue  + ","
+                        + thirdLabelName + "=" + thirdLabelValue + ","
+                        + fourthLabelName + "=" + fourthLabelValue + "}");
+    }
+
+    @Override
+    public Labeled<Labeled<Labeled<Labeled<Labeled<Meter>>>>> newMeter(MetricDescriptor descriptor,
+            String firstLabelName, String secondLabelName, String thirdLabelName,
+            String fourthLabelName, String fifthLabelName) {
+        return firstLabelValue -> secondLabelValue -> thirdLabelValue -> fourthLabelValue -> fifthLabelValue ->
+                newOrExistingMeter(descriptor.anchor(), makeCodahaleID(descriptor) + "{"
+                        + firstLabelName + "=" + firstLabelValue + "," + secondLabelName + "=" + secondLabelValue  + ","
+                        + thirdLabelName + "=" + thirdLabelValue + ","
+                        + fourthLabelName + "=" + fourthLabelValue + ","
+                        + fifthLabelName + "=" + fifthLabelValue + "}");
+    }
+
     private org.opendaylight.infrautils.metrics.Counter newOrExistingCounter(Object anchor, String id) {
         return counters.computeIfAbsent(id, newId -> {
             LOG.debug("New Counter metric: {}", id);
