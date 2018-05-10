@@ -134,7 +134,9 @@ public class DiagStatusServiceImpl implements DiagStatusService {
     private void updateServiceStatusMap() {
         for (ServiceStatusProvider serviceReference : serviceStatusProviders) {
             ServiceDescriptor serviceDescriptor = serviceReference.getServiceDescriptor();
-            statusMap.put(serviceDescriptor.getModuleServiceName(), serviceDescriptor);
+            if (serviceDescriptor != null) {
+                statusMap.put(serviceDescriptor.getModuleServiceName(), serviceDescriptor);
+            }
         }
     }
 
