@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1d176f7d_fcc7537c",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-05-14T15:39:18Z",
+      "side": 1,
+      "message": "it\u0027s wrong to silenty ignore and sweep this problem under the carpet, because a ServiceStatusProvider which returns null from getServiceDescriptor() basically just has a bug - which needs to be fixed, ASAP.  What we can do is handle it more gracefully like you have here, BUT also log the problem so someone knows about and can something about it - so suggested on https://git.opendaylight.org/gerrit/#/c/71998/ ... I\u0027ll +1 this (only) if that approach is OK for you.",
+      "revId": "79bd1377402d3c6336e5152640a6c75e4e7dea5f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
