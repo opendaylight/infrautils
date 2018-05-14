@@ -13,6 +13,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonWriter;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.util.Collection;
@@ -131,11 +132,15 @@ public class DiagStatusServiceImpl implements DiagStatusService {
         }
     }
 
+    // because other projects implementing ServiceStatusProvider may not run FindBugs, we null check anyway
+    @SuppressFBWarnings("RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE")
     private void updateServiceStatusMap() {
-        for (ServiceStatusProvider serviceReference : serviceStatusProviders) {
-            ServiceDescriptor serviceDescriptor = serviceReference.getServiceDescriptor();
+        for (ServiceStatusProvider serviceStatusProvider : serviceStatusProviders) {
+            ServiceDescriptor serviceDescriptor = serviceStatusProvider.getServiceDescriptor();
             if (serviceDescriptor != null) {
                 statusMap.put(serviceDescriptor.getModuleServiceName(), serviceDescriptor);
+            } else {
+                LOG.warn("ServiceStatusProvider getServiceDescriptor() returned null: {}", serviceStatusProvider);
             }
         }
     }
