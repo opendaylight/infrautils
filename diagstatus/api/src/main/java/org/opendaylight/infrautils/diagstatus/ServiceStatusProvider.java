@@ -7,6 +7,8 @@
  */
 package org.opendaylight.infrautils.diagstatus;
 
+import javax.annotation.Nonnull;
+
 /**
  * Apps can register an implementation of this interface in the OSGi service registry
  * if they want to expose their live status.
@@ -18,6 +20,8 @@ public interface ServiceStatusProvider {
     /**
      * Called back whenever a query comes for the current status of
      * the registered services.
+     *
+     * @return current ServiceDescriptor (never null)
      */
-    ServiceDescriptor getServiceDescriptor();
+    @Nonnull ServiceDescriptor getServiceDescriptor();
 }
