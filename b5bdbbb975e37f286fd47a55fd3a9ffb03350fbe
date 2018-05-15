@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "4e1826f1_883322f5",
+        "filename": "metrics/impl-prometheus/src/main/java/org/opendaylight/infrautils/metrics/prometheus/impl/PrometheusMetricProviderImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 6393
+      },
+      "writtenOn": "2018-05-15T09:05:13Z",
+      "side": 1,
+      "message": "Ops. Sorry . My bad. Fixed",
+      "parentUuid": "671509a7_397f10e0",
+      "revId": "b5bdbbb975e37f286fd47a55fd3a9ffb03350fbe",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "12ccd9aa_5b88f1d7",
         "filename": "metrics/impl-prometheus/src/main/java/org/opendaylight/infrautils/metrics/prometheus/impl/PrometheusMetricProviderImpl.java",
         "patchSetId": 3
@@ -30,6 +48,24 @@
       "writtenOn": "2018-05-14T13:53:54Z",
       "side": 1,
       "message": "as above (the 2nd firstLabelValue should be fourthLabelValue)",
+      "revId": "b5bdbbb975e37f286fd47a55fd3a9ffb03350fbe",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7ad9993a_425edab7",
+        "filename": "metrics/impl-prometheus/src/main/java/org/opendaylight/infrautils/metrics/prometheus/impl/PrometheusMetricProviderImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 6393
+      },
+      "writtenOn": "2018-05-15T09:05:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "12ccd9aa_5b88f1d7",
       "revId": "b5bdbbb975e37f286fd47a55fd3a9ffb03350fbe",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
