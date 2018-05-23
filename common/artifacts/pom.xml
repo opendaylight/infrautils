@@ -59,6 +59,13 @@
               <version>${project.version}</version>
             </dependency>
 
+            <!-- Implementations, should not be used as dependencies in normal ODL OSGi bundles (because provided by Karaf), but used e.g. by simple distribution -->
+            <dependency>
+              <groupId>org.opendaylight.infrautils</groupId>
+              <artifactId>caches-standard-impl</artifactId>
+              <version>${project.version}</version>
+            </dependency>
+
             <!-- Test utilities -->
             <dependency>
               <groupId>org.opendaylight.infrautils</groupId>
