@@ -12,3 +12,4 @@ target-ide/
 .fbExcludeFilterFile
 .vscode/
 .factorypath
+.apt_generated_tests/
