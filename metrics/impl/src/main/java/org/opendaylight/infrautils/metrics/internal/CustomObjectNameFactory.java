@@ -7,7 +7,7 @@
  */
 package org.opendaylight.infrautils.metrics.internal;
 
-import com.codahale.metrics.DefaultObjectNameFactory;
+import com.codahale.metrics.jmx.DefaultObjectNameFactory;
 import javax.management.ObjectName;
 
 /**
