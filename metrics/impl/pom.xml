@@ -31,24 +31,29 @@
     </dependency>
 
     <dependency>
-      <!-- Required to repeat here even though it's already in metrics-api to fix version... :( PITA!  -->
-      <!-- TODO Remove this dependency from here once it's removed from odlparent's dependencyManagement -->
       <groupId>io.dropwizard.metrics</groupId>
       <artifactId>metrics-core</artifactId>
-      <version>3.2.5</version>
+      <!-- This version must be kept in line with the ones used below -->
+      <version>4.0.2</version>
+    </dependency>
+    <dependency>
+      <groupId>io.dropwizard.metrics</groupId>
+      <artifactId>metrics-jmx</artifactId>
+      <!-- This version must be kept in line with the ones used above -->
+      <version>4.0.2</version>
     </dependency>
     <dependency>
       <groupId>io.dropwizard.metrics</groupId>
       <artifactId>metrics-jvm</artifactId>
-      <!-- This version must be kept in line with the one used in metrics-api. -->
-      <version>3.2.5</version>
+      <!-- This version must be kept in line with the ones used above -->
+      <version>4.0.2</version>
     </dependency>
 <!-- TODO
     <dependency>
       <groupId>io.dropwizard.metrics</groupId>
       <artifactId>metrics-log4j2</artifactId>
-      <!- - This version must be kept in line with the one used in metrics-api. - ->
-      <version>3.2.5</version>
+      <!- - This version must be kept in line with the ones used above - ->
+      <version>4.0.2</version>
     </dependency>
  -->
     <dependency>
