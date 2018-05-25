@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0f08b310_fb245ae0",
+        "filename": "common/features/odl-infrautils-metrics/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 4540
+      },
+      "writtenOn": "2018-05-25T12:26:56Z",
+      "side": 1,
+      "message": "That’s odd, 3.1.0 includes the fix for 136...",
+      "revId": "58b88c88eaff2c92598e8c6d6b89f5789c65788e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
