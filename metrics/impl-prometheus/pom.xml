@@ -33,18 +33,18 @@
     <dependency>
       <groupId>io.prometheus</groupId>
       <artifactId>simpleclient</artifactId>
-      <version>0.1.0</version>
+      <version>0.4.0</version>
     </dependency>
     <dependency>
       <groupId>io.prometheus</groupId>
       <artifactId>simpleclient_hotspot</artifactId>
-      <version>0.1.0</version>
+      <version>0.4.0</version>
     </dependency>
 <!-- TODO integrate with caches/impl/guava/ (or, better, straight go for Caffeine Cache)
     <dependency>
       <groupId>io.prometheus</groupId>
       <artifactId>simpleclient_guava</artifactId>
-      <version>0.1.0</version>
+      <version>0.4.0</version>
     </dependency>
 -->
 
@@ -55,7 +55,7 @@
     <dependency>
       <groupId>io.prometheus</groupId>
       <artifactId>simpleclient_servlet</artifactId>
-      <version>0.1.0</version>
+      <version>0.4.0</version>
     </dependency>
     <dependency>
       <!-- TODO remove this when we can use the WebServer/WebContext API,
