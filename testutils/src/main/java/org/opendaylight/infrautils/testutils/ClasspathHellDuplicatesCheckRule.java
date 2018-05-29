@@ -100,6 +100,13 @@ public class ClasspathHellDuplicatesCheckRule implements TestRule {
                 .filter(r -> !r.getName().contains("/org/slf4j/impl/StaticLoggerBinder.class"))
                 // INFRAUTILS-35: JavaLaunchHelper is both in java and libinstrument.dylib (?) on Mac OS X
                 .filter(r -> !r.getName().contains("JavaLaunchHelper"))
+                // javax.annotation is a big mess... :( E.g. javax.annotation.Resource (and some others)
+                // are present both in rt.jar AND javax.annotation-api-1.3.2.jar and similar - BUT those
+                // JARs cannot just be excluded, because they contain some additional annotations, in the
+                // (reserved!) package javax.annotation, such as javax.annotation.Priority et al.  The
+                // super proper way to address this cleanly would be to make our own JAR for javax.annotation
+                // and have it contain ONLY what is not already in package javax.annotation in rt.jar.. but for now:
+                .filter(r -> !r.getName().equals("/javax/annotation/Resource$AuthenticationType.class"))
                 .collect(Collectors.toList());
     }
 
