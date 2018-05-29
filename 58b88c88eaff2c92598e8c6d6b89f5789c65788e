@@ -16,6 +16,24 @@
       "revId": "58b88c88eaff2c92598e8c6d6b89f5789c65788e",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa8a104c_8c0ed3a6",
+        "filename": "common/features/odl-infrautils-metrics/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-05-29T11:28:12Z",
+      "side": 1,
+      "message": "Stephen, that is the least of my concerns - not sure why -1 because of that... I can remove this here, if that would let you +1 it?  The real issue on this one, as per INFRAUTILS-41, is that it really needs c/72236 and a a new odlparent release to be able to proceed... odlparent is blocking this now (not because of ODLPARENT-136; forget that, who cares).",
+      "parentUuid": "0f08b310_fb245ae0",
+      "revId": "58b88c88eaff2c92598e8c6d6b89f5789c65788e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
