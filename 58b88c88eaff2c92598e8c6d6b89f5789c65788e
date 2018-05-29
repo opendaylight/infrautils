@@ -34,6 +34,24 @@
       "revId": "58b88c88eaff2c92598e8c6d6b89f5789c65788e",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d026efa8_0a4c3872",
+        "filename": "common/features/odl-infrautils-metrics/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 4540
+      },
+      "writtenOn": "2018-05-29T12:17:20Z",
+      "side": 1,
+      "message": "-1 just means “I would prefer that you didn’t submit this”, I found it odd that this section was being added when ODLPARENT-136 is already fixed, that’s all. I’ve noticed that review comments tend to go unnoticed if they’re not accompanied by a -1; if you’d rather I just left comments without leaving a “Code-Review” in Gerrit parlance, I can do that too...\n\nc/72236 has a comment from Robert which you haven’t addressed (case in point?).",
+      "parentUuid": "fa8a104c_8c0ed3a6",
+      "revId": "58b88c88eaff2c92598e8c6d6b89f5789c65788e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
