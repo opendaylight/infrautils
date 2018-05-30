@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.opendaylight.odlparent</groupId>
         <artifactId>single-feature-parent</artifactId>
-        <version>3.1.0</version>
+        <version>3.1.2</version>
         <relativePath/>
     </parent>
 
@@ -20,7 +20,7 @@
         <dependency>
             <groupId>org.opendaylight.odlparent</groupId>
             <artifactId>odl-guava-23</artifactId>
-            <version>3.1.0</version>
+            <version>3.1.2</version>
             <classifier>features</classifier>
             <type>xml</type>
         </dependency>
@@ -44,6 +44,13 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>diagstatus-impl</artifactId>
             <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>odl-infrautils-inject</artifactId>
+            <version>${project.version}</version>
+            <classifier>features</classifier>
+            <type>xml</type>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>

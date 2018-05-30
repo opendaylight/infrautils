@@ -5,7 +5,7 @@
   <parent>
     <groupId>org.opendaylight.odlparent</groupId>
     <artifactId>single-feature-parent</artifactId>
-    <version>3.1.0</version>
+    <version>3.1.2</version>
     <relativePath/>
   </parent>
 
@@ -22,6 +22,7 @@
       <artifactId>metrics-impl</artifactId>
       <version>${project.version}</version>
     </dependency>
+    <!-- This is declared in the feature.xml file
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>metrics-impl</artifactId>
@@ -29,9 +30,17 @@
       <type>cfg</type>
       <classifier>config</classifier>
     </dependency>
+    -->
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>odl-infrautils-utils</artifactId>
+      <version>${project.version}</version>
+      <classifier>features</classifier>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>odl-infrautils-inject</artifactId>
       <version>${project.version}</version>
       <classifier>features</classifier>
       <type>xml</type>
