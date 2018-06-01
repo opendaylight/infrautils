@@ -11,9 +11,11 @@ import com.google.common.base.Stopwatch;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.concurrent.TimeUnit;
 import javax.annotation.Nullable;
-import org.apache.karaf.shell.commands.Argument;
-import org.apache.karaf.shell.commands.Command;
-import org.apache.karaf.shell.console.OsgiCommandSupport;
+import org.apache.karaf.shell.api.action.Action;
+import org.apache.karaf.shell.api.action.Argument;
+import org.apache.karaf.shell.api.action.Command;
+import org.apache.karaf.shell.api.action.lifecycle.Reference;
+import org.apache.karaf.shell.api.action.lifecycle.Service;
 import org.opendaylight.infrautils.caches.sample.SampleService;
 
 /**
@@ -21,30 +23,26 @@ import org.opendaylight.infrautils.caches.sample.SampleService;
  *
  * @author Michael Vorburger.ch
  */
-// TODO Karaf 4 @org.apache.karaf.shell.api.action.lifecycle.Service
 @Command(scope = "cache-example", name = "hello", description = "Says hello")
+@Service
 @SuppressFBWarnings("NP_NONNULL_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR") // FB doesn't get that Karaf will set field
-public class SampleCacheCommand extends OsgiCommandSupport {
-    // TODO Karaf 4: implements Action, instead of  extends OsgiCommandSupport
+public class SampleCacheCommand implements Action {
 
     @Argument(name = "who", description = "who to greet", required = true, valueToShowInHelp = "world")
     String whoToGreet;
 
-    private final SampleService sampleService;
-
-    public SampleCacheCommand(SampleService sampleService) {
-        this.sampleService = sampleService;
-    }
+    @Reference
+    private SampleService sampleService;
 
     @Override
     @Nullable
-    // TODO Karaf 4: public Object execute(CommandSession session) throws Exception {
-    protected Object doExecute() throws Exception {
+    @SuppressWarnings("checkstyle:RegexpSinglelineJava")
+    public Object execute() {
         Stopwatch stopWatch = Stopwatch.createStarted();
         String hello = sampleService.sayHello(whoToGreet);
         long ms = stopWatch.elapsed(TimeUnit.MILLISECONDS);
 
-        session.getConsole().println(ms + "ms: " + hello);
+        System.out.println(ms + "ms: " + hello);
         return null;
     }
 
