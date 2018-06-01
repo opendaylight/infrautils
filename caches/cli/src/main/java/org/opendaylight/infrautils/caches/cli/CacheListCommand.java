@@ -7,10 +7,13 @@
  */
 package org.opendaylight.infrautils.caches.cli;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.Map.Entry;
 import javax.annotation.Nullable;
-import org.apache.karaf.shell.commands.Command;
-import org.apache.karaf.shell.console.OsgiCommandSupport;
+import org.apache.karaf.shell.api.action.Action;
+import org.apache.karaf.shell.api.action.Command;
+import org.apache.karaf.shell.api.action.lifecycle.Reference;
+import org.apache.karaf.shell.api.action.lifecycle.Service;
 import org.opendaylight.infrautils.caches.BaseCacheConfig;
 import org.opendaylight.infrautils.caches.CacheManager;
 import org.opendaylight.infrautils.caches.CacheManagers;
@@ -22,50 +25,46 @@ import org.opendaylight.infrautils.caches.CacheStats;
  *
  * @author Michael Vorburger.ch
  */
-// TODO Karaf 4 @org.apache.karaf.shell.api.action.lifecycle.Service
 @Command(scope = "cache", name = "list", description = "Lists all caches")
-public class CacheListCommand extends OsgiCommandSupport {
-    // TODO Karaf 4: implements Action, instead of  extends OsgiCommandSupport
-
+@Service
+public class CacheListCommand implements Action {
     // TODO use ANSI sequences for bold/color.. see e.g. how (Karaf 4's) "info" command does it
 
-    private final CacheManagers cacheManagers;
-
-    public CacheListCommand(CacheManagers cacheManagers) {
-        this.cacheManagers = cacheManagers;
-    }
+    @Reference
+    @SuppressFBWarnings("NP_NONNULL_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR")
+    private CacheManagers cacheManagers;
 
     @Override
     @Nullable
-    // TODO Karaf 4: public Object execute(CommandSession session) throws Exception {
-    protected Object doExecute() throws Exception {
+    @SuppressWarnings("checkstyle:RegexpSinglelineJava")
+    public Object execute() {
         Iterable<CacheManager> allCacheManagers = cacheManagers.getAllCacheManagers();
         if (!allCacheManagers.iterator().hasNext()) {
-            session.getConsole().println("No caches have been created.");
+            System.out.println("No caches have been created.");
             return null;
         }
         for (CacheManager cacheManager : allCacheManagers) {
             BaseCacheConfig config = cacheManager.getConfig();
-            session.getConsole().println("Cache ID: " + config.id());
-            session.getConsole().println("  description: " + config.description());
-            session.getConsole().println("  anchored in: " + config.anchor());
+            System.out.println("Cache ID: " + config.id());
+            System.out.println("  description: " + config.description());
+            System.out.println("  anchored in: " + config.anchor());
 
             CachePolicy policy = cacheManager.getPolicy();
-            session.getConsole().println("  Policies");
-            session.getConsole().println("    * statsEnabled = " + policy.statsEnabled());
-            session.getConsole().println("    * maxEntries   = " + policy.maxEntries());
+            System.out.println("  Policies");
+            System.out.println("    * statsEnabled = " + policy.statsEnabled());
+            System.out.println("    * maxEntries   = " + policy.maxEntries());
 
             CacheStats stats = cacheManager.getStats();
-            session.getConsole().println("  Stats");
-            session.getConsole().println("    * entries: " + stats.estimatedCurrentEntries());
-            session.getConsole().println("    * hitCount: " + stats.hitCount());
-            session.getConsole().println("    * missCount: " + stats.missCount());
-            // session.getConsole().println("    -extensions-");
+            System.out.println("  Stats");
+            System.out.println("    * entries: " + stats.estimatedCurrentEntries());
+            System.out.println("    * hitCount: " + stats.hitCount());
+            System.out.println("    * missCount: " + stats.missCount());
+            // System.out.println("    -extensions-");
             for (Entry<String, Number> extension : stats.extensions().entrySet()) {
-                session.getConsole().println("    * " + extension.getKey() + ": " + extension.getValue());
+                System.out.println("    * " + extension.getKey() + ": " + extension.getValue());
             }
 
-            session.getConsole().println();
+            System.out.println();
         }
         return null;
     }
