@@ -8,8 +8,10 @@
 package org.opendaylight.infrautils.caches.cli;
 
 import javax.annotation.Nullable;
-import org.apache.karaf.shell.commands.Command;
-import org.apache.karaf.shell.console.OsgiCommandSupport;
+import org.apache.karaf.shell.api.action.Action;
+import org.apache.karaf.shell.api.action.Command;
+import org.apache.karaf.shell.api.action.lifecycle.Reference;
+import org.apache.karaf.shell.api.action.lifecycle.Service;
 import org.opendaylight.infrautils.caches.CacheManager;
 import org.opendaylight.infrautils.caches.CacheManagers;
 
@@ -18,27 +20,22 @@ import org.opendaylight.infrautils.caches.CacheManagers;
  *
  * @author Michael Vorburger.ch
  */
-// TODO Karaf 4 @org.apache.karaf.shell.api.action.lifecycle.Service
 @Command(scope = "cache", name = "clear", description = "Clear (evict) all entries of all caches")
-public class CacheClearCommand extends OsgiCommandSupport {
-    // TODO Karaf 4: implements Action, instead of  extends OsgiCommandSupport
-
+@Service
+public class CacheClearCommand implements Action {
     // TODO introduce an argument (with auto-completion!) allowing also to clear just 1 named cache
 
-    private final CacheManagers cacheManagers;
-
-    public CacheClearCommand(CacheManagers cacheManagers) {
-        this.cacheManagers = cacheManagers;
-    }
+    @Reference
+    private CacheManagers cacheManagers;
 
     @Override
     @Nullable
-    // TODO Karaf 4: public Object execute(CommandSession session) throws Exception {
-    protected Object doExecute() throws Exception {
+    @SuppressWarnings("checkstyle:RegexpSinglelineJava")
+    public Object execute() {
         for (CacheManager cacheManager : cacheManagers.getAllCacheManagers()) {
             cacheManager.evictAll();
         }
-        session.getConsole().println("Succesfully cleared all caches.");
+        System.out.println("Successfully cleared all caches.");
         return null;
     }
 
