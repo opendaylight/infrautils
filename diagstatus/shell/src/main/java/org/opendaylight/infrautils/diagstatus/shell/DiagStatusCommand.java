@@ -9,9 +9,11 @@ package org.opendaylight.infrautils.diagstatus.shell;
 
 import java.util.List;
 import javax.annotation.Nullable;
-import org.apache.felix.service.command.CommandSession;
-import org.apache.karaf.shell.commands.Command;
-import org.apache.karaf.shell.commands.Option;
+import org.apache.karaf.shell.api.action.Action;
+import org.apache.karaf.shell.api.action.Command;
+import org.apache.karaf.shell.api.action.Option;
+import org.apache.karaf.shell.api.action.lifecycle.Reference;
+import org.apache.karaf.shell.api.action.lifecycle.Service;
 import org.opendaylight.infrautils.diagstatus.ClusterMemberInfoProvider;
 import org.opendaylight.infrautils.diagstatus.DiagStatusServiceMBean;
 import org.opendaylight.infrautils.diagstatus.MBeanUtils;
@@ -24,23 +26,21 @@ import org.slf4j.LoggerFactory;
  * @author Faseela K
  */
 @Command(scope = "diagstatus", name = "showSvcStatus", description = "show the status of registered services")
-public class DiagStatusCommand implements org.apache.karaf.shell.commands.Action {
+@Service
+public class DiagStatusCommand implements Action {
 
     private static final Logger LOG = LoggerFactory.getLogger(DiagStatusCommand.class);
 
-    private final DiagStatusServiceMBean diagStatusServiceMBean;
+    @Reference
+    private DiagStatusServiceMBean diagStatusServiceMBean;
 
     @Option(name = "-n", aliases = {"--node"})
     String nip;
 
-    public DiagStatusCommand(DiagStatusServiceMBean diagStatusServiceMBean) {
-        this.diagStatusServiceMBean = diagStatusServiceMBean;
-    }
-
     @Override
     @Nullable
-    @SuppressWarnings("checkstyle:IllegalCatch")
-    public Object execute(CommandSession session) throws Exception {
+    @SuppressWarnings({"checkstyle:IllegalCatch", "checkstyle:RegexpSinglelineJava"})
+    public Object execute() throws Exception {
         StringBuilder strBuilder = new StringBuilder();
         strBuilder.append("Timestamp: ").append(new java.util.Date().toString()).append("\n");
 
@@ -69,7 +69,7 @@ public class DiagStatusCommand implements org.apache.karaf.shell.commands.Action
             }
         }
 
-        session.getConsole().print(strBuilder.toString());
+        System.out.println(strBuilder.toString());
         return null;
     }
 
