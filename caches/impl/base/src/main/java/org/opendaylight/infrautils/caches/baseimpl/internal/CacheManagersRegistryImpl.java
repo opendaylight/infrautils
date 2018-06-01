@@ -13,6 +13,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import javax.annotation.concurrent.ThreadSafe;
 import org.opendaylight.infrautils.caches.CacheManager;
 import org.opendaylight.infrautils.caches.baseimpl.CacheManagersRegistry;
+import org.ops4j.pax.cdi.api.OsgiServiceProvider;
 
 /**
  * Implementation of CachesMonitor.
@@ -20,6 +21,7 @@ import org.opendaylight.infrautils.caches.baseimpl.CacheManagersRegistry;
  * @author Michael Vorburger.ch
  */
 @ThreadSafe
+@OsgiServiceProvider(classes = {CacheManager.class, CacheManagersRegistry.class})
 public class CacheManagersRegistryImpl implements CacheManagersRegistry {
 
     private final List<CacheManager> managers = new CopyOnWriteArrayList<>();
