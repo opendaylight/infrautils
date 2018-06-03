@@ -79,7 +79,8 @@ Service startup Requirements
 
 Service API requirements
 ------------------------
-Status model object encapsulating the metadata of status such as :
+Status model object encapsulating the metadata of status such as:
+
 * Node-name – may be this could be populated internally by framework if the node-name is available
   from within the framework with lesser / no external dependencies
 * Module-name – populated by status-reporting module
