@@ -16,6 +16,24 @@
       "revId": "53e1e002c607cb647973c6ce71a9838ac2d983a5",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "873b0956_3bc46bb1",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusCommand.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 4540
+      },
+      "writtenOn": "2018-06-04T13:00:15Z",
+      "side": 1,
+      "message": "Yes, they work with grep. In new style actions, System.out is the correct way to produce output which can be piped; getConsole() provides direct access to the underlying console, bypassing pipes and redirections.",
+      "parentUuid": "8a1327ba_4e9e94c5",
+      "revId": "53e1e002c607cb647973c6ce71a9838ac2d983a5",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
