@@ -35,6 +35,16 @@
             </dependency>
             <dependency>
               <groupId>${project.groupId}</groupId>
+              <artifactId>counters-api</artifactId>
+              <version>${project.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>${project.groupId}</groupId>
+              <artifactId>diagstatus-api</artifactId>
+              <version>${project.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>${project.groupId}</groupId>
               <artifactId>infrautils-util</artifactId>
               <version>${project.version}</version>
             </dependency>
@@ -50,12 +60,12 @@
             </dependency>
             <dependency>
               <groupId>${project.groupId}</groupId>
-              <artifactId>ready-api</artifactId>
+              <artifactId>metrics-api</artifactId>
               <version>${project.version}</version>
             </dependency>
             <dependency>
               <groupId>${project.groupId}</groupId>
-              <artifactId>metrics-api</artifactId>
+              <artifactId>ready-api</artifactId>
               <version>${project.version}</version>
             </dependency>
 
@@ -103,7 +113,21 @@
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
+                <artifactId>odl-infrautils-caches</artifactId>
+                <version>${project.version}</version>
+                <type>xml</type>
+                <classifier>features</classifier>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
                 <artifactId>odl-infrautils-counters</artifactId>
+                <version>${project.version}</version>
+                <type>xml</type>
+                <classifier>features</classifier>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>odl-infrautils-diagstatus</artifactId>
                 <version>${project.version}</version>
                 <type>xml</type>
                 <classifier>features</classifier>
@@ -132,13 +156,6 @@
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>odl-infrautils-utils</artifactId>
-                <version>${project.version}</version>
-                <type>xml</type>
-                <classifier>features</classifier>
-            </dependency>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>odl-infrautils-diagstatus</artifactId>
                 <version>${project.version}</version>
                 <type>xml</type>
                 <classifier>features</classifier>
