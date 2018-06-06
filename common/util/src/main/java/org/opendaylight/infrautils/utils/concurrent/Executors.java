@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 Ericsson Inc. and others.  All rights reserved.
+ * Copyright (c) 2017, 2018 Ericsson Inc. and others.  All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
@@ -10,6 +10,7 @@ package org.opendaylight.infrautils.utils.concurrent;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.TimeUnit;
 import org.slf4j.Logger;
 
 /**
@@ -18,6 +19,9 @@ import org.slf4j.Logger;
  * <p>Use this instead of {@link java.util.concurrent.Executors}.
  */
 public final class Executors {
+
+    public static final long DEFAULT_TIMEOUT_FOR_SHUTDOWN = 10;
+    public static final TimeUnit DEFAULT_TIMEOUT_UNIT_FOR_SHUTDOWN = TimeUnit.SECONDS;
 
     private Executors() {
     }
