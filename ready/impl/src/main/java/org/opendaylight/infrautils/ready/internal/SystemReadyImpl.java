@@ -11,7 +11,6 @@ import static org.opendaylight.infrautils.ready.SystemState.ACTIVE;
 import static org.opendaylight.infrautils.ready.SystemState.BOOTING;
 import static org.opendaylight.infrautils.ready.SystemState.FAILURE;
 
-import com.google.errorprone.annotations.Var;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ThreadFactory;
@@ -93,16 +92,20 @@ public class SystemReadyImpl extends AbstractMXBean implements SystemReadyMonito
                     timeInfo.getElapsedTimeInMS() / 1000, timeInfo.getRemainingTimeInMS() / 1000,
                     // INFRAUTILS-17: getSummaryText() instead getFullDiagnosticText() because ppl found log confusing
                     bundleDiagInfos.getSummaryText()));
-            currentSystemState.set(ACTIVE);
+
+            SystemReadyListener[] toNotify;
+            synchronized (listeners) {
+                toNotify = listeners.toArray(new SystemReadyListener[listeners.size()]);
+                currentSystemState.set(ACTIVE);
+            }
             LOG.info("System ready; AKA: Aye captain, all warp coils are now operating at peak efficiency! [M.]");
 
-            if (!listeners.isEmpty()) {
+            if (toNotify.length > 0) {
                 LOG.info("Now notifying all its registered SystemReadyListeners...");
             }
 
-            @Var SystemReadyListener listener;
-            while ((listener = listeners.poll()) != null) {
-                listener.onSystemBootReady();
+            for (SystemReadyListener element : toNotify) {
+                element.onSystemBootReady();
             }
 
         } catch (SystemStateFailureException e) {
@@ -127,6 +130,16 @@ public class SystemReadyImpl extends AbstractMXBean implements SystemReadyMonito
 
     @Override
     public void registerListener(SystemReadyListener listener) {
-        listeners.add(listener);
+        SystemState state;
+        synchronized (listeners) {
+            state = currentSystemState.get();
+            if (state == BOOTING) {
+                listeners.add(listener);
+            }
+        }
+
+        if (state == ACTIVE) {
+            listener.onSystemBootReady();
+        }
     }
 }
