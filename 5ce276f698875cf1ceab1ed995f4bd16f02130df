@@ -16,6 +16,24 @@
       "revId": "5ce276f698875cf1ceab1ed995f4bd16f02130df",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f31d23aa_f9322b66",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/SystemReadyImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-06-07T18:10:58Z",
+      "side": 1,
+      "message": "Remember infrautils.ready currently only really works reliably with boot features, not with feature:install? ;-) It, currently, never goes back from ACTIVE to BOOTING. \nCHANGING is commented out inhttps://github.com/opendaylight/infrautils/blob/master/ready/api/src/main/java/org/opendaylight/infrautils/ready/SystemState.java ... :) So this change just fixes a clear bug in the way things currently work.",
+      "parentUuid": "183507f4_bf315152",
+      "revId": "5ce276f698875cf1ceab1ed995f4bd16f02130df",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
