@@ -34,6 +34,40 @@
       "revId": "5ce276f698875cf1ceab1ed995f4bd16f02130df",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "33a16686_cd77fee6",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/SystemReadyImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-06-07T18:19:58Z",
+      "side": 1,
+      "message": "This doesn\u0027t seem necessary. If it already failed then this is an expected noop.",
+      "revId": "5ce276f698875cf1ceab1ed995f4bd16f02130df",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2d9ee956_1f463f62",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/SystemReadyImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-06-07T18:19:58Z",
+      "side": 1,
+      "message": "There is a race condition with run() where it\u0027s possible the state is transitioning to ACTIVE but the listener doesn\u0027t get notified:\n\n - line 131 captures the BOOTING state on thread 1 and yields\n - thread 2 runs to line 96 and sets to ACTIVE and notifies listeners\n - thread 1 runs and hits line 134 - the listener is added but never notified.\n\nThis needs to be synchronized with run():\n\n  SystemReadyListener[] toNotify;\n  synchronized(listeners) {\n      toNotify \u003d listeners.toArray(...);\n      currentSystemState.set(ACTIVE);\n  }\n\n  // invoke toNotify entries\n\nhere:\n\n  SystemState state;\n  synchronized(listeners) {\n      state \u003d currentSystemState.get();\n      if (state \u003d\u003d BOOTING) {\n          listeners.add(listener);\n      }\n  } \n \n  if (state \u003d\u003d ACTIVE) {\n      listener.onSystemBootReady();\n  }",
+      "revId": "5ce276f698875cf1ceab1ed995f4bd16f02130df",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
