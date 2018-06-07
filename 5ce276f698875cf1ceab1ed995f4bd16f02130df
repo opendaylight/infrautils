@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "183507f4_bf315152",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/SystemReadyImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-06-07T17:56:32Z",
+      "side": 1,
+      "message": "will we have a transition state, like we were ACTIVE and then go back to BOOTING and again be ACTIVE? :P",
+      "revId": "5ce276f698875cf1ceab1ed995f4bd16f02130df",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
