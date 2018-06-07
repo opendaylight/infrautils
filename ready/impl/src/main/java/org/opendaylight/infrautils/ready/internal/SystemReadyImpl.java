@@ -127,6 +127,23 @@ public class SystemReadyImpl extends AbstractMXBean implements SystemReadyMonito
 
     @Override
     public void registerListener(SystemReadyListener listener) {
-        listeners.add(listener);
+        SystemState state = currentSystemState.get();
+        switch (state) {
+            case BOOTING:
+                listeners.add(listener);
+                break;
+
+            case ACTIVE:
+                listener.onSystemBootReady();
+                break;
+
+            case FAILURE:
+                LOG.warn("Ignoring registerListener() because SystemState is {}: {}", FAILURE, listener);
+                break;
+
+            default:
+                LOG.error("registerListener: Ignoring unknown SystemState: {} ", state);
+                break;
+        }
     }
 }
