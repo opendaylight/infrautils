@@ -126,7 +126,21 @@ public class SystemReadyImpl extends AbstractMXBean implements SystemReadyMonito
     }
 
     @Override
+    @SuppressWarnings("checkstyle:MissingSwitchDefault") // due to error-prone's (better) UnnecessaryDefaultInEnumSwitch
     public void registerListener(SystemReadyListener listener) {
-        listeners.add(listener);
+        SystemState state = currentSystemState.get();
+        switch (state) {
+            case BOOTING:
+                listeners.add(listener);
+                break;
+
+            case ACTIVE:
+                listener.onSystemBootReady();
+                break;
+
+            case FAILURE:
+                LOG.warn("Ignoring registerListener() because SystemState is {}: {}", FAILURE, listener);
+                break;
+        }
     }
 }
