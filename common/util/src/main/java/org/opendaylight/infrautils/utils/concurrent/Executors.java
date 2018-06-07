@@ -7,6 +7,7 @@
  */
 package org.opendaylight.infrautils.utils.concurrent;
 
+import com.google.common.util.concurrent.MoreExecutors;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ThreadFactory;
@@ -70,5 +71,13 @@ public final class Executors {
                         .logger(logger)
                         .build()
                         .get());
+    }
+
+    public static void shutdown(ExecutorService executorService) {
+        shutdown(executorService, DEFAULT_TIMEOUT_FOR_SHUTDOWN, DEFAULT_TIMEOUT_UNIT_FOR_SHUTDOWN);
+    }
+
+    public static void shutdown(ExecutorService executorService, long timeout, TimeUnit timeUnit) {
+        MoreExecutors.shutdownAndAwaitTermination(executorService, timeout, timeUnit);
     }
 }
