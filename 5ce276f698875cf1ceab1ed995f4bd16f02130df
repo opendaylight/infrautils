@@ -104,6 +104,24 @@
       "revId": "5ce276f698875cf1ceab1ed995f4bd16f02130df",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d644e59c_1b129561",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/SystemReadyImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-06-08T20:50:43Z",
+      "side": 1,
+      "message": "glad I could help :)",
+      "parentUuid": "b29934cf_d41b01c2",
+      "revId": "5ce276f698875cf1ceab1ed995f4bd16f02130df",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
