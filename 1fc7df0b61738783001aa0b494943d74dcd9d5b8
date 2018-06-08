@@ -16,6 +16,24 @@
       "revId": "1fc7df0b61738783001aa0b494943d74dcd9d5b8",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6768641c_c31d4418",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceMBeanImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-06-08T15:05:40Z",
+      "side": 1,
+      "message": "Igonre the first question, just read the gerrit description now. :)",
+      "parentUuid": "55c41af0_04bf5db5",
+      "revId": "1fc7df0b61738783001aa0b494943d74dcd9d5b8",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
