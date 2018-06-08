@@ -33,6 +33,24 @@
       "revId": "3bcb624427809d28bd25430fdc74fa87d1e93151",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1f589b3e_37450ba2",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/MBeanUtils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-06-08T20:11:08Z",
+      "side": 1,
+      "message": "see the TODO in the line just below ;-)",
+      "parentUuid": "04bec876_e0f33617",
+      "revId": "3bcb624427809d28bd25430fdc74fa87d1e93151",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
