@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "55c41af0_04bf5db5",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceMBeanImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-06-08T15:04:49Z",
+      "side": 1,
+      "message": "Did we add this to the CLI output, or it still remains the same? Anyways, I am so happy to see a lot of improvements done in this area :)",
+      "revId": "1fc7df0b61738783001aa0b494943d74dcd9d5b8",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
