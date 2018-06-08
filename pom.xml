@@ -33,14 +33,12 @@
     <modules>
         <module>caches</module>
         <module>common</module>
-        <module>counters</module>
         <module>diagstatus</module>
         <module>inject</module>
         <module>itestutils</module>
         <module>jobcoordinator</module>
         <module>metrics</module>
         <module>ready</module>
-        <module>samples</module>
         <module>testutils</module>
     </modules>
 </project>
