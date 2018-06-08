@@ -10,6 +10,7 @@ package org.opendaylight.infrautils.diagstatus.internal;
 import static org.opendaylight.infrautils.diagstatus.ServiceState.ERROR;
 import static org.opendaylight.infrautils.diagstatus.ServiceState.UNREGISTERED;
 
+import com.google.common.base.Throwables;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableMap.Builder;
 import java.io.IOException;
@@ -100,8 +101,13 @@ public class DiagStatusServiceMBeanImpl extends StandardMBean implements DiagSta
                         .append('\n');
             }
             if (status.getTimestamp() != null) {
-                statusSummary.append("Status Timestamp     : ").append(status.getTimestamp().toString()).append("\n\n");
+                statusSummary.append("Status Timestamp     : ").append(status.getTimestamp().toString()).append("\n");
             }
+            if (status.getErrorCause() != null && status.getErrorCause().isPresent()) {
+                statusSummary.append("Error Cause          : ")
+                        .append(Throwables.getStackTraceAsString(status.getErrorCause().get())).append("\n");
+            }
+            statusSummary.append('\n');
         }
         statusSummary.append('\n');
 
@@ -109,7 +115,7 @@ public class DiagStatusServiceMBeanImpl extends StandardMBean implements DiagSta
     }
 
     @Override
-    public String acquireServiceStatusDetailed() {
+    public String acquireServiceStatusDetailed() { // not so detailed as acquireServiceStatus()
         StringBuilder statusSummary = new StringBuilder();
         statusSummary.append("System is operational: ").append(diagStatusService.isOperational()).append('\n');
         statusSummary.append("System ready state: ").append(systemReadyMonitor.getSystemState()).append('\n');
@@ -118,6 +124,7 @@ public class DiagStatusServiceMBeanImpl extends StandardMBean implements DiagSta
                     .append("  ")
                     .append(String.format("%-20s%-20s", status.getModuleServiceName(), ": "
                             + status.getServiceState()));
+            // intentionally using Throwable.toString() instead of Throwables.getStackTraceAsString to keep CLI brief
             status.getErrorCause().ifPresent(cause -> statusSummary.append(cause.toString()));
             statusSummary.append("\n");
         }

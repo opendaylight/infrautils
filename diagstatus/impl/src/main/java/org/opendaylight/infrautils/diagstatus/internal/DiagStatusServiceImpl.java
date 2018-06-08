@@ -9,6 +9,7 @@ package org.opendaylight.infrautils.diagstatus.internal;
 
 import static org.opendaylight.infrautils.diagstatus.ServiceState.STARTING;
 
+import com.google.common.base.Throwables;
 import com.google.common.collect.ImmutableList;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -118,6 +119,8 @@ public class DiagStatusServiceImpl implements DiagStatusService {
                     writer.name("effectiveStatus").value(status.getServiceState().name());
                     writer.name("reportedStatusDescription").value(status.getStatusDesc());
                     writer.name("statusTimestamp").value(status.getTimestamp().toString());
+                    writer.name("errorCause").value(status.getErrorCause()
+                            .map(throwable -> Throwables.getStackTraceAsString(throwable)).orElse(""));
                     writer.endObject();
                 }
                 writer.endArray();
