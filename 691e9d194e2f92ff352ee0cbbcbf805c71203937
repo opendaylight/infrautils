@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0e4532fa_584e631b",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/concurrent/Executors.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-06-08T16:15:52Z",
+      "side": 1,
+      "message": "how about naming this shutdownAndAwaitTermination also?",
+      "revId": "691e9d194e2f92ff352ee0cbbcbf805c71203937",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2ff6d2f9_4c335979",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/concurrent/Executors.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-06-08T16:15:52Z",
+      "side": 1,
+      "message": "do we even want such a method here?  It just forwards to MoreExecutors, and always will... less methods makes for better classes? ;)  So how about just inlining MoreExecutors.shutdownAndAwaitTermination() in line 77 above, and not having this at all.  Anyone who wants custom timeout can just use Guava directly, there is perhaps no need to \"abstract\" it?  I\u0027m even wondering if DEFAULT_TIMEOUT_FOR_SHUTDOWN and DEFAULT_TIMEOUT_UNIT_FOR_SHUTDOWN shouldn\u0027t just be private instead of public - if your new idea here is that they will always be used via this method, not directly.  Again, less (public) things on this class makes for a smaller thus better utility API surface.",
+      "revId": "691e9d194e2f92ff352ee0cbbcbf805c71203937",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
