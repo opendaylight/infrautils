@@ -37,7 +37,8 @@ import org.slf4j.LoggerFactory;
 /**
  * MBeanUtils is a utility that can be used for registering a new MBean or accessing any MBean service.
  *
- * @author Faseela K
+ * @author Faseela K - initial author
+ * @author Michael Vorburger.ch - exception handling improvements and introduction of strongly typed getMBean()
  */
 public final class MBeanUtils {
 
@@ -129,6 +130,16 @@ public final class MBeanUtils {
         return platformMbeanServer.getAttribute(objectName, attribute);
     }
 
+    public static <T> T getMBean(String jmxName, Class<T> klass) throws MalformedObjectNameException {
+        ObjectName objectName = new ObjectName(jmxName);
+        MBeanServer platformMbeanServer = ManagementFactory.getPlatformMBeanServer();
+        if (JMX.isMXBeanInterface(klass)) {
+            return JMX.newMXBeanProxy(platformMbeanServer, objectName, klass);
+        } else {
+            return JMX.newMBeanProxy(platformMbeanServer, objectName, klass);
+        }
+    }
+
     public static String invokeRemoteJMXOperation(String host, String mbeanName) throws Exception {
         JMXServiceURL url = getJMXUrl(host);
         LOG.info("invokeRemoteJMXOperation() JMX service URL: {}", url);
@@ -147,4 +158,5 @@ public final class MBeanUtils {
         }
         return serviceStatus;
     }
+
 }
