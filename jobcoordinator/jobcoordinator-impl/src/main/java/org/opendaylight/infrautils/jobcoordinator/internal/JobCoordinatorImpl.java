@@ -19,14 +19,7 @@ import com.google.errorprone.annotations.Var;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ForkJoinPool;
-import java.util.concurrent.Future;
-import java.util.concurrent.RejectedExecutionException;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
@@ -59,12 +52,14 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
     private static final long RETRY_WAIT_BASE_TIME_MILLIS = 1000;
 
     private static final int FJP_MAX_CAP = 0x7fff; // max #workers - 1; copy/pasted from ForkJoinPool private
-
+    private final ForkJoinPool.ForkJoinWorkerThreadFactory factory = pool -> {
+        final ForkJoinWorkerThread worker = ForkJoinPool.defaultForkJoinWorkerThreadFactory.newThread(pool);
+        worker.setName("jobcoordinator-main-task-" + worker.getPoolIndex());
+        return worker;
+    };
     private final ForkJoinPool fjPool = new ForkJoinPool(
-            Math.min(FJP_MAX_CAP, Runtime.getRuntime().availableProcessors()),
-            ForkJoinPool.defaultForkJoinWorkerThreadFactory,
-            LoggingThreadUncaughtExceptionHandler.toLogger(LOG),
-            false);
+            Math.min(FJP_MAX_CAP, Runtime.getRuntime().availableProcessors()), factory,
+            LoggingThreadUncaughtExceptionHandler.toLogger(LOG), false);
 
     private final Map<String, JobQueue> jobQueueMap = new ConcurrentHashMap<>();
     private final ReentrantLock jobQueueMapLock = new ReentrantLock();
@@ -79,7 +74,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
     private final Meter jobExecuteAttempts;
 
     private final ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(5,
-            ThreadFactoryProvider.builder().namePrefix("JobCoordinator-ScheduledExecutor").logger(LOG).build().get());
+            ThreadFactoryProvider.builder().namePrefix("jobcoordinator-onfailure-executor").logger(LOG).build().get());
 
     private final Thread jobQueueHandlerThread;
     private final AtomicBoolean jobQueueHandlerThreadStarted = new AtomicBoolean(false);
