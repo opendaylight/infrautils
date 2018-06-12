@@ -16,6 +16,24 @@
       "revId": "60f721cb8e5dc0bf0181b173c49c97d8b1cb4893",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "92b68ea2_24ef24e7",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobCoordinatorImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-06-12T13:56:25Z",
+      "side": 1,
+      "message": "Good point. I will test and confirm.",
+      "parentUuid": "f65d45f1_ee98d806",
+      "revId": "60f721cb8e5dc0bf0181b173c49c97d8b1cb4893",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
