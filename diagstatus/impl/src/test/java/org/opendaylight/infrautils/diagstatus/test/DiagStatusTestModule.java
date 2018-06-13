@@ -42,6 +42,11 @@ public class DiagStatusTestModule extends AbstractGuiceJsr250Module {
             }
 
             @Override
+            public void unregisterListener(SystemReadyListener listener) {
+                // NOOP
+            }
+
+            @Override
             public SystemState getSystemState() {
                 return SystemState.ACTIVE;
             }
