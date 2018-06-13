@@ -10,13 +10,14 @@ package org.opendaylight.infrautils.ready;
 
 /**
  * Service which exposes system ready-ness state as MBean.
- *
  * @author Faseela K
  */
 public interface SystemReadyMonitorMXBean {
 
     /**
      * Obtain current system status as one of few possible enumerated values.
+     * @return
+     *   Current system state.
      */
     SystemState getSystemState();
 }
