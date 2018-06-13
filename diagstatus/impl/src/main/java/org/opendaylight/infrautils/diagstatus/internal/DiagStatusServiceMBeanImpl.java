@@ -18,14 +18,10 @@ import java.util.Map;
 import javax.annotation.PreDestroy;
 import javax.inject.Inject;
 import javax.inject.Singleton;
-import javax.management.InstanceNotFoundException;
 import javax.management.JMException;
-import javax.management.MBeanRegistrationException;
 import javax.management.MBeanServer;
-import javax.management.MalformedObjectNameException;
 import javax.management.StandardMBean;
 import javax.management.remote.JMXConnectorServer;
-
 import org.apache.commons.lang3.tuple.Pair;
 import org.opendaylight.infrautils.diagstatus.ClusterMemberInfoProvider;
 import org.opendaylight.infrautils.diagstatus.DiagStatusService;
@@ -34,7 +30,9 @@ import org.opendaylight.infrautils.diagstatus.MBeanUtils;
 import org.opendaylight.infrautils.diagstatus.ServiceDescriptor;
 import org.opendaylight.infrautils.diagstatus.ServiceState;
 import org.opendaylight.infrautils.ready.SystemReadyListener;
+import org.opendaylight.infrautils.ready.SystemReadyListenerRegistration;
 import org.opendaylight.infrautils.ready.SystemReadyMonitor;
+import org.opendaylight.infrautils.ready.SystemState;
 import org.ops4j.pax.cdi.api.OsgiService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,33 +47,25 @@ public class DiagStatusServiceMBeanImpl extends StandardMBean implements DiagSta
     private final DiagStatusService diagStatusService;
     private final SystemReadyMonitor systemReadyMonitor;
     private final MBeanServer mbeanServer;
+    private final SystemReadyListenerRegistration systemReadyListenerRegistration;
     private Pair<JMXConnectorServer, Registry> jmxConnector = null;
 
     @Inject
     public DiagStatusServiceMBeanImpl(DiagStatusService diagStatusService,
                                       @OsgiService SystemReadyMonitor systemReadyMonitor)
-            throws JMException, IOException {
+            throws JMException {
         super(DiagStatusServiceMBean.class);
         this.diagStatusService = diagStatusService;
         this.systemReadyMonitor = systemReadyMonitor;
-        systemReadyMonitor.registerListener(this);
         mbeanServer = MBeanUtils.registerServerMBean(this, JMX_OBJECT_NAME);
-    }
-
-    @Override
-    public void onSystemBootReady() {
-        ClusterMemberInfoProvider.getSelfAddress().ifPresent(host -> {
-            try {
-                jmxConnector = MBeanUtils.startRMIConnectorServer(mbeanServer, host);
-            } catch (IOException e) {
-                LOG.error("unable to start jmx connector for host {}", host);
-            }
-        });
+        systemReadyListenerRegistration = systemReadyMonitor.registerListener(this);
     }
 
     @PreDestroy
-    public void close() throws IOException, MalformedObjectNameException,
-            InstanceNotFoundException, MBeanRegistrationException {
+    public void close() throws Exception {
+        if (systemReadyListenerRegistration != null) {
+            systemReadyListenerRegistration.close();
+        }
         MBeanUtils.unregisterServerMBean(this, JMX_OBJECT_NAME);
         if (jmxConnector != null) {
             MBeanUtils.stopRMIConnectorServer(jmxConnector);
@@ -161,4 +151,24 @@ public class DiagStatusServiceMBeanImpl extends StandardMBean implements DiagSta
     public String acquireServiceStatusAsJSON() {
         return diagStatusService.getAllServiceDescriptorsAsJSON();
     }
+
+    @Override
+    @Deprecated
+    public void onSystemBootReady() {
+        onSystemStateChange(SystemState.ACTIVE);
+    }
+
+    @Override
+    public void onSystemStateChange(SystemState systemState) {
+        if (systemState == SystemState.ACTIVE) {
+            ClusterMemberInfoProvider.getSelfAddress().ifPresent(host -> {
+                try {
+                    jmxConnector = MBeanUtils.startRMIConnectorServer(mbeanServer, host);
+                } catch (IOException e) {
+                    LOG.error("unable to start jmx connector for host {}", host);
+                }
+            });
+        }
+    }
+
 }

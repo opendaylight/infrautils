@@ -11,7 +11,6 @@ import com.google.inject.TypeLiteral;
 import java.net.UnknownHostException;
 import java.util.Collections;
 import java.util.List;
-
 import org.opendaylight.infrautils.diagstatus.DiagStatusService;
 import org.opendaylight.infrautils.diagstatus.DiagStatusServiceMBean;
 import org.opendaylight.infrautils.diagstatus.ServiceStatusProvider;
@@ -19,6 +18,7 @@ import org.opendaylight.infrautils.diagstatus.internal.DiagStatusServiceImpl;
 import org.opendaylight.infrautils.diagstatus.internal.DiagStatusServiceMBeanImpl;
 import org.opendaylight.infrautils.inject.guice.testutils.AbstractGuiceJsr250Module;
 import org.opendaylight.infrautils.ready.SystemReadyListener;
+import org.opendaylight.infrautils.ready.SystemReadyListenerRegistration;
 import org.opendaylight.infrautils.ready.SystemReadyMonitor;
 import org.opendaylight.infrautils.ready.SystemState;
 import org.ops4j.pax.cdi.api.OsgiService;
@@ -37,8 +37,14 @@ public class DiagStatusTestModule extends AbstractGuiceJsr250Module {
         bind(SystemReadyMonitor.class).annotatedWith(OsgiService.class).toInstance(new SystemReadyMonitor() {
 
             @Override
-            public void registerListener(SystemReadyListener listener) {
-                // NOOP
+            public SystemReadyListenerRegistration registerListener(SystemReadyListener listener) {
+                return new SystemReadyListenerRegistration() {
+
+                    @Override
+                    public void close() throws Exception {
+                        // NOOP
+                    }
+                };
             }
 
             @Override

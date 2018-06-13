@@ -14,22 +14,23 @@ import javax.annotation.concurrent.ThreadSafe;
  *
  * <p>This API is intentionally not specific to OSGi and Karaf, but using more
  * general terminology.
- *
+ * </p>
  * <p>In an OSGi context, "fully ready" means that the asynchronous installation of
  * (boot) features has successfully completed installation of all of their
  * bundles, that all of these bundles have successfully started, and all of
  * their blueprint containers have been successfully initialized.
- *
+ *</p>
  * @author Michael Vorburger.ch
  */
 @ThreadSafe
 public interface SystemReadyMonitor extends SystemReadyMonitorMXBean {
-    /**
-     * Allows components to register a listener which will be notified when the
-     * system ready state is changing.
-     */
-    void registerListener(SystemReadyListener listener);
 
-    // TODO perhaps later move this to EventBus from https://git.opendaylight.org/gerrit/#/c/55852/
+    /**
+     * Allows components to register a listener which will be notified when the system state is changing.
+     * Each registered listener receives the current system state callback on registration.
+     * @param listener
+     *   instance of {@link SystemReadyListener}
+     */
+    SystemReadyListenerRegistration registerListener(SystemReadyListener listener);
 
 }
