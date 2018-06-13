@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "905007af_b839335a",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/MetricProviderImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 4540
+      },
+      "writtenOn": "2018-06-13T08:42:15Z",
+      "side": 1,
+      "message": "I think this would be better done just after the close() (I was misled into thinking this needed to be closed, until I noticed it was done above).",
+      "revId": "173da8f0d50331fc4671e49bdbc4994d9b9a762b",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0d4ec64e_7cf2218e",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/MetricProviderImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 4540
+      },
+      "writtenOn": "2018-06-13T08:42:15Z",
+      "side": 1,
+      "message": "Likewise.",
+      "revId": "173da8f0d50331fc4671e49bdbc4994d9b9a762b",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
