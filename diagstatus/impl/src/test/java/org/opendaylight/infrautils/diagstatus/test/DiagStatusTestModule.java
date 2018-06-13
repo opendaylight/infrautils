@@ -11,7 +11,6 @@ import com.google.inject.TypeLiteral;
 import java.net.UnknownHostException;
 import java.util.Collections;
 import java.util.List;
-
 import org.opendaylight.infrautils.diagstatus.DiagStatusService;
 import org.opendaylight.infrautils.diagstatus.DiagStatusServiceMBean;
 import org.opendaylight.infrautils.diagstatus.ServiceStatusProvider;
@@ -38,6 +37,11 @@ public class DiagStatusTestModule extends AbstractGuiceJsr250Module {
 
             @Override
             public void registerListener(SystemReadyListener listener) {
+                // NOOP
+            }
+
+            @Override
+            public void unregisterListener(SystemReadyListener listener) {
                 // NOOP
             }
 
