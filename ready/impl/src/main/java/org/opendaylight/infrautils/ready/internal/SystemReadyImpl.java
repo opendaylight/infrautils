@@ -11,8 +11,9 @@ import static org.opendaylight.infrautils.ready.SystemState.ACTIVE;
 import static org.opendaylight.infrautils.ready.SystemState.BOOTING;
 import static org.opendaylight.infrautils.ready.SystemState.FAILURE;
 
-import java.util.Queue;
-import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
@@ -20,11 +21,6 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.inject.Inject;
 import javax.inject.Singleton;
-import javax.management.InstanceNotFoundException;
-import javax.management.JMException;
-import javax.management.MBeanRegistrationException;
-import javax.management.MalformedObjectNameException;
-
 import org.apache.karaf.bundle.core.BundleService;
 import org.opendaylight.infrautils.ready.SystemReadyListener;
 import org.opendaylight.infrautils.ready.SystemReadyMonitor;
@@ -51,7 +47,7 @@ public class SystemReadyImpl extends AbstractMXBean implements SystemReadyMonito
 
     private static final Logger LOG = LoggerFactory.getLogger(SystemReadyImpl.class);
 
-    private final Queue<SystemReadyListener> listeners = new ConcurrentLinkedQueue<>();
+    private final Set<SystemReadyListener> listeners = new HashSet<>();
     private final AtomicReference<SystemState> currentSystemState = new AtomicReference<>(BOOTING);
     private static final String JMX_OBJECT_NAME = "SystemState";
     private static final String MBEAN_TYPE = "ready";
@@ -64,8 +60,7 @@ public class SystemReadyImpl extends AbstractMXBean implements SystemReadyMonito
     private final TestBundleDiag testBundleDiag;
 
     @Inject
-    public SystemReadyImpl(BundleContext bundleContext, @OsgiService BundleService bundleService)
-            throws JMException {
+    public SystemReadyImpl(BundleContext bundleContext, @OsgiService BundleService bundleService) {
         super(JMX_OBJECT_NAME, MBEAN_TYPE, null);
         super.registerMBean();
         this.testBundleDiag = new TestBundleDiag(bundleContext, bundleService);
@@ -78,12 +73,12 @@ public class SystemReadyImpl extends AbstractMXBean implements SystemReadyMonito
     }
 
     @PreDestroy
-    public void stop() throws MalformedObjectNameException, InstanceNotFoundException, MBeanRegistrationException {
+    public void stop() {
         super.unregisterMBean();
     }
 
     @Override
-    @SuppressWarnings("checkstyle:IllegalCatch") // below
+    @SuppressWarnings("checkstyle:IllegalCatch")
     public void run() {
         try {
             // 5 minutes really ought to be enough for the whole circus to completely boot up?!
@@ -93,31 +88,19 @@ public class SystemReadyImpl extends AbstractMXBean implements SystemReadyMonito
                     // INFRAUTILS-17: getSummaryText() instead getFullDiagnosticText() because ppl found log confusing
                     bundleDiagInfos.getSummaryText()));
 
-            SystemReadyListener[] toNotify;
-            synchronized (listeners) {
-                toNotify = listeners.toArray(new SystemReadyListener[listeners.size()]);
-                currentSystemState.set(ACTIVE);
-            }
-            LOG.info("System ready; AKA: Aye captain, all warp coils are now operating at peak efficiency! [M.]");
-
-            if (toNotify.length > 0) {
-                LOG.info("Now notifying all its registered SystemReadyListeners...");
-            }
-
-            for (SystemReadyListener element : toNotify) {
-                element.onSystemBootReady();
-            }
+            LOG.info("System is ready");
+            changeState(ACTIVE);
 
         } catch (SystemStateFailureException e) {
             LOG.error("Failed, some bundles did not start (SystemReadyListeners are not called)", e);
-            currentSystemState.set(FAILURE);
+            changeState(FAILURE);
             // We do not re-throw this
 
         } catch (RuntimeException throwable) {
             // It's exceptionally OK to catch RuntimeException here,
             // because we do want to set the currentFullSystemStatus
             LOG.error("Failed unexpectedly (SystemReadyListeners are not called)", throwable);
-            currentSystemState.set(FAILURE);
+            changeState(FAILURE);
             // and now we do re-throw it!
             throw throwable;
         }
@@ -130,16 +113,32 @@ public class SystemReadyImpl extends AbstractMXBean implements SystemReadyMonito
 
     @Override
     public void registerListener(SystemReadyListener listener) {
-        SystemState state;
+        SystemState systemState = currentSystemState.get();
         synchronized (listeners) {
-            state = currentSystemState.get();
-            if (state == BOOTING) {
-                listeners.add(listener);
-            }
+            listeners.add(Objects.requireNonNull(listener, "listener"));
+        }
+        listener.onSystemStateChange(systemState);
+    }
+
+    @Override
+    public void unregisterListener(SystemReadyListener listener) {
+        listeners.remove(listener);
+    }
+
+    private void changeState(SystemState newSate) {
+        SystemReadyListener[] toNotify;
+        synchronized (listeners) {
+            toNotify = listeners.toArray(new SystemReadyListener[listeners.size()]);
+            currentSystemState.set(newSate);
         }
 
-        if (state == ACTIVE) {
-            listener.onSystemBootReady();
+        if (toNotify.length > 0) {
+            LOG.info("Now notifying all its registered SystemReadyListeners...");
+        }
+
+        for (SystemReadyListener element : toNotify) {
+            element.onSystemStateChange(newSate);
         }
     }
+
 }
