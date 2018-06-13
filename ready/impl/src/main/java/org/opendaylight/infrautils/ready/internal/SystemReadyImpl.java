@@ -105,7 +105,7 @@ public class SystemReadyImpl extends AbstractMXBean implements SystemReadyMonito
             }
 
             for (SystemReadyListener element : toNotify) {
-                element.onSystemBootReady();
+                element.onSystemStateChange(currentSystemState.get());
             }
 
         } catch (SystemStateFailureException e) {
@@ -130,16 +130,12 @@ public class SystemReadyImpl extends AbstractMXBean implements SystemReadyMonito
 
     @Override
     public void registerListener(SystemReadyListener listener) {
-        SystemState state;
-        synchronized (listeners) {
-            state = currentSystemState.get();
-            if (state == BOOTING) {
+        if (listener != null) {
+            SystemState systemState = currentSystemState.get();
+            synchronized (listeners) {
+                listener.onSystemStateChange(systemState);
                 listeners.add(listener);
             }
-        }
-
-        if (state == ACTIVE) {
-            listener.onSystemBootReady();
         }
     }
 }
