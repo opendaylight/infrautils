@@ -13,6 +13,7 @@ import java.net.MalformedURLException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.function.Function;
 import javax.annotation.Nullable;
 import javax.management.InstanceAlreadyExistsException;
 import javax.management.InstanceNotFoundException;
@@ -62,7 +63,7 @@ public final class MBeanUtils {
         return new JMXServiceURL(jmxUrl);
     }
 
-    private static String constructJmxUrl(String targetHost, int rmiRegistryPort) {
+    public static String constructJmxUrl(String targetHost, int rmiRegistryPort) {
         return JMX_HOST_PREFIX + targetHost + JMX_TARGET_PREFIX
                 + targetHost + JMX_URL_SEPARATOR + rmiRegistryPort + JMX_URL_SUFFIX;
     }
@@ -130,33 +131,27 @@ public final class MBeanUtils {
         return platformMbeanServer.getAttribute(objectName, attribute);
     }
 
-    public static <T> T getMBean(String jmxName, Class<T> klass) throws MalformedObjectNameException {
+    private static <T> T getMBean(String jmxName, Class<T> klass, MBeanServerConnection mbsc)
+            throws MalformedObjectNameException {
         ObjectName objectName = new ObjectName(jmxName);
-        MBeanServer platformMbeanServer = ManagementFactory.getPlatformMBeanServer();
         if (JMX.isMXBeanInterface(klass)) {
-            return JMX.newMXBeanProxy(platformMbeanServer, objectName, klass);
+            return JMX.newMXBeanProxy(mbsc, objectName, klass);
         } else {
-            return JMX.newMBeanProxy(platformMbeanServer, objectName, klass);
+            return JMX.newMBeanProxy(mbsc, objectName, klass);
         }
     }
 
-    public static String invokeRemoteJMXOperation(String host, String mbeanName) throws Exception {
-        JMXServiceURL url = getJMXUrl(host);
-        LOG.info("invokeRemoteJMXOperation() JMX service URL: {}", url);
-        String serviceStatus;
-        JMXConnector jmxc = JMXConnectorFactory.connect(url, null);
-        MBeanServerConnection mbsc = jmxc.getMBeanServerConnection();
-        ObjectName mbeanObj = new ObjectName(mbeanName);
-        // Create a dedicated proxy for the MBean instead of
-        // going directly through the MBean server connection
-        try {
-            DiagStatusServiceMBean mbeanProxy =
-                    JMX.newMBeanProxy(mbsc, mbeanObj, DiagStatusServiceMBean.class, true);
-            serviceStatus = mbeanProxy.acquireServiceStatusDetailed();
-        } finally {
-            jmxc.close();
-        }
-        return serviceStatus;
+    public static <T> T getMBean(String jmxName, Class<T> klass) throws MalformedObjectNameException {
+        return getMBean(jmxName, klass, ManagementFactory.getPlatformMBeanServer());
     }
 
+    public static <T, R> R invokeRemoteMBeanOperation(String remoteURL, String jmxName, Class<T> klass,
+            Function<T, R> function) throws MalformedObjectNameException, IOException {
+        JMXServiceURL jmxURL = new JMXServiceURL(remoteURL);
+        try (JMXConnector jmxc = JMXConnectorFactory.connect(jmxURL, null)) {
+            MBeanServerConnection mbsc = jmxc.getMBeanServerConnection();
+            T remoteMBean = getMBean(jmxName, klass, mbsc);
+            return function.apply(remoteMBean);
+        }
+    }
 }
