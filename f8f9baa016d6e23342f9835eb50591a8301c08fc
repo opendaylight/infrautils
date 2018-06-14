@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8f7bef76_76768781",
+        "filename": "ready/api/src/main/java/org/opendaylight/infrautils/ready/SystemReadyMonitor.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-06-14T17:37:30Z",
+      "side": 1,
+      "message": "We could just return a (TBD) SystemReadyListenerRegistration here?  Avoids having an unregisterListener(), below.  More as an FYI: The reason there was originally no unregister() here is because it was really only built for boot features, without any plans to support Karaf feature uninstallation - that\u0027s completely broken everywhere, anyway.  Now if you still want to add an unregister just because, then fine by me.  Could also do this in a separate follow-up new change; because now you are already cramming 2 separate new ideas into this change; (a)  pass current SystemState to SystemReadyListener, and (b) un-registration.  If more is coming in new patch sets, best to split into separate Gerrits.  If just this, I\u0027m fine keeping it in this one.",
+      "revId": "f8f9baa016d6e23342f9835eb50591a8301c08fc",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
