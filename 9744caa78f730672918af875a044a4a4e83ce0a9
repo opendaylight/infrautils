@@ -96,6 +96,30 @@
     },
     {
       "key": {
+        "uuid": "b007e012_38029dea",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/SystemReadyImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-06-14T19:45:32Z",
+      "side": 1,
+      "message": "Either way there is no reason to use WeakRefs here. In fact it would be problematic b/c users may not hold onto the listener instances themselves, ie they may do:\n\n   ready.registerListener(new SystemReadyListener() {...});\n\nNow that \u0027listeners\u0027 is externally synchronized, it really can just be an ArrayList.",
+      "parentUuid": "c6516a75_408f1c5e",
+      "range": {
+        "startLine": 49,
+        "startChar": 18,
+        "endLine": 49,
+        "endChar": 23
+      },
+      "revId": "9744caa78f730672918af875a044a4a4e83ce0a9",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "b74b09f7_ce14da71",
         "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/SystemReadyImpl.java",
         "patchSetId": 2
