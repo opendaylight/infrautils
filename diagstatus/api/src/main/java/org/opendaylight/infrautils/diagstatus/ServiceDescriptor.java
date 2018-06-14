@@ -43,6 +43,10 @@ public final class ServiceDescriptor {
         this.errorCause = errorCause;
     }
 
+    public ServiceDescriptor(String moduleServiceName, ServiceState svcState) {
+        this(moduleServiceName, svcState, "", null);
+    }
+
     public ServiceDescriptor(String moduleServiceName, ServiceState svcState, String statusDesc) {
         this(moduleServiceName, svcState, statusDesc, null);
     }
