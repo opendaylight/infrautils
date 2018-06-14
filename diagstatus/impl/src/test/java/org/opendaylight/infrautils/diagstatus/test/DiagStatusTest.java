@@ -69,6 +69,8 @@ public class DiagStatusTest {
         Assert.assertEquals(ServiceState.UNREGISTERED.name(),
                diagStatusServiceMBean.acquireServiceStatusMap().get(testService1));
 
+        // Description must be shown
+        assertThat(diagStatusServiceMBean.acquireServiceStatusDetailed()).contains("service is Unregistered");
     }
 
     @Test
