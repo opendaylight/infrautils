@@ -16,6 +16,24 @@
       "revId": "f8f9baa016d6e23342f9835eb50591a8301c08fc",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ef04ce84_6f97a9cf",
+        "filename": "ready/api/src/main/java/org/opendaylight/infrautils/ready/SystemReadyMonitor.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-06-14T19:45:32Z",
+      "side": 1,
+      "message": "yeah it\u0027s best not to overload this patch - if unreg is needed then do it in another patch. \n\nThe pattern in ODL is to return an *Registration instance so agree we should do that here too.",
+      "parentUuid": "8f7bef76_76768781",
+      "revId": "f8f9baa016d6e23342f9835eb50591a8301c08fc",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
