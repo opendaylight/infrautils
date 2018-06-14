@@ -2,6 +2,114 @@
   "comments": [
     {
       "key": {
+        "uuid": "251a3071_fd986054",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-06-14T07:56:49Z",
+      "side": 1,
+      "message": "how about adjusting this commit message to something that simply describes this change, perhaps like this:\n\n pass current SystemState to SystemReadyListener, and clarify docs\n\nthe rest of your current commit message sounds more like an unconstructive rant... ;-)",
+      "revId": "9ce15e8bf7feb18fa383c3412e1828673678c5ab",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2233570d_fb00e069",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-06-14T07:56:49Z",
+      "side": 1,
+      "message": "would it be all the same to you if we first got this series of related changes (if you are planning to raise more?) into master, see it fine and not break anything there, and then when final, cherry pick it to stable/oxygen?",
+      "revId": "9ce15e8bf7feb18fa383c3412e1828673678c5ab",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d5818e44_0526c27d",
+        "filename": "ready/api/src/main/java/org/opendaylight/infrautils/ready/SystemReadyMonitor.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-06-14T07:56:49Z",
+      "side": 1,
+      "message": "receives THE current state [RM callback?] on registration",
+      "revId": "9ce15e8bf7feb18fa383c3412e1828673678c5ab",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b2d6af0c_229fd407",
+        "filename": "ready/api/src/main/java/org/opendaylight/infrautils/ready/SystemReadyMonitor.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-06-14T07:56:49Z",
+      "side": 1,
+      "message": "remove this as well while we are dusting up around here",
+      "revId": "9ce15e8bf7feb18fa383c3412e1828673678c5ab",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "579a8f0f_9426f9f4",
+        "filename": "ready/api/src/main/java/org/opendaylight/infrautils/ready/SystemState.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-06-14T07:56:49Z",
+      "side": 1,
+      "message": "So infrautils.ready intentionally only covers OSGi bundle initialization (incl. e.g. Blueprint, or Declarative Services), or some other DI solution in a standalone deployment, but is agnostic of / ignores / provides no additional information about higher level services which may get initialized after that stage.  That includes things such as ODL\u0027s base clustering, as well as higher level application stuff such as... neutron driver web sockets, OVSDB OFP connections, etc. etc.  This is, very much, intentional, and IMHO should stay like this. \n\nBut the infrautils.diagstatus module provides an API to report and query \"done\" information for all higher level services.  The org.opendaylight.genius.mdsalutil.diagstatus.internal.DatastoreServiceStatusProvider implements that to provide information about Clustering.  See also https://git.opendaylight.org/gerrit/#/c/72797/ BTW.  PS: We are opening to having someone move DatastoreServiceStatusProvider to controller, but that been met with resistance, so far; see earlier related emails from Faseela and latest https://lists.opendaylight.org/pipermail/controller-dev/2018-June/014424.html (but that email thread is a huge mess because several other people \"hijacked\" it for entirely unrelated discussions!)\n\nWould you like to rewrite my clarification (above) in a way that makes sense to you into this JavaDoc to replace your TODO?",
+      "range": {
+        "startLine": 15,
+        "startChar": 28,
+        "endLine": 15,
+        "endChar": 29
+      },
+      "revId": "9ce15e8bf7feb18fa383c3412e1828673678c5ab",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "130bb845_88d370f0",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/SystemReadyImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-06-14T07:56:49Z",
+      "side": 1,
+      "message": "a null listener passed here IMHO is a programming error that should not be silently ignored like this does, as it probably discard a much bigger problem in the caller; I would therefore just use Objects.requireNonNull(listener, \"listener\") instead here.",
+      "revId": "9ce15e8bf7feb18fa383c3412e1828673678c5ab",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "001962d7_094ea03c",
         "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/SystemReadyImpl.java",
         "patchSetId": 1

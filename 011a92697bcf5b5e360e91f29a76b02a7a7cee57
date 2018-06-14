@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fb4c777c_adc7f94d",
+        "filename": "ready/api/src/main/java/org/opendaylight/infrautils/ready/SystemReadyListener.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-06-14T07:56:49Z",
+      "side": 0,
+      "message": "you have to keep this API backwards compatible. That actually should be quite easy in this particular case:\n\n    void onSystemBootReady();\n\n    default void onSystemStateChange(SystemState systemState) {\n        if (systemState.equals(SystemState.ACTIVE)) {\n            onSystemBootReady();\n        }\n    }",
+      "revId": "011a92697bcf5b5e360e91f29a76b02a7a7cee57",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e73e2943_d811e9eb",
+        "filename": "ready/api/src/main/java/org/opendaylight/infrautils/ready/SystemReadyListener.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-06-14T07:56:49Z",
+      "side": 0,
+      "message": "fine with me to ditch this commented out block",
+      "revId": "011a92697bcf5b5e360e91f29a76b02a7a7cee57",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0f2b3601_cb4067c1",
+        "filename": "ready/api/src/main/java/org/opendaylight/infrautils/ready/SystemReadyMonitor.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-06-14T07:56:49Z",
+      "side": 0,
+      "message": "what\u0027s wrong with \"\u003cp\u003e\" to get pretty formatted separate paragraphs JavaDoc?! Anyway - not really important.",
+      "revId": "011a92697bcf5b5e360e91f29a76b02a7a7cee57",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
