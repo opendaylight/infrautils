@@ -79,10 +79,14 @@ public class DiagStatusCommand implements Action {
     }
 
     private static String getRemoteStatusSummary(String ipAddress) throws Exception {
-        String remoteJMXOperationResult;
-        StringBuilder strBuilder = new StringBuilder();
+        String url = MBeanUtils.constructJmxUrl(ipAddress, MBeanUtils.RMI_REGISTRY_PORT);
+        LOG.info("invokeRemoteJMXOperation() JMX service URL: {}", url);
+
         LOG.info("fetching status summary for node : {}", ipAddress);
-        remoteJMXOperationResult = MBeanUtils.invokeRemoteJMXOperation(ipAddress, MBeanUtils.JMX_OBJECT_NAME);
+        String remoteJMXOperationResult = MBeanUtils.invokeRemoteMBeanOperation(url, MBeanUtils.JMX_OBJECT_NAME,
+                DiagStatusServiceMBean.class, remoteMBean -> remoteMBean.acquireServiceStatusDetailed());
+
+        StringBuilder strBuilder = new StringBuilder();
         strBuilder.append("Node IP Address: ").append(ipAddress).append("\n");
         strBuilder.append(remoteJMXOperationResult);
         return strBuilder.toString();
