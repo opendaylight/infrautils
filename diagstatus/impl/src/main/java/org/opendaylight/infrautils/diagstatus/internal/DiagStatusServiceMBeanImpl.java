@@ -10,6 +10,7 @@ package org.opendaylight.infrautils.diagstatus.internal;
 import static org.opendaylight.infrautils.diagstatus.ServiceState.ERROR;
 import static org.opendaylight.infrautils.diagstatus.ServiceState.UNREGISTERED;
 
+import com.google.common.base.Strings;
 import com.google.common.base.Throwables;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableMap.Builder;
@@ -122,8 +123,14 @@ public class DiagStatusServiceMBeanImpl extends StandardMBean implements DiagSta
         for (ServiceDescriptor status : diagStatusService.getAllServiceDescriptors()) {
             statusSummary
                     .append("  ")
-                    .append(String.format("%-20s%-20s", status.getModuleServiceName(), ": "
+                    // the magic is the max String length of ServiceState enum values, plus padding
+                    .append(String.format("%-20s%-15s", status.getModuleServiceName(), ": "
                             + status.getServiceState()));
+            if (!Strings.isNullOrEmpty(status.getStatusDesc())) {
+                statusSummary.append(" (");
+                statusSummary.append(status.getStatusDesc());
+                statusSummary.append(")");
+            }
             // intentionally using Throwable.toString() instead of Throwables.getStackTraceAsString to keep CLI brief
             status.getErrorCause().ifPresent(cause -> statusSummary.append(cause.toString()));
             statusSummary.append("\n");
