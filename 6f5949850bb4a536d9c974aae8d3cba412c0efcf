@@ -16,6 +16,24 @@
       "revId": "6f5949850bb4a536d9c974aae8d3cba412c0efcf",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fd6201ff_d2dfc3c2",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusCommand.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-06-17T17:30:35Z",
+      "side": 1,
+      "message": "This is a CLI command. And we don\u0027t want the exception to come in the CLI output. I meant the node is not reachable on whatever the internal mechanism we are using.(JMX RMI in this case). Any better message? We got a complaint from our customer that the previous error message is not making any sense to them.",
+      "parentUuid": "3cea23b7_59b80f16",
+      "revId": "6f5949850bb4a536d9c974aae8d3cba412c0efcf",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
