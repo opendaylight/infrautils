@@ -58,8 +58,8 @@ public class DiagStatusCommand implements Action {
                             strBuilder.append(getRemoteStatusSummary(memberAddress));
                         }
                     } catch (Exception e) {
-                        strBuilder.append("Status retrieval JMX Operation failed for node ")
-                                .append(memberAddress);
+                        strBuilder.append("Node IP Address: ")
+                                .append(memberAddress).append(" :UNREACHABLE").append("\n");;
                         LOG.error("Exception while reaching Host {}", memberAddress, e);
                     }
                 }
