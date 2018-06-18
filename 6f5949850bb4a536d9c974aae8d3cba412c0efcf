@@ -52,6 +52,24 @@
       "revId": "6f5949850bb4a536d9c974aae8d3cba412c0efcf",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "217a57fe_6929875d",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusCommand.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-06-18T05:21:24Z",
+      "side": 1,
+      "message": "I was trying not to include exception details in the CLI output, and just log it. However, it will be good if it has some proper details about the error. People were always complaining when they see \"JMXException\" even in the logs, that they are not able to understand what it is :), so not sure what they react when it comes in CLI output. I have just corrected the output, please take a look on the latest patchset. I have put NodeIpAddress in the beginning to make it align with the remaining lines in the output, as given in the gerrit description.",
+      "parentUuid": "b42ba31c_e28053ca",
+      "revId": "6f5949850bb4a536d9c974aae8d3cba412c0efcf",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
