@@ -46,6 +46,30 @@
       "revId": "7944812ef111f25431d434318c2b8c269fe46c8e",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "346869da_1cccb471",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusCommand.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-06-18T18:56:06Z",
+      "side": 1,
+      "message": "Tom, is it okay if I leave it this way? This is \"Node IP Address\" in the normal working cases(i just added the same pattern for exception case here), and is currently documented in many places downstream as well. If i change this, i need to change many CPI documentations as well, since it is a customer facing CLI, as we are not sure whether they have any scripts that parse this output.",
+      "parentUuid": "f245b1cb_8bd73885",
+      "range": {
+        "startLine": 61,
+        "startChar": 48,
+        "endLine": 61,
+        "endChar": 58
+      },
+      "revId": "7944812ef111f25431d434318c2b8c269fe46c8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
