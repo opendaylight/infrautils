@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8c0a4b0b_3d1976e5",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusCommand.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-06-18T14:45:02Z",
+      "side": 1,
+      "message": "nit picking: extra space after colon? ;) I\u0027ll just do it.",
+      "revId": "4b5babab3d36e3b65f2b8f3387ed5e8b2534edf2",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
