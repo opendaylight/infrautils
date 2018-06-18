@@ -2,6 +2,98 @@
   "comments": [
     {
       "key": {
+        "uuid": "7727d598_f74980ff",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2018-06-18T10:20:28Z",
+      "side": 1,
+      "message": "Please follow commit message guidelines, this is plain unreadable.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 47
+      },
+      "revId": "0ef0d907b0936de57cef03f61d64c1a2733d8080",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cbf220fe_7b731e47",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceMBeanImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2018-06-18T10:20:28Z",
+      "side": 1,
+      "message": "Lost cause exception",
+      "range": {
+        "startLine": 200,
+        "startChar": 72,
+        "endLine": 200,
+        "endChar": 81
+      },
+      "revId": "0ef0d907b0936de57cef03f61d64c1a2733d8080",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e23094b1_9d48a791",
+        "filename": "ready/api/src/main/java/org/opendaylight/infrautils/ready/SystemReadyListener.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2018-06-18T10:20:28Z",
+      "side": 1,
+      "message": "document behavior, notably NullPointerException here",
+      "range": {
+        "startLine": 33,
+        "startChar": 12,
+        "endLine": 33,
+        "endChar": 30
+      },
+      "revId": "0ef0d907b0936de57cef03f61d64c1a2733d8080",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "737dea74_d7b54c19",
+        "filename": "ready/api/src/main/java/org/opendaylight/infrautils/ready/SystemReadyMonitor.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2018-06-18T10:20:28Z",
+      "side": 1,
+      "message": "what happens if the same listener object is registered twice?",
+      "range": {
+        "startLine": 34,
+        "startChar": 26,
+        "endLine": 34,
+        "endChar": 54
+      },
+      "revId": "0ef0d907b0936de57cef03f61d64c1a2733d8080",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "698e3f05_cf695c1f",
         "filename": "ready/api/src/main/java/org/opendaylight/infrautils/ready/SystemReadyMonitor.java",
         "patchSetId": 5
@@ -13,6 +105,24 @@
       "writtenOn": "2018-06-14T19:48:01Z",
       "side": 1,
       "message": "As commented elsewhere, we should return a *Registration instance as is the pattern used throughout ODL.",
+      "revId": "0ef0d907b0936de57cef03f61d64c1a2733d8080",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fdc883f5_1380fdce",
+        "filename": "ready/api/src/main/java/org/opendaylight/infrautils/ready/SystemReadyMonitor.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2018-06-18T10:20:28Z",
+      "side": 1,
+      "message": "+1, that actually solves the question I am asking.",
+      "parentUuid": "698e3f05_cf695c1f",
       "revId": "0ef0d907b0936de57cef03f61d64c1a2733d8080",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
