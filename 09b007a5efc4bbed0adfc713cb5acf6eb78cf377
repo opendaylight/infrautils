@@ -22,6 +22,30 @@
       "revId": "09b007a5efc4bbed0adfc713cb5acf6eb78cf377",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b76ecb50_d6a7bf72",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ClusterMemberInfoProvider.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-06-20T18:21:00Z",
+      "side": 1,
+      "message": "again this is just a cherry-pick from master",
+      "parentUuid": "6e44f575_b95bb9af",
+      "range": {
+        "startLine": 38,
+        "startChar": 12,
+        "endLine": 38,
+        "endChar": 105
+      },
+      "revId": "09b007a5efc4bbed0adfc713cb5acf6eb78cf377",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
