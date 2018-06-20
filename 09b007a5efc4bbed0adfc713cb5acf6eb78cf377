@@ -46,6 +46,30 @@
       "revId": "09b007a5efc4bbed0adfc713cb5acf6eb78cf377",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "61eea916_c0a43c18",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ClusterMemberInfoProvider.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 2264
+      },
+      "writtenOn": "2018-06-20T18:26:44Z",
+      "side": 1,
+      "message": "ack, sorry I didn\u0027t notice this was a cherry pick. just saw you added me to a bunch of reviews and was trying to see if\nI had anything I could comment on.",
+      "parentUuid": "b76ecb50_d6a7bf72",
+      "range": {
+        "startLine": 38,
+        "startChar": 12,
+        "endLine": 38,
+        "endChar": 105
+      },
+      "revId": "09b007a5efc4bbed0adfc713cb5acf6eb78cf377",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
