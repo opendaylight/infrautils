@@ -16,6 +16,24 @@
       "revId": "36ed0b996d3c7d8cda556bf664edab8d17ddade1",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "390cad3c_4afe8126",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusCommand.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-06-20T08:01:27Z",
+      "side": 1,
+      "message": "This is technically not related to this refactoring (I\u0027ve just moved this LOG line from elsewhere, but kept it exactly as is).  I don\u0027t mind changing it, but I know Faseela is quite sensitive to this becaues of their hard-coded downstream log scanning tooling, so Faseela can you confirm that it is OK with you to change these two LOG.info to:\n\n  LOG.debug(\"Fetching remote diagstatus for node {} via JMX URL {}\", ipAddress, url);",
+      "parentUuid": "34786998_3f8727f5",
+      "revId": "36ed0b996d3c7d8cda556bf664edab8d17ddade1",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
