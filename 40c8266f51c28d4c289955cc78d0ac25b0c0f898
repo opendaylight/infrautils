@@ -22,6 +22,30 @@
       "revId": "40c8266f51c28d4c289955cc78d0ac25b0c0f898",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f8a9332f_ba0f3b3b",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceMBeanImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-06-20T15:29:38Z",
+      "side": 1,
+      "message": "this is simply a cherry-pick from master .. I think a later commit then cleaned this up again on? Perhaps Faseela remember exactly what we did here better than I... but looking at https://git.opendaylight.org/gerrit/#/c/71168/2/diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceMBeanImpl.java a see I pointed to https://git.opendaylight.org/gerrit/#/c/71197/ which I abandoned in favour of your https://git.opendaylight.org/gerrit/#/c/71184/ .. so let\u0027s cherry pick that one as well - so proposed in https://git.opendaylight.org/gerrit/#/c/73265/.  (BTW: I may well be forgetting other stuff which should also be back-ported here... you\u0027re more than welcome to double check and cherry-pick anything else related to this which you think would have value to also be on oxygen).",
+      "parentUuid": "fa8574e8_eda33c8c",
+      "range": {
+        "startLine": 112,
+        "startChar": 0,
+        "endLine": 115,
+        "endChar": 119
+      },
+      "revId": "40c8266f51c28d4c289955cc78d0ac25b0c0f898",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
