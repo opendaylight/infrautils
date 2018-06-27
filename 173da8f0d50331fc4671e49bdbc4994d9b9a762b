@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "658c5de1_f631840c",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/MetricProviderImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2018-06-27T21:11:51Z",
+      "side": 1,
+      "message": "TOCTOU race condition.",
+      "range": {
+        "startLine": 98,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 9
+      },
+      "revId": "173da8f0d50331fc4671e49bdbc4994d9b9a762b",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "00cabb13_4863bba1",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/MetricProviderImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2018-06-27T21:11:51Z",
+      "side": 1,
+      "message": "needless restart if the config has not changed.",
+      "range": {
+        "startLine": 102,
+        "startChar": 29,
+        "endLine": 105,
+        "endChar": 96
+      },
+      "revId": "173da8f0d50331fc4671e49bdbc4994d9b9a762b",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "905007af_b839335a",
         "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/MetricProviderImpl.java",
         "patchSetId": 3
