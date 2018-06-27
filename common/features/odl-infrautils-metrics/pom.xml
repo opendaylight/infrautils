@@ -22,15 +22,14 @@
       <artifactId>metrics-impl</artifactId>
       <version>${project.version}</version>
     </dependency>
-    <!-- This is declared in the feature.xml file
     <dependency>
+      <!-- finalname="etc/org.opendaylight.infrautils.metrics.cfg" -->
       <groupId>${project.groupId}</groupId>
       <artifactId>metrics-impl</artifactId>
       <version>${project.version}</version>
       <type>cfg</type>
       <classifier>config</classifier>
     </dependency>
-    -->
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>odl-infrautils-utils</artifactId>

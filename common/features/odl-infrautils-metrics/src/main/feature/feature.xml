@@ -8,6 +8,8 @@
  -->
 <features name="odl-infrautils-${project.version}" xmlns="http://karaf.apache.org/xmlns/features/v1.2.0">
     <feature name="odl-infrautils-metrics" version="${project.version}">
-        <configfile finalname="etc/org.opendaylight.infrautils.metrics.cfg">mvn:org.opendaylight.infrautils/metrics-impl/${project.version}/cfg/config/</configfile>
+        <configfile finalname="etc/org.opendaylight.infrautils.metrics.cfg">
+            mvn:org.opendaylight.infrautils/metrics-impl/${project.version}/cfg/config
+        </configfile>
     </feature>
 </features>
