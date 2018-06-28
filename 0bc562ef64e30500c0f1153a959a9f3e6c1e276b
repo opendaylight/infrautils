@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5074b07c_586f09e8",
+        "filename": "metrics/impl/pom.xml",
+        "patchSetId": 5
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 7866
+      },
+      "writtenOn": "2018-06-28T11:35:05Z",
+      "side": 1,
+      "message": "Do we need this commented dependency?",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 4
+      },
+      "revId": "0bc562ef64e30500c0f1153a959a9f3e6c1e276b",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
