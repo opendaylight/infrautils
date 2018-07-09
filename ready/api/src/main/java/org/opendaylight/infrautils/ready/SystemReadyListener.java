@@ -24,24 +24,18 @@ public interface SystemReadyListener {
      * dependency injection object wiring (incl. invocation of all
      * {@literal @}PostConstruct "init" type methods) has completed.
      */
+    @Deprecated
     void onSystemBootReady();
 
     /**
-     * Called back when the system becomes (temporarily, hopefully) 'un-ready'.
-     * In an OSGi context like a Karaf container environment, this typically happens
-     * the moment the end user operator types in e.g. 'feature:install oh-i-forgot-this-feature'
-     * (or even 'bundle:install', as well as feature or bundle uninstall).
-     * In a plain Java Environment, this typically does not occur.
-     * <i>This is not yet implemented.</i>
+     * Called back on system state change.
+     * @param systemState
+     *   Current system state.
      */
-    // default void onSystemIsChanging() { }
-
-    /**
-     * Called back when the system has successfully converged to a stable state
-     * and become 'ready again', following
-     * {@link SystemReadyListener#onSystemIsChanging()}.
-     * <i>This is not yet implemented.</i>
-     */
-    // default void onSystemReadyAgain() { }
+    default void onSystemStateChange(SystemState systemState) {
+        if (systemState.equals(SystemState.ACTIVE)) {
+            onSystemBootReady();
+        }
+    }
 
 }
