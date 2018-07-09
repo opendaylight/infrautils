@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "efa92d6e_d1f55163",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/ThreadsWatcher.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-07-09T18:52:35Z",
+      "side": 1,
+      "message": "I don\u0027t think we need the !",
+      "range": {
+        "startLine": 88,
+        "startChar": 54,
+        "endLine": 88,
+        "endChar": 56
+      },
+      "revId": "777a6b14924ea834e3833e5428422cce0e9befa4",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "576ef6ab_0ad23258",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/ThreadsWatcher.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-07-09T18:52:35Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 98,
+        "startChar": 78,
+        "endLine": 98,
+        "endChar": 80
+      },
+      "revId": "777a6b14924ea834e3833e5428422cce0e9befa4",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
