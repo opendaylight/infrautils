@@ -160,7 +160,7 @@ public class MetricProviderImpl implements MetricProvider {
         // as that will spam the log, and we have our own file based reporting instead.
         // We do log system metrics once at boot up:
         LOG.info("One time system JVM metrics FYI; "
-                + "to watch continously, monitor via JMX or enable periodic file dump option");
+                + "to watch continuously, monitor via JMX or enable periodic file dump option");
         slf4jReporter.report();
         return slf4jReporter;
     }
