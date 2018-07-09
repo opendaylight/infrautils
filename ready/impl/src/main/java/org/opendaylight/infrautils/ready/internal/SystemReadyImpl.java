@@ -98,7 +98,7 @@ public class SystemReadyImpl extends AbstractMXBean implements SystemReadyMonito
                 toNotify = listeners.toArray(new SystemReadyListener[listeners.size()]);
                 currentSystemState.set(ACTIVE);
             }
-            LOG.info("System ready; AKA: Aye captain, all warp coils are now operating at peak efficiency! [M.]");
+            LOG.info("System ready monitor initialized.");
 
             if (toNotify.length > 0) {
                 LOG.info("Now notifying all its registered SystemReadyListeners...");
