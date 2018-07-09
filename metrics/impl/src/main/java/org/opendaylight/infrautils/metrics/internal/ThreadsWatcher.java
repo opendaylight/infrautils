@@ -85,7 +85,7 @@ class ThreadsWatcher implements Runnable {
         int currentNumberOfThreads = getThreadMXBean().getThreadCount();
         Set<String> deadlockedThreadsStackTrace = threadDeadlockDetector.getDeadlockedThreads();
         if (!deadlockedThreadsStackTrace.isEmpty()) {
-            LOG.error("Oh nose - there are {} deadlocked threads!! :-(", deadlockedThreadsStackTrace.size());
+            LOG.error("There are {} deadlocked threads", deadlockedThreadsStackTrace.size());
             for (String deadlockedThreadStackTrace : deadlockedThreadsStackTrace) {
                 LOG.error("Deadlocked thread stack trace: {}", deadlockedThreadStackTrace);
             }
@@ -95,7 +95,7 @@ class ThreadsWatcher implements Runnable {
             }
 
         } else if (currentNumberOfThreads >= maxThreads) {
-            LOG.warn("Oh nose - there are now {} threads, more than maximum threshold {}! "
+            LOG.warn("The number of threads {} has exceeded the maximum threshold {} "
                     + "(totalStarted: {}, peak: {}, daemons: {})",
                     currentNumberOfThreads, maxThreads, getThreadMXBean().getTotalStartedThreadCount(),
                     getThreadMXBean().getPeakThreadCount(), getThreadMXBean().getDaemonThreadCount());
