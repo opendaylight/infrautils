@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6e6cc359_406cffb8",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/SystemReadyImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-07-11T10:33:11Z",
+      "side": 0,
+      "message": "This is funny, and a number of people have mentioned that this brightened their day.  Why remove this?",
+      "revId": "8cf6a5a1d1c872c406ec7b3635edc326ae08c62c",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
