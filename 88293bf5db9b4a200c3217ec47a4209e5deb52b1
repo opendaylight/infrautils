@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e9ef9ea8_6f149d65",
+        "filename": "diagstatus/impl/src/test/java/org/opendaylight/infrautils/diagstatus/test/DiagStatusTestModule.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-07-14T14:36:11Z",
+      "side": 1,
+      "message": "You can simplify to:\n  \n    return () -\u003e {};",
+      "revId": "88293bf5db9b4a200c3217ec47a4209e5deb52b1",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4e49e30f_eb9977e7",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/SystemReadyImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-07-14T14:36:11Z",
+      "side": 1,
+      "message": "synchronize on listeners here.",
+      "revId": "88293bf5db9b4a200c3217ec47a4209e5deb52b1",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "459936a6_0b08e686",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/SystemReadyListenerRegistrationImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-07-14T14:36:11Z",
+      "side": 1,
+      "message": "make this package-scoped. Or better yet just inline it in SystemReadyImpl since that is the only user.",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 6
+      },
+      "revId": "88293bf5db9b4a200c3217ec47a4209e5deb52b1",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
