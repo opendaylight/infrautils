@@ -45,6 +45,30 @@
       "revId": "777a6b14924ea834e3833e5428422cce0e9befa4",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "800301c9_ff71aa2d",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/ThreadsWatcher.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-07-14T13:12:02Z",
+      "side": 1,
+      "message": "How about re-wording this as \"The number of threads {} has exceeded the maximum threshold {}\"",
+      "parentUuid": "576ef6ab_0ad23258",
+      "range": {
+        "startLine": 98,
+        "startChar": 78,
+        "endLine": 98,
+        "endChar": 80
+      },
+      "revId": "777a6b14924ea834e3833e5428422cce0e9befa4",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
