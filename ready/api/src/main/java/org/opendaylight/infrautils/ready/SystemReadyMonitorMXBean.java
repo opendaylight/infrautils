@@ -17,6 +17,9 @@ public interface SystemReadyMonitorMXBean {
 
     /**
      * Obtain current system status as one of few possible enumerated values.
+     * @return
+     *   Current system state.
      */
     SystemState getSystemState();
+
 }
