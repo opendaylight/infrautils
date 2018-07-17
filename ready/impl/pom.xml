@@ -117,8 +117,6 @@
           <instructions>
             <Embed-Dependency>bundles-test-lib,awaitility,hamcrest-core</Embed-Dependency>
             <!-- Do NOT <Embed-Transitive>true</Embed-Transitive> -->
-            <!-- We must tweak karaf.bundle.core's version range so that it works both in Karaf 3 and Karaf 4 -->
-            <Import-Package>!net.sf.cglib.proxy,!org.objenesis,org.apache.karaf.bundle.core;version="[3.0,5)",*</Import-Package>
           </instructions>
         </configuration>
       </plugin>
