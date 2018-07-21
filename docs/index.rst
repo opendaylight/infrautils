@@ -15,3 +15,4 @@ Contents:
    :maxdepth: 1
 
    specs/index
+   getting-started-guide/index
