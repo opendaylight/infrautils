@@ -10,7 +10,6 @@ package org.opendaylight.infrautils.diagstatus;
 
 import java.net.InetAddress;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -43,7 +42,7 @@ public final class ClusterMemberInfoProvider {
         if (clusterStatusMBeanValue != null) {
             String selfAddressMbean = StringUtils.substringBetween(clusterStatusMBeanValue.toString(),
                     "\"self-address\": ", ",");
-            return Optional.of(StringUtils.substringBetween(selfAddressMbean, "@", ":"));
+            return Optional.of(extractAddressFromAkka(selfAddressMbean));
         } else {
             LOG.error("getMBeanAttribute(\"akka:type=Cluster\", \"ClusterStatus\"); unexepected returned null");
             return Optional.empty();
@@ -61,13 +60,22 @@ public final class ClusterMemberInfoProvider {
 
         List<String> clusterIPAddresses = new ArrayList<>();
         if (clusterMemberMBeanValue != null) {
-            List<String> clusterMembers = Arrays.asList(((String)clusterMemberMBeanValue).split(","));
+            String[] clusterMembers = ((String)clusterMemberMBeanValue).split(",", -1);
             for (String clusterMember : clusterMembers) {
-                String nodeIp = StringUtils.substringBetween(clusterMember, "@", ":");
+                String nodeIp = extractAddressFromAkka(clusterMember);
                 clusterIPAddresses.add(nodeIp);
             }
         }
         return clusterIPAddresses;
+    }
+
+    private static String extractAddressFromAkka(String clusterMember) {
+        if (clusterMember.contains("@[")) {
+            // IPv6 address
+            return StringUtils.substringBetween(clusterMember, "@[", "]");
+        }
+        // IPv4 or hostname
+        return StringUtils.substringBetween(clusterMember, "@", ":");
     }
 
     public static boolean isValidIPAddress(String ipAddress) {
