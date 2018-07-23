@@ -72,7 +72,7 @@ public class DiagStatusServiceMBeanImpl extends StandardMBean implements DiagSta
             try {
                 jmxConnector = MBeanUtils.startRMIConnectorServer(mbeanServer, host);
             } catch (IOException e) {
-                LOG.error("unable to start jmx connector for host {}", host);
+                LOG.error("unable to start jmx connector for host: {}", host, e);
             }
         });
     }
