@@ -182,6 +182,7 @@
                 <arg>-Xep:StringSplitter:ERROR</arg>
                 <arg>-Xep:UnnecessaryDefaultInEnumSwitch:ERROR</arg>
                 <arg>-Xep:DefaultCharset:ERROR</arg>
+                <arg>-Xep:StreamResourceLeak:ERROR</arg>
                 <!-- new in 2.3.0 -->
                 <arg>-Xep:InconsistentCapitalization:ERROR</arg>
                 <arg>-Xep:TruthIncompatibleType:ERROR</arg>
