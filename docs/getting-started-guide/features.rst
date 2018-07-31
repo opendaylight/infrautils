@@ -124,6 +124,8 @@ There are different implementations of this API allowing operators to exploit me
 
 The odl-infrautils-metrics Karaf feature includes the API and the local Dropwizard implementation.
 
+The odl-infrautils-metrics-sample Karaf feature illustrates how to use metrics in application code, see metrics-sample sources in infrautils/metrics/sample/impl.
+
 Metrics API
 ~~~~~~~~~~~
 
