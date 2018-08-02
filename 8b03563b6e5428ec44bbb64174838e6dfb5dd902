@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f606e0ef_3302852f",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/concurrent/FluentFutures2.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-08-02T12:17:08Z",
+      "side": 1,
+      "message": "FluentFuture",
+      "range": {
+        "startLine": 19,
+        "startChar": 24,
+        "endLine": 19,
+        "endChar": 41
+      },
+      "revId": "8b03563b6e5428ec44bbb64174838e6dfb5dd902",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
