@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "79b8c40b_74218c5f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-08-02T08:34:20Z",
+      "side": 1,
+      "message": "please also raise the cherry-pick this to master for master - I want to merge both together, so that we do not forget it; instead of merging the oxygen first and then having to chase you to get the master one",
+      "revId": "d4e15304c48ae3a122ec4767283da35bfd006636",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bb29fa22_0192477e",
+        "filename": "metrics/api/src/main/java/org/opendaylight/infrautils/metrics/MetricProvider.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-08-02T08:34:20Z",
+      "side": 1,
+      "message": "could you please add coverage for these 2 new methods to the MetricProviderTest as well?",
+      "revId": "d4e15304c48ae3a122ec4767283da35bfd006636",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f355d30a_75e77a5d",
+        "filename": "metrics/impl-prometheus/src/main/java/org/opendaylight/infrautils/metrics/prometheus/impl/PrometheusMetricProviderImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-08-02T08:34:20Z",
+      "side": 1,
+      "message": "please remove this class from the oxygen patch; the impl-prometheus code is only on the master branch (but of course keep it on the master version of this patch)",
+      "revId": "d4e15304c48ae3a122ec4767283da35bfd006636",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
