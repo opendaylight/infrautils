@@ -10,7 +10,6 @@ package org.opendaylight.infrautils.testutils.mockito;
 import java.io.Serializable;
 import org.mockito.Mockito;
 import org.mockito.internal.stubbing.answers.ThrowsException;
-import org.mockito.internal.stubbing.answers.ThrowsExceptionClass;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 
