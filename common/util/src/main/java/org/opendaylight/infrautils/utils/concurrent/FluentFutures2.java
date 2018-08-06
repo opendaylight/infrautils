@@ -37,13 +37,8 @@ public final class FluentFutures2 {
      *             {@link FluentFuture} (or {@link CompletionStage})
      */
     @Deprecated // TODO remove this method when all of its usages have been removed and its unnecessary
-    public <V, E extends Exception> CheckedFuture<V, E> toChecked(FluentFuture<V> future,
+    public static <V, E extends Exception> CheckedFuture<V, E> toChecked(FluentFuture<V> future,
             Function<? super Exception, E> mapper) {
-        return Futures.makeChecked(future , convert(mapper));
+        return Futures.makeChecked(future, mapper::apply);
     }
-
-    private static <I, O> com.google.common.base.Function<I, O> convert(Function<I, O> julFunction) {
-        return arg -> julFunction.apply(arg);
-    }
-
 }
