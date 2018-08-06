@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ebdc7efe_d5790b50",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/concurrent/FluentFutures2.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2018-08-06T16:43:49Z",
+      "side": 1,
+      "message": "btw. given this I really do not see the point in this method (and, by extension, this class as it stands).",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 5
+      },
+      "revId": "c6c83099a4be906af5983d5f57a490c599eadde3",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
