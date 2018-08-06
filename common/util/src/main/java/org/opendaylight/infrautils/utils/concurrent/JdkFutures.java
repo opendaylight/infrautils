@@ -71,18 +71,37 @@ public final class JdkFutures {
 
     /**
      * Adds a callback to a Future which logs any failures.
-     * @see ListenableFutures#addErrorLogging(ListenableFuture, Logger, String)
+     *
+     * @see LoggingFutures#addErrorLogging(ListenableFuture, Logger, String)
+     * @deprecated Use {@link LoggingFutures#addErrorLogging(Future, Logger, String)}
      */
+    @Deprecated
+    @SuppressWarnings("FutureReturnValueIgnored")
     public static <V> void addErrorLogging(Future<V> future, Logger logger, String message) {
-        ListenableFutures.addErrorLogging(toListenableFuture(future), logger, message);
+        LoggingFutures.addErrorLogging(future, logger, message);
     }
 
+    /**
+     * Adds a callback to a Future which logs any failures.
+     *
+     * @see LoggingFutures#addErrorLogging(ListenableFuture, Logger, String, Object)
+     * @deprecated Use {@link LoggingFutures#addErrorLogging(Future, Logger, String, Object)}
+     */
+    @Deprecated
+    @SuppressWarnings("FutureReturnValueIgnored")
     public static <V> void addErrorLogging(Future<V> future, Logger logger, String format, Object arg) {
-        ListenableFutures.addErrorLogging(toListenableFuture(future), logger, format, arg);
+        LoggingFutures.addErrorLogging(future, logger, format, arg);
     }
 
+    /**
+     * Adds a callback to a Future which logs any failures.
+     *
+     * @see LoggingFutures#addErrorLogging(ListenableFuture, Logger, String, Object...)
+     * @deprecated Use {@link LoggingFutures#addErrorLogging(Future, Logger, String, Object...)}
+     */
+    @Deprecated
+    @SuppressWarnings("FutureReturnValueIgnored")
     public static <V> void addErrorLogging(Future<V> future, Logger logger, String format, Object... args) {
-        ListenableFutures.addErrorLogging(toListenableFuture(future), logger, format, args);
+        LoggingFutures.addErrorLogging(future, logger, format, args);
     }
-
 }
