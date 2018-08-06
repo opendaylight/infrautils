@@ -9,7 +9,6 @@ package org.opendaylight.infrautils.utils.concurrent;
 
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
-import com.google.common.util.concurrent.MoreExecutors;
 import java.util.concurrent.CancellationException;
 import java.util.concurrent.CompletionStage;
 import java.util.concurrent.ExecutionException;
@@ -46,23 +45,46 @@ public final class ListenableFutures {
      * {@link Futures#addCallback(ListenableFuture, com.google.common.util.concurrent.FutureCallback,
      * java.util.concurrent.Executor)} to add a callback which does real error recovery in case of a failure instead
      * of just logging an error, if you can.
+     *
+     * @deprecated Use {@link LoggingFutures#addErrorLogging(ListenableFuture, Logger, String)} instead.
      */
+    @Deprecated
+    @SuppressWarnings("FutureReturnValueIgnored")
     public static <V> void addErrorLogging(ListenableFuture<V> future, Logger logger, String message) {
-        Futures.addCallback(future, new FailureMessageLoggingFutureCallback<>(logger, message),
-                MoreExecutors.directExecutor());
+        LoggingFutures.addErrorLogging(future, logger, message);
     }
 
+    /**
+     * Adds a callback to a ListenableFuture which logs any failures.
+     *
+     * <p>Instead of using this helper, you should consider directly using
+     * {@link Futures#addCallback(ListenableFuture, com.google.common.util.concurrent.FutureCallback,
+     * java.util.concurrent.Executor)} to add a callback which does real error recovery in case of a failure instead
+     * of just logging an error, if you can.
+     *
+     * @deprecated Use {@link LoggingFutures#addErrorLogging(ListenableFuture, Logger, String, Object)} instead.
+     */
+    @Deprecated
+    @SuppressWarnings("FutureReturnValueIgnored")
     public static <V> void addErrorLogging(ListenableFuture<V> future, Logger logger, String format, Object arg) {
-        Futures.addCallback(future,
-                new FailureFormat1ArgumentLoggingFutureCallback<V>(logger, format, arg),
-                MoreExecutors.directExecutor());
+        LoggingFutures.addErrorLogging(future, logger, format, arg);
     }
 
+    /**
+     * Adds a callback to a ListenableFuture which logs any failures.
+     *
+     * <p>Instead of using this helper, you should consider directly using
+     * {@link Futures#addCallback(ListenableFuture, com.google.common.util.concurrent.FutureCallback,
+     * java.util.concurrent.Executor)} to add a callback which does real error recovery in case of a failure instead
+     * of just logging an error, if you can.
+     *
+     * @deprecated Use {@link LoggingFutures#addErrorLogging(ListenableFuture, Logger, String, Object...)} instead.
+     */
+    @Deprecated
+    @SuppressWarnings("FutureReturnValueIgnored")
     public static <V> void addErrorLogging(
             ListenableFuture<V> future, Logger logger, String format, Object... arguments) {
-        Futures.addCallback(future,
-                new FailureFormatMoreArgumentsLoggingFutureCallback<V>(logger, format, arguments),
-                MoreExecutors.directExecutor());
+        LoggingFutures.addErrorLogging(future, logger, format, arguments);
     }
 
     public static <V, E extends Exception> V checkedGet(ListenableFuture<V> future,
