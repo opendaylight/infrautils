@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "2c1e1245_9eb26586",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 8158
+      },
+      "writtenOn": "2018-08-07T08:29:44Z",
+      "side": 1,
+      "message": "This change has been cherry-picked from master. It is already present in master.",
+      "parentUuid": "79b8c40b_74218c5f",
+      "revId": "d4e15304c48ae3a122ec4767283da35bfd006636",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bb29fa22_0192477e",
         "filename": "metrics/api/src/main/java/org/opendaylight/infrautils/metrics/MetricProvider.java",
         "patchSetId": 1
