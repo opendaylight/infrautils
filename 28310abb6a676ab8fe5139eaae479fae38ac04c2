@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "39e29d86_acf99a75",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2018-08-07T13:37:33Z",
+      "side": 1,
+      "message": "Of course it will, as it is the cornerstone of how method overloads work.",
+      "parentUuid": "9c56a7b8_e5f86abe",
+      "revId": "28310abb6a676ab8fe5139eaae479fae38ac04c2",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "38247579_f44c7911",
         "filename": "/COMMIT_MSG",
         "patchSetId": 5
@@ -47,6 +65,24 @@
       "writtenOn": "2018-08-07T13:24:13Z",
       "side": 1,
       "message": "do you have an example of where this is useful?  The way that this has been used in genius and netvirt etc. is that EITHER folks \"handle\" their future (propagating, chaining), OR they can\u0027t / don\u0027t and use this to at least just get error logging.  I\u0027ve not seen a mixed use case, and am just concerned that returning the future, while nice in theory to allow for fluent use, makes the utility a little less clear to use to normal people, wondering \"I just want it to be logging, but what am I supposed to do with what this returns\".  Just a thought, wondering what others think; happy to be convinced otherwise.",
+      "revId": "28310abb6a676ab8fe5139eaae479fae38ac04c2",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3f49ff84_a509b712",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2018-08-07T13:37:33Z",
+      "side": 1,
+      "message": "\"I want to log the result and then transform it\":\n\nFluentFuture\u003cInput\u003e f;\nLoggingFutures.addLogging(f).transform(...)",
+      "parentUuid": "38247579_f44c7911",
       "revId": "28310abb6a676ab8fe5139eaae479fae38ac04c2",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -70,6 +106,24 @@
     },
     {
       "key": {
+        "uuid": "02f04957_9350bf37",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/concurrent/LoggingFutures.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2018-08-07T13:37:33Z",
+      "side": 1,
+      "message": "Auto-generation, I hardly pay attention to it at all.",
+      "parentUuid": "97669a7f_0e41d3b3",
+      "revId": "28310abb6a676ab8fe5139eaae479fae38ac04c2",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2d54d011_789fcf3e",
         "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/concurrent/LoggingFutures.java",
         "patchSetId": 5
@@ -81,6 +135,24 @@
       "writtenOn": "2018-08-07T13:24:13Z",
       "side": 1,
       "message": "we typically don\u0027t use @Beta in infrautils much..  And even if we did for certain \"new, this may change\" things, this class (its origins) is meanwhile fairly widely used, and unlikely to change - so this particular utility does not seem like a good Beta candidate marking, to me.",
+      "revId": "28310abb6a676ab8fe5139eaae479fae38ac04c2",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "de8c394c_69fb6305",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/concurrent/LoggingFutures.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2018-08-07T13:37:33Z",
+      "side": 1,
+      "message": "I don\u0027t see it hurting much and any public API benefits from usage, which may end up changing details.",
+      "parentUuid": "2d54d011_789fcf3e",
       "revId": "28310abb6a676ab8fe5139eaae479fae38ac04c2",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
