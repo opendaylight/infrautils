@@ -54,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "59fad94b_deadbb64",
+        "filename": "metrics/api/src/main/java/org/opendaylight/infrautils/metrics/MetricProvider.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 8158
+      },
+      "writtenOn": "2018-08-07T08:31:18Z",
+      "side": 1,
+      "message": "Coverage added.",
+      "parentUuid": "bb29fa22_0192477e",
+      "revId": "d4e15304c48ae3a122ec4767283da35bfd006636",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f355d30a_75e77a5d",
         "filename": "metrics/impl-prometheus/src/main/java/org/opendaylight/infrautils/metrics/prometheus/impl/PrometheusMetricProviderImpl.java",
         "patchSetId": 1
@@ -65,6 +83,24 @@
       "writtenOn": "2018-08-02T08:34:20Z",
       "side": 1,
       "message": "please remove this class from the oxygen patch; the impl-prometheus code is only on the master branch (but of course keep it on the master version of this patch)",
+      "revId": "d4e15304c48ae3a122ec4767283da35bfd006636",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2206877e_a6f14e41",
+        "filename": "metrics/impl-prometheus/src/main/java/org/opendaylight/infrautils/metrics/prometheus/impl/PrometheusMetricProviderImpl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 8158
+      },
+      "writtenOn": "2018-08-07T08:31:18Z",
+      "side": 1,
+      "message": "Removed it from stable/oxygen patch",
+      "parentUuid": "f355d30a_75e77a5d",
       "revId": "d4e15304c48ae3a122ec4767283da35bfd006636",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
