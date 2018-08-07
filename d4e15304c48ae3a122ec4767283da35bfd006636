@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "c7e2444f_133b97d1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-08-07T13:06:31Z",
+      "side": 1,
+      "message": "Oh, sorry!  Now seeing https://git.opendaylight.org/gerrit/#/c/71896/.",
+      "parentUuid": "2c1e1245_9eb26586",
+      "revId": "d4e15304c48ae3a122ec4767283da35bfd006636",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "bb29fa22_0192477e",
         "filename": "metrics/api/src/main/java/org/opendaylight/infrautils/metrics/MetricProvider.java",
         "patchSetId": 1
@@ -66,6 +84,24 @@
       "side": 1,
       "message": "Coverage added.",
       "parentUuid": "bb29fa22_0192477e",
+      "revId": "d4e15304c48ae3a122ec4767283da35bfd006636",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3edfa5ba_52214f55",
+        "filename": "metrics/api/src/main/java/org/opendaylight/infrautils/metrics/MetricProvider.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-08-07T13:06:31Z",
+      "side": 1,
+      "message": "which wasn\u0027t in https://git.opendaylight.org/gerrit/#/c/71896/, so in an ideal world, if you could now also raise a new Gerrit to add that additional coverage (thank you) on master, that would be cool.",
+      "parentUuid": "59fad94b_deadbb64",
       "revId": "d4e15304c48ae3a122ec4767283da35bfd006636",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
