@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "230d5803_fdc3a617",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2018-08-07T13:37:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1b67567a_01bd5e80",
+      "revId": "28310abb6a676ab8fe5139eaae479fae38ac04c2",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9c56a7b8_e5f86abe",
         "filename": "/COMMIT_MSG",
         "patchSetId": 5
@@ -118,6 +136,24 @@
       "side": 1,
       "message": "Auto-generation, I hardly pay attention to it at all.",
       "parentUuid": "97669a7f_0e41d3b3",
+      "revId": "28310abb6a676ab8fe5139eaae479fae38ac04c2",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "264d1306_b41b4771",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/concurrent/LoggingFutures.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2018-08-07T13:37:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "02f04957_9350bf37",
       "revId": "28310abb6a676ab8fe5139eaae479fae38ac04c2",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
