@@ -72,6 +72,51 @@ public class MetricProviderTest {
     }
 
     @Test
+    public void testMeterWith4Labels() {
+        Labeled<Labeled<Labeled<Labeled<Meter>>>> meterWith4Labels = (Labeled<Labeled<Labeled<Labeled<Meter>>>>) metrics
+                .newMeter(MetricDescriptor.builder().anchor(this).project("infrautils")
+                                .module("metrics").id("test_meter4").build(),
+                        "label1", "label2", "label3", "label4");
+        Meter meterA = meterWith4Labels.label("l1").label("l2").label("l3")
+                .label("l4");
+        meterA.mark(4);
+        assertThat(meterA.get()).isEqualTo(4);
+
+        Meter meterB = meterWith4Labels.label("l1value").label("l2value").label("l3value")
+                .label("l4value");
+        meterB.mark(1);
+        assertThat(meterB.get()).isEqualTo(1);
+        assertThat(meterA.get()).isEqualTo(4);
+
+        Meter againMeterA = meterWith4Labels.label("l1").label("l2").label("l3")
+                .label("l4");
+        assertThat(againMeterA.get()).isEqualTo(4);
+    }
+
+    @Test
+    public void testMeterWith5Labels() {
+        Labeled<Labeled<Labeled<Labeled<Labeled<Meter>>>>> meterWith5Lables = metrics
+                .newMeter(MetricDescriptor.builder().anchor(this).project("infrautils")
+                                .module("metrics").id("test_meter5").build(),
+                        "label1", "label2", "label3",
+                        "label4", "label5");
+        Meter meterA = meterWith5Lables.label("l1").label("l2").label("l3")
+                .label("l4").label("l5");
+        meterA.mark(5);
+        assertThat(meterA.get()).isEqualTo(5);
+
+        Meter meterB = meterWith5Lables.label("l1value").label("l2value").label("l3value")
+                .label("l4value").label("l5value");
+        meterB.mark(1);
+        assertThat(meterB.get()).isEqualTo(1);
+        assertThat(meterA.get()).isEqualTo(5);
+
+        Meter againMeterA = meterWith5Lables.label("l1").label("l2").label("l3")
+                .label("l4").label("l5");
+        assertThat(againMeterA.get()).isEqualTo(5);
+    }
+
+    @Test
     public void testCounterWith2Labels() {
         Labeled<Labeled<Counter>> counterWithTwoLabels = metrics.newCounter(MetricDescriptor.builder().anchor(this)
                         .project("infrautils").module("metrics").id("test_counter1").build(),
