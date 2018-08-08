@@ -18,6 +18,9 @@ import org.slf4j.Logger;
 
 /**
  * Utility methods to add completion/failure logging to various kinds of Futures.
+ *
+ * @author Michael Vorburger.ch - Initial author
+ * @author Robert Varga - moved here from JdkFutures &amp; ListenableFutures
  */
 @Beta
 public final class LoggingFutures {
