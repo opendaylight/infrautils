@@ -108,6 +108,24 @@
     },
     {
       "key": {
+        "uuid": "8baddd83_aead5d24",
+        "filename": "metrics/api/src/main/java/org/opendaylight/infrautils/metrics/MetricProvider.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 8158
+      },
+      "writtenOn": "2018-08-08T08:34:36Z",
+      "side": 1,
+      "message": "Added the test coverage to master as well. Please refer https://git.opendaylight.org/gerrit/#/c/74938/ for the same.",
+      "parentUuid": "3edfa5ba_52214f55",
+      "revId": "d4e15304c48ae3a122ec4767283da35bfd006636",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f355d30a_75e77a5d",
         "filename": "metrics/impl-prometheus/src/main/java/org/opendaylight/infrautils/metrics/prometheus/impl/PrometheusMetricProviderImpl.java",
         "patchSetId": 1
