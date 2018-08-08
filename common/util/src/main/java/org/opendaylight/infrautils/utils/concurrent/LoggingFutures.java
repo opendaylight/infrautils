@@ -7,7 +7,6 @@
  */
 package org.opendaylight.infrautils.utils.concurrent;
 
-import com.google.common.annotations.Beta;
 import com.google.common.util.concurrent.FluentFuture;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
@@ -18,8 +17,9 @@ import org.slf4j.Logger;
 
 /**
  * Utility methods to add completion/failure logging to various kinds of Futures.
+ *
+ * @author Michael Vorburger.ch
  */
-@Beta
 public final class LoggingFutures {
     private LoggingFutures() {
 
