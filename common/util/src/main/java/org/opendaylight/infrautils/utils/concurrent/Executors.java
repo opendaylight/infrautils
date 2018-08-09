@@ -58,6 +58,15 @@ public final class Executors {
                         .get());
     }
 
+    public static ListeningExecutorService newFixedThreadPool(int size, String namePrefix, Logger logger) {
+        return MoreExecutors.listeningDecorator(java.util.concurrent.Executors.newFixedThreadPool(size,
+                ThreadFactoryProvider.builder()
+                .namePrefix(namePrefix)
+                .logger(logger)
+                .build()
+                .get()));
+    }
+
     public static ListeningExecutorService newListeningCachedThreadPool(String namePrefix, Logger logger) {
         return MoreExecutors.listeningDecorator(newCachedThreadPool(namePrefix, logger));
     }
