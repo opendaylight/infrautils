@@ -62,6 +62,10 @@ public final class Executors {
         return MoreExecutors.listeningDecorator(newCachedThreadPool(namePrefix, logger));
     }
 
+    /**
+     * Deprecated cached thread pool executor.
+     * @deprecated Use {@link #newListeningCachedThreadPool(String, Logger)} instead.
+     */
     @Deprecated
     public static ExecutorService newCachedThreadPool(String namePrefix, Logger logger) {
         return java.util.concurrent.Executors.newCachedThreadPool(
@@ -77,6 +81,10 @@ public final class Executors {
         return MoreExecutors.listeningDecorator(newSingleThreadScheduledExecutor(namePrefix, logger));
     }
 
+    /**
+     * Deprecated single thread executor.
+     * @deprecated {@link #newListeningSingleThreadScheduledExecutor(String, Logger)} instead.
+     */
     @Deprecated
     public static ScheduledExecutorService newSingleThreadScheduledExecutor(String namePrefix, Logger logger) {
         return java.util.concurrent.Executors.unconfigurableScheduledExecutorService(
@@ -93,6 +101,10 @@ public final class Executors {
         return MoreExecutors.listeningDecorator(newScheduledThreadPool(corePoolSize, namePrefix, logger));
     }
 
+    /**
+     * Deprecated scheduled executor.
+     * @deprecated {@link #newListeningScheduledThreadPool(int, String, Logger)} instead.
+     */
     @Deprecated
     public static ScheduledExecutorService newScheduledThreadPool(int corePoolSize, String namePrefix,
             Logger logger) {
