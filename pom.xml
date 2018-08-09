@@ -19,7 +19,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.opendaylight.infrautils</groupId>
     <artifactId>infrautils</artifactId>
-    <version>1.3.3-SNAPSHOT</version>
+    <version>1.3.4-SNAPSHOT</version>
     <name>infrautils</name> <!-- Used by Sonar to set project name -->
     <packaging>pom</packaging>
 
