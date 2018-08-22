@@ -19,4 +19,9 @@ public interface SystemReadyMonitorMXBean {
      * Obtain current system status as one of few possible enumerated values.
      */
     SystemState getSystemState();
+
+    /**
+     * Obtain the cause of a {@link SystemState#FAILURE}.
+     */
+    String getFailureCause();
 }

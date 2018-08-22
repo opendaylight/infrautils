@@ -109,6 +109,7 @@ public class DiagStatusServiceImpl implements DiagStatusService {
                 writer.name("timeStamp").value(new Date().toString());
                 writer.name("isOperational").value(isOperational());
                 writer.name("systemReadyState").value(systemReadyMonitor.getSystemState().name());
+                writer.name("systemReadyStateErrorCause").value(systemReadyMonitor.getFailureCause());
                 writer.name("statusSummary");
                 writer.beginArray();
                 for (ServiceDescriptor status : getAllServiceDescriptors()) {
