@@ -45,10 +45,9 @@ public class DiagStatusServlet extends HttpServlet {
 
         // use setStatus() NOT sendError(), because we are providing the response
         if (!diagStatusService.isOperational()) {
-            // HTTP return code 418 instead of regular 200 is used so that scripts
+            // HTTP return code 503 instead of regular 200 is used so that scripts
             // who just want boolean status don't have to parse the JSON, if not interested.
-            // see RFC-2324 & RFC-7168 for the meaning of HTTP return code 418 ...
-            response.setStatus(418);
+            response.setStatus(HttpServletResponse.SC_SERVICE_UNAVAILABLE);
         }
     }
 
