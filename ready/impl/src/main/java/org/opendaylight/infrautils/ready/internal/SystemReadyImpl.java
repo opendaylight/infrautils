@@ -11,6 +11,8 @@ import static org.opendaylight.infrautils.ready.SystemState.ACTIVE;
 import static org.opendaylight.infrautils.ready.SystemState.BOOTING;
 import static org.opendaylight.infrautils.ready.SystemState.FAILURE;
 
+import com.google.common.base.Throwables;
+import java.util.Optional;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ThreadFactory;
@@ -51,10 +53,12 @@ public class SystemReadyImpl extends AbstractMXBean implements SystemReadyMonito
 
     private static final Logger LOG = LoggerFactory.getLogger(SystemReadyImpl.class);
 
-    private final Queue<SystemReadyListener> listeners = new ConcurrentLinkedQueue<>();
-    private final AtomicReference<SystemState> currentSystemState = new AtomicReference<>(BOOTING);
     private static final String JMX_OBJECT_NAME = "SystemState";
     private static final String MBEAN_TYPE = "ready";
+
+    private final Queue<SystemReadyListener> listeners = new ConcurrentLinkedQueue<>();
+    private final AtomicReference<SystemState> currentSystemState = new AtomicReference<>(BOOTING);
+    private final AtomicReference<Throwable> currentSystemFailureCause = new AtomicReference<>();
 
     private final ThreadFactory threadFactory = ThreadFactoryProvider.builder()
                                                     .namePrefix("SystemReadyService")
@@ -111,6 +115,7 @@ public class SystemReadyImpl extends AbstractMXBean implements SystemReadyMonito
         } catch (SystemStateFailureException e) {
             LOG.error("Failed, some bundles did not start (SystemReadyListeners are not called)", e);
             currentSystemState.set(FAILURE);
+            currentSystemFailureCause.set(e);
             // We do not re-throw this
 
         } catch (RuntimeException throwable) {
@@ -118,6 +123,7 @@ public class SystemReadyImpl extends AbstractMXBean implements SystemReadyMonito
             // because we do want to set the currentFullSystemStatus
             LOG.error("Failed unexpectedly (SystemReadyListeners are not called)", throwable);
             currentSystemState.set(FAILURE);
+            currentSystemFailureCause.set(throwable);
             // and now we do re-throw it!
             throw throwable;
         }
@@ -126,6 +132,12 @@ public class SystemReadyImpl extends AbstractMXBean implements SystemReadyMonito
     @Override
     public SystemState getSystemState() {
         return currentSystemState.get();
+    }
+
+    @Override
+    public String getFailureCause() {
+        return Optional.ofNullable(currentSystemFailureCause.get())
+                .map(throwable -> Throwables.getStackTraceAsString(throwable)).orElse("");
     }
 
     @Override
