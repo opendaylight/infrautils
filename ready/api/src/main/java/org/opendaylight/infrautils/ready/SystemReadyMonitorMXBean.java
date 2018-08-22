@@ -8,6 +8,8 @@
 
 package org.opendaylight.infrautils.ready;
 
+import java.util.Optional;
+
 /**
  * Service which exposes system ready-ness state as MBean.
  *
@@ -19,4 +21,9 @@ public interface SystemReadyMonitorMXBean {
      * Obtain current system status as one of few possible enumerated values.
      */
     SystemState getSystemState();
+
+    /**
+     * Obtain the cause of a {@link SystemState#FAILURE}.
+     */
+    Optional<Throwable> getFailureCause();
 }
