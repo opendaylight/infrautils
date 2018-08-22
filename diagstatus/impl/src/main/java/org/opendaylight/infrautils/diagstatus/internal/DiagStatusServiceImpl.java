@@ -21,6 +21,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -111,6 +112,7 @@ public class DiagStatusServiceImpl implements DiagStatusService {
                 writer.name("timeStamp").value(new Date().toString());
                 writer.name("isOperational").value(isOperational());
                 writer.name("systemReadyState").value(systemReadyMonitor.getSystemState().name());
+                writer.name("systemReadyStateErrorCause").value(systemReadyMonitor.getFailureCause());
                 writer.name("statusSummary");
                 writer.beginArray();
                 for (ServiceDescriptor status : getAllServiceDescriptors()) {
@@ -119,8 +121,7 @@ public class DiagStatusServiceImpl implements DiagStatusService {
                     writer.name("effectiveStatus").value(status.getServiceState().name());
                     writer.name("reportedStatusDescription").value(status.getStatusDesc());
                     writer.name("statusTimestamp").value(status.getTimestamp().toString());
-                    writer.name("errorCause").value(status.getErrorCause()
-                            .map(throwable -> Throwables.getStackTraceAsString(throwable)).orElse(""));
+                    writer.name("errorCause").value(causeToString(status.getErrorCause()));
                     writer.endObject();
                 }
                 writer.endArray();
@@ -133,6 +134,10 @@ public class DiagStatusServiceImpl implements DiagStatusService {
             LOG.error("Error while converting service status to JSON", e);
             return "{}";
         }
+    }
+
+    private static String causeToString(Optional<Throwable> optionalThrowable) {
+        return optionalThrowable.map(throwable -> Throwables.getStackTraceAsString(throwable)).orElse("");
     }
 
     // because other projects implementing ServiceStatusProvider may not run FindBugs, we null check anyway
