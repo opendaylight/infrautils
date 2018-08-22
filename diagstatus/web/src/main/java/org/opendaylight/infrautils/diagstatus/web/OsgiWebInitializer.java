@@ -7,6 +7,7 @@
  */
 package org.opendaylight.infrautils.diagstatus.web;
 
+import com.google.common.annotations.VisibleForTesting;
 import javax.annotation.PreDestroy;
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -32,7 +33,7 @@ public class OsgiWebInitializer {
 
     private static final Logger LOG = LoggerFactory.getLogger(OsgiWebInitializer.class);
 
-    private static final String DIAGSTATUS_URL = "/diagstatus";
+    @VisibleForTesting static final String DIAGSTATUS_URL = "/diagstatus";
 
     private final HttpService osgiHttpService;
 
