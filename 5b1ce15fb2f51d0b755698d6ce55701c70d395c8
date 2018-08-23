@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6825a81a_84e4bbb0",
+        "filename": "diagstatus/web/src/main/java/org/opendaylight/infrautils/diagstatus/web/DiagStatusServlet.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-08-23T13:22:38Z",
+      "side": 1,
+      "message": "It would be nice to use the constant HttpServletResponse.SC_SERVICE_UNAVAILABLE",
+      "revId": "5b1ce15fb2f51d0b755698d6ce55701c70d395c8",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
