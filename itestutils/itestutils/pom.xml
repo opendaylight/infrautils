@@ -74,8 +74,6 @@
     <dependency>
         <groupId>org.ops4j.pax.exam</groupId>
         <artifactId>pax-exam-link-assembly</artifactId>
-        < ! - - TODO remove the version an scope when https://git.opendaylight.org/gerrit/#/c/54889/ is merged - - >
-        <version>${exam.version}</version>
         <scope>compile</scope>
     </dependency>
  -->
