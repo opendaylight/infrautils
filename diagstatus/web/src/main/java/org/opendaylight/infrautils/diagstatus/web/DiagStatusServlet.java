@@ -37,18 +37,20 @@ public class DiagStatusServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("application/json");
-        response.setCharacterEncoding("utf-8");
-        PrintWriter printWriter = response.getWriter();
-        printWriter.println(diagStatusService.getAllServiceDescriptorsAsJSON());
-        printWriter.close();
-
         // use setStatus() NOT sendError(), because we are providing the response
+        // INFRAUTILS-47: MUST use setStatus() *BEFORE* response.getWriter()
         if (!diagStatusService.isOperational()) {
             // HTTP return code 503 instead of regular 200 is used so that scripts
             // who just want boolean status don't have to parse the JSON, if not interested.
             response.setStatus(HttpServletResponse.SC_SERVICE_UNAVAILABLE);
         }
+
+        response.setContentType("application/json");
+        response.setCharacterEncoding("utf-8");
+
+        PrintWriter printWriter = response.getWriter();
+        printWriter.println(diagStatusService.getAllServiceDescriptorsAsJSON());
+        printWriter.close();
     }
 
 }
