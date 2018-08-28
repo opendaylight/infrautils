@@ -8,6 +8,8 @@
 
 package org.opendaylight.infrautils.diagstatus;
 
+import static java.util.Objects.requireNonNull;
+
 import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -40,8 +42,9 @@ public final class ClusterMemberInfoProvider {
             return Optional.empty();
         }
         if (clusterStatusMBeanValue != null) {
-            String selfAddressMbean = StringUtils.substringBetween(clusterStatusMBeanValue.toString(),
-                    "\"self-address\": ", ",");
+            String clusterStatusText = clusterStatusMBeanValue.toString();
+            String selfAddressMbean = requireNonNull(StringUtils.substringBetween(clusterStatusText,
+                    "\"self-address\": ", ","), "null substringBetween() for: " + clusterStatusText);
             return Optional.of(extractAddressFromAkka(selfAddressMbean));
         } else {
             LOG.error("getMBeanAttribute(\"akka:type=Cluster\", \"ClusterStatus\"); unexepected returned null");
@@ -72,10 +75,12 @@ public final class ClusterMemberInfoProvider {
     private static String extractAddressFromAkka(String clusterMember) {
         if (clusterMember.contains("@[")) {
             // IPv6 address
-            return StringUtils.substringBetween(clusterMember, "@[", "]");
+            return requireNonNull(StringUtils.substringBetween(clusterMember, "@[", "]"),
+                    "null substringBetween() for IPv6: " + clusterMember);
         }
         // IPv4 or hostname
-        return StringUtils.substringBetween(clusterMember, "@", ":");
+        return requireNonNull(StringUtils.substringBetween(clusterMember, "@", ":"),
+                "null substringBetween() for IPv4: " + clusterMember);
     }
 
     public static boolean isValidIPAddress(String ipAddress) {

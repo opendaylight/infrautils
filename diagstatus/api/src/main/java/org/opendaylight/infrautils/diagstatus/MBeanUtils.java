@@ -7,6 +7,8 @@
  */
 package org.opendaylight.infrautils.diagstatus;
 
+import static java.util.Objects.requireNonNull;
+
 import java.io.IOException;
 import java.lang.management.ManagementFactory;
 import java.net.MalformedURLException;
@@ -70,11 +72,11 @@ public final class MBeanUtils {
 
     public static Pair<JMXConnectorServer,Registry> startRMIConnectorServer(MBeanServer mbeanServer, String selfAddress)
             throws IOException {
-        JMXServiceURL url = getJMXUrl(selfAddress);
+        JMXServiceURL url = getJMXUrl(requireNonNull(selfAddress, "selfAddress"));
         Registry registry = LocateRegistry.createRegistry(RMI_REGISTRY_PORT);
         JMXConnectorServer cs;
         try {
-            cs = JMXConnectorServerFactory.newJMXConnectorServer(url, null, mbeanServer);
+            cs = JMXConnectorServerFactory.newJMXConnectorServer(url, null, requireNonNull(mbeanServer, "mbeanServer"));
             cs.start();
         } catch (IOException e) {
             LOG.error("Error while trying to create new JMX Connector for url {}", url, e);
