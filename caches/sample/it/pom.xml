@@ -19,7 +19,7 @@
 
   <groupId>org.opendaylight.infrautils</groupId>
   <artifactId>caches-sample-it</artifactId>
-  <version>1.4.0-SNAPSHOT</version>
+  <version>1.4.1-SNAPSHOT</version>
   <packaging>bundle</packaging>
 
   <dependencies>
@@ -93,7 +93,7 @@
              it has absolutely no value/advantage having this here; on the contrary, the disadvantages include:
                 * conceptually wrong in OSGi, the tests classpath should not have the container's code
                 * practically wrong, and screws up the test's classpath, which e.g. breaks the logging in the console/surefire
-                * every build re-downloads this huge SNAPSHOT artifact unncessarily, even if you're not running the IT
+                * every build re-downloads this huge Fluorine artifact unncessarily, even if you're not running the IT
              The test enforces that this is not present on the classpath, and fails if Karaf's main is on the CP!
          -->
         <exclusion>
