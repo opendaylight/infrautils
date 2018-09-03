@@ -81,8 +81,8 @@ it would stay in BOOTING forever and never reach SystemState ACTIVE). The natura
 use Blueprint OSGi service dependency. If there is no technical service dependency but only a logical functional one,
 then in infrautils.ready.order there is a convenience sugar utility to publish "marker" FunctionalityReady interfaces
 to the OSGi service registry; unlike real services, these have no implementing code,
-but another bundle could depend on one to enforce start up order one (using regular bluepring <reference> in XML or
-@OsgiService annotation).
+but another bundle could depend on one to enforce start up order one (using regular Blueprint <reference> in XML or
+@Reference annotation).
 
 A known limitation of the current implementation of infrautils.ready is that its "wait until ready" loop runs only once,
 after installation of infrautils.ready (by boot feature usage, or initial single line feature:install).
@@ -130,7 +130,7 @@ Metrics API
 ~~~~~~~~~~~
 
 Application code uses the org.opendaylight.infrautils.metrics.MetricProvider API, typically looked up from the
-OSGi service registry using e.g. Blueprint annotations @Inject @OsgiService, to register new Meters
+OSGi service registry using e.g. Blueprint annotations @Inject @Reference, to register new Meters
 (to "tick/mark events" and measure their rate), Counters (for things that go up and down again), and Timers (to stop watch durations).
 Support for "Gauges" is to be added; contributions welcome.
 

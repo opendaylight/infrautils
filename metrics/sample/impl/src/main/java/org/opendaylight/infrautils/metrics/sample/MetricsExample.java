@@ -16,13 +16,13 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.inject.Inject;
 import javax.inject.Singleton;
+import org.apache.aries.blueprint.annotation.service.Reference;
 import org.opendaylight.infrautils.metrics.Counter;
 import org.opendaylight.infrautils.metrics.Labeled;
 import org.opendaylight.infrautils.metrics.Meter;
 import org.opendaylight.infrautils.metrics.MetricDescriptor;
 import org.opendaylight.infrautils.metrics.MetricProvider;
 import org.opendaylight.infrautils.utils.concurrent.Executors;
-import org.ops4j.pax.cdi.api.OsgiService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -53,7 +53,7 @@ public class MetricsExample implements Runnable {
     private final Random random = new Random();
 
     @Inject
-    public MetricsExample(@OsgiService MetricProvider metricProvider) {
+    public MetricsExample(@Reference MetricProvider metricProvider) {
         counterWithoutLabel = metricProvider.newCounter(MetricDescriptor.builder().anchor(this)
                 .project("infrautils").module("metrics").id("example_counter_without_labels")
                 .description("Example counter metric without any labels").build());
