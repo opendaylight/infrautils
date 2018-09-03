@@ -36,6 +36,8 @@ import javax.annotation.PreDestroy;
 import javax.annotation.concurrent.GuardedBy;
 import javax.inject.Inject;
 import javax.inject.Singleton;
+import org.apache.aries.blueprint.annotation.service.Reference;
+import org.apache.aries.blueprint.annotation.service.Service;
 import org.opendaylight.infrautils.jobcoordinator.JobCoordinator;
 import org.opendaylight.infrautils.jobcoordinator.JobCoordinatorMonitor;
 import org.opendaylight.infrautils.jobcoordinator.RollbackCallable;
@@ -46,13 +48,11 @@ import org.opendaylight.infrautils.utils.concurrent.JdkFutures;
 import org.opendaylight.infrautils.utils.concurrent.LoggingThreadUncaughtExceptionHandler;
 import org.opendaylight.infrautils.utils.concurrent.LoggingUncaughtThreadDeathContextRunnable;
 import org.opendaylight.infrautils.utils.concurrent.ThreadFactoryProvider;
-import org.ops4j.pax.cdi.api.OsgiService;
-import org.ops4j.pax.cdi.api.OsgiServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Singleton
-@OsgiServiceProvider(classes = { JobCoordinator.class, JobCoordinatorMonitor.class })
+@Service(classes = {JobCoordinator.class, JobCoordinatorMonitor.class })
 public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor {
 
     private static final Logger LOG = LoggerFactory.getLogger(JobCoordinatorImpl.class);
@@ -93,7 +93,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
     private volatile boolean shutdown = false;
 
     @Inject
-    public JobCoordinatorImpl(@OsgiService MetricProvider metricProvider) {
+    public JobCoordinatorImpl(@Reference MetricProvider metricProvider) {
         jobsCreated = metricProvider.newMeter(this, "odl.infrautils.jobcoordinator.jobsCreated");
         jobsCleared = metricProvider.newMeter(this, "odl.infrautils.jobcoordinator.jobsCleared");
         jobsPending = metricProvider.newCounter(this, "odl.infrautils.jobcoordinator.jobsPending");
