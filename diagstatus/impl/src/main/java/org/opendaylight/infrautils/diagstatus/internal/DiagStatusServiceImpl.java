@@ -25,6 +25,10 @@ import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import javax.inject.Inject;
 import javax.inject.Singleton;
+import org.apache.aries.blueprint.annotation.service.Availability;
+import org.apache.aries.blueprint.annotation.service.Reference;
+import org.apache.aries.blueprint.annotation.service.ReferenceList;
+import org.apache.aries.blueprint.annotation.service.Service;
 import org.opendaylight.infrautils.diagstatus.DiagStatusService;
 import org.opendaylight.infrautils.diagstatus.ServiceDescriptor;
 import org.opendaylight.infrautils.diagstatus.ServiceRegistration;
@@ -32,8 +36,6 @@ import org.opendaylight.infrautils.diagstatus.ServiceState;
 import org.opendaylight.infrautils.diagstatus.ServiceStatusProvider;
 import org.opendaylight.infrautils.ready.SystemReadyMonitor;
 import org.opendaylight.infrautils.ready.SystemState;
-import org.ops4j.pax.cdi.api.OsgiService;
-import org.ops4j.pax.cdi.api.OsgiServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -43,7 +45,7 @@ import org.slf4j.LoggerFactory;
  * @author Faseela K
  */
 @Singleton
-@OsgiServiceProvider(classes = DiagStatusService.class)
+@Service(classes = { DiagStatusService.class })
 public class DiagStatusServiceImpl implements DiagStatusService {
 
     private static final Logger LOG = LoggerFactory.getLogger(DiagStatusServiceImpl.class);
@@ -55,8 +57,10 @@ public class DiagStatusServiceImpl implements DiagStatusService {
     private final SystemReadyMonitor systemReadyMonitor;
 
     @Inject
-    public DiagStatusServiceImpl(List<ServiceStatusProvider> serviceStatusProviders,
-            @OsgiService SystemReadyMonitor systemReadyMonitor) {
+    public DiagStatusServiceImpl(
+            @ReferenceList(referenceInterface = ServiceStatusProvider.class, availability = Availability.OPTIONAL)
+                List<ServiceStatusProvider> serviceStatusProviders,
+            @Reference SystemReadyMonitor systemReadyMonitor) {
         this.systemReadyMonitor = systemReadyMonitor;
         this.serviceStatusProviders = serviceStatusProviders;
         LOG.info("{} started", getClass().getSimpleName());
