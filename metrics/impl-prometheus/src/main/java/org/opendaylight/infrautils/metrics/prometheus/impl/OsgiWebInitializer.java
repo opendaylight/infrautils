@@ -14,7 +14,7 @@ import javax.annotation.PreDestroy;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import javax.servlet.ServletException;
-import org.ops4j.pax.cdi.api.OsgiService;
+import org.apache.aries.blueprint.annotation.service.Reference;
 import org.osgi.service.http.HttpService;
 import org.osgi.service.http.NamespaceException;
 import org.slf4j.Logger;
@@ -41,7 +41,7 @@ public class OsgiWebInitializer {
     private final CollectorRegistry collectorRegistry;
 
     @Inject
-    public OsgiWebInitializer(@OsgiService HttpService osgiHttpService, CollectorRegistry collectorRegistry) {
+    public OsgiWebInitializer(@Reference HttpService osgiHttpService, CollectorRegistry collectorRegistry) {
         this.osgiHttpService = osgiHttpService;
         this.collectorRegistry = collectorRegistry;
     }
