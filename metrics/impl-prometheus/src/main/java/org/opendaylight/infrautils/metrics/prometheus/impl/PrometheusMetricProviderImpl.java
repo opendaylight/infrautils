@@ -18,13 +18,13 @@ import java.util.concurrent.ConcurrentHashMap;
 import javax.annotation.PreDestroy;
 import javax.inject.Inject;
 import javax.inject.Singleton;
+import org.apache.aries.blueprint.annotation.service.Service;
 import org.opendaylight.infrautils.metrics.Counter;
 import org.opendaylight.infrautils.metrics.Labeled;
 import org.opendaylight.infrautils.metrics.Meter;
 import org.opendaylight.infrautils.metrics.MetricDescriptor;
 import org.opendaylight.infrautils.metrics.MetricProvider;
 import org.opendaylight.infrautils.metrics.Timer;
-import org.ops4j.pax.cdi.api.OsgiServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,7 +34,7 @@ import org.slf4j.LoggerFactory;
  * @author Michael Vorburger.ch
  */
 @Singleton
-@OsgiServiceProvider(classes = MetricProvider.class)
+@Service(classes = MetricProvider.class)
 public class PrometheusMetricProviderImpl implements MetricProvider {
 
     private static final Logger LOG = LoggerFactory.getLogger(PrometheusMetricProviderImpl.class);
