@@ -26,13 +26,6 @@
       <artifactId>javax.inject</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.ops4j.pax.cdi</groupId>
-      <artifactId>pax-cdi-api</artifactId>
-      <!-- Explicitly NOT <optional>true, as typically elsewhere (in odlparent),
-           because in this project, contrary to other usage, we don't annotate, but really refer to this annotation -->
-      <optional>false</optional>
-    </dependency>
-    <dependency>
       <groupId>org.opendaylight.infrautils</groupId>
       <artifactId>infrautils-testutils</artifactId>
       <version>${project.version}</version>

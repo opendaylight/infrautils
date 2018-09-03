@@ -27,6 +27,13 @@
       <artifactId>javax.inject</artifactId>
     </dependency>
     <dependency>
+      <groupId>org.apache.aries.blueprint</groupId>
+      <artifactId>blueprint-maven-plugin-annotation</artifactId>
+      <!-- Delete the following line after upgrading to odlparent >= 4 -->
+      <version>1.3.0</version>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
       <groupId>org.opendaylight.infrautils</groupId>
       <artifactId>caches-impl-base</artifactId>
       <version>${project.version}</version>
@@ -37,4 +44,19 @@
       <artifactId>guava</artifactId>
     </dependency>
   </dependencies>
+
+  <!-- The module split here leads to a generated autowire.xml with classes
+       from both caches-guava-impl and caches-impl-base; we use a manually-
+       constructed file for now.
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.aries.blueprint</groupId>
+        <artifactId>blueprint-maven-plugin</artifactId>
+        <!- Delete the following line after upgrading to odlparent >= 4 ->
+        <version>1.10.0</version>
+      </plugin>
+    </plugins>
+  </build>
+  -->
 </project>

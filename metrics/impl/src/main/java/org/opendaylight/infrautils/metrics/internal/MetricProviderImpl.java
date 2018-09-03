@@ -31,6 +31,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import javax.annotation.Nullable;
 import javax.annotation.PreDestroy;
 import javax.inject.Singleton;
+import org.apache.aries.blueprint.annotation.service.Service;
 import org.opendaylight.infrautils.metrics.Counter;
 import org.opendaylight.infrautils.metrics.Labeled;
 import org.opendaylight.infrautils.metrics.Meter;
@@ -40,7 +41,6 @@ import org.opendaylight.infrautils.metrics.Timer;
 import org.opendaylight.infrautils.utils.UncheckedCloseable;
 import org.opendaylight.infrautils.utils.function.CheckedCallable;
 import org.opendaylight.infrautils.utils.function.CheckedRunnable;
-import org.ops4j.pax.cdi.api.OsgiServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -50,7 +50,7 @@ import org.slf4j.LoggerFactory;
  * @author Michael Vorburger.ch
  */
 @Singleton
-@OsgiServiceProvider(classes = MetricProvider.class)
+@Service(classes = MetricProvider.class)
 public class MetricProviderImpl implements MetricProvider {
 
     private static final Logger LOG = LoggerFactory.getLogger(MetricProviderImpl.class);

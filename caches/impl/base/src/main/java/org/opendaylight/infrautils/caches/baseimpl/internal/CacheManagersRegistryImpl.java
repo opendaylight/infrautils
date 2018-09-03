@@ -11,7 +11,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import javax.annotation.concurrent.ThreadSafe;
+import javax.inject.Singleton;
+import org.apache.aries.blueprint.annotation.service.Service;
 import org.opendaylight.infrautils.caches.CacheManager;
+import org.opendaylight.infrautils.caches.CacheManagers;
 import org.opendaylight.infrautils.caches.baseimpl.CacheManagersRegistry;
 
 /**
@@ -20,6 +23,8 @@ import org.opendaylight.infrautils.caches.baseimpl.CacheManagersRegistry;
  * @author Michael Vorburger.ch
  */
 @ThreadSafe
+@Singleton
+@Service(classes = { CacheManagers.class, CacheManagersRegistry.class })
 public class CacheManagersRegistryImpl implements CacheManagersRegistry {
 
     private final List<CacheManager> managers = new CopyOnWriteArrayList<>();

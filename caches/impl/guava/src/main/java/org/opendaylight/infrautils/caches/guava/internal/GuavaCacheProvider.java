@@ -13,10 +13,14 @@ import com.google.common.cache.LoadingCache;
 import java.util.Map;
 import java.util.Objects;
 import javax.inject.Inject;
+import javax.inject.Singleton;
+import org.apache.aries.blueprint.annotation.service.Reference;
+import org.apache.aries.blueprint.annotation.service.Service;
 import org.opendaylight.infrautils.caches.BaseCacheConfig;
 import org.opendaylight.infrautils.caches.Cache;
 import org.opendaylight.infrautils.caches.CacheConfig;
 import org.opendaylight.infrautils.caches.CachePolicy;
+import org.opendaylight.infrautils.caches.CacheProvider;
 import org.opendaylight.infrautils.caches.CheckedCache;
 import org.opendaylight.infrautils.caches.CheckedCacheConfig;
 import org.opendaylight.infrautils.caches.baseimpl.AbstractProvider;
@@ -29,10 +33,12 @@ import org.opendaylight.infrautils.caches.baseimpl.DelegatingNullSafeCheckedCach
  *
  * @author Michael Vorburger.ch
  */
+@Singleton
+@Service(classes = CacheProvider.class)
 public class GuavaCacheProvider extends AbstractProvider {
 
     @Inject
-    public GuavaCacheProvider(CacheManagersRegistry cachesMonitor) {
+    public GuavaCacheProvider(@Reference CacheManagersRegistry cachesMonitor) {
         super(cachesMonitor);
     }
 
