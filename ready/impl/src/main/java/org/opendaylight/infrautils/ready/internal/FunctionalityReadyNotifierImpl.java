@@ -12,10 +12,10 @@ import static java.util.Objects.requireNonNull;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
+import org.apache.aries.blueprint.annotation.service.Service;
 import org.opendaylight.infrautils.ready.order.FunctionalityReady;
 import org.opendaylight.infrautils.ready.order.FunctionalityReadyNotifier;
 import org.opendaylight.infrautils.ready.order.FunctionalityReadyRegistration;
-import org.ops4j.pax.cdi.api.OsgiService;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.InvalidSyntaxException;
 import org.osgi.framework.ServiceRegistration;
@@ -28,7 +28,7 @@ import org.slf4j.LoggerFactory;
  * @author Michael Vorburger.ch
  */
 @Singleton
-@OsgiService
+@Service
 public class FunctionalityReadyNotifierImpl implements FunctionalityReadyNotifier {
 
     private static final Logger LOG = LoggerFactory.getLogger(FunctionalityReadyNotifierImpl.class);

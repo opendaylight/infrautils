@@ -28,6 +28,8 @@ import javax.management.MalformedObjectNameException;
 import javax.management.StandardMBean;
 import javax.management.remote.JMXConnectorServer;
 
+import org.apache.aries.blueprint.annotation.service.Reference;
+import org.apache.aries.blueprint.annotation.service.Service;
 import org.apache.commons.lang3.tuple.Pair;
 import org.opendaylight.infrautils.diagstatus.ClusterMemberInfoProvider;
 import org.opendaylight.infrautils.diagstatus.DiagStatusService;
@@ -37,13 +39,11 @@ import org.opendaylight.infrautils.diagstatus.ServiceDescriptor;
 import org.opendaylight.infrautils.diagstatus.ServiceState;
 import org.opendaylight.infrautils.ready.SystemReadyListener;
 import org.opendaylight.infrautils.ready.SystemReadyMonitor;
-import org.ops4j.pax.cdi.api.OsgiService;
-import org.ops4j.pax.cdi.api.OsgiServiceProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Singleton
-@OsgiServiceProvider(classes = DiagStatusServiceMBean.class)
+@Service(classes = DiagStatusServiceMBean.class)
 public class DiagStatusServiceMBeanImpl extends StandardMBean implements DiagStatusServiceMBean, SystemReadyListener {
 
     private static final String JMX_OBJECT_NAME = "org.opendaylight.infrautils.diagstatus:type=SvcStatus";
@@ -57,8 +57,8 @@ public class DiagStatusServiceMBeanImpl extends StandardMBean implements DiagSta
 
     @Inject
     public DiagStatusServiceMBeanImpl(DiagStatusService diagStatusService,
-                                      @OsgiService SystemReadyMonitor systemReadyMonitor)
-            throws JMException, IOException {
+                                      @Reference SystemReadyMonitor systemReadyMonitor)
+            throws JMException {
         super(DiagStatusServiceMBean.class);
         this.diagStatusService = diagStatusService;
         this.systemReadyMonitor = systemReadyMonitor;
