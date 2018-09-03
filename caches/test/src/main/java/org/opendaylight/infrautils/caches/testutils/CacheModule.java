@@ -13,7 +13,7 @@ import org.opendaylight.infrautils.caches.CacheProvider;
 import org.opendaylight.infrautils.caches.baseimpl.CacheManagersRegistry;
 import org.opendaylight.infrautils.caches.baseimpl.internal.CacheManagersRegistryImpl;
 import org.opendaylight.infrautils.caches.standard.StandardCacheProvider;
-import org.ops4j.pax.cdi.api.OsgiService;
+import org.ops4j.pax.cdi.api.Service;
 
 /**
  * Guice Module for tests requiring a CacheProvider.
@@ -35,7 +35,7 @@ public class CacheModule extends AbstractModule {
     @Override
     protected void configure() {
         bind(CacheProvider.class).to(providerClass);
-        bind(CacheProvider.class).annotatedWith(OsgiService.class).to(providerClass);
+        bind(CacheProvider.class).annotatedWith(Service.class).to(providerClass);
 
         CacheManagersRegistry monitor = new CacheManagersRegistryImpl();
         bind(CacheManagersRegistry.class).toInstance(monitor);

@@ -12,7 +12,7 @@ import org.opendaylight.infrautils.metrics.Labeled;
 import org.opendaylight.infrautils.metrics.Meter;
 import org.opendaylight.infrautils.metrics.MetricDescriptor;
 import org.opendaylight.infrautils.metrics.MetricProvider;
-import org.ops4j.pax.cdi.api.OsgiService;
+import org.ops4j.pax.cdi.api.Service;
 
 /**
  * Example illustrating advanced type safe usage of metrics API.
@@ -48,7 +48,7 @@ public class MetricsAdvancedExample {
     private final PortLabeledMeter meter;
 
     @Inject
-    public MetricsAdvancedExample(@OsgiService MetricProvider metricProvider) {
+    public MetricsAdvancedExample(@Service MetricProvider metricProvider) {
         meter = new PortLabeledMeter(metricProvider.newMeter(MetricDescriptor.builder().anchor(this)
                 .project("infrautils").module("metrics").id("example_meter").build(),
                 "port", "mac"));

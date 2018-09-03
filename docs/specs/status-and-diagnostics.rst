@@ -148,7 +148,7 @@ Read Service Status
 ^^^^^^^^^^^^^^^^^^^
 
 Whenever applications/CLI try to fetch the service status, diagstatus module will query the
-status through the respective OsgiService implementations exposed by each service,and an aggregated result is provided
+status through the respective Service implementations exposed by each service,and an aggregated result is provided
 as response.
 
 Clustering considerations

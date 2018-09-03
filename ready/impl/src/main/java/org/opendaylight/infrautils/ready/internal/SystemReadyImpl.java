@@ -35,8 +35,9 @@ import org.opendaylight.infrautils.utils.concurrent.ThreadFactoryProvider;
 import org.opendaylight.infrautils.utils.management.AbstractMXBean;
 import org.opendaylight.odlparent.bundlestest.lib.SystemStateFailureException;
 import org.opendaylight.odlparent.bundlestest.lib.TestBundleDiag;
-import org.ops4j.pax.cdi.api.OsgiService;
-import org.ops4j.pax.cdi.api.OsgiServiceProvider;
+import org.ops4j.pax.cdi.api.Component;
+import org.ops4j.pax.cdi.api.Contract;
+import org.ops4j.pax.cdi.api.Service;
 import org.osgi.framework.BundleContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,7 +49,9 @@ import org.slf4j.LoggerFactory;
  * @author Faseela K
  */
 @Singleton
-@OsgiServiceProvider(classes = SystemReadyMonitor.class)
+@Service
+@Component
+@Contract(SystemReadyMonitor.class)
 public class SystemReadyImpl extends AbstractMXBean implements SystemReadyMonitor, Runnable {
 
     private static final Logger LOG = LoggerFactory.getLogger(SystemReadyImpl.class);
@@ -68,7 +71,7 @@ public class SystemReadyImpl extends AbstractMXBean implements SystemReadyMonito
     private final TestBundleDiag testBundleDiag;
 
     @Inject
-    public SystemReadyImpl(BundleContext bundleContext, @OsgiService BundleService bundleService)
+    public SystemReadyImpl(BundleContext bundleContext, @Service BundleService bundleService)
             throws JMException {
         super(JMX_OBJECT_NAME, MBEAN_TYPE, null);
         super.registerMBean();
