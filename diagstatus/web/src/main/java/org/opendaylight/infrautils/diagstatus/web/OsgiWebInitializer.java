@@ -12,7 +12,7 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 import javax.servlet.ServletException;
 import org.opendaylight.infrautils.diagstatus.DiagStatusService;
-import org.ops4j.pax.cdi.api.OsgiService;
+import org.ops4j.pax.cdi.api.Service;
 import org.osgi.service.http.HttpService;
 import org.osgi.service.http.NamespaceException;
 import org.slf4j.Logger;
@@ -37,8 +37,8 @@ public class OsgiWebInitializer {
     private final HttpService osgiHttpService;
 
     @Inject
-    public OsgiWebInitializer(@OsgiService HttpService osgiHttpService,
-            @OsgiService DiagStatusService diagStatusService) throws ServletException, NamespaceException {
+    public OsgiWebInitializer(@Service HttpService osgiHttpService,
+            @Service DiagStatusService diagStatusService) throws ServletException, NamespaceException {
         this.osgiHttpService = osgiHttpService;
         osgiHttpService.registerServlet(DIAGSTATUS_URL, new DiagStatusServlet(diagStatusService), null, null);
         LOG.info("DiagStatus now exposed on: {}", DIAGSTATUS_URL);

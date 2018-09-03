@@ -32,8 +32,9 @@ import org.opendaylight.infrautils.diagstatus.ServiceState;
 import org.opendaylight.infrautils.diagstatus.ServiceStatusProvider;
 import org.opendaylight.infrautils.ready.SystemReadyMonitor;
 import org.opendaylight.infrautils.ready.SystemState;
-import org.ops4j.pax.cdi.api.OsgiService;
-import org.ops4j.pax.cdi.api.OsgiServiceProvider;
+import org.ops4j.pax.cdi.api.Component;
+import org.ops4j.pax.cdi.api.Contract;
+import org.ops4j.pax.cdi.api.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -43,7 +44,9 @@ import org.slf4j.LoggerFactory;
  * @author Faseela K
  */
 @Singleton
-@OsgiServiceProvider(classes = DiagStatusService.class)
+@Service
+@Component
+@Contract(DiagStatusService.class)
 public class DiagStatusServiceImpl implements DiagStatusService {
 
     private static final Logger LOG = LoggerFactory.getLogger(DiagStatusServiceImpl.class);
@@ -56,7 +59,7 @@ public class DiagStatusServiceImpl implements DiagStatusService {
 
     @Inject
     public DiagStatusServiceImpl(List<ServiceStatusProvider> serviceStatusProviders,
-            @OsgiService SystemReadyMonitor systemReadyMonitor) {
+            @Service SystemReadyMonitor systemReadyMonitor) {
         this.systemReadyMonitor = systemReadyMonitor;
         this.serviceStatusProviders = serviceStatusProviders;
         LOG.info("{} started", getClass().getSimpleName());

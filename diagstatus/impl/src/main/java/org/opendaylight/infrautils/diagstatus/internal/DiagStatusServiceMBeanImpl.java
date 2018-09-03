@@ -37,13 +37,16 @@ import org.opendaylight.infrautils.diagstatus.ServiceDescriptor;
 import org.opendaylight.infrautils.diagstatus.ServiceState;
 import org.opendaylight.infrautils.ready.SystemReadyListener;
 import org.opendaylight.infrautils.ready.SystemReadyMonitor;
-import org.ops4j.pax.cdi.api.OsgiService;
-import org.ops4j.pax.cdi.api.OsgiServiceProvider;
+import org.ops4j.pax.cdi.api.Component;
+import org.ops4j.pax.cdi.api.Contract;
+import org.ops4j.pax.cdi.api.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Singleton
-@OsgiServiceProvider(classes = DiagStatusServiceMBean.class)
+@Service
+@Component
+@Contract(DiagStatusServiceMBean.class)
 public class DiagStatusServiceMBeanImpl extends StandardMBean implements DiagStatusServiceMBean, SystemReadyListener {
 
     private static final String JMX_OBJECT_NAME = "org.opendaylight.infrautils.diagstatus:type=SvcStatus";
@@ -57,7 +60,7 @@ public class DiagStatusServiceMBeanImpl extends StandardMBean implements DiagSta
 
     @Inject
     public DiagStatusServiceMBeanImpl(DiagStatusService diagStatusService,
-                                      @OsgiService SystemReadyMonitor systemReadyMonitor)
+                                      @Service SystemReadyMonitor systemReadyMonitor)
             throws JMException, IOException {
         super(DiagStatusServiceMBean.class);
         this.diagStatusService = diagStatusService;

@@ -14,8 +14,9 @@ import org.opendaylight.infrautils.caches.Cache;
 import org.opendaylight.infrautils.caches.CacheConfigBuilder;
 import org.opendaylight.infrautils.caches.CachePolicyBuilder;
 import org.opendaylight.infrautils.caches.CacheProvider;
-import org.ops4j.pax.cdi.api.OsgiService;
-import org.ops4j.pax.cdi.api.OsgiServiceProvider;
+import org.ops4j.pax.cdi.api.Component;
+import org.ops4j.pax.cdi.api.Contract;
+import org.ops4j.pax.cdi.api.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,7 +27,9 @@ import org.slf4j.LoggerFactory;
  * @author Michael Vorburger.ch
  */
 @Singleton
-@OsgiServiceProvider(classes = SampleService.class)
+@Service
+@Component
+@Contract(SampleService.class)
 public class SampleServiceWithCachingImpl implements SampleService {
 
     private static final Logger LOG = LoggerFactory.getLogger(SampleServiceWithCachingImpl.class);
@@ -34,7 +37,7 @@ public class SampleServiceWithCachingImpl implements SampleService {
     private final Cache<String, String> hellosCache;
 
     @Inject
-    public SampleServiceWithCachingImpl(@OsgiService CacheProvider cacheProvider) {
+    public SampleServiceWithCachingImpl(@Service CacheProvider cacheProvider) {
         LOG.warn("SampleServiceWithCachingImpl() cacheProvider = {}", cacheProvider);
         hellosCache = cacheProvider.newCache(
                 new CacheConfigBuilder<String, String>()

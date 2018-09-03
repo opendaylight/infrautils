@@ -20,7 +20,7 @@ import org.opendaylight.infrautils.inject.guice.testutils.AbstractGuiceJsr250Mod
 import org.opendaylight.infrautils.ready.SystemReadyListener;
 import org.opendaylight.infrautils.ready.SystemReadyMonitor;
 import org.opendaylight.infrautils.ready.SystemState;
-import org.ops4j.pax.cdi.api.OsgiService;
+import org.ops4j.pax.cdi.api.Service;
 
 /**
  * Dependency Injection Wiring for {@link DiagStatusTest}.
@@ -33,7 +33,7 @@ public class DiagStatusTestModule extends AbstractGuiceJsr250Module {
     protected void configureBindings() throws UnknownHostException {
         bind(DiagStatusService.class).to(DiagStatusServiceImpl.class);
         bind(new TypeLiteral<List<ServiceStatusProvider>>() {}).toInstance(Collections.emptyList());
-        bind(SystemReadyMonitor.class).annotatedWith(OsgiService.class).toInstance(new SystemReadyMonitor() {
+        bind(SystemReadyMonitor.class).annotatedWith(Service.class).toInstance(new SystemReadyMonitor() {
 
             @Override
             public void registerListener(SystemReadyListener listener) {

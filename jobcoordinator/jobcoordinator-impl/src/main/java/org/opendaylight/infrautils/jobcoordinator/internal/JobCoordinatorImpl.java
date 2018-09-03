@@ -46,13 +46,18 @@ import org.opendaylight.infrautils.utils.concurrent.JdkFutures;
 import org.opendaylight.infrautils.utils.concurrent.LoggingThreadUncaughtExceptionHandler;
 import org.opendaylight.infrautils.utils.concurrent.LoggingUncaughtThreadDeathContextRunnable;
 import org.opendaylight.infrautils.utils.concurrent.ThreadFactoryProvider;
-import org.ops4j.pax.cdi.api.OsgiService;
-import org.ops4j.pax.cdi.api.OsgiServiceProvider;
+import org.ops4j.pax.cdi.api.Component;
+import org.ops4j.pax.cdi.api.Contract;
+import org.ops4j.pax.cdi.api.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@SuppressWarnings("InjectMoreThanOneQualifier")
 @Singleton
-@OsgiServiceProvider(classes = { JobCoordinator.class, JobCoordinatorMonitor.class })
+@Service
+@Component
+@Contract(JobCoordinator.class)
+//@Contracts({ @Contract(JobCoordinator.class), @Contract(JobCoordinatorMonitor.class) })
 public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor {
 
     private static final Logger LOG = LoggerFactory.getLogger(JobCoordinatorImpl.class);
@@ -93,7 +98,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
     private volatile boolean shutdown = false;
 
     @Inject
-    public JobCoordinatorImpl(@OsgiService MetricProvider metricProvider) {
+    public JobCoordinatorImpl(@Service MetricProvider metricProvider) {
         jobsCreated = metricProvider.newMeter(this, "odl.infrautils.jobcoordinator.jobsCreated");
         jobsCleared = metricProvider.newMeter(this, "odl.infrautils.jobcoordinator.jobsCleared");
         jobsPending = metricProvider.newCounter(this, "odl.infrautils.jobcoordinator.jobsPending");
