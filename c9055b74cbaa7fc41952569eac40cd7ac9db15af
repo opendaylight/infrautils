@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3d32856c_426ba66d",
+        "filename": "caches/sample/impl/src/main/java/org/opendaylight/infrautils/caches/sample/SampleServiceWithCachingImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 4540
+      },
+      "writtenOn": "2018-09-04T13:07:44Z",
+      "side": 1,
+      "message": "This is the Pax CDI way :-/. Blueprint is less verbose, I didn\u0027t try using that here...",
+      "parentUuid": "4e857835_79e4903a",
+      "range": {
+        "startLine": 31,
+        "startChar": 4,
+        "endLine": 32,
+        "endChar": 4
+      },
+      "revId": "c9055b74cbaa7fc41952569eac40cd7ac9db15af",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2231e7ea_9d5f18a0",
         "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
         "patchSetId": 3
@@ -36,6 +60,24 @@
       "writtenOn": "2018-09-04T12:40:14Z",
       "side": 1,
       "message": "wait, why does @OsgiService become a @Reference here but a @Service in SampleServiceWithCachingImpl ?",
+      "revId": "c9055b74cbaa7fc41952569eac40cd7ac9db15af",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "052144a8_0d854bec",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 4540
+      },
+      "writtenOn": "2018-09-04T13:07:44Z",
+      "side": 1,
+      "message": "@Reference is a Blueprint annotation; with Pax CDI the corresponding annotation is @Service. I\u0027m going to split this up into two patches to make things clearer, and so that the Blueprint annotations side of things can be merged before the odlparent 4 switch.",
+      "parentUuid": "2231e7ea_9d5f18a0",
       "revId": "c9055b74cbaa7fc41952569eac40cd7ac9db15af",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
