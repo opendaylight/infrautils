@@ -34,26 +34,26 @@
       <groupId>io.dropwizard.metrics</groupId>
       <artifactId>metrics-core</artifactId>
       <!-- This version must be kept in line with the ones used below -->
-      <version>4.0.2</version>
+      <version>4.0.3</version>
     </dependency>
     <dependency>
       <groupId>io.dropwizard.metrics</groupId>
       <artifactId>metrics-jmx</artifactId>
       <!-- This version must be kept in line with the ones used above -->
-      <version>4.0.2</version>
+      <version>4.0.3</version>
     </dependency>
     <dependency>
       <groupId>io.dropwizard.metrics</groupId>
       <artifactId>metrics-jvm</artifactId>
       <!-- This version must be kept in line with the ones used above -->
-      <version>4.0.2</version>
+      <version>4.0.3</version>
     </dependency>
 <!-- TODO
     <dependency>
       <groupId>io.dropwizard.metrics</groupId>
       <artifactId>metrics-log4j2</artifactId>
       <!- - This version must be kept in line with the ones used above - ->
-      <version>4.0.2</version>
+      <version>4.0.3</version>
     </dependency>
  -->
     <dependency>
