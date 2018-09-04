@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4e857835_79e4903a",
+        "filename": "caches/sample/impl/src/main/java/org/opendaylight/infrautils/caches/sample/SampleServiceWithCachingImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-09-04T12:40:14Z",
+      "side": 1,
+      "message": "wow - 3 annotations instead of 1 ... :-(  Is there any way to reduce this?  We are likely to forget ont of these 3 here and there... in DiagStatusServiceMBeanImpl",
+      "range": {
+        "startLine": 31,
+        "startChar": 4,
+        "endLine": 32,
+        "endChar": 4
+      },
+      "revId": "c9055b74cbaa7fc41952569eac40cd7ac9db15af",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2231e7ea_9d5f18a0",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-09-04T12:40:14Z",
+      "side": 1,
+      "message": "wait, why does @OsgiService become a @Reference here but a @Service in SampleServiceWithCachingImpl ?",
+      "revId": "c9055b74cbaa7fc41952569eac40cd7ac9db15af",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}

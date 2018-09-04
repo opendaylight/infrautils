@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2b9125f0_5d4a36db",
+        "filename": "diagstatus/impl/pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-09-04T12:40:14Z",
+      "side": 0,
+      "message": "FTR: The \u003coptional\u003etrue is in https://git.opendaylight.org/gerrit/#/c/75712/1/odlparent/pom.xml",
+      "revId": "1198da8b91bdb37ca2fdae359fecbf04ab7591cd",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
