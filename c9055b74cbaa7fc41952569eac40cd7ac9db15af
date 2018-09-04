@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "0cce4e40_b19d81c8",
+        "filename": "caches/sample/impl/src/main/java/org/opendaylight/infrautils/caches/sample/SampleServiceWithCachingImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-09-04T17:53:05Z",
+      "side": 1,
+      "message": "I don\u0027t think I get what we need Pax CDI for... just @Service instead of @OsgiServiceProvider as it is now in Patch Set 5 seems great to me - but why did you revert and this particular class (SampleServiceWithCachingImpl) with @OsgiServiceProvider in PS 5, instead of also changing it from @OsgiServiceProvider to @Service, like you have DiagStatusServiceImpl and others ?",
+      "parentUuid": "3d32856c_426ba66d",
+      "range": {
+        "startLine": 31,
+        "startChar": 4,
+        "endLine": 32,
+        "endChar": 4
+      },
+      "revId": "c9055b74cbaa7fc41952569eac40cd7ac9db15af",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2231e7ea_9d5f18a0",
         "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
         "patchSetId": 3
@@ -78,6 +102,24 @@
       "side": 1,
       "message": "@Reference is a Blueprint annotation; with Pax CDI the corresponding annotation is @Service. I\u0027m going to split this up into two patches to make things clearer, and so that the Blueprint annotations side of things can be merged before the odlparent 4 switch.",
       "parentUuid": "2231e7ea_9d5f18a0",
+      "revId": "c9055b74cbaa7fc41952569eac40cd7ac9db15af",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ebe3282e_81e4af77",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-09-04T17:53:05Z",
+      "side": 1,
+      "message": "so looks like (in Patch Set 5) all @OsgiService became @Reference (and @OsgiServiceProvider becomes @Service) - that now makes more sense, to me.",
+      "parentUuid": "052144a8_0d854bec",
       "revId": "c9055b74cbaa7fc41952569eac40cd7ac9db15af",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
