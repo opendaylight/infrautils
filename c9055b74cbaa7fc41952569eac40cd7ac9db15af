@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "47d6ef3d_fc6641bd",
+        "filename": "caches/sample/impl/src/main/java/org/opendaylight/infrautils/caches/sample/SampleServiceWithCachingImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 4540
+      },
+      "writtenOn": "2018-09-05T07:25:55Z",
+      "side": 1,
+      "message": "See my explanation in the main thread. Note that the annotations here are still Pax CDI annotations, but version 1.0.0 — so they need odlparent 4. The annotations (including @Service, with the same name, oh joy) used in the rest of the modules are (in subsequent patchsets) Blueprint annotations.",
+      "parentUuid": "0cce4e40_b19d81c8",
+      "range": {
+        "startLine": 31,
+        "startChar": 4,
+        "endLine": 32,
+        "endChar": 4
+      },
+      "revId": "c9055b74cbaa7fc41952569eac40cd7ac9db15af",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2231e7ea_9d5f18a0",
         "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
         "patchSetId": 3
@@ -120,6 +144,24 @@
       "side": 1,
       "message": "so looks like (in Patch Set 5) all @OsgiService became @Reference (and @OsgiServiceProvider becomes @Service) - that now makes more sense, to me.",
       "parentUuid": "052144a8_0d854bec",
+      "revId": "c9055b74cbaa7fc41952569eac40cd7ac9db15af",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3fe6523c_0249d2ed",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 4540
+      },
+      "writtenOn": "2018-09-05T07:25:55Z",
+      "side": 1,
+      "message": "Exactly — Pax CDI @OsgiService (on service declarations) and @OsgiServiceProvider become Blueprint @Service, and Pax CDI @OsgiService (at injection points) becomes Blueprint @Reference (and we now have @ReferenceList too).",
+      "parentUuid": "ebe3282e_81e4af77",
       "revId": "c9055b74cbaa7fc41952569eac40cd7ac9db15af",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
