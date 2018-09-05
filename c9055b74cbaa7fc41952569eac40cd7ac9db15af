@@ -97,6 +97,30 @@
     },
     {
       "key": {
+        "uuid": "0b18e2fd_0b23658f",
+        "filename": "caches/sample/impl/src/main/java/org/opendaylight/infrautils/caches/sample/SampleServiceWithCachingImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-09-05T14:24:53Z",
+      "side": 1,
+      "message": "as discussed with Stephen by voice, let\u0027s change this from @OsgiServiceProvider to @Service here (in this change) - and add the maven-blueprint-plugin, if it\u0027s missing.",
+      "parentUuid": "47d6ef3d_fc6641bd",
+      "range": {
+        "startLine": 31,
+        "startChar": 4,
+        "endLine": 32,
+        "endChar": 4
+      },
+      "revId": "c9055b74cbaa7fc41952569eac40cd7ac9db15af",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2231e7ea_9d5f18a0",
         "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
         "patchSetId": 3
