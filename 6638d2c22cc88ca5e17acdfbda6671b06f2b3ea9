@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d4249f27_5bd308b5",
+        "filename": "caches/sample/impl/src/main/java/org/opendaylight/infrautils/caches/sample/SampleServiceWithCachingImpl.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-09-05T14:23:22Z",
+      "side": 1,
+      "message": "as discussed with Stephen by voice, this change should be removed (we\u0027ll instead change @OsgiServiceProvider to @Service in https://git.opendaylight.org/gerrit/#/c/75699/)",
+      "revId": "6638d2c22cc88ca5e17acdfbda6671b06f2b3ea9",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7ab11bf2_ff8421d5",
+        "filename": "caches/test/src/main/java/org/opendaylight/infrautils/caches/testutils/CacheModule.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-09-05T14:23:22Z",
+      "side": 1,
+      "message": "as before, don\u0027t change this in this pathc (it will get changed in c/75699)",
+      "revId": "6638d2c22cc88ca5e17acdfbda6671b06f2b3ea9",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
