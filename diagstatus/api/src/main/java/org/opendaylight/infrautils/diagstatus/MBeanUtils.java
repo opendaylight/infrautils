@@ -9,8 +9,6 @@ package org.opendaylight.infrautils.diagstatus;
 
 import static java.util.Objects.requireNonNull;
 
-import com.google.common.net.InetAddresses;
-import com.google.errorprone.annotations.Var;
 import java.io.IOException;
 import java.lang.management.ManagementFactory;
 import java.net.Inet6Address;
@@ -63,21 +61,24 @@ public final class MBeanUtils {
     private MBeanUtils() {
     }
 
-    public static JMXServiceURL getJMXUrl(String targetHost) throws MalformedURLException {
+    public static JMXServiceURL getJMXUrl(InetAddress targetHost) throws MalformedURLException {
         String jmxUrl = constructJmxUrl(targetHost, RMI_REGISTRY_PORT);
         return new JMXServiceURL(jmxUrl);
     }
 
-    public static String constructJmxUrl(@Var String targetHost, int rmiRegistryPort) {
-        if (isIpv6Address(targetHost)) {
-            targetHost = '[' + targetHost + ']';
+    public static String constructJmxUrl(InetAddress targetHost, int rmiRegistryPort) {
+        String targetHostAsString;
+        if (targetHost instanceof Inet6Address) {
+            targetHostAsString = '[' + targetHost.getHostAddress() + ']';
+        } else {
+            targetHostAsString = targetHost.getHostAddress();
         }
-        return JMX_HOST_PREFIX + targetHost + JMX_TARGET_PREFIX
-                + targetHost + JMX_URL_SEPARATOR + rmiRegistryPort + JMX_URL_SUFFIX;
+        return JMX_HOST_PREFIX + targetHostAsString + JMX_TARGET_PREFIX
+                + targetHostAsString + JMX_URL_SEPARATOR + rmiRegistryPort + JMX_URL_SUFFIX;
     }
 
-    public static Pair<JMXConnectorServer,Registry> startRMIConnectorServer(MBeanServer mbeanServer, String selfAddress)
-            throws IOException {
+    public static Pair<JMXConnectorServer, Registry> startRMIConnectorServer(MBeanServer mbeanServer,
+            InetAddress selfAddress) throws IOException {
         JMXServiceURL url = getJMXUrl(requireNonNull(selfAddress, "selfAddress"));
         Registry registry = LocateRegistry.createRegistry(RMI_REGISTRY_PORT);
         JMXConnectorServer cs;
@@ -160,11 +161,9 @@ public final class MBeanUtils {
             MBeanServerConnection mbsc = jmxc.getMBeanServerConnection();
             T remoteMBean = getMBean(jmxName, klass, mbsc);
             return function.apply(remoteMBean);
+        } catch (MalformedURLException e) {
+            LOG.error("MalformedURLException: {} (path={})", jmxURL, jmxURL.getURLPath(), e);
+            throw e;
         }
-    }
-
-    private static Boolean isIpv6Address(String ipAddress) {
-        InetAddress address = InetAddresses.forString(ipAddress);
-        return address instanceof Inet6Address;
     }
 }
