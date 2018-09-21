@@ -83,10 +83,6 @@ public final class ClusterMemberInfoProvider {
                 "null substringBetween() for IPv4: " + clusterMember);
     }
 
-    public static boolean isValidIPAddress(String ipAddress) {
-        return ipAddress != null && ipAddress.length() > 0;
-    }
-
     public static boolean isIPAddressInCluster(String ipAddress) {
         List<String> clusterIPAddresses = getClusterMembers();
         if (!clusterIPAddresses.contains(ipAddress)) {

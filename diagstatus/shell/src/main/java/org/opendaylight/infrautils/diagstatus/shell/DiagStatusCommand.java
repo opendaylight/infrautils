@@ -7,6 +7,7 @@
  */
 package org.opendaylight.infrautils.diagstatus.shell;
 
+import com.google.common.base.Strings;
 import java.util.List;
 import javax.annotation.Nullable;
 import org.apache.karaf.shell.api.action.Action;
@@ -95,7 +96,7 @@ public class DiagStatusCommand implements Action {
     @SuppressWarnings("checkstyle:IllegalCatch")
     private String getNodeSpecificStatus(String ipAddress) throws Exception {
         StringBuilder strBuilder = new StringBuilder();
-        if (ClusterMemberInfoProvider.isValidIPAddress(ipAddress)) {
+        if (!Strings.isNullOrEmpty(ipAddress)) {
             if (ClusterMemberInfoProvider.isIPAddressInCluster(ipAddress)) {
                 if (ClusterMemberInfoProvider.isLocalIPAddress(ipAddress)) {
                     // Local IP Address
