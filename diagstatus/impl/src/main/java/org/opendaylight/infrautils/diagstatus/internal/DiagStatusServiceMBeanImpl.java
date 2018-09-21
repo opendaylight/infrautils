@@ -48,8 +48,6 @@ import org.slf4j.LoggerFactory;
 public class DiagStatusServiceMBeanImpl extends StandardMBean
         implements DiagStatusServiceMBean, SystemReadyListener, AutoCloseable {
 
-    private static final String JMX_OBJECT_NAME = "org.opendaylight.infrautils.diagstatus:type=SvcStatus";
-
     private static final Logger LOG = LoggerFactory.getLogger(DiagStatusServiceMBeanImpl.class);
 
     private final DiagStatusService diagStatusService;
@@ -75,7 +73,7 @@ public class DiagStatusServiceMBeanImpl extends StandardMBean
     public void onSystemBootReady() {
         InetAddress host = clusterMemberInfo.getSelfAddress();
         try {
-            jmxConnector = MBeanUtils.startRMIConnectorServer(mbeanServer, host);
+            jmxConnector = MBeanUtils.startRMIConnectorServer(mbeanServer, host, RMI_REGISTRY_PORT);
         } catch (IOException e) {
             LOG.error("unable to start jmx connector for host: {}", host, e);
         }
