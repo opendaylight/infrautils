@@ -80,6 +80,5 @@ public class DiagStatusTest {
                 new NullPointerException("This is totally borked!"));
 
         assertThat(reportStatus.getErrorCause().get().getMessage()).isEqualTo("This is totally borked!");
-
     }
 }
