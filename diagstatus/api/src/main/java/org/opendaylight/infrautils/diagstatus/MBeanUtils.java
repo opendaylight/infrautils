@@ -64,7 +64,7 @@ public final class MBeanUtils {
         return new JMXServiceURL(jmxUrl);
     }
 
-    public static String constructJmxUrl(InetAddress targetHost, int rmiRegistryPort) {
+    private static String constructJmxUrl(InetAddress targetHost, int rmiRegistryPort) {
         String targetHostAsString;
         if (targetHost instanceof Inet6Address) {
             targetHostAsString = '[' + targetHost.getHostAddress() + ']';
@@ -152,16 +152,12 @@ public final class MBeanUtils {
         return getMBean(jmxName, klass, ManagementFactory.getPlatformMBeanServer());
     }
 
-    public static <T, R> R invokeRemoteMBeanOperation(String remoteURL, String jmxName, Class<T> klass,
+    public static <T, R> R invokeRemoteMBeanOperation(JMXServiceURL remoteURL, String jmxName, Class<T> klass,
             Function<T, R> function) throws MalformedObjectNameException, IOException {
-        JMXServiceURL jmxURL = new JMXServiceURL(remoteURL);
-        try (JMXConnector jmxc = JMXConnectorFactory.connect(jmxURL, null)) {
+        try (JMXConnector jmxc = JMXConnectorFactory.connect(remoteURL, null)) {
             MBeanServerConnection mbsc = jmxc.getMBeanServerConnection();
             T remoteMBean = getMBean(jmxName, klass, mbsc);
             return function.apply(remoteMBean);
-        } catch (MalformedURLException e) {
-            LOG.error("MalformedURLException: {} (path={})", jmxURL, jmxURL.getURLPath(), e);
-            throw e;
         }
     }
 }

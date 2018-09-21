@@ -12,6 +12,7 @@ import com.google.common.net.InetAddresses;
 import java.net.InetAddress;
 import java.util.List;
 import javax.annotation.Nullable;
+import javax.management.remote.JMXServiceURL;
 import org.apache.karaf.shell.api.action.Action;
 import org.apache.karaf.shell.api.action.Command;
 import org.apache.karaf.shell.api.action.Option;
@@ -87,7 +88,7 @@ public class DiagStatusCommand implements Action {
 
     @VisibleForTesting
     static String getRemoteStatusSummary(InetAddress memberAddress) throws Exception {
-        String url = MBeanUtils.constructJmxUrl(memberAddress, DiagStatusServiceMBean.RMI_REGISTRY_PORT);
+        JMXServiceURL url = MBeanUtils.getJMXUrl(memberAddress, DiagStatusServiceMBean.RMI_REGISTRY_PORT);
         LOG.info("invokeRemoteJMXOperation() JMX service URL: {}", url);
 
         String remoteJMXOperationResult = MBeanUtils.invokeRemoteMBeanOperation(url,
