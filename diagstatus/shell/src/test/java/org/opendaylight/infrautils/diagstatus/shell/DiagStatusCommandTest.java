@@ -10,6 +10,8 @@ package org.opendaylight.infrautils.diagstatus.shell;
 import static java.util.Collections.emptyList;
 import static org.mockito.Mockito.mock;
 
+import com.google.common.net.InetAddresses;
+import java.net.InetAddress;
 import java.util.List;
 import org.junit.Test;
 import org.opendaylight.infrautils.diagstatus.ClusterMemberInfo;
@@ -28,31 +30,31 @@ public class DiagStatusCommandTest {
 
     @Test
     public void testGetRemoteStatusSummary_IPv4() throws Exception {
-        checkGetRemoteStatusSummary("127.0.0.1");
+        checkGetRemoteStatusSummary(InetAddresses.forString("127.0.0.1"));
     }
 
     @Test
     public void testGetRemoteStatusSummary_IPv6() throws Exception {
-        checkGetRemoteStatusSummary("::1");
+        checkGetRemoteStatusSummary(InetAddresses.forString("::1"));
     }
 
-    private static void checkGetRemoteStatusSummary(String ipAddress) throws Exception {
+    private static void checkGetRemoteStatusSummary(InetAddress inetAddress) throws Exception {
         DiagStatusService diagStatusService = mock(DiagStatusService.class);
         SystemReadyMonitor systemReadyMonitor = new TestSystemReadyMonitor(Behaviour.IMMEDIATE);
         ClusterMemberInfo clusterMemberInfo = new ClusterMemberInfo() {
             @Override
-            public String getSelfAddress() {
-                return ipAddress;
+            public InetAddress getSelfAddress() {
+                return inetAddress;
             }
 
             @Override
-            public List<String> getClusterMembers() {
+            public List<InetAddress> getClusterMembers() {
                 return emptyList();
             }
         };
         try (DiagStatusServiceMBeanImpl diagStatusServiceMBeanImpl =
                 new DiagStatusServiceMBeanImpl(diagStatusService, systemReadyMonitor, clusterMemberInfo)) {
-            DiagStatusCommand.getRemoteStatusSummary(ipAddress);
+            DiagStatusCommand.getRemoteStatusSummary(inetAddress);
         }
     }
 }

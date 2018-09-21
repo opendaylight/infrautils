@@ -17,14 +17,12 @@ import java.util.List;
  */
 public interface ClusterMemberInfo {
 
-    // TODO change String to InetAddress in both getSelfAddress() and getClusterMembers()
+    InetAddress getSelfAddress();
 
-    String getSelfAddress();
+    List<InetAddress> getClusterMembers();
 
-    List<String> getClusterMembers();
-
-    default boolean isLocalAddress(String ipAddress) {
+    default boolean isLocalAddress(InetAddress ipAddress) {
         // TODO also checking if ipAddress === getSelfAddress() would seem to make sense here?
-        return ipAddress.equals(InetAddress.getLoopbackAddress().getHostAddress());
+        return ipAddress.equals(InetAddress.getLoopbackAddress());
     }
 }
