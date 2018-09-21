@@ -31,7 +31,7 @@ import javax.management.remote.JMXConnectorServer;
 import org.apache.aries.blueprint.annotation.service.Reference;
 import org.apache.aries.blueprint.annotation.service.Service;
 import org.apache.commons.lang3.tuple.Pair;
-import org.opendaylight.infrautils.diagstatus.ClusterMemberInfoProvider;
+import org.opendaylight.infrautils.diagstatus.ClusterMemberInfo;
 import org.opendaylight.infrautils.diagstatus.DiagStatusService;
 import org.opendaylight.infrautils.diagstatus.DiagStatusServiceMBean;
 import org.opendaylight.infrautils.diagstatus.MBeanUtils;
@@ -52,23 +52,26 @@ public class DiagStatusServiceMBeanImpl extends StandardMBean implements DiagSta
 
     private final DiagStatusService diagStatusService;
     private final SystemReadyMonitor systemReadyMonitor;
+    private final ClusterMemberInfo clusterMemberInfo;
     private final MBeanServer mbeanServer;
     private Pair<JMXConnectorServer, Registry> jmxConnector = null;
 
     @Inject
     public DiagStatusServiceMBeanImpl(DiagStatusService diagStatusService,
-                                      @Reference SystemReadyMonitor systemReadyMonitor)
+                                      @Reference SystemReadyMonitor systemReadyMonitor,
+                                      @Reference ClusterMemberInfo clusterMemberInfo)
             throws JMException {
         super(DiagStatusServiceMBean.class);
         this.diagStatusService = diagStatusService;
         this.systemReadyMonitor = systemReadyMonitor;
+        this.clusterMemberInfo = clusterMemberInfo;
         systemReadyMonitor.registerListener(this);
         mbeanServer = MBeanUtils.registerServerMBean(this, JMX_OBJECT_NAME);
     }
 
     @Override
     public void onSystemBootReady() {
-        String host = ClusterMemberInfoProvider.getSelfAddress();
+        String host = clusterMemberInfo.getSelfAddress();
         try {
             jmxConnector = MBeanUtils.startRMIConnectorServer(mbeanServer, host);
         } catch (IOException e) {
