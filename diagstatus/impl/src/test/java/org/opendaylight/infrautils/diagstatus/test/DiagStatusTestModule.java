@@ -18,9 +18,9 @@ import org.opendaylight.infrautils.diagstatus.internal.ClusterMemberInfoImpl;
 import org.opendaylight.infrautils.diagstatus.internal.DiagStatusServiceImpl;
 import org.opendaylight.infrautils.diagstatus.internal.DiagStatusServiceMBeanImpl;
 import org.opendaylight.infrautils.inject.guice.testutils.AbstractGuiceJsr250Module;
-import org.opendaylight.infrautils.ready.SystemReadyListener;
 import org.opendaylight.infrautils.ready.SystemReadyMonitor;
-import org.opendaylight.infrautils.ready.SystemState;
+import org.opendaylight.infrautils.ready.testutils.TestSystemReadyMonitor;
+import org.opendaylight.infrautils.ready.testutils.TestSystemReadyMonitor.Behaviour;
 
 /**
  * Dependency Injection Wiring for {@link DiagStatusTest}.
@@ -34,23 +34,7 @@ public class DiagStatusTestModule extends AbstractGuiceJsr250Module {
         bind(DiagStatusService.class).to(DiagStatusServiceImpl.class);
         bind(ClusterMemberInfo.class).to(ClusterMemberInfoImpl.class);
         bind(new TypeLiteral<List<ServiceStatusProvider>>() {}).toInstance(Collections.emptyList());
-        bind(SystemReadyMonitor.class).toInstance(new SystemReadyMonitor() {
-
-            @Override
-            public void registerListener(SystemReadyListener listener) {
-                // NOOP
-            }
-
-            @Override
-            public SystemState getSystemState() {
-                return SystemState.ACTIVE;
-            }
-
-            @Override
-            public String getFailureCause() {
-                return "";
-            }
-        });
+        bind(SystemReadyMonitor.class).toInstance(new TestSystemReadyMonitor(Behaviour.NEVER));
         bind(DiagStatusServiceMBean.class).to(DiagStatusServiceMBeanImpl.class);
     }
 }

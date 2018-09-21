@@ -44,7 +44,8 @@ import org.slf4j.LoggerFactory;
 
 @Singleton
 @Service(classes = DiagStatusServiceMBean.class)
-public class DiagStatusServiceMBeanImpl extends StandardMBean implements DiagStatusServiceMBean, SystemReadyListener {
+public class DiagStatusServiceMBeanImpl extends StandardMBean
+        implements DiagStatusServiceMBean, SystemReadyListener, AutoCloseable {
 
     private static final String JMX_OBJECT_NAME = "org.opendaylight.infrautils.diagstatus:type=SvcStatus";
 
@@ -65,8 +66,8 @@ public class DiagStatusServiceMBeanImpl extends StandardMBean implements DiagSta
         this.diagStatusService = diagStatusService;
         this.systemReadyMonitor = systemReadyMonitor;
         this.clusterMemberInfo = clusterMemberInfo;
+        this.mbeanServer = MBeanUtils.registerServerMBean(this, JMX_OBJECT_NAME);
         systemReadyMonitor.registerListener(this);
-        mbeanServer = MBeanUtils.registerServerMBean(this, JMX_OBJECT_NAME);
     }
 
     @Override
@@ -79,6 +80,7 @@ public class DiagStatusServiceMBeanImpl extends StandardMBean implements DiagSta
         }
     }
 
+    @Override
     @PreDestroy
     public void close() throws IOException, MalformedObjectNameException,
             InstanceNotFoundException, MBeanRegistrationException {
