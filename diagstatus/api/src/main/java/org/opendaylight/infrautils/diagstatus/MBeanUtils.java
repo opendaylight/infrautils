@@ -7,9 +7,12 @@
  */
 package org.opendaylight.infrautils.diagstatus;
 
+import com.google.common.net.InetAddresses;
 import com.google.errorprone.annotations.Var;
 import java.io.IOException;
 import java.lang.management.ManagementFactory;
+import java.net.Inet6Address;
+import java.net.InetAddress;
 import java.net.MalformedURLException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -33,7 +36,6 @@ import javax.management.remote.JMXConnectorFactory;
 import javax.management.remote.JMXConnectorServer;
 import javax.management.remote.JMXConnectorServerFactory;
 import javax.management.remote.JMXServiceURL;
-
 import org.apache.commons.lang3.tuple.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -67,7 +69,10 @@ public final class MBeanUtils {
         return new JMXServiceURL(jmxUrl);
     }
 
-    private static String constructJmxUrl(String targetHost, int rmiRegistryPort) {
+    private static String constructJmxUrl(@Var String targetHost, int rmiRegistryPort) {
+        if (isIpv6Address(targetHost)) {
+            targetHost = '[' + targetHost + ']';
+        }
         return JMX_HOST_PREFIX + targetHost + JMX_TARGET_PREFIX
                 + targetHost + JMX_URL_SEPARATOR + rmiRegistryPort + JMX_URL_SUFFIX;
     }
@@ -198,4 +203,8 @@ public final class MBeanUtils {
         return serviceStatus;
     }
 
+    private static Boolean isIpv6Address(String ipAddress) {
+        InetAddress address = InetAddresses.forString(ipAddress);
+        return address instanceof Inet6Address;
+    }
 }
