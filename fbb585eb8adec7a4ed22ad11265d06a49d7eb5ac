@@ -16,6 +16,24 @@
       "revId": "fbb585eb8adec7a4ed22ad11265d06a49d7eb5ac",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5bd91e25_1599484c",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/MBeanUtils.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-09-21T15:24:00Z",
+      "side": 1,
+      "message": "+2 as now done in https://git.opendaylight.org/gerrit/#/c/76341/",
+      "parentUuid": "c087875d_a68074cd",
+      "revId": "fbb585eb8adec7a4ed22ad11265d06a49d7eb5ac",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
