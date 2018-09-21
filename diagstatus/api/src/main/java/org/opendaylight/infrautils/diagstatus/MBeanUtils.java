@@ -51,18 +51,16 @@ public final class MBeanUtils {
 
     private static final Logger LOG = LoggerFactory.getLogger(MBeanUtils.class);
 
-    public static final String JMX_OBJECT_NAME = "org.opendaylight.infrautils.diagstatus:type=SvcStatus";
-    public static final String JMX_HOST_PREFIX = "service:jmx:rmi://";
-    public static final String JMX_TARGET_PREFIX = "/jndi/rmi://";
-    public static final String JMX_URL_SUFFIX = "/server";
-    public static final String JMX_URL_SEPARATOR = ":";
-    public static final int RMI_REGISTRY_PORT = 6886;
+    private static final String JMX_HOST_PREFIX = "service:jmx:rmi://";
+    private static final String JMX_TARGET_PREFIX = "/jndi/rmi://";
+    private static final String JMX_URL_SUFFIX = "/server";
+    private static final String JMX_URL_SEPARATOR = ":";
 
     private MBeanUtils() {
     }
 
-    public static JMXServiceURL getJMXUrl(InetAddress targetHost) throws MalformedURLException {
-        String jmxUrl = constructJmxUrl(targetHost, RMI_REGISTRY_PORT);
+    public static JMXServiceURL getJMXUrl(InetAddress targetHost, int port) throws MalformedURLException {
+        String jmxUrl = constructJmxUrl(targetHost, port);
         return new JMXServiceURL(jmxUrl);
     }
 
@@ -78,9 +76,9 @@ public final class MBeanUtils {
     }
 
     public static Pair<JMXConnectorServer, Registry> startRMIConnectorServer(MBeanServer mbeanServer,
-            InetAddress selfAddress) throws IOException {
-        JMXServiceURL url = getJMXUrl(requireNonNull(selfAddress, "selfAddress"));
-        Registry registry = LocateRegistry.createRegistry(RMI_REGISTRY_PORT);
+            InetAddress selfAddress, int port) throws IOException {
+        JMXServiceURL url = getJMXUrl(requireNonNull(selfAddress, "selfAddress"), port);
+        Registry registry = LocateRegistry.createRegistry(port);
         JMXConnectorServer cs;
         try {
             cs = JMXConnectorServerFactory.newJMXConnectorServer(url, null, requireNonNull(mbeanServer, "mbeanServer"));
