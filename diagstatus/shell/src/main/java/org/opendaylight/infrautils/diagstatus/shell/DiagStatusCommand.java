@@ -8,7 +8,8 @@
 package org.opendaylight.infrautils.diagstatus.shell;
 
 import com.google.common.annotations.VisibleForTesting;
-import com.google.common.base.Strings;
+import com.google.common.net.InetAddresses;
+import java.net.InetAddress;
 import java.util.List;
 import javax.annotation.Nullable;
 import org.apache.karaf.shell.api.action.Action;
@@ -50,12 +51,12 @@ public class DiagStatusCommand implements Action {
         strBuilder.append("Timestamp: ").append(new java.util.Date().toString()).append("\n");
 
         if (null != nip) {
-            strBuilder.append(getNodeSpecificStatus(nip));
+            strBuilder.append(getNodeSpecificStatus(InetAddresses.forString(nip)));
         } else {
-            List<String> clusterIPAddresses = clusterMemberInfoProvider.getClusterMembers();
+            List<InetAddress> clusterIPAddresses = clusterMemberInfoProvider.getClusterMembers();
             if (!clusterIPAddresses.isEmpty()) {
-                String selfAddress = clusterMemberInfoProvider.getSelfAddress();
-                for (String memberAddress : clusterIPAddresses) {
+                InetAddress selfAddress = clusterMemberInfoProvider.getSelfAddress();
+                for (InetAddress memberAddress : clusterIPAddresses) {
                     try {
                         if (memberAddress.equals(selfAddress)) {
                             strBuilder.append(getLocalStatusSummary(memberAddress));
@@ -71,7 +72,7 @@ public class DiagStatusCommand implements Action {
                 }
             } else {
                 LOG.info("Could not obtain cluster members or the cluster-command is being executed locally\n");
-                strBuilder.append(getLocalStatusSummary("localhost"));
+                strBuilder.append(getLocalStatusSummary(InetAddress.getLoopbackAddress()));
             }
         }
 
@@ -79,52 +80,49 @@ public class DiagStatusCommand implements Action {
         return null;
     }
 
-    private String getLocalStatusSummary(String localIPAddress) {
-        return "Node IP Address: " + localIPAddress + "\n" + diagStatusServiceMBean.acquireServiceStatusDetailed();
+    private String getLocalStatusSummary(InetAddress memberAddress) {
+        return "Node IP Address: " + memberAddress.toString() + "\n"
+                + diagStatusServiceMBean.acquireServiceStatusDetailed();
     }
 
     @VisibleForTesting
-    static String getRemoteStatusSummary(String ipAddress) throws Exception {
-        String url = MBeanUtils.constructJmxUrl(ipAddress, MBeanUtils.RMI_REGISTRY_PORT);
+    static String getRemoteStatusSummary(InetAddress memberAddress) throws Exception {
+        String url = MBeanUtils.constructJmxUrl(memberAddress, MBeanUtils.RMI_REGISTRY_PORT);
         LOG.info("invokeRemoteJMXOperation() JMX service URL: {}", url);
 
         String remoteJMXOperationResult = MBeanUtils.invokeRemoteMBeanOperation(url, MBeanUtils.JMX_OBJECT_NAME,
                 DiagStatusServiceMBean.class, remoteMBean -> remoteMBean.acquireServiceStatusDetailed());
 
         StringBuilder strBuilder = new StringBuilder();
-        strBuilder.append("Node IP Address: ").append(ipAddress).append("\n");
+        strBuilder.append("Node IP Address: ").append(memberAddress).append("\n");
         strBuilder.append(remoteJMXOperationResult);
         return strBuilder.toString();
     }
 
     @SuppressWarnings("checkstyle:IllegalCatch")
-    private String getNodeSpecificStatus(String ipAddress) throws Exception {
+    private String getNodeSpecificStatus(InetAddress ipAddress) throws Exception {
         StringBuilder strBuilder = new StringBuilder();
-        if (!Strings.isNullOrEmpty(ipAddress)) {
-            if (isIPAddressInCluster(ipAddress)) {
-                if (clusterMemberInfoProvider.isLocalAddress(ipAddress)) {
-                    // Local IP Address
-                    strBuilder.append(getLocalStatusSummary(ipAddress));
-                } else {
-                    // Remote IP
-                    try {
-                        strBuilder.append(getRemoteStatusSummary(ipAddress));
-                    } catch (Exception e) {
-                        strBuilder.append("Remote Status retrieval JMX Operation failed for node: ").append(ipAddress);
-                        LOG.error("Exception while reaching Host: {}", ipAddress, e);
-                    }
-                }
+        if (isIPAddressInCluster(ipAddress)) {
+            if (clusterMemberInfoProvider.isLocalAddress(ipAddress)) {
+                // Local IP Address
+                strBuilder.append(getLocalStatusSummary(ipAddress));
             } else {
-                strBuilder.append("Invalid IP Address or Not a cluster member IP Address: ").append(ipAddress);
+                // Remote IP
+                try {
+                    strBuilder.append(getRemoteStatusSummary(ipAddress));
+                } catch (Exception e) {
+                    strBuilder.append("Remote Status retrieval JMX Operation failed for node: ").append(ipAddress);
+                    LOG.error("Exception while reaching Host: {}", ipAddress, e);
+                }
             }
         } else {
-            strBuilder.append("Invalid or Empty IP Address");
+            strBuilder.append("Invalid IP Address or Not a cluster member IP Address: ").append(ipAddress);
         }
         return strBuilder.toString();
     }
 
-    private boolean isIPAddressInCluster(String ipAddress) {
-        List<String> clusterIPAddresses = clusterMemberInfoProvider.getClusterMembers();
+    private boolean isIPAddressInCluster(InetAddress ipAddress) {
+        List<InetAddress> clusterIPAddresses = clusterMemberInfoProvider.getClusterMembers();
         if (!clusterIPAddresses.contains(ipAddress)) {
             LOG.error("specified ip {} is not present in cluster", ipAddress);
             return false;
