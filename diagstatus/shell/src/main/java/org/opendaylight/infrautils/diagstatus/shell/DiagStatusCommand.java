@@ -50,7 +50,7 @@ public class DiagStatusCommand implements Action {
         } else {
             List<String> clusterIPAddresses = ClusterMemberInfoProvider.getClusterMembers();
             if (!clusterIPAddresses.isEmpty()) {
-                String selfAddress = ClusterMemberInfoProvider.getSelfAddress().orElse("localhost");
+                String selfAddress = ClusterMemberInfoProvider.getSelfAddress();
                 for (String memberAddress : clusterIPAddresses) {
                     try {
                         if (memberAddress.equals(selfAddress)) {
