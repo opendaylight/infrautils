@@ -85,11 +85,12 @@ public class DiagStatusCommand extends LoggingAction {
 
     @VisibleForTesting
     static String getRemoteStatusSummary(InetAddress memberAddress) throws Exception {
-        String url = MBeanUtils.constructJmxUrl(memberAddress, MBeanUtils.RMI_REGISTRY_PORT);
+        String url = MBeanUtils.constructJmxUrl(memberAddress, DiagStatusServiceMBean.RMI_REGISTRY_PORT);
         LOG.info("invokeRemoteJMXOperation() JMX service URL: {}", url);
 
-        String remoteJMXOperationResult = MBeanUtils.invokeRemoteMBeanOperation(url, MBeanUtils.JMX_OBJECT_NAME,
-                DiagStatusServiceMBean.class, remoteMBean -> remoteMBean.acquireServiceStatusDetailed());
+        String remoteJMXOperationResult = MBeanUtils.invokeRemoteMBeanOperation(url,
+                DiagStatusServiceMBean.JMX_OBJECT_NAME, DiagStatusServiceMBean.class,
+            remoteMBean -> remoteMBean.acquireServiceStatusDetailed());
 
         StringBuilder strBuilder = new StringBuilder();
         strBuilder.append("Node IP Address: ").append(memberAddress).append("\n");
