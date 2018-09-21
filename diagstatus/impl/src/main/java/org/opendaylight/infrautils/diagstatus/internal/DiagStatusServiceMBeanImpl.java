@@ -15,6 +15,7 @@ import com.google.common.base.Throwables;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableMap.Builder;
 import java.io.IOException;
+import java.net.InetAddress;
 import java.rmi.registry.Registry;
 import java.util.Map;
 import javax.annotation.PreDestroy;
@@ -72,7 +73,7 @@ public class DiagStatusServiceMBeanImpl extends StandardMBean
 
     @Override
     public void onSystemBootReady() {
-        String host = clusterMemberInfo.getSelfAddress();
+        InetAddress host = clusterMemberInfo.getSelfAddress();
         try {
             jmxConnector = MBeanUtils.startRMIConnectorServer(mbeanServer, host);
         } catch (IOException e) {

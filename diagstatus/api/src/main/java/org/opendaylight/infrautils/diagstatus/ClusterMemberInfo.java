@@ -7,6 +7,7 @@
  */
 package org.opendaylight.infrautils.diagstatus;
 
+import java.net.InetAddress;
 import java.util.List;
 
 /**
@@ -16,11 +17,9 @@ import java.util.List;
  */
 public interface ClusterMemberInfo {
 
-    // TODO change String to InetAddress in both getSelfAddress() and getClusterMembers()
+    InetAddress getSelfAddress();
 
-    String getSelfAddress();
+    List<InetAddress> getClusterMembers();
 
-    List<String> getClusterMembers();
-
-    boolean isLocalAddress(String ipAddress);
+    boolean isLocalAddress(InetAddress ipAddress);
 }
