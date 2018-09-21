@@ -5,12 +5,10 @@
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html
  */
-
 package org.opendaylight.infrautils.diagstatus;
 
 import static java.util.Objects.requireNonNull;
 
-import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -20,19 +18,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * This class provides utilities to derive ODL cluster information.
- *
- * <p>It is currently implemented using some of the JMX MBeans exposed by Akka framework used in ODL controller.
+ * Implementation of {@link ClusterMemberInfo} service using the JMX MBeans
+ * exposed by Akka framework used in ODL controller.
  *
  * @author Faseela K
+ * @author Michael Vorburger converted former static utility to service (for testability)
  */
-public final class ClusterMemberInfoProvider {
+public class ClusterMemberInfoProvider implements ClusterMemberInfo {
 
     private static final Logger LOG = LoggerFactory.getLogger(ClusterMemberInfoProvider.class);
 
-    private ClusterMemberInfoProvider() { }
-
-    public static String getSelfAddress() {
+    @Override
+    public String getSelfAddress() {
         Object clusterStatusMBeanValue;
         try {
             clusterStatusMBeanValue = MBeanUtils.getMBeanAttribute("akka:type=Cluster", "ClusterStatus");
@@ -49,7 +46,8 @@ public final class ClusterMemberInfoProvider {
         }
     }
 
-    public static List<String> getClusterMembers()  {
+    @Override
+    public List<String> getClusterMembers() {
         Object clusterMemberMBeanValue;
         try {
             clusterMemberMBeanValue = MBeanUtils.getMBeanAttribute("akka:type=Cluster", "Members");
@@ -82,18 +80,5 @@ public final class ClusterMemberInfoProvider {
 
     public static boolean isValidIPAddress(String ipAddress) {
         return ipAddress != null && ipAddress.length() > 0;
-    }
-
-    public static boolean isIPAddressInCluster(String ipAddress) {
-        List<String> clusterIPAddresses = getClusterMembers();
-        if (!clusterIPAddresses.contains(ipAddress)) {
-            LOG.error("specified ip {} is not present in cluster", ipAddress);
-            return false;
-        }
-        return true;
-    }
-
-    public static boolean isLocalIPAddress(String ipAddress) {
-        return ipAddress.equals(InetAddress.getLoopbackAddress().getHostAddress());
     }
 }
