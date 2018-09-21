@@ -65,7 +65,7 @@ public final class MBeanUtils {
         return new JMXServiceURL(jmxUrl);
     }
 
-    public static String constructJmxUrl(String targetHost, int rmiRegistryPort) {
+    private static String constructJmxUrl(String targetHost, int rmiRegistryPort) {
         return JMX_HOST_PREFIX + targetHost + JMX_TARGET_PREFIX
                 + targetHost + JMX_URL_SEPARATOR + rmiRegistryPort + JMX_URL_SUFFIX;
     }
