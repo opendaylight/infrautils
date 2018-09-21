@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "7db36fe9_89793d3a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 5197
+      },
+      "writtenOn": "2018-09-21T11:37:13Z",
+      "side": 1,
+      "message": "+1",
+      "parentUuid": "31fca481_e83a0a0e",
+      "revId": "4e0c45b9407140e7b6ef1041e511dee41c3ed43d",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d59fb501_ffca7f1e",
         "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/MBeanUtils.java",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2018-09-21T10:55:32Z",
       "side": 1,
       "message": "because IllegalArgumentException is already a RuntimeException, you can (and really should) just (re) throw e; here instead of wrapping it into a RuntimeException.  \n\nBut you really could (and IMHO should) even just completely remove the entire catch/msg/LOG here, because that really only has value if:\n\n(a) you think there is any chance that the caller of this does not handle and log the IllegalArgumentException, so you want to both log and rethrow it, which normally only leads to those extra double logs that have no value.  I have \"followed the trail\" of where this gets called from, it\u0027s ultimately used in DiagStatusServiceMBeanImpl, and that gets called in SystemReadyImpl, which has a catch RuntimeException (therefore also IllegalArgumentException) - ergo there is no need to do this here.  (BTW: Looking into this also gave me the idea to do https://jira.opendaylight.org/browse/INFRAUTILS-51 as an Improvment, but that is totally orthogonal / separate to this fix; it\u0027s for NON-RuntimeException problems.)\n\n(b) you think it\u0027s useful to make sure that the exception includes the ipAdress.  But if we look at https://github.com/google/guava/blob/master/guava/src/com/google/common/net/InetAddresses.java#L138, we can see that it always already will anyway.",
+      "revId": "4e0c45b9407140e7b6ef1041e511dee41c3ed43d",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a93d786b_ae7239d3",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/MBeanUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 5197
+      },
+      "writtenOn": "2018-09-21T11:37:13Z",
+      "side": 1,
+      "message": "thanks for the review comments. Yeah, I agree with you. Also this is not a public API so we can remove the try/catch block all-together.",
+      "parentUuid": "d59fb501_ffca7f1e",
       "revId": "4e0c45b9407140e7b6ef1041e511dee41c3ed43d",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
