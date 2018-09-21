@@ -7,6 +7,7 @@
  */
 package org.opendaylight.infrautils.diagstatus.shell;
 
+import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Strings;
 import java.util.List;
 import javax.annotation.Nullable;
@@ -79,7 +80,8 @@ public class DiagStatusCommand implements Action {
         return "Node IP Address: " + localIPAddress + "\n" + diagStatusServiceMBean.acquireServiceStatusDetailed();
     }
 
-    private static String getRemoteStatusSummary(String ipAddress) throws Exception {
+    @VisibleForTesting
+    static String getRemoteStatusSummary(String ipAddress) throws Exception {
         String url = MBeanUtils.constructJmxUrl(ipAddress, MBeanUtils.RMI_REGISTRY_PORT);
         LOG.info("invokeRemoteJMXOperation() JMX service URL: {}", url);
 
@@ -106,12 +108,12 @@ public class DiagStatusCommand implements Action {
                     try {
                         strBuilder.append(getRemoteStatusSummary(ipAddress));
                     } catch (Exception e) {
-                        strBuilder.append("Remote Status retrieval JMX Operation failed for node ").append(ipAddress);
+                        strBuilder.append("Remote Status retrieval JMX Operation failed for node: ").append(ipAddress);
                         LOG.error("Exception while reaching Host: {}", ipAddress, e);
                     }
                 }
             } else {
-                strBuilder.append("Invalid IP Address or Not a cluster member IP Address ").append(ipAddress);
+                strBuilder.append("Invalid IP Address or Not a cluster member IP Address: ").append(ipAddress);
             }
         } else {
             strBuilder.append("Invalid or Empty IP Address");
