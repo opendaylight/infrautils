@@ -36,6 +36,9 @@ public class DiagStatusCommand implements Action {
     @Reference
     private DiagStatusServiceMBean diagStatusServiceMBean;
 
+    @Reference
+    private ClusterMemberInfoProvider clusterMemberInfoProvider;
+
     @Option(name = "-n", aliases = {"--node"})
     String nip;
 
@@ -49,9 +52,9 @@ public class DiagStatusCommand implements Action {
         if (null != nip) {
             strBuilder.append(getNodeSpecificStatus(nip));
         } else {
-            List<String> clusterIPAddresses = ClusterMemberInfoProvider.getClusterMembers();
+            List<String> clusterIPAddresses = clusterMemberInfoProvider.getClusterMembers();
             if (!clusterIPAddresses.isEmpty()) {
-                String selfAddress = ClusterMemberInfoProvider.getSelfAddress();
+                String selfAddress = clusterMemberInfoProvider.getSelfAddress();
                 for (String memberAddress : clusterIPAddresses) {
                     try {
                         if (memberAddress.equals(selfAddress)) {
@@ -99,8 +102,8 @@ public class DiagStatusCommand implements Action {
     private String getNodeSpecificStatus(String ipAddress) throws Exception {
         StringBuilder strBuilder = new StringBuilder();
         if (!Strings.isNullOrEmpty(ipAddress)) {
-            if (ClusterMemberInfoProvider.isIPAddressInCluster(ipAddress)) {
-                if (ClusterMemberInfoProvider.isLocalIPAddress(ipAddress)) {
+            if (isIPAddressInCluster(ipAddress)) {
+                if (clusterMemberInfoProvider.isLocalAddress(ipAddress)) {
                     // Local IP Address
                     strBuilder.append(getLocalStatusSummary(ipAddress));
                 } else {
@@ -119,5 +122,14 @@ public class DiagStatusCommand implements Action {
             strBuilder.append("Invalid or Empty IP Address");
         }
         return strBuilder.toString();
+    }
+
+    private boolean isIPAddressInCluster(String ipAddress) {
+        List<String> clusterIPAddresses = clusterMemberInfoProvider.getClusterMembers();
+        if (!clusterIPAddresses.contains(ipAddress)) {
+            LOG.error("specified ip {} is not present in cluster", ipAddress);
+            return false;
+        }
+        return true;
     }
 }
