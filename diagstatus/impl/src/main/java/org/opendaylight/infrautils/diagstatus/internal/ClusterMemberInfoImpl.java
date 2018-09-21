@@ -9,6 +9,7 @@ package org.opendaylight.infrautils.diagstatus.internal;
 
 import static java.util.Objects.requireNonNull;
 
+import com.google.common.net.InetAddresses;
 import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -36,7 +37,7 @@ public class ClusterMemberInfoImpl implements ClusterMemberInfo {
     private static final Logger LOG = LoggerFactory.getLogger(ClusterMemberInfoImpl.class);
 
     @Override
-    public String getSelfAddress() {
+    public InetAddress getSelfAddress() {
         Object clusterStatusMBeanValue;
         try {
             clusterStatusMBeanValue = MBeanUtils.getMBeanAttribute("akka:type=Cluster", "ClusterStatus");
@@ -47,14 +48,14 @@ public class ClusterMemberInfoImpl implements ClusterMemberInfo {
             String clusterStatusText = clusterStatusMBeanValue.toString();
             String selfAddressMbean = requireNonNull(StringUtils.substringBetween(clusterStatusText,
                     "\"self-address\": ", ","), "null substringBetween() for: " + clusterStatusText);
-            return extractAddressFromAkka(selfAddressMbean);
+            return InetAddresses.forString(extractAddressFromAkka(selfAddressMbean));
         } else {
             throw new IllegalStateException("getMBeanAttribute(\"akka:type=Cluster\", \"ClusterStatus\") == null?!");
         }
     }
 
     @Override
-    public List<String> getClusterMembers() {
+    public List<InetAddress> getClusterMembers() {
         Object clusterMemberMBeanValue;
         try {
             clusterMemberMBeanValue = MBeanUtils.getMBeanAttribute("akka:type=Cluster", "Members");
@@ -63,21 +64,21 @@ public class ClusterMemberInfoImpl implements ClusterMemberInfo {
             return Collections.emptyList();
         }
 
-        List<String> clusterIPAddresses = new ArrayList<>();
+        List<InetAddress> clusterIPAddresses = new ArrayList<>();
         if (clusterMemberMBeanValue != null) {
             String[] clusterMembers = ((String)clusterMemberMBeanValue).split(",", -1);
             for (String clusterMember : clusterMembers) {
                 String nodeIp = extractAddressFromAkka(clusterMember);
-                clusterIPAddresses.add(nodeIp);
+                clusterIPAddresses.add(InetAddresses.forString(nodeIp));
             }
         }
         return clusterIPAddresses;
     }
 
     @Override
-    public boolean isLocalAddress(String ipAddress) {
+    public boolean isLocalAddress(InetAddress ipAddress) {
         // TODO also checking if ipAddress === getSelfAddress() would seem to make sense here?
-        return ipAddress.equals(InetAddress.getLoopbackAddress().getHostAddress());
+        return ipAddress.equals(InetAddress.getLoopbackAddress());
     }
 
     private static String extractAddressFromAkka(String clusterMember) {
