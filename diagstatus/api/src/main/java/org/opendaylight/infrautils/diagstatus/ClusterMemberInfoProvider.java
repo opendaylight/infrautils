@@ -14,7 +14,6 @@ import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 import javax.management.JMException;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -33,22 +32,20 @@ public final class ClusterMemberInfoProvider {
 
     private ClusterMemberInfoProvider() { }
 
-    public static Optional<String> getSelfAddress()  {
+    public static String getSelfAddress() {
         Object clusterStatusMBeanValue;
         try {
             clusterStatusMBeanValue = MBeanUtils.getMBeanAttribute("akka:type=Cluster", "ClusterStatus");
         } catch (JMException e) {
-            LOG.error("Problem to getMBeanAttribute(\"akka:type=Cluster\", \"ClusterStatus\"); returning empty.", e);
-            return Optional.empty();
+            throw new IllegalStateException("getMBeanAttribute(\"akka:type=Cluster\", \"ClusterStatus\") failed", e);
         }
         if (clusterStatusMBeanValue != null) {
             String clusterStatusText = clusterStatusMBeanValue.toString();
             String selfAddressMbean = requireNonNull(StringUtils.substringBetween(clusterStatusText,
                     "\"self-address\": ", ","), "null substringBetween() for: " + clusterStatusText);
-            return Optional.of(extractAddressFromAkka(selfAddressMbean));
+            return extractAddressFromAkka(selfAddressMbean);
         } else {
-            LOG.error("getMBeanAttribute(\"akka:type=Cluster\", \"ClusterStatus\"); unexepected returned null");
-            return Optional.empty();
+            throw new IllegalStateException("getMBeanAttribute(\"akka:type=Cluster\", \"ClusterStatus\") == null?!");
         }
     }
 
