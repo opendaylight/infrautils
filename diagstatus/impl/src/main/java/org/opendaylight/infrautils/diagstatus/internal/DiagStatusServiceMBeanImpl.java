@@ -70,13 +70,9 @@ public class DiagStatusServiceMBeanImpl extends StandardMBean
     }
 
     @Override
-    public void onSystemBootReady() {
+    public void onSystemBootReady() throws IOException {
         InetAddress host = clusterMemberInfo.getSelfAddress();
-        try {
-            jmxConnector = MBeanUtils.startRMIConnectorServer(mbeanServer, host, RMI_REGISTRY_PORT);
-        } catch (IOException e) {
-            LOG.error("unable to start jmx connector for host: {}", host, e);
-        }
+        jmxConnector = MBeanUtils.startRMIConnectorServer(mbeanServer, host, RMI_REGISTRY_PORT);
     }
 
     @Override

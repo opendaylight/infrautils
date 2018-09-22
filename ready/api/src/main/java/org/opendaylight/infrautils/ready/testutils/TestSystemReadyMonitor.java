@@ -59,9 +59,15 @@ public class TestSystemReadyMonitor implements SystemReadyMonitor {
     }
 
     @Override
+    @SuppressWarnings("checkstyle:IllegalCatch")
     public void registerListener(SystemReadyListener listener) {
         if (behaviour.equals(IMMEDIATE)) {
-            listener.onSystemBootReady();
+            try {
+                listener.onSystemBootReady();
+            } catch (Exception e) {
+                throw new IllegalStateException(
+                        "SystemReadyListener.onSystemBootReady() threw Exception; rethrowing to fail test", e);
+            }
         }
     }
 

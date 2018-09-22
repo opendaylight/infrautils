@@ -23,8 +23,10 @@ public interface SystemReadyListener {
      * Java Environment including in unit and component tests, this means after
      * dependency injection object wiring (incl. invocation of all
      * {@literal @}PostConstruct "init" type methods) has completed.
+     *
+     * @throws Exception for anything which should set {@link SystemState#FAILURE}
      */
-    void onSystemBootReady();
+    void onSystemBootReady() throws Exception;
 
     /**
      * Called back when the system becomes (temporarily, hopefully) 'un-ready'.
