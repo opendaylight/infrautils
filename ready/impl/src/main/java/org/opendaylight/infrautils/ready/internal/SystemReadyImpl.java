@@ -121,11 +121,18 @@ public class SystemReadyImpl extends AbstractMXBean implements SystemReadyMonito
         } catch (RuntimeException throwable) {
             // It's exceptionally OK to catch RuntimeException here,
             // because we do want to set the currentFullSystemStatus
-            LOG.error("Failed unexpectedly (SystemReadyListeners are not called)", throwable);
+            LOG.error("Boot failed; not all SystemReadyListeners were not called, SystemState FAILURE", throwable);
             currentSystemState.set(FAILURE);
             currentSystemFailureCause.set(throwable);
             // and now we do re-throw it!
             throw throwable;
+        } catch (Exception e) {
+            LOG.error("SystemReadyListener.onSystemBootReady() threw Exception; "
+                    + "other SystemReadyListeners not called; SystemState FAILURE", e);
+            currentSystemState.set(FAILURE);
+            currentSystemFailureCause.set(e);
+            LOG.error("Failed unexpectedly (SystemReadyListeners are not called)", e);
+            // really no point in re-throwing it
         }
     }
 
@@ -141,6 +148,7 @@ public class SystemReadyImpl extends AbstractMXBean implements SystemReadyMonito
     }
 
     @Override
+    @SuppressWarnings("checkstyle:IllegalCatch")
     public void registerListener(SystemReadyListener listener) {
         SystemState state;
         synchronized (listeners) {
@@ -151,7 +159,15 @@ public class SystemReadyImpl extends AbstractMXBean implements SystemReadyMonito
         }
 
         if (state == ACTIVE) {
-            listener.onSystemBootReady();
+            try {
+                listener.onSystemBootReady();
+            } catch (Exception e) {
+                LOG.error("SystemReadyListener.onSystemBootReady() threw Exception; "
+                        + "but state was already ACTIVE, going back to FAILURE now", e);
+                currentSystemState.set(FAILURE);
+                currentSystemFailureCause.set(e);
+                // Do not re-throw.
+            }
         }
     }
 }
