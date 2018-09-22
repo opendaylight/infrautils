@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fd5ace76_ed9ec825",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ClusterMemberInfo.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-09-22T11:32:08Z",
+      "side": 1,
+      "message": "This is a new class - can we avoid leaving TODOs and just address them? Unless a follow-up patch is forth-coming, these tend to get forgotten and remain indefinitely.",
+      "revId": "5934162532249977163d65a6f93b3606ddae7ac2",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
