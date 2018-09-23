@@ -47,11 +47,13 @@ public class MetricsFileReporter extends ScheduledReporter {
 
     private final File parentDirectory;
     private final Map<String, Long> oldCounters = new HashMap<>();
+    private final MetricRegistry registry;
     private final Duration interval;
 
     public MetricsFileReporter(MetricRegistry registry, Duration interval) {
         super(registry, "file-reporter", MetricFilter.ALL, TimeUnit.SECONDS, TimeUnit.SECONDS);
         this.parentDirectory = new File(DATA_DIRECTORY, COUNTERS_DIRECTORY);
+        this.registry = registry;
         this.interval = interval;
     }
 
@@ -61,6 +63,59 @@ public class MetricsFileReporter extends ScheduledReporter {
 
     Duration getInterval() {
         return interval;
+    }
+
+    public void report(PrintWriter pw) {
+        report(pw, registry.getGauges(), registry.getCounters(),
+                registry.getHistograms(), registry.getMeters(), registry.getTimers());
+    }
+
+    private void report(PrintWriter pw, @SuppressWarnings("rawtypes") SortedMap<String, Gauge> gauges,
+            SortedMap<String, Counter> counters, SortedMap<String, Histogram> histograms,
+            SortedMap<String, Meter> meters, SortedMap<String, Timer> timers) {
+        pw.print("date,");
+        pw.print(new Date());
+        pw.println();
+
+        pw.println("Counters:");
+        for (Map.Entry<String, Counter> entry : counters.entrySet()) {
+            Counter newCounter = entry.getValue();
+            // avoid unnecessary write to report file
+            // report the counter only if there is a change
+            Long oldCounterObj = oldCounters.get(entry.getKey());
+            long oldCounter = oldCounterObj != null ? oldCounterObj.longValue() : 0;
+            if (newCounter.getCount() != oldCounter) {
+                pw.print(entry.getKey());
+                printWithSeparator(pw, "count", entry.getValue().getCount());
+                printWithSeparator(pw, "diff",
+                        entry.getValue().getCount() - oldCounter);
+                pw.println();
+            }
+        }
+        pw.println("Gauges:");
+        for (@SuppressWarnings("rawtypes") Map.Entry<String, Gauge> entry : gauges.entrySet()) {
+            pw.print(entry.getKey());
+            pw.println(entry.getValue().getValue());
+        }
+        pw.println("Histograms:");
+        for (Map.Entry<String, Histogram> entry : histograms.entrySet()) {
+            pw.print(entry.getKey());
+            printWithSeparator(pw, "count", entry.getValue().getCount());
+            printSampling(pw, entry.getValue());
+            pw.println();
+        }
+        pw.println("Meters:");
+        for (Map.Entry<String, Meter> entry : meters.entrySet()) {
+            pw.print(entry.getKey());
+            printMeter(pw, entry.getValue());
+        }
+        pw.println("Timers:");
+        for (Map.Entry<String, Timer> entry : timers.entrySet()) {
+            pw.print(entry.getKey());
+            printSampling(pw, entry.getValue());
+            printMeter(pw, entry.getValue());
+        }
+        counters.forEach((key, value) -> oldCounters.put(key, value.getCount()));
     }
 
     @Override
@@ -80,49 +135,7 @@ public class MetricsFileReporter extends ScheduledReporter {
             File file = createFile(dayOfTheWeek, hourOfTheDay);
             PrintWriter pw = new PrintWriter(new OutputStreamWriter(new FileOutputStream(file, append),
                     DEFAULT_ENCODING));
-            pw.print("date,");
-            pw.print(new Date());
-            pw.println();
-
-            pw.println("Counters:");
-            for (Map.Entry<String, Counter> entry : counters.entrySet()) {
-                Counter newCounter = entry.getValue();
-                // avoid unnecessary write to report file
-                // report the counter only if there is a change
-                Long oldCounterObj = oldCounters.get(entry.getKey());
-                long oldCounter = oldCounterObj != null ? oldCounterObj.longValue() : 0;
-                if (newCounter.getCount() != oldCounter) {
-                    pw.print(entry.getKey());
-                    printWithSeparator(pw, "count", entry.getValue().getCount());
-                    printWithSeparator(pw, "diff",
-                            entry.getValue().getCount() - oldCounter);
-                    pw.println();
-                }
-            }
-            pw.println("Gauges:");
-            for (@SuppressWarnings("rawtypes") Map.Entry<String, Gauge> entry : gauges.entrySet()) {
-                pw.print(entry.getKey());
-                pw.println(entry.getValue().getValue());
-            }
-            pw.println("Histograms:");
-            for (Map.Entry<String, Histogram> entry : histograms.entrySet()) {
-                pw.print(entry.getKey());
-                printWithSeparator(pw, "count", entry.getValue().getCount());
-                printSampling(pw, entry.getValue());
-                pw.println();
-            }
-            pw.println("Meters:");
-            for (Map.Entry<String, Meter> entry : meters.entrySet()) {
-                pw.print(entry.getKey());
-                printMeter(pw, entry.getValue());
-            }
-            pw.println("Timers:");
-            for (Map.Entry<String, Timer> entry : timers.entrySet()) {
-                pw.print(entry.getKey());
-                printSampling(pw, entry.getValue());
-                printMeter(pw, entry.getValue());
-            }
-            counters.forEach((key, value) -> oldCounters.put(key, value.getCount()));
+            report(pw, gauges, counters, histograms, meters, timers);
             pw.close();
         } catch (IOException e) {
             LOG.error("Failed to report counters to files", e);
