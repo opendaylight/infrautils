@@ -122,11 +122,11 @@ public class MetricsFileReporter extends ScheduledReporter {
                 printSampling(pw, entry.getValue());
                 printMeter(pw, entry.getValue());
             }
+            counters.forEach((key, value) -> oldCounters.put(key, value.getCount()));
             pw.close();
         } catch (IOException e) {
             LOG.error("Failed to report counters to files", e);
         }
-        counters.forEach((key, value) -> oldCounters.put(key, value.getCount()));
     }
 
     private static void printSampling(PrintWriter pw, Sampling sampling) {
