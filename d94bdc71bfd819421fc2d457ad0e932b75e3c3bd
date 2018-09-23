@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "49a2e3d0_49dd7711",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ClusterMemberInfoProvider.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-09-23T15:01:13Z",
+      "side": 1,
+      "message": "I actually did think about that, here is why I did not do so:\n\nThe problem is that with https://git.opendaylight.org/gerrit/#/c/76345/ coming right after this it IMHO would not really make sense / actually be incorrect from a design point of view to have the new ClusterMemberInfo service interface have \"throw javax.management.JMException\" - because the fact that ClusterMemberInfoImpl implements ClusterMemberInfo uses JMX to spy into the controller is an implementation detail.  And one could well imagine implementing ClusterMemberInfo without JMX, say if we in the future we were to expose this more directly in controller.\n\nSo what we would then hvae to do is have to create a new ClusterMemberInfoException.  I considered that, but it seems stupid - this is not an expected case, we can only really hit this if controller does not register this MBean, or renames an attribute in it.  That should \"never\" happen - so a Runtime seemed fined to me for this.  As to which one I really don\u0027t care.  If you don\u0027t like the use of an IllegalStateException here, I\u0027m happy to use any other RuntimeException subclass, or even wrap it in a RuntimeException itself, if you prefer.  I had even checked and seen that there is a JMX runtime exception in the JDK, but it\u0027s stupid and we can\u0027t re-throw this as that because they forgot to make the constructor with the cause public!! :-(\n\nSo I would leave this as is.  What do you think?",
+      "parentUuid": "45dd3e58_f7cf8c1a",
+      "range": {
+        "startLine": 40,
+        "startChar": 22,
+        "endLine": 40,
+        "endChar": 43
+      },
+      "revId": "d94bdc71bfd819421fc2d457ad0e932b75e3c3bd",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c6e54257_2e4d1400",
         "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceMBeanImpl.java",
         "patchSetId": 3
