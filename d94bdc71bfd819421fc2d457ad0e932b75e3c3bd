@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "45dd3e58_f7cf8c1a",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ClusterMemberInfoProvider.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-09-23T12:44:50Z",
+      "side": 1,
+      "message": "Instead of throwing an undocumented, unchecked ex, how about propagate the JMException?",
+      "range": {
+        "startLine": 40,
+        "startChar": 22,
+        "endLine": 40,
+        "endChar": 43
+      },
+      "revId": "d94bdc71bfd819421fc2d457ad0e932b75e3c3bd",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c6e54257_2e4d1400",
         "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceMBeanImpl.java",
         "patchSetId": 3
@@ -37,6 +60,30 @@
       "side": 1,
       "message": "see https://git.opendaylight.org/gerrit/#/c/76364/ for INFRAUTILS-51 (and note how c/76364 changes this code)",
       "parentUuid": "c6e54257_2e4d1400",
+      "range": {
+        "startLine": 71,
+        "startChar": 48,
+        "endLine": 71,
+        "endChar": 62
+      },
+      "revId": "d94bdc71bfd819421fc2d457ad0e932b75e3c3bd",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f7a1b1cf_b5c020e9",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceMBeanImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-09-23T12:44:50Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "cd91156a_7ca6cc98",
       "range": {
         "startLine": 71,
         "startChar": 48,
