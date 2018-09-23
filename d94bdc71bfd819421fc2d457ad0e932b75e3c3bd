@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "ea716e2d_f886a95b",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ClusterMemberInfoProvider.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-09-23T16:16:18Z",
+      "side": 1,
+      "message": "The other option is to declare throws Exception which isn\u0027t ideal either but you\u0027re doing that with the other interface so it would be consistent. That would at least tell users that an impl can throw exceptions and might not be able to obtain the self address. We at least had an indication of the latter before in the interface using Optional. Either way it\u0027s not that big a deal - this won\u0027t be a widely used public interface anyway.",
+      "parentUuid": "49a2e3d0_49dd7711",
+      "range": {
+        "startLine": 40,
+        "startChar": 22,
+        "endLine": 40,
+        "endChar": 43
+      },
+      "revId": "d94bdc71bfd819421fc2d457ad0e932b75e3c3bd",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c6e54257_2e4d1400",
         "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceMBeanImpl.java",
         "patchSetId": 3
