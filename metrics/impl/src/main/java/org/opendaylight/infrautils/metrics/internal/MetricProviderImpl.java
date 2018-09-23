@@ -23,6 +23,7 @@ import com.codahale.metrics.jvm.FileDescriptorRatioGauge;
 import com.codahale.metrics.jvm.GarbageCollectorMetricSet;
 import com.codahale.metrics.jvm.MemoryUsageGaugeSet;
 import com.codahale.metrics.jvm.ThreadDeadlockDetector;
+import com.google.common.annotations.VisibleForTesting;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.lang.management.ManagementFactory;
 import java.time.Duration;
@@ -125,6 +126,11 @@ public class MetricProviderImpl implements MetricProvider {
         if (threadsWatcher != null) {
             threadsWatcher.close();
         }
+    }
+
+    @VisibleForTesting
+    public MetricRegistry getRegistry() {
+        return registry;
     }
 
     private static void setUpJvmMetrics(MetricRegistry registry) {
