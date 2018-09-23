@@ -77,8 +77,7 @@ public class ClusterMemberInfoImpl implements ClusterMemberInfo {
 
     @Override
     public boolean isLocalAddress(InetAddress ipAddress) {
-        // TODO also checking if ipAddress === getSelfAddress() would seem to make sense here?
-        return ipAddress.equals(InetAddress.getLoopbackAddress());
+        return ipAddress.equals(InetAddress.getLoopbackAddress()) || ipAddress.equals(getSelfAddress());
     }
 
     private static String extractAddressFromAkka(String clusterMember) {
