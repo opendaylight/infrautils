@@ -64,10 +64,24 @@
               <version>${project.version}</version>
             </dependency>
 
-            <!-- Implementations, should not be used as dependencies in normal ODL OSGi bundles (because provided by Karaf), but used e.g. by simple distribution -->
+            <!-- Implementations are typically not used as dependencies in normal ODL OSGi bundles,
+                 because normal application code should only depend on api artifacts and never impl.
+                 (The impl are loaded by Karaf at run-time and register services implementing api.)
+                 However, at last some of the implementations are often used with <scope>test,
+                 and e.g. by simple distribution; we therefore list them here. -->
             <dependency>
               <groupId>org.opendaylight.infrautils</groupId>
               <artifactId>caches-standard-impl</artifactId>
+              <version>${project.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>${project.groupId}</groupId>
+              <artifactId>jobcoordinator-impl</artifactId>
+              <version>${project.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>${project.groupId}</groupId>
+              <artifactId>metrics-impl</artifactId>
               <version>${project.version}</version>
             </dependency>
 
