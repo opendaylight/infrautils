@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "47370401_5df68b2f",
+        "filename": "common/parent/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-09-24T15:49:04Z",
+      "side": 0,
+      "message": "instead of removing this, how would you feel about refining it to be e.g. \"[1.8.0,1.12.0)\" (assuming that Java 11 is \u00271.11.0\u0027 ?  Because that would really reflect what we are doing here - making sure that we can build infrautils on Java 8 \u0026 11 (right?)",
+      "revId": "79306c46ed8681012f0277992659d3aeaf4c5bb0",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
