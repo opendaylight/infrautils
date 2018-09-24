@@ -73,6 +73,30 @@
     },
     {
       "key": {
+        "uuid": "ab9fc7b1_0cbefa62",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ClusterMemberInfoProvider.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-09-24T08:27:30Z",
+      "side": 1,
+      "message": "\u003e other option is to declare throws Exception which isn\u0027t ideal either but you\u0027re doing that with the other interface so it would be consistent.\n\nyou mean the \"onSystemBootReady() throws Exception\" in https://git.opendaylight.org/gerrit/#/c/76364/ ? That\u0027s a a little different IMHO... that interface is implemented by many applications, and I want to take error handling offer their chest.  This interface is implemented by the platform, and only called by applications.\n\n\u003e That would at least tell users that an impl can throw exceptions and might not be able to obtain the self address\n\nIt\u0027s not an expected case, we can only really hit this if controller does not register this MBean, or renames an attribute in it.  That should \"never happen\". If it does, then things are so badly broken that a RuntimeException is OK IMHO.\n\n\u003e Either way it\u0027s not that big a deal - this won\u0027t be a widely used public interface anyway.\n\nOk, so... merge? ;-)  Or +1, ad give Faseela 48h, then I merge?",
+      "parentUuid": "ea716e2d_f886a95b",
+      "range": {
+        "startLine": 40,
+        "startChar": 22,
+        "endLine": 40,
+        "endChar": 43
+      },
+      "revId": "d94bdc71bfd819421fc2d457ad0e932b75e3c3bd",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c6e54257_2e4d1400",
         "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceMBeanImpl.java",
         "patchSetId": 3
