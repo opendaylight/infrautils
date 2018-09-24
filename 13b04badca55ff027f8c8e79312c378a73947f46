@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bb7f3e55_e221b646",
+        "filename": "ready/api/src/main/java/org/opendaylight/infrautils/ready/testutils/TestSystemReadyMonitor.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-09-24T13:01:06Z",
+      "side": 1,
+      "message": "What are all these comments and TODOs for? It seems like another enum was/is intended? Either way can we avoid introducing new code with TODOs?",
+      "revId": "13b04badca55ff027f8c8e79312c378a73947f46",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
