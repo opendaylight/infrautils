@@ -107,6 +107,8 @@ public class ClasspathHellDuplicatesCheckRule implements TestRule {
                 // super proper way to address this cleanly would be to make our own JAR for javax.annotation
                 // and have it contain ONLY what is not already in package javax.annotation in rt.jar.. but for now:
                 .filter(r -> !r.getName().equals("/javax/annotation/Resource$AuthenticationType.class"))
+                // Java 9 modules
+                .filter(r -> !r.getName().equals("/module-info.class"))
                 .collect(Collectors.toList());
     }
 
