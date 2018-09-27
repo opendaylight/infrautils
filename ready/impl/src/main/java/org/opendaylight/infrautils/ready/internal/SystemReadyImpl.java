@@ -92,7 +92,7 @@ public class SystemReadyImpl extends AbstractMXBean implements SystemReadyMonito
         try {
             // 5 minutes really ought to be enough for the whole circus to completely boot up?!
             testBundleDiag.checkBundleDiagInfos(5, TimeUnit.MINUTES, (timeInfo, bundleDiagInfos) ->
-                LOG.info("checkBundleDiagInfos: Elapsed time {}s, remaining time {}s, {}",
+                LOG.info("checkBundleDiagInfos: I'm giving her all she's got, Captain!\nElapsed time {}s, remaining time {}s, {}",
                     timeInfo.getElapsedTimeInMS() / 1000, timeInfo.getRemainingTimeInMS() / 1000,
                     // INFRAUTILS-17: getSummaryText() instead getFullDiagnosticText() because ppl found log confusing
                     bundleDiagInfos.getSummaryText()));
