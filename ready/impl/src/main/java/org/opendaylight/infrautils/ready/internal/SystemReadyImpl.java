@@ -11,6 +11,7 @@ import static org.opendaylight.infrautils.ready.SystemState.ACTIVE;
 import static org.opendaylight.infrautils.ready.SystemState.BOOTING;
 import static org.opendaylight.infrautils.ready.SystemState.FAILURE;
 
+import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Throwables;
 import java.util.Optional;
 import java.util.Queue;
@@ -34,7 +35,7 @@ import org.opendaylight.infrautils.ready.SystemReadyListener;
 import org.opendaylight.infrautils.ready.SystemReadyMonitor;
 import org.opendaylight.infrautils.ready.SystemState;
 import org.opendaylight.infrautils.utils.concurrent.ThreadFactoryProvider;
-import org.opendaylight.infrautils.utils.management.AbstractMXBean;
+import org.opendaylight.infrautils.utils.management.MXBeanSupport;
 import org.opendaylight.odlparent.bundlestest.lib.SystemStateFailureException;
 import org.opendaylight.odlparent.bundlestest.lib.TestBundleDiag;
 import org.osgi.framework.BundleContext;
@@ -49,12 +50,15 @@ import org.slf4j.LoggerFactory;
  */
 @Singleton
 @Service(classes = SystemReadyMonitor.class)
-public class SystemReadyImpl extends AbstractMXBean implements SystemReadyMonitor, Runnable {
+public class SystemReadyImpl implements SystemReadyMonitor, Runnable {
 
     private static final Logger LOG = LoggerFactory.getLogger(SystemReadyImpl.class);
 
     private static final String JMX_OBJECT_NAME = "SystemState";
     private static final String MBEAN_TYPE = "ready";
+
+    @VisibleForTesting
+    final MXBeanSupport mxSupport;
 
     private final Queue<SystemReadyListener> listeners = new ConcurrentLinkedQueue<>();
     private final AtomicReference<SystemState> currentSystemState = new AtomicReference<>(BOOTING);
@@ -70,8 +74,8 @@ public class SystemReadyImpl extends AbstractMXBean implements SystemReadyMonito
     @Inject
     public SystemReadyImpl(BundleContext bundleContext, @Reference BundleService bundleService)
             throws JMException {
-        super(JMX_OBJECT_NAME, MBEAN_TYPE, null);
-        super.registerMBean();
+        this.mxSupport = new MXBeanSupport(JMX_OBJECT_NAME, MBEAN_TYPE, null);
+        this.mxSupport.registerMBean();
         this.testBundleDiag = new TestBundleDiag(bundleContext, bundleService);
         LOG.info("Now starting to provide full system readiness status updates (see TestBundleDiag's logs)...");
     }
@@ -83,7 +87,7 @@ public class SystemReadyImpl extends AbstractMXBean implements SystemReadyMonito
 
     @PreDestroy
     public void stop() throws MalformedObjectNameException, InstanceNotFoundException, MBeanRegistrationException {
-        super.unregisterMBean();
+        this.mxSupport.unregisterMBean();
     }
 
     @Override

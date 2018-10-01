@@ -5,14 +5,13 @@
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html
  */
-package org.opendaylight.infrautils.ready.test;
+package org.opendaylight.infrautils.ready.internal;
 
 import javax.management.JMException;
 import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 import org.opendaylight.infrautils.ready.SystemState;
-import org.opendaylight.infrautils.ready.internal.SystemReadyImpl;
 import org.opendaylight.infrautils.testutils.LogRule;
 
 
@@ -30,6 +29,6 @@ public class SystemReadyTest {
         // Register the SystemState MBean
         SystemReadyImpl systemReady = new SystemReadyImpl(null, null);
         // Check if initial value of BOOTING is assigned after registration
-        Assert.assertEquals(SystemState.BOOTING.name(), systemReady.readMBeanAttribute("SystemState"));
+        Assert.assertEquals(SystemState.BOOTING.name(), systemReady.mxSupport.readMBeanAttribute("SystemState"));
     }
 }
