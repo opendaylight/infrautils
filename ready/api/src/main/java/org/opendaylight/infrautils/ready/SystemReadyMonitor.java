@@ -24,12 +24,10 @@ import javax.annotation.concurrent.ThreadSafe;
  */
 @ThreadSafe
 public interface SystemReadyMonitor extends SystemReadyMonitorMXBean {
+
     /**
      * Allows components to register a listener which will be notified when the
      * system ready state is changing.
      */
     void registerListener(SystemReadyListener listener);
-
-    // TODO perhaps later move this to EventBus from https://git.opendaylight.org/gerrit/#/c/55852/
-
 }
