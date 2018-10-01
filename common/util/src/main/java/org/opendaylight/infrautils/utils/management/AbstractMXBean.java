@@ -81,7 +81,7 @@ public abstract class AbstractMXBean {
      *
      * @return true is successfully registered, false otherwise.
      */
-    protected final boolean registerMBean() {
+    public final boolean registerMBean() {
         @Var boolean registered = false;
         try {
             // Object to identify MBean
@@ -119,7 +119,7 @@ public abstract class AbstractMXBean {
      *
      * @return true is successfully unregistered, false otherwise.
      */
-    protected boolean unregisterMBean() {
+    public boolean unregisterMBean() {
         @Var boolean unregister = false;
         try {
             ObjectName mbeanobjectname = this.getMBeanObjectName();
