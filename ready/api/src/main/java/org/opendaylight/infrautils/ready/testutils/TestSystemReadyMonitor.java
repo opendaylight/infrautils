@@ -36,20 +36,6 @@ public class TestSystemReadyMonitor implements SystemReadyMonitor {
          * {@link SystemReadyListener#onSystemBootReady} invoked.
          */
         IMMEDIATE
-
-        /* TODO add * to make this JavaDoc
-         * The system state is initially BOOTING, there are never any failures, and
-         * any {@link SystemReadyListener} registrations get their
-         * {@link SystemReadyListener#onSystemBootReady} invoked when the test
-         * explicitly invokes the {@link #ready()} method, after which the
-         * system state turns to ACTIVE.
-          */
-        // TODO EXPLICIT
-        /* Must upstream the ReadyWiring, PostFullSystemInjectionListener, SystemReadyBaseImpl stuff
-         * from https://github.com/vorburger/opendaylight-simple/ - that's provides the EXPLICIT,
-         * which is the equivalent to this for Guice environments like component tests, or
-         * even light standalone (non-test) environments.
-         */
     }
 
     private final Behaviour behaviour;
