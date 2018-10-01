@@ -11,6 +11,7 @@ import static org.opendaylight.infrautils.ready.SystemState.ACTIVE;
 import static org.opendaylight.infrautils.ready.SystemState.BOOTING;
 import static org.opendaylight.infrautils.ready.SystemState.FAILURE;
 
+import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Throwables;
 import java.util.Optional;
 import java.util.Queue;
@@ -26,15 +27,14 @@ import javax.management.InstanceNotFoundException;
 import javax.management.JMException;
 import javax.management.MBeanRegistrationException;
 import javax.management.MalformedObjectNameException;
-
 import org.apache.aries.blueprint.annotation.service.Reference;
 import org.apache.aries.blueprint.annotation.service.Service;
 import org.apache.karaf.bundle.core.BundleService;
 import org.opendaylight.infrautils.ready.SystemReadyListener;
 import org.opendaylight.infrautils.ready.SystemReadyMonitor;
 import org.opendaylight.infrautils.ready.SystemState;
+import org.opendaylight.infrautils.ready.spi.SystemReadyMonitorMXBeanImpl;
 import org.opendaylight.infrautils.utils.concurrent.ThreadFactoryProvider;
-import org.opendaylight.infrautils.utils.management.AbstractMXBean;
 import org.opendaylight.odlparent.bundlestest.lib.SystemStateFailureException;
 import org.opendaylight.odlparent.bundlestest.lib.TestBundleDiag;
 import org.osgi.framework.BundleContext;
@@ -49,12 +49,9 @@ import org.slf4j.LoggerFactory;
  */
 @Singleton
 @Service(classes = SystemReadyMonitor.class)
-public class KarafSystemReadyImpl extends AbstractMXBean implements SystemReadyMonitor, Runnable {
+public class KarafSystemReadyImpl implements SystemReadyMonitor, Runnable {
 
     private static final Logger LOG = LoggerFactory.getLogger(KarafSystemReadyImpl.class);
-
-    private static final String JMX_OBJECT_NAME = "SystemState";
-    private static final String MBEAN_TYPE = "ready";
 
     private final Queue<SystemReadyListener> listeners = new ConcurrentLinkedQueue<>();
     private final AtomicReference<SystemState> currentSystemState = new AtomicReference<>(BOOTING);
@@ -67,11 +64,14 @@ public class KarafSystemReadyImpl extends AbstractMXBean implements SystemReadyM
 
     private final TestBundleDiag testBundleDiag;
 
+    @VisibleForTesting
+    final SystemReadyMonitorMXBeanImpl mbean;
+
     @Inject
     public KarafSystemReadyImpl(BundleContext bundleContext, @Reference BundleService bundleService)
             throws JMException {
-        super(JMX_OBJECT_NAME, MBEAN_TYPE, null);
-        super.registerMBean();
+        this.mbean = new SystemReadyMonitorMXBeanImpl(this);
+        this.mbean.registerMBean();
         this.testBundleDiag = new TestBundleDiag(bundleContext, bundleService);
         LOG.info("Now starting to provide full system readiness status updates (see TestBundleDiag's logs)...");
     }
@@ -83,7 +83,7 @@ public class KarafSystemReadyImpl extends AbstractMXBean implements SystemReadyM
 
     @PreDestroy
     public void stop() throws MalformedObjectNameException, InstanceNotFoundException, MBeanRegistrationException {
-        super.unregisterMBean();
+        this.mbean.unregisterMBean();
     }
 
     @Override
