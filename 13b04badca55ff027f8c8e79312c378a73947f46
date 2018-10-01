@@ -16,6 +16,24 @@
       "revId": "13b04badca55ff027f8c8e79312c378a73947f46",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6fbc0d2e_1afc6983",
+        "filename": "ready/api/src/main/java/org/opendaylight/infrautils/ready/testutils/TestSystemReadyMonitor.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-10-01T12:25:48Z",
+      "side": 1,
+      "message": "Agreed \u0026 thanks for the reminder; I\u0027ve removed this in https://git.opendaylight.org/gerrit/#/c/76532/",
+      "parentUuid": "bb7f3e55_e221b646",
+      "revId": "13b04badca55ff027f8c8e79312c378a73947f46",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
