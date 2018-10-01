@@ -42,16 +42,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Implementation of the "system ready" service.
+ * Implementation of the "system ready" service for an OSGi Karaf environment.
  *
  * @author Michael Vorburger.ch
  * @author Faseela K
  */
 @Singleton
 @Service(classes = SystemReadyMonitor.class)
-public class SystemReadyImpl extends AbstractMXBean implements SystemReadyMonitor, Runnable {
+public class KarafSystemReadyImpl extends AbstractMXBean implements SystemReadyMonitor, Runnable {
 
-    private static final Logger LOG = LoggerFactory.getLogger(SystemReadyImpl.class);
+    private static final Logger LOG = LoggerFactory.getLogger(KarafSystemReadyImpl.class);
 
     private static final String JMX_OBJECT_NAME = "SystemState";
     private static final String MBEAN_TYPE = "ready";
@@ -68,7 +68,7 @@ public class SystemReadyImpl extends AbstractMXBean implements SystemReadyMonito
     private final TestBundleDiag testBundleDiag;
 
     @Inject
-    public SystemReadyImpl(BundleContext bundleContext, @Reference BundleService bundleService)
+    public KarafSystemReadyImpl(BundleContext bundleContext, @Reference BundleService bundleService)
             throws JMException {
         super(JMX_OBJECT_NAME, MBEAN_TYPE, null);
         super.registerMBean();
