@@ -14,6 +14,7 @@ import static org.mockito.Mockito.mock;
 import com.google.common.net.InetAddresses;
 import java.net.InetAddress;
 import java.util.List;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.opendaylight.infrautils.diagstatus.ClusterMemberInfo;
 import org.opendaylight.infrautils.diagstatus.DiagStatusService;
@@ -30,6 +31,7 @@ import org.opendaylight.infrautils.ready.testutils.TestSystemReadyMonitor.Behavi
 public class DiagStatusCommandTest {
 
     @Test
+    @Ignore // TODO INFRAUTILS-56
     public void testGetRemoteStatusSummary_IPv4() throws Exception {
         checkGetRemoteStatusSummary(InetAddresses.forString("127.0.0.1"));
     }
