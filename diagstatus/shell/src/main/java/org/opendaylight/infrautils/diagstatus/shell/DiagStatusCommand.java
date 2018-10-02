@@ -9,9 +9,8 @@ package org.opendaylight.infrautils.diagstatus.shell;
 
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Strings;
+import java.io.PrintStream;
 import java.util.List;
-import javax.annotation.Nullable;
-import org.apache.karaf.shell.api.action.Action;
 import org.apache.karaf.shell.api.action.Command;
 import org.apache.karaf.shell.api.action.Option;
 import org.apache.karaf.shell.api.action.lifecycle.Reference;
@@ -19,6 +18,7 @@ import org.apache.karaf.shell.api.action.lifecycle.Service;
 import org.opendaylight.infrautils.diagstatus.ClusterMemberInfo;
 import org.opendaylight.infrautils.diagstatus.DiagStatusServiceMBean;
 import org.opendaylight.infrautils.diagstatus.MBeanUtils;
+import org.opendaylight.infrautils.shell.LoggingAction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,9 +27,9 @@ import org.slf4j.LoggerFactory;
  *
  * @author Faseela K
  */
-@Command(scope = "diagstatus", name = "showSvcStatus", description = "show the status of registered services")
 @Service
-public class DiagStatusCommand implements Action {
+@Command(scope = "diagstatus", name = "showSvcStatus", description = "show the status of registered services")
+public class DiagStatusCommand extends LoggingAction {
 
     private static final Logger LOG = LoggerFactory.getLogger(DiagStatusCommand.class);
 
@@ -43,9 +43,8 @@ public class DiagStatusCommand implements Action {
     String nip;
 
     @Override
-    @Nullable
-    @SuppressWarnings({"checkstyle:IllegalCatch", "checkstyle:RegexpSinglelineJava"})
-    public Object execute() throws Exception {
+    @SuppressWarnings({"checkstyle:IllegalCatch"})
+    protected void run(PrintStream ps) throws Exception {
         StringBuilder strBuilder = new StringBuilder();
         strBuilder.append("Timestamp: ").append(new java.util.Date().toString()).append("\n");
 
@@ -75,8 +74,7 @@ public class DiagStatusCommand implements Action {
             }
         }
 
-        System.out.println(strBuilder.toString());
-        return null;
+        ps.println(strBuilder.toString());
     }
 
     private String getLocalStatusSummary(String localIPAddress) {
