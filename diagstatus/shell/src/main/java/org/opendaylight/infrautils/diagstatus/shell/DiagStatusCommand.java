@@ -44,7 +44,21 @@ public class DiagStatusCommand implements Action {
     @Override
     @Nullable
     @SuppressWarnings({"checkstyle:IllegalCatch", "checkstyle:RegexpSinglelineJava"})
-    public Object execute() throws Exception {
+    public Object execute() {
+        System.out.println("yolo...");
+        try {
+            return execute2();
+        } catch (Throwable e) {
+            LOG.error("FAILED!", e);
+            System.out.println("FAILED: " + e.toString());
+            e.printStackTrace(System.out);
+            return null;
+        }
+    }
+
+    @Nullable
+    @SuppressWarnings({"checkstyle:IllegalCatch", "checkstyle:RegexpSinglelineJava"})
+    private Object execute2() throws Exception {
         StringBuilder strBuilder = new StringBuilder();
         strBuilder.append("Timestamp: ").append(new java.util.Date().toString()).append("\n");
 
