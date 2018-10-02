@@ -7,7 +7,6 @@
  */
 package org.opendaylight.infrautils.diagstatus;
 
-import java.net.InetAddress;
 import java.util.List;
 
 /**
@@ -23,8 +22,5 @@ public interface ClusterMemberInfo {
 
     List<String> getClusterMembers();
 
-    default boolean isLocalAddress(String ipAddress) {
-        // TODO also checking if ipAddress === getSelfAddress() would seem to make sense here?
-        return ipAddress.equals(InetAddress.getLoopbackAddress().getHostAddress());
-    }
+    boolean isLocalAddress(String ipAddress);
 }

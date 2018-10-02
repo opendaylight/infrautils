@@ -9,6 +9,7 @@ package org.opendaylight.infrautils.diagstatus.internal;
 
 import static java.util.Objects.requireNonNull;
 
+import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -71,6 +72,12 @@ public class ClusterMemberInfoImpl implements ClusterMemberInfo {
             }
         }
         return clusterIPAddresses;
+    }
+
+    @Override
+    public boolean isLocalAddress(String ipAddress) {
+        // TODO also checking if ipAddress === getSelfAddress() would seem to make sense here?
+        return ipAddress.equals(InetAddress.getLoopbackAddress().getHostAddress());
     }
 
     private static String extractAddressFromAkka(String clusterMember) {
