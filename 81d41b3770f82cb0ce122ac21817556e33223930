@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a940ea25_6311413b",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/KarafSystemReadyImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 8144
+      },
+      "writtenOn": "2018-10-02T10:13:51Z",
+      "side": 1,
+      "message": "Just blind idea: should not be changed to: @Service(classes \u003d SystemReadyImpl.class)?\n\nBTW: there are some blueprints errors in Jenkins build logs.",
+      "revId": "81d41b3770f82cb0ce122ac21817556e33223930",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
