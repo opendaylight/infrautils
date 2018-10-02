@@ -49,6 +49,11 @@ public class DiagStatusCommandTest {
             public List<String> getClusterMembers() {
                 return emptyList();
             }
+
+            @Override
+            public boolean isLocalAddress(String isLocalIpAddress) {
+                return ipAddress.equals(isLocalIpAddress);
+            }
         };
         try (DiagStatusServiceMBeanImpl diagStatusServiceMBeanImpl =
                 new DiagStatusServiceMBeanImpl(diagStatusService, systemReadyMonitor, clusterMemberInfo)) {
