@@ -20,8 +20,9 @@
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.karaf.shell</groupId>
-            <artifactId>org.apache.karaf.shell.core</artifactId>
+            <groupId>org.opendaylight.infrautils</groupId>
+            <artifactId>shell</artifactId>
+            <version>${project.version}</version>
         </dependency>
 
         <dependency>
