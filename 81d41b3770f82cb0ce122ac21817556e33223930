@@ -16,6 +16,24 @@
       "revId": "81d41b3770f82cb0ce122ac21817556e33223930",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c95db0ca_7869f44f",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/KarafSystemReadyImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-10-02T17:23:45Z",
+      "side": 1,
+      "message": "\u003e Just blind idea: should not be changed to: @Service(classes \u003d SystemReadyImpl.class)?\n\nno I don\u0027t think so - the Service interface which this bean needs to be registered under in the OSGi service registry is still SystemReady ... it just so happens, with this change, that it now extends SystemReadyImpl - but that\u0027s an \"internal implementation detail change\".\n\n\u003e BTW: there are some blueprints errors in Jenkins build logs.\n\nI\u0027ve been trying to find them, but could not - if you have a direct link to what you found, that would be cool!",
+      "parentUuid": "a940ea25_6311413b",
+      "revId": "81d41b3770f82cb0ce122ac21817556e33223930",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
