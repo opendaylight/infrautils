@@ -16,6 +16,24 @@
       "revId": "4916027a74be22381791980a6c85ebc146d7a13c",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8ffd9107_ad846f5f",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/MetricProviderImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-10-03T10:03:25Z",
+      "side": 1,
+      "message": "used in https://github.com/vorburger/opendaylight-etcd/blob/d1931965d5af52782d03ee03177c2ae92953f158/demo/src/main/java/org/opendaylight/etcd/demo/PerformanceMain.java#L78\n\nPS: See also https://github.com/vorburger/opendaylight-etcd/pull/3 which is waiting for this...",
+      "parentUuid": "36fe5804_99fe5dc7",
+      "revId": "4916027a74be22381791980a6c85ebc146d7a13c",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
