@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aaeadf99_7da921a9",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusCommand.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-10-03T00:58:59Z",
+      "side": 1,
+      "message": "Have u checked whether grep works on the output of the karaf cli command with ps.println()? Don\u0027t remember exactly but there was a bug before that grep works only on some of them, due to which testers were finding it difficult for validation on some of the karaf commands",
+      "revId": "6cdbeb6e3c7c25c1c0708b58c1fd7fcbdde088e6",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
