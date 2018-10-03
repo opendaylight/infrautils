@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "36fe5804_99fe5dc7",
+        "filename": "metrics/impl/src/main/java/org/opendaylight/infrautils/metrics/internal/MetricProviderImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-10-03T02:01:30Z",
+      "side": 1,
+      "message": "Why was this added? I don\u0027t see it used anywhere in this patch.",
+      "revId": "4916027a74be22381791980a6c85ebc146d7a13c",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
