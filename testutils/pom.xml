@@ -68,9 +68,9 @@
       <scope>compile</scope>
     </dependency>
     <dependency>
-      <groupId>org.jhades</groupId>
-      <artifactId>jhades</artifactId>
-      <version>1.0.4</version>
+      <groupId>io.github.classgraph</groupId>
+      <artifactId>classgraph</artifactId>
+      <version>4.2.6</version>
     </dependency>
   </dependencies>
 </project>
