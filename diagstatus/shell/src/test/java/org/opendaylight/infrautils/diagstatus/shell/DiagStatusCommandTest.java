@@ -8,16 +8,15 @@
 package org.opendaylight.infrautils.diagstatus.shell;
 
 import static com.google.common.truth.Truth.assertThat;
-import static java.util.Collections.emptyList;
 import static org.mockito.Mockito.mock;
 
 import com.google.common.net.InetAddresses;
 import java.net.InetAddress;
-import java.util.List;
 import org.junit.Test;
 import org.opendaylight.infrautils.diagstatus.ClusterMemberInfo;
 import org.opendaylight.infrautils.diagstatus.DiagStatusService;
 import org.opendaylight.infrautils.diagstatus.internal.DiagStatusServiceMBeanImpl;
+import org.opendaylight.infrautils.diagstatus.spi.NoClusterMemberInfo;
 import org.opendaylight.infrautils.ready.SystemReadyMonitor;
 import org.opendaylight.infrautils.ready.testutils.TestSystemReadyMonitor;
 import org.opendaylight.infrautils.ready.testutils.TestSystemReadyMonitor.Behaviour;
@@ -42,22 +41,7 @@ public class DiagStatusCommandTest {
     private static void checkGetRemoteStatusSummary(InetAddress inetAddress) throws Exception {
         DiagStatusService diagStatusService = mock(DiagStatusService.class);
         SystemReadyMonitor systemReadyMonitor = new TestSystemReadyMonitor(Behaviour.IMMEDIATE);
-        ClusterMemberInfo clusterMemberInfo = new ClusterMemberInfo() {
-            @Override
-            public InetAddress getSelfAddress() {
-                return inetAddress;
-            }
-
-            @Override
-            public List<InetAddress> getClusterMembers() {
-                return emptyList();
-            }
-
-            @Override
-            public boolean isLocalAddress(InetAddress isLocalIpAddress) {
-                return inetAddress.equals(isLocalIpAddress);
-            }
-        };
+        ClusterMemberInfo clusterMemberInfo = new NoClusterMemberInfo(inetAddress);
         try (DiagStatusServiceMBeanImpl diagStatusServiceMBeanImpl =
                 new DiagStatusServiceMBeanImpl(diagStatusService, systemReadyMonitor, clusterMemberInfo)) {
             assertThat(DiagStatusCommand.getRemoteStatusSummary(inetAddress)).contains(inetAddress.toString());
