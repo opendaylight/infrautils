@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2e6d5412_5c2451e4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-10-09T22:20:37Z",
+      "side": 1,
+      "message": "specifically in https://github.com/vorburger/opendaylight-simple/pull/39",
+      "revId": "7d56ed2a11e3cdd90e961ba0d9c3c7d3d1e2966e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
