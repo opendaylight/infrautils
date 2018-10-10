@@ -70,6 +70,24 @@
       "revId": "705551c3dcbd0e085c6ebf073ff9db648cbbc2c4",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "71126d9b_549c7d4b",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/KarafSystemReadyImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2018-10-10T15:26:11Z",
+      "side": 1,
+      "message": "Yeah, and strictly speaking we should have OSGi/Karaf stuff separated into separate artifacts, so others don\u0027t have to lug those classes on the classpath.",
+      "parentUuid": "ef540492_d392fada",
+      "revId": "705551c3dcbd0e085c6ebf073ff9db648cbbc2c4",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
