@@ -76,9 +76,7 @@ public class SimpleSystemReadyMonitor implements SystemReadyMonitor {
         SystemReadyListener[] toNotify;
         synchronized (listeners) {
             toNotify = listeners.toArray(new SystemReadyListener[listeners.size()]);
-            currentSystemState.set(ACTIVE);
         }
-        LOG.info("System ready; AKA: Aye captain, all warp coils are now operating at peak efficiency! [M.]");
 
         if (toNotify.length > 0) {
             LOG.info("Now notifying all its registered SystemReadyListeners...");
@@ -95,6 +93,9 @@ public class SimpleSystemReadyMonitor implements SystemReadyMonitor {
             setSystemFailureCause(e);
             // intentionally *NOT* re-throwing
         }
+
+        LOG.info("System ready; AKA: Aye captain, all warp coils are now operating at peak efficiency! [M.]");
+        currentSystemState.set(ACTIVE);
     }
 
     protected void setSystemState(SystemState state) {
