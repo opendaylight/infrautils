@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "9f0f4547_3fa1e7e9",
+        "filename": "ready/api/src/main/java/org/opendaylight/infrautils/ready/spi/SystemReadyMonitorMXBeanImpl.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-10-10T16:46:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "36f6676e_1a825abb",
+      "revId": "b53acd877f55d7735f4e2984a6fd078857cfcc1b",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "24402575_b3fc771d",
         "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/KarafSystemReadyImpl.java",
         "patchSetId": 6
