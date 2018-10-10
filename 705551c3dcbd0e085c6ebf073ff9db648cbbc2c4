@@ -16,6 +16,24 @@
       "revId": "705551c3dcbd0e085c6ebf073ff9db648cbbc2c4",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d8456609_007bd003",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/KarafSystemReadyImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-10-10T13:15:32Z",
+      "side": 1,
+      "message": "Also drop the Impl suffix.",
+      "parentUuid": "aebdec06_a59bf873",
+      "revId": "705551c3dcbd0e085c6ebf073ff9db648cbbc2c4",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
