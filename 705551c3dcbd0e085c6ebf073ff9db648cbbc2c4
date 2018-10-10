@@ -52,6 +52,24 @@
       "revId": "705551c3dcbd0e085c6ebf073ff9db648cbbc2c4",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ef540492_d392fada",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/KarafSystemReadyImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2018-10-10T15:25:11Z",
+      "side": 1,
+      "message": "If it is Karaf-specific, I\u0027d say ready.internal.karaf.KarafSystemReady. \"Impl\" should be used as a qualifier of last resort only :)",
+      "parentUuid": "9ade43c9_7b9eb152",
+      "revId": "705551c3dcbd0e085c6ebf073ff9db648cbbc2c4",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
