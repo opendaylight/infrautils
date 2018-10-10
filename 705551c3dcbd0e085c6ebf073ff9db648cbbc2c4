@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aebdec06_a59bf873",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/KarafSystemReadyImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-10-10T13:04:51Z",
+      "side": 1,
+      "message": "minor thing - how about OSGiSystemReadyImpl? Also put this in an osgi sub-package? This has been the pattern in other places.",
+      "revId": "705551c3dcbd0e085c6ebf073ff9db648cbbc2c4",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
