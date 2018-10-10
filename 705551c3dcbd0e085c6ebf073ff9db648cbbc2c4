@@ -34,6 +34,24 @@
       "revId": "705551c3dcbd0e085c6ebf073ff9db648cbbc2c4",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ade43c9_7b9eb152",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/KarafSystemReadyImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-10-10T14:39:21Z",
+      "side": 1,
+      "message": "Funny you mention that, because locally I initially actually had it named OSGiSystemReadyImpl and then renamed it, because, technically, this being based on odlparent.bundlestest.lib which internally uses Karaf specific API to get Blueprint status, this reports Karaf specific readyness.  If were were to run, say, hypothetically, an ODL on pure Felix without Karaf, then this Impl would be no good.  I\u0027m still happy to rename it if you like though - which name do you prefer?  Also happy to change the change, but if we leave it like this, what do you want the package to be named, .osgi.internal or .karaf.internal?",
+      "parentUuid": "d8456609_007bd003",
+      "revId": "705551c3dcbd0e085c6ebf073ff9db648cbbc2c4",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
