@@ -88,20 +88,12 @@ public class SimpleSystemReadyMonitor implements SystemReadyMonitor {
             for (SystemReadyListener element : toNotify) {
                 element.onSystemBootReady();
             }
-        } catch (RuntimeException throwable) {
-            // It's exceptionally OK to catch RuntimeException here,
-            // because we do want to set the currentFullSystemStatus
-            LOG.error("Boot failed; not all SystemReadyListeners were not called, SystemState FAILURE", throwable);
-            setSystemState(FAILURE);
-            setSystemFailureCause(throwable);
-            // and now we do re-throw it!
-            throw throwable;
-        } catch (Exception e) {
-            LOG.error("SystemReadyListener.onSystemBootReady() threw Exception; "
-                    + "other SystemReadyListeners not called; SystemState FAILURE", e);
+        } catch (Exception e) { // this, intentionally, also catches any RuntimeException
+            LOG.error("Boot failed; a SystemReadyListener.onSystemBootReady() threw an Exception; "
+                    + "other registered SystemReadyListeners were not called; SystemState FAILURE", e);
             setSystemState(FAILURE);
             setSystemFailureCause(e);
-            // really no point in re-throwing it
+            // intentionally *NOT* re-throwing
         }
     }
 
