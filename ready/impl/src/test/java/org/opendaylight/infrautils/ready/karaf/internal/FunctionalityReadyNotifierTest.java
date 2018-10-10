@@ -5,7 +5,7 @@
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html
  */
-package org.opendaylight.infrautils.ready.tests;
+package org.opendaylight.infrautils.ready.karaf.internal;
 
 import static com.google.common.truth.Truth.assertThat;
 import static org.mockito.Matchers.any;
@@ -14,7 +14,6 @@ import static org.mockito.Mockito.when;
 
 import java.util.Dictionary;
 import org.junit.Test;
-import org.opendaylight.infrautils.ready.internal.FunctionalityReadyNotifierImpl;
 import org.opendaylight.infrautils.ready.order.FunctionalityReady;
 import org.opendaylight.infrautils.ready.order.FunctionalityReadyNotifier;
 import org.opendaylight.infrautils.ready.order.FunctionalityReadyRegistration;
