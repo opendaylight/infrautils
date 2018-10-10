@@ -88,6 +88,24 @@
       "revId": "705551c3dcbd0e085c6ebf073ff9db648cbbc2c4",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f73aa53d_1f829cdc",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/KarafSystemReadyImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-10-10T16:11:54Z",
+      "side": 1,
+      "message": "I\u0027m onboard with avoiding *Impl; will do.  I do like packages ending in internal because maven-bundle-plugin then makes them package private, so would ready.karaf.internal.KarafSystemReady work both for both of you?",
+      "parentUuid": "71126d9b_549c7d4b",
+      "revId": "705551c3dcbd0e085c6ebf073ff9db648cbbc2c4",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
