@@ -106,6 +106,24 @@
       "revId": "705551c3dcbd0e085c6ebf073ff9db648cbbc2c4",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "33f2a245_e2d05914",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/internal/KarafSystemReadyImpl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-10-10T16:46:40Z",
+      "side": 1,
+      "message": "I really struggled (but honestly I tried!) to do there and keep the 2 follow-up changes aligned in a sane way (and I also really need al this to finally go in; as it\u0027s now blocking me in https://github.com/vorburger/opendaylight-simple/pull/19), so hopefully you\u0027re OK to merge this as-is and accept the follow-up in https://git.opendaylight.org/gerrit/#/c/76827/ based on the discussion here.",
+      "parentUuid": "f73aa53d_1f829cdc",
+      "revId": "705551c3dcbd0e085c6ebf073ff9db648cbbc2c4",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
