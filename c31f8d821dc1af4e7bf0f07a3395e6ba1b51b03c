@@ -16,6 +16,24 @@
       "revId": "c31f8d821dc1af4e7bf0f07a3395e6ba1b51b03c",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e90d127c_e8b1cc73",
+        "filename": "ready/api/src/main/java/org/opendaylight/infrautils/ready/spi/SystemReadyImpl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-10-10T16:46:53Z",
+      "side": 1,
+      "message": "Done, now \"SimpleSystemReadyMonitor\" - without Impl; you wrote \"something other than *Impl\" and then proposed \"SimpleSystemReadyImpl\" ... ;-)",
+      "parentUuid": "292101b8_ae93d577",
+      "revId": "c31f8d821dc1af4e7bf0f07a3395e6ba1b51b03c",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
