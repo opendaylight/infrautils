@@ -5,7 +5,7 @@
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html
  */
-package org.opendaylight.infrautils.ready.internal;
+package org.opendaylight.infrautils.ready.karaf.internal;
 
 import static org.opendaylight.infrautils.ready.SystemState.FAILURE;
 
@@ -34,16 +34,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * {@link SystemReadyMonitor} implementation for an OSGi Karaf environment.
+ * {@link SystemReadyMonitor} implementation for an OSGi Karaf environment. This
+ * relies on odlparent.bundlestest.lib, which internally uses Karaf specific API
+ * to get Blueprint status, in addition to basic OSGi bundle status.
  *
  * @author Michael Vorburger.ch
  * @author Faseela K
  */
 @Singleton
 @Service(classes = SystemReadyMonitor.class)
-public class KarafSystemReadyImpl extends SimpleSystemReadyMonitor implements Runnable {
+public class KarafSystemReady extends SimpleSystemReadyMonitor implements Runnable {
 
-    private static final Logger LOG = LoggerFactory.getLogger(KarafSystemReadyImpl.class);
+    private static final Logger LOG = LoggerFactory.getLogger(KarafSystemReady.class);
 
     private final ThreadFactory threadFactory = ThreadFactoryProvider.builder()
                                                     .namePrefix("SystemReadyService")
@@ -55,7 +57,7 @@ public class KarafSystemReadyImpl extends SimpleSystemReadyMonitor implements Ru
     private final DelegatingSystemReadyMonitorMXBean mbean;
 
     @Inject
-    public KarafSystemReadyImpl(BundleContext bundleContext, @Reference BundleService bundleService)
+    public KarafSystemReady(BundleContext bundleContext, @Reference BundleService bundleService)
             throws JMException {
         this.mbean = new DelegatingSystemReadyMonitorMXBean(this);
         this.mbean.registerMBean();

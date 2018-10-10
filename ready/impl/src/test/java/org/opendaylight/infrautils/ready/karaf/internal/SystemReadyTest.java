@@ -5,7 +5,7 @@
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html
  */
-package org.opendaylight.infrautils.ready.internal;
+package org.opendaylight.infrautils.ready.karaf.internal;
 
 import javax.management.JMException;
 import org.junit.Assert;
@@ -26,7 +26,7 @@ public class SystemReadyTest {
     @Test
     public void testMbeanRegistration() throws JMException {
         // Register the SystemState MBean
-        KarafSystemReadyImpl systemReady = new KarafSystemReadyImpl(null, null);
+        KarafSystemReady systemReady = new KarafSystemReady(null, null);
 
         // Check via strong interface if initial value of BOOTING is assigned
         Assert.assertEquals(SystemState.BOOTING, systemReady.getSystemState());
