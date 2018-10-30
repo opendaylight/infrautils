@@ -29,7 +29,6 @@
         <module>artifacts</module>
         <module>util</module>
         <module>features</module>
-        <module>findbugs</module>
         <module>parent</module>
     </modules>
 
