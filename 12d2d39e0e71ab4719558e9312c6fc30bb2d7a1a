@@ -34,6 +34,24 @@
       "revId": "12d2d39e0e71ab4719558e9312c6fc30bb2d7a1a",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b1b1d13d_6416f0fb",
+        "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/ClasspathHellDuplicatesChecker.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-10-31T12:25:57Z",
+      "side": 1,
+      "message": "FTR: Background in https://git.opendaylight.org/gerrit/#/c/77376/ ...",
+      "parentUuid": "29c513bf_33ad920e",
+      "revId": "12d2d39e0e71ab4719558e9312c6fc30bb2d7a1a",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
