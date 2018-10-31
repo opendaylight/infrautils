@@ -76,7 +76,7 @@ public class ClasspathHellDuplicatesCheckRule implements TestRule {
                 .filter(classpathResource -> !classpathResource.getName().endsWith("/readme.html"))
                 .filter(classpathResource -> !classpathResource.getName().endsWith("/META-INF/NOTICE"))
                 .filter(classpathResource -> !classpathResource.getName().endsWith("/META-INF/LICENSE"))
-                .filter(classpathResource -> !classpathResource.getName().contains("/META-INF/services"))
+                .filter(classpathResource -> !classpathResource.getName().contains("META-INF/services"))
                 .filter(classpathResource -> !classpathResource.getName().endsWith("/META-INF/DEPENDENCIES"))
                 .filter(classpathResource -> !classpathResource.getName().endsWith("/META-INF/git.properties"))
                 .filter(classpathResource -> !classpathResource.getName().endsWith(".txt"))
