@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "39022826_d8fbef09",
+        "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/ClasspathHellDuplicatesCheckRule.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-10-31T11:09:07Z",
+      "side": 1,
+      "message": "I\u0027m not really clear on exactly how/why this fixes the problem hit in https://git.opendaylight.org/gerrit/#/c/77273/, because it seems inconsistent that /services resources contain META-INF/ but not /META-INF/ given that all others here are /MET-INF, but if you say it does, as this seems \"backwards compatible\" (it just loosens the criteria, so shouldn\u0027t break anything), I\u0027m fine with getting this in.  This is being completely changed in https://git.opendaylight.org/gerrit/#/c/76625/, anyway.",
+      "revId": "63b811eacf809a44269f686f4ef52402efa69e61",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
