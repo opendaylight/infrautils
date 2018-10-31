@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "09506cc0_5892b3b2",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobCoordinatorImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 448,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-10-31T15:33:42Z",
+      "side": 0,
+      "message": "could u please explain why this is useless? :)",
+      "revId": "e533db5a862f091c7c85a483c5f34760ed498682",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
