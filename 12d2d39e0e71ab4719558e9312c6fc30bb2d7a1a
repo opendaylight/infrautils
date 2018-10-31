@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6dae85fd_5843d5d7",
+        "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/ClasspathHellDuplicatesChecker.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 4540
+      },
+      "writtenOn": "2018-10-31T12:02:24Z",
+      "side": 1,
+      "message": "This test needs to be\n\n    resourcePath.contains(\"META-INF/services\")",
+      "revId": "12d2d39e0e71ab4719558e9312c6fc30bb2d7a1a",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
