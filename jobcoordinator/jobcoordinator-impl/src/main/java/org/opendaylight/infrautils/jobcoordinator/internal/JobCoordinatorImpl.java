@@ -44,6 +44,7 @@ import org.opendaylight.infrautils.jobcoordinator.RollbackCallable;
 import org.opendaylight.infrautils.metrics.Counter;
 import org.opendaylight.infrautils.metrics.Meter;
 import org.opendaylight.infrautils.metrics.MetricProvider;
+import org.opendaylight.infrautils.utils.ClassLoaders;
 import org.opendaylight.infrautils.utils.concurrent.JdkFutures;
 import org.opendaylight.infrautils.utils.concurrent.LoggingThreadUncaughtExceptionHandler;
 import org.opendaylight.infrautils.utils.concurrent.LoggingUncaughtThreadDeathContextRunnable;
@@ -150,7 +151,8 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
     @Override
     public void enqueueJob(String key, Callable<List<ListenableFuture<Void>>> mainWorker,
             @Nullable RollbackCallable rollbackWorker, int maxRetries) {
-        JobEntry jobEntry = new JobEntry(key, mainWorker, rollbackWorker, maxRetries);
+        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+        JobEntry jobEntry = new JobEntry(key, mainWorker, rollbackWorker, maxRetries, classLoader);
         JobQueue jobQueue = jobQueueMap.computeIfAbsent(key, mapKey -> new JobQueue());
         jobQueue.addEntry(jobEntry);
 
@@ -222,9 +224,9 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
         }
     }
 
-    private boolean executeTask(Runnable task) {
+    private boolean executeTask(Runnable task, ClassLoader classLoader) {
         try {
-            fjPool.execute(task);
+            fjPool.execute(ClassLoaders.wrap(task, classLoader));
             return true;
         } catch (RejectedExecutionException e) {
             if (!fjPool.isShutdown()) {
@@ -304,7 +306,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
                 long waitTime = RETRY_WAIT_BASE_TIME_MILLIS / retryCount;
                 Futures.addCallback(JdkFutures.toListenableFuture(scheduleTask(() -> {
                     MainTask worker = new MainTask(jobEntry);
-                    executeTask(worker);
+                    executeTask(worker, jobEntry.getContextClassLoader());
                 }, waitTime, TimeUnit.MILLISECONDS)), new FutureCallback<Object>() {
                     @Override
                     public void onFailure(Throwable throwable) {
@@ -328,7 +330,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
         if (jobEntry.getRollbackWorker() != null) {
             jobEntry.setMainWorker(null);
             RollbackTask rollbackTask = new RollbackTask(jobEntry);
-            executeTask(rollbackTask);
+            executeTask(rollbackTask, jobEntry.getContextClassLoader());
             return;
         }
         clearJob(jobEntry);
@@ -394,7 +396,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
             try {
                 Callable<List<ListenableFuture<Void>>> mainWorker = jobEntry.getMainWorker();
                 if (mainWorker != null) {
-                    futures = mainWorker.call();
+                    futures = ClassLoaders.call(mainWorker, jobEntry.getContextClassLoader());
                 } else {
                     LOG.error("Unexpected no (null) main worker on job: {}", jobEntry);
                 }
@@ -449,7 +451,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
                         MainTask worker = new MainTask(jobEntry);
                         LOG.trace("Executing job with key: {}", jobEntry.getKey());
 
-                        if (executeTask(worker)) {
+                        if (executeTask(worker, jobEntry.getContextClassLoader())) {
                             jobsPending.decrement();
                         }
                     }

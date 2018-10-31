@@ -30,14 +30,16 @@ class JobEntry {
     private static final AtomicIntegerFieldUpdater<JobEntry> RETRY_COUNT_FIELD_UPDATER =
             AtomicIntegerFieldUpdater.newUpdater(JobEntry.class, "retryCount");
     private volatile @Nullable List<ListenableFuture<Void>> futures;
+    private final ClassLoader contextClassLoader;
 
     JobEntry(String key, Callable<List<ListenableFuture<Void>>> mainWorker, @Nullable RollbackCallable rollbackWorker,
-            int maxRetries) {
+            int maxRetries, ClassLoader contextClassLoader) {
         this.key = key;
         this.mainWorker = mainWorker;
         this.rollbackWorker = rollbackWorker;
         this.maxRetries = maxRetries;
         this.retryCount = maxRetries;
+        this.contextClassLoader = contextClassLoader;
     }
 
     /**
@@ -89,6 +91,10 @@ class JobEntry {
 
     public void setFutures(List<ListenableFuture<Void>> futures) {
         this.futures = futures;
+    }
+
+    public ClassLoader getContextClassLoader() {
+        return contextClassLoader;
     }
 
     @Override
