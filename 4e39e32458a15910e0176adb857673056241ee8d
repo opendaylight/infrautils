@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "916e922e_9ff96d96",
+        "filename": "testutils/src/test/java/org/opendaylight/infrautils/testutils/tests/ClasspathHellDuplicatesCheckerTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 4540
+      },
+      "writtenOn": "2018-10-31T09:30:12Z",
+      "side": 1,
+      "message": "On JDK 11, the result is 4, so this test fails. Wouldn’t it make more sense — per the test definition — to say “isAtLeast(1)” or “is not empty”?",
+      "revId": "4e39e32458a15910e0176adb857673056241ee8d",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
