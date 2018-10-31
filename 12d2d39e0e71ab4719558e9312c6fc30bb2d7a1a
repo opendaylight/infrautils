@@ -70,6 +70,24 @@
       "revId": "12d2d39e0e71ab4719558e9312c6fc30bb2d7a1a",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "afcc599e_274e52a5",
+        "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/ClasspathHellDuplicatesChecker.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-10-31T13:14:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cd3c1944_cc576ad4",
+      "revId": "12d2d39e0e71ab4719558e9312c6fc30bb2d7a1a",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
