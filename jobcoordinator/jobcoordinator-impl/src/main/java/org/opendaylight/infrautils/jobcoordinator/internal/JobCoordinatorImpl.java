@@ -80,7 +80,6 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
     private final Counter jobsIncomplete;
     private final Meter jobsFailed;
     private final Meter jobsRetriesForFailure;
-    private final Meter jobExecuteAttempts;
 
     private final ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(5,
             ThreadFactoryProvider.builder().namePrefix("jobcoordinator-onfailure-executor").logger(LOG).build().get());
@@ -101,7 +100,6 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
         jobsIncomplete = metricProvider.newCounter(this, "odl.infrautils.jobcoordinator.jobsIncomplete");
         jobsFailed = metricProvider.newMeter(this, "odl.infrautils.jobcoordinator.jobsFailed");
         jobsRetriesForFailure = metricProvider.newMeter(this, "odl.infrautils.jobcoordinator.jobsRetriesForFailure");
-        jobExecuteAttempts = metricProvider.newMeter(this, "odl.infrautils.jobcoordinator.jobExecuteAttempts");
 
         jobQueueHandlerThread = ThreadFactoryProvider.builder()
             .namePrefix("JobCoordinator-JobQueueHandler")
@@ -193,11 +191,6 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
     @Override
     public long getRetriesCount() {
         return jobsRetriesForFailure.get();
-    }
-
-    @Override
-    public long getExecuteAttempts() {
-        return jobExecuteAttempts.get();
     }
 
     /**
@@ -447,7 +440,6 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
 
                         JobQueue jobQueue = entry.getValue();
                         if (jobQueue.getExecutingEntry() != null) {
-                            jobExecuteAttempts.mark();
                             continue;
                         }
                         JobEntry jobEntry = jobQueue.poll();
@@ -503,7 +495,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
         return MoreObjects.toStringHelper(this).add("incompleteTasks", getIncompleteTaskCount())
                 .add("pendingTasks", getPendingTaskCount()).add("failedJobs", getFailedJobCount())
                 .add("clearedTasks", getClearedTaskCount()).add("createdTasks", getCreatedTaskCount())
-                .add("executeAttempts", getExecuteAttempts()).add("retriesCount", getRetriesCount())
+                .add("retriesCount", getRetriesCount())
                 .add("fjPool", fjPool).add("jobQueueMap", jobQueueMap).add("jobQueueMapLock", jobQueueMapLock)
                 .add("scheduledExecutorService", scheduledExecutorService).add("isJobAvailable", isJobAvailableFromLock)
                 .add("jobQueueMapCondition", jobQueueMapCondition)
