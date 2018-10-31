@@ -346,8 +346,4 @@ public class JobCoordinatorTest {
     private void assertRetry(int count) {
         assertThat(jobCoordinator.getRetriesCount()).named("retries").isEqualTo(count);
     }
-
-    private void assertExecuteAttempts(int count) {
-        assertThat(jobCoordinator.getExecuteAttempts()).named("executeAttempts").isEqualTo(count);
-    }
 }

@@ -42,12 +42,6 @@ public interface JobCoordinatorMonitor {
      */
     long getRetriesCount();
 
-    /**
-     * Returns the job execution attempts.
-     */
-    long getExecuteAttempts();
-
     @Override
     String toString();
-
 }
