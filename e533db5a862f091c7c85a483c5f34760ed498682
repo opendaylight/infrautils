@@ -52,6 +52,24 @@
       "revId": "e533db5a862f091c7c85a483c5f34760ed498682",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "abbfbd06_762bced4",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobCoordinatorImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 448,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-11-02T13:26:20Z",
+      "side": 0,
+      "message": "right and also the fact that it\u0027s global across all keys/queues which doesn\u0027t tell you which queue(s) may be problematic and also the way it\u0027s updated doesn\u0027t provide accuracy. A metric that keeps track of the size of each job queue (like max and ave) might be useful. If you want to detect stuck or long running jobs then we\u0027d need to time them.",
+      "parentUuid": "a8b5b6ea_abf0e11f",
+      "revId": "e533db5a862f091c7c85a483c5f34760ed498682",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
