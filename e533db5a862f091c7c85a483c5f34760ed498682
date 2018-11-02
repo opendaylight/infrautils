@@ -34,6 +34,24 @@
       "revId": "e533db5a862f091c7c85a483c5f34760ed498682",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a8b5b6ea_abf0e11f",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobCoordinatorImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 448,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-11-02T01:36:55Z",
+      "side": 0,
+      "message": "ExecuteAttempts are pointing to cases where job is not being able to execute, because of other entries help up in the queue. But even I am not able to clearly understand how we distinguish between a permanently stuck or long running job, than a normal case. I will merge this today, if nobody downstream raises any concern.",
+      "parentUuid": "fe56a86d_8368023f",
+      "revId": "e533db5a862f091c7c85a483c5f34760ed498682",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
