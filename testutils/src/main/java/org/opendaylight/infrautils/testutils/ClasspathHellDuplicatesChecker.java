@@ -109,6 +109,13 @@ public class ClasspathHellDuplicatesChecker {
             // super proper way to address this cleanly would be to make our own JAR for javax.annotation
             // and have it contain ONLY what is not already in package javax.annotation in rt.jar.. but for now:
             || resourcePath.equals("javax/annotation/Resource$AuthenticationType.class")
+            // NEUTRON-205: javax.inject is a mess :( because of javax.inject:javax.inject (which we widely use in ODL)
+            // VS. org.glassfish.hk2.external:javax.inject (which Glassfish Jersey has dependencies on).  Attempts to
+            // cleanly exclude glassfish.hk2's javax.inject and align everything on only depending on
+            // javax.inject:javax.inject have failed, because the OSGi bundle
+            // org.glassfish.jersey.containers.jersey-container-servlet-core (2.25.1) has a non-optional Package-Import
+            // for javax.inject, but we made javax.inject:javax.inject <optional>true in odlparent, and don't bundle it.
+            || resourcePath.startsWith("javax/inject/")
             // Java 9 modules
             || resourcePath.equals("module-info.class")
             || resourcePath.contains("findbugs")
