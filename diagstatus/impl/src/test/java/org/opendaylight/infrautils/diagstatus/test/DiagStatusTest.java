@@ -49,6 +49,8 @@ public class DiagStatusTest {
         // JSON should be formatted
         assertThat(diagStatusService.getAllServiceDescriptorsAsJSON()).contains("\n");
 
+        System.out.println(diagStatusService.getAllServiceDescriptorsAsJSON());
+
         // Verify that we get _something_ from getErrorCause()
         assertThat(serviceDescriptor1.getErrorCause()).isEqualTo(Optional.empty());
 
