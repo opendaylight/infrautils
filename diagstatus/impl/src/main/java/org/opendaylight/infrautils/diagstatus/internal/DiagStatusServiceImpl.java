@@ -9,19 +9,13 @@ package org.opendaylight.infrautils.diagstatus.internal;
 
 import static org.opendaylight.infrautils.diagstatus.ServiceState.STARTING;
 
-import com.google.common.base.Throwables;
 import com.google.common.collect.ImmutableList;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.stream.JsonWriter;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-import java.io.IOException;
-import java.io.StringWriter;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -34,6 +28,7 @@ import org.opendaylight.infrautils.diagstatus.ServiceDescriptor;
 import org.opendaylight.infrautils.diagstatus.ServiceRegistration;
 import org.opendaylight.infrautils.diagstatus.ServiceState;
 import org.opendaylight.infrautils.diagstatus.ServiceStatusProvider;
+import org.opendaylight.infrautils.diagstatus.ServiceStatusSummary;
 import org.opendaylight.infrautils.ready.SystemReadyMonitor;
 import org.opendaylight.infrautils.ready.SystemState;
 import org.slf4j.Logger;
@@ -109,39 +104,10 @@ public class DiagStatusServiceImpl implements DiagStatusService {
 
     @Override
     public String getAllServiceDescriptorsAsJSON() {
-        try (StringWriter stringWriter = new StringWriter()) {
-            Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            try (JsonWriter writer = gson.newJsonWriter(stringWriter)) {
-                writer.beginObject();
-                writer.name("timeStamp").value(new Date().toString());
-                writer.name("isOperational").value(isOperational());
-                writer.name("systemReadyState").value(systemReadyMonitor.getSystemState().name());
-                writer.name("systemReadyStateErrorCause").value(systemReadyMonitor.getFailureCause());
-                writer.name("statusSummary");
-                writer.beginArray();
-                for (ServiceDescriptor status : getAllServiceDescriptors()) {
-                    writer.beginObject();
-                    writer.name("serviceName").value(status.getModuleServiceName());
-                    writer.name("effectiveStatus").value(status.getServiceState().name());
-                    writer.name("reportedStatusDescription").value(status.getStatusDesc());
-                    writer.name("statusTimestamp").value(status.getTimestamp().toString());
-                    writer.name("errorCause").value(causeToString(status.getErrorCause()));
-                    writer.endObject();
-                }
-                writer.endArray();
-                writer.endObject();
-                writer.flush();
-                writer.close();
-                return stringWriter.getBuffer().toString();
-            }
-        } catch (IOException e) {
-            LOG.error("Error while converting service status to JSON", e);
-            return "{}";
-        }
-    }
-
-    private static String causeToString(Optional<Throwable> optionalThrowable) {
-        return optionalThrowable.map(throwable -> Throwables.getStackTraceAsString(throwable)).orElse("");
+        ServiceStatusSummary serviceStatusSummary = new ServiceStatusSummary(isOperational(),
+                systemReadyMonitor.getSystemState(), systemReadyMonitor.getFailureCause(), getAllServiceDescriptors());
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return gson.toJson(serviceStatusSummary);
     }
 
     // because other projects implementing ServiceStatusProvider may not run FindBugs, we null check anyway
