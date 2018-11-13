@@ -8,19 +8,25 @@
 package org.opendaylight.infrautils.diagstatus.shell;
 
 import com.google.common.annotations.VisibleForTesting;
+import com.google.common.base.Strings;
 import com.google.common.net.InetAddresses;
-import java.io.PrintStream;
+import com.google.errorprone.annotations.Var;
+import com.google.gson.Gson;
+import java.net.Inet6Address;
 import java.net.InetAddress;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import javax.management.remote.JMXServiceURL;
-import org.apache.karaf.shell.api.action.Command;
-import org.apache.karaf.shell.api.action.Option;
-import org.apache.karaf.shell.api.action.lifecycle.Reference;
-import org.apache.karaf.shell.api.action.lifecycle.Service;
+import java.util.Map;
+import javax.annotation.Nullable;
+
+import org.apache.felix.service.command.CommandSession;
+import org.apache.karaf.shell.commands.Command;
+import org.apache.karaf.shell.commands.Option;
 import org.opendaylight.infrautils.diagstatus.ClusterMemberInfo;
 import org.opendaylight.infrautils.diagstatus.DiagStatusServiceMBean;
-import org.opendaylight.infrautils.diagstatus.MBeanUtils;
-import org.opendaylight.infrautils.shell.LoggingAction;
+import org.opendaylight.infrautils.diagstatus.ServiceDescriptor;
+import org.opendaylight.infrautils.diagstatus.ServiceStatusSummary;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,24 +35,40 @@ import org.slf4j.LoggerFactory;
  *
  * @author Faseela K
  */
-@Service
 @Command(scope = "diagstatus", name = "showSvcStatus", description = "show the status of registered services")
-public class DiagStatusCommand extends LoggingAction {
+public class DiagStatusCommand implements org.apache.karaf.shell.commands.Action {
 
     private static final Logger LOG = LoggerFactory.getLogger(DiagStatusCommand.class);
 
-    @Reference
-    private DiagStatusServiceMBean diagStatusServiceMBean;
+    private static final int HTTP_TIMEOUT = 5000;
+    private static final char DIAGSTATUS_URL_SEPARATOR = '/';
+    private static final String DIAGSTATUS_URL_PREFIX = "http://";
+    private static final String DIAGSTATUS_URL_SUFFIX = "diagstatus";
 
-    @Reference
-    private ClusterMemberInfo clusterMemberInfoProvider;
+    private final DiagStatusServiceMBean diagStatusServiceMBean;
+    private final ClusterMemberInfo clusterMemberInfoProvider;
+    private HttpClient httpClient;
+
+    public DiagStatusCommand(DiagStatusServiceMBean diagStatusServiceMBean,
+                             ClusterMemberInfo clusterMemberInfoProvider,
+                             HttpClient httpClient) {
+        this.diagStatusServiceMBean = diagStatusServiceMBean;
+        this.clusterMemberInfoProvider = clusterMemberInfoProvider;
+        this.httpClient = httpClient;
+    }
 
     @Option(name = "-n", aliases = {"--node"})
     String nip;
 
+    @VisibleForTesting
+    void setHttpClient(HttpClient httpClient) {
+        this.httpClient =  httpClient;
+    }
+
     @Override
-    @SuppressWarnings({"checkstyle:IllegalCatch"})
-    protected void run(PrintStream ps) throws Exception {
+    @Nullable
+    @SuppressWarnings("checkstyle:IllegalCatch")
+    public Object execute(CommandSession session) throws Exception {
         StringBuilder strBuilder = new StringBuilder();
         strBuilder.append("Timestamp: ").append(new java.util.Date().toString()).append("\n");
 
@@ -76,27 +98,86 @@ public class DiagStatusCommand extends LoggingAction {
             }
         }
 
-        ps.println(strBuilder.toString());
+        session.getConsole().println(strBuilder.toString());
+        return null;
     }
 
-    private String getLocalStatusSummary(InetAddress memberAddress) {
+    @VisibleForTesting
+    String getLocalStatusSummary(InetAddress memberAddress) {
         return "Node IP Address: " + memberAddress.toString() + "\n"
                 + diagStatusServiceMBean.acquireServiceStatusDetailed();
     }
 
     @VisibleForTesting
-    static String getRemoteStatusSummary(InetAddress memberAddress) throws Exception {
-        JMXServiceURL url = MBeanUtils.getJMXUrl(memberAddress, DiagStatusServiceMBean.RMI_REGISTRY_PORT);
-        LOG.info("invokeRemoteJMXOperation() JMX service URL: {}", url);
-
-        String remoteJMXOperationResult = MBeanUtils.invokeRemoteMBeanOperation(url,
-                DiagStatusServiceMBean.JMX_OBJECT_NAME, DiagStatusServiceMBean.class,
-            remoteMBean -> remoteMBean.acquireServiceStatusDetailed());
-
+    String getRemoteStatusSummary(InetAddress memberAddress) throws Exception {
         StringBuilder strBuilder = new StringBuilder();
         strBuilder.append("Node IP Address: ").append(memberAddress).append("\n");
-        strBuilder.append(remoteJMXOperationResult);
+        strBuilder.append(invokeRemoteDiagStatus(memberAddress));
         return strBuilder.toString();
+    }
+
+    @Nullable
+    String invokeRemoteDiagStatus(InetAddress host) throws Exception {
+        String restUrl = buildRemoteDiagStatusUrl(host);
+        LOG.info("invokeRemoteDiagStatus() REST URL: {}", restUrl);
+        HttpRequest request = new HttpRequest();
+        request.setUri(restUrl);
+        request.setMethod("GET");
+        request.setTimeout(HTTP_TIMEOUT);
+        Map<String, List<String>> headers = new HashMap<>();
+        @Var List<String> header = new ArrayList<>();
+        headers.put("Authorization", header);
+        header = new ArrayList<>();
+        header.add("application/json");
+        headers.put("Accept", header);
+        request.setHeaders(headers);
+        request.setContentType("application/json");
+        LOG.debug("sending http request for accessing remote diagstatus");
+        HttpResponse response = httpClient.sendRequest(request);
+        // Response code for success should be 200
+        Integer httpResponseCode = response.getStatus();
+        LOG.debug("http response received for remote diagstatus {}", httpResponseCode);
+        String respStr = response.getEntity();
+        if (httpResponseCode > 299) {
+            LOG.error("Non-200 http response code received {} for URL {}", httpResponseCode, restUrl);
+            return respStr + " HTTP Response Code : " + Integer.toString(httpResponseCode);
+        }
+        LOG.trace("HTTP Response is - {} for URL {}", respStr, restUrl);
+        Gson gson = new Gson();
+        return buildServiceStatusSummaryString(gson.fromJson(respStr, ServiceStatusSummary.class));
+    }
+
+    private static String buildServiceStatusSummaryString(ServiceStatusSummary serviceStatusSummary) {
+        StringBuilder statusSummary = new StringBuilder();
+        statusSummary.append("System is operational: ").append(serviceStatusSummary.isOperational()).append('\n');
+        statusSummary.append("System ready state: ").append(serviceStatusSummary.getSystemReadyState()).append('\n');
+        for (ServiceDescriptor status : serviceStatusSummary.getStatusSummary()) {
+            statusSummary
+                    .append("  ")
+                    // the magic is the max String length of ServiceState enum values, plus padding
+                    .append(String.format("%-20s%-15s", status.getModuleServiceName(), ": "
+                            + status.getServiceState()));
+            if (!Strings.isNullOrEmpty(status.getStatusDesc())) {
+                statusSummary.append(" (");
+                statusSummary.append(status.getStatusDesc());
+                statusSummary.append(")");
+            }
+            // intentionally using Throwable.toString() instead of Throwables.getStackTraceAsString to keep CLI brief
+            status.getErrorCause().ifPresent(cause -> statusSummary.append(cause.toString()));
+            statusSummary.append("\n");
+        }
+        return statusSummary.toString();
+    }
+
+    private String buildRemoteDiagStatusUrl(InetAddress host) {
+        String targetHostAsString;
+        if (host instanceof Inet6Address) {
+            targetHostAsString = '[' + host.getHostAddress() + ']';
+        } else {
+            targetHostAsString = host.getHostAddress();
+        }
+        return new StringBuilder().append(DIAGSTATUS_URL_PREFIX + targetHostAsString + ":" + httpClient.getHttpPort()
+                + DIAGSTATUS_URL_SEPARATOR + DIAGSTATUS_URL_SUFFIX + DIAGSTATUS_URL_SEPARATOR).toString();
     }
 
     @SuppressWarnings("checkstyle:IllegalCatch")
