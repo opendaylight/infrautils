@@ -1,0 +1,469 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b93ccaa4_b02ee07c",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/MBeanUtils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-11-14T12:38:06Z",
+      "side": 1,
+      "message": "Is this utility class still being used with this change, where you remove JMX from diagstatus?  By what?",
+      "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6abf84ee_93104ea8",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/MBeanUtils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-11-14T12:38:06Z",
+      "side": 1,
+      "message": "if other methods of this util, to read JMX, are still in use (but where and for what?), I suspect that at least this method is perhaps not used anymore?",
+      "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "88e1e6ae_e026c072",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/MBeanUtils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-11-14T12:38:06Z",
+      "side": 1,
+      "message": "FTR: This method was just moved down.",
+      "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "31deb47c_284a874f",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ServiceStatusSummary.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-11-14T12:38:06Z",
+      "side": 1,
+      "message": "let\u0027s use a lower-case primitive boolean instead of a Boolean, just so that this can never be null.",
+      "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7ab87495_d1a57610",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ServiceStatusSummary.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-11-14T12:38:06Z",
+      "side": 1,
+      "message": "boolean not Boolean, as above",
+      "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4ce291e3_aee6fca2",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ServiceStatusSummary.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-11-14T12:38:06Z",
+      "side": 1,
+      "message": "easier to read if you just \"chain\" all those checks together, like this:\n\n   return this.isOperational \u003d\u003d that.isOperational\n       \u0026\u0026 equals(this.systemState, that.systemState)\n       \u0026\u0026 equals(this.systemReadyErrorCause, that.systemReadyErrorCause)\n       \u0026\u0026 equals(this.serviceDescriptors, that.serviceDescriptors);",
+      "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ace9d2ef_03066c44",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ServiceStatusSummary.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-11-14T12:38:06Z",
+      "side": 1,
+      "message": "should not need null check",
+      "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4c0eedc5_7251c5e6",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ServiceStatusSummary.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-11-14T12:38:06Z",
+      "side": 1,
+      "message": "use java.util.Objects.equals(Object, Object) instead, and easy to read if you do a static import of it",
+      "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f0356c1d_4b1865ac",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ServiceStatusSummary.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-11-14T12:38:06Z",
+      "side": 1,
+      "message": "use java.util.Objects.equals(Object, Object) instead",
+      "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "36ca4e72_4e7962fc",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-11-14T12:38:06Z",
+      "side": 1,
+      "message": "we need to add a new test, ideally in a separate predecessor Gerrit change which you can then build this change on top of, which guarantees non-regression that the JSON that GSON emits is identical to the one we previously put together manually.  Specifically the causeToString() business seems worth testing.",
+      "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7b36f71b_85a799a7",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceMBeanImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-11-14T12:38:06Z",
+      "side": 1,
+      "message": "the SystemReadyMonitor is now no longer used here, so this and its usages should also be removed",
+      "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ed300998_2ddfba87",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceMBeanImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-11-14T12:38:06Z",
+      "side": 1,
+      "message": "wait, I\u0027m probably missing something, so please educate me - why are we keeping this?",
+      "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a7381723_31b1870a",
+        "filename": "diagstatus/shell/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-11-14T12:38:06Z",
+      "side": 1,
+      "message": "4.5.6 is the latest version today - why not use that instead of 4.5.3 ?",
+      "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "97ce2172_dfa649c0",
+        "filename": "diagstatus/shell/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-11-14T12:38:06Z",
+      "side": 1,
+      "message": "it\u0027s curious to see a dependency to httpcore here, doesn\u0027t httpclient transitively depend on this, already?  And they have different versions... you 100% sure this is right?",
+      "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "dc626232_d2f3d55f",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusCommand.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-11-14T12:38:06Z",
+      "side": 1,
+      "message": "nit pick: empty new line after Logger LOG is prettier ;)",
+      "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "95e76e42_a08d2a76",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusCommand.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-11-14T12:38:06Z",
+      "side": 1,
+      "message": "HTTP_TIMEOUT, just to clarify that\u0027s what it is?",
+      "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9333eabe_4563208e",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusCommand.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-11-14T12:38:06Z",
+      "side": 1,
+      "message": "we cannot hard-code this port, but have to make it a configuration option (because operators can change the Karaf web port in the Pax Web configuration file, in which case this would be broken).  In fact ideally we should try to see if we can somehow read that port, instead of a configuration option...",
+      "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "efba5bb7_e2bdd2a4",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusCommand.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-11-14T12:38:06Z",
+      "side": 1,
+      "message": "private (or @VisibleForTesting annotated)",
+      "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3c35f924_a45bf079",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusCommand.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-11-14T12:38:06Z",
+      "side": 1,
+      "message": "I\u0027m getting a headache ;) from reading whatever you are trying to do here, with re-using header .. surely this could be written more clearly somehow?  Perhaps what you are trying to do here is really just something like this, which would be clearer to read and understand:\n\n    request.setHeaders(ImmutableMap.of(\n        \"Authorization\", ???\n        \"Accept\", ImmutableList.of(\"application/json\")\n    ));",
+      "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0454485d_69d892fa",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusCommand.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-11-14T12:38:06Z",
+      "side": 1,
+      "message": "is this code moved from somewhere, or new?  I\u0027m trying to find from where, but don\u0027t see it removed from another class in this change.. is it perhaps copy/pasted, instead of shared? ;-)",
+      "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "de98632e_f5026a49",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusCommand.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-11-14T12:38:06Z",
+      "side": 1,
+      "message": "FTR: This code is moved here from MBeanUtils\u0027 constructJmxUrl (from where it\u0027s removed).",
+      "range": {
+        "startLine": 160,
+        "startChar": 0,
+        "endLine": 161,
+        "endChar": 37
+      },
+      "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2c6cee6d_e50d8de3",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/HTTPClient.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-11-14T12:38:06Z",
+      "side": 1,
+      "message": "if you don\u0027t mind, could we make this a \"normal\" class, not one one with only static methods and a private constructor?  I think it will make it more easily usable in tests, it\u0027s extensible to e.g. .... add metrics monitoring to it later, or provide another implementation using another HTTP client library, or whatever.",
+      "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c21c0901_8c3f1053",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/HTTPRequest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-11-14T12:38:06Z",
+      "side": 1,
+      "message": "private, for all these fields?  (Or make it a simple class with public fields and no getters and setters at all, I don\u0027t mind that either; but don\u0027t make a weird mix of package local visibility fields and getters and setters)",
+      "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1d1ee6f3_fcd9910d",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/HTTPRequest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-11-14T12:38:06Z",
+      "side": 1,
+      "message": "just initialize these defaults directly on the fields, and save this constructor",
+      "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9d254503_635021fe",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/HTTPResponse.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-11-14T12:38:06Z",
+      "side": 1,
+      "message": "make at least private, ideally even final and initialize in constructor",
+      "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7e44a31a_8bbb6d10",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/HTTPResponse.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-11-14T12:38:06Z",
+      "side": 1,
+      "message": "or remove empty default constructor",
+      "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "db6214c9_1c27cdbf",
+        "filename": "diagstatus/shell/src/test/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusCommandTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-11-14T12:38:06Z",
+      "side": 1,
+      "message": "Upon reviewing this change, I don\u0027t think completely loosing test coverage is acceptable here anymore - sorry for my change of heart (re. yesterday)!  Let me try to find time in the coming days to show you an example of how we can keep this test, most probably by resurrecting https://git.opendaylight.org/gerrit/#/c/75438/ and copy/pasting a subset of the web test util from AAA into infrautils (I don\u0027t think we have another choice, in the short term.)",
+      "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
