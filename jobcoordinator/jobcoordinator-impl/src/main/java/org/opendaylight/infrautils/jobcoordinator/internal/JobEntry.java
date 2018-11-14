@@ -22,7 +22,7 @@ import org.opendaylight.infrautils.jobcoordinator.RollbackCallable;
  */
 class JobEntry {
 
-    private final String key;
+    private final Object key;
     private volatile @Nullable Callable<List<ListenableFuture<Void>>> mainWorker;
     private final @Nullable RollbackCallable rollbackWorker;
     private final int maxRetries;
@@ -32,7 +32,7 @@ class JobEntry {
     private volatile @Nullable List<ListenableFuture<Void>> futures;
     private final ClassLoader contextClassLoader;
 
-    JobEntry(String key, Callable<List<ListenableFuture<Void>>> mainWorker, @Nullable RollbackCallable rollbackWorker,
+    JobEntry(Object key, Callable<List<ListenableFuture<Void>>> mainWorker, @Nullable RollbackCallable rollbackWorker,
             int maxRetries, ClassLoader contextClassLoader) {
         this.key = key;
         this.mainWorker = mainWorker;
@@ -44,11 +44,9 @@ class JobEntry {
 
     /**
      * Get the key provided by the application that segregates the callables
-     * that can be run parallely. NOTE: Currently, this is a string. Can be
-     * converted to Object where Object implementation should provide the
-     * hashcode and equals methods.
+     * that can be run in parallel.
      */
-    public String getKey() {
+    public Object getKey() {
         return key;
     }
 

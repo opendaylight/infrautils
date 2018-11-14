@@ -70,7 +70,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
             Math.min(FJP_MAX_CAP, Runtime.getRuntime().availableProcessors()), factory,
             LoggingThreadUncaughtExceptionHandler.toLogger(LOG), false);
 
-    private final Map<String, JobQueue> jobQueueMap = new ConcurrentHashMap<>();
+    private final Map<Object, JobQueue> jobQueueMap = new ConcurrentHashMap<>();
     private final ReentrantLock jobQueueMapLock = new ReentrantLock();
     private final Condition jobQueueMapCondition = jobQueueMapLock.newCondition();
 
@@ -133,23 +133,23 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
     }
 
     @Override
-    public void enqueueJob(String key, Callable<List<ListenableFuture<Void>>> mainWorker) {
+    public void enqueueJob(Object key, Callable<List<ListenableFuture<Void>>> mainWorker) {
         enqueueJob(key, mainWorker, null, JobCoordinator.DEFAULT_MAX_RETRIES);
     }
 
     @Override
-    public void enqueueJob(String key, Callable<List<ListenableFuture<Void>>> mainWorker,
+    public void enqueueJob(Object key, Callable<List<ListenableFuture<Void>>> mainWorker,
             RollbackCallable rollbackWorker) {
         enqueueJob(key, mainWorker, rollbackWorker, JobCoordinator.DEFAULT_MAX_RETRIES);
     }
 
     @Override
-    public void enqueueJob(String key, Callable<List<ListenableFuture<Void>>> mainWorker, int maxRetries) {
+    public void enqueueJob(Object key, Callable<List<ListenableFuture<Void>>> mainWorker, int maxRetries) {
         enqueueJob(key, mainWorker, null, maxRetries);
     }
 
     @Override
-    public void enqueueJob(String key, Callable<List<ListenableFuture<Void>>> mainWorker,
+    public void enqueueJob(Object key, Callable<List<ListenableFuture<Void>>> mainWorker,
             @Nullable RollbackCallable rollbackWorker, int maxRetries) {
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
         JobEntry jobEntry = new JobEntry(key, mainWorker, rollbackWorker, maxRetries, classLoader);
@@ -197,7 +197,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
      * Cleanup the submitted job from the job queue.
      **/
     private void clearJob(JobEntry jobEntry) {
-        String jobKey = jobEntry.getKey();
+        Object jobKey = jobEntry.getKey();
         LOG.trace("About to clear jobKey: {}", jobKey);
         JobQueue jobQueue = jobQueueMap.get(jobKey);
         if (jobQueue != null) {
@@ -401,7 +401,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
                     LOG.error("Unexpected no (null) main worker on job: {}", jobEntry);
                 }
                 long jobExecutionTimeNanos = System.nanoTime() - jobStartTimestampNanos;
-                printJobs(jobEntry.getKey(), TimeUnit.NANOSECONDS.toMillis(jobExecutionTimeNanos));
+                printJobs(TimeUnit.NANOSECONDS.toMillis(jobExecutionTimeNanos));
             } catch (Exception e) {
                 jobsFailed.mark();
                 LOG.error("Direct Exception (not failed Future) when executing job, won't even retry: {}", jobEntry, e);
@@ -417,7 +417,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
             Futures.addCallback(listenableFuture, new JobCallback(jobEntry), MoreExecutors.directExecutor());
         }
 
-        private void printJobs(String key, long jobExecutionTime) {
+        private void printJobs(long jobExecutionTime) {
             if (jobExecutionTime > LONG_JOBS_THRESHOLD_MS) {
                 LOG.warn("Job {} took {}ms to complete", jobEntry.getKey(), jobExecutionTime);
                 return;
@@ -433,7 +433,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
             LOG.info("Starting JobQueue Handler Thread");
             while (true) {
                 try {
-                    for (Map.Entry<String, JobQueue> entry : jobQueueMap.entrySet()) {
+                    for (Map.Entry<Object, JobQueue> entry : jobQueueMap.entrySet()) {
                         if (shutdown) {
                             break;
                         }

@@ -34,12 +34,13 @@ public interface JobCoordinator { // do *NOT* extends JobCoordinatorMonitor
      * See class level documentation above for details re. the retry strategy.
      *
      * @param key
-     *            The job's key. Jobs with the same key are run sequentially.
-     *            Jobs with different keys are run in parallel.
+     *            The job's key. Jobs with equal keys are run sequentially.
+     *            Jobs with different keys are run in parallel.  This argument will
+     *            be used as a key in a Map, and therefore must implement hashCode and equals.
      * @param mainWorker
      *            The task that runs for the job.
      */
-    void enqueueJob(String key, Callable<List<ListenableFuture<Void>>> mainWorker);
+    void enqueueJob(Object key, Callable<List<ListenableFuture<Void>>> mainWorker);
 
     /**
      * Enqueues a job with a rollback task and DEFAULT_MAX_RETRIES (3) retries..
@@ -48,9 +49,9 @@ public interface JobCoordinator { // do *NOT* extends JobCoordinatorMonitor
      * @param rollbackWorker
      *            The rollback task which runs in case the job's main task
      *            fails.
-     * @see JobCoordinator#enqueueJob(String, Callable)
+     * @see JobCoordinator#enqueueJob(Object, Callable)
      */
-    void enqueueJob(String key, Callable<List<ListenableFuture<Void>>> mainWorker, RollbackCallable rollbackWorker);
+    void enqueueJob(Object key, Callable<List<ListenableFuture<Void>>> mainWorker, RollbackCallable rollbackWorker);
 
     /**
      * Enqueues a job with max retries. In case the job's main task fails, it
@@ -61,9 +62,9 @@ public interface JobCoordinator { // do *NOT* extends JobCoordinatorMonitor
      * @param maxRetries
      *            The maximum number of retries for the job's main task until it
      *            succeeds.
-     * @see JobCoordinator#enqueueJob(String, Callable)
+     * @see JobCoordinator#enqueueJob(Object, Callable)
      */
-    void enqueueJob(String key, Callable<List<ListenableFuture<Void>>> mainWorker, int maxRetries);
+    void enqueueJob(Object key, Callable<List<ListenableFuture<Void>>> mainWorker, int maxRetries);
 
     /**
      * Enqueues a job with a rollback task and max retries.
@@ -75,9 +76,9 @@ public interface JobCoordinator { // do *NOT* extends JobCoordinatorMonitor
      * @param maxRetries
      *            The maximum number of retries for the job's main task until it
      *            succeeds.
-     * @see JobCoordinator#enqueueJob(String, Callable, RollbackCallable)
-     * @see JobCoordinator#enqueueJob(String, Callable, int)
+     * @see JobCoordinator#enqueueJob(Object, Callable, RollbackCallable)
+     * @see JobCoordinator#enqueueJob(Object, Callable, int)
      */
-    void enqueueJob(String key, Callable<List<ListenableFuture<Void>>> mainWorker, RollbackCallable rollbackWorker,
+    void enqueueJob(Object key, Callable<List<ListenableFuture<Void>>> mainWorker, RollbackCallable rollbackWorker,
             int maxRetries);
 }
