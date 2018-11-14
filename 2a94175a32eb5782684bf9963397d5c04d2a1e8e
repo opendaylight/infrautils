@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "606dc7bc_e9ee4a97",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/MBeanUtils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-11-14T13:55:56Z",
+      "side": 1,
+      "message": "we still expose the service status as MBean..",
+      "parentUuid": "6abf84ee_93104ea8",
+      "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "88e1e6ae_e026c072",
         "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/MBeanUtils.java",
         "patchSetId": 2
@@ -98,6 +116,24 @@
       "writtenOn": "2018-11-14T12:38:06Z",
       "side": 1,
       "message": "easier to read if you just \"chain\" all those checks together, like this:\n\n   return this.isOperational \u003d\u003d that.isOperational\n       \u0026\u0026 equals(this.systemState, that.systemState)\n       \u0026\u0026 equals(this.systemReadyErrorCause, that.systemReadyErrorCause)\n       \u0026\u0026 equals(this.serviceDescriptors, that.serviceDescriptors);",
+      "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "05bb1f6f_35b71ce5",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ServiceStatusSummary.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-11-14T13:55:56Z",
+      "side": 1,
+      "message": "this was generated using intellij, will correct it",
+      "parentUuid": "4ce291e3_aee6fca2",
       "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -172,6 +208,24 @@
     },
     {
       "key": {
+        "uuid": "fd273591_6d03e358",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-11-14T13:55:56Z",
+      "side": 1,
+      "message": "the JSON generated is little bit different, but certain attribute names looked too long here, which i changed :D I was under the assumption that whoever is using DiagStatusWeb is checking only for the responseCode and isOperational output.",
+      "parentUuid": "36ca4e72_4e7962fc",
+      "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7b36f71b_85a799a7",
         "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceMBeanImpl.java",
         "patchSetId": 2
@@ -189,6 +243,24 @@
     },
     {
       "key": {
+        "uuid": "b7654d6e_ccfe793c",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceMBeanImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-11-14T13:55:56Z",
+      "side": 1,
+      "message": "we are putting systemReadyState in the service status, right?",
+      "parentUuid": "7b36f71b_85a799a7",
+      "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ed300998_2ddfba87",
         "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceMBeanImpl.java",
         "patchSetId": 2
@@ -200,6 +272,24 @@
       "writtenOn": "2018-11-14T12:38:06Z",
       "side": 1,
       "message": "wait, I\u0027m probably missing something, so please educate me - why are we keeping this?",
+      "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f7022533_27d17cd9",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceMBeanImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-11-14T13:55:56Z",
+      "side": 1,
+      "message": "the overall service status is exposed as an MBean, for any external entities to use, apart from web based interface using diagstatus-web",
+      "parentUuid": "ed300998_2ddfba87",
       "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -376,6 +466,24 @@
       "writtenOn": "2018-11-14T12:38:06Z",
       "side": 1,
       "message": "if you don\u0027t mind, could we make this a \"normal\" class, not one one with only static methods and a private constructor?  I think it will make it more easily usable in tests, it\u0027s extensible to e.g. .... add metrics monitoring to it later, or provide another implementation using another HTTP client library, or whatever.",
+      "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4068cb45_45ddc963",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/HTTPClient.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-11-14T13:55:56Z",
+      "side": 1,
+      "message": "If i make it a normal class, could you explain me how will I inject this to DiagStatusCommand class? will that work for Karaf CLI class? Or just add one more layer of indirection just for injecting?",
+      "parentUuid": "2c6cee6d_e50d8de3",
       "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
