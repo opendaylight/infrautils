@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "108a5b1f_f5035c70",
+        "filename": "jobcoordinator/jobcoordinator-api/src/main/java/org/opendaylight/infrautils/jobcoordinator/JobCoordinator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 4540
+      },
+      "writtenOn": "2018-11-15T13:36:00Z",
+      "side": 1,
+      "message": "May I suggest\n\n    The key will be used as a key in a {@link Map}, and must therefore satisfy the contracts for map keys.\n\nbecause there’s more to it than just implementing hashCode() and equals(), but there’s no point in re-describing it all here (it’s described in detail in the Map javadocs — and if people don’t read those javadocs, we can’t expect them to read this javadoc either).",
+      "revId": "5ac7e4e4a8a2d7c2aed146c61ff3bef041645f92",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
