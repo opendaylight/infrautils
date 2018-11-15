@@ -54,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "dbde3ac2_b456200d",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/MBeanUtils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-11-15T01:00:43Z",
+      "side": 1,
+      "message": "Oh, now I get it - please ignore this point.",
+      "parentUuid": "606dc7bc_e9ee4a97",
+      "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "88e1e6ae_e026c072",
         "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/MBeanUtils.java",
         "patchSetId": 2
@@ -226,6 +244,24 @@
     },
     {
       "key": {
+        "uuid": "4a30bcbe_7dd61569",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-11-15T01:00:43Z",
+      "side": 1,
+      "message": "That\u0027s... risky, to say the least.  Would it be particularly difficult to make it return EXACTLY the same JSON as we have today?  We really should cover this with a test - the best would be if you could raise a separate change with such a test, and then base this change on top of that - and see the test still pass.",
+      "parentUuid": "fd273591_6d03e358",
+      "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7b36f71b_85a799a7",
         "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceMBeanImpl.java",
         "patchSetId": 2
@@ -261,6 +297,24 @@
     },
     {
       "key": {
+        "uuid": "60e877e8_20891ee2",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceMBeanImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-11-15T01:00:43Z",
+      "side": 1,
+      "message": "Oh, right.  I only saw how systemReadyMonitor.registerListener(this) in the original line 69 is removed, didn\u0027t look further; yes of course it\u0027s still used in line 92 (now 65) - ignore me on this point; now understood.",
+      "parentUuid": "b7654d6e_ccfe793c",
+      "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ed300998_2ddfba87",
         "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceMBeanImpl.java",
         "patchSetId": 2
@@ -290,6 +344,24 @@
       "side": 1,
       "message": "the overall service status is exposed as an MBean, for any external entities to use, apart from web based interface using diagstatus-web",
       "parentUuid": "ed300998_2ddfba87",
+      "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ed5b5b96_beb789e0",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceMBeanImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-11-15T01:00:43Z",
+      "side": 1,
+      "message": "Got it now, ignore this point!",
+      "parentUuid": "f7022533_27d17cd9",
       "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -375,6 +447,23 @@
       "writtenOn": "2018-11-14T12:38:06Z",
       "side": 1,
       "message": "we cannot hard-code this port, but have to make it a configuration option (because operators can change the Karaf web port in the Pax Web configuration file, in which case this would be broken).  In fact ideally we should try to see if we can somehow read that port, instead of a configuration option...",
+      "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5563cb77_1b989c86",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusCommand.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-11-15T01:00:43Z",
+      "side": 1,
+      "message": "as far as I can tell, this actually never returns null?",
       "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -484,6 +573,24 @@
       "side": 1,
       "message": "If i make it a normal class, could you explain me how will I inject this to DiagStatusCommand class? will that work for Karaf CLI class? Or just add one more layer of indirection just for injecting?",
       "parentUuid": "2c6cee6d_e50d8de3",
+      "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e5859aa7_373ea68a",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/HTTPClient.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-11-15T01:00:43Z",
+      "side": 1,
+      "message": "you could declare it in the BP XML of the DiagStatusCommand, but I\u0027m also perfectly fine with (for the moment) just instantiating it inside the DiagStatusCommand class, and then later change it:\n\nclass DiagStatusCommand {\n  private final HTTPClient httpClient \u003d new HTTPClient();\n\nIt IMHO just makes it clear that this is a real \"service\" more than a static utility, and may later be injected.  (If we have another use case for a web client, we could perhaps later move this class from inside diagstatus/shell into an infrautils/web kind of place.)",
+      "parentUuid": "4068cb45_45ddc963",
       "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
