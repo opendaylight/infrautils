@@ -16,6 +16,24 @@
       "revId": "37fe9e383b1db5d5deb1bf79b97e10c66b50528b",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "480e3216_28db9dc0",
+        "filename": "metrics/impl/src/main/resources/OSGI-INF/blueprint/blueprint.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-11-16T17:34:56Z",
+      "side": 1,
+      "message": "oops sorry.. :D i was referring to this file for usage of persistent-id, i think did by mistake :P",
+      "parentUuid": "f2a087a4_5a21b611",
+      "revId": "37fe9e383b1db5d5deb1bf79b97e10c66b50528b",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
