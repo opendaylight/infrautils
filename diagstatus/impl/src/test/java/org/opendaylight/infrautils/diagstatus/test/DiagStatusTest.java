@@ -37,6 +37,22 @@ public class DiagStatusTest {
     @Inject DiagStatusService diagStatusService;
     @Inject DiagStatusServiceMBean diagStatusServiceMBean;
 
+    private static final String SERVICE_STATUS_SUMMARY = "{\n"
+            + "  \"timeStamp\": \"{DO-NOT-BOTHER}\",\n"
+            + "  \"isOperational\": false,\n"
+            + "  \"systemReadyState\": \"ACTIVE\",\n"
+            + "  \"systemReadyStateErrorCause\": \"\",\n"
+            + "  \"statusSummary\": [\n"
+            + "    {\n"
+            + "      \"serviceName\": \"testService\",\n"
+            + "      \"effectiveStatus\": \"UNREGISTERED\",\n"
+            + "      \"reportedStatusDescription\": \"service is Unregistered\",\n"
+            + "      \"statusTimestamp\": \"{DO-NOT-BOTHER}\",\n"
+            + "      \"errorCause\": \"\"\n"
+            + "    }\n"
+            + "  ]\n"
+            + "}";
+
     @Test
     public void testDiagStatus() {
         String testService1 = "testService";
@@ -71,6 +87,12 @@ public class DiagStatusTest {
 
         // Description must be shown
         assertThat(diagStatusServiceMBean.acquireServiceStatusDetailed()).contains("service is Unregistered");
+
+        String actualServiceStatusSummary = diagStatusService.getAllServiceDescriptorsAsJSON();
+        assertThat(SERVICE_STATUS_SUMMARY).isEqualTo(actualServiceStatusSummary.replaceAll(
+                "\"timeStamp\":.*\\n", "\"timeStamp\": \"{DO-NOT-BOTHER}\",\n")
+                .replaceAll("\"statusTimestamp\":.*\\n",
+                        "\"statusTimestamp\": \"{DO-NOT-BOTHER}\",\n"));
     }
 
     @Test
