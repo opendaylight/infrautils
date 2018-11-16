@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6088160c_f39a6cfc",
+        "filename": "diagstatus/shell/src/test/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusCommandTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-11-16T17:31:37Z",
+      "side": 1,
+      "message": "This is an interesting idea, but it sort of completely defeats the original purpose of this test... ;-) By doing this, we\u0027re no longer able to really test that this stuff works on both IPv4 and IPv6 - you\u0027re \"short cutting\" it, and as-is now, only really proving that getRemoteStatusSummary() includes the inetAddress - this basically just covers the  String concatenation, not that the DiagStatusCommand does a correct fetching of the diagstatus (which it did before via JMX, and still should now, just by HTTP).  https://git.opendaylight.org/gerrit/#/c/77902/ will let you do that though, see https://git.opendaylight.org/gerrit/#/c/75438/ for how to use.",
+      "revId": "c6944626da3004982bf71cd9ca47ec3564d8535c",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
