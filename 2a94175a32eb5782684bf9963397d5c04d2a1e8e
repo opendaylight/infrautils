@@ -124,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "a42c617a_bf703af1",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ServiceStatusSummary.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-11-16T17:15:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "31deb47c_284a874f",
+      "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7ab87495_d1a57610",
         "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ServiceStatusSummary.java",
         "patchSetId": 2
@@ -135,6 +153,24 @@
       "writtenOn": "2018-11-14T12:38:06Z",
       "side": 1,
       "message": "boolean not Boolean, as above",
+      "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "03030607_a59dab34",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ServiceStatusSummary.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-11-16T17:15:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7ab87495_d1a57610",
       "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -170,6 +206,24 @@
       "side": 1,
       "message": "this was generated using intellij, will correct it",
       "parentUuid": "4ce291e3_aee6fca2",
+      "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1f549ec0_9fa7ef8b",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ServiceStatusSummary.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-11-16T17:15:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "05bb1f6f_35b71ce5",
       "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -227,6 +281,24 @@
     },
     {
       "key": {
+        "uuid": "63ad400e_61f36190",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ServiceStatusSummary.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-11-16T17:15:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f0356c1d_4b1865ac",
+      "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "36ca4e72_4e7962fc",
         "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
         "patchSetId": 2
@@ -274,6 +346,24 @@
       "side": 1,
       "message": "That\u0027s... risky, to say the least.  Would it be particularly difficult to make it return EXACTLY the same JSON as we have today?  We really should cover this with a test - the best would be if you could raise a separate change with such a test, and then base this change on top of that - and see the test still pass.",
       "parentUuid": "fd273591_6d03e358",
+      "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fce57311_195c7d50",
+        "filename": "diagstatus/impl/src/main/java/org/opendaylight/infrautils/diagstatus/internal/DiagStatusServiceImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-11-16T17:15:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4a30bcbe_7dd61569",
       "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -403,6 +493,24 @@
     },
     {
       "key": {
+        "uuid": "2b240343_7d302686",
+        "filename": "diagstatus/shell/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-11-16T17:15:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a7381723_31b1870a",
+      "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "97ce2172_dfa649c0",
         "filename": "diagstatus/shell/pom.xml",
         "patchSetId": 2
@@ -414,6 +522,24 @@
       "writtenOn": "2018-11-14T12:38:06Z",
       "side": 1,
       "message": "it\u0027s curious to see a dependency to httpcore here, doesn\u0027t httpclient transitively depend on this, already?  And they have different versions... you 100% sure this is right?",
+      "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ed1a25b_33bbbfe5",
+        "filename": "diagstatus/shell/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-11-16T17:15:47Z",
+      "side": 1,
+      "message": "removed",
+      "parentUuid": "97ce2172_dfa649c0",
       "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -437,6 +563,24 @@
     },
     {
       "key": {
+        "uuid": "aaa7e155_e5a3edd9",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusCommand.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-11-16T17:15:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dc626232_d2f3d55f",
+      "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "95e76e42_a08d2a76",
         "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusCommand.java",
         "patchSetId": 2
@@ -454,6 +598,24 @@
     },
     {
       "key": {
+        "uuid": "0acd39be_b105e95c",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusCommand.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-11-16T17:15:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "95e76e42_a08d2a76",
+      "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9333eabe_4563208e",
         "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusCommand.java",
         "patchSetId": 2
@@ -465,6 +627,24 @@
       "writtenOn": "2018-11-14T12:38:06Z",
       "side": 1,
       "message": "we cannot hard-code this port, but have to make it a configuration option (because operators can change the Karaf web port in the Pax Web configuration file, in which case this would be broken).  In fact ideally we should try to see if we can somehow read that port, instead of a configuration option...",
+      "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1813d400_6a5e38b2",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusCommand.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-11-16T17:15:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9333eabe_4563208e",
       "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -615,6 +795,24 @@
     },
     {
       "key": {
+        "uuid": "5887f629_40965b1b",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/HTTPClient.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-11-16T17:15:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e5859aa7_373ea68a",
+      "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c21c0901_8c3f1053",
         "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/HTTPRequest.java",
         "patchSetId": 2
@@ -626,6 +824,24 @@
       "writtenOn": "2018-11-14T12:38:06Z",
       "side": 1,
       "message": "private, for all these fields?  (Or make it a simple class with public fields and no getters and setters at all, I don\u0027t mind that either; but don\u0027t make a weird mix of package local visibility fields and getters and setters)",
+      "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6c382be0_e7aa94d3",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/HTTPRequest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-11-16T17:15:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c21c0901_8c3f1053",
       "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -649,6 +865,24 @@
     },
     {
       "key": {
+        "uuid": "862d58fe_1cc7b75e",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/HTTPRequest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-11-16T17:15:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1d1ee6f3_fcd9910d",
+      "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9d254503_635021fe",
         "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/HTTPResponse.java",
         "patchSetId": 2
@@ -660,6 +894,24 @@
       "writtenOn": "2018-11-14T12:38:06Z",
       "side": 1,
       "message": "make at least private, ideally even final and initialize in constructor",
+      "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1d42fdfb_ac2f0ba8",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/HTTPResponse.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-11-16T17:15:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9d254503_635021fe",
       "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -683,6 +935,24 @@
     },
     {
       "key": {
+        "uuid": "f5a1a4ea_f64f8a68",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/HTTPResponse.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-11-16T17:15:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7e44a31a_8bbb6d10",
+      "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "db6214c9_1c27cdbf",
         "filename": "diagstatus/shell/src/test/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusCommandTest.java",
         "patchSetId": 2
@@ -694,6 +964,24 @@
       "writtenOn": "2018-11-14T12:38:06Z",
       "side": 1,
       "message": "Upon reviewing this change, I don\u0027t think completely loosing test coverage is acceptable here anymore - sorry for my change of heart (re. yesterday)!  Let me try to find time in the coming days to show you an example of how we can keep this test, most probably by resurrecting https://git.opendaylight.org/gerrit/#/c/75438/ and copy/pasting a subset of the web test util from AAA into infrautils (I don\u0027t think we have another choice, in the short term.)",
+      "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e3055a8a_f86bfddc",
+        "filename": "diagstatus/shell/src/test/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusCommandTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-11-16T17:15:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "db6214c9_1c27cdbf",
       "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
