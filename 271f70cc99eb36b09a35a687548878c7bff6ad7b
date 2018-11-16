@@ -55,6 +55,24 @@
     },
     {
       "key": {
+        "uuid": "ff020f16_16a9f62f",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusCommand.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-11-16T16:46:08Z",
+      "side": 1,
+      "message": "i had a no-arg constructor in DiagStatusCommand, and added @Reference httpClient...and blueprint.xml was like below :\n\n\u003cblueprint xmlns\u003d\"http://www.osgi.org/xmlns/blueprint/v1.0.0\"\n           xmlns:cm\u003d\"http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.2.0\"\u003e\n  \u003ccm:cm-properties id\u003d\"initialProperties\" persistent-id\u003d\"org.ops4j.pax.web\"/\u003e\n\n  \u003cbean id\u003d\"httpClient\" class\u003d\"org.opendaylight.infrautils.diagstatus.shell.HttpClient\"\u003e\n    \u003cargument ref\u003d\"initialProperties\" /\u003e\n  \u003c/bean\u003e\n\u003c/blueprint\u003e\n\nSFT goes through with this, but i cannot see the command once the feature is installed.",
+      "parentUuid": "62a06ebe_5ea80dc1",
+      "revId": "271f70cc99eb36b09a35a687548878c7bff6ad7b",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "31a8da15_dae92d42",
         "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusCommand.java",
         "patchSetId": 7
