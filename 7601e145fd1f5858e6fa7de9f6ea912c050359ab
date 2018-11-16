@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "bdb415f5_90b22a48",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-11-16T15:08:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "116951dd_051a3984",
+      "revId": "7601e145fd1f5858e6fa7de9f6ea912c050359ab",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8f852f8e_8993f183",
         "filename": "diagstatus/impl/src/test/java/org/opendaylight/infrautils/diagstatus/test/DiagStatusTest.java",
         "patchSetId": 2
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "c37be430_509401d3",
+        "filename": "diagstatus/impl/src/test/java/org/opendaylight/infrautils/diagstatus/test/DiagStatusTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-11-16T15:08:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8f852f8e_8993f183",
+      "revId": "7601e145fd1f5858e6fa7de9f6ea912c050359ab",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "618a469e_9ed17e2d",
         "filename": "diagstatus/impl/src/test/java/org/opendaylight/infrautils/diagstatus/test/DiagStatusTest.java",
         "patchSetId": 2
@@ -47,6 +83,24 @@
       "writtenOn": "2018-11-16T12:32:47Z",
       "side": 1,
       "message": "this doesn\u0027t look right... look at http://google.github.io/truth/ how to use the assertThat.  I think what you wans probably is simply:\n        \n  \n  assertThat(diagStatusService.getAllServiceDescriptorsAsJSON()).isEqualsTo(SERVICE_STATUS_SUMMARY);",
+      "revId": "7601e145fd1f5858e6fa7de9f6ea912c050359ab",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5d043de1_3dc2c8d9",
+        "filename": "diagstatus/impl/src/test/java/org/opendaylight/infrautils/diagstatus/test/DiagStatusTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-11-16T15:08:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "618a469e_9ed17e2d",
       "revId": "7601e145fd1f5858e6fa7de9f6ea912c050359ab",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
