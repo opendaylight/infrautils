@@ -37,6 +37,22 @@ public class DiagStatusTest {
     @Inject DiagStatusService diagStatusService;
     @Inject DiagStatusServiceMBean diagStatusServiceMBean;
 
+    private static String serviceStatusSummary = "{\n"
+            + "  \"timeStamp\": \"Fri Nov 16 17:34:26 IST 2018\",\n"
+            + "  \"isOperational\": false,\n"
+            + "  \"systemReadyState\": \"ACTIVE\",\n"
+            + "  \"systemReadyStateErrorCause\": \"\",\n"
+            + "  \"statusSummary\": [\n"
+            + "    {\n"
+            + "      \"serviceName\": \"testService\",\n"
+            + "      \"effectiveStatus\": \"UNREGISTERED\",\n"
+            + "      \"reportedStatusDescription\": \"service is Unregistered\",\n"
+            + "      \"statusTimestamp\": \"2018-11-16T12:04:26.763Z\",\n"
+            + "      \"errorCause\": \"\"\n"
+            + "    }\n"
+            + "  ]\n"
+            + "}";
+
     @Test
     public void testDiagStatus() {
         String testService1 = "testService";
@@ -71,6 +87,8 @@ public class DiagStatusTest {
 
         // Description must be shown
         assertThat(diagStatusServiceMBean.acquireServiceStatusDetailed()).contains("service is Unregistered");
+
+        assertThat(serviceStatusSummary.equals(diagStatusService.getAllServiceDescriptorsAsJSON()));
     }
 
     @Test
