@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "7a484988_3722d1a9",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusCommand.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-11-16T14:07:30Z",
+      "side": 1,
+      "message": "Yes, I tried that, but when I did that the CLI command itself was not showing up in karaf.. I spent sometime debugging that, without much clue, and then decided to move to the deprecated API..",
+      "parentUuid": "506d9f78_65a940d0",
+      "revId": "271f70cc99eb36b09a35a687548878c7bff6ad7b",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "31a8da15_dae92d42",
         "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusCommand.java",
         "patchSetId": 7
