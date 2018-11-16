@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "116951dd_051a3984",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-11-16T12:32:47Z",
+      "side": 1,
+      "message": "could you \"JIRA: INFRAUTILS-45\" just above \"Change-Id:\" (without an empty new line) here?  This will make it easier to find this change again just in case we\u0027ll ever want to back-port INFRAUTILS-45 later.",
+      "revId": "7601e145fd1f5858e6fa7de9f6ea912c050359ab",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8f852f8e_8993f183",
+        "filename": "diagstatus/impl/src/test/java/org/opendaylight/infrautils/diagstatus/test/DiagStatusTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-11-16T12:32:47Z",
+      "side": 1,
+      "message": "this is usually a sign of something else that\u0027s wrong.. why is this needed, can it be removed?  If we really really need it (but we should avoid it), then we usually put an inline comment which explains and justifies why it was impossible to avoid it",
+      "revId": "7601e145fd1f5858e6fa7de9f6ea912c050359ab",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "618a469e_9ed17e2d",
+        "filename": "diagstatus/impl/src/test/java/org/opendaylight/infrautils/diagstatus/test/DiagStatusTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-11-16T12:32:47Z",
+      "side": 1,
+      "message": "this doesn\u0027t look right... look at http://google.github.io/truth/ how to use the assertThat.  I think what you wans probably is simply:\n        \n  \n  assertThat(diagStatusService.getAllServiceDescriptorsAsJSON()).isEqualsTo(SERVICE_STATUS_SUMMARY);",
+      "revId": "7601e145fd1f5858e6fa7de9f6ea912c050359ab",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
