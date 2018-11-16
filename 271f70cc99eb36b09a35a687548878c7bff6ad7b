@@ -73,6 +73,24 @@
     },
     {
       "key": {
+        "uuid": "110a845c_cac3059d",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusCommand.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-11-16T17:54:02Z",
+      "side": 1,
+      "message": "The only difference I can see is that httpClient is a BP bean and not a service so I suspect it\u0027s waiting for the service. If the new shell API doesn\u0027t integrate with BP beans then that\u0027s an unfortunate limitation. Eventually it would be nice to move away from the deprecated API (if possible) but for now we can revert - virtually all other CLI commands use the deprecated API anyway.",
+      "parentUuid": "ff020f16_16a9f62f",
+      "revId": "271f70cc99eb36b09a35a687548878c7bff6ad7b",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "31a8da15_dae92d42",
         "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusCommand.java",
         "patchSetId": 7
