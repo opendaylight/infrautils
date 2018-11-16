@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "639f4af8_e377af85",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusCommand.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-11-16T17:45:31Z",
+      "side": 1,
+      "message": "HttpClient is passed in the ctor so shouldn\u0027t need a setter - ideally httpClient should be final.",
+      "range": {
+        "startLine": 64,
+        "startChar": 9,
+        "endLine": 64,
+        "endChar": 22
+      },
+      "revId": "c6944626da3004982bf71cd9ca47ec3564d8535c",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6088160c_f39a6cfc",
         "filename": "diagstatus/shell/src/test/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusCommandTest.java",
         "patchSetId": 8
