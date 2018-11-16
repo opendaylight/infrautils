@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "506d9f78_65a940d0",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusCommand.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-11-16T13:34:25Z",
+      "side": 1,
+      "message": "So instead of reverting to a deprecated API, did you try \n\n  @Reference HttpClient httpClient;",
+      "revId": "271f70cc99eb36b09a35a687548878c7bff6ad7b",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "31a8da15_dae92d42",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusCommand.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-11-16T13:34:25Z",
+      "side": 1,
+      "message": "Can you move his back below line 61? I prefer all fields declared before ctors/methods.",
+      "revId": "271f70cc99eb36b09a35a687548878c7bff6ad7b",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
