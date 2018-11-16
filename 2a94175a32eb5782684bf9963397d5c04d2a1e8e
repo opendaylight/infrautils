@@ -89,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "e8f44192_0e4abc06",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/MBeanUtils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-11-16T12:24:53Z",
+      "side": 1,
+      "message": "moved it up.initially i was planning to remove all these unused methods, then realized it was being used in genius. When I added it back, by mistake added it to the bottom",
+      "parentUuid": "88e1e6ae_e026c072",
+      "revId": "2a94175a32eb5782684bf9963397d5c04d2a1e8e",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "31deb47c_284a874f",
         "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ServiceStatusSummary.java",
         "patchSetId": 2
