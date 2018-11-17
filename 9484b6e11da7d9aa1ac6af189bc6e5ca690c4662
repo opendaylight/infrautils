@@ -1,0 +1,187 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "35354315_dd0c10ec",
+        "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/web/TestWebServer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-11-17T16:58:14Z",
+      "side": 1,
+      "message": "I\u0027d prefer not to talk about ODL politics here - javadocs should just describe what the class does.",
+      "revId": "9484b6e11da7d9aa1ac6af189bc6e5ca690c4662",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4a825c35_c86c7edb",
+        "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/web/TestWebServer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-11-17T16:58:14Z",
+      "side": 1,
+      "message": "How about just call (re)start(server) and throw ServletException instead of the generic RuntimeException?",
+      "range": {
+        "startLine": 57,
+        "startChar": 8,
+        "endLine": 61,
+        "endChar": 9
+      },
+      "revId": "9484b6e11da7d9aa1ac6af189bc6e5ca690c4662",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9ec5c81b_b50441d1",
+        "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/web/TestWebServer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-11-17T16:58:14Z",
+      "side": 1,
+      "message": "This implements AutoCloseable so can propagate Exception instead of wrapping unchecked. However I think we should just log the ex and not propagate to avoid potentially failing a UT b/c the http server failed to stop for some reason.",
+      "revId": "9484b6e11da7d9aa1ac6af189bc6e5ca690c4662",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "94e3d32d_d6abffc5",
+        "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/web/TestWebServer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-11-17T16:58:14Z",
+      "side": 1,
+      "message": "restart actually calls start which registerWebContext already does so this is redundant.  Or perhaps registerWebContext shouldn\u0027t start it.",
+      "revId": "9484b6e11da7d9aa1ac6af189bc6e5ca690c4662",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9e06a0c7_d057c083",
+        "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/web/TestWebServer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-11-17T16:58:14Z",
+      "side": 1,
+      "message": "Why is this synchronized? It creates a local ServletContextHandler and doesn\u0027t modify any state...",
+      "range": {
+        "startLine": 93,
+        "startChar": 12,
+        "endLine": 93,
+        "endChar": 24
+      },
+      "revId": "9484b6e11da7d9aa1ac6af189bc6e5ca690c4662",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "23234edc_212c14a7",
+        "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/web/TestWebServer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-11-17T16:58:14Z",
+      "side": 1,
+      "message": "This method just creates and returns a ServletContextHandler instance so how about \"newServletContextHandler\"?",
+      "range": {
+        "startLine": 93,
+        "startChar": 47,
+        "endLine": 93,
+        "endChar": 65
+      },
+      "revId": "9484b6e11da7d9aa1ac6af189bc6e5ca690c4662",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ccf2bf15_6230f785",
+        "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/web/TestWebServer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-11-17T16:58:14Z",
+      "side": 1,
+      "message": "This method calls AbstractLifeCycle.start so call it \"start\u0027?",
+      "range": {
+        "startLine": 100,
+        "startChar": 24,
+        "endLine": 100,
+        "endChar": 31
+      },
+      "revId": "9484b6e11da7d9aa1ac6af189bc6e5ca690c4662",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "004cb9c3_a4bc0232",
+        "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/web/TestWebServer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-11-17T16:58:14Z",
+      "side": 1,
+      "message": "Could use Throwables.throwIfInstanceOf here",
+      "revId": "9484b6e11da7d9aa1ac6af189bc6e5ca690c4662",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4430aa41_ab4ff640",
+        "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/web/TestWebServer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1842
+      },
+      "writtenOn": "2018-11-17T16:58:14Z",
+      "side": 1,
+      "message": "Assumes a specific context. How about (\"start of {} failed\",  lifecycle, e) ...",
+      "range": {
+        "startLine": 107,
+        "startChar": 44,
+        "endLine": 107,
+        "endChar": 61
+      },
+      "revId": "9484b6e11da7d9aa1ac6af189bc6e5ca690c4662",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
