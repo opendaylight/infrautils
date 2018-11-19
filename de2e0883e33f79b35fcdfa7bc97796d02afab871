@@ -1,0 +1,112 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6beccfb6_85ff6a33",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ServiceDescriptor.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-11-19T09:07:09Z",
+      "side": 1,
+      "message": "very minor, but perhaps rename \u0027moduleServiceName\u0027 arg as well?",
+      "revId": "de2e0883e33f79b35fcdfa7bc97796d02afab871",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f69892cb_b2209f09",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusCommand.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-11-19T09:07:09Z",
+      "side": 1,
+      "message": "final",
+      "revId": "de2e0883e33f79b35fcdfa7bc97796d02afab871",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "786fa7a4_df6d9f92",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/HttpClient.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-11-19T09:07:09Z",
+      "side": 1,
+      "message": "final",
+      "revId": "de2e0883e33f79b35fcdfa7bc97796d02afab871",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e71b0e3e_44d56563",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/HttpClient.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-11-19T09:07:09Z",
+      "side": 1,
+      "message": "I think you will find that it will be useful when you will write the DiagStatusCommandTest using the new TestWebServer to have an alternative (in addition to this) constructor like this:\n\n    public HttpClient(int httpPort) {",
+      "revId": "de2e0883e33f79b35fcdfa7bc97796d02afab871",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1ed05745_2f7bff54",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/HttpResponse.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-11-19T09:07:09Z",
+      "side": 1,
+      "message": "I probably would make this class @Immutable, so use final fields and inialitze them in the constructor and not have setters.  It\u0027s not super important, but if you wouldn\u0027t mind to change it to be like that, that could be nice.  \n\nPS: I\u0027m starting to think that HttpClient perhaps this could a useful more general utility.  If we wrote any more web tests, we could perhaps move this somewhere.  (Just a thought for later; don\u0027t do that just yet.)",
+      "revId": "de2e0883e33f79b35fcdfa7bc97796d02afab871",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5fa9e131_49f018b3",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/HttpResponse.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-11-19T09:07:09Z",
+      "side": 1,
+      "message": "what is an \"Entity\" in HTTP?  Isn\u0027t this really \"getBody\" ?  (I see e.g. on https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/http/HttpEntity.html that there an Entity seems to be Headers ++ Body together - which this is not. Similarly see also https://stackoverflow.com/questions/9197745/what-exactly-is-an-http-entity and https://hc.apache.org/httpcomponents-core-ga/httpcore/apidocs/org/apache/http/HttpEntity.html)",
+      "range": {
+        "startLine": 26,
+        "startChar": 18,
+        "endLine": 26,
+        "endChar": 19
+      },
+      "revId": "de2e0883e33f79b35fcdfa7bc97796d02afab871",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
