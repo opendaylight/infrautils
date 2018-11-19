@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "69acde30_3cd9b92f",
+        "filename": "diagstatus/impl/src/test/java/org/opendaylight/infrautils/diagstatus/test/DiagStatusTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-11-19T08:50:28Z",
+      "side": 1,
+      "message": "nice, thanks!  Sorry to be a PITA, but the RegExp like this has one drawback: Imagine, hypothetically that someone one day would change the implementation.  Or not so hypothetically, I\u0027m obviously thinking of c/77730.  The way it is now, if that implementation completely dropped timeStamp and statusTimestamp, this test would still pass! :( Hope you agree that is sub-optimal.  What I think you would really want to do is have a slightly different RegExp which just transforms \u0027\"timeStamp\": \"Fri Nov 16 17:34:26 IST 2018\"\u0027 to \u0027\"timeStamp\": \"DOES-NOT-MATTER\"\u0027, and then have that in the SERVICE_STATUS_SUMMARY - do you know what I mean?",
+      "revId": "e228c47553f405f7bb6ab3b2bc4787425e96c57f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
