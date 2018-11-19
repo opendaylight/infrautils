@@ -53,6 +53,24 @@
     },
     {
       "key": {
+        "uuid": "2a183dcc_4ae2e7bf",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/HttpClient.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-11-19T12:35:52Z",
+      "side": 1,
+      "message": "httpPort value is set based on the .cfg file, this is just a default",
+      "parentUuid": "786fa7a4_df6d9f92",
+      "revId": "de2e0883e33f79b35fcdfa7bc97796d02afab871",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e71b0e3e_44d56563",
         "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/HttpClient.java",
         "patchSetId": 10
@@ -64,6 +82,24 @@
       "writtenOn": "2018-11-19T09:07:09Z",
       "side": 1,
       "message": "I think you will find that it will be useful when you will write the DiagStatusCommandTest using the new TestWebServer to have an alternative (in addition to this) constructor like this:\n\n    public HttpClient(int httpPort) {",
+      "revId": "de2e0883e33f79b35fcdfa7bc97796d02afab871",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "38fab744_70907d3f",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/HttpClient.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-11-19T12:35:52Z",
+      "side": 1,
+      "message": "can u check how I have currently done this test in the latest patchset?",
+      "parentUuid": "e71b0e3e_44d56563",
       "revId": "de2e0883e33f79b35fcdfa7bc97796d02afab871",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -87,6 +123,24 @@
     },
     {
       "key": {
+        "uuid": "957f73bd_d983367f",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/HttpResponse.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-11-19T12:35:52Z",
+      "side": 1,
+      "message": "Can we do this later? Probably once i rebase this patch after we merge the initial test patch.. am exhausted :D",
+      "parentUuid": "1ed05745_2f7bff54",
+      "revId": "de2e0883e33f79b35fcdfa7bc97796d02afab871",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5fa9e131_49f018b3",
         "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/HttpResponse.java",
         "patchSetId": 10
@@ -98,6 +152,30 @@
       "writtenOn": "2018-11-19T09:07:09Z",
       "side": 1,
       "message": "what is an \"Entity\" in HTTP?  Isn\u0027t this really \"getBody\" ?  (I see e.g. on https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/http/HttpEntity.html that there an Entity seems to be Headers ++ Body together - which this is not. Similarly see also https://stackoverflow.com/questions/9197745/what-exactly-is-an-http-entity and https://hc.apache.org/httpcomponents-core-ga/httpcore/apidocs/org/apache/http/HttpEntity.html)",
+      "range": {
+        "startLine": 26,
+        "startChar": 18,
+        "endLine": 26,
+        "endChar": 19
+      },
+      "revId": "de2e0883e33f79b35fcdfa7bc97796d02afab871",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "49c722b7_fc8fe5fb",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/HttpResponse.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-11-19T12:35:52Z",
+      "side": 1,
+      "message": "Iam using org.apache.http.utils.EntityUtils.toString() to convert the HttpEntity and set to our utility entity. Should I change the name?",
+      "parentUuid": "5fa9e131_49f018b3",
       "range": {
         "startLine": 26,
         "startChar": 18,
