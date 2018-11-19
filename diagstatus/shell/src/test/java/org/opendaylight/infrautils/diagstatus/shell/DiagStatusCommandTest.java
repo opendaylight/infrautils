@@ -9,44 +9,86 @@ package org.opendaylight.infrautils.diagstatus.shell;
 
 import static com.google.common.truth.Truth.assertThat;
 import static org.mockito.Mockito.mock;
+import static org.opendaylight.infrautils.diagstatus.ServiceState.OPERATIONAL;
 
+import com.google.common.collect.ImmutableMap;
 import com.google.common.net.InetAddresses;
 import java.net.InetAddress;
-import org.junit.Ignore;
+import java.util.Collections;
+import javax.servlet.ServletException;
+
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.opendaylight.infrautils.diagstatus.ClusterMemberInfo;
 import org.opendaylight.infrautils.diagstatus.DiagStatusService;
+import org.opendaylight.infrautils.diagstatus.ServiceDescriptor;
+import org.opendaylight.infrautils.diagstatus.internal.DiagStatusServiceImpl;
 import org.opendaylight.infrautils.diagstatus.internal.DiagStatusServiceMBeanImpl;
-import org.opendaylight.infrautils.diagstatus.spi.NoClusterMemberInfo;
+import org.opendaylight.infrautils.diagstatus.web.DiagStatusServlet;
 import org.opendaylight.infrautils.ready.SystemReadyMonitor;
 import org.opendaylight.infrautils.ready.testutils.TestSystemReadyMonitor;
 import org.opendaylight.infrautils.ready.testutils.TestSystemReadyMonitor.Behaviour;
+import org.opendaylight.infrautils.testutils.web.TestWebServer;
 
 /**
- * Test for {@link DiagStatusCommand}.
+ * DiagStatusCommandTest for {@link DiagStatusCommand}.
  *
  * @author Michael Vorburger.ch
+ * @author Faseela K
  */
 public class DiagStatusCommandTest {
 
+    static TestWebServer webServer;
+    static DiagStatusService diagStatusService;
+    static SystemReadyMonitor systemReadyMonitor = new TestSystemReadyMonitor(Behaviour.IMMEDIATE);
+    static DiagStatusCommand diagStatusCommand;
+    static ClusterMemberInfo clusterMemberInfo = mock(ClusterMemberInfo.class);
+    static HttpClient httpClient =  new HttpClient(ImmutableMap.of("org.osgi.service.http.port", "8181"));
+
+    static String serviceStatusSummary = "Node IP Address: {node-ip}\n"
+            + "System is operational: true\n"
+            + "System ready state: ACTIVE\n"
+            + "  testService         : OPERATIONAL   (operational)\n";
+
+    static String servletContext = DiagStatusCommand.DIAGSTATUS_URL_SEPARATOR + DiagStatusCommand.DIAGSTATUS_URL_SUFFIX;
+
+    @BeforeClass
+    public static void start() throws Exception {
+        diagStatusService = new DiagStatusServiceImpl(Collections.emptyList(), systemReadyMonitor);
+        String testService1 = "testService";
+        diagStatusService.register(testService1);
+        diagStatusService.report(new ServiceDescriptor("testService", OPERATIONAL,
+                "operational"));
+        diagStatusCommand = new DiagStatusCommand(new DiagStatusServiceMBeanImpl(diagStatusService, systemReadyMonitor),
+                clusterMemberInfo, httpClient);
+    }
+
+    @AfterClass
+    public static void afterTest() throws ServletException {
+        webServer.close();
+    }
+
     @Test
-    @Ignore // TODO INFRAUTILS-56
+    // INFRAUTILS-56 mentions this test was previously ignored as the shutdown had issues due to the RMI connector
+    // Hence trying to re-enable this as part of INFRAUTILS-45
     public void testGetRemoteStatusSummary_IPv4() throws Exception {
+        webServer = new TestWebServer("127.0.0.1", httpClient.getHttpPort(), servletContext);
+        webServer.registerServlet(new DiagStatusServlet(diagStatusService), "/*");
         checkGetRemoteStatusSummary(InetAddresses.forString("127.0.0.1"));
     }
 
     @Test
     public void testGetRemoteStatusSummary_IPv6() throws Exception {
+        webServer = new TestWebServer("::1", httpClient.getHttpPort(), servletContext);
+        webServer.registerServlet(new DiagStatusServlet(diagStatusService), "/*");
         checkGetRemoteStatusSummary(InetAddresses.forString("::1"));
     }
 
     private static void checkGetRemoteStatusSummary(InetAddress inetAddress) throws Exception {
-        DiagStatusService diagStatusService = mock(DiagStatusService.class);
-        SystemReadyMonitor systemReadyMonitor = new TestSystemReadyMonitor(Behaviour.IMMEDIATE);
-        ClusterMemberInfo clusterMemberInfo = new NoClusterMemberInfo(inetAddress);
-        try (DiagStatusServiceMBeanImpl diagStatusServiceMBeanImpl =
-                new DiagStatusServiceMBeanImpl(diagStatusService, systemReadyMonitor, clusterMemberInfo)) {
-            assertThat(DiagStatusCommand.getRemoteStatusSummary(inetAddress)).contains(inetAddress.toString());
-        }
+        String actualServiceStatusSummary = diagStatusCommand.getRemoteStatusSummary(inetAddress);
+        assertThat(serviceStatusSummary.replaceAll(
+                ".*Node IP Address.*\\n", "Node IP Address: "
+                        + inetAddress.toString() + "\n")).isEqualTo(actualServiceStatusSummary);
     }
 }
