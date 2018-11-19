@@ -33,31 +33,38 @@ public class TestWebServer implements AutoCloseable {
 
     private static final Logger LOG = LoggerFactory.getLogger(TestWebServer.class);
 
-    private static final String TEST_CONTEXT = "/test";
     private static final int HTTP_SERVER_IDLE_TIMEOUT = 30000;
 
     private final int httpPort;
     private final Server server;
     private final ContextHandlerCollection contextHandlerCollection;
     private final ServletContextHandler context;
+    private final String testContext;
+    private final String host;
 
     public TestWebServer() throws ServletException {
+        this("localhost", 0, "/test");
+    }
+
+    public TestWebServer(String host, int httpPort, String testContext) throws ServletException {
         this.server = new Server();
         server.setStopAtShutdown(true);
 
         ServerConnector http = new ServerConnector(server);
-        http.setHost("localhost");
-        http.setPort(0); // 0 = automatically choose free port
+        http.setHost(host);
+        http.setPort(httpPort); // 0 = automatically choose free port
         http.setIdleTimeout(HTTP_SERVER_IDLE_TIMEOUT);
         server.addConnector(http);
 
         this.contextHandlerCollection = new ContextHandlerCollection();
         server.setHandler(contextHandlerCollection);
 
-        context = new ServletContextHandler(contextHandlerCollection, TEST_CONTEXT, ServletContextHandler.NO_SESSIONS);
+        context = new ServletContextHandler(contextHandlerCollection, testContext, ServletContextHandler.NO_SESSIONS);
 
         start(server);
         this.httpPort = http.getLocalPort();
+        this.testContext = testContext;
+        this.host = host;
 
         LOG.info("Started Jetty-based HTTP web server on port {}", this.httpPort);
     }
@@ -76,7 +83,7 @@ public class TestWebServer implements AutoCloseable {
     }
 
     public String getTestContextURL() {
-        return "http://localhost:" + httpPort + TEST_CONTEXT + "/";
+        return "http://" + host + ":" + httpPort + testContext + "/";
     }
 
     public void registerServlet(Servlet servlet, String urlPattern) throws ServletException {
