@@ -16,6 +16,24 @@
       "revId": "e228c47553f405f7bb6ab3b2bc4787425e96c57f",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "50c30fdb_9ec20dee",
+        "filename": "diagstatus/impl/src/test/java/org/opendaylight/infrautils/diagstatus/test/DiagStatusTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-11-19T14:55:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "69acde30_3cd9b92f",
+      "revId": "e228c47553f405f7bb6ab3b2bc4787425e96c57f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
