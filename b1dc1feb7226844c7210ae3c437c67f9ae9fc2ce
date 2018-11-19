@@ -22,6 +22,30 @@
       "revId": "b1dc1feb7226844c7210ae3c437c67f9ae9fc2ce",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "681b9a1b_dd2489a5",
+        "filename": "diagstatus/web/src/test/java/org/opendaylight/infrautils/diagstatus/web/DiagStatusServletTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-11-19T20:11:52Z",
+      "side": 1,
+      "message": "It\u0027s better, because if another @Test were ever added which forgot to do \"testDiagStatusService.isOperational\" then it would default to null instead of false?  It\u0027s just a test! ;)",
+      "parentUuid": "f39b37be_1a972db1",
+      "range": {
+        "startLine": 80,
+        "startChar": 8,
+        "endLine": 80,
+        "endChar": 15
+      },
+      "revId": "b1dc1feb7226844c7210ae3c437c67f9ae9fc2ce",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
