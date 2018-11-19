@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "9f5d4a02_b3fd67e7",
+        "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/web/TestWebServer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-11-19T08:32:06Z",
+      "side": 1,
+      "message": "Sure, done; I\u0027ve \"toned it down\", but did intentionally keep the reference to the JettyWebServer in AAA, as that seems relevant for users - OK for you as is now?",
+      "parentUuid": "35354315_dd0c10ec",
+      "revId": "9484b6e11da7d9aa1ac6af189bc6e5ca690c4662",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4a825c35_c86c7edb",
         "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/web/TestWebServer.java",
         "patchSetId": 1
@@ -30,6 +48,30 @@
       "writtenOn": "2018-11-17T16:58:14Z",
       "side": 1,
       "message": "How about just call (re)start(server) and throw ServletException instead of the generic RuntimeException?",
+      "range": {
+        "startLine": 57,
+        "startChar": 8,
+        "endLine": 61,
+        "endChar": 9
+      },
+      "revId": "9484b6e11da7d9aa1ac6af189bc6e5ca690c4662",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "098d64ac_70f587c3",
+        "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/web/TestWebServer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-11-19T08:32:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4a825c35_c86c7edb",
       "range": {
         "startLine": 57,
         "startChar": 8,
@@ -59,6 +101,24 @@
     },
     {
       "key": {
+        "uuid": "ab6ed908_55c2fd0f",
+        "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/web/TestWebServer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-11-19T08:32:06Z",
+      "side": 1,
+      "message": "\u003e  so can propagate Exception\n\nyeah but that forces tests to use @SuppressWarnings(\"checkstyle:IllegalThrows\") which is ugly\n\n\u003e potentially failing a UT b/c the http server failed to stop for some reason.\n\nin that case the server is still running, and subsequent tests will fail (because the port is hogged).  IMHO it is much better to fail more clearly at this stage.  However, we could use a ServletException if you prefer that - I\u0027ve just done this; hope that\u0027s acceptable?",
+      "parentUuid": "9ec5c81b_b50441d1",
+      "revId": "9484b6e11da7d9aa1ac6af189bc6e5ca690c4662",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "94e3d32d_d6abffc5",
         "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/web/TestWebServer.java",
         "patchSetId": 1
@@ -70,6 +130,24 @@
       "writtenOn": "2018-11-17T16:58:14Z",
       "side": 1,
       "message": "restart actually calls start which registerWebContext already does so this is redundant.  Or perhaps registerWebContext shouldn\u0027t start it.",
+      "revId": "9484b6e11da7d9aa1ac6af189bc6e5ca690c4662",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aebe54a7_79420f77",
+        "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/web/TestWebServer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-11-19T08:32:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "94e3d32d_d6abffc5",
       "revId": "9484b6e11da7d9aa1ac6af189bc6e5ca690c4662",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
@@ -122,6 +200,54 @@
     },
     {
       "key": {
+        "uuid": "bdaebec2_e62a6e90",
+        "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/web/TestWebServer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-11-19T08:32:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9e06a0c7_d057c083",
+      "range": {
+        "startLine": 93,
+        "startChar": 12,
+        "endLine": 93,
+        "endChar": 24
+      },
+      "revId": "9484b6e11da7d9aa1ac6af189bc6e5ca690c4662",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "23e63112_97b76e0c",
+        "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/web/TestWebServer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-11-19T08:32:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "23234edc_212c14a7",
+      "range": {
+        "startLine": 93,
+        "startChar": 47,
+        "endLine": 93,
+        "endChar": 65
+      },
+      "revId": "9484b6e11da7d9aa1ac6af189bc6e5ca690c4662",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ccf2bf15_6230f785",
         "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/web/TestWebServer.java",
         "patchSetId": 1
@@ -133,6 +259,30 @@
       "writtenOn": "2018-11-17T16:58:14Z",
       "side": 1,
       "message": "This method calls AbstractLifeCycle.start so call it \"start\u0027?",
+      "range": {
+        "startLine": 100,
+        "startChar": 24,
+        "endLine": 100,
+        "endChar": 31
+      },
+      "revId": "9484b6e11da7d9aa1ac6af189bc6e5ca690c4662",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cb658728_b839a7f1",
+        "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/web/TestWebServer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-11-19T08:32:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ccf2bf15_6230f785",
       "range": {
         "startLine": 100,
         "startChar": 24,
@@ -162,6 +312,24 @@
     },
     {
       "key": {
+        "uuid": "c04e637f_48b26843",
+        "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/web/TestWebServer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-11-19T08:32:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "004cb9c3_a4bc0232",
+      "revId": "9484b6e11da7d9aa1ac6af189bc6e5ca690c4662",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4430aa41_ab4ff640",
         "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/web/TestWebServer.java",
         "patchSetId": 1
@@ -173,6 +341,30 @@
       "writtenOn": "2018-11-17T16:58:14Z",
       "side": 1,
       "message": "Assumes a specific context. How about (\"start of {} failed\",  lifecycle, e) ...",
+      "range": {
+        "startLine": 107,
+        "startChar": 44,
+        "endLine": 107,
+        "endChar": 61
+      },
+      "revId": "9484b6e11da7d9aa1ac6af189bc6e5ca690c4662",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1dabdd0a_7f95577f",
+        "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/web/TestWebServer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-11-19T08:32:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4430aa41_ab4ff640",
       "range": {
         "startLine": 107,
         "startChar": 44,
