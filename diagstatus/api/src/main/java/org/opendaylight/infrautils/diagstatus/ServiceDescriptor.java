@@ -10,6 +10,7 @@ package org.opendaylight.infrautils.diagstatus;
 import static java.util.Objects.requireNonNull;
 
 import com.google.common.base.MoreObjects;
+import com.google.gson.annotations.SerializedName;
 
 import java.time.Instant;
 import java.util.Objects;
@@ -27,19 +28,20 @@ import javax.annotation.concurrent.Immutable;
 @SuppressWarnings("Immutable") // Throwable is not really immutable (although maybe it should have been)
 public final class ServiceDescriptor {
 
-    private final String moduleServiceName;
-    private final ServiceState serviceState;
-    private final Instant timestamp;
-    // In case of ERROR state specific error message to aid troubleshooting can be provided by monitored service:
+    private final String serviceName;
+    private final ServiceState effectiveStatus;
+    @SerializedName("reportedStatusDescription")
     private final String statusDesc;
+    private final Instant statusTimeStamp;
+    // In case of ERROR state specific error message to aid troubleshooting can be provided by monitored service:
     private final @Nullable Throwable errorCause;
 
-    private ServiceDescriptor(String moduleServiceName, ServiceState svcState, String statusDesc,
+    private ServiceDescriptor(String serviceName, ServiceState svcState, String statusDesc,
                               Throwable errorCause) {
-        this.moduleServiceName = requireNonNull(moduleServiceName, "moduleServiceName");
-        this.serviceState = requireNonNull(svcState, "svcState");
+        this.serviceName = requireNonNull(serviceName, "serviceName");
+        this.effectiveStatus = requireNonNull(svcState, "svcState");
         this.statusDesc = requireNonNull(statusDesc, "statusDesc");
-        this.timestamp = Instant.now();
+        this.statusTimeStamp = Instant.now();
         this.errorCause = errorCause;
     }
 
@@ -56,15 +58,15 @@ public final class ServiceDescriptor {
     }
 
     public String getModuleServiceName() {
-        return moduleServiceName;
+        return serviceName;
     }
 
     public ServiceState getServiceState() {
-        return serviceState;
+        return effectiveStatus;
     }
 
     public Instant getTimestamp() {
-        return timestamp;
+        return statusTimeStamp;
     }
 
     public String getStatusDesc() {
@@ -79,7 +81,7 @@ public final class ServiceDescriptor {
     public String toString() {
         MoreObjects.ToStringHelper toStringHelper = MoreObjects.toStringHelper(this)
                 .add("serviceName", getModuleServiceName())
-                .add("serviceState", getServiceState())
+                .add("effectiveStatus", getServiceState())
                 .add("statusDesc", getStatusDesc());
         getErrorCause().ifPresent(cause -> toStringHelper.add("errorCause", cause));
         return toStringHelper.toString();
@@ -97,16 +99,16 @@ public final class ServiceDescriptor {
             return false;
         }
         ServiceDescriptor other = (ServiceDescriptor) obj;
-        if (!moduleServiceName.equals(other.moduleServiceName)) {
+        if (!serviceName.equals(other.serviceName)) {
             return false;
         }
-        if (serviceState != other.serviceState) {
+        if (effectiveStatus != other.effectiveStatus) {
             return false;
         }
         if (!statusDesc.equals(other.statusDesc)) {
             return false;
         }
-        if (!timestamp.equals(other.timestamp)) {
+        if (!statusTimeStamp.equals(other.statusTimeStamp)) {
             return false;
         }
         if (!Objects.equals(errorCause, other.errorCause)) {
