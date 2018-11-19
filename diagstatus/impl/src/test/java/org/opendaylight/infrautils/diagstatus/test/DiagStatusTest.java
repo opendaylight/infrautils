@@ -48,7 +48,6 @@ public class DiagStatusTest {
             + "      \"effectiveStatus\": \"UNREGISTERED\",\n"
             + "      \"reportedStatusDescription\": \"service is Unregistered\",\n"
             + "      \"statusTimestamp\": \"{DO-NOT-BOTHER}\",\n"
-            + "      \"errorCause\": \"\"\n"
             + "    }\n"
             + "  ]\n"
             + "}";

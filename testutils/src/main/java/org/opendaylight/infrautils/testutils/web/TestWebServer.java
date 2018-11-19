@@ -33,7 +33,6 @@ public class TestWebServer implements AutoCloseable {
 
     private static final Logger LOG = LoggerFactory.getLogger(TestWebServer.class);
 
-    private static final String TEST_CONTEXT = "/test";
     private static final int HTTP_SERVER_IDLE_TIMEOUT = 30000;
 
     private final int httpPort;
@@ -42,19 +41,23 @@ public class TestWebServer implements AutoCloseable {
     private final ServletContextHandler context;
 
     public TestWebServer() throws ServletException {
+        this("localhost", 0, "/test");
+    }
+
+    public TestWebServer(String localhost, int httpPort, String testContext) throws ServletException {
         this.server = new Server();
         server.setStopAtShutdown(true);
 
         ServerConnector http = new ServerConnector(server);
-        http.setHost("localhost");
-        http.setPort(0); // 0 = automatically choose free port
+        http.setHost(localhost);
+        http.setPort(httpPort); // 0 = automatically choose free port
         http.setIdleTimeout(HTTP_SERVER_IDLE_TIMEOUT);
         server.addConnector(http);
 
         this.contextHandlerCollection = new ContextHandlerCollection();
         server.setHandler(contextHandlerCollection);
 
-        context = new ServletContextHandler(contextHandlerCollection, TEST_CONTEXT, ServletContextHandler.NO_SESSIONS);
+        context = new ServletContextHandler(contextHandlerCollection, testContext, ServletContextHandler.NO_SESSIONS);
 
         start(server);
         this.httpPort = http.getLocalPort();
@@ -76,7 +79,7 @@ public class TestWebServer implements AutoCloseable {
     }
 
     public String getTestContextURL() {
-        return "http://localhost:" + httpPort + TEST_CONTEXT + "/";
+        return "http://localhost:" + httpPort + "test/";
     }
 
     public void registerServlet(Servlet servlet, String urlPattern) throws ServletException {
