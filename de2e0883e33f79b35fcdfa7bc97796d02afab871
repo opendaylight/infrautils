@@ -141,6 +141,24 @@
     },
     {
       "key": {
+        "uuid": "d981acae_e8065c1e",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/HttpResponse.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-11-19T19:28:14Z",
+      "side": 1,
+      "message": "sure ;)",
+      "parentUuid": "957f73bd_d983367f",
+      "revId": "de2e0883e33f79b35fcdfa7bc97796d02afab871",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5fa9e131_49f018b3",
         "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/HttpResponse.java",
         "patchSetId": 10
@@ -176,6 +194,30 @@
       "side": 1,
       "message": "Iam using org.apache.http.utils.EntityUtils.toString() to convert the HttpEntity and set to our utility entity. Should I change the name?",
       "parentUuid": "5fa9e131_49f018b3",
+      "range": {
+        "startLine": 26,
+        "startChar": 18,
+        "endLine": 26,
+        "endChar": 19
+      },
+      "revId": "de2e0883e33f79b35fcdfa7bc97796d02afab871",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9fbb75d5_684ef7f1",
+        "filename": "diagstatus/shell/src/main/java/org/opendaylight/infrautils/diagstatus/shell/HttpResponse.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-11-19T19:28:14Z",
+      "side": 1,
+      "message": "yes I did mean only change the name from getEntity() to getBody() - because that is what this does.",
+      "parentUuid": "49c722b7_fc8fe5fb",
       "range": {
         "startLine": 26,
         "startChar": 18,
