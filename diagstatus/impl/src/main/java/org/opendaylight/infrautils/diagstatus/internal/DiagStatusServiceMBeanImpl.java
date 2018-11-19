@@ -15,8 +15,6 @@ import com.google.common.base.Throwables;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableMap.Builder;
 import java.io.IOException;
-import java.net.InetAddress;
-import java.rmi.registry.Registry;
 import java.util.Map;
 import javax.annotation.PreDestroy;
 import javax.inject.Inject;
@@ -24,55 +22,33 @@ import javax.inject.Singleton;
 import javax.management.InstanceNotFoundException;
 import javax.management.JMException;
 import javax.management.MBeanRegistrationException;
-import javax.management.MBeanServer;
 import javax.management.MalformedObjectNameException;
 import javax.management.StandardMBean;
-import javax.management.remote.JMXConnectorServer;
 
 import org.apache.aries.blueprint.annotation.service.Reference;
 import org.apache.aries.blueprint.annotation.service.Service;
-import org.apache.commons.lang3.tuple.Pair;
-import org.opendaylight.infrautils.diagstatus.ClusterMemberInfo;
 import org.opendaylight.infrautils.diagstatus.DiagStatusService;
 import org.opendaylight.infrautils.diagstatus.DiagStatusServiceMBean;
 import org.opendaylight.infrautils.diagstatus.MBeanUtils;
 import org.opendaylight.infrautils.diagstatus.ServiceDescriptor;
 import org.opendaylight.infrautils.diagstatus.ServiceState;
-import org.opendaylight.infrautils.ready.SystemReadyListener;
 import org.opendaylight.infrautils.ready.SystemReadyMonitor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @Singleton
 @Service(classes = DiagStatusServiceMBean.class)
-public class DiagStatusServiceMBeanImpl extends StandardMBean
-        implements DiagStatusServiceMBean, SystemReadyListener, AutoCloseable {
-
-    private static final Logger LOG = LoggerFactory.getLogger(DiagStatusServiceMBeanImpl.class);
+public class DiagStatusServiceMBeanImpl extends StandardMBean implements DiagStatusServiceMBean, AutoCloseable {
 
     private final DiagStatusService diagStatusService;
     private final SystemReadyMonitor systemReadyMonitor;
-    private final ClusterMemberInfo clusterMemberInfo;
-    private final MBeanServer mbeanServer;
-    private Pair<JMXConnectorServer, Registry> jmxConnector = null;
 
     @Inject
     public DiagStatusServiceMBeanImpl(DiagStatusService diagStatusService,
-                                      @Reference SystemReadyMonitor systemReadyMonitor,
-                                      ClusterMemberInfo clusterMemberInfo)
+                                      @Reference SystemReadyMonitor systemReadyMonitor)
             throws JMException {
         super(DiagStatusServiceMBean.class);
         this.diagStatusService = diagStatusService;
         this.systemReadyMonitor = systemReadyMonitor;
-        this.clusterMemberInfo = clusterMemberInfo;
-        this.mbeanServer = MBeanUtils.registerServerMBean(this, JMX_OBJECT_NAME);
-        systemReadyMonitor.registerListener(this);
-    }
-
-    @Override
-    public void onSystemBootReady() throws IOException {
-        InetAddress host = clusterMemberInfo.getSelfAddress();
-        jmxConnector = MBeanUtils.startRMIConnectorServer(mbeanServer, host, RMI_REGISTRY_PORT);
+        MBeanUtils.registerServerMBean(this, JMX_OBJECT_NAME);
     }
 
     @Override
@@ -80,9 +56,6 @@ public class DiagStatusServiceMBeanImpl extends StandardMBean
     public void close() throws IOException, MalformedObjectNameException,
             InstanceNotFoundException, MBeanRegistrationException {
         MBeanUtils.unregisterServerMBean(this, JMX_OBJECT_NAME);
-        if (jmxConnector != null) {
-            MBeanUtils.stopRMIConnectorServer(jmxConnector);
-        }
     }
 
     @Override
@@ -100,8 +73,8 @@ public class DiagStatusServiceMBeanImpl extends StandardMBean
                 statusSummary.append("Reported Status Desc : ").append(status.getStatusDesc())
                         .append('\n');
             }
-            if (status.getTimestamp() != null) {
-                statusSummary.append("Status Timestamp     : ").append(status.getTimestamp().toString()).append("\n");
+            if (status.getStatusTimestamp() != null) {
+                statusSummary.append("Status Timestamp     : ").append(status.getStatusTimestamp()).append("\n");
             }
             if (status.getErrorCause() != null && status.getErrorCause().isPresent()) {
                 statusSummary.append("Error Cause          : ")
