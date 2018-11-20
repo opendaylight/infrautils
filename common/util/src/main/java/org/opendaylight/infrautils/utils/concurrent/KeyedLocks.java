@@ -23,7 +23,9 @@ import org.slf4j.LoggerFactory;
  *
  * @param <T> the key type
  * @author Thomas Pantelis
+ * @deprecated Use {@link NamedLocks} instead.
  */
+@Deprecated
 public class KeyedLocks<T> {
     @FunctionalInterface
     private interface BooleanLockFunction<T> {
