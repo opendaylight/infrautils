@@ -13,7 +13,6 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.ReentrantLock;
-import java.util.function.Function;
 import javax.annotation.Nonnull;
 import javax.annotation.concurrent.GuardedBy;
 import org.slf4j.Logger;
@@ -26,13 +25,18 @@ import org.slf4j.LoggerFactory;
  * @author Thomas Pantelis
  */
 public class KeyedLocks<T> {
-    private static final Logger LOG = LoggerFactory.getLogger(KeyedLocks.class);
+    @FunctionalInterface
+    private interface BooleanLockFunction {
+        boolean apply(CountingReentrantLock lock);
+    }
 
     private static class CountingReentrantLock extends ReentrantLock {
         private static final long serialVersionUID = 1;
 
-        AtomicInteger useCount = new AtomicInteger(1);
+        final AtomicInteger useCount = new AtomicInteger(1);
     }
+
+    private static final Logger LOG = LoggerFactory.getLogger(KeyedLocks.class);
 
     @GuardedBy("locks")
     private final Map<T, CountingReentrantLock> locks = new HashMap<>();
@@ -102,7 +106,7 @@ public class KeyedLocks<T> {
         });
     }
 
-    private boolean doLock(T lockKey, Function<CountingReentrantLock, Boolean> lockFunction) {
+    private boolean doLock(T lockKey, BooleanLockFunction lockFunction) {
         CountingReentrantLock lock;
         synchronized (locks) {
             lock = locks.get(lockKey);
