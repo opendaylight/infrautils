@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9089aed5_554c6fa7",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ServiceDescriptor.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-11-20T08:54:31Z",
+      "side": 0,
+      "message": "We are using Date() in one place and Instant here.. in the CLI output the overall timestamp and service specific timestamp is showing in two different formats, Hence unifying the same",
+      "revId": "1ab29dad9df225211dba925837f28e9ed6a7e32d",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
