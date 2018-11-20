@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "30595a0f_d67c620c",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ServiceDescriptor.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-11-20T12:55:37Z",
+      "side": 0,
+      "message": "sure unifying the CLI output is fine, but changing the internal data type from Instant (or Date, doesn\u0027t matter so much) to String is not great... String is a formatted date; this formatting should happen in the \"consumer\" (CLI) not this data structure here, its getter should return an Instant (or Date, that\u0027s not the point; Instant is just better because more modern).",
+      "parentUuid": "9089aed5_554c6fa7",
+      "revId": "1ab29dad9df225211dba925837f28e9ed6a7e32d",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f18115f9_c62647cc",
         "filename": "diagstatus/impl/src/test/java/org/opendaylight/infrautils/diagstatus/test/DiagStatusTest.java",
         "patchSetId": 13
@@ -30,6 +48,24 @@
       "writtenOn": "2018-11-20T08:57:49Z",
       "side": 0,
       "message": "gson omits attributes which are null automatically.. previously we were having empty string in the output, which is gone with the current implementation, and hence test started failing.",
+      "revId": "1ab29dad9df225211dba925837f28e9ed6a7e32d",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e81edc76_ff0a3f30",
+        "filename": "diagstatus/impl/src/test/java/org/opendaylight/infrautils/diagstatus/test/DiagStatusTest.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-11-20T12:55:37Z",
+      "side": 0,
+      "message": "hypothetically, something could have relied on that.  That was the point why a test seemed useful to me.  In an ideal world, you would make GSON not skip empty fields... according to https://futurestud.io/tutorials/gson-builder-force-serialization-of-null-values, this is as simple as gsonBuilder.serializeNulls();",
+      "parentUuid": "f18115f9_c62647cc",
       "revId": "1ab29dad9df225211dba925837f28e9ed6a7e32d",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
