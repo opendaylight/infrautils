@@ -16,6 +16,23 @@
       "revId": "1ab29dad9df225211dba925837f28e9ed6a7e32d",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "f18115f9_c62647cc",
+        "filename": "diagstatus/impl/src/test/java/org/opendaylight/infrautils/diagstatus/test/DiagStatusTest.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-11-20T08:57:49Z",
+      "side": 0,
+      "message": "gson omits attributes which are null automatically.. previously we were having empty string in the output, which is gone with the current implementation, and hence test started failing.",
+      "revId": "1ab29dad9df225211dba925837f28e9ed6a7e32d",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
