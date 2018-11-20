@@ -13,7 +13,6 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.ReentrantLock;
-import java.util.function.Function;
 import javax.annotation.Nonnull;
 import javax.annotation.concurrent.GuardedBy;
 import org.slf4j.Logger;
@@ -26,13 +25,18 @@ import org.slf4j.LoggerFactory;
  * @author Thomas Pantelis
  */
 public class KeyedLocks<T> {
-    private static final Logger LOG = LoggerFactory.getLogger(KeyedLocks.class);
+    @FunctionalInterface
+    private interface BooleanLockFunction<T> {
+        boolean apply(T key, CountingReentrantLock lock);
+    }
 
     private static class CountingReentrantLock extends ReentrantLock {
         private static final long serialVersionUID = 1;
 
-        AtomicInteger useCount = new AtomicInteger(1);
+        final AtomicInteger useCount = new AtomicInteger(1);
     }
+
+    private static final Logger LOG = LoggerFactory.getLogger(KeyedLocks.class);
 
     @GuardedBy("locks")
     private final Map<T, CountingReentrantLock> locks = new HashMap<>();
@@ -50,18 +54,18 @@ public class KeyedLocks<T> {
      */
     public boolean tryLock(@Nonnull T lockKey, long timeout, TimeUnit unit) {
         LOG.debug("tryLock {}, time {}, unit: {}", lockKey, timeout, unit);
-        return doLock(lockKey, lock -> {
+        return doLock(lockKey, (key, lock) -> {
             try {
                 boolean locked = lock.tryLock(timeout, unit);
                 if (!locked) {
                     lock.useCount.decrementAndGet();
-                    LOG.debug("tryLock {} - already locked - count: {}", lockKey, lock.useCount);
+                    LOG.debug("tryLock {} - already locked - count: {}", key, lock.useCount);
                 }
 
                 return locked;
             } catch (InterruptedException e) {
                 lock.useCount.decrementAndGet();
-                LOG.warn("tryLock was interrrupted for key {} - remaining use count: {}", lockKey, lock.useCount);
+                LOG.warn("tryLock was interrrupted for key {} - remaining use count: {}", key, lock.useCount);
                 return false;
             }
         });
@@ -77,11 +81,11 @@ public class KeyedLocks<T> {
      */
     public boolean tryLock(@Nonnull T lockKey) {
         LOG.debug("tryLock {}", lockKey);
-        return doLock(lockKey, lock -> {
+        return doLock(lockKey, (key, lock) -> {
             boolean locked = lock.tryLock();
             if (!locked) {
                 lock.useCount.decrementAndGet();
-                LOG.debug("tryLock {} - already locked - count: {}", lockKey, lock.useCount);
+                LOG.debug("tryLock {} - already locked - count: {}", key, lock.useCount);
             }
 
             return locked;
@@ -96,13 +100,13 @@ public class KeyedLocks<T> {
      */
     public void lock(@Nonnull T lockKey) {
         LOG.debug("lock {}", lockKey);
-        doLock(lockKey, lock -> {
+        doLock(lockKey, (key, lock) -> {
             lock.lock();
             return true;
         });
     }
 
-    private boolean doLock(T lockKey, Function<CountingReentrantLock, Boolean> lockFunction) {
+    private boolean doLock(T lockKey, BooleanLockFunction<T> lockFunction) {
         CountingReentrantLock lock;
         synchronized (locks) {
             lock = locks.get(lockKey);
@@ -110,14 +114,14 @@ public class KeyedLocks<T> {
                 LOG.debug("Creating new Lock for {}", lockKey);
                 CountingReentrantLock newLock = new CountingReentrantLock();
                 locks.put(lockKey, newLock);
-                return lockFunction.apply(newLock);
+                return lockFunction.apply(lockKey, newLock);
             } else {
                 lock.useCount.incrementAndGet();
                 LOG.debug("Lock for {} aleady exists - new count {}", lockKey, lock.useCount);
             }
         }
 
-        return lockFunction.apply(lock);
+        return lockFunction.apply(lockKey, lock);
     }
 
     /**
