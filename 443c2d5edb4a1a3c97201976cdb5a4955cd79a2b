@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "93490dde_40b7fd97",
+        "filename": "diagstatus/shell/src/test/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusCommandTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-11-20T08:52:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "810e2241_ce62b2d2",
+      "revId": "443c2d5edb4a1a3c97201976cdb5a4955cd79a2b",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c9107779_e1250a5e",
         "filename": "diagstatus/shell/src/test/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusCommandTest.java",
         "patchSetId": 11
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "8b55d182_d58ae33d",
+        "filename": "diagstatus/shell/src/test/java/org/opendaylight/infrautils/diagstatus/shell/DiagStatusCommandTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-11-20T08:52:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c9107779_e1250a5e",
+      "revId": "443c2d5edb4a1a3c97201976cdb5a4955cd79a2b",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "de3f8f36_2bd9c467",
         "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/web/TestWebServer.java",
         "patchSetId": 11
@@ -47,6 +83,30 @@
       "writtenOn": "2018-11-19T19:28:14Z",
       "side": 1,
       "message": "remove the \u003d \"/test\" which is actually un-used now (else it\u0027s confusing), and move this line which is no longer a constant now down to after  the HTTP_SERVER_IDLE_TIMEOUT, between server and contextHandlerCollection, where it looks nice in terms of line length ;)",
+      "range": {
+        "startLine": 36,
+        "startChar": 26,
+        "endLine": 36,
+        "endChar": 27
+      },
+      "revId": "443c2d5edb4a1a3c97201976cdb5a4955cd79a2b",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "26a1cc34_61b29f94",
+        "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/web/TestWebServer.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-11-20T08:52:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "de3f8f36_2bd9c467",
       "range": {
         "startLine": 36,
         "startChar": 26,
