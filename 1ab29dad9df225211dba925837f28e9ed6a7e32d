@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "51515f3d_234c057c",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ServiceDescriptor.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-11-21T12:20:02Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "30595a0f_d67c620c",
+      "revId": "1ab29dad9df225211dba925837f28e9ed6a7e32d",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "f18115f9_c62647cc",
         "filename": "diagstatus/impl/src/test/java/org/opendaylight/infrautils/diagstatus/test/DiagStatusTest.java",
         "patchSetId": 13
@@ -83,6 +101,24 @@
       "writtenOn": "2018-11-21T02:33:52Z",
       "side": 0,
       "message": "i felt it is better to reduce the size of the json, and hence did not use serializeNulls().. But if you think some external scripts are expecting this attribute always in the output, will add it back",
+      "parentUuid": "e81edc76_ff0a3f30",
+      "revId": "1ab29dad9df225211dba925837f28e9ed6a7e32d",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0d807cae_2a18450e",
+        "filename": "diagstatus/impl/src/test/java/org/opendaylight/infrautils/diagstatus/test/DiagStatusTest.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-11-21T12:20:02Z",
+      "side": 0,
+      "message": "Done",
       "parentUuid": "e81edc76_ff0a3f30",
       "revId": "1ab29dad9df225211dba925837f28e9ed6a7e32d",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
