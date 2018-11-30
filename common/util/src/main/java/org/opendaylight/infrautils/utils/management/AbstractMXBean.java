@@ -121,13 +121,14 @@ public abstract class AbstractMXBean {
      */
     public boolean unregisterMBean() {
         @Var boolean unregister = false;
+        @Var ObjectName mbeanobjectname = null;
         try {
-            ObjectName mbeanobjectname = this.getMBeanObjectName();
+            mbeanobjectname = this.getMBeanObjectName();
             unregisterMBean(mbeanobjectname);
             unregister = true;
         } catch (InstanceNotFoundException | MBeanRegistrationException
                 | MalformedObjectNameException e) {
-            LOG.debug("Failed when unregistering MBean {}", e);
+            LOG.debug("Failed when unregistering MBean {}", mbeanobjectname, e);
         }
         return unregister;
     }
@@ -144,12 +145,13 @@ public abstract class AbstractMXBean {
      */
     public Object invokeMBeanFunction(String functionName) {
         @Var Object result = "";
+        @Var ObjectName objectName = null;
         try {
-            ObjectName objectName = this.getMBeanObjectName();
+            objectName = this.getMBeanObjectName();
             MBeanServer mplatformMbeanServer = ManagementFactory.getPlatformMBeanServer();
             result = mplatformMbeanServer.invoke(objectName, functionName, null, null);
         } catch (InstanceNotFoundException | MBeanException | ReflectionException | MalformedObjectNameException e) {
-            LOG.error("Failed when executing MBean function", e);
+            LOG.error("Failed when executing MBean function {} in {}", functionName, objectName, e);
         }
         return result;
     }
@@ -161,13 +163,14 @@ public abstract class AbstractMXBean {
      */
     public Object readMBeanAttribute(String attribute) {
         @Var Object attributeObj = "";
+        @Var ObjectName objectName = null;
         try {
-            ObjectName objectName = this.getMBeanObjectName();
+            objectName = this.getMBeanObjectName();
             MBeanServer platformMbeanServer = ManagementFactory.getPlatformMBeanServer();
             attributeObj = platformMbeanServer.getAttribute(objectName, attribute);
         } catch (AttributeNotFoundException | InstanceNotFoundException | MBeanException
                 | ReflectionException | MalformedObjectNameException e) {
-            LOG.info("Failed when reading MBean attribute", e);
+            LOG.info("Failed when reading MBean attribute {} from {}", attribute, objectName, e);
         }
         return attributeObj;
     }
