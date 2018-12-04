@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "cbf7832e_901d0b50",
+        "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/concurrent/NamedSimpleReentrantLock.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2018-12-04T09:00:06Z",
+      "side": 1,
+      "message": "This is actually use of a single lock (this class)",
+      "parentUuid": "3102479b_9752b971",
+      "range": {
+        "startLine": 118,
+        "startChar": 11,
+        "endLine": 118,
+        "endChar": 36
+      },
+      "revId": "1ef272ad9aaba4c2d0e3e61cea5eb7052460062d",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "790a14e1_cb34d0b7",
         "filename": "common/util/src/main/java/org/opendaylight/infrautils/utils/concurrent/NamedSimpleReentrantLock.java",
         "patchSetId": 16
@@ -94,6 +118,30 @@
     },
     {
       "key": {
+        "uuid": "59672e9e_4288b9bc",
+        "filename": "common/util/src/test/java/org/opendaylight/infrautils/utils/concurrent/NamedSimpleReentrantLockTest.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2018-12-04T09:00:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "157972d8_7b67ed9d",
+      "range": {
+        "startLine": 104,
+        "startChar": 15,
+        "endLine": 104,
+        "endChar": 21
+      },
+      "revId": "1ef272ad9aaba4c2d0e3e61cea5eb7052460062d",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "37196632_a138803c",
         "filename": "common/util/src/test/java/org/opendaylight/infrautils/utils/concurrent/NamedSimpleReentrantLockTest.java",
         "patchSetId": 16
@@ -105,6 +153,30 @@
       "writtenOn": "2018-11-30T17:30:46Z",
       "side": 1,
       "message": "...same here",
+      "range": {
+        "startLine": 131,
+        "startChar": 15,
+        "endLine": 131,
+        "endChar": 21
+      },
+      "revId": "1ef272ad9aaba4c2d0e3e61cea5eb7052460062d",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "99dc1891_30379940",
+        "filename": "common/util/src/test/java/org/opendaylight/infrautils/utils/concurrent/NamedSimpleReentrantLockTest.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2018-12-04T09:00:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "37196632_a138803c",
       "range": {
         "startLine": 131,
         "startChar": 15,
