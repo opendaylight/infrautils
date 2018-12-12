@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c92f8e1f_b2ee99ca",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobCoordinatorImpl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-12-12T12:27:04Z",
+      "side": 1,
+      "message": "I\u0027m against this filter(Objects::nonNull), because of the following background: Back in NETVIRT-937, we had found that some applications using the JC submit null futures.  This is a (big) bug in such applications - we should not work around and hide such problems here.  \n\nIn https://git.opendaylight.org/gerrit/#/c/63965/ we had improved the logging to make it easy to see which applications are the culprit.  You need to look for that and then fix the caller.  \n\nBack then, the problem was elanmanager which was had a serious concurrency issue.  I forgot the exact details, but found my old https://git.opendaylight.org/gerrit/#/c/65839/, Abandanoned, but based on comments in NETVIRT-937 I believe Tom Pantelis at the time submitted another better fix in elamanager.  Your problem may be somewhere else, I\u0027m just giving this for background / reference, not saying it still is in elanmanager.",
+      "revId": "4ed74e5370d04c36a4fd2d9b42f7a2274da59c8a",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
