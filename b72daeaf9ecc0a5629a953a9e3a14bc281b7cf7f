@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "b7c667f4_dd74f007",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-12-12T12:12:28Z",
+      "side": 1,
+      "message": "we should not be linking to bugs.opendaylight.org anymore, but only use jira.opendaylight.org now; this issue was migrated and is NETVIRT-937.",
+      "range": {
+        "startLine": 11,
+        "startChar": 17,
+        "endLine": 11,
+        "endChar": 18
+      },
+      "revId": "b72daeaf9ecc0a5629a953a9e3a14bc281b7cf7f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
