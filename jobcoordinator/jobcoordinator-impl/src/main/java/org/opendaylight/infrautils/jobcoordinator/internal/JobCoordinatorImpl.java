@@ -19,6 +19,7 @@ import com.google.errorprone.annotations.Var;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executors;
@@ -31,6 +32,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
+import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 import javax.annotation.PreDestroy;
 import javax.annotation.concurrent.GuardedBy;
@@ -411,9 +413,14 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
                 clearJob(jobEntry);
                 return;
             }
-
-            jobEntry.setFutures(futures);
-            ListenableFuture<List<Void>> listenableFuture = Futures.allAsList(futures);
+            List<ListenableFuture<Void>> nonNullFutures = futures.stream().filter(Objects::nonNull)
+                    .collect(Collectors.toList());
+            if (nonNullFutures.isEmpty()) {
+                clearJob(jobEntry);
+                return;
+            }
+            jobEntry.setFutures(nonNullFutures);
+            ListenableFuture<List<Void>> listenableFuture = Futures.allAsList(nonNullFutures);
             Futures.addCallback(listenableFuture, new JobCallback(jobEntry), MoreExecutors.directExecutor());
         }
 
