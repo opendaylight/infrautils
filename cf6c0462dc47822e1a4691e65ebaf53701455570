@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bc378ac6_05788892",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobCoordinatorImpl.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 416,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2018-12-12T12:27:04Z",
+      "side": 1,
+      "message": "I\u0027m reluctant",
+      "revId": "cf6c0462dc47822e1a4691e65ebaf53701455570",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
