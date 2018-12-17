@@ -13,7 +13,9 @@ import junit.framework.AssertionFailedError;
 import org.jhades.JHades;
 import org.jhades.model.ClasspathResource;
 import org.jhades.model.ClasspathResourceVersion;
-import org.jhades.reports.DuplicatesReport;
+import org.jhades.model.ClasspathResources;
+import org.jhades.reports.DefaultUrlFormatterImpl;
+import org.jhades.reports.UrlFormatter;
 import org.jhades.service.ClasspathScanner;
 import org.junit.rules.TestRule;
 import org.junit.runner.Description;
@@ -38,6 +40,8 @@ import org.junit.runners.model.Statement;
  */
 public class ClasspathHellDuplicatesCheckRule implements TestRule {
 
+    private static final UrlFormatter URL_FORMATTER = new DefaultUrlFormatterImpl();
+
     @Override
     public Statement apply(Statement base, Description description) {
         checkClasspath();
@@ -57,7 +61,7 @@ public class ClasspathHellDuplicatesCheckRule implements TestRule {
                 .printClasspath()
                 .overlappingJarsReport();
             // Instead of JHades.multipleClassVersionsReport() we call our own, to report only filtered dupes:
-            new DuplicatesReport(filteredResourcesWithDuplicates).print();
+            printDuplicatesReport(filteredResourcesWithDuplicates);
             throw new AssertionFailedError("Classpath errors detected (see full report printed to STDOUT)");
         }
     }
@@ -121,4 +125,27 @@ public class ClasspathHellDuplicatesCheckRule implements TestRule {
         }).collect(Collectors.toList());
     }
 
+    // INFRAUTILS-61: copy/paste from new DuplicatesReport(filteredResourcesWithDuplicates).print()
+    // but REMOVED the resourcesToExclude and if (!resourcesToExclude.contains(resource.getName()))
+    @SuppressWarnings("checkstyle:RegexpSinglelineJava")
+    private static void printDuplicatesReport(List<ClasspathResource> resourcesWithDuplicates) {
+        System.out.println("\n>> jHades multipleClassVersionsReport >> Duplicate classpath resources report: \n");
+        ClasspathResources.sortByNumberOfVersionsDesc(resourcesWithDuplicates);
+
+        for (ClasspathResource resource : resourcesWithDuplicates) {
+            System.out.println(resource.getName() + " has " + resource.getResourceFileVersions().size()
+                    + " versions on these classpath locations:\n");
+            for (ClasspathResourceVersion resourceFileVersion : resource.getResourceFileVersions()) {
+                String classLoaderName = resourceFileVersion.getClasspathEntry().getClassLoaderName();
+                System.out.println("    " + (classLoaderName != null ? classLoaderName : "") + " - "
+                        + URL_FORMATTER.formatUrl(resourceFileVersion.getClasspathEntry().getUrl())
+                        + " - class file size = " + resourceFileVersion.getFileSize());
+            }
+            System.out.println();
+        }
+
+        if (resourcesWithDuplicates.isEmpty()) {
+            System.out.println("No duplicates where found.\n");
+        }
+    }
 }
