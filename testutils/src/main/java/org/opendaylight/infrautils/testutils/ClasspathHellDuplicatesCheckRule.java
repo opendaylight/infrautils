@@ -111,6 +111,9 @@ public class ClasspathHellDuplicatesCheckRule implements TestRule {
                 // super proper way to address this cleanly would be to make our own JAR for javax.annotation
                 // and have it contain ONLY what is not already in package javax.annotation in rt.jar.. but for now:
                 .filter(r -> !r.getName().equals("/javax/annotation/Resource$AuthenticationType.class"))
+                // INFRAUTILS-61: Oracle Java has these two, which we have never seen on OpenJDK
+                .filter(r -> !r.getName().endsWith("/META-INF/ORACLE_J.SF"))
+                .filter(r -> !r.getName().endsWith("/META-INF/INDEX.LIST"))
                 .collect(Collectors.toList());
     }
 
