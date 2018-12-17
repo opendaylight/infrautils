@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2db1924b_33969bbd",
+        "filename": "testutils/src/main/java/org/opendaylight/infrautils/testutils/ClasspathHellDuplicatesCheckRule.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-12-17T12:37:46Z",
+      "side": 1,
+      "message": "Thanks a lot Michael :)",
+      "revId": "eb2c58a77365545c738b4d9a4fda1107e9ab2a34",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
