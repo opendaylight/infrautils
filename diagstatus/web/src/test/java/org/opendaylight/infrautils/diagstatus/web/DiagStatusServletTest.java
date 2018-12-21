@@ -8,17 +8,18 @@
 package org.opendaylight.infrautils.diagstatus.web;
 
 import static com.google.common.truth.Truth.assertThat;
+import static java.util.Collections.emptySet;
+import static org.opendaylight.infrautils.ready.SystemState.ACTIVE;
+import static org.opendaylight.infrautils.ready.SystemState.BOOTING;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Collection;
-import java.util.Collections;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.opendaylight.infrautils.diagstatus.DiagStatusService;
-import org.opendaylight.infrautils.diagstatus.ServiceDescriptor;
+import org.opendaylight.infrautils.diagstatus.ServiceStatusSummary;
 import org.opendaylight.infrautils.testutils.Partials;
 import org.opendaylight.infrautils.testutils.web.TestWebServer;
 
@@ -80,18 +81,8 @@ public class DiagStatusServletTest {
         Boolean isOperational;
 
         @Override
-        public Collection<ServiceDescriptor> getAllServiceDescriptors() {
-            return Collections.emptyList();
-        }
-
-        @Override
-        public String getAllServiceDescriptorsAsJSON() {
-            return "{}";
-        }
-
-        @Override
-        public boolean isOperational() {
-            return this.isOperational;
+        public ServiceStatusSummary getServiceStatusSummary() {
+            return new ServiceStatusSummary(isOperational, isOperational ? ACTIVE : BOOTING, "", emptySet());
         }
     }
 }
