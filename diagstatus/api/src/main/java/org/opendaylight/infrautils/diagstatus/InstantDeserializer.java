@@ -14,6 +14,7 @@ import java.lang.reflect.Type;
 import java.time.Instant;
 
 public class InstantDeserializer implements JsonDeserializer<Instant> {
+    @Override
     public Instant deserialize(JsonElement instantStr, Type typeOfSrc, JsonDeserializationContext context) {
         return Instant.parse(instantStr.getAsString());
     }

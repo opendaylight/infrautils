@@ -147,6 +147,6 @@ public class DiagStatusServiceMBeanImpl extends StandardMBean implements DiagSta
 
     @Override
     public String acquireServiceStatusAsJSON() {
-        return diagStatusService.getAllServiceDescriptorsAsJSON();
+        return diagStatusService.getServiceStatusSummary().toJSON();
     }
 }
