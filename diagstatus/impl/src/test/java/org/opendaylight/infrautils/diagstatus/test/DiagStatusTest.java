@@ -60,7 +60,7 @@ public class DiagStatusTest {
         // Verify if "testService" got registered with STARTING state.
         ServiceDescriptor serviceDescriptor1 = diagStatusService.getServiceDescriptor(testService1);
         Assert.assertEquals(ServiceState.STARTING, serviceDescriptor1.getServiceState());
-        assertThat(diagStatusService.isOperational()).isFalse();
+        assertThat(diagStatusService.getServiceStatusSummary().isOperational()).isFalse();
 
         // JSON should be formatted
         assertThat(diagStatusService.getServiceStatusSummary().toJSON()).contains("\n");
@@ -74,12 +74,12 @@ public class DiagStatusTest {
         diagStatusService.report(reportStatus);
         ServiceDescriptor serviceDescriptor2 = diagStatusService.getServiceDescriptor(testService1);
         Assert.assertEquals(ServiceState.OPERATIONAL, serviceDescriptor2.getServiceState());
-        assertThat(diagStatusService.isOperational()).isTrue();
+        assertThat(diagStatusService.getServiceStatusSummary().isOperational()).isTrue();
 
         // Verify if "testService" status is updated as UNREGISTERED.
         diagStatusService.report(new ServiceDescriptor(testService1, ServiceState.UNREGISTERED,
                 "service is Unregistered"));
-        assertThat(diagStatusService.isOperational()).isFalse();
+        assertThat(diagStatusService.getServiceStatusSummary().isOperational()).isFalse();
 
         // JMX based Junits to see if the service state is getting retrieved properly.
         Assert.assertEquals(ServiceState.UNREGISTERED.name(),
