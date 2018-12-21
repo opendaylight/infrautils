@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.opendaylight.infrautils.diagstatus.DiagStatusService;
+import org.opendaylight.infrautils.diagstatus.ServiceStatusSummary;
 
 /**
  * Web Servlet for diagstatus which returns JSON and HTTP status code.
@@ -39,7 +40,9 @@ public class DiagStatusServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException {
         // use setStatus() NOT sendError(), because we are providing the response
         // INFRAUTILS-47: MUST use setStatus() *BEFORE* response.getWriter()
-        if (!diagStatusService.isOperational()) {
+
+        ServiceStatusSummary status = diagStatusService.getServiceStatusSummary();
+        if (!status.isOperational()) {
             // HTTP return code 503 instead of regular 200 is used so that scripts
             // who just want boolean status don't have to parse the JSON, if not interested.
             response.setStatus(HttpServletResponse.SC_SERVICE_UNAVAILABLE);
@@ -49,7 +52,7 @@ public class DiagStatusServlet extends HttpServlet {
         response.setCharacterEncoding("utf-8");
 
         PrintWriter printWriter = response.getWriter();
-        printWriter.println(diagStatusService.getServiceStatusSummary().toJSON());
+        printWriter.println(status.toJSON());
         printWriter.close();
     }
 

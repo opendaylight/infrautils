@@ -32,6 +32,7 @@ import org.opendaylight.infrautils.diagstatus.DiagStatusServiceMBean;
 import org.opendaylight.infrautils.diagstatus.MBeanUtils;
 import org.opendaylight.infrautils.diagstatus.ServiceDescriptor;
 import org.opendaylight.infrautils.diagstatus.ServiceState;
+import org.opendaylight.infrautils.diagstatus.ServiceStatusSummary;
 import org.opendaylight.infrautils.ready.SystemReadyMonitor;
 
 @Singleton
@@ -61,9 +62,10 @@ public class DiagStatusServiceMBeanImpl extends StandardMBean implements DiagSta
     @Override
     public String acquireServiceStatus() {
         StringBuilder statusSummary = new StringBuilder();
-        statusSummary.append("System is operational: ").append(diagStatusService.isOperational()).append('\n');
-        statusSummary.append("System ready state: ").append(systemReadyMonitor.getSystemState()).append('\n');
-        for (ServiceDescriptor status : diagStatusService.getAllServiceDescriptors()) {
+        ServiceStatusSummary summary = diagStatusService.getServiceStatusSummary();
+        statusSummary.append("System is operational: ").append(summary.isOperational()).append('\n');
+        statusSummary.append("System ready state: ").append(summary.getSystemReadyState()).append('\n');
+        for (ServiceDescriptor status : summary.getStatusSummary()) {
             statusSummary.append("ServiceName          : ").append(status.getModuleServiceName()).append('\n');
             if (status.getServiceState() != null) {
                 statusSummary.append("Last Reported Status : ")
@@ -90,9 +92,10 @@ public class DiagStatusServiceMBeanImpl extends StandardMBean implements DiagSta
     @Override
     public String acquireServiceStatusDetailed() { // not so detailed as acquireServiceStatus()
         StringBuilder statusSummary = new StringBuilder();
-        statusSummary.append("System is operational: ").append(diagStatusService.isOperational()).append('\n');
+        ServiceStatusSummary summary = diagStatusService.getServiceStatusSummary();
+        statusSummary.append("System is operational: ").append(summary.isOperational()).append('\n');
         statusSummary.append("System ready state: ").append(systemReadyMonitor.getSystemState()).append('\n');
-        for (ServiceDescriptor status : diagStatusService.getAllServiceDescriptors()) {
+        for (ServiceDescriptor status : summary.getStatusSummary()) {
             statusSummary
                     .append("  ")
                     // the magic is the max String length of ServiceState enum values, plus padding
@@ -114,9 +117,10 @@ public class DiagStatusServiceMBeanImpl extends StandardMBean implements DiagSta
     public String acquireServiceStatusBrief() {
         String errorState = "ERROR - ";
         StringBuilder statusSummary = new StringBuilder();
-        statusSummary.append("System is operational: ").append(diagStatusService.isOperational()).append('\n');
-        statusSummary.append("System ready state: ").append(systemReadyMonitor.getSystemState()).append('\n');
-        for (ServiceDescriptor stat : diagStatusService.getAllServiceDescriptors()) {
+        ServiceStatusSummary summary = diagStatusService.getServiceStatusSummary();
+        statusSummary.append("System is operational: ").append(summary.isOperational()).append('\n');
+        statusSummary.append("System ready state: ").append(summary.getSystemReadyState()).append('\n');
+        for (ServiceDescriptor stat : summary.getStatusSummary()) {
             ServiceState state = stat.getServiceState();
             if (state.equals(ERROR) || state.equals(UNREGISTERED)) {
                 statusSummary.append(errorState).append(stat.getModuleServiceName()).append(" ");
@@ -128,7 +132,8 @@ public class DiagStatusServiceMBeanImpl extends StandardMBean implements DiagSta
     @Override
     public Map<String, String> acquireServiceStatusMap() {
         Builder<String, String> mapBuilder = ImmutableMap.builder();
-        for (ServiceDescriptor status : diagStatusService.getAllServiceDescriptors()) {
+        ServiceStatusSummary summary = diagStatusService.getServiceStatusSummary();
+        for (ServiceDescriptor status : summary.getStatusSummary()) {
             ServiceState state = status.getServiceState();
             if (state == null) {
                 mapBuilder.put(status.getModuleServiceName(), ServiceState.UNREGISTERED.name());

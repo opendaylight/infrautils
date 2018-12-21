@@ -84,10 +84,5 @@ public class DiagStatusServletTest {
         public ServiceStatusSummary getServiceStatusSummary() {
             return new ServiceStatusSummary(isOperational, isOperational ? ACTIVE : BOOTING, "", emptySet());
         }
-
-        @Override
-        public boolean isOperational() {
-            return isOperational;
-        }
     }
 }
