@@ -49,7 +49,7 @@ public class DiagStatusServlet extends HttpServlet {
         response.setCharacterEncoding("utf-8");
 
         PrintWriter printWriter = response.getWriter();
-        printWriter.println(diagStatusService.getAllServiceDescriptorsAsJSON());
+        printWriter.println(diagStatusService.getServiceStatusSummary().toJSON());
         printWriter.close();
     }
 

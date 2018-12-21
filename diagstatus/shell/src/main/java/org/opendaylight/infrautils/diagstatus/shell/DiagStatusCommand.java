@@ -12,11 +12,8 @@ import com.google.common.base.Strings;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.net.InetAddresses;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import java.net.Inet6Address;
 import java.net.InetAddress;
-import java.time.Instant;
 import java.util.List;
 import javax.annotation.Nullable;
 import org.apache.felix.service.command.CommandSession;
@@ -24,7 +21,6 @@ import org.apache.karaf.shell.commands.Command;
 import org.apache.karaf.shell.commands.Option;
 import org.opendaylight.infrautils.diagstatus.ClusterMemberInfo;
 import org.opendaylight.infrautils.diagstatus.DiagStatusServiceMBean;
-import org.opendaylight.infrautils.diagstatus.InstantDeserializer;
 import org.opendaylight.infrautils.diagstatus.ServiceDescriptor;
 import org.opendaylight.infrautils.diagstatus.ServiceStatusSummary;
 import org.slf4j.Logger;
@@ -51,7 +47,6 @@ public class DiagStatusCommand implements org.apache.karaf.shell.commands.Action
     private final DiagStatusServiceMBean diagStatusServiceMBean;
     private final ClusterMemberInfo clusterMemberInfoProvider;
     private final HttpClient httpClient;
-    private final Gson gson = new GsonBuilder().registerTypeAdapter(Instant.class, new InstantDeserializer()).create();
 
     @Option(name = "-n", aliases = {"--node"})
     String nip;
@@ -135,7 +130,7 @@ public class DiagStatusCommand implements org.apache.karaf.shell.commands.Action
             return respStr + " HTTP Response Code : " + Integer.toString(httpResponseCode);
         }
         LOG.trace("HTTP Response is - {} for URL {}", respStr, restUrl);
-        return buildServiceStatusSummaryString(gson.fromJson(respStr, ServiceStatusSummary.class));
+        return buildServiceStatusSummaryString(ServiceStatusSummary.fromJSON(respStr));
     }
 
     private static String buildServiceStatusSummaryString(ServiceStatusSummary serviceStatusSummary) {
