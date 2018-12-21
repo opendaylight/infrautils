@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "6ea760bb_d0436ef9",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/DiagStatusService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 817
+      },
+      "writtenOn": "2018-12-21T07:13:07Z",
+      "side": 1,
+      "message": "failure",
+      "revId": "e3f5c4067c8c16151ba69d3c1fccbaf4a059456c",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
