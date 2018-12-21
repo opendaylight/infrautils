@@ -70,7 +70,10 @@ public interface DiagStatusService {
      *
      * @return JSON formatted String with all service descriptions and all of the
      *         details available for each of them as well as the global system ready status
+     *
+     * @deprecated Use {@link #getServiceStatusSummary()} and {@link ServiceStatusSummary#toJSON()} instead.
      */
+    @Deprecated
     String getAllServiceDescriptorsAsJSON();
 
     /**

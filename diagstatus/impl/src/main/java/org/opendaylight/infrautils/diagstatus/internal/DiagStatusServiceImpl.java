@@ -10,11 +10,8 @@ package org.opendaylight.infrautils.diagstatus.internal;
 import static org.opendaylight.infrautils.diagstatus.ServiceState.STARTING;
 
 import com.google.common.collect.ImmutableList;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
-import java.time.Instant;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -26,7 +23,6 @@ import org.apache.aries.blueprint.annotation.service.Reference;
 import org.apache.aries.blueprint.annotation.service.ReferenceList;
 import org.apache.aries.blueprint.annotation.service.Service;
 import org.opendaylight.infrautils.diagstatus.DiagStatusService;
-import org.opendaylight.infrautils.diagstatus.InstantSerializer;
 import org.opendaylight.infrautils.diagstatus.ServiceDescriptor;
 import org.opendaylight.infrautils.diagstatus.ServiceRegistration;
 import org.opendaylight.infrautils.diagstatus.ServiceState;
@@ -53,9 +49,6 @@ public class DiagStatusServiceImpl implements DiagStatusService {
     private final List<ServiceStatusProvider> serviceStatusProviders;
 
     private final SystemReadyMonitor systemReadyMonitor;
-
-    private final Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls()
-            .registerTypeAdapter(Instant.class, new InstantSerializer()).create();
 
     @Inject
     public DiagStatusServiceImpl(
@@ -104,8 +97,9 @@ public class DiagStatusServiceImpl implements DiagStatusService {
     }
 
     @Override
+    @Deprecated
     public String getAllServiceDescriptorsAsJSON() {
-        return gson.toJson(getServiceStatusSummary());
+        return getServiceStatusSummary().toJSON();
     }
 
     @Override
