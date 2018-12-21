@@ -58,6 +58,13 @@ public interface DiagStatusService {
     Collection<ServiceDescriptor> getAllServiceDescriptors();
 
     /**
+     * Retrieve the status of all services registered so far.
+     *
+     * @return status as a {@link ServiceStatusSummary}
+     */
+    ServiceStatusSummary getServiceStatusSummary();
+
+    /**
      * Retrieve the status of all services registered so far as a JSON String with a
      * fixed format which external systems can rely on.
      *
@@ -74,6 +81,12 @@ public interface DiagStatusService {
      * {@link ServiceState} being OPERATIONAL.
      *
      * @return true if system is operational, false if not
+     *
+     * @deprecated Use {@link #getServiceStatusSummary()} and
+     *             {@link ServiceStatusSummary#isOperational()}, so that if it's
+     *             false you can report the details about the falure at the precise
+     *             moment it was queried, and avoid a race condition.
      */
+    @Deprecated
     boolean isOperational();
 }

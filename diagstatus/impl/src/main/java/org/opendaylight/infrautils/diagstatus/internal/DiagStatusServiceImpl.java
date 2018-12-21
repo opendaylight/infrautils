@@ -96,23 +96,34 @@ public class DiagStatusServiceImpl implements DiagStatusService {
     }
 
     @Override
+    public ServiceStatusSummary getServiceStatusSummary() {
+        final SystemState systemState = systemReadyMonitor.getSystemState();
+        final Collection<ServiceDescriptor> serviceDescriptors = getAllServiceDescriptors();
+        return new ServiceStatusSummary(isOperational(systemState, serviceDescriptors),
+                systemState, systemReadyMonitor.getFailureCause(), serviceDescriptors);
+    }
+
+    @Override
+    public String getAllServiceDescriptorsAsJSON() {
+        return gson.toJson(getServiceStatusSummary());
+    }
+
+    @Override
+    @Deprecated
     public boolean isOperational() {
-        if (!systemReadyMonitor.getSystemState().equals(SystemState.ACTIVE)) {
+        return isOperational(systemReadyMonitor.getSystemState(), getAllServiceDescriptors());
+    }
+
+    private boolean isOperational(SystemState systemState, Collection<ServiceDescriptor> serviceDescriptors) {
+        if (!systemState.equals(SystemState.ACTIVE)) {
             return false;
         }
-        for (ServiceDescriptor serviceDescriptor : getAllServiceDescriptors()) {
+        for (ServiceDescriptor serviceDescriptor : serviceDescriptors) {
             if (!serviceDescriptor.getServiceState().equals(ServiceState.OPERATIONAL)) {
                 return false;
             }
         }
         return true;
-    }
-
-    @Override
-    public String getAllServiceDescriptorsAsJSON() {
-        ServiceStatusSummary serviceStatusSummary = new ServiceStatusSummary(isOperational(),
-                systemReadyMonitor.getSystemState(), systemReadyMonitor.getFailureCause(), getAllServiceDescriptors());
-        return gson.toJson(serviceStatusSummary);
     }
 
     // because other projects implementing ServiceStatusProvider may not run FindBugs, we null check anyway
@@ -127,5 +138,4 @@ public class DiagStatusServiceImpl implements DiagStatusService {
             }
         }
     }
-
 }
