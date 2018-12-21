@@ -7,6 +7,8 @@
  */
 package org.opendaylight.infrautils.diagstatus;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import java.time.Instant;
 import java.util.Collection;
 import java.util.Objects;
@@ -20,11 +22,20 @@ import org.opendaylight.infrautils.ready.SystemState;
  */
 public final class ServiceStatusSummary {
 
+    private static final Gson GSON = new GsonBuilder().setPrettyPrinting().serializeNulls()
+            .registerTypeAdapter(Instant.class, new InstantSerializer())
+            .registerTypeAdapter(Instant.class, new InstantDeserializer())
+            .create();
+
     private final Instant timeStamp;
     private final boolean isOperational;
     private final SystemState systemReadyState;
     private final String systemReadyStateErrorCause;
     private final Collection<ServiceDescriptor> statusSummary;
+
+    public static ServiceStatusSummary fromJSON(String json) {
+        return GSON.fromJson(json, ServiceStatusSummary.class);
+    }
 
     public ServiceStatusSummary(boolean isOperational, SystemState systemState, String systemReadyErrorCause,
                                 Collection<ServiceDescriptor> statusSummary) {
@@ -33,6 +44,10 @@ public final class ServiceStatusSummary {
         this.systemReadyState = systemState;
         this.statusSummary = statusSummary;
         this.systemReadyStateErrorCause = systemReadyErrorCause;
+    }
+
+    public String toJSON() {
+        return GSON.toJson(this);
     }
 
     public boolean isOperational() {

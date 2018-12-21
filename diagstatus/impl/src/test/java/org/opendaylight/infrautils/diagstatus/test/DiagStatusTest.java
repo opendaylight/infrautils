@@ -63,7 +63,7 @@ public class DiagStatusTest {
         assertThat(diagStatusService.isOperational()).isFalse();
 
         // JSON should be formatted
-        assertThat(diagStatusService.getAllServiceDescriptorsAsJSON()).contains("\n");
+        assertThat(diagStatusService.getServiceStatusSummary().toJSON()).contains("\n");
 
         // Verify that we get _something_ from getErrorCause()
         assertThat(serviceDescriptor1.getErrorCause()).isEqualTo(Optional.empty());
@@ -88,7 +88,7 @@ public class DiagStatusTest {
         // Description must be shown
         assertThat(diagStatusServiceMBean.acquireServiceStatusDetailed()).contains("service is Unregistered");
 
-        String actualServiceStatusSummary = diagStatusService.getAllServiceDescriptorsAsJSON();
+        String actualServiceStatusSummary = diagStatusService.getServiceStatusSummary().toJSON();
         assertThat(SERVICE_STATUS_SUMMARY).isEqualTo(actualServiceStatusSummary.replaceAll(
                 "\"timeStamp\":.*\\n", "\"timeStamp\": \"{DO-NOT-BOTHER}\",\n")
                 .replaceAll("\"statusTimestamp\":.*\\n",
