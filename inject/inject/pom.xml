@@ -51,7 +51,9 @@
       <optional>true</optional>
       <!-- FIXME: remove version with odlparent-4.0.8 -->
       <version>1.2</version>
+    <dependency>
+      <groupId>io.github.classgraph</groupId>
+      <artifactId>classgraph</artifactId>
     </dependency>
   </dependencies>
-
 </project>
