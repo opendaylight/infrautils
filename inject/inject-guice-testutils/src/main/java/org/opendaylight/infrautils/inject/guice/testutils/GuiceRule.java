@@ -19,6 +19,7 @@ import java.util.stream.Collectors;
 import org.junit.rules.MethodRule;
 import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.Statement;
+import org.opendaylight.infrautils.inject.PostFullSystemInjectionListener;
 
 /**
  * JUnit Rule which initializes Guice {@link Injector} for tests.
@@ -30,7 +31,7 @@ import org.junit.runners.model.Statement;
  *   {@literal @}Inject SomeClass someClass;
  * </pre>
  *
- * @author Michael Vorburger
+ * @author Michael Vorburger.ch
  */
 public class GuiceRule implements MethodRule {
 
@@ -92,6 +93,12 @@ public class GuiceRule implements MethodRule {
     protected void setUpGuice(Object target) {
         injector = Guice.createInjector(stage, modules);
         injector.injectMembers(target);
+
+        try {
+            injector.getInstance(PostFullSystemInjectionListener.class).onFullSystemInjected();
+        } catch (ConfigurationException e) {
+            // It's OK if we didn't bind a PostFullSystemInjectionListener.
+        }
     }
 
     protected void tearDownGuice() {
