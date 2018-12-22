@@ -5,7 +5,7 @@
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html
  */
-package org.opendaylight.infrautils.inject.guice.testutils;
+package org.opendaylight.infrautils.inject.guice;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Binder;
@@ -16,11 +16,8 @@ import org.opendaylight.infrautils.inject.ModuleSetupRuntimeException;
  * throwing checked exceptions, which are caught and re-thrown as unchecked
  * {@link ModuleSetupRuntimeException}.
  *
- * @deprecated Use org.opendaylight.infrautils.inject.guice.AbstractCheckedModule instead.
- *
  * @author Michael Vorburger.ch
  */
-@Deprecated
 public abstract class AbstractCheckedModule extends AbstractModule {
 
     /**
