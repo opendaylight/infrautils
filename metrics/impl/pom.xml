@@ -22,6 +22,18 @@
        build failure. Please do not modify this unless you have a good reason. -->
   <name>ODL :: infrautils :: ${project.artifactId}</name>
 
+  <dependencyManagement>
+      <dependencies>
+          <dependency>
+              <groupId>io.dropwizard.metrics</groupId>
+              <artifactId>metrics-bom</artifactId>
+              <version>4.0.5</version>
+              <type>pom</type>
+              <scope>import</scope>
+          </dependency>
+      </dependencies>
+  </dependencyManagement>
+
   <dependencies>
     <dependency>
       <groupId>org.opendaylight.infrautils</groupId>
@@ -31,27 +43,19 @@
     <dependency>
       <groupId>io.dropwizard.metrics</groupId>
       <artifactId>metrics-core</artifactId>
-      <!-- This version must be kept in line with the ones used below -->
-      <version>4.0.3</version>
     </dependency>
     <dependency>
       <groupId>io.dropwizard.metrics</groupId>
       <artifactId>metrics-jmx</artifactId>
-      <!-- This version must be kept in line with the ones used above -->
-      <version>4.0.3</version>
     </dependency>
     <dependency>
       <groupId>io.dropwizard.metrics</groupId>
       <artifactId>metrics-jvm</artifactId>
-      <!-- This version must be kept in line with the ones used above -->
-      <version>4.0.3</version>
     </dependency>
 <!-- TODO
     <dependency>
       <groupId>io.dropwizard.metrics</groupId>
       <artifactId>metrics-log4j2</artifactId>
-      <!- - This version must be kept in line with the ones used above - ->
-      <version>4.0.3</version>
     </dependency>
  -->
     <dependency>
