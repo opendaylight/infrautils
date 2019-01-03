@@ -34,6 +34,13 @@
   <dependencyManagement>
     <dependencies>
       <dependency>
+        <groupId>org.opendaylight.infrautils</groupId>
+        <artifactId>infrautils-artifacts</artifactId>
+        <version>1.5.0-SNAPSHOT</version>
+        <scope>import</scope>
+        <type>pom</type>
+      </dependency>
+      <dependency>
         <!-- ClassGraph is used both in the ClasspathHellDuplicatesCheckRule, as well as in the ClassPathScanner (currently living in opendaylight-simple; but will be proposed to infruatils) -->
         <groupId>io.github.classgraph</groupId>
         <artifactId>classgraph</artifactId>

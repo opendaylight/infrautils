@@ -28,13 +28,11 @@
     <dependency>
       <groupId>org.opendaylight.infrautils</groupId>
       <artifactId>infrautils-testutils</artifactId>
-      <version>${project.version}</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>org.opendaylight.infrautils</groupId>
       <artifactId>inject.guice.testutils</artifactId>
-      <version>${project.version}</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
@@ -46,23 +44,19 @@
     <dependency>
       <groupId>org.opendaylight.infrautils</groupId>
       <artifactId>caches-api</artifactId>
-      <version>${project.version}</version>
     </dependency>
     <dependency>
       <groupId>org.opendaylight.infrautils</groupId>
       <artifactId>caches-standard-impl</artifactId>
-      <version>${project.version}</version>
     </dependency>
 
     <dependency>
       <groupId>org.opendaylight.infrautils</groupId>
       <artifactId>caches-guava-impl</artifactId>
-      <version>${project.version}</version>
     </dependency>
     <dependency>
       <groupId>org.opendaylight.infrautils</groupId>
       <artifactId>caches-noop-impl</artifactId>
-      <version>${project.version}</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
