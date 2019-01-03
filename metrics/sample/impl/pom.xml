@@ -31,6 +31,12 @@
       <groupId>javax.inject</groupId>
       <artifactId>javax.inject</artifactId>
     </dependency>
+    <dependency>
+      <groupId>javax.annotation</groupId>
+      <artifactId>javax.annotation-api</artifactId>
+      <!-- FIXME: remove version with odlparent-4.0.8 -->
+      <version>1.2</version>
+    </dependency>
 
     <dependency>
       <groupId>${project.groupId}</groupId>
