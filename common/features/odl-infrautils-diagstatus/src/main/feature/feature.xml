@@ -8,6 +8,10 @@
  -->
 <features xmlns="http://karaf.apache.org/xmlns/features/v1.4.0" name="odl-infrautils-diagstatus">
     <feature name="odl-infrautils-diagstatus">
+        <feature version="[4.0.5,5)">odl-apache-commons-codec</feature>
+        <feature version="[4.0.5,5)">odl-apache-commons-lang3</feature>
+        <feature version="[4.0.5,5)">odl-gson</feature>
         <feature version="[4,5)">odl-guava</feature>
+        <feature version="[4,5)">odl-karaf-feat-jetty</feature>
     </feature>
 </features>
