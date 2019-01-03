@@ -27,20 +27,16 @@
     <dependency>
       <groupId>org.opendaylight.infrautils</groupId>
       <artifactId>metrics-api</artifactId>
-      <version>${project.version}</version>
     </dependency>
 
     <dependency>
       <groupId>org.opendaylight.infrautils</groupId>
       <artifactId>infrautils-util</artifactId>
-      <version>${project.version}</version>
     </dependency>
 
     <dependency>
       <groupId>org.opendaylight.infrautils</groupId>
       <artifactId>infrautils-testutils</artifactId>
-      <version>${project.version}</version>
-      <scope>test</scope>
     </dependency>
   </dependencies>
 </project>

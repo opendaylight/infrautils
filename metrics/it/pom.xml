@@ -27,13 +27,11 @@
     <dependency>
       <groupId>org.opendaylight.infrautils</groupId>
       <artifactId>metrics-api</artifactId>
-      <version>${project.version}</version>
     </dependency>
 
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>infrautils-features</artifactId>
-      <version>${project.version}</version>
       <type>xml</type>
       <classifier>features</classifier>
       <exclusions>

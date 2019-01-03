@@ -27,7 +27,6 @@
     <dependency>
       <groupId>org.opendaylight.infrautils</groupId>
       <artifactId>infrautils-util</artifactId>
-      <version>${project.version}</version>
     </dependency>
     <dependency>
       <groupId>org.immutables</groupId>

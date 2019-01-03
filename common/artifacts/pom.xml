@@ -71,7 +71,38 @@
                  and e.g. by simple distribution; we therefore list them here. -->
             <dependency>
               <groupId>org.opendaylight.infrautils</groupId>
+              <artifactId>caches-impl-base</artifactId>
+              <version>${project.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>org.opendaylight.infrautils</groupId>
+              <artifactId>caches-guava-impl</artifactId>
+              <version>${project.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>org.opendaylight.infrautils</groupId>
+              <artifactId>caches-noop-impl</artifactId>
+              <version>${project.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>org.opendaylight.infrautils</groupId>
               <artifactId>caches-standard-impl</artifactId>
+              <version>${project.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>org.opendaylight.infrautils</groupId>
+              <artifactId>caches-test</artifactId>
+              <version>${project.version}</version>
+              <scope>test</scope>
+            </dependency>
+            <dependency>
+              <groupId>org.opendaylight.infrautils</groupId>
+              <artifactId>diagstatus-impl</artifactId>
+              <version>${project.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>org.opendaylight.infrautils</groupId>
+              <artifactId>diagstatus-web</artifactId>
               <version>${project.version}</version>
             </dependency>
             <dependency>
@@ -82,6 +113,16 @@
             <dependency>
               <groupId>${project.groupId}</groupId>
               <artifactId>metrics-impl</artifactId>
+              <version>${project.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>${project.groupId}</groupId>
+              <artifactId>metrics-impl-prometheus</artifactId>
+              <version>${project.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>org.opendaylight.infrautils</groupId>
+              <artifactId>shell</artifactId>
               <version>${project.version}</version>
             </dependency>
 

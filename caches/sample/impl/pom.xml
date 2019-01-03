@@ -25,7 +25,6 @@
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>caches-api</artifactId>
-      <version>${project.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.karaf.shell</groupId>
@@ -49,18 +48,14 @@
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>inject.guice.testutils</artifactId>
-      <version>${project.version}</version>
-      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>com.google.truth</groupId>
       <artifactId>truth</artifactId>
-      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>caches-test</artifactId>
-      <version>${project.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -68,7 +63,6 @@
       <!-- Normally you don't need this dependency;
            this is just to illustrate for demo -->
       <artifactId>caches-noop-impl</artifactId>
-      <version>${project.version}</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
