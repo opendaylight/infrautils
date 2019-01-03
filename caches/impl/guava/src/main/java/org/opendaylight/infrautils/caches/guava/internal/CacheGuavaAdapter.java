@@ -38,7 +38,7 @@ final class CacheGuavaAdapter<K, V> extends GuavaBaseCacheAdapter<K, V> implemen
         try {
             return guavaCache().getUnchecked(key);
         } catch (UncheckedExecutionException e) {
-            throw Throwables.propagate(e.getCause());
+            throw throwCause(e);
         } catch (InvalidCacheLoadException e) {
             throw new BadCacheFunctionRuntimeException(
                     "InvalidCacheLoadException from Guava getUnchecked(): " + e.getMessage(), e);
@@ -52,7 +52,7 @@ final class CacheGuavaAdapter<K, V> extends GuavaBaseCacheAdapter<K, V> implemen
         try {
             return guavaCache().getAll(keys);
         } catch (UncheckedExecutionException e) {
-            throw Throwables.propagate(e.getCause());
+            throw throwCause(e);
         } catch (InvalidCacheLoadException e) {
             throw new BadCacheFunctionRuntimeException(
                     "InvalidCacheLoadException from Guava getAll(): " + e.getMessage(), e);
@@ -67,4 +67,9 @@ final class CacheGuavaAdapter<K, V> extends GuavaBaseCacheAdapter<K, V> implemen
         }
     }
 
+    private static RuntimeException throwCause(UncheckedExecutionException unchecked) {
+        Throwable cause = unchecked.getCause();
+        Throwables.throwIfUnchecked(cause);
+        throw new RuntimeException(cause);
+    }
 }
