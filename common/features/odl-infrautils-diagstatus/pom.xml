@@ -19,8 +19,25 @@
     <dependencies>
         <dependency>
             <groupId>org.opendaylight.odlparent</groupId>
+            <artifactId>odl-apache-commons-codec</artifactId>
+            <classifier>features</classifier>
+            <type>xml</type>
+        </dependency>
+        <dependency>
+            <groupId>org.opendaylight.odlparent</groupId>
+            <artifactId>odl-apache-commons-lang3</artifactId>
+            <classifier>features</classifier>
+            <type>xml</type>
+        </dependency>
+        <dependency>
+            <groupId>org.opendaylight.odlparent</groupId>
             <artifactId>odl-guava</artifactId>
-            <version>4.0.7</version>
+            <classifier>features</classifier>
+            <type>xml</type>
+        </dependency>
+        <dependency>
+            <groupId>org.opendaylight.odlparent</groupId>
+            <artifactId>odl-gson</artifactId>
             <classifier>features</classifier>
             <type>xml</type>
         </dependency>
