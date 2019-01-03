@@ -37,7 +37,7 @@
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>infrautils-testutils</artifactId>
-      <version>${project.version}</version>
+      <scope>compile</scope>
     </dependency>
 
     <!-- Dependencies for PAX Exam karaf container -->
