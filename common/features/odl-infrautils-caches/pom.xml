@@ -51,7 +51,6 @@
     <dependency>
       <groupId>org.opendaylight.odlparent</groupId>
       <artifactId>odl-guava</artifactId>
-      <version>4.0.7</version>
       <classifier>features</classifier>
       <type>xml</type>
     </dependency>
