@@ -116,7 +116,7 @@ public final class CompletionStageTestAwaiter<T> {
         Throwable throwable = eventualThrowable.get();
         if (throwable != null) {
             // This is like what CompletableFuture#join() does:
-            Throwables.propagateIfPossible(throwable);
+            Throwables.throwIfUnchecked(throwable);
             throw new CompletionException(throwable);
         } else {
             // Should use org.opendaylight.infrautils.utils.lastnpe.NonNulls.castToNonNull(T) here
