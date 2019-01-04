@@ -104,12 +104,6 @@
         <version>1.7.0</version>
         <configuration>
           <javaVersion>1.8</javaVersion>
-          <ignoreClassNamePatterns>
-            <!-- due to https://github.com/immutables/immutables/issues/749 (or exclusion java.util.ArrayList) -->
-            <ignoreClassNamePattern>.*Immutable.*\$Builder</ignoreClassNamePattern>
-            <ignoreClassNamePattern>.*Builder\$Immutable.*</ignoreClassNamePattern>
-            <ignoreClassNamePattern>.*Builder</ignoreClassNamePattern>
-          </ignoreClassNamePatterns>
         </configuration>
         <executions>
           <execution>
