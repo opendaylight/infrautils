@@ -105,7 +105,7 @@
 
   <profiles>
     <profile>
-      <id>errorprone-unless-ide</id>
+      <id>errorprone-jdk8</id>
       <!-- Run Error Prone (see http://errorprone.info)
            UNLESS we're running Maven inside the Eclipse IDE under M2E (i.e. only on the "mvn" CLI)
            because in M2E it causes havoc for the m2e-apt extension (which configures Annotations Processors,
@@ -209,6 +209,111 @@
                 <version>2.3.1</version>
               </dependency>
             </dependencies>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>errorprone-jdk9plus</id>
+      <!-- Run Error Prone (see http://errorprone.info)
+           UNLESS we're running Maven inside the Eclipse IDE under M2E (i.e. only on the "mvn" CLI)
+           because in M2E it causes havoc for the m2e-apt extension (which configures Annotations Processors,
+           such as e.g. http://Immutables.org, for the Eclipse JDT APT support); see full details in
+           https://github.com/jbosstools/m2e-apt/issues/62.  Not running errorprone within the Eclipse
+           IDE is not a problem, because that's not yet supported, anyway;
+           see http://errorprone.info/docs/installation#Eclipse. -->
+      <activation>
+        <property>
+          <name>!m2e.version</name>
+        </property>
+        <!-- FIXME: expand once we are on errorprone 2.3.2+ -->
+        <jdk>[9,11)</jdk>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <configuration>
+              <compilerArgs combine.children="append">
+                <arg>-XDcompilePolicy=simple</arg>
+                <arg>-Xplugin:ErrorProne
+                  <!-- TODO evaluate further which other non-default error prone bug patterns could also be enabled...
+                       http://errorprone.info/bugpatterns -->
+                  -XepExcludedPaths:.*/target/.*
+                  -XepDisableWarningsInGeneratedCode
+                  <!-- TODO Do we need and want <arg>-Xep:OperatorPrecedence:OFF</arg> ? -->
+                  <!-- There are lots of disabled goodies in error-prone which only emit warnings (which nobody will ever look at!),
+                       so let us enable them all as least as warnings, and then selectively turn some of them into ERROR, and suppress
+                       those we really don't want (or can't enforce for whatever reason) with OFF. -->
+                  -XepAllDisabledChecksAsWarnings
+                  <!-- StaticOrDefaultInterfaceMethod is an Android specific warning which we don't care about -->
+                  -Xep:StaticOrDefaultInterfaceMethod:OFF
+                  <!-- FieldMissingNullable is badly broken :( https://github.com/google/error-prone/issues/708 -->
+                  -Xep:FieldMissingNullable:OFF
+                  <!-- To "Use parameter comments to document ambiguous literals" is unrealistic on a large existing code base -->
+                  -Xep:BooleanParameter:OFF
+                  -Xep:ReturnMissingNullable:ERROR
+                  -Xep:InconsistentOverloads:ERROR
+                  <!-- TODO -Xep:ConstructorLeaksThis:ERROR after https://github.com/google/error-prone/pull/789 for https://github.com/google/error-prone/issues/655, and maybe also https://github.com/google/error-prone/issues/809? -->
+                  -Xep:ConstructorLeaksThis:OFF
+                  -Xep:MethodCanBeStatic:ERROR
+                  -Xep:ThrowsUncheckedException:OFF
+                  <!-- TODO -Xep:TestExceptionChecker:ERROR once all @Test with expected use org.opendaylight.infrautils.testutils.Asserts.assertThrows() instead -->
+                  -Xep:RedundantThrows:ERROR
+                  -Xep:Var:ERROR
+                  <!-- Following are things which seem useful to enforce, found in other projects;
+                       we could relax these again if during enforcement all over infrautils we find them to be too strict -->
+                  -Xep:ConstantField:ERROR
+                  -Xep:EmptySetMultibindingContributions:ERROR
+                  -Xep:MixedArrayDimensions:ERROR
+                  -Xep:MultipleTopLevelClasses:ERROR
+                  -Xep:MultiVariableDeclaration:ERROR
+                  -Xep:PackageLocation:ERROR
+                  -Xep:PrivateConstructorForNoninstantiableModule:ERROR
+                  -Xep:RemoveUnusedImports:ERROR
+                  -Xep:UnnecessaryStaticImport:ERROR
+                  -Xep:UseBinds:ERROR
+                  -Xep:WildcardImport:ERROR
+                  <!-- FutureReturnValueIgnored is better (stronger) than error-prone's own (and FindBug's) @CheckReturnValue annotation, as it checks that ANY return Future are checked, not just those from methods annotated @CheckReturnValue -->
+                  -Xep:FutureReturnValueIgnored:ERROR
+                  -Xep:IntLongMath:ERROR
+                  -Xep:FloatCast:ERROR
+                  -Xep:ClassNewInstance:ERROR
+                  -Xep:ConstructorInvokesOverridable:ERROR
+                  -Xep:ThreeLetterTimeZoneID:ERROR
+                  -Xep:UnsafeFinalization:ERROR
+                  -Xep:MutableMethodReturnType:ERROR
+                  -Xep:SynchronizeOnNonFinalField:ERROR
+                  -Xep:WaitNotInLoop:ERROR
+                  -Xep:SwitchDefault:ERROR
+                  -Xep:ReachabilityFenceUsage:ERROR
+                  -Xep:BoxedPrimitiveConstructor:ERROR
+                  -Xep:InjectOnConstructorOfAbstractClass:ERROR
+                  -Xep:StringSplitter:ERROR
+                  -Xep:UnnecessaryDefaultInEnumSwitch:ERROR
+                  -Xep:DefaultCharset:ERROR
+                  -Xep:StreamResourceLeak:ERROR
+                  <!-- new in 2.3.0 -->
+                  -Xep:InconsistentCapitalization:ERROR
+                  -Xep:TruthIncompatibleType:ERROR
+                  -Xep:ByteBufferBackingArray:ERROR
+                  -Xep:OrphanedFormatString:ERROR
+                  -Xep:CatchAndPrintStackTrace:ERROR
+                  -Xep:VarTypeName:ERROR
+                  <!-- new in 2.3.1 -->
+                  -Xep:ObjectToString:ERROR
+                  -Xep:AssertThrowsMultipleStatements:ERROR
+                  -Xep:FieldCanBeFinal:ERROR</arg>
+              </compilerArgs>
+              <annotationProcessorPaths>
+                <path>
+                  <groupId>com.google.errorprone</groupId>
+                  <artifactId>error_prone_core</artifactId>
+                  <version>2.3.1</version>
+                </path>
+              </annotationProcessorPaths>
+            </configuration>
           </plugin>
         </plugins>
       </build>
