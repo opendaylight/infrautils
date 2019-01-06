@@ -16,6 +16,24 @@
       "revId": "e3f5c4067c8c16151ba69d3c1fccbaf4a059456c",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "87d89692_c5909a1e",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/DiagStatusService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2019-01-06T13:25:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ea760bb_d0436ef9",
+      "revId": "e3f5c4067c8c16151ba69d3c1fccbaf4a059456c",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
