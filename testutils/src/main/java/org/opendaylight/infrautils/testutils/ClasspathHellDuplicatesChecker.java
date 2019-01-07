@@ -117,9 +117,9 @@ public class ClasspathHellDuplicatesChecker {
             // for javax.inject, but we made javax.inject:javax.inject <optional>true in odlparent, and don't bundle it.
             || resourcePath.startsWith("javax/inject/")
             // Java 9 modules
-            || resourcePath.equals("module-info.class")
+            || resourcePath.endsWith("module-info.class")
             || resourcePath.contains("findbugs")
-        // list newly introduced in INFRAUTILS-52, because classgraph scans more than JHades did
+            // list newly introduced in INFRAUTILS-52, because classgraph scans more than JHades did
             || resourcePath.equals("plugin.properties")
             || resourcePath.equals(".api_description")
             ;
