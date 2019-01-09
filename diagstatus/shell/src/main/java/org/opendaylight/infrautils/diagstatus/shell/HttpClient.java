@@ -36,6 +36,8 @@ import org.slf4j.LoggerFactory;
 public class HttpClient {
     private static final Logger LOG = LoggerFactory.getLogger(HttpClient.class);
 
+    // TODO later unify this with org.opendaylight.infrautils.testutils.web.TestWebClient
+
     private int httpPort = 8181;
 
     public HttpClient(Map<String, String> initialProperties) {
@@ -103,7 +105,7 @@ public class HttpClient {
         CloseableHttpResponse response = httpclient.execute(httprequest);
         try {
             int httpResponseCode = response.getStatusLine().getStatusCode();
-            HashMap<String, List<String>> headerMap = new HashMap<String, List<String>>();
+            HashMap<String, List<String>> headerMap = new HashMap<>();
            // copy response headers
             HeaderIterator it = response.headerIterator();
             while (it.hasNext()) {
@@ -113,7 +115,7 @@ public class HttpClient {
                 if (headerMap.containsKey(name)) {
                     headerMap.get(name).add(value);
                 } else {
-                    List<String> list = new ArrayList<String>();
+                    List<String> list = new ArrayList<>();
                     list.add(value);
                     headerMap.put(name, list);
                 }
