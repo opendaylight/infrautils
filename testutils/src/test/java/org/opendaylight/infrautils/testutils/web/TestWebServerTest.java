@@ -10,19 +10,14 @@ package org.opendaylight.infrautils.testutils.web;
 import static com.google.common.truth.Truth.assertThat;
 import static org.opendaylight.infrautils.testutils.Asserts.assertThrows;
 
-import com.google.common.io.CharStreams;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLConnection;
-import java.nio.charset.StandardCharsets;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.junit.Test;
+import org.opendaylight.infrautils.testutils.web.TestWebClient.Method;
 
 /**
  * Test for {@link TestWebServer}.
@@ -36,7 +31,7 @@ public class TestWebServerTest {
     @Test
     public void testWebServerWithoutServlet() throws ServletException, IOException {
         try (TestWebServer webServer = new TestWebServer()) {
-            assertThrows(FileNotFoundException.class, () -> checkTestServlet(webServer.getTestContextURL() + "nada"));
+            assertThrows(FileNotFoundException.class, () -> checkTestServlet(webServer, "nada"));
         }
     }
 
@@ -44,7 +39,7 @@ public class TestWebServerTest {
     public void testWebServerWithOneServlet() throws ServletException, IOException {
         try (TestWebServer webServer = new TestWebServer()) {
             webServer.registerServlet(new TestServlet(), "/testServlet");
-            checkTestServlet(webServer.getTestContextURL() + "testServlet");
+            checkTestServlet(webServer, "testServlet");
         }
     }
 
@@ -53,21 +48,13 @@ public class TestWebServerTest {
         try (TestWebServer webServer = new TestWebServer()) {
             webServer.registerServlet(new TestServlet(), "/firstServlet");
             webServer.registerServlet(new TestServlet(), "/secondServlet");
-            checkTestServlet(webServer.getTestContextURL() + "secondServlet");
+            checkTestServlet(webServer, "secondServlet");
         }
     }
 
-    private static void checkTestServlet(String theURL) throws IOException {
-        URL url = new URL(theURL);
-        URLConnection conn = url.openConnection();
-        try (InputStream inputStream = conn.getInputStream()) {
-            // The hard-coded ASCII here is strictly speaking wrong of course
-            // (should interpret header from reply), but good enough for a test.
-            try (InputStreamReader reader = new InputStreamReader(inputStream, StandardCharsets.US_ASCII)) {
-                String result = CharStreams.toString(reader);
-                assertThat(result).startsWith("hello, world");
-            }
-        }
+    private static void checkTestServlet(TestWebServer webServer, String urlSuffix) throws IOException {
+        String body = new TestWebClient(webServer).request(Method.GET, urlSuffix).getBody();
+        assertThat(body).startsWith("hello, world");
     }
 
     @SuppressWarnings("serial")
