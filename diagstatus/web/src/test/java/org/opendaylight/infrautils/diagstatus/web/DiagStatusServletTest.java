@@ -13,14 +13,14 @@ import static org.opendaylight.infrautils.ready.SystemState.ACTIVE;
 import static org.opendaylight.infrautils.ready.SystemState.BOOTING;
 
 import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.opendaylight.infrautils.diagstatus.DiagStatusService;
 import org.opendaylight.infrautils.diagstatus.ServiceStatusSummary;
 import org.opendaylight.infrautils.testutils.Partials;
+import org.opendaylight.infrautils.testutils.web.TestWebClient;
+import org.opendaylight.infrautils.testutils.web.TestWebClient.Method;
 import org.opendaylight.infrautils.testutils.web.TestWebServer;
 
 /**
@@ -31,12 +31,14 @@ import org.opendaylight.infrautils.testutils.web.TestWebServer;
 public class DiagStatusServletTest {
 
     private TestWebServer webServer;
+    private TestWebClient webClient;
     private final TestDiagStatusService testDiagStatusService = Partials.newPartial(TestDiagStatusService.class);
 
     @Before
     @SuppressWarnings("checkstyle:IllegalThrows") // Jetty throws Throwable
     public void beforeTest() throws Throwable {
         webServer = new TestWebServer();
+        webClient = new TestWebClient(webServer);
         webServer.registerServlet(new DiagStatusServlet(testDiagStatusService), "/*");
     }
 
@@ -48,32 +50,29 @@ public class DiagStatusServletTest {
     @Test
     public void testGetWhenOk() throws IOException {
         testDiagStatusService.isOperational = true;
-        assertThat(getDiagStatusResponseCode("GET")).isEqualTo(200);
+        assertThat(getDiagStatusResponseCode(Method.GET)).isEqualTo(200);
     }
 
     @Test
     public void testHeadWhenOk() throws IOException {
         testDiagStatusService.isOperational = true;
-        assertThat(getDiagStatusResponseCode("HEAD")).isEqualTo(200);
+        assertThat(getDiagStatusResponseCode(Method.HEAD)).isEqualTo(200);
     }
 
     @Test
     public void testGetWhenNok() throws IOException {
         testDiagStatusService.isOperational = false;
-        assertThat(getDiagStatusResponseCode("GET")).isEqualTo(503);
+        assertThat(getDiagStatusResponseCode(Method.GET)).isEqualTo(503);
     }
 
     @Test
     public void testHeadWhenNok() throws IOException {
         testDiagStatusService.isOperational = false;
-        assertThat(getDiagStatusResponseCode("HEAD")).isEqualTo(503);
+        assertThat(getDiagStatusResponseCode(Method.HEAD)).isEqualTo(503);
     }
 
-    private int getDiagStatusResponseCode(String httpMethod) throws IOException {
-        URL url = new URL(webServer.getTestContextURL());
-        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-        conn.setRequestMethod(httpMethod);
-        return conn.getResponseCode();
+    private int getDiagStatusResponseCode(Method httpMethod) throws IOException {
+        return webClient.request(httpMethod, "").getStatus();
     }
 
     private abstract static class TestDiagStatusService implements DiagStatusService {
