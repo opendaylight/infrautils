@@ -31,6 +31,12 @@
       <classifier>config</classifier>
     </dependency>
     <dependency>
+      <groupId>org.opendaylight.odlparent</groupId>
+      <artifactId>odl-dropwizard-metrics</artifactId>
+      <classifier>features</classifier>
+      <type>xml</type>
+    </dependency>
+    <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>odl-infrautils-utils</artifactId>
       <version>${project.version}</version>
