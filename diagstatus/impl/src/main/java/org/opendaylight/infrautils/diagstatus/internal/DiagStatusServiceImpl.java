@@ -96,18 +96,6 @@ public class DiagStatusServiceImpl implements DiagStatusService {
                 systemState, systemReadyMonitor.getFailureCause(), serviceDescriptors);
     }
 
-    @Override
-    @Deprecated
-    public String getAllServiceDescriptorsAsJSON() {
-        return getServiceStatusSummary().toJSON();
-    }
-
-    @Override
-    @Deprecated
-    public boolean isOperational() {
-        return isOperational(systemReadyMonitor.getSystemState(), getAllServiceDescriptors());
-    }
-
     private static boolean isOperational(SystemState systemState, Collection<ServiceDescriptor> serviceDescriptors) {
         if (!systemState.equals(SystemState.ACTIVE)) {
             return false;
