@@ -9,8 +9,6 @@ package org.opendaylight.infrautils.diagstatus;
 
 import java.util.Collection;
 import javax.annotation.concurrent.ThreadSafe;
-import org.opendaylight.infrautils.ready.SystemReadyMonitorMXBean;
-import org.opendaylight.infrautils.ready.SystemState;
 
 /**
  * DiagStatus ServiceDescriptor which lets users register/retrieve for particular service status details.
@@ -63,33 +61,4 @@ public interface DiagStatusService {
      * @return status as a {@link ServiceStatusSummary}
      */
     ServiceStatusSummary getServiceStatusSummary();
-
-    /**
-     * Retrieve the status of all services registered so far as a JSON String with a
-     * fixed format which external systems can rely on.
-     *
-     * @return JSON formatted String with all service descriptions and all of the
-     *         details available for each of them as well as the global system ready status
-     *
-     * @deprecated Use {@link #getServiceStatusSummary()} and {@link ServiceStatusSummary#toJSON()} instead.
-     */
-    @Deprecated
-    String getAllServiceDescriptorsAsJSON();
-
-    /**
-     * Retrieve single true/false boolean indicating if the system is operational to
-     * the best of diagstatus' knowledge. Being operational in this context is
-     * defined as the global {@link SystemReadyMonitorMXBean}'s {@link SystemState}
-     * being ACTIVE, and all of the currently reported {@link ServiceDescriptor}'s
-     * {@link ServiceState} being OPERATIONAL.
-     *
-     * @return true if system is operational, false if not
-     *
-     * @deprecated Use {@link #getServiceStatusSummary()} and
-     *             {@link ServiceStatusSummary#isOperational()}, so that if it's
-     *             false you can report the details about the failure at the precise
-     *             moment it was queried, and avoid a race condition.
-     */
-    @Deprecated
-    boolean isOperational();
 }
