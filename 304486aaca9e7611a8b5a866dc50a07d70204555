@@ -16,6 +16,24 @@
       "revId": "304486aaca9e7611a8b5a866dc50a07d70204555",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "daaef3a1_f0a870dc",
+        "filename": "inject/inject-guice-testutils/src/main/java/org/opendaylight/infrautils/inject/guice/testutils/AbstractCheckedModule.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2019-01-16T20:44:32Z",
+      "side": 1,
+      "message": "because it is in a *-testutils which is for consumption in \u003cscope\u003etest only, but is (will be) needed at runtime by opendaylight-simple, so this change moves it into the (new) inject-guice - makes sense?",
+      "parentUuid": "770971b0_c373cfd0",
+      "revId": "304486aaca9e7611a8b5a866dc50a07d70204555",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
