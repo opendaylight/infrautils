@@ -6,7 +6,7 @@
  terms of the Eclipse Public License v1.0 which accompanies this distribution,
  and is available at http://www.eclipse.org/legal/epl-v10.html
  -->
-<features name="odl-infrautils-${project.version}" xmlns="http://karaf.apache.org/xmlns/features/v1.2.0">
+<features xmlns="http://karaf.apache.org/xmlns/features/v1.2.0" name="odl-infrautils-${project.version}">
     <feature name="odl-infrautils-metrics" version="${project.version}">
         <configfile finalname="etc/org.opendaylight.infrautils.metrics.cfg">
             mvn:org.opendaylight.infrautils/metrics-impl/${project.version}/cfg/config
