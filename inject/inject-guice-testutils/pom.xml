@@ -30,6 +30,11 @@
       <optional>false</optional>
     </dependency>
     <dependency>
+      <groupId>javax.annotation</groupId>
+      <artifactId>javax.annotation-api</artifactId>
+      <optional>false</optional>
+    </dependency>
+    <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <scope>compile</scope>
