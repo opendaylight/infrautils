@@ -11,7 +11,7 @@
 
   <groupId>org.opendaylight.infrautils</groupId>
   <artifactId>odl-infrautils-metrics-sample</artifactId>
-  <version>1.4.2-SNAPSHOT</version>
+  <version>1.4.2</version>
   <packaging>feature</packaging>
 
   <name>OpenDaylight :: Infrautils :: Metrics Example</name>
