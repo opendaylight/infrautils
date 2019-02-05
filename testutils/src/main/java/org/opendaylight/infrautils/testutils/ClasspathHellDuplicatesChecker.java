@@ -10,6 +10,7 @@ package org.opendaylight.infrautils.testutils;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import io.github.classgraph.ClassGraph;
 import io.github.classgraph.ResourceList;
+import io.github.classgraph.ScanResult;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -53,14 +54,16 @@ public class ClasspathHellDuplicatesChecker {
         Map<String, List<String>> dupes = new HashMap<>();
         // To debug this scanner, use ClassGraph().verbose()
         // We intentionally do not use .classFilesOnly(), or .nonClassFilesOnly(), to check both
-        for (Entry<String, ResourceList> dupe : new ClassGraph().scan().getAllResources().findDuplicatePaths()) {
-            String path = dupe.getKey();
-            if (!isHarmlessDuplicate(path)) {
-                dupes.put(path, dupe.getValue().stream()
-                        .map(resource -> resource.getURL().toExternalForm()).collect(Collectors.toList()));
+        try (ScanResult scanResult = new ClassGraph().scan()) {
+            for (Entry<String, ResourceList> dupe : scanResult.getAllResources().findDuplicatePaths()) {
+                String path = dupe.getKey();
+                if (!isHarmlessDuplicate(path)) {
+                    dupes.put(path, dupe.getValue().stream()
+                            .map(resource -> resource.getURL().toExternalForm()).collect(Collectors.toList()));
+                }
             }
+            return dupes;
         }
-        return dupes;
     }
 
     @SuppressFBWarnings("DM_CONVERT_CASE")
