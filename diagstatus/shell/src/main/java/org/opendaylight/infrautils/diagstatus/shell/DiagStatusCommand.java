@@ -127,7 +127,9 @@ public class DiagStatusCommand implements org.apache.karaf.shell.commands.Action
         String respStr = response.getBody();
         if (httpResponseCode > 299) {
             LOG.error("Non-200 http response code received {} for URL {}", httpResponseCode, restUrl);
-            return respStr + " HTTP Response Code : " + Integer.toString(httpResponseCode);
+            if (respStr == null) {
+                return "Service Status Retrieval failed. HTTP Response Code : " + httpResponseCode + "\n";
+            }
         }
         LOG.trace("HTTP Response is - {} for URL {}", respStr, restUrl);
         return buildServiceStatusSummaryString(ServiceStatusSummary.fromJSON(respStr));
