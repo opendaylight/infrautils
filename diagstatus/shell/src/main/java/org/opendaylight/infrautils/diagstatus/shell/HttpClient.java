@@ -120,12 +120,12 @@ public class HttpClient {
                     headerMap.put(name, list);
                 }
             }
-            if (httpResponseCode > 299) {
-                return new HttpResponse(httpResponseCode, response.getStatusLine().getReasonPhrase(), headerMap);
-            }
             Optional<HttpEntity> receivedEntity = Optional.ofNullable(response.getEntity());
             String httpBody = receivedEntity.isPresent()
                     ? EntityUtils.toString(receivedEntity.get()) : null;
+            if (httpResponseCode > 299) {
+                return new HttpResponse(httpResponseCode, httpBody, headerMap);
+            }
             return new HttpResponse(response.getStatusLine().getStatusCode(), httpBody, headerMap);
         } finally {
             response.close();
