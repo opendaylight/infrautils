@@ -58,7 +58,7 @@
       <groupId>com.google.errorprone</groupId>
       <artifactId>error_prone_annotations</artifactId>
       <!-- Keep this version in line with the one of error_prone_core below -->
-      <version>2.3.1</version>
+      <version>2.3.3</version>
     </dependency>
   </dependencies>
 
@@ -193,6 +193,9 @@
                 <arg>-Xep:ObjectToString:ERROR</arg>
                 <arg>-Xep:AssertThrowsMultipleStatements:ERROR</arg>
                 <arg>-Xep:FieldCanBeFinal:ERROR</arg>
+                <!-- new in 2.3.2 -->
+                <arg>-Xep:AndroidJdkLibsChecker:OFF</arg>
+                <arg>-Xep:Java7ApiChecker:OFF</arg>
               </compilerArgs>
             </configuration>
             <dependencies>
@@ -206,7 +209,7 @@
                 <groupId>com.google.errorprone</groupId>
                 <artifactId>error_prone_core</artifactId>
                 <!-- Keep this version in line with the one of error_prone_annotations above -->
-                <version>2.3.1</version>
+                <version>2.3.3</version>
               </dependency>
             </dependencies>
           </plugin>

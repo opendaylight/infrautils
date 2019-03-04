@@ -10,7 +10,7 @@ package org.opendaylight.infrautils.caches.guava.internal;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
-import java.util.Map;
+import com.google.common.collect.ImmutableMap;
 import java.util.Objects;
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -54,7 +54,7 @@ public class GuavaCacheProvider extends AbstractProvider {
                     }
 
                     @Override
-                    public Map<K, V> loadAll(Iterable<? extends K> keys) throws Exception {
+                    public ImmutableMap<K, V> loadAll(Iterable<? extends K> keys) throws Exception {
                         return cacheConfig.cacheFunction().get(keys);
                     }
                 })));
@@ -73,7 +73,7 @@ public class GuavaCacheProvider extends AbstractProvider {
                     }
 
                     @Override
-                    public Map<K, V> loadAll(Iterable<? extends K> keys) throws Exception {
+                    public ImmutableMap<K, V> loadAll(Iterable<? extends K> keys) throws Exception {
                         return cacheConfig.cacheFunction().get(keys);
                     }
                 })));
