@@ -164,7 +164,12 @@ public final class MBeanUtils {
     }
 
     private static Boolean isIpv6Address(String ipAddress) {
-        InetAddress address = InetAddresses.forString(ipAddress);
-        return address instanceof Inet6Address;
+        try {
+            InetAddress address = InetAddresses.forString(ipAddress);
+            return address instanceof Inet6Address;
+        } catch (IllegalArgumentException e) {
+            LOG.debug("Not a valid IP address, probably hostname?", e);
+            return false;
+        }
     }
 }
