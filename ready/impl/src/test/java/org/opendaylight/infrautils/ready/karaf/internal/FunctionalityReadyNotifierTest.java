@@ -48,7 +48,7 @@ public class FunctionalityReadyNotifierTest {
     public void testRegisterTestReady() throws InvalidSyntaxException {
         when(mockBundleContext.getAllServiceReferences(TestReady.class.getName(), null))
                 .thenReturn(new ServiceReference[] {});
-        when(mockBundleContext.registerService((Class<?>) any(), any(), (Dictionary<String, ?>) any()))
+        when(mockBundleContext.registerService((Class<TestReady>) any(), any(TestReady.class), any()))
                 .thenCallRealMethod();
 
         FunctionalityReadyRegistration<?> registration = notifier.register(TestReady.class);
