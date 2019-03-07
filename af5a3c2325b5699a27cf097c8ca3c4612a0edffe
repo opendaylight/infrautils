@@ -16,6 +16,24 @@
       "revId": "af5a3c2325b5699a27cf097c8ca3c4612a0edffe",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5d7734f6_1ad51fe1",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/MBeanUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2019-03-07T21:16:14Z",
+      "side": 1,
+      "message": "actually let me just merge this as is so that this is out of my way, if you think it\u0027s worth it, you can always follow-up with a new change for this very minor point.",
+      "parentUuid": "977ba0b3_3dc2d454",
+      "revId": "af5a3c2325b5699a27cf097c8ca3c4612a0edffe",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
