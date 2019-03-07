@@ -34,6 +34,23 @@
       "revId": "b7d4079d6d7e839b51cfc4ef18b8cf1dd28cd928",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "716d34b3_4dcc66cb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2019-03-07T20:05:19Z",
+      "side": 1,
+      "message": "see https://git.opendaylight.org/gerrit/#/c/77357/ for 2.3.3 bump, when it\u0027s out (still not).",
+      "revId": "b7d4079d6d7e839b51cfc4ef18b8cf1dd28cd928",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
