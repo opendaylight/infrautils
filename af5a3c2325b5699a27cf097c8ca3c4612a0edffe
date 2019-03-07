@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "977ba0b3_3dc2d454",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/MBeanUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2019-03-07T20:00:03Z",
+      "side": 1,
+      "message": "I was going to suggest making this a LOG.warn, but that\u0027s probably not desire here, as you seem to say that it\u0027s \"normal that this can happen\", yes?\n\nUnrelated, how about including the ipAddress in the message, as in: \"Not a valid IP address, probably hostname: \" + ipAddress",
+      "revId": "af5a3c2325b5699a27cf097c8ca3c4612a0edffe",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
