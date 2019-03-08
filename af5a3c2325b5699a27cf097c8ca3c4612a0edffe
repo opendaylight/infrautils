@@ -34,6 +34,24 @@
       "revId": "af5a3c2325b5699a27cf097c8ca3c4612a0edffe",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8c0d770c_c6fc839d",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/MBeanUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 2446
+      },
+      "writtenOn": "2019-03-08T11:08:05Z",
+      "side": 1,
+      "message": "Actually it might have some value, but given that nobody complains about this before, I doubt it is widely used. This method was also removed in neon.",
+      "parentUuid": "5d7734f6_1ad51fe1",
+      "revId": "af5a3c2325b5699a27cf097c8ca3c4612a0edffe",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
