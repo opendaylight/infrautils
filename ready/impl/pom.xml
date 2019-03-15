@@ -35,13 +35,6 @@
       <groupId>org.opendaylight.odlparent</groupId>
       <artifactId>bundles-test-lib</artifactId>
       <version>4.0.9</version>
-      <exclusions>
-        <!-- TODO Remove karaf-util exclusion from here once https://git.opendaylight.org/gerrit/#/c/61489/ is in odlparent (and we have a release with it we're using here) -->
-        <exclusion>
-          <groupId>org.opendaylight.odlparent</groupId>
-          <artifactId>karaf-util</artifactId>
-        </exclusion>
-      </exclusions>
       <scope>provided</scope>
     </dependency>
     <dependency>
