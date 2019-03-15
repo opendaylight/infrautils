@@ -270,7 +270,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
          * TODO: Confirm this
          */
         @Override
-        public void onSuccess(@Nullable List<Void> voids) {
+        public void onSuccess(List<Void> voids) {
             LOG.trace("Job completed successfully: {}", jobEntry.getKey());
             clearJob(jobEntry);
         }

@@ -34,7 +34,7 @@
     <dependency>
       <groupId>org.opendaylight.odlparent</groupId>
       <artifactId>bundles-test-lib</artifactId>
-      <version>4.0.9</version>
+      <version>5.0.0-SNAPSHOT</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
@@ -49,7 +49,7 @@
          in the maven-bundle-plugin below works! -->
     <dependency>
       <groupId>org.hamcrest</groupId>
-      <artifactId>hamcrest-core</artifactId>
+      <artifactId>hamcrest</artifactId>
       <scope>compile</scope>
     </dependency>
     <dependency>
@@ -99,7 +99,7 @@
         <artifactId>maven-bundle-plugin</artifactId>
         <configuration>
           <instructions>
-            <Embed-Dependency>bundles-test-lib,awaitility,hamcrest-core</Embed-Dependency>
+            <Embed-Dependency>bundles-test-lib,awaitility,hamcrest</Embed-Dependency>
             <!-- Do NOT <Embed-Transitive>true</Embed-Transitive> -->
           </instructions>
         </configuration>

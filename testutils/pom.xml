@@ -27,18 +27,18 @@
          its testutils dependency, but here we do not want that (that's the whole point of this POM).
          Instead, we set scope compile, to override scope test which at least some of these have as default. -->
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
       <groupId>org.hamcrest</groupId>
-      <artifactId>hamcrest-core</artifactId>
+      <artifactId>hamcrest</artifactId>
       <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>org.hamcrest</groupId>
       <artifactId>hamcrest-library</artifactId>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
       <scope>compile</scope>
     </dependency>
     <dependency>
@@ -49,8 +49,14 @@
     <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
-      <scope>compile</scope>
     </dependency>
+
+    <dependency>
+      <groupId>com.google.code.findbugs</groupId>
+      <artifactId>jsr305</artifactId>
+      <optional>true</optional>
+    </dependency>
+
     <!--suppress MavenDuplicateDependenciesInspection -->
     <dependency>
       <groupId>com.google.truth</groupId>

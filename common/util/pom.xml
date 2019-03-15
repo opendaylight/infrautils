@@ -27,8 +27,14 @@
             <artifactId>guava</artifactId>
         </dependency>
         <dependency>
-          <groupId>org.immutables</groupId>
-          <artifactId>value</artifactId>
+            <groupId>org.immutables</groupId>
+            <artifactId>value</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.code.findbugs</groupId>
+            <artifactId>jsr305</artifactId>
+            <optional>true</optional>
         </dependency>
 
         <dependency>
