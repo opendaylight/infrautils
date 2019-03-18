@@ -125,6 +125,9 @@ public class ClasspathHellDuplicatesChecker {
             // list newly introduced in INFRAUTILS-52, because classgraph scans more than JHades did
             || resourcePath.equals("plugin.properties")
             || resourcePath.equals(".api_description")
+            // errorprone with Java 11 integration leaks to classpath, which causes a conflict between
+            // checkerframework/checker-qual and checkerframework/dataflow
+            || resourcePath.startsWith("org/checkerframework/dataflow/qual/")
             ;
     }
 }
