@@ -11,7 +11,7 @@
 
   <groupId>org.opendaylight.infrautils</groupId>
   <artifactId>odl-infrautils-metrics-prometheus</artifactId>
-  <version>1.5.0-SNAPSHOT</version>
+  <version>1.5.1-SNAPSHOT</version>
   <packaging>feature</packaging>
 
   <name>OpenDaylight :: Infrautils :: Metrics Prometheus Support</name>
