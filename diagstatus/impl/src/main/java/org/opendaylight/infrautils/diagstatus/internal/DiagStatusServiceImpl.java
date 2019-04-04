@@ -86,6 +86,7 @@ public class DiagStatusServiceImpl implements DiagStatusService {
     public Collection<ServiceDescriptor> getAllServiceDescriptors() {
         updateServiceStatusMap();
         return ImmutableList.copyOf(statusMap.values());
+        LOG.info("Service status {}", statusMap.values());
     }
 
     @Override
