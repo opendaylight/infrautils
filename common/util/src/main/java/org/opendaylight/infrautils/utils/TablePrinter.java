@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.regex.Pattern;
-import javax.annotation.RegEx;
+import org.checkerframework.checker.regex.qual.Regex;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,19 +23,19 @@ public class TablePrinter {
     private static final int SPACE_BETWEEN_COLUMNS = 1;
     private static final int SPACE_BEFORE_TABLES_WITH_TITLE = 4;
 
-    @RegEx
+    @Regex
     private static final String DPLUS_STR = "^\\d+$";
     private static final Pattern DPLUS = Pattern.compile(DPLUS_STR);
 
-    @RegEx
+    @Regex
     private static final String  DPLUS_DPLUS_STR = "^\\D+\\d+$";
     private static final Pattern DPLUS_DPLUS = Pattern.compile(DPLUS_DPLUS_STR);
 
-    @RegEx
+    @Regex
     private static final String DPLUS_REMOVE_STR = "\\d+$";
     private static final Pattern DPLUS_REMOVE = Pattern.compile(DPLUS_REMOVE_STR);
 
-    @RegEx
+    @Regex
     private static final String NON_DIGITS_STR = "^\\D*";
     private static final Pattern NON_DIGITS = Pattern.compile(NON_DIGITS_STR);
 
