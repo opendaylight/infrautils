@@ -63,7 +63,7 @@ public abstract class MetricDescriptor {
      * but highly recommended to be set so that external Dashboard type UIs can show it
      * as documentation or help for this Metric.
      */
-    public @Default String description() {
+    @Default public String description() {
         return id();
     }
 

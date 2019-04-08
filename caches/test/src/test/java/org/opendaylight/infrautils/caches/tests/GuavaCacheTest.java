@@ -15,6 +15,6 @@ import org.opendaylight.infrautils.inject.guice.testutils.GuiceRule;
 
 public class GuavaCacheTest extends AbstractCacheProviderTest {
 
-    public @Rule GuiceRule guice = new GuiceRule(new AnnotationsModule(), new CacheModule(GuavaCacheProvider.class));
+    @Rule public GuiceRule guice = new GuiceRule(new AnnotationsModule(), new CacheModule(GuavaCacheProvider.class));
 
 }

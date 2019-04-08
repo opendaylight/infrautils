@@ -26,9 +26,9 @@ public class LogCaptureRuleTest {
 
     private static final Logger LOG = LoggerFactory.getLogger(LogCaptureRuleTest.class);
 
-    public @Rule LogRule logRule = new LogRule();
+    @Rule public LogRule logRule = new LogRule();
 
-    public @Rule LogCaptureRule logCaptureRule = new LogCaptureRule();
+    @Rule public LogCaptureRule logCaptureRule = new LogCaptureRule();
 
     @Test // (expected = LogCaptureRuleException.class)
     @Ignore // because expected does not work, because that can't handle what's from a Rule

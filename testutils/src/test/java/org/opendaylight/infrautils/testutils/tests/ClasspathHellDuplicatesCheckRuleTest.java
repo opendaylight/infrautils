@@ -18,7 +18,7 @@ import org.opendaylight.infrautils.testutils.ClasspathHellDuplicatesCheckRule;
  */
 public class ClasspathHellDuplicatesCheckRuleTest {
 
-    public static @ClassRule ClasspathHellDuplicatesCheckRule jHades = new ClasspathHellDuplicatesCheckRule();
+    @ClassRule public static ClasspathHellDuplicatesCheckRule jHades = new ClasspathHellDuplicatesCheckRule();
 
     @Test
     public void testSomething() throws Exception {

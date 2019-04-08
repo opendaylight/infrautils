@@ -30,9 +30,9 @@ import org.opendaylight.infrautils.testutils.LogRule;
  */
 public class DiagStatusTest {
 
-    public @Rule LogRule logRule = new LogRule();
-    public @Rule LogCaptureRule logCaptureRule = new LogCaptureRule();
-    public @Rule MethodRule guice = new GuiceRule(new DiagStatusTestModule());
+    @Rule public LogRule logRule = new LogRule();
+    @Rule public LogCaptureRule logCaptureRule = new LogCaptureRule();
+    @Rule public MethodRule guice = new GuiceRule(new DiagStatusTestModule());
 
     @Inject DiagStatusService diagStatusService;
     @Inject DiagStatusServiceMBean diagStatusServiceMBean;

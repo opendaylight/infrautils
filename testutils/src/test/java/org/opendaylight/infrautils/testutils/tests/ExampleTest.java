@@ -27,13 +27,13 @@ public class ExampleTest {
 
     private static final Logger LOG = LoggerFactory.getLogger(ExampleTest.class);
 
-    public static @ClassRule RunUntilFailureClassRule classRepeater = new RunUntilFailureClassRule(10);
-    public @Rule RunUntilFailureRule repeater = new RunUntilFailureRule(classRepeater);
+    @ClassRule public static RunUntilFailureClassRule classRepeater = new RunUntilFailureClassRule(10);
+    @Rule public RunUntilFailureRule repeater = new RunUntilFailureRule(classRepeater);
 
-    public @Rule LogRule logRule = new LogRule();
-    public @Rule LogCaptureRule logCaptureRule = new LogCaptureRule();
+    @Rule public LogRule logRule = new LogRule();
+    @Rule public LogCaptureRule logCaptureRule = new LogCaptureRule();
 
-    public static @ClassRule ClasspathHellDuplicatesCheckRule jHades = new ClasspathHellDuplicatesCheckRule();
+    @ClassRule public static ClasspathHellDuplicatesCheckRule jHades = new ClasspathHellDuplicatesCheckRule();
 
     @Test
     public void testA() throws Exception {

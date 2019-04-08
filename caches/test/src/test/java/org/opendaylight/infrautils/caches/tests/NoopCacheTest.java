@@ -15,7 +15,7 @@ import org.opendaylight.infrautils.inject.guice.testutils.GuiceRule;
 
 public class NoopCacheTest extends AbstractCacheProviderTest {
 
-    public @Rule GuiceRule guice = new GuiceRule(new AnnotationsModule(), new CacheModule(NoopCacheProvider.class));
+    @Rule public GuiceRule guice = new GuiceRule(new AnnotationsModule(), new CacheModule(NoopCacheProvider.class));
 
     @Override
     public void testCacheMonitorPolicyAndStat() {

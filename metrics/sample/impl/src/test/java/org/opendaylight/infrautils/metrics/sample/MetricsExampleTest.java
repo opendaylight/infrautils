@@ -19,7 +19,7 @@ import org.opendaylight.infrautils.testutils.LogCaptureRule;
  */
 public class MetricsExampleTest {
 
-    public @Rule LogCaptureRule logCaptureRule = new LogCaptureRule();
+    @Rule public LogCaptureRule logCaptureRule = new LogCaptureRule();
 
     @Test
     public void testMetricsExample() throws InterruptedException {

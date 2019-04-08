@@ -29,7 +29,7 @@ public class FutureListenerLogTest {
 
     private static final Logger LOG = LoggerFactory.getLogger(FutureListenerLogTest.class);
 
-    public @Rule LogCaptureRule logCaptureRule = new LogCaptureRule();
+    @Rule public LogCaptureRule logCaptureRule = new LogCaptureRule();
 
     @Test
     public void testFailingListenableFuture() {
