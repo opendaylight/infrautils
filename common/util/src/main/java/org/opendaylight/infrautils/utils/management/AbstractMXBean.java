@@ -9,8 +9,6 @@ package org.opendaylight.infrautils.utils.management;
 
 import com.google.errorprone.annotations.Var;
 import java.lang.management.ManagementFactory;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import javax.management.AttributeNotFoundException;
 import javax.management.InstanceAlreadyExistsException;
 import javax.management.InstanceNotFoundException;
@@ -21,7 +19,8 @@ import javax.management.MalformedObjectNameException;
 import javax.management.NotCompliantMBeanException;
 import javax.management.ObjectName;
 import javax.management.ReflectionException;
-
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -50,7 +49,7 @@ public abstract class AbstractMXBean {
      * @param mbeanType Used as the <code>type</code> property in the bean's ObjectName.
      * @param mbeanCategory Used as the <code>Category</code> property in the bean's ObjectName.
      */
-    protected AbstractMXBean(@Nonnull String mbeanName, @Nonnull String mbeanType,
+    protected AbstractMXBean(@NonNull String mbeanName, @NonNull String mbeanType,
                              @Nullable String mbeanCategory) {
         this.mbeanName = mbeanName;
         this.mbeanType = mbeanType;
