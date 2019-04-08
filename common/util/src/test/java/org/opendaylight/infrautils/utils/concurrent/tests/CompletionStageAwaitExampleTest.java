@@ -39,8 +39,8 @@ public class CompletionStageAwaitExampleTest {
 
     private static final Logger LOG = LoggerFactory.getLogger(CompletionStageAwaitExampleTest.class);
 
-    public static @ClassRule RunUntilFailureClassRule classRepeater = new RunUntilFailureClassRule(100);
-    public @Rule RunUntilFailureRule repeater = new RunUntilFailureRule(classRepeater);
+    @ClassRule public static RunUntilFailureClassRule classRepeater = new RunUntilFailureClassRule(100);
+    @Rule public RunUntilFailureRule repeater = new RunUntilFailureRule(classRepeater);
 
     private static final Executor SLOW_ASYNC_EXECUTOR = new SlowExecutor(
                 Executors.newSingleThreadExecutor("SLOW_ASYNC_EXECUTOR", LOG));

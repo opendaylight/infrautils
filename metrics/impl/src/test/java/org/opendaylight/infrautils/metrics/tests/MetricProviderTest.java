@@ -33,9 +33,9 @@ import org.opendaylight.infrautils.utils.function.CheckedRunnable;
  */
 public class MetricProviderTest {
 
-    public @Rule LogRule logRule = new LogRule();
+    @Rule public LogRule logRule = new LogRule();
 
-    public @Rule LogCaptureRule logCaptureRule = new LogCaptureRule();
+    @Rule public LogCaptureRule logCaptureRule = new LogCaptureRule();
 
     private final MetricProvider metrics = new MetricProviderImpl();
 

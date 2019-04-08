@@ -28,7 +28,7 @@ import org.opendaylight.infrautils.inject.guice.testutils.GuiceRule;
 @SuppressFBWarnings("NP_NONNULL_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR")
 public class SampleServiceTest {
 
-    public @Rule MethodRule guice = new GuiceRule(
+    @Rule public MethodRule guice = new GuiceRule(
             new SampleServiceTestModule(), new CacheModule(/* NoopCacheProvider.class */));
 
     @Inject SampleService sampleService;

@@ -134,7 +134,7 @@ public class JobCoordinatorTest {
         }
     }
 
-    public @Rule LogRule logRule = new LogRule();
+    @Rule public LogRule logRule = new LogRule();
 
     // Uncomment this to make all tests run x7 times; this can help find concurrency issues:
     // public static @ClassRule RunUntilFailureClassRule classRepeater = new RunUntilFailureClassRule(7);

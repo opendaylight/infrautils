@@ -21,8 +21,7 @@ import org.opendaylight.infrautils.inject.guice.testutils.GuiceRule;
  * @author Michael Vorburger
  */
 public class ExampleGuiceRuleTest {
-
-    public @Rule GuiceRule guice = new GuiceRule(TestModule.class);
+    @Rule public GuiceRule guice = new GuiceRule(TestModule.class);
 
     @Inject SomeInterfaceWithPostConstruct someService;
 

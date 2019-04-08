@@ -39,13 +39,13 @@ import org.opendaylight.infrautils.testutils.LogRule;
 @SuppressFBWarnings("NP_NONNULL_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR")
 public abstract class AbstractCacheProviderTest {
 
-    public @Rule LogRule logRule = new LogRule();
+    @Rule public LogRule logRule = new LogRule();
 
     private Cache<Integer, String> firstUncheckedCache;
     private Cache<Double, BigDecimal> secondUncheckedCache;
 
-    private @Inject CacheManagers cachesMonitor;
-    private @Inject CacheProvider cacheProvider;
+    @Inject private CacheManagers cachesMonitor;
+    @Inject private CacheProvider cacheProvider;
 
     @PostConstruct
     void init() {

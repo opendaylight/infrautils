@@ -33,7 +33,7 @@ public abstract class BaseCacheConfig {
      * Any code requiring to identify a instances would just hold on to the {@link Cache} instance.
      * Must be all lower case letters only, may use dot as separator, but no spaces or other characters.
      */
-    public @Default String id() {
+    @Default public String id() {
         return anchor().getClass().getName();
     }
 
@@ -42,7 +42,7 @@ public abstract class BaseCacheConfig {
      * Used by {@link CacheManagers} for display to end-user.
      * Optional; default is no description.
      */
-    public @Default String description() {
+    @Default public String description() {
         return "";
     }
 
