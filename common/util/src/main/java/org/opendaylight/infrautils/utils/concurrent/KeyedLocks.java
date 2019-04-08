@@ -13,8 +13,8 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.ReentrantLock;
-import javax.annotation.Nonnull;
-import javax.annotation.concurrent.GuardedBy;
+import org.checkerframework.checker.lock.qual.GuardedBy;
+import org.eclipse.jdt.annotation.NonNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -54,7 +54,7 @@ public class KeyedLocks<T> {
      *         by the current thread, otherwise {@code false} if the waiting time elapsed before the lock could be
      *         acquired or the current thread was interrupted.
      */
-    public boolean tryLock(@Nonnull T lockKey, long timeout, TimeUnit unit) {
+    public boolean tryLock(@NonNull T lockKey, long timeout, TimeUnit unit) {
         LOG.debug("tryLock {}, time {}, unit: {}", lockKey, timeout, unit);
         return doLock(lockKey, (key, lock) -> {
             try {
@@ -81,7 +81,7 @@ public class KeyedLocks<T> {
      * @return {@code true} if the lock was free and was acquired by the current thread, or the lock was already held
      *         by the current thread, otherwise {@code false} otherwise
      */
-    public boolean tryLock(@Nonnull T lockKey) {
+    public boolean tryLock(@NonNull T lockKey) {
         LOG.debug("tryLock {}", lockKey);
         return doLock(lockKey, (key, lock) -> {
             boolean locked = lock.tryLock();
@@ -100,7 +100,7 @@ public class KeyedLocks<T> {
      *
      * @param lockKey the key to lock
      */
-    public void lock(@Nonnull T lockKey) {
+    public void lock(@NonNull T lockKey) {
         LOG.debug("lock {}", lockKey);
         doLock(lockKey, (key, lock) -> {
             lock.lock();
@@ -133,7 +133,7 @@ public class KeyedLocks<T> {
      * @param lockKey the key to unlock
      * @throws IllegalMonitorStateException if the current thread does not hold this lock
      */
-    public void unlock(@Nonnull T lockKey) {
+    public void unlock(@NonNull T lockKey) {
         LOG.debug("unlock {}", lockKey);
         CountingReentrantLock lock;
         synchronized (locks) {
