@@ -10,8 +10,7 @@ package org.opendaylight.infrautils.caches;
 import com.google.common.collect.ImmutableMap;
 import java.util.Arrays;
 import java.util.Map;
-import javax.annotation.Nonnull;
-import javax.annotation.concurrent.ThreadSafe;
+import org.eclipse.jdt.annotation.NonNull;
 
 /**
  * Cache of keys to values.
@@ -34,6 +33,9 @@ import javax.annotation.concurrent.ThreadSafe;
  * <p>The implementation of this API is, typically, backed by established cache frameworks,
  * such as Ehcache, Infinispan, Guava's, Caffeine, ..., imcache, cache2k, ... etc.
  *
+ * <p>Implementations of this interface are expected to be safe to use from multiple threads
+ * concurrently.
+ *
  * @param <K> key type of cache (must be immutable and have correct hashCode &amp; equals)
  * @param <V> value type of cache (should, for monitoring and predictable memory
  *            effect of eviction, typically, be of "similar" size for all keys;
@@ -41,7 +43,6 @@ import javax.annotation.concurrent.ThreadSafe;
  *
  * @author Michael Vorburger.ch
  */
-@ThreadSafe
 public interface Cache<K, V> extends BaseCache<K, V> {
 
     /**
@@ -55,7 +56,7 @@ public interface Cache<K, V> extends BaseCache<K, V> {
      * @throws BadCacheFunctionRuntimeException if the cache's function returned null value
      * @throws NullPointerException if the cache's users passed a null key
      */
-    @Nonnull V get(@Nonnull K key) throws BadCacheFunctionRuntimeException, NullPointerException;
+    @NonNull V get(@NonNull K key) throws BadCacheFunctionRuntimeException, NullPointerException;
 
     /**
      * Get several cache entries, in one go.
@@ -65,14 +66,14 @@ public interface Cache<K, V> extends BaseCache<K, V> {
      * @throws BadCacheFunctionRuntimeException if the cache's function returned null value
      * @throws NullPointerException if the cache's users passed a null key
      */
-    @Nonnull ImmutableMap<K, V> get(@Nonnull Iterable<? extends K> keys)
+    ImmutableMap<K, V> get(Iterable<? extends K> keys)
             throws BadCacheFunctionRuntimeException, NullPointerException;
 
     /**
      * Convenience short-cut to {@link #get(Iterable)} with vararg syntax.
      */
     @SuppressWarnings("unchecked")
-    default @Nonnull ImmutableMap<K, V> get(@Nonnull K... keys)
+    default ImmutableMap<K, V> get(@NonNull K... keys)
             throws BadCacheFunctionRuntimeException, NullPointerException {
         return get(Arrays.asList(keys));
     }

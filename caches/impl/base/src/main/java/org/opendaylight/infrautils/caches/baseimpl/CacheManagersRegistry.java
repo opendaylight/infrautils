@@ -7,17 +7,15 @@
  */
 package org.opendaylight.infrautils.caches.baseimpl;
 
-import javax.annotation.concurrent.ThreadSafe;
 import org.opendaylight.infrautils.caches.CacheManager;
 import org.opendaylight.infrautils.caches.CacheManagers;
 import org.opendaylight.infrautils.caches.CacheProvider;
 
 /**
- * Service Provider (Cache implementor) hook.
+ * Service Provider (Cache implementor) hook. Implementations of this interface are expected to be thread-safe.
  *
  * @author Michael Vorburger.ch
  */
-@ThreadSafe
 public interface CacheManagersRegistry extends CacheManagers {
 
     // TODO see if by using AbstractProvider it may be possible to avoid this IF altogether ?

@@ -9,11 +9,11 @@ package org.opendaylight.infrautils.caches.cli;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.Map.Entry;
-import javax.annotation.Nullable;
 import org.apache.karaf.shell.api.action.Action;
 import org.apache.karaf.shell.api.action.Command;
 import org.apache.karaf.shell.api.action.lifecycle.Reference;
 import org.apache.karaf.shell.api.action.lifecycle.Service;
+import org.eclipse.jdt.annotation.Nullable;
 import org.opendaylight.infrautils.caches.BaseCacheConfig;
 import org.opendaylight.infrautils.caches.CacheManager;
 import org.opendaylight.infrautils.caches.CacheManagers;
@@ -35,9 +35,8 @@ public class CacheListCommand implements Action {
     private CacheManagers cacheManagers;
 
     @Override
-    @Nullable
     @SuppressWarnings("checkstyle:RegexpSinglelineJava")
-    public Object execute() {
+    public @Nullable Object execute() {
         Iterable<CacheManager> allCacheManagers = cacheManagers.getAllCacheManagers();
         if (!allCacheManagers.iterator().hasNext()) {
             System.out.println("No caches have been created.");
