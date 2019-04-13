@@ -7,15 +7,17 @@
  */
 package org.opendaylight.infrautils.testutils.concurrent;
 
+import static java.util.Objects.requireNonNull;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
 import com.google.common.util.concurrent.Uninterruptibles;
 import java.util.Random;
 import java.util.concurrent.Executor;
+import org.eclipse.jdt.annotation.Nullable;
 
 /**
- * An {@link Executor} that is intentionally slow.
- * Useful for testing concurrency utilities.
+ * An {@link Executor} that is intentionally slow. Useful for testing concurrency utilities.
+ *
  * @author Michael Vorburger.ch
  */
 public class SlowExecutor implements Executor {
@@ -29,7 +31,8 @@ public class SlowExecutor implements Executor {
     }
 
     @Override
-    public void execute(Runnable command) {
+    public void execute(@Nullable Runnable command) {
+        requireNonNull(command);
         delegate.execute(() -> {
             Uninterruptibles.sleepUninterruptibly(random(30, 100), MILLISECONDS);
             command.run();

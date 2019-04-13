@@ -8,6 +8,7 @@
 package org.opendaylight.infrautils.testutils;
 
 import com.google.errorprone.annotations.Var;
+import org.eclipse.jdt.annotation.Nullable;
 
 /**
  * Assert extension for JUnit.
@@ -35,7 +36,7 @@ public final class Asserts {
      * <p>Back-ported from <a href=
      * "http://junit.org/junit5/docs/current/api/org/junit/jupiter/api/Assertions.html#assertThrows-java.lang.Class-org.junit.jupiter.api.function.Executable-">org.junit.jupiter.api.Assertions</a>.
      */
-    @SuppressWarnings({ "unchecked", "IllegalCatch", "AvoidHidingCauseException" }) // OK here
+    @SuppressWarnings({ "IllegalCatch", "AvoidHidingCauseException" }) // OK here
     public static <T extends Throwable> T assertThrows(Class<T> expectedThrowable, JUnitExecutable exec) {
         //
         // This implementation, and the following private methods, are copy/paste'd verbatim from
@@ -46,40 +47,36 @@ public final class Asserts {
             exec.execute();
         } catch (Throwable actualThrown) {
             if (expectedThrowable.isInstance(actualThrown)) {
-                @SuppressWarnings("unchecked") T retVal = (T) actualThrown;
-                return retVal;
-            } else {
-                @Var String expected = formatClass(expectedThrowable);
-                Class<? extends Throwable> actualThrowable = actualThrown.getClass();
-                @Var String actual = formatClass(actualThrowable);
-                if (expected.equals(actual)) {
-                    // There must be multiple class loaders. Add the identity hash code so the message
-                    // doesn't say "expected: java.lang.String<my.package.MyException> ..."
-                    expected += "@" + Integer.toHexString(System.identityHashCode(expectedThrowable));
-                    actual += "@" + Integer.toHexString(System.identityHashCode(actualThrowable));
-                }
-                String mismatchMessage = format("unexpected exception type thrown;", expected, actual);
-
-                // The AssertionError(String, Throwable) ctor is only available on JDK7.
-                AssertionError assertionError = new AssertionError(mismatchMessage);
-                assertionError.initCause(actualThrown);
-                throw assertionError;
+                return expectedThrowable.cast(actualThrown);
             }
+
+            @Var String expected = formatClass(expectedThrowable);
+            Class<? extends Throwable> actualThrowable = actualThrown.getClass();
+            @Var String actual = formatClass(actualThrowable);
+            if (expected.equals(actual)) {
+                // There must be multiple class loaders. Add the identity hash code so the message
+                // doesn't say "expected: java.lang.String<my.package.MyException> ..."
+                expected += "@" + Integer.toHexString(System.identityHashCode(expectedThrowable));
+                actual += "@" + Integer.toHexString(System.identityHashCode(actualThrowable));
+            }
+            String mismatchMessage = format("unexpected exception type thrown;", expected, actual);
+
+            // The AssertionError(String, Throwable) ctor is only available on JDK7.
+            AssertionError assertionError = new AssertionError(mismatchMessage);
+            assertionError.initCause(actualThrown);
+            throw assertionError;
         }
         String message = String.format("expected %s to be thrown, but nothing was thrown",
                 formatClass(expectedThrowable));
         throw new AssertionError(message);
     }
 
-    private static boolean isEquals(Object expected, Object actual) {
+    private static boolean isEquals(Object expected, @Nullable Object actual) {
         return expected.equals(actual);
     }
 
-    private static boolean equalsRegardingNull(Object expected, Object actual) {
-        if (expected == null) {
-            return actual == null;
-        }
-        return isEquals(expected, actual);
+    private static boolean equalsRegardingNull(@Nullable Object expected, @Nullable Object actual) {
+        return expected == null ? actual == null : isEquals(expected, actual);
     }
 
     private static String format(String message, Object expected, Object actual) {
@@ -93,10 +90,9 @@ public final class Asserts {
             return formatted + "expected: "
                     + formatClassAndValue(expected, expectedString)
                     + " but was: " + formatClassAndValue(actual, actualString);
-        } else {
-            return formatted + "expected:<" + expectedString + "> but was:<"
-                    + actualString + ">";
         }
+
+        return formatted + "expected:<" + expectedString + "> but was:<" + actualString + ">";
     }
 
     private static String formatClass(Class<?> value) {
@@ -119,5 +115,4 @@ public final class Asserts {
     public interface JUnitExecutable {
         void execute() throws Throwable;
     }
-
 }
