@@ -7,16 +7,15 @@
  */
 package org.opendaylight.infrautils.caches;
 
-import javax.annotation.concurrent.ThreadSafe;
-
 /**
  * Service to monitor all registered known caches.
  *
  * <p>Used by e.g. CLI commands, web UIs, etc.
  *
+ * <p>Implementations of this interface are expected to be thread-safe.
+ *
  * @author Michael Vorburger.ch
  */
-@ThreadSafe
 public interface CacheManagers {
 
     /**
@@ -30,5 +29,4 @@ public interface CacheManagers {
      * @throws IllegalArgumentException if argument is an invalid ID
      */
     CacheManager getCacheManager(String cacheID) throws IllegalArgumentException;
-
 }
