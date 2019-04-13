@@ -10,12 +10,12 @@ package org.opendaylight.infrautils.caches.sample.cli;
 import com.google.common.base.Stopwatch;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.concurrent.TimeUnit;
-import javax.annotation.Nullable;
 import org.apache.karaf.shell.api.action.Action;
 import org.apache.karaf.shell.api.action.Argument;
 import org.apache.karaf.shell.api.action.Command;
 import org.apache.karaf.shell.api.action.lifecycle.Reference;
 import org.apache.karaf.shell.api.action.lifecycle.Service;
+import org.eclipse.jdt.annotation.Nullable;
 import org.opendaylight.infrautils.caches.sample.SampleService;
 
 /**
@@ -35,9 +35,8 @@ public class SampleCacheCommand implements Action {
     private SampleService sampleService;
 
     @Override
-    @Nullable
     @SuppressWarnings("checkstyle:RegexpSinglelineJava")
-    public Object execute() {
+    public @Nullable Object execute() {
         Stopwatch stopWatch = Stopwatch.createStarted();
         String hello = sampleService.sayHello(whoToGreet);
         long ms = stopWatch.elapsed(TimeUnit.MILLISECONDS);
@@ -45,5 +44,4 @@ public class SampleCacheCommand implements Action {
         System.out.println(ms + "ms: " + hello);
         return null;
     }
-
 }
