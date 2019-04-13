@@ -28,7 +28,6 @@
     <dependency>
       <groupId>org.apache.karaf.features</groupId>
       <artifactId>framework</artifactId>
-      <version>${karaf.version}</version>
       <type>kar</type>
       <!-- scope is compile so all features (there is only one) are installed
            into startup.properties and the feature repo itself is not installed -->
