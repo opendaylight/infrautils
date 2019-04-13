@@ -10,8 +10,9 @@ package org.opendaylight.infrautils.testutils;
 import static java.util.Objects.requireNonNull;
 
 import com.google.errorprone.annotations.Var;
+import java.util.Objects;
 import java.util.Optional;
-import javax.annotation.Nullable;
+import org.eclipse.jdt.annotation.Nullable;
 
 /**
  * Captured log statement.
@@ -55,36 +56,19 @@ public class LogCapture {
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(@Nullable Object obj) {
         if (this == obj) {
             return true;
         }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
+        if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
         LogCapture other = (LogCapture) obj;
-        if (cause == null) {
-            if (other.cause != null) {
-                return false;
-            }
-        } else if (!cause.equals(other.cause)) {
-            return false;
-        }
-        if (level != other.level) {
-            return false;
-        }
-        if (!message.equals(other.message)) {
-            return false;
-        }
-        return true;
+        return level == other.level && Objects.equals(cause, other.cause) && message.equals(other.message);
     }
 
     @Override
     public String toString() {
         return "LogCapture [level=" + level + ", message=" + message + ", cause=" + cause + "]";
     }
-
 }
