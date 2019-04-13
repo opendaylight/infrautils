@@ -7,7 +7,7 @@
  */
 package org.opendaylight.infrautils.diagstatus;
 
-import javax.annotation.Nonnull;
+import org.eclipse.jdt.annotation.NonNull;
 
 /**
  * Apps can register an implementation of this interface in the OSGi service registry
@@ -23,5 +23,5 @@ public interface ServiceStatusProvider {
      *
      * @return current ServiceDescriptor (never null)
      */
-    @Nonnull ServiceDescriptor getServiceDescriptor();
+    @NonNull ServiceDescriptor getServiceDescriptor();
 }

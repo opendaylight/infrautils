@@ -17,16 +17,12 @@ import org.opendaylight.infrautils.diagstatus.ServiceDescriptor;
 import org.opendaylight.infrautils.diagstatus.ServiceState;
 import org.opendaylight.infrautils.itestutils.AbstractIntegrationTest;
 import org.ops4j.pax.exam.options.UrlReference;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * DiagStatus Integration Test.
  * @author Faseela K
  */
 public class DiagStatusIT extends AbstractIntegrationTest {
-
-    private static final Logger LOG = LoggerFactory.getLogger(DiagStatusIT.class);
 
     @Inject
     DiagStatusService diagStatusService;
