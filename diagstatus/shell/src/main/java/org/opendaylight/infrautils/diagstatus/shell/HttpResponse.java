@@ -9,9 +9,8 @@ package org.opendaylight.infrautils.diagstatus.shell;
 
 import java.util.List;
 import java.util.Map;
-import javax.annotation.concurrent.Immutable;
 
-@Immutable
+// This is supposed to be immutable, but contains (and leaks) potentially-mutable collections
 public final class HttpResponse {
     private final Integer status;        // response status
     private final String  body;        // response entity
