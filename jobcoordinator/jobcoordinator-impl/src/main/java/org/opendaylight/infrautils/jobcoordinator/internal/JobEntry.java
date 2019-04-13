@@ -10,10 +10,11 @@ package org.opendaylight.infrautils.jobcoordinator.internal;
 import static java.util.Collections.emptyList;
 
 import com.google.common.util.concurrent.ListenableFuture;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
-import javax.annotation.Nullable;
+import org.eclipse.jdt.annotation.Nullable;
 import org.opendaylight.infrautils.jobcoordinator.RollbackCallable;
 
 /**
@@ -32,6 +33,8 @@ class JobEntry {
     private volatile @Nullable List<ListenableFuture<Void>> futures;
     private final ClassLoader contextClassLoader;
 
+    @SuppressFBWarnings(value = "NP_NONNULL_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR",
+            justification = "TYPE_USE and SpotBugs")
     JobEntry(String key, Callable<List<ListenableFuture<Void>>> mainWorker, @Nullable RollbackCallable rollbackWorker,
             int maxRetries, ClassLoader contextClassLoader) {
         this.key = key;
@@ -82,11 +85,7 @@ class JobEntry {
 
     public List<ListenableFuture<Void>> getFutures() {
         List<ListenableFuture<Void>> nullableFutures = futures;
-        if (nullableFutures != null) {
-            return nullableFutures;
-        } else {
-            return emptyList();
-        }
+        return nullableFutures != null ? nullableFutures : emptyList();
     }
 
     public void setFutures(List<ListenableFuture<Void>> futures) {
