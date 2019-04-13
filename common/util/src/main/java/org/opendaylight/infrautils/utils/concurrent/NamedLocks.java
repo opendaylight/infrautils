@@ -11,7 +11,6 @@ import static java.util.Objects.requireNonNull;
 
 import com.google.common.base.FinalizableReferenceQueue;
 import com.google.common.base.FinalizableWeakReference;
-import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
@@ -59,10 +58,10 @@ import org.opendaylight.infrautils.utils.concurrent.NamedSimpleReentrantLock.Acq
 public final class NamedLocks<T> {
     private static final class WeakRef<T>
             extends FinalizableWeakReference<NamedSimpleReentrantLock<T>> {
-        private final Map<T, WeakRef<T>> locks;
+        private final ConcurrentHashMap<T, WeakRef<T>> locks;
         private final T name;
 
-        WeakRef(FinalizableReferenceQueue queue, Map<T, WeakRef<T>> locks, T name) {
+        WeakRef(FinalizableReferenceQueue queue, ConcurrentHashMap<T, WeakRef<T>> locks, T name) {
             super(new NamedSimpleReentrantLock<>(name), queue);
             this.locks = requireNonNull(locks);
             this.name = requireNonNull(name);
@@ -75,7 +74,7 @@ public final class NamedLocks<T> {
     }
 
     private final FinalizableReferenceQueue queue = new FinalizableReferenceQueue();
-    private final Map<T, WeakRef<T>> locks = new ConcurrentHashMap<>();
+    private final ConcurrentHashMap<T, WeakRef<T>> locks = new ConcurrentHashMap<>();
 
     /**
      * Tries to acquire the lock for the given key if it is not held by another thread within the given waiting time.
