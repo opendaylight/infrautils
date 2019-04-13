@@ -7,8 +7,6 @@
  */
 package org.opendaylight.infrautils.ready;
 
-import javax.annotation.concurrent.ThreadSafe;
-
 /**
  * Service which provides technical system ready-ness status.
  *
@@ -20,9 +18,10 @@ import javax.annotation.concurrent.ThreadSafe;
  * bundles, that all of these bundles have successfully started, and all of
  * their blueprint containers have been successfully initialized.
  *
+ * <p>Implementations of this interface are expected to be thread-safe.
+ *
  * @author Michael Vorburger.ch
  */
-@ThreadSafe
 public interface SystemReadyMonitor extends SystemReadyMonitorMXBean {
 
     /**
