@@ -9,8 +9,8 @@ package org.opendaylight.infrautils.metrics.internal;
 
 import static java.lang.management.ManagementFactory.getThreadMXBean;
 import static java.util.concurrent.TimeUnit.NANOSECONDS;
-import static org.opendaylight.infrautils.utils.concurrent.Executors.newSingleThreadScheduledExecutor;
-import static org.opendaylight.infrautils.utils.concurrent.JdkFutures.addErrorLogging;
+import static org.opendaylight.infrautils.utils.concurrent.Executors.newListeningSingleThreadScheduledExecutor;
+import static org.opendaylight.infrautils.utils.concurrent.LoggingFutures.addErrorLogging;
 
 import com.codahale.metrics.jvm.ThreadDeadlockDetector;
 import com.codahale.metrics.jvm.ThreadDump;
@@ -52,9 +52,10 @@ class ThreadsWatcher implements Runnable {
         this.interval = interval;
         this.maxDeadlockLog = deadlockedThreadsMaxLogInterval;
         this.maxMaxThreadsLog = maxThreadsMaxLogInterval;
-        this.scheduledExecutor = newSingleThreadScheduledExecutor("infrautils.metrics.ThreadsWatcher", LOG);
+        this.scheduledExecutor = newListeningSingleThreadScheduledExecutor("infrautils.metrics.ThreadsWatcher", LOG);
     }
 
+    @SuppressWarnings("FutureReturnValueIgnored")
     void start() {
         addErrorLogging(scheduledExecutor.scheduleAtFixedRate(this, 0, interval.toNanos(), NANOSECONDS), LOG,
                 "scheduleAtFixedRate");
