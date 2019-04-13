@@ -77,10 +77,6 @@ public final class NamedLocks<T> {
     private final FinalizableReferenceQueue queue = new FinalizableReferenceQueue();
     private final Map<T, WeakRef<T>> locks = new ConcurrentHashMap<>();
 
-    private NamedLocks() {
-        // Hidden on purpose
-    }
-
     /**
      * Tries to acquire the lock for the given key if it is not held by another thread within the given waiting time.
      * See {@link ReentrantLock#tryLock(long, TimeUnit)} for more details.
