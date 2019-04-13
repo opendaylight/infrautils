@@ -8,9 +8,10 @@
 package org.opendaylight.infrautils.jobcoordinator.internal;
 
 import com.google.common.base.MoreObjects;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
-import javax.annotation.Nullable;
+import org.eclipse.jdt.annotation.Nullable;
 
 /**
  * A queue which holds job entries and the current running job.
@@ -19,6 +20,12 @@ public class JobQueue {
 
     private final Queue<JobEntry> jobQueue = new ConcurrentLinkedQueue<>();
     private volatile @Nullable JobEntry executingEntry;
+
+    @SuppressFBWarnings(value = "NP_NONNULL_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR",
+            justification = "TYPE_USE and SpotBugs")
+    public JobQueue() {
+
+    }
 
     public void addEntry(JobEntry entry) {
         jobQueue.add(entry);
