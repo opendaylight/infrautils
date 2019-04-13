@@ -32,14 +32,12 @@
     <dependency>
       <groupId>org.opendaylight.infrautils</groupId>
       <artifactId>inject.guice</artifactId>
-      <version>${project.version}</version>
       <optional>true</optional>
     </dependency>
+
     <dependency>
       <groupId>org.opendaylight.infrautils</groupId>
       <artifactId>inject.guice.testutils</artifactId>
-      <version>${project.version}</version>
-      <scope>test</scope>
     </dependency>
   </dependencies>
 </project>
