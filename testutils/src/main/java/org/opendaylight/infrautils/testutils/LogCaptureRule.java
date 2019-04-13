@@ -7,13 +7,14 @@
  */
 package org.opendaylight.infrautils.testutils;
 
+import static com.google.common.base.Preconditions.checkState;
 import static java.util.Objects.requireNonNull;
 
 import com.google.common.collect.ImmutableList;
 import com.google.errorprone.annotations.Var;
-import java.util.Objects;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.function.Consumer;
-import javax.annotation.Nullable;
+import org.eclipse.jdt.annotation.Nullable;
 import org.junit.ComparisonFailure;
 import org.junit.rules.ExpectedException;
 import org.junit.rules.TestRule;
@@ -52,15 +53,15 @@ public class LogCaptureRule implements TestRule {
 
     private @Nullable Consumer<ImmutableList<LogCapture>> errorLogHandler;
 
+    @SuppressFBWarnings(value = "NP_NONNULL_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR",
+            justification = "TYPE_USE and SpotBugs")
     public LogCaptureRule() {
         classpathTest();
     }
 
     private static void classpathTest() {
         Logger log = LoggerFactory.getLogger(LogCaptureRule.class);
-        if (!(log instanceof RememberingLogger)) {
-            throw new IllegalStateException("infrautils-testutils must be on classpath BEFORE slf4j-simple!");
-        }
+        checkState(log instanceof RememberingLogger, "infrautils-testutils must be on classpath BEFORE slf4j-simple!");
     }
 
     @Override
@@ -103,14 +104,12 @@ public class LogCaptureRule implements TestRule {
     }
 
     public void handleErrorLogs(Consumer<ImmutableList<LogCapture>> newErrorLogHandler) {
-        if (this.errorLogHandler != null) {
-            throw new IllegalStateException("errorLogHandler already set, can only set once per @Test method");
-        }
+        checkState(this.errorLogHandler == null, "errorLogHandler already set, can only set once per @Test method");
         this.errorLogHandler = requireNonNull(newErrorLogHandler, "newErrorLogHandler");
     }
 
     public void expectLastErrorMessageContains(String partialErrorMessage) {
-        Objects.requireNonNull(partialErrorMessage, "partialErrorMessage");
+        requireNonNull(partialErrorMessage, "partialErrorMessage");
         handleErrorLogs(logCaptures -> {
             String errorMessage = RememberingLogger.getLastErrorMessage().orElseThrow(
                 () -> new LogCaptureRuleException("Expected error log message to contain: " + partialErrorMessage,
@@ -123,7 +122,7 @@ public class LogCaptureRule implements TestRule {
     }
 
     public void expectError(String message, int howManyMessagesBack) {
-        Objects.requireNonNull(message, "message");
+        requireNonNull(message, "message");
         handleErrorLogs(logCaptures -> {
             String errorMessage = RememberingLogger.getErrorMessage(howManyMessagesBack).orElseThrow(
                 () -> new LogCaptureRuleException("Expected error log message: " + message, null));
@@ -145,5 +144,4 @@ public class LogCaptureRule implements TestRule {
     public Throwable getErrorThrowable(int howManyMessagesBack) {
         return RememberingLogger.getErrorThrowable(howManyMessagesBack).get();
     }
-
 }

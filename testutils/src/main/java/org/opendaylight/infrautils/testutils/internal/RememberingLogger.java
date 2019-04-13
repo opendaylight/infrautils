@@ -15,7 +15,6 @@ import com.google.common.collect.ImmutableList;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import javax.annotation.concurrent.ThreadSafe;
 import org.opendaylight.infrautils.testutils.LogCapture;
 import org.opendaylight.infrautils.testutils.LogRule;
 import org.slf4j.Logger;
@@ -24,11 +23,10 @@ import org.slf4j.helpers.FormattingTuple;
 import org.slf4j.helpers.MessageFormatter;
 
 /**
- * A slf4j logger implementation which remembers log events.
+ * A slf4j logger implementation which remembers log events. This class is thread-safe.
  *
  * @author Michael Vorburger.ch
  */
-@ThreadSafe
 public class RememberingLogger extends DelegatingLogger {
 
     // TODO add the same for warn, info, debug trace ...
@@ -49,9 +47,8 @@ public class RememberingLogger extends DelegatingLogger {
     public static Optional<String> getErrorMessage(int howManyMessagesBack) {
         if (ERRORS.size() > howManyMessagesBack) {
             return Optional.ofNullable(ERRORS.get(ERRORS.size() - howManyMessagesBack - 1).getMessage());
-        } else {
-            return Optional.empty();
         }
+        return Optional.empty();
     }
 
     public static Optional<Throwable> getLastErrorThrowable() {
@@ -61,9 +58,8 @@ public class RememberingLogger extends DelegatingLogger {
     public static Optional<Throwable> getErrorThrowable(int howManyMessagesBack) {
         if (ERRORS.size() > howManyMessagesBack) {
             return ERRORS.get(ERRORS.size() - howManyMessagesBack - 1).getCause();
-        } else {
-            return Optional.empty();
         }
+        return Optional.empty();
     }
 
     public static void resetLastError() {
@@ -145,5 +141,4 @@ public class RememberingLogger extends DelegatingLogger {
         }
         super.error(marker, msg, throwable);
     }
-
 }

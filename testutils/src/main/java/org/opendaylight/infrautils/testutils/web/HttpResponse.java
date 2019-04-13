@@ -7,13 +7,14 @@
  */
 package org.opendaylight.infrautils.testutils.web;
 
+import com.google.errorprone.annotations.Immutable;
+
 /**
  * HTTP Response.
  *
  * @author Michael Vorburger.ch
  */
-@javax.annotation.concurrent.Immutable
-@com.google.errorprone.annotations.Immutable
+@Immutable
 public class HttpResponse {
 
     // TODO later unify this with org.opendaylight.infrautils.diagstatus.shell.HttpResponse

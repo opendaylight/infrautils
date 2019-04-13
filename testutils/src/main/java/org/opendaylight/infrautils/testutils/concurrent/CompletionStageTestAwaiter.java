@@ -118,12 +118,11 @@ public final class CompletionStageTestAwaiter<T> {
             // This is like what CompletableFuture#join() does:
             Throwables.throwIfUnchecked(throwable);
             throw new CompletionException(throwable);
-        } else {
-            // Should use org.opendaylight.infrautils.utils.lastnpe.NonNulls.castToNonNull(T) here
-            // instead of @SuppressWarnings("NullAway") above, but cannot just because testutils
-            // cannot depend on utils (which depends on testutils).
-            return (@NonNull T) eventualValue.get();
         }
-    }
 
+        // Should use org.opendaylight.infrautils.utils.lastnpe.NonNulls.castToNonNull(T) here
+        // instead of @SuppressWarnings("NullAway") above, but cannot just because testutils
+        // cannot depend on utils (which depends on testutils).
+        return (@NonNull T) eventualValue.get();
+    }
 }
