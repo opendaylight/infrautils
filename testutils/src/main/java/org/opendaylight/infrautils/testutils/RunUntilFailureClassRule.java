@@ -10,7 +10,7 @@ package org.opendaylight.infrautils.testutils;
 import com.google.common.base.Strings;
 import com.google.errorprone.annotations.Var;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-import javax.annotation.Nullable;
+import org.eclipse.jdt.annotation.Nullable;
 import org.junit.rules.TestRule;
 import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
@@ -30,6 +30,7 @@ public class RunUntilFailureClassRule implements TestRule {
     boolean isRunning = true;
     private final @Nullable Long maximumNumberOfTimesToRun;
 
+    @SuppressFBWarnings(value = "NP_STORE_INTO_NONNULL_FIELD", justification = "TYPE_USE and SpotBugs")
     public RunUntilFailureClassRule() {
         this.maximumNumberOfTimesToRun = null;
     }
@@ -72,5 +73,4 @@ public class RunUntilFailureClassRule implements TestRule {
         }
 
     }
-
 }

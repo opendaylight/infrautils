@@ -8,7 +8,7 @@
 package org.opendaylight.infrautils.testutils;
 
 import java.util.Optional;
-import javax.annotation.Nullable;
+import org.eclipse.jdt.annotation.Nullable;
 
 /**
  * Exception thrown by the {@link LogCaptureRule}.
@@ -41,9 +41,8 @@ public class LogCaptureRuleException extends RuntimeException {
     public Optional<Throwable> getTestFailingThrowable() {
         if (getSuppressed().length == 0) {
             return Optional.empty();
-        } else {
-            return Optional.of(getSuppressed()[0]);
         }
+        return Optional.of(getSuppressed()[0]);
     }
 
     /**
@@ -53,5 +52,4 @@ public class LogCaptureRuleException extends RuntimeException {
     public synchronized Throwable getCause() {
         return super.getCause();
     }
-
 }
