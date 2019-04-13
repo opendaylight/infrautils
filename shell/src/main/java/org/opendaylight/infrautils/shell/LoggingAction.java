@@ -8,8 +8,8 @@
 package org.opendaylight.infrautils.shell;
 
 import java.io.PrintStream;
-import javax.annotation.Nullable;
 import org.apache.karaf.shell.api.action.Action;
+import org.eclipse.jdt.annotation.Nullable;
 import org.slf4j.LoggerFactory;
 
 /**
@@ -23,9 +23,8 @@ public abstract class LoggingAction implements Action {
     protected abstract void run(PrintStream ps) throws Exception;
 
     @Override
-    @Nullable
     @SuppressWarnings({"checkstyle:IllegalCatch", "checkstyle:RegexpSinglelineJava"})
-    public final Object execute() {
+    public final @Nullable Object execute() {
         try {
             run(System.out);
         } catch (Exception e) {
