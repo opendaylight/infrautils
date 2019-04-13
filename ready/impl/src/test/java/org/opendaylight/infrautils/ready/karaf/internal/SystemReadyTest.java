@@ -21,7 +21,7 @@ import org.opendaylight.infrautils.testutils.LogRule;
  */
 public class SystemReadyTest {
 
-    public @Rule LogRule logRule = new LogRule();
+    @Rule public LogRule logRule = new LogRule();
 
     @Test
     public void testMbeanRegistration() throws JMException {
