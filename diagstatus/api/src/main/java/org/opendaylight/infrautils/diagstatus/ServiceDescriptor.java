@@ -10,13 +10,12 @@ package org.opendaylight.infrautils.diagstatus;
 import static java.util.Objects.requireNonNull;
 
 import com.google.common.base.MoreObjects;
+import com.google.errorprone.annotations.Immutable;
 import com.google.gson.annotations.SerializedName;
-
 import java.time.Instant;
 import java.util.Objects;
 import java.util.Optional;
-import javax.annotation.Nullable;
-import javax.annotation.concurrent.Immutable;
+import org.eclipse.jdt.annotation.Nullable;
 
 /**
  * Details of a registered service.
@@ -24,7 +23,6 @@ import javax.annotation.concurrent.Immutable;
  * @author Faseela K
  */
 @Immutable
-@com.google.errorprone.annotations.Immutable
 @SuppressWarnings("Immutable") // Throwable is not really immutable (although maybe it should have been)
 public final class ServiceDescriptor {
 

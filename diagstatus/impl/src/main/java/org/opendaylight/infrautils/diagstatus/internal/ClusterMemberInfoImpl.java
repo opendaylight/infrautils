@@ -7,6 +7,7 @@
  */
 package org.opendaylight.infrautils.diagstatus.internal;
 
+import static com.google.common.base.Preconditions.checkState;
 import static java.util.Objects.requireNonNull;
 
 import com.google.common.net.InetAddresses;
@@ -44,14 +45,12 @@ public class ClusterMemberInfoImpl implements ClusterMemberInfo {
         } catch (JMException e) {
             throw new IllegalStateException("getMBeanAttribute(\"akka:type=Cluster\", \"ClusterStatus\") failed", e);
         }
-        if (clusterStatusMBeanValue != null) {
-            String clusterStatusText = clusterStatusMBeanValue.toString();
-            String selfAddressMbean = requireNonNull(StringUtils.substringBetween(clusterStatusText,
-                    "\"self-address\": ", ","), "null substringBetween() for: " + clusterStatusText);
-            return InetAddresses.forString(extractAddressFromAkka(selfAddressMbean));
-        } else {
-            throw new IllegalStateException("getMBeanAttribute(\"akka:type=Cluster\", \"ClusterStatus\") == null?!");
-        }
+        checkState(clusterStatusMBeanValue != null,
+                "getMBeanAttribute(\"akka:type=Cluster\", \"ClusterStatus\") == null?!");
+        String clusterStatusText = clusterStatusMBeanValue.toString();
+        String selfAddressMbean = requireNonNull(StringUtils.substringBetween(clusterStatusText,
+            "\"self-address\": ", ","), "null substringBetween() for: " + clusterStatusText);
+        return InetAddresses.forString(extractAddressFromAkka(selfAddressMbean));
     }
 
     @Override
