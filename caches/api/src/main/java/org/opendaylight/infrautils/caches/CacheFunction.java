@@ -10,7 +10,7 @@ package org.opendaylight.infrautils.caches;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableMap.Builder;
 import java.util.function.Function;
-import javax.annotation.Nonnull;
+import org.eclipse.jdt.annotation.NonNull;
 
 /**
  * {@link Cache}'s Function.
@@ -29,7 +29,7 @@ public interface CacheFunction<K, V> {
      * @param key the key for which to "calculate" (lookup, remote call, ...) a value.
      * @return value for the given key
      */
-    @Nonnull V get(@Nonnull K key);
+    @NonNull V get(@NonNull K key);
 
     /**
      * Implementations may wish to override this implementation

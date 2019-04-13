@@ -7,8 +7,6 @@
  */
 package org.opendaylight.infrautils.caches;
 
-import javax.annotation.concurrent.ThreadSafe;
-
 /**
  * Provider (AKA factory) of {@link Cache}s.
  *
@@ -17,9 +15,10 @@ import javax.annotation.concurrent.ThreadSafe;
  * <p>{@link Cache} instances produced by this service are neither <i>transactional</i>,
  * nor <i>distributed</i>, nor <i>persistent</i>.
  *
+ * <p>Implementations of this interface are expected to be thread-safe.
+ *
  * @author Michael Vorburger.ch
  */
-@ThreadSafe
 public interface CacheProvider {
 
     // In the future there could be other such interfaces

@@ -36,7 +36,7 @@ public interface CachePolicy {
      * are evicted to accomodate new entries.
      *
      * <p>
-     * The default is {@link UNLIMITED_ENTRIES}.
+     * The default is {@link #UNLIMITED_ENTRIES}.
      *
      * <p>
      * Users are encourage to set the maximum entries policy suitable to their actual usage of the cache; either

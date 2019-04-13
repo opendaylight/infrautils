@@ -7,8 +7,6 @@
  */
 package org.opendaylight.infrautils.caches;
 
-import javax.annotation.concurrent.ThreadSafe;
-
 /**
  * Manage a Cache.
  *
@@ -16,9 +14,10 @@ import javax.annotation.concurrent.ThreadSafe;
  *
  * <p>Intentionally does <b>NOT</b> give direct programmatic access to the {@link Cache}.
  *
+ * <p>Implementations of this interface are expected to be thread-safe.
+ *
  * @author Michael Vorburger.ch
  */
-@ThreadSafe
 public interface CacheManager {
 
     /**

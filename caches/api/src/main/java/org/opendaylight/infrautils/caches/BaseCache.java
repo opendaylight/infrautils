@@ -8,7 +8,7 @@
 package org.opendaylight.infrautils.caches;
 
 import java.util.Map;
-import javax.annotation.Nonnull;
+import org.eclipse.jdt.annotation.NonNull;
 
 /**
  * Base class for {@link Cache} and {@link CheckedCache}.
@@ -57,13 +57,12 @@ public interface BaseCache<K, V> extends AutoCloseable {
      * @param value the value of the proposed new cache entry
      * @throws NullPointerException if the cache's users passed a null key or value
      */
-    void put(@Nonnull K key, @Nonnull V value);
+    void put(@NonNull K key, @NonNull V value);
 
     /**
      * Returns a view of the entries stored in this cache as an immutable map.
      */
-    @Nonnull Map<K, V> asMap();
+    Map<K, V> asMap();
 
     CacheManager getManager();
-
 }

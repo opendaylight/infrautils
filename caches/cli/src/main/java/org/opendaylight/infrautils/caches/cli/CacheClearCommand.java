@@ -8,11 +8,11 @@
 package org.opendaylight.infrautils.caches.cli;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-import javax.annotation.Nullable;
 import org.apache.karaf.shell.api.action.Action;
 import org.apache.karaf.shell.api.action.Command;
 import org.apache.karaf.shell.api.action.lifecycle.Reference;
 import org.apache.karaf.shell.api.action.lifecycle.Service;
+import org.eclipse.jdt.annotation.Nullable;
 import org.opendaylight.infrautils.caches.CacheManager;
 import org.opendaylight.infrautils.caches.CacheManagers;
 
@@ -31,14 +31,12 @@ public class CacheClearCommand implements Action {
     private CacheManagers cacheManagers;
 
     @Override
-    @Nullable
     @SuppressWarnings("checkstyle:RegexpSinglelineJava")
-    public Object execute() {
+    public @Nullable Object execute() {
         for (CacheManager cacheManager : cacheManagers.getAllCacheManagers()) {
             cacheManager.evictAll();
         }
         System.out.println("Successfully cleared all caches.");
         return null;
     }
-
 }

@@ -10,7 +10,6 @@ package org.opendaylight.infrautils.caches.baseimpl.internal;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
-import javax.annotation.concurrent.ThreadSafe;
 import javax.inject.Singleton;
 import org.apache.aries.blueprint.annotation.service.Service;
 import org.opendaylight.infrautils.caches.CacheManager;
@@ -18,11 +17,10 @@ import org.opendaylight.infrautils.caches.CacheManagers;
 import org.opendaylight.infrautils.caches.baseimpl.CacheManagersRegistry;
 
 /**
- * Implementation of CachesMonitor.
+ * Implementation of CachesMonitor. This class is thread-safe.
  *
  * @author Michael Vorburger.ch
  */
-@ThreadSafe
 @Singleton
 @Service(classes = { CacheManagers.class, CacheManagersRegistry.class })
 public class CacheManagersRegistryImpl implements CacheManagersRegistry {
@@ -49,5 +47,4 @@ public class CacheManagersRegistryImpl implements CacheManagersRegistry {
         }
         throw new IllegalArgumentException("No cache with ID: " + cacheID);
     }
-
 }
