@@ -8,7 +8,6 @@
 package org.opendaylight.infrautils.diagstatus;
 
 import java.util.Collection;
-import javax.annotation.concurrent.ThreadSafe;
 
 /**
  * DiagStatus ServiceDescriptor which lets users register/retrieve for particular service status details.
@@ -16,10 +15,11 @@ import javax.annotation.concurrent.ThreadSafe;
  * <p>The term "service" in this context refers to a "higher-level functional service", not an OSGi Service interface.
  * (It could map to an OSGi service interface, or several of them, or none.)
  *
+ * <p>Implementations of this interface are expected to be thread-safe.
+ *
  * @author Faseela K
  * @author Michael Vorburger
  */
-@ThreadSafe
 public interface DiagStatusService {
 
     /**

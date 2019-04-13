@@ -15,10 +15,10 @@ import com.google.common.net.InetAddresses;
 import java.net.Inet6Address;
 import java.net.InetAddress;
 import java.util.List;
-import javax.annotation.Nullable;
 import org.apache.felix.service.command.CommandSession;
 import org.apache.karaf.shell.commands.Command;
 import org.apache.karaf.shell.commands.Option;
+import org.eclipse.jdt.annotation.Nullable;
 import org.opendaylight.infrautils.diagstatus.ClusterMemberInfo;
 import org.opendaylight.infrautils.diagstatus.DiagStatusServiceMBean;
 import org.opendaylight.infrautils.diagstatus.ServiceDescriptor;
@@ -60,9 +60,8 @@ public class DiagStatusCommand implements org.apache.karaf.shell.commands.Action
     }
 
     @Override
-    @Nullable
     @SuppressWarnings("checkstyle:IllegalCatch")
-    public Object execute(CommandSession session) throws Exception {
+    public @Nullable Object execute(CommandSession session) throws Exception {
         StringBuilder strBuilder = new StringBuilder();
         strBuilder.append("Timestamp: ").append(new java.util.Date().toString()).append("\n");
 

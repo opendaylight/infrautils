@@ -8,7 +8,6 @@
 package org.opendaylight.infrautils.diagstatus;
 
 import java.lang.management.ManagementFactory;
-import javax.annotation.Nullable;
 import javax.management.InstanceAlreadyExistsException;
 import javax.management.InstanceNotFoundException;
 import javax.management.JMException;
@@ -19,7 +18,7 @@ import javax.management.MBeanServerConnection;
 import javax.management.MalformedObjectNameException;
 import javax.management.NotCompliantMBeanException;
 import javax.management.ObjectName;
-
+import org.eclipse.jdt.annotation.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -68,8 +67,7 @@ public final class MBeanUtils {
         }
     }
 
-    @Nullable
-    public static Object getMBeanAttribute(String objName, String attribute) throws JMException {
+    public static @Nullable Object getMBeanAttribute(String objName, String attribute) throws JMException {
         ObjectName objectName = new ObjectName(objName);
         MBeanServer platformMbeanServer = ManagementFactory.getPlatformMBeanServer();
         return platformMbeanServer.getAttribute(objectName, attribute);
@@ -78,11 +76,8 @@ public final class MBeanUtils {
     private static <T> T getMBean(String jmxName, Class<T> klass, MBeanServerConnection mbsc)
             throws MalformedObjectNameException {
         ObjectName objectName = new ObjectName(jmxName);
-        if (JMX.isMXBeanInterface(klass)) {
-            return JMX.newMXBeanProxy(mbsc, objectName, klass);
-        } else {
-            return JMX.newMBeanProxy(mbsc, objectName, klass);
-        }
+        return JMX.isMXBeanInterface(klass) ? JMX.newMXBeanProxy(mbsc, objectName, klass)
+                : JMX.newMBeanProxy(mbsc, objectName, klass);
     }
 
     public static <T> T getMBean(String jmxName, Class<T> klass) throws MalformedObjectNameException {
