@@ -31,13 +31,12 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
-import javax.annotation.Nullable;
 import javax.annotation.PreDestroy;
-import javax.annotation.concurrent.GuardedBy;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import org.apache.aries.blueprint.annotation.service.Reference;
 import org.apache.aries.blueprint.annotation.service.Service;
+import org.checkerframework.checker.lock.qual.GuardedBy;
 import org.opendaylight.infrautils.jobcoordinator.JobCoordinator;
 import org.opendaylight.infrautils.jobcoordinator.JobCoordinatorMonitor;
 import org.opendaylight.infrautils.jobcoordinator.RollbackCallable;
@@ -150,7 +149,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
 
     @Override
     public void enqueueJob(String key, Callable<List<ListenableFuture<Void>>> mainWorker,
-            @Nullable RollbackCallable rollbackWorker, int maxRetries) {
+            RollbackCallable rollbackWorker, int maxRetries) {
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
         JobEntry jobEntry = new JobEntry(key, mainWorker, rollbackWorker, maxRetries, classLoader);
         JobQueue jobQueue = jobQueueMap.computeIfAbsent(key, mapKey -> new JobQueue());
@@ -419,10 +418,10 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
 
         private void printJobs(String key, long jobExecutionTime) {
             if (jobExecutionTime > LONG_JOBS_THRESHOLD_MS) {
-                LOG.warn("Job {} took {}ms to complete", jobEntry.getKey(), jobExecutionTime);
+                LOG.warn("Job {} took {}ms to complete", key, jobExecutionTime);
                 return;
             }
-            LOG.trace("Job {} took {}ms to complete", jobEntry.getKey(), jobExecutionTime);
+            LOG.trace("Job {} took {}ms to complete", key, jobExecutionTime);
         }
     }
 
