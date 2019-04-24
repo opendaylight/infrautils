@@ -230,7 +230,8 @@
         <property>
           <name>!m2e.version</name>
         </property>
-        <jdk>[9,12)</jdk>
+        <!-- Effectively disables error-prone, as it cannot deal with maven.compiler.release -->
+        <jdk>[15,)</jdk>
       </activation>
 
       <dependencies>
