@@ -12,8 +12,8 @@ import org.opendaylight.infrautils.utils.UncheckedCloseable;
 /**
  * Counter metric, which is a simple incrementing and decrementing number.
  *
- * <p>Note that if you find you only use its <tt>increase()</tt> and never <tt>decrease()</tt>
- * methods, then you probably want to use {@link Meter} with <tt>mark()</tt> instead of this.
+ * <p>Note that if you find you only use its {@code increase()} and never {@code decrease()}
+ * methods, then you probably want to use {@link Meter} with {@code mark()} instead of this.
  */
 public interface Counter extends UncheckedCloseable {
 

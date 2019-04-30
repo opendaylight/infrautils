@@ -12,8 +12,8 @@ import org.opendaylight.infrautils.utils.UncheckedCloseable;
 /**
  * Meter metric, which measures throughput.
  *
- * <p>Note that this with <tt>mark()</tt> measures the rate at which a set of events occur;
- * whereas {@link Counter} is for things which will <tt>increase()</tt> - and can also <tt>decrease()</tt>.
+ * <p>Note that this with {@code mark()} measures the rate at which a set of events occur;
+ * whereas {@link Counter} is for things which will {@code increase()} - and can also {@code decrease()}.
  */
 public interface Meter extends UncheckedCloseable {
 
