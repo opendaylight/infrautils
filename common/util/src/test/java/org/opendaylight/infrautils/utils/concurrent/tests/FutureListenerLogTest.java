@@ -8,14 +8,14 @@
 package org.opendaylight.infrautils.utils.concurrent.tests;
 
 import static com.google.common.truth.Truth.assertThat;
-import static org.opendaylight.infrautils.utils.concurrent.ListenableFutures.addErrorLogging;
+import static org.junit.Assert.assertSame;
+import static org.opendaylight.infrautils.utils.concurrent.LoggingFutures.addErrorLogging;
 
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 import org.junit.Rule;
 import org.junit.Test;
 import org.opendaylight.infrautils.testutils.LogCaptureRule;
-import org.opendaylight.infrautils.utils.concurrent.ListenableFutures;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,38 +35,38 @@ public class FutureListenerLogTest {
     public void testFailingListenableFuture() {
         logCaptureRule.expectError("Future (eventually) failed: duh");
         ListenableFuture<Void> failedFuture = Futures.immediateFailedFuture(new Exception("some problem"));
-        addErrorLogging(failedFuture, LOG, "duh");
+        assertSame(failedFuture, addErrorLogging(failedFuture, LOG, "duh"));
     }
 
     @Test
     public void testPassingListenableFuture() {
         ListenableFuture<String> stringFuture = Futures.immediateFuture("hello");
-        addErrorLogging(stringFuture, LOG, "huh?!");
+        assertSame(stringFuture, addErrorLogging(stringFuture, LOG, "huh?!"));
     }
 
     @Test
     public void testFailingListenableFutureWithOneMessageFormatArgument() {
         logCaptureRule.expectError("Future (eventually) failed: duh dah");
         ListenableFuture<Integer> failedFuture = Futures.immediateFailedFuture(new Exception("some problem"));
-        addErrorLogging(failedFuture, LOG, "duh {}", new ObjectWithToString("dah"));
+        assertSame(failedFuture, addErrorLogging(failedFuture, LOG, "duh {}", new ObjectWithToString("dah")));
     }
 
     @Test
     public void testFailingListenableFutureWithTwoMessageFormatArguments() {
         logCaptureRule.expectError("Future (eventually) failed: duh bah doo");
         ListenableFuture<Integer> failedFuture = Futures.immediateFailedFuture(new Exception("some problem"));
-        addErrorLogging(failedFuture, LOG, "duh {} {}",
-                new ObjectWithToString("bah"), new ObjectWithToString("doo"));
+        assertSame(failedFuture, addErrorLogging(failedFuture, LOG, "duh {} {}",
+                new ObjectWithToString("bah"), new ObjectWithToString("doo")));
     }
 
     @Test
     public void testFailingListenableFutureWithThreeMessageFormatArguments() {
         logCaptureRule.expectError("Future (eventually) failed: ho/he/do");
         ListenableFuture<Integer> failedFuture = Futures.immediateFailedFuture(new Exception("some problem"));
-        ListenableFutures.addErrorLogging(failedFuture, LOG, "{}/{}/{}",
+        assertSame(failedFuture, addErrorLogging(failedFuture, LOG, "{}/{}/{}",
                 new ObjectWithToString("ho"),
                 new ObjectWithToString("he"),
-                new ObjectWithToString("do"));
+                new ObjectWithToString("do")));
         assertThat(logCaptureRule.getLastErrorThrowable().getMessage()).isEqualTo("some problem");
     }
 
