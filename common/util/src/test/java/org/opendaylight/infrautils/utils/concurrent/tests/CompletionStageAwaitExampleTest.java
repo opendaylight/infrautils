@@ -43,7 +43,7 @@ public class CompletionStageAwaitExampleTest {
     @Rule public RunUntilFailureRule repeater = new RunUntilFailureRule(classRepeater);
 
     private static final Executor SLOW_ASYNC_EXECUTOR = new SlowExecutor(
-                Executors.newSingleThreadExecutor("SLOW_ASYNC_EXECUTOR", LOG));
+                Executors.newListeningSingleThreadExecutor("SLOW_ASYNC_EXECUTOR", LOG));
 
     @Test
     public void testOneEventualValueCompletionStage() throws TimeoutException {

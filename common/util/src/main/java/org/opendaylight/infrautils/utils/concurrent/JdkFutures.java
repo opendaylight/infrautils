@@ -30,7 +30,7 @@ public final class JdkFutures {
 
     private static final Logger LOG = LoggerFactory.getLogger(JdkFutures.class);
 
-    private static final Executor DEFAULT_EXECUTOR = Executors.newCachedThreadPool("JdkFutures", LOG);
+    private static final Executor DEFAULT_EXECUTOR = Executors.newListeningCachedThreadPool("JdkFutures", LOG);
 
     private JdkFutures() { }
 
