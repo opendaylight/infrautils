@@ -8,7 +8,7 @@
 package org.opendaylight.infrautils.metrics.testimpl;
 
 import java.util.concurrent.atomic.AtomicLong;
-import javax.annotation.Nullable;
+import org.eclipse.jdt.annotation.Nullable;
 import org.opendaylight.infrautils.metrics.Counter;
 import org.opendaylight.infrautils.metrics.Labeled;
 import org.opendaylight.infrautils.metrics.Meter;

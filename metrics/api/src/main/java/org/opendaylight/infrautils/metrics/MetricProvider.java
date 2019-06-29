@@ -7,8 +7,6 @@
  */
 package org.opendaylight.infrautils.metrics;
 
-import javax.annotation.concurrent.ThreadSafe;
-
 /**
  * Factory to obtain a new metric for use by application code.
  *
@@ -32,9 +30,10 @@ import javax.annotation.concurrent.ThreadSafe;
  * <i>odl.&lt;projectName&gt;.&lt;moduleName&gt;.&lt;metricName&gt;</i>,
  * so e.g. {@code odl.infrautils.jobcoordinator.jobsPending}.
  *
+ * <p>Implementations of this interface are required to be thread-safe.
+ *
  * @author Michael Vorburger.ch
  */
-@ThreadSafe
 public interface MetricProvider {
 
     /**
