@@ -8,6 +8,7 @@
 package org.opendaylight.infrautils.utils.mdc;
 
 import com.google.common.annotations.Beta;
+import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Strings;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.Locale;
@@ -103,13 +104,15 @@ public final class ExecutionOrigin extends MDCEntry {
     }
 
     // package-private!!  Only ever intended to be used in the unit test of this class
+    @VisibleForTesting
     static void resetOriginID_used_only_for_testing(long newOriginID) {
         NEXT_ID.set(newOriginID);
     }
 
     private final long id;
 
-    @SuppressFBWarnings("SE_TRANSIENT_FIELD_NOT_RESTORED") // OK and intentional, as null check in mdcValueString()
+    @SuppressFBWarnings(value = "SE_TRANSIENT_FIELD_NOT_RESTORED",
+            justification = "OK and intentional, as null check in mdcValueString()")
     private transient String idAsString;
 
     private ExecutionOrigin(long id) {
@@ -147,17 +150,10 @@ public final class ExecutionOrigin extends MDCEntry {
         if (this == obj) {
             return true;
         }
-        if (obj == null) {
-            return false;
-        }
         if (!(obj instanceof ExecutionOrigin)) {
             return false;
         }
         ExecutionOrigin other = (ExecutionOrigin) obj;
-        if (id != other.id) {
-            return false;
-        }
-        return true;
+        return id == other.id;
     }
-
 }

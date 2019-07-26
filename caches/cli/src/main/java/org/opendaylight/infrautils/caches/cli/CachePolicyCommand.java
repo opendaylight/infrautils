@@ -25,7 +25,8 @@ import org.opendaylight.infrautils.caches.CachePolicyBuilder;
  */
 @Command(scope = "cache", name = "policy", description = "Change a cache's policy")
 @Service
-@SuppressFBWarnings("NP_NONNULL_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR") // FB doesn't get that Karaf will set fields
+@SuppressFBWarnings(value = "NP_NONNULL_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR",
+    justification = "FB doesn't get that Karaf will set the fields")
 public class CachePolicyCommand implements Action {
     // TODO use ANSI sequences for bold/color.. see e.g. how (Karaf 4's) "info" command does it
 

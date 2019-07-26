@@ -5,7 +5,6 @@
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html
  */
-
 package org.opendaylight.infrautils.diagstatus;
 
 /**
@@ -14,11 +13,28 @@ package org.opendaylight.infrautils.diagstatus;
  * @author Faseela K
  */
 public enum ServiceState {
-
-    UNREGISTERED,   // This state is used only by the monitor implementation and not by monitored services.
-    STARTING,       // move to this state when registration call is received from monitored service
-    OPERATIONAL,    // This state is used only by the monitored services for reactive and proactive reporting.
-    SUSPECTED,      // This state is used only by the monitor implementation and not by monitored services.
-    RECOVERED,      // This state is used only by the monitor implementation and not by monitored services.
-    ERROR,          // This state is used only by the monitored services for reactive and proactive reporting.
+    /**
+     * This state is used only by the monitor implementation and not by monitored services.
+     */
+    UNREGISTERED,
+    /**
+     * Move to this state when registration call is received from monitored service.
+     */
+    STARTING,
+    /**
+     * This state is used only by the monitored services for reactive and proactive reporting.
+     */
+    OPERATIONAL,
+    /**
+     * This state is used only by the monitor implementation and not by monitored services.
+     */
+    SUSPECTED,
+    /**
+     * This state is used only by the monitor implementation and not by monitored services.
+     */
+    RECOVERED,
+    /**
+     * This state is used only by the monitored services for reactive and proactive reporting.
+     */
+    ERROR,
 }

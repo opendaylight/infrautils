@@ -91,29 +91,15 @@ public final class ServiceDescriptor {
         if (this == obj) {
             return true;
         }
-        if (obj == null) {
-            return false;
-        }
         if (!(obj instanceof ServiceDescriptor)) {
             return false;
         }
         ServiceDescriptor other = (ServiceDescriptor) obj;
-        if (!serviceName.equals(other.serviceName)) {
-            return false;
-        }
-        if (effectiveStatus != other.effectiveStatus) {
-            return false;
-        }
-        if (!statusDesc.equals(other.statusDesc)) {
-            return false;
-        }
-        if (!statusTimestamp.equals(other.statusTimestamp)) {
-            return false;
-        }
-        if (!Objects.equals(errorCause, other.errorCause)) {
-            return false;
-        }
-        return true;
+        return serviceName.equals(other.serviceName)
+                && effectiveStatus == other.effectiveStatus
+                && statusDesc.equals(other.statusDesc)
+                && statusTimestamp.equals(other.statusTimestamp)
+                && Objects.equals(errorCause, other.errorCause);
     }
 
     @Override

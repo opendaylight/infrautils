@@ -20,7 +20,8 @@ import org.opendaylight.infrautils.caches.CheckedCache;
  *
  * @author Michael Vorburger.ch
  */
-@SuppressWarnings("CPD-START") // TODO DelegatingNullSafeBaseCache to avoid copy/paste with DelegatingNullSafeCache
+@SuppressWarnings("CPD-START")
+// FIXME: DelegatingNullSafeBaseCache to avoid copy/paste with DelegatingNullSafeCache
 public final class DelegatingNullSafeCheckedCache<K, V, E extends Exception> implements CheckedCache<K, V, E> {
 
     private final CheckedCache<K, V, E> delegate;
@@ -31,7 +32,7 @@ public final class DelegatingNullSafeCheckedCache<K, V, E extends Exception> imp
 
     @Override
     @SuppressFBWarnings("RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE")
-    public V get(K key) throws BadCacheFunctionRuntimeException, E {
+    public V get(K key) throws E {
         Objects.requireNonNull(key, "null key (not supported)");
         V value = delegate.get(key);
         if (value == null) {
@@ -41,7 +42,7 @@ public final class DelegatingNullSafeCheckedCache<K, V, E extends Exception> imp
     }
 
     @Override
-    public ImmutableMap<K, V> get(Iterable<? extends K> keys) throws BadCacheFunctionRuntimeException, E {
+    public ImmutableMap<K, V> get(Iterable<? extends K> keys) throws E {
         Objects.requireNonNull(keys, "null keys (not supported)");
         for (K key : keys) {
             Objects.requireNonNull(key, "null key in keys (not supported)");

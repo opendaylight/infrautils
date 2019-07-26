@@ -25,7 +25,8 @@ final class FailureFormat1ArgumentLoggingFutureCallback<V> extends FailureLoggin
     FailureFormat1ArgumentLoggingFutureCallback(Logger logger, String format, Object arg) {
         super(logger);
         this.format = "Future (eventually) failed: " + requireNonNull(format, "format is null");
-        this.arg = arg; // do *NOT* null check this one (that's valid)
+        // do *NOT* null check this one (that's valid)
+        this.arg = arg;
     }
 
     @Override

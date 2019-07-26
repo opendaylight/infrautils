@@ -54,7 +54,8 @@ public abstract class ThreadFactoryProvider {
         return true;
     }
 
-    @SuppressFBWarnings("RV_RETURN_VALUE_IGNORED") // OK to ignore guavaBuilder.setPriority's return this in ifPresent()
+    @SuppressFBWarnings(value = "RV_RETURN_VALUE_IGNORED",
+            justification = "OK to ignore guavaBuilder.setPriority's return this in ifPresent()")
     public ThreadFactory get() {
         ThreadFactoryBuilder guavaBuilder = new ThreadFactoryBuilder()
             .setNameFormat(namePrefix() + "-%d")
