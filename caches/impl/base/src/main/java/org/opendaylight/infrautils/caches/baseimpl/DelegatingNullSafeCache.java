@@ -7,88 +7,37 @@
  */
 package org.opendaylight.infrautils.caches.baseimpl;
 
+import static java.util.Objects.requireNonNull;
+
 import com.google.common.collect.ImmutableMap;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-import java.util.Map;
-import java.util.Objects;
-import org.opendaylight.infrautils.caches.BadCacheFunctionRuntimeException;
 import org.opendaylight.infrautils.caches.Cache;
-import org.opendaylight.infrautils.caches.CacheManager;
 
 /**
  * Cache with null handling, useful for API implementors (not users).
  *
  * @author Michael Vorburger.ch
  */
-@SuppressWarnings("CPD-START")
-// FIXME: DelegatingNullSafeBaseCache to avoid copy/paste with DelegatingNullSafeCache
-public final class DelegatingNullSafeCache<K, V> implements Cache<K, V> {
-
+public final class DelegatingNullSafeCache<K, V> extends DelegatingNullSafeBaseCache<K, V> implements Cache<K, V> {
     private final Cache<K, V> delegate;
 
     public DelegatingNullSafeCache(Cache<K, V> delegate) {
-        this.delegate = delegate;
+        this.delegate = requireNonNull(delegate);
+    }
+
+    @Override
+    protected Cache<K, V> delegate() {
+        return delegate;
     }
 
     @Override
     @SuppressFBWarnings("RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE")
     public V get(K key) {
-        Objects.requireNonNull(key, "null key (not supported)");
-        V value = delegate.get(key);
-        if (value == null) {
-            throw new BadCacheFunctionRuntimeException("Cache's function returned null value for key: " + key);
-        }
-        return value;
+        return checkReturnValue(key, delegate.get(requireNonNull(key, "null key (not supported)")));
     }
 
     @Override
     public ImmutableMap<K, V> get(Iterable<? extends K> keys) {
-        Objects.requireNonNull(keys, "null keys (not supported)");
-        for (K key : keys) {
-            Objects.requireNonNull(key, "null key in keys (not supported)");
-        }
-        ImmutableMap<K, V> map = delegate.get(keys);
-        if (map == null) {
-            throw new BadCacheFunctionRuntimeException("Cache's function returned null value instead of Map");
-        }
-        for (V value : map.values()) {
-            if (value == null) {
-                throw new BadCacheFunctionRuntimeException("Cache's function returned a null value");
-            }
-        }
-        return map;
-    }
-
-    @Override
-    public void put(K key, V value) {
-        Objects.requireNonNull(key, "key");
-        Objects.requireNonNull(value, "value");
-        delegate.put(key, value);
-    }
-
-    @Override
-    public void evict(K key) {
-        Objects.requireNonNull(key, "null key (not supported)");
-        delegate.evict(key);
-    }
-
-    @Override
-    public Map<K, V> asMap() {
-        return delegate.asMap();
-    }
-
-    @Override
-    public CacheManager getManager() {
-        return delegate.getManager();
-    }
-
-    @Override
-    public void close() throws Exception {
-        delegate.close();
-    }
-
-    @Override
-    public String toString() {
-        return delegate.toString();
+        return checkReturnValue(delegate.get(checkNonNullKeys(keys)));
     }
 }
