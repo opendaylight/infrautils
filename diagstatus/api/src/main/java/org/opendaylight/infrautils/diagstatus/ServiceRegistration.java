@@ -15,12 +15,10 @@ package org.opendaylight.infrautils.diagstatus;
  * @author Michael Vorburger.ch
  */
 public interface ServiceRegistration {
-
     /**
      * Unregisters a service.
      *
      * @throws IllegalStateException If this {@code ServiceRegistration} object has already been unregistered.
      */
-    void unregister() throws IllegalStateException;
-
+    void unregister();
 }

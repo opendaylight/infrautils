@@ -23,7 +23,8 @@ public abstract class BaseCacheConfig {
      * Used by {@link CacheManagers} for display to end-user.
      * Also used under OSGi to close() the cache on bundle unload.
      */
-    public abstract Object anchor(); // TODO find code in my DI project to look up BundleContext from callerClass
+    // FIXME: find code in my DI project to look up BundleContext from callerClass
+    public abstract Object anchor();
 
     /**
      * Short ID of this Cache.

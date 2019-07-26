@@ -24,7 +24,6 @@ import javax.management.JMException;
 import javax.management.MBeanRegistrationException;
 import javax.management.MalformedObjectNameException;
 import javax.management.StandardMBean;
-
 import org.apache.aries.blueprint.annotation.service.Reference;
 import org.apache.aries.blueprint.annotation.service.Service;
 import org.opendaylight.infrautils.diagstatus.DiagStatusService;
@@ -90,7 +89,8 @@ public class DiagStatusServiceMBeanImpl extends StandardMBean implements DiagSta
     }
 
     @Override
-    public String acquireServiceStatusDetailed() { // not so detailed as acquireServiceStatus()
+    public String acquireServiceStatusDetailed() {
+        // not so detailed as acquireServiceStatus()
         StringBuilder statusSummary = new StringBuilder();
         ServiceStatusSummary summary = diagStatusService.getServiceStatusSummary();
         statusSummary.append("System is operational: ").append(summary.isOperational()).append('\n');
