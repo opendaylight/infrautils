@@ -16,10 +16,6 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.inject.Inject;
 import javax.inject.Singleton;
-import javax.management.InstanceNotFoundException;
-import javax.management.JMException;
-import javax.management.MBeanRegistrationException;
-import javax.management.MalformedObjectNameException;
 import org.apache.aries.blueprint.annotation.service.Reference;
 import org.apache.aries.blueprint.annotation.service.Service;
 import org.apache.karaf.bundle.core.BundleService;
@@ -57,8 +53,7 @@ public class KarafSystemReady extends SimpleSystemReadyMonitor implements Runnab
     private final DelegatingSystemReadyMonitorMXBean mbean;
 
     @Inject
-    public KarafSystemReady(BundleContext bundleContext, @Reference BundleService bundleService)
-            throws JMException {
+    public KarafSystemReady(BundleContext bundleContext, @Reference BundleService bundleService) {
         this.mbean = new DelegatingSystemReadyMonitorMXBean(this);
         this.mbean.registerMBean();
         this.testBundleDiag = new TestBundleDiag(bundleContext, bundleService);
@@ -71,7 +66,7 @@ public class KarafSystemReady extends SimpleSystemReadyMonitor implements Runnab
     }
 
     @PreDestroy
-    public void stop() throws MalformedObjectNameException, InstanceNotFoundException, MBeanRegistrationException {
+    public void stop() {
         this.mbean.unregisterMBean();
     }
 
