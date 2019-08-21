@@ -25,8 +25,9 @@ import org.slf4j.Logger;
  * @author Michael Vorburger.ch
  */
 public final class ListenableFutures {
+    private ListenableFutures() {
 
-    private ListenableFutures() { }
+    }
 
     /**
      * Converts a Guava ListenableFuture to a Java 8 CompletionStage.
@@ -116,5 +117,4 @@ public final class ListenableFutures {
             throw mapper.apply(e);
         }
     }
-
 }

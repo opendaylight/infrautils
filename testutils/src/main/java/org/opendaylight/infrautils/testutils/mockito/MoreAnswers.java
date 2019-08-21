@@ -22,8 +22,9 @@ import org.opendaylight.infrautils.testutils.Partials;
  */
 @SuppressWarnings("unchecked")
 public final class MoreAnswers {
+    private MoreAnswers() {
 
-    private MoreAnswers() { }
+    }
 
     /**
      * Returns Mockito Answer (default) which forwards method calls or throws an UnstubbedMethodException.

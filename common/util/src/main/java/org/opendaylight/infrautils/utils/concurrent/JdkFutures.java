@@ -27,12 +27,12 @@ import org.slf4j.LoggerFactory;
  * @author Michael Vorburger.ch
  */
 public final class JdkFutures {
-
     private static final Logger LOG = LoggerFactory.getLogger(JdkFutures.class);
-
     private static final Executor DEFAULT_EXECUTOR = Executors.newListeningCachedThreadPool("JdkFutures", LOG);
 
-    private JdkFutures() { }
+    private JdkFutures() {
+
+    }
 
     /**
      * Converts a Java 5 {@link Future} to a Guava {@link ListenableFuture}.

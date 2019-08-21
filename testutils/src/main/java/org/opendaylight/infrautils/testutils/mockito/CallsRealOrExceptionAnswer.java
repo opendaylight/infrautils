@@ -119,7 +119,9 @@ final class CallsRealOrExceptionAnswer implements Answer<Object>, Serializable {
     private static final long serialVersionUID = -3730024662402964588L;
     static final CallsRealOrExceptionAnswer INSTANCE = new CallsRealOrExceptionAnswer();
 
-    private CallsRealOrExceptionAnswer() { }
+    private CallsRealOrExceptionAnswer() {
+
+    }
 
     @Override
     public Object answer(InvocationOnMock invocation) throws Throwable {
