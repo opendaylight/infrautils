@@ -21,8 +21,9 @@ import org.awaitility.core.ConditionTimeoutException;
  * @author Michael Vorburger.ch
  */
 public final class TestableQueues {
+    private TestableQueues() {
 
-    private TestableQueues() { }
+    }
 
     /**
      * Await for a {@link Queue} to be empty.
@@ -44,5 +45,4 @@ public final class TestableQueues {
             throw new AssertionError("Awaited Queue to become empty, but it STILL contains: " + queue.toString(), e);
         }
     }
-
 }

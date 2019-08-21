@@ -16,8 +16,9 @@ import java.util.concurrent.CompletionStage;
  * @author Michael Vorburger.ch
  */
 public final class CompletionStages {
+    private CompletionStages() {
 
-    private CompletionStages() { }
+    }
 
     /**
      * Converts a Java 8 CompletionStage to a Guava ListenableFuture.
@@ -35,5 +36,4 @@ public final class CompletionStages {
     public static <T> CompletionStage<T> completedExceptionally(Throwable throwable) {
         return CompletionStageWrapper.wrap(CompletableFutures.completedExceptionally(throwable));
     }
-
 }

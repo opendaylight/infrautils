@@ -15,13 +15,14 @@ import java.util.regex.Pattern;
  * @author Michael Vorburger.ch
  */
 public final class IDs {
-
-    private IDs() { }
-
     private static final Pattern AZ09_LOWERCASE_REGEXP = Pattern.compile("[a-z][a-z0-9]*");
     private static final Pattern AZ09_REGEXP = Pattern.compile("[a-zA-Z][a-zA-Z0-9]*");
     private static final Pattern AZ_09_REGEXP = Pattern.compile("[a-zA-Z][a-zA-Z0-9_]*");
     private static final Pattern AZ09DOT_REGEXP = Pattern.compile("[a-zA-Z][a-zA-Z0-9\\.]*");
+
+    private IDs() {
+
+    }
 
     /**
      * Validate that ID matches regular expression <code>[a-z][a-z0-9]*</code>
@@ -73,5 +74,4 @@ public final class IDs {
                     "Invalid ID: \"" + id + "\"" + " must match regular expression " + regexp.pattern());
         }
     }
-
 }

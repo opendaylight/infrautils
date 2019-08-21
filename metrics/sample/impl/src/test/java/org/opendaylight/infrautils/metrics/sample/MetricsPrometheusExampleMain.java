@@ -20,8 +20,9 @@ import org.opendaylight.infrautils.metrics.prometheus.impl.PrometheusMetricProvi
  * @author Michael Vorburger.ch
  */
 public final class MetricsPrometheusExampleMain {
+    private MetricsPrometheusExampleMain() {
 
-    private MetricsPrometheusExampleMain() { }
+    }
 
     public static void main(String[] args) throws IOException {
         // see also OsgiWebInitializer
@@ -38,5 +39,4 @@ public final class MetricsPrometheusExampleMain {
         metricsExample.close();
         metricProvider.close();
     }
-
 }

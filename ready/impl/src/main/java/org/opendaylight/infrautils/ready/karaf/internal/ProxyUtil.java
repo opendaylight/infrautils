@@ -20,9 +20,6 @@ import org.slf4j.LoggerFactory;
  * @author Michael Vorburger.ch
  */
 final class ProxyUtil {
-
-    private ProxyUtil() { }
-
     private static final Logger LOG = LoggerFactory.getLogger(ProxyUtil.class);
 
     // inspired by https://docs.oracle.com/javase/8/docs/technotes/guides/reflection/proxy.html
@@ -34,6 +31,10 @@ final class ProxyUtil {
 
     static {
         initializeMethods();
+    }
+
+    private ProxyUtil() {
+
     }
 
     @SuppressWarnings("checkstyle:AvoidHidingCauseException")
