@@ -40,7 +40,9 @@ final class ThrowsMethodExceptionAnswer implements Answer<Object>, Serializable 
     private static final long serialVersionUID = -7316574192253912318L;
     static final ThrowsMethodExceptionAnswer INSTANCE = new ThrowsMethodExceptionAnswer();
 
-    private ThrowsMethodExceptionAnswer() { }
+    private ThrowsMethodExceptionAnswer() {
+
+    }
 
     @Override
     public Void answer(InvocationOnMock invocation) throws Throwable {
