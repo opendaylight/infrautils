@@ -236,6 +236,8 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
         }
     }
 
+    @SuppressFBWarnings(value = "UPM_UNCALLED_PRIVATE_METHOD",
+            justification = "https://github.com/spotbugs/spotbugs/issues/811")
     private Future<?> scheduleTask(Runnable task, long delay, TimeUnit unit) {
         try {
             return scheduledExecutorService.schedule(task, delay, unit);
@@ -324,6 +326,8 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
         }
     }
 
+    @SuppressFBWarnings(value = "UPM_UNCALLED_PRIVATE_METHOD",
+            justification = "https://github.com/spotbugs/spotbugs/issues/811")
     private void rollbackOrClear(JobEntry jobEntry) {
         jobsFailed.mark();
         if (jobEntry.getRollbackWorker() != null) {
