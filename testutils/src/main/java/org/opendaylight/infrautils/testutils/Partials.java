@@ -16,11 +16,11 @@ import org.opendaylight.infrautils.testutils.mockito.MoreAnswers;
  * @author Michael Vorburger.ch
  */
 public final class Partials {
+    private Partials() {
 
-    private Partials() { }
+    }
 
     public static <T> T newPartial(Class<T> abstractClass) {
         return Mockito.mock(abstractClass, MoreAnswers.realOrException());
     }
-
 }

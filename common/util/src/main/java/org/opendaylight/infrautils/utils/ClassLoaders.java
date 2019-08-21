@@ -17,8 +17,9 @@ import org.opendaylight.infrautils.utils.function.CheckedRunnable;
  * @author Michael Vorburger.ch
  */
 public final class ClassLoaders {
+    private ClassLoaders() {
 
-    private ClassLoaders() { }
+    }
 
     public static void run(Runnable runnable, ClassLoader classLoader) {
         call((CheckedCallable<Void, RuntimeException>) () -> {

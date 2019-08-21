@@ -69,8 +69,11 @@ public class FunctionalityReadyNotifierTest {
         notifier.register(TestClassReady.class);
     }
 
-    private interface TestReady extends FunctionalityReady { }
+    private interface TestReady extends FunctionalityReady {
 
-    private static class TestClassReady implements FunctionalityReady { }
+    }
 
+    private static class TestClassReady implements FunctionalityReady {
+
+    }
 }

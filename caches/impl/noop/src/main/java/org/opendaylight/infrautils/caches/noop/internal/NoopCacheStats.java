@@ -16,10 +16,11 @@ import org.opendaylight.infrautils.caches.CacheStats;
  * @author Michael Vorburger.ch
  */
 final class NoopCacheStats implements CacheStats {
-
     static final CacheStats INSTANCE = new NoopCacheStats();
 
-    private NoopCacheStats() { }
+    private NoopCacheStats() {
+
+    }
 
     @Override
     public long estimatedCurrentEntries() {
@@ -40,5 +41,4 @@ final class NoopCacheStats implements CacheStats {
     public ImmutableMap<String, Number> extensions() {
         return ImmutableMap.of();
     }
-
 }

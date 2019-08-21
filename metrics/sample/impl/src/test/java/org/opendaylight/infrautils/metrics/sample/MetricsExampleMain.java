@@ -16,8 +16,9 @@ import org.opendaylight.infrautils.metrics.internal.MetricProviderImpl;
  * @author Michael Vorburger.ch
  */
 public final class MetricsExampleMain {
+    private MetricsExampleMain() {
 
-    private MetricsExampleMain() { }
+    }
 
     public static void main(String[] args) throws IOException {
         MetricProviderImpl metricProvider = new MetricProviderImpl();
@@ -29,5 +30,4 @@ public final class MetricsExampleMain {
         metricsExample.close();
         metricProvider.close();
     }
-
 }

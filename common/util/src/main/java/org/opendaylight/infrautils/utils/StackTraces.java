@@ -13,8 +13,9 @@ package org.opendaylight.infrautils.utils;
  * @author Michael Vorburger.ch, based on an idea by Stephen Kitt
  */
 public final class StackTraces {
+    private StackTraces() {
 
-    private StackTraces() { }
+    }
 
     /**
      * Obtain the name of the method that is the method calling this one. This is
