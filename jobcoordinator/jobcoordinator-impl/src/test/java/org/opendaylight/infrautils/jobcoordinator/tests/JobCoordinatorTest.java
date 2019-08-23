@@ -320,7 +320,7 @@ public class JobCoordinatorTest {
         // but its point is to illustrate the error message in the LOG - before without but now with causing job's key
         Callable<List<ListenableFuture<Void>>> callableListWithNull = () -> Collections.singletonList(null);
         jobCoordinator.enqueueJob(getClass().getName(), callableListWithNull);
-        Awaitility.await().until(jobCoordinator::getIncompleteTaskCount, is(1L));
+        Awaitility.await().until(jobCoordinator::getIncompleteTaskCount, is(0L));
     }
 
     private void assertCleared(int count) {

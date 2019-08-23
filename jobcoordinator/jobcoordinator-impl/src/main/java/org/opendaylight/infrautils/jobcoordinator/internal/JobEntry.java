@@ -14,6 +14,7 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
+import java.util.concurrent.atomic.AtomicLong;
 import org.eclipse.jdt.annotation.Nullable;
 import org.opendaylight.infrautils.jobcoordinator.RollbackCallable;
 
@@ -23,7 +24,10 @@ import org.opendaylight.infrautils.jobcoordinator.RollbackCallable;
  */
 class JobEntry {
 
+    private static final AtomicLong ID_GENERATOR = new AtomicLong(1);
+    private final String id = "J" + ID_GENERATOR.getAndIncrement();
     private final String key;
+    private final String queueId;
     private volatile @Nullable Callable<List<ListenableFuture<Void>>> mainWorker;
     private final @Nullable RollbackCallable rollbackWorker;
     private final int maxRetries;
@@ -31,18 +35,22 @@ class JobEntry {
     private static final AtomicIntegerFieldUpdater<JobEntry> RETRY_COUNT_FIELD_UPDATER =
             AtomicIntegerFieldUpdater.newUpdater(JobEntry.class, "retryCount");
     private volatile @Nullable List<ListenableFuture<Void>> futures;
-    private final ClassLoader contextClassLoader;
+    private long startTime = -1;
+    private long endTime = -1;
+
 
     @SuppressFBWarnings(value = "NP_NONNULL_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR",
             justification = "TYPE_USE and SpotBugs")
-    JobEntry(String key, Callable<List<ListenableFuture<Void>>> mainWorker, @Nullable RollbackCallable rollbackWorker,
-            int maxRetries, ClassLoader contextClassLoader) {
+    JobEntry(String key, String queueId, Callable<List<ListenableFuture<Void>>> mainWorker,
+             @Nullable RollbackCallable rollbackWorker,
+            int maxRetries) {
         this.key = key;
+        this.queueId = queueId;
         this.mainWorker = mainWorker;
         this.rollbackWorker = rollbackWorker;
         this.maxRetries = maxRetries;
         this.retryCount = maxRetries;
-        this.contextClassLoader = contextClassLoader;
+
     }
 
     /**
@@ -53,6 +61,14 @@ class JobEntry {
      */
     public String getKey() {
         return key;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getQueueId() {
+        return queueId;
     }
 
     public @Nullable Callable<List<ListenableFuture<Void>>> getMainWorker() {
@@ -88,17 +104,43 @@ class JobEntry {
         return nullableFutures != null ? nullableFutures : emptyList();
     }
 
+
+    public long getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(long startTime) {
+        if (this.startTime < 0) {
+            this.startTime = startTime;
+        }
+    }
+
+    public long getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(long endTime) {
+        this.endTime = endTime;
+    }
+
     public void setFutures(List<ListenableFuture<Void>> futures) {
         this.futures = futures;
     }
 
-    public ClassLoader getContextClassLoader() {
-        return contextClassLoader;
-    }
+
 
     @Override
     public String toString() {
-        return "JobEntry{" + "key='" + key + '\'' + ", mainWorker=" + mainWorker + ", rollbackWorker=" + rollbackWorker
-                + ", retryCount=" + (maxRetries - retryCount) + "/" + maxRetries + ", futures=" + futures + '}';
+
+        return "JobEntry{"
+                + "key='" + key + '\''
+                + ", jobId='" + id + '\''
+                + ", queueId='" + queueId + '\''
+                + ", mainWorker=" + mainWorker
+                + ", rollbackWorker=" + rollbackWorker
+                + ", retryCount=" + (maxRetries - retryCount) + "/" + maxRetries
+                + ", futures=" + futures
+                + '}';
+
     }
 }

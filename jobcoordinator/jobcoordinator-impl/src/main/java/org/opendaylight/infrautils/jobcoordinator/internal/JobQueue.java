@@ -8,9 +8,11 @@
 package org.opendaylight.infrautils.jobcoordinator.internal;
 
 import com.google.common.base.MoreObjects;
+import com.google.errorprone.annotations.Var;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.atomic.AtomicLong;
 import org.eclipse.jdt.annotation.Nullable;
 
 /**
@@ -18,8 +20,13 @@ import org.eclipse.jdt.annotation.Nullable;
  */
 public class JobQueue {
 
+    private static final AtomicLong ID_GENERATOR = new AtomicLong(1);
+    private final String queueId = "Q" + ID_GENERATOR.getAndIncrement();
     private final Queue<JobEntry> jobQueue = new ConcurrentLinkedQueue<>();
     private volatile @Nullable JobEntry executingEntry;
+    private double movingAverage = -1D;
+    private int pendingJobCount;
+    private int finishedJobCount;
 
     @SuppressFBWarnings(value = "NP_NONNULL_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR",
             justification = "TYPE_USE and SpotBugs")
@@ -29,6 +36,7 @@ public class JobQueue {
 
     public void addEntry(JobEntry entry) {
         jobQueue.add(entry);
+        this.pendingJobCount++;
     }
 
     public boolean isEmpty() {
@@ -47,8 +55,42 @@ public class JobQueue {
         this.executingEntry = executingEntry;
     }
 
+
+    public String getQueueId() {
+        return queueId;
+    }
+
     @Override
     public String toString() {
         return MoreObjects.toStringHelper(this).add("executing", executingEntry).add("queue", jobQueue).toString();
+    }
+
+    public void onJobFinished(long timeTaken) {
+        this.finishedJobCount++;
+        this.pendingJobCount--;
+        this.movingAverage = getMovingAverage(this.movingAverage,timeTaken);
+    }
+
+    public int getPendingJobCount() {
+        return pendingJobCount;
+    }
+
+    public int getFinishedJobCount() {
+        return finishedJobCount;
+    }
+
+    public double getJobQueueMovingAverage() {
+        return this.movingAverage;
+    }
+
+    private static double getMovingAverage(@Var double st, double yt) {
+        double alpha = 0.01;
+        double oneMinusAlpha = 0.99;
+        if (st <= 0D) {
+            st = yt;
+        } else {
+            st = alpha * yt + oneMinusAlpha * st;
+        }
+        return st;
     }
 }
