@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d67d3e53_a8c94e8c",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JcMXBeanRegistration.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2019-08-28T12:22:27Z",
+      "side": 1,
+      "message": "Is this meant to be subclassed? if so, it should be documented.",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 33
+      },
+      "revId": "b99825c542fe6edb38f1bc797dc2add8cde15262",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3ac3d370_1ef008ad",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JcMXBeanRegistration.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2019-08-28T12:22:27Z",
+      "side": 1,
+      "message": "if this is not to be subclassed, this should follow logging best practices.",
+      "range": {
+        "startLine": 28,
+        "startChar": 4,
+        "endLine": 28,
+        "endChar": 72
+      },
+      "revId": "b99825c542fe6edb38f1bc797dc2add8cde15262",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0a806295_c65a28dd",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JcServiceStatus.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2019-08-28T12:22:27Z",
+      "side": 1,
+      "message": "useless whitespace",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 0
+      },
+      "revId": "b99825c542fe6edb38f1bc797dc2add8cde15262",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "d6100379_f5dabd10",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JcServiceStatus.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2019-08-28T12:22:27Z",
+      "side": 1,
+      "message": "Why is the returned map concurrent? Is it expected to be modified? If not, this method really is:\n\nImmutableMap.copyOf(Maps.transformValues(jobCoordinatorImpl.getJobQueueMap(), value -\u003e new JcState(...)));",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 32
+      },
+      "revId": "b99825c542fe6edb38f1bc797dc2add8cde15262",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6a921516_f7106a57",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobCoordinatorImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2019-08-28T12:22:27Z",
+      "side": 1,
+      "message": "} finally {",
+      "range": {
+        "startLine": 223,
+        "startChar": 9,
+        "endLine": 224,
+        "endChar": 21
+      },
+      "revId": "b99825c542fe6edb38f1bc797dc2add8cde15262",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    }
+  ]
+}
