@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "d749394f_8227d9cd",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JcMXBeanRegistration.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 6822
+      },
+      "writtenOn": "2019-09-03T06:49:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3ac3d370_1ef008ad",
+      "range": {
+        "startLine": 28,
+        "startChar": 4,
+        "endLine": 28,
+        "endChar": 72
+      },
+      "revId": "b99825c542fe6edb38f1bc797dc2add8cde15262",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0a806295_c65a28dd",
         "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JcServiceStatus.java",
         "patchSetId": 2
@@ -59,6 +83,30 @@
       "writtenOn": "2019-08-28T12:22:27Z",
       "side": 1,
       "message": "useless whitespace",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 0
+      },
+      "revId": "b99825c542fe6edb38f1bc797dc2add8cde15262",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "32807c18_16361f63",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JcServiceStatus.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 6822
+      },
+      "writtenOn": "2019-09-03T06:49:05Z",
+      "side": 1,
+      "message": "Removed",
+      "parentUuid": "0a806295_c65a28dd",
       "range": {
         "startLine": 15,
         "startChar": 0,
@@ -94,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "e9b95646_70f727c1",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JcServiceStatus.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 6822
+      },
+      "writtenOn": "2019-09-03T06:49:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d6100379_f5dabd10",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 32
+      },
+      "revId": "b99825c542fe6edb38f1bc797dc2add8cde15262",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "6a921516_f7106a57",
         "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobCoordinatorImpl.java",
         "patchSetId": 2
@@ -117,6 +189,30 @@
     },
     {
       "key": {
+        "uuid": "e3bc0f5f_e3823bcf",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobCoordinatorImpl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 6822
+      },
+      "writtenOn": "2019-09-03T06:49:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6a921516_f7106a57",
+      "range": {
+        "startLine": 223,
+        "startChar": 9,
+        "endLine": 224,
+        "endChar": 21
+      },
+      "revId": "b99825c542fe6edb38f1bc797dc2add8cde15262",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e48f4308_32554baa",
         "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobQueue.java",
         "patchSetId": 2
@@ -128,6 +224,30 @@
       "writtenOn": "2019-08-28T12:27:34Z",
       "side": 1,
       "message": "moving average of what? executon time? it should be named that way?",
+      "range": {
+        "startLine": 82,
+        "startChar": 18,
+        "endLine": 82,
+        "endChar": 42
+      },
+      "revId": "b99825c542fe6edb38f1bc797dc2add8cde15262",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "66dce367_6f19b985",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobQueue.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 6822
+      },
+      "writtenOn": "2019-09-03T06:49:05Z",
+      "side": 1,
+      "message": "Changed it",
+      "parentUuid": "e48f4308_32554baa",
       "range": {
         "startLine": 82,
         "startChar": 18,
@@ -197,6 +317,30 @@
       "writtenOn": "2019-08-28T12:27:34Z",
       "side": 1,
       "message": "return st \u003c\u003d 0D ? yt : 0.01D * yt + 0.99D * st;",
+      "range": {
+        "startLine": 89,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 18
+      },
+      "revId": "b99825c542fe6edb38f1bc797dc2add8cde15262",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a133447_8563f107",
+        "filename": "jobcoordinator/jobcoordinator-impl/src/main/java/org/opendaylight/infrautils/jobcoordinator/internal/JobQueue.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 6822
+      },
+      "writtenOn": "2019-09-03T06:49:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f5325c2b_339800df",
       "range": {
         "startLine": 89,
         "startChar": 0,
