@@ -7,7 +7,6 @@
  */
 package org.opendaylight.infrautils.testutils;
 
-import com.google.common.base.Strings;
 import com.google.errorprone.annotations.Var;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.junit.rules.TestRule;
@@ -34,7 +33,7 @@ import org.slf4j.MarkerFactory;
  */
 public class LogRule implements TestRule {
 
-    private static final String HEADER = Strings.repeat("-", 120);
+    private static final String HEADER = "-".repeat(120);
     private static final String MESSAGE = "{} ({}ms) @Test {}()";
     private static final Marker MARKER = MarkerFactory.getMarker(LogRule.class.getName());
 

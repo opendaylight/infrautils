@@ -7,7 +7,6 @@
  */
 package org.opendaylight.infrautils.utils;
 
-import com.google.common.base.Strings;
 import com.google.errorprone.annotations.Var;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -21,8 +20,8 @@ public class TablePrinter {
     private static final Logger LOG = LoggerFactory.getLogger(TablePrinter.class);
 
     private static final int SPACE_BETWEEN_COLUMNS = 1;
-    private static final String SPACE_BETWEEN_COLUMNS_STR = Strings.repeat(" ", SPACE_BETWEEN_COLUMNS);
-    private static final String SPACE_BEFORE_TABLES_WITH_TITLE_STR = Strings.repeat(" ", 4);
+    private static final String SPACE_BETWEEN_COLUMNS_STR = " ".repeat(SPACE_BETWEEN_COLUMNS);
+    private static final String SPACE_BEFORE_TABLES_WITH_TITLE_STR = "    ";
 
     @Regex
     private static final String DPLUS_STR = "^\\d+$";
@@ -157,7 +156,7 @@ public class TablePrinter {
             }
             // Header underline
             int rowLength = SPACE_BETWEEN_COLUMNS + separator.length() * (header.length - 1) + sum(maxWidths);
-            sb.append(Strings.repeat("-", rowLength));
+            sb.append("-".repeat(rowLength));
             sb.append("\n");
         }
     }
@@ -174,7 +173,7 @@ public class TablePrinter {
         for (int i = 0; i < row.length; i++) {
             printSeparator(separator, sb, i);
             sb.append(row[i]);
-            sb.append(Strings.repeat(" ", maxWidths[i] - row[i].length()));
+            sb.append(" ".repeat(maxWidths[i] - row[i].length()));
         }
         sb.append("\n");
     }
