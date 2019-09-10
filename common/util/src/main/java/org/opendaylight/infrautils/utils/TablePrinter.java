@@ -21,7 +21,8 @@ public class TablePrinter {
     private static final Logger LOG = LoggerFactory.getLogger(TablePrinter.class);
 
     private static final int SPACE_BETWEEN_COLUMNS = 1;
-    private static final int SPACE_BEFORE_TABLES_WITH_TITLE = 4;
+    private static final String SPACE_BETWEEN_COLUMNS_STR = Strings.repeat(" ", SPACE_BETWEEN_COLUMNS);
+    private static final String SPACE_BEFORE_TABLES_WITH_TITLE_STR = Strings.repeat(" ", 4);
 
     @Regex
     private static final String DPLUS_STR = "^\\d+$";
@@ -131,7 +132,7 @@ public class TablePrinter {
         printHeader(separator, maxWidths, sb);
         for (String[] row : table) {
             if (title != null) {
-                sb.append(Strings.repeat(" ", SPACE_BEFORE_TABLES_WITH_TITLE));
+                sb.append(SPACE_BEFORE_TABLES_WITH_TITLE_STR);
             }
             printRow(separator, maxWidths, sb, row);
         }
@@ -148,11 +149,11 @@ public class TablePrinter {
     private void printHeader(String separator, int[] maxWidths, StringBuilder sb) {
         if (header != null) {
             if (title != null) {
-                sb.append(Strings.repeat(" ", SPACE_BEFORE_TABLES_WITH_TITLE));
+                sb.append(SPACE_BEFORE_TABLES_WITH_TITLE_STR);
             }
             printRow(separator, maxWidths, sb, header);
             if (title != null) {
-                sb.append(Strings.repeat(" ", SPACE_BEFORE_TABLES_WITH_TITLE));
+                sb.append(SPACE_BEFORE_TABLES_WITH_TITLE_STR);
             }
             // Header underline
             int rowLength = SPACE_BETWEEN_COLUMNS + separator.length() * (header.length - 1) + sum(maxWidths);
@@ -201,15 +202,14 @@ public class TablePrinter {
 
     private static void printSeparator(String separator, StringBuilder sb, int integer) {
         if (integer == 0) {
-            sb.append(Strings.repeat(" ", SPACE_BETWEEN_COLUMNS));
+            sb.append(SPACE_BETWEEN_COLUMNS_STR);
         } else {
             sb.append(separator);
         }
     }
 
     private static String columnSeparator() {
-        String space = Strings.repeat(" ", SPACE_BETWEEN_COLUMNS);
-        return space + "|" + space;
+        return SPACE_BETWEEN_COLUMNS_STR + "|" + SPACE_BETWEEN_COLUMNS_STR;
     }
 
     public void setColumnNames(String... names) {
