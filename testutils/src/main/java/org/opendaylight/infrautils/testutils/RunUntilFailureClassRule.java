@@ -7,7 +7,6 @@
  */
 package org.opendaylight.infrautils.testutils;
 
-import com.google.common.base.Strings;
 import com.google.errorprone.annotations.Var;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.eclipse.jdt.annotation.Nullable;
@@ -24,7 +23,7 @@ import org.slf4j.LoggerFactory;
  */
 public class RunUntilFailureClassRule implements TestRule {
 
-    private static final String HEADER = Strings.repeat("=", 120);
+    private static final String HEADER = "=".repeat(120);
 
     // package local
     boolean isRunning = true;
