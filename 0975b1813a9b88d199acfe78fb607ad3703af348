@@ -46,6 +46,54 @@
       "revId": "0975b1813a9b88d199acfe78fb607ad3703af348",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a622d24_94e39e04",
+        "filename": "counters/counters-api/src/main/java/org/opendaylight/infrautils/counters/api/Metrics.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7785
+      },
+      "writtenOn": "2019-09-17T20:22:31Z",
+      "side": 1,
+      "message": "misunderstood the comment, exposed the registry itself.\nIs n\u0027t it better to expose the registry as singleton, so that users can leverage its full potential ?",
+      "parentUuid": "1a622d24_c8ba9f09",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 1
+      },
+      "revId": "0975b1813a9b88d199acfe78fb607ad3703af348",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a622d24_c8ba9f09",
+        "filename": "counters/counters-api/src/main/java/org/opendaylight/infrautils/counters/api/Metrics.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 7785
+      },
+      "writtenOn": "2019-09-17T20:22:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a622d24_4514baf4",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 1
+      },
+      "revId": "0975b1813a9b88d199acfe78fb607ad3703af348",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
