@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "1a622d24_d8899f76",
+        "filename": "counters/counters-api/pom.xml",
+        "patchSetId": 8
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 7785
+      },
+      "writtenOn": "2019-09-17T20:22:31Z",
+      "side": 1,
+      "message": "It should be coming from controllers pom . Do we need to again put the version here ?",
+      "parentUuid": "1a622d24_00eba7b0",
+      "range": {
+        "startLine": 47,
+        "startChar": 8,
+        "endLine": 50,
+        "endChar": 21
+      },
+      "revId": "48dccb882777fd5e44f2d4e728a40dd30ce2ee67",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a622d24_e0066b85",
         "filename": "counters/counters-api/src/main/java/org/opendaylight/infrautils/counters/api/Metrics.java",
         "patchSetId": 8
@@ -84,6 +108,54 @@
       "side": 1,
       "message": "ok. We should think of a better place for these generic methods under infrautils.\nPerhaps we need to add a new bundle - metrics and add this API there:\norg.opendaylight.infrautils.metrics",
       "parentUuid": "1a622d24_78984bc0",
+      "range": {
+        "startLine": 17,
+        "startChar": 4,
+        "endLine": 17,
+        "endChar": 46
+      },
+      "revId": "48dccb882777fd5e44f2d4e728a40dd30ce2ee67",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a622d24_78984bc0",
+        "filename": "counters/counters-api/src/main/java/org/opendaylight/infrautils/counters/api/Metrics.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 7785
+      },
+      "writtenOn": "2019-09-17T20:22:31Z",
+      "side": 1,
+      "message": "This is the other api from metricsRegistry we are trying to expose , which is used to create the name of the couter.",
+      "parentUuid": "1a622d24_e0066b85",
+      "range": {
+        "startLine": 17,
+        "startChar": 4,
+        "endLine": 17,
+        "endChar": 46
+      },
+      "revId": "48dccb882777fd5e44f2d4e728a40dd30ce2ee67",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a622d24_72ae9fe7",
+        "filename": "counters/counters-api/src/main/java/org/opendaylight/infrautils/counters/api/Metrics.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 7785
+      },
+      "writtenOn": "2019-09-17T20:22:31Z",
+      "side": 1,
+      "message": "we can create this in a seperate bundle, will do that in seperate review , abandoning this one.",
+      "parentUuid": "1a622d24_69799fc7",
       "range": {
         "startLine": 17,
         "startChar": 4,
