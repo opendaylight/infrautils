@@ -23,9 +23,10 @@
             <artifactId>shell</artifactId>
         </dependency>
         <dependency>
+            <!-- FIXME: we should not be needing this with Java 11 onwards -->
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
-            <version>4.5.6</version>
+            <version>4.5.10</version>
         </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>
