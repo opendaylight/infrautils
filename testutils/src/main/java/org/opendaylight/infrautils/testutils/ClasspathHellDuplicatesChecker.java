@@ -82,6 +82,7 @@ public class ClasspathHellDuplicatesChecker {
             || resourcePath.endsWith("license.html")
             || resourcePath.endsWith("about.html")
             || resourcePath.endsWith("readme.html")
+            || resourcePath.endsWith("README.md")
             || resourcePath.startsWith("META-INF/services")
             || resourcePath.equals("META-INF/DEPENDENCIES")
             || resourcePath.equals("META-INF/git.properties")
@@ -128,6 +129,8 @@ public class ClasspathHellDuplicatesChecker {
             // errorprone with Java 11 integration leaks to classpath, which causes a conflict between
             // checkerframework/checker-qual and checkerframework/dataflow
             || resourcePath.startsWith("org/checkerframework/dataflow/qual/")
+            // bundle.properties are perfectly fine
+            || resourcePath.equals("bundle.properties")
             ;
     }
 }
