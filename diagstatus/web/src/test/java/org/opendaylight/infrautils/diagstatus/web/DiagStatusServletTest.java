@@ -13,6 +13,7 @@ import static org.opendaylight.infrautils.ready.SystemState.ACTIVE;
 import static org.opendaylight.infrautils.ready.SystemState.BOOTING;
 
 import java.io.IOException;
+import javax.servlet.ServletException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -35,15 +36,14 @@ public class DiagStatusServletTest {
     private final TestDiagStatusService testDiagStatusService = Partials.newPartial(TestDiagStatusService.class);
 
     @Before
-    @SuppressWarnings("checkstyle:IllegalThrows") // Jetty throws Throwable
-    public void beforeTest() throws Throwable {
+    public void beforeTest() throws ServletException {
         webServer = new TestWebServer();
         webClient = new TestWebClient(webServer);
         webServer.registerServlet(new DiagStatusServlet(testDiagStatusService), "/*");
     }
 
     @After
-    public void afterTest() throws Exception {
+    public void afterTest() throws ServletException {
         webServer.close();
     }
 
