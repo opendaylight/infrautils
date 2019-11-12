@@ -170,6 +170,24 @@
       "revId": "e884a8ea8ddce6ed396055f2c9bbccbcd28020d6",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fafc7978_69d717ee",
+        "filename": "diagstatus/diagstatus-impl/src/main/resources/diagstatusservice.properties",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 7865
+      },
+      "writtenOn": "2019-11-12T23:22:49Z",
+      "side": 1,
+      "message": "I see Michael\u0027s as important concern. A level of indirection is direly needed so that we do not pollute InfraUtils. \n\nSince the components which we are referring to in this context are MBeans and not OSGi Bundles per se, an indirection is required to lookup something like Services MBeans which can encapsulate the data what is put up in properties file. But that leads to a question who owns the Services MBeans. \n\nI think we should do some homework before rushing this through",
+      "parentUuid": "fafc7978_ceef2986",
+      "revId": "e884a8ea8ddce6ed396055f2c9bbccbcd28020d6",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": false
     }
   ]
 }
