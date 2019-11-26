@@ -90,11 +90,11 @@ public class MetricProviderImpl implements MetricProvider {
         }
         if (configuration.getThreadsWatcherIntervalMS() > 0 && (threadsWatcher == null
                 || configuration.getThreadsWatcherIntervalMS() != threadsWatcher.getInterval().toMillis()
-                || configuration.getMaxThreads() != threadsWatcher.getMaxThreads())
+                || configuration.getMaxThreads() != threadsWatcher.getMaxThreads()
                 || configuration.getMaxThreadsMaxLogIntervalSecs()
                         != threadsWatcher.getMaxThreadsMaxLogInterval().getSeconds()
                 || configuration.getDeadlockedThreadsMaxLogIntervalSecs()
-                        != threadsWatcher.getDeadlockedThreadsMaxLogInterval().getSeconds()) {
+                        != threadsWatcher.getDeadlockedThreadsMaxLogInterval().getSeconds())) {
             threadsWatcher = new ThreadsWatcher(configuration.getMaxThreads(),
                     Duration.ofMillis(configuration.getThreadsWatcherIntervalMS()),
                     Duration.ofSeconds(configuration.getMaxThreadsMaxLogIntervalSecs()),
