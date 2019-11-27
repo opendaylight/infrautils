@@ -26,6 +26,7 @@ import com.codahale.metrics.jvm.ThreadDeadlockDetector;
 import com.google.common.annotations.VisibleForTesting;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.lang.management.ManagementFactory;
+import java.lang.management.ThreadMXBean;
 import java.time.Duration;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -95,11 +96,17 @@ public class MetricProviderImpl implements MetricProvider {
                         != threadsWatcher.getMaxThreadsMaxLogInterval().getSeconds()
                 || configuration.getDeadlockedThreadsMaxLogIntervalSecs()
                         != threadsWatcher.getDeadlockedThreadsMaxLogInterval().getSeconds())) {
-            threadsWatcher = new ThreadsWatcher(configuration.getMaxThreads(),
+
+            ThreadMXBean threadMXBean = ManagementFactory.getThreadMXBean();
+            if (threadMXBean != null) {
+                threadsWatcher = new ThreadsWatcher(threadMXBean, configuration.getMaxThreads(),
                     Duration.ofMillis(configuration.getThreadsWatcherIntervalMS()),
                     Duration.ofSeconds(configuration.getMaxThreadsMaxLogIntervalSecs()),
                     Duration.ofSeconds(configuration.getDeadlockedThreadsMaxLogIntervalSecs()));
-            threadsWatcher.start();
+                threadsWatcher.start();
+            } else {
+                LOG.warn("Platform does not support ThreadMXBean, not starting ThreadsWatcher");
+            }
         }
 
         if (fileReporter != null) {
