@@ -7,7 +7,7 @@
  */
 package org.opendaylight.infrautils.metrics.internal;
 
-import static java.lang.management.ManagementFactory.getThreadMXBean;
+import static java.util.Objects.requireNonNull;
 import static java.util.concurrent.TimeUnit.NANOSECONDS;
 import static org.opendaylight.infrautils.utils.concurrent.Executors.newListeningSingleThreadScheduledExecutor;
 import static org.opendaylight.infrautils.utils.concurrent.LoggingFutures.addErrorLogging;
@@ -16,6 +16,7 @@ import com.codahale.metrics.jvm.ThreadDeadlockDetector;
 import com.codahale.metrics.jvm.ThreadDump;
 import com.google.common.annotations.VisibleForTesting;
 import java.io.ByteArrayOutputStream;
+import java.lang.management.ThreadMXBean;
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.time.Instant;
@@ -35,8 +36,9 @@ class ThreadsWatcher implements Runnable {
 
     private final int maxThreads;
     private final ScheduledExecutorService scheduledExecutor;
-    private final ThreadDeadlockDetector threadDeadlockDetector = new ThreadDeadlockDetector();
-    private final ThreadDump threadDump = new ThreadDump(getThreadMXBean());
+    private final ThreadDeadlockDetector threadDeadlockDetector;
+    private final ThreadMXBean threadMXBean;
+    private final ThreadDump threadDump;
 
     private final Duration interval;
     private final Duration maxDeadlockLog;
@@ -45,8 +47,12 @@ class ThreadsWatcher implements Runnable {
     private volatile Instant lastDeadlockLog;
     private volatile Instant lastMaxThreadsLog;
 
-    ThreadsWatcher(int maxThreads, Duration interval,
+    ThreadsWatcher(ThreadMXBean threadMXBean, int maxThreads, Duration interval,
             Duration maxThreadsMaxLogInterval, Duration deadlockedThreadsMaxLogInterval) {
+        this.threadMXBean = requireNonNull(threadMXBean);
+        this.threadDeadlockDetector = new ThreadDeadlockDetector(threadMXBean);
+        this.threadDump = new ThreadDump(threadMXBean);
+
         this.maxThreads = maxThreads;
         this.interval = interval;
         this.maxDeadlockLog = deadlockedThreadsMaxLogInterval;
@@ -82,7 +88,7 @@ class ThreadsWatcher implements Runnable {
 
     @Override
     public void run() {
-        int currentNumberOfThreads = getThreadMXBean().getThreadCount();
+        int currentNumberOfThreads = threadMXBean.getThreadCount();
         Set<String> deadlockedThreadsStackTrace = threadDeadlockDetector.getDeadlockedThreads();
         if (!deadlockedThreadsStackTrace.isEmpty()) {
             LOG.error("Oh nose - there are {} deadlocked threads!! :-(", deadlockedThreadsStackTrace.size());
@@ -97,8 +103,8 @@ class ThreadsWatcher implements Runnable {
         } else if (currentNumberOfThreads >= maxThreads) {
             LOG.warn("Oh nose - there are now {} threads, more than maximum threshold {}! "
                     + "(totalStarted: {}, peak: {}, daemons: {})",
-                    currentNumberOfThreads, maxThreads, getThreadMXBean().getTotalStartedThreadCount(),
-                    getThreadMXBean().getPeakThreadCount(), getThreadMXBean().getDaemonThreadCount());
+                    currentNumberOfThreads, maxThreads, threadMXBean.getTotalStartedThreadCount(),
+                    threadMXBean.getPeakThreadCount(), threadMXBean.getDaemonThreadCount());
             if (isConsidered(lastMaxThreadsLog, Instant.now(), maxMaxThreadsLog)) {
                 logAllThreads();
                 lastMaxThreadsLog = Instant.now();
