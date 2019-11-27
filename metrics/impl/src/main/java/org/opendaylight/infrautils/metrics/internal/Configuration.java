@@ -29,7 +29,7 @@ public final class Configuration {
 
     // Apply any change to these defaults also to org.opendaylight.infrautils.metrics.cfg
     // (Just for clarity; they are commented out there, so these are the real defaults.)
-    private int threadsWatcherIntervalMS = 500;
+    private int threadsWatcherIntervalMS = 0;
     private int maxThreads = 1000;
     private int fileReporterIntervalSecs = 0;
     private int maxThreadsMaxLogIntervalSecs = 60;
