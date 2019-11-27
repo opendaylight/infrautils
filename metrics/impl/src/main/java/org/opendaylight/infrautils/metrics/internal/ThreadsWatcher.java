@@ -16,8 +16,8 @@ import com.codahale.metrics.jvm.ThreadDeadlockDetector;
 import com.codahale.metrics.jvm.ThreadDump;
 import com.google.common.annotations.VisibleForTesting;
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.OutputStream;
+import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Set;
@@ -116,17 +116,15 @@ class ThreadsWatcher implements Runnable {
     void logAllThreads() {
         try (OutputStream loggingOutputStream = new LoggingOutputStream()) {
             threadDump.dump(loggingOutputStream);
-        } catch (IOException e) {
-            LOG.error("LoggingOutputStream.close() failed", e);
         }
     }
 
     private static class LoggingOutputStream extends ByteArrayOutputStream {
 
         @Override
-        public void close() throws IOException {
-            String lines = this.toString("UTF-8"); // UTF-8 because that is what ThreadDump writes it in
-            LOG.warn("Thread Dump:\n{}", lines);
+        public void close() {
+            // UTF-8 because that is what ThreadDump writes it in
+            LOG.warn("Thread Dump:\n{}", toString(StandardCharsets.UTF_8));
         }
     }
 
