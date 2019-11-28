@@ -1,0 +1,260 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5d5bdbef_d449d45c",
+        "filename": "inject/inject-guice-extensions/closeable/.gitignore",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2019-11-28T04:22:14Z",
+      "side": 1,
+      "message": "Put everything in the .gitignore at the root instead of having one per directory, see https://git.opendaylight.org/gerrit/gitweb?p\u003dinfrautils.git;a\u003dblob;f\u003d.gitignore;h\u003dfcea8d346784902c9f1b1ded312d2f9c540d8776;hb\u003dHEAD",
+      "revId": "fe8a6a0d06412ac58ae4c4221cfb46eaebfafde9",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c0cdf479_6fe96e74",
+        "filename": "inject/inject-guice-extensions/closeable/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2019-11-28T04:22:14Z",
+      "side": 1,
+      "message": "This seems wrong.. short story: have a look into the POM of any of the other folders in infrautils.  \n\nFully story/background:  In ODL, the Maven parent of a (new) artifact is not its \"aggregator\" (the Maven artifacts with the \u003cmodules\u003e which includes this one), but one of our standard parent POMs.  Specifically in infrautils, everything existing uses the org.opendaylight.infrautils:parent.  If you have (strong?) reasons not to use that, then you could also depend only on org.opendaylight.odlparent:bundle-parent (which is infrautils:parent\u0027s parent).\n\nDoing this then allows you to drop the maven-jar-plugin \u0026 maven-bundle-plugin and those fixed version numbers in inject/inject-guice-extensions/closeable/pom.xml\n\nPS: Some other Java communities / projects do this differently, and years ago when I started this suprised me a little bit, but then I came to learn that it actually makes a lot of sense to do it like this... ;-)",
+      "revId": "fe8a6a0d06412ac58ae4c4221cfb46eaebfafde9",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "275613f4_cd4555ec",
+        "filename": "inject/inject-guice-extensions/closeable/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2019-11-28T04:22:14Z",
+      "side": 1,
+      "message": "In line with the comment re. the package in  inject/inject-guice-extensions/closeable/src/main/java/com/mycila/guice/ext/closeable/CloseableInjector.java, I\u0027m wondering if you wouldn\u0027t want to instead name this artifact inject.guice.extensions.closeable instead?  \n\nDropping the \"mycila\" here seems appropriate if we change the package (which I believe would be appropriate), and using the suggesting naming makes it consistent with the rest of infrautils.\n\nThe other artifacts also use dots instead of hyphens, so that would be more consistent as well.\n\nIf you agree, then I would do the same for the other artifacts\u0027 names.",
+      "revId": "fe8a6a0d06412ac58ae4c4221cfb46eaebfafde9",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "05ac3ffd_f83c76a4",
+        "filename": "inject/inject-guice-extensions/closeable/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2019-11-28T04:22:14Z",
+      "side": 1,
+      "message": "I believe this is not actually required, as it\u0027s always there.",
+      "range": {
+        "startLine": 40,
+        "startChar": 17,
+        "endLine": 40,
+        "endChar": 27
+      },
+      "revId": "fe8a6a0d06412ac58ae4c4221cfb46eaebfafde9",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3f11212b_aafc68e0",
+        "filename": "inject/inject-guice-extensions/closeable/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2019-11-28T04:22:14Z",
+      "side": 1,
+      "message": "can also be removed if using ODL parent as per discussion above",
+      "revId": "fe8a6a0d06412ac58ae4c4221cfb46eaebfafde9",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9cdae715_2326750f",
+        "filename": "inject/inject-guice-extensions/closeable/src/main/java/com/mycila/guice/ext/closeable/CloseableInjector.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2019-11-28T04:22:14Z",
+      "side": 1,
+      "message": "Hm, something you need to consider is whether with this move it\u0027s not better to change this to be e.g. org.opendaylight.infrautils.inject.guice.extensions.closeable instead?  I think overall that would be better and clearer, and could also, in theory, avoid future classpath conflicts.  \n\nJust for \"attribution\", I would probably add a line into the JavaDoc of each of these new classes stating something to the effect of: \"This code originated in https://github.com/mycila/guice and was forked into OpenDaylight.\"\n\nWhat do you think?",
+      "revId": "fe8a6a0d06412ac58ae4c4221cfb46eaebfafde9",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "e723a660_04c8ac3d",
+        "filename": "inject/inject-guice-extensions/injection/.gitignore",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2019-11-28T04:22:14Z",
+      "side": 1,
+      "message": "remove this .gitignore",
+      "revId": "fe8a6a0d06412ac58ae4c4221cfb46eaebfafde9",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "be486f60_4c4a3932",
+        "filename": "inject/inject-guice-extensions/injection/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2019-11-28T04:22:14Z",
+      "side": 1,
+      "message": "I believe this is not actually required, as it\u0027s always there.",
+      "range": {
+        "startLine": 40,
+        "startChar": 17,
+        "endLine": 40,
+        "endChar": 27
+      },
+      "revId": "fe8a6a0d06412ac58ae4c4221cfb46eaebfafde9",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "01d414a8_4ced60a9",
+        "filename": "inject/inject-guice-extensions/injection/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2019-11-28T04:22:14Z",
+      "side": 1,
+      "message": "can also be removed if using ODL parent as per discussion in inject/inject-guice-extensions/closeable/pom.xml",
+      "range": {
+        "startLine": 44,
+        "startChar": 28,
+        "endLine": 44,
+        "endChar": 33
+      },
+      "revId": "fe8a6a0d06412ac58ae4c4221cfb46eaebfafde9",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5e130521_167b4ec9",
+        "filename": "inject/inject-guice-extensions/jsr250/.gitignore",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2019-11-28T04:22:14Z",
+      "side": 1,
+      "message": "remove this .gitignore",
+      "revId": "fe8a6a0d06412ac58ae4c4221cfb46eaebfafde9",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "6d567cd9_5b11e8e1",
+        "filename": "inject/inject-guice-extensions/jsr250/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2019-11-28T04:22:14Z",
+      "side": 1,
+      "message": "I believe this is not actually required, as it\u0027s always there.",
+      "revId": "fe8a6a0d06412ac58ae4c4221cfb46eaebfafde9",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a4f6d3a3_6ca0f5a0",
+        "filename": "inject/inject-guice-extensions/jsr250/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2019-11-28T04:22:14Z",
+      "side": 1,
+      "message": "can also be removed if using ODL parent as per discussion in inject/inject-guice-extensions/closeable/pom.xml",
+      "revId": "fe8a6a0d06412ac58ae4c4221cfb46eaebfafde9",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5e862ebf_60310741",
+        "filename": "inject/inject-guice-extensions/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2019-11-28T04:22:14Z",
+      "side": 1,
+      "message": "everything from here onwards until the end should not be required and could be removed; see the feedback in inject/inject-guice-extensions/closeable/pom.xml",
+      "revId": "fe8a6a0d06412ac58ae4c4221cfb46eaebfafde9",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "fd79575a_bd6f8dc4",
+        "filename": "inject/inject-guice/src/main/java/org/opendaylight/infrautils/inject/guice/AbstractCloseableModule.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2019-11-28T04:22:14Z",
+      "side": 1,
+      "message": "This is kind of separate and unrelated to the rest of this Gerrit.. do you perhaps want to raise a separate change just for this, just for clarity?  I\u0027d merge that immediately! :) Plus you get bonus points for 2 instead of 1 contributions... ;-)",
+      "revId": "fe8a6a0d06412ac58ae4c4221cfb46eaebfafde9",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": true
+    }
+  ]
+}

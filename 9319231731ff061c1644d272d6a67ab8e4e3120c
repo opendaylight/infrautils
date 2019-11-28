@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "31e9b7a9_f9782e5f",
+        "filename": "inject/inject-guice/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 5867
+      },
+      "writtenOn": "2019-11-28T04:22:14Z",
+      "side": 0,
+      "message": "would you perhaps instead want to replace this with a dependency to the new inject/inject-guice-extensions/jsr250 ?  Or if this is intended to be a \"clean up\", because infrautils.inject.guice doesn\u0027t actually require mycila (which, you are right, it does not seem to; so I would have no objection to such a clean up!), then would you like to first propose that as a separate Gerrit, just for clarity?  I\u0027m not 100% sure, but I wonder if this could cause some side effects in other ODL projects which rely on transitively having mycila on the classpath through this ...that\u0027s is another reason for perhaps better doing this gradually with a small dedicated change just for this?",
+      "revId": "9319231731ff061c1644d272d6a67ab8e4e3120c",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": true
+    }
+  ]
+}
