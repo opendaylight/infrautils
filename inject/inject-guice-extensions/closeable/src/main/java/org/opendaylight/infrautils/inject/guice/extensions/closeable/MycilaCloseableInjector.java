@@ -1,0 +1,152 @@
+/**
+ * Copyright (C) 2010 Mycila (mathieu.carbou@gmail.com).  All rights reserved.
+ *
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License v1.0 which accompanies this distribution,
+ * and is available at http://www.eclipse.org/legal/epl-v10.html
+ */
+package org.opendaylight.infrautils.inject.guice.extensions.closeable;
+
+import com.google.inject.Binding;
+import com.google.inject.Inject;
+import com.google.inject.Injector;
+import com.google.inject.Key;
+import com.google.inject.MembersInjector;
+import com.google.inject.Module;
+import com.google.inject.Provider;
+import com.google.inject.Scope;
+import com.google.inject.Scopes;
+import com.google.inject.TypeLiteral;
+import com.google.inject.spi.TypeConverterBinding;
+
+import java.lang.annotation.Annotation;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+/**
+ * This code originated in https://github.com/mycila/guice and was forked into OpenDaylight.
+ * @author Mathieu Carbou (mathieu.carbou@gmail.com) date 2013-07-21
+ */
+final class MycilaCloseableInjector implements CloseableInjector {
+
+    private volatile boolean closed;
+
+    @Inject
+    private volatile Injector injector;
+
+    @Override
+    public synchronized void close() {
+        if (!closed && injector != null) {
+            closed = true;
+            Injector current = injector;
+            injector = null;
+            for (Binding<?> binding : current.getAllBindings().values()) {
+                if (Scopes.isSingleton(binding)) {
+                    Object obj = binding.getProvider().get();
+                    if (obj instanceof InjectorCloseListener) {
+                        ((InjectorCloseListener) obj).onInjectorClosing();
+                    }
+                }
+            }
+        }
+    }
+
+    private Injector injector() {
+        if (closed || injector == null) {
+            throw new IllegalStateException("Injector closed !");
+        }
+        return injector;
+    }
+
+    @Override
+    public void injectMembers(Object instance) {
+        injector().injectMembers(instance);
+    }
+
+    @Override
+    public <T> MembersInjector<T> getMembersInjector(TypeLiteral<T> typeLiteral) {
+        return injector().getMembersInjector(typeLiteral);
+    }
+
+    @Override
+    public <T> MembersInjector<T> getMembersInjector(Class<T> type) {
+        return injector().getMembersInjector(type);
+    }
+
+    @Override
+    public Map<Key<?>, Binding<?>> getBindings() {
+        return injector().getBindings();
+    }
+
+    @Override
+    public Map<Key<?>, Binding<?>> getAllBindings() {
+        return injector().getAllBindings();
+    }
+
+    @Override
+    public <T> Binding<T> getBinding(Key<T> key) {
+        return injector().getBinding(key);
+    }
+
+    @Override
+    public <T> Binding<T> getBinding(Class<T> type) {
+        return injector().getBinding(type);
+    }
+
+    @Override
+    public <T> Binding<T> getExistingBinding(Key<T> key) {
+        return injector().getExistingBinding(key);
+    }
+
+    @Override
+    public <T> List<Binding<T>> findBindingsByType(TypeLiteral<T> type) {
+        return injector().findBindingsByType(type);
+    }
+
+    @Override
+    public <T> Provider<T> getProvider(Key<T> key) {
+        return injector().getProvider(key);
+    }
+
+    @Override
+    public <T> Provider<T> getProvider(Class<T> type) {
+        return injector().getProvider(type);
+    }
+
+    @Override
+    public <T> T getInstance(Key<T> key) {
+        return injector().getInstance(key);
+    }
+
+    @Override
+    public <T> T getInstance(Class<T> type) {
+        return injector().getInstance(type);
+    }
+
+    @Override
+    public Injector getParent() {
+        return injector().getParent();
+    }
+
+    @Override
+    public Injector createChildInjector(Iterable<? extends Module> modules) {
+        return injector().createChildInjector(modules);
+    }
+
+    @Override
+    public Injector createChildInjector(Module... modules) {
+        return injector().createChildInjector(modules);
+    }
+
+    @Override
+    public Map<Class<? extends Annotation>, Scope> getScopeBindings() {
+        return injector().getScopeBindings();
+    }
+
+    @Override
+    public Set<TypeConverterBinding> getTypeConverterBindings() {
+        return injector().getTypeConverterBindings();
+    }
+
+}
