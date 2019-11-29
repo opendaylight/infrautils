@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "11d638fa_f4dc5a3f",
+        "filename": "inject/inject-guice-extensions/closeable/.gitignore",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 8351
+      },
+      "writtenOn": "2019-11-29T12:54:20Z",
+      "side": 1,
+      "message": "Yep removed. This came accidentally.",
+      "parentUuid": "5d5bdbef_d449d45c",
+      "revId": "fe8a6a0d06412ac58ae4c4221cfb46eaebfafde9",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "c0cdf479_6fe96e74",
         "filename": "inject/inject-guice-extensions/closeable/pom.xml",
         "patchSetId": 2
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "b8d76d6e_f9daf0b4",
+        "filename": "inject/inject-guice-extensions/closeable/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 8351
+      },
+      "writtenOn": "2019-11-29T12:54:20Z",
+      "side": 1,
+      "message": "Changed it. I see your point. Keeps the dependencies/versions in one place.",
+      "parentUuid": "c0cdf479_6fe96e74",
+      "revId": "fe8a6a0d06412ac58ae4c4221cfb46eaebfafde9",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "275613f4_cd4555ec",
         "filename": "inject/inject-guice-extensions/closeable/pom.xml",
         "patchSetId": 2
@@ -47,6 +83,24 @@
       "writtenOn": "2019-11-28T04:22:14Z",
       "side": 1,
       "message": "In line with the comment re. the package in  inject/inject-guice-extensions/closeable/src/main/java/com/mycila/guice/ext/closeable/CloseableInjector.java, I\u0027m wondering if you wouldn\u0027t want to instead name this artifact inject.guice.extensions.closeable instead?  \n\nDropping the \"mycila\" here seems appropriate if we change the package (which I believe would be appropriate), and using the suggesting naming makes it consistent with the rest of infrautils.\n\nThe other artifacts also use dots instead of hyphens, so that would be more consistent as well.\n\nIf you agree, then I would do the same for the other artifacts\u0027 names.",
+      "revId": "fe8a6a0d06412ac58ae4c4221cfb46eaebfafde9",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c6b5c288_c5071ea3",
+        "filename": "inject/inject-guice-extensions/closeable/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 8351
+      },
+      "writtenOn": "2019-11-29T12:54:20Z",
+      "side": 1,
+      "message": "sure. updated to be inline with the convention here.",
+      "parentUuid": "275613f4_cd4555ec",
       "revId": "fe8a6a0d06412ac58ae4c4221cfb46eaebfafde9",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": true
@@ -76,6 +130,30 @@
     },
     {
       "key": {
+        "uuid": "54af2166_964488aa",
+        "filename": "inject/inject-guice-extensions/closeable/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 8351
+      },
+      "writtenOn": "2019-11-29T12:54:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "05ac3ffd_f83c76a4",
+      "range": {
+        "startLine": 40,
+        "startChar": 17,
+        "endLine": 40,
+        "endChar": 27
+      },
+      "revId": "fe8a6a0d06412ac58ae4c4221cfb46eaebfafde9",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "3f11212b_aafc68e0",
         "filename": "inject/inject-guice-extensions/closeable/pom.xml",
         "patchSetId": 2
@@ -87,6 +165,24 @@
       "writtenOn": "2019-11-28T04:22:14Z",
       "side": 1,
       "message": "can also be removed if using ODL parent as per discussion above",
+      "revId": "fe8a6a0d06412ac58ae4c4221cfb46eaebfafde9",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "828d202d_be2dd97e",
+        "filename": "inject/inject-guice-extensions/closeable/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 8351
+      },
+      "writtenOn": "2019-11-29T12:54:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f11212b_aafc68e0",
       "revId": "fe8a6a0d06412ac58ae4c4221cfb46eaebfafde9",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": true
@@ -110,6 +206,24 @@
     },
     {
       "key": {
+        "uuid": "290c966f_ed468ec7",
+        "filename": "inject/inject-guice-extensions/closeable/src/main/java/com/mycila/guice/ext/closeable/CloseableInjector.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 8351
+      },
+      "writtenOn": "2019-11-29T12:54:20Z",
+      "side": 1,
+      "message": "Yep makes sense. I thought about doing this earlier but was not sure how to retain the fact that this code originated in another repo.",
+      "parentUuid": "9cdae715_2326750f",
+      "revId": "fe8a6a0d06412ac58ae4c4221cfb46eaebfafde9",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "e723a660_04c8ac3d",
         "filename": "inject/inject-guice-extensions/injection/.gitignore",
         "patchSetId": 2
@@ -127,6 +241,24 @@
     },
     {
       "key": {
+        "uuid": "f1409501_aa503e7e",
+        "filename": "inject/inject-guice-extensions/injection/.gitignore",
+        "patchSetId": 2
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 8351
+      },
+      "writtenOn": "2019-11-29T12:54:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e723a660_04c8ac3d",
+      "revId": "fe8a6a0d06412ac58ae4c4221cfb46eaebfafde9",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "be486f60_4c4a3932",
         "filename": "inject/inject-guice-extensions/injection/pom.xml",
         "patchSetId": 2
@@ -138,6 +270,30 @@
       "writtenOn": "2019-11-28T04:22:14Z",
       "side": 1,
       "message": "I believe this is not actually required, as it\u0027s always there.",
+      "range": {
+        "startLine": 40,
+        "startChar": 17,
+        "endLine": 40,
+        "endChar": 27
+      },
+      "revId": "fe8a6a0d06412ac58ae4c4221cfb46eaebfafde9",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "86b8e670_8ddde236",
+        "filename": "inject/inject-guice-extensions/injection/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 8351
+      },
+      "writtenOn": "2019-11-29T12:54:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "be486f60_4c4a3932",
       "range": {
         "startLine": 40,
         "startChar": 17,
@@ -173,6 +329,30 @@
     },
     {
       "key": {
+        "uuid": "6d3e6eba_c8634e14",
+        "filename": "inject/inject-guice-extensions/injection/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 8351
+      },
+      "writtenOn": "2019-11-29T12:54:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "01d414a8_4ced60a9",
+      "range": {
+        "startLine": 44,
+        "startChar": 28,
+        "endLine": 44,
+        "endChar": 33
+      },
+      "revId": "fe8a6a0d06412ac58ae4c4221cfb46eaebfafde9",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5e130521_167b4ec9",
         "filename": "inject/inject-guice-extensions/jsr250/.gitignore",
         "patchSetId": 2
@@ -184,6 +364,24 @@
       "writtenOn": "2019-11-28T04:22:14Z",
       "side": 1,
       "message": "remove this .gitignore",
+      "revId": "fe8a6a0d06412ac58ae4c4221cfb46eaebfafde9",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "470ad0c9_e50c6063",
+        "filename": "inject/inject-guice-extensions/jsr250/.gitignore",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 8351
+      },
+      "writtenOn": "2019-11-29T12:54:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5e130521_167b4ec9",
       "revId": "fe8a6a0d06412ac58ae4c4221cfb46eaebfafde9",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": true
@@ -207,6 +405,24 @@
     },
     {
       "key": {
+        "uuid": "53653a5b_2651e499",
+        "filename": "inject/inject-guice-extensions/jsr250/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 8351
+      },
+      "writtenOn": "2019-11-29T12:54:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6d567cd9_5b11e8e1",
+      "revId": "fe8a6a0d06412ac58ae4c4221cfb46eaebfafde9",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "a4f6d3a3_6ca0f5a0",
         "filename": "inject/inject-guice-extensions/jsr250/pom.xml",
         "patchSetId": 2
@@ -224,6 +440,24 @@
     },
     {
       "key": {
+        "uuid": "dc879f1e_79d92c85",
+        "filename": "inject/inject-guice-extensions/jsr250/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 8351
+      },
+      "writtenOn": "2019-11-29T12:54:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a4f6d3a3_6ca0f5a0",
+      "revId": "fe8a6a0d06412ac58ae4c4221cfb46eaebfafde9",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "5e862ebf_60310741",
         "filename": "inject/inject-guice-extensions/pom.xml",
         "patchSetId": 2
@@ -235,6 +469,24 @@
       "writtenOn": "2019-11-28T04:22:14Z",
       "side": 1,
       "message": "everything from here onwards until the end should not be required and could be removed; see the feedback in inject/inject-guice-extensions/closeable/pom.xml",
+      "revId": "fe8a6a0d06412ac58ae4c4221cfb46eaebfafde9",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "011c49d8_0c7d2d4c",
+        "filename": "inject/inject-guice-extensions/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 8351
+      },
+      "writtenOn": "2019-11-29T12:54:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5e862ebf_60310741",
       "revId": "fe8a6a0d06412ac58ae4c4221cfb46eaebfafde9",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
       "unresolved": true
