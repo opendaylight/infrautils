@@ -1,6 +1,6 @@
 ---
 project_cfg: opendaylight
 project: ODL InfraUtils
-version: Sodium
+version: Magnesium 
 copyright: 2016, Faseela K
 author: Faseela K, Ravit Peretz
