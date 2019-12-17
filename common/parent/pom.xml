@@ -88,21 +88,16 @@
           <name>!m2e.version</name>
         </property>
         <!-- Effectively disables error-prone, as it cannot deal with maven.compiler.release -->
-        <jdk>[15,)</jdk>
+        <jdk>[99,)</jdk>
       </activation>
 
       <dependencies>
         <dependency>
           <groupId>com.google.errorprone</groupId>
-          <artifactId>error_prone_core</artifactId>
+          <artifactId>error_prone_annotations</artifactId>
+          <!-- Keep this version in sync with annotationProcessorPaths declaration below -->
           <version>2.3.3</version>
           <scope>provided</scope>
-          <exclusions>
-            <exclusion>
-              <groupId>com.github.stephenc.jcip</groupId>
-              <artifactId>jcip-annotations</artifactId>
-            </exclusion>
-          </exclusions>
         </dependency>
       </dependencies>
 
@@ -185,6 +180,14 @@
                   -Xep:AndroidJdkLibsChecker:OFF
                   -Xep:Java7ApiChecker:OFF</arg>
               </compilerArgs>
+              <annotationProcessorPaths combine.children="append">
+                <path>
+                  <groupId>com.google.errorprone</groupId>
+                  <artifactId>error_prone_core</artifactId>
+                  <!-- Keep this version in sync with dependency declaration above -->
+                  <version>2.3.3</version>
+                </path>
+              </annotationProcessorPaths>
             </configuration>
           </plugin>
         </plugins>
