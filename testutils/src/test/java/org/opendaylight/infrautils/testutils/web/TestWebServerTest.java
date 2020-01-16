@@ -8,7 +8,7 @@
 package org.opendaylight.infrautils.testutils.web;
 
 import static com.google.common.truth.Truth.assertThat;
-import static org.opendaylight.infrautils.testutils.Asserts.assertThrows;
+import static org.junit.Assert.assertThrows;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
