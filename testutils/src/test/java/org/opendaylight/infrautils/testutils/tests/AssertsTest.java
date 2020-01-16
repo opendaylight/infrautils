@@ -19,6 +19,7 @@ import org.opendaylight.infrautils.testutils.Asserts;
  *
  * @author Michael Vorburger.ch
  */
+@Deprecated(forRemoval = true)
 public class AssertsTest {
 
     @Test

@@ -8,7 +8,7 @@
 package org.opendaylight.infrautils.testutils.web;
 
 import static com.google.common.truth.Truth.assertThat;
-import static org.opendaylight.infrautils.testutils.Asserts.assertThrows;
+import static org.junit.Assert.assertThrows;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -61,7 +61,7 @@ public class TestWebServerTest {
         }
     }
 
-    private static void checkTestServlet(TestWebServer webServer, String urlSuffix) throws IOException {
+    private static void checkTestServlet(final TestWebServer webServer, final String urlSuffix) throws IOException {
         String body = new TestWebClient(webServer).request(Method.GET, urlSuffix).getBody();
         assertThat(body).startsWith("hello, world");
     }
@@ -69,7 +69,7 @@ public class TestWebServerTest {
     @SuppressWarnings("serial")
     private static class TestServlet extends HttpServlet {
         @Override
-        protected void doGet(HttpServletRequest req, HttpServletResponse response) throws IOException {
+        protected void doGet(final HttpServletRequest req, final HttpServletResponse response) throws IOException {
             response.getOutputStream().println("hello, world");
         }
     }
@@ -77,7 +77,7 @@ public class TestWebServerTest {
     @SuppressWarnings("serial")
     private static class BrokenServlet extends HttpServlet {
         @Override
-        protected void doGet(HttpServletRequest req, HttpServletResponse response) throws IOException {
+        protected void doGet(final HttpServletRequest req, final HttpServletResponse response) throws IOException {
             throw new IOException();
         }
     }

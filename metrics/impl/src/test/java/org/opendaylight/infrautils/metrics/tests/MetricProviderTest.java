@@ -8,7 +8,7 @@
 package org.opendaylight.infrautils.metrics.tests;
 
 import static com.google.common.truth.Truth.assertThat;
-import static org.opendaylight.infrautils.testutils.Asserts.assertThrows;
+import static org.junit.Assert.assertThrows;
 
 import com.google.errorprone.annotations.Var;
 import java.io.FileNotFoundException;
@@ -73,7 +73,7 @@ public class MetricProviderTest {
 
     @Test
     public void testMeterWith4Labels() {
-        Labeled<Labeled<Labeled<Labeled<Meter>>>> meterWith4Labels = (Labeled<Labeled<Labeled<Labeled<Meter>>>>) metrics
+        Labeled<Labeled<Labeled<Labeled<Meter>>>> meterWith4Labels = metrics
                 .newMeter(MetricDescriptor.builder().anchor(this).project("infrautils")
                                 .module("metrics").id("test_meter4").build(),
                         "label1", "label2", "label3", "label4");
