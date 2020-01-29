@@ -6,6 +6,8 @@
 
   <cm:cm-properties id="initialProperties" persistent-id="org.ops4j.pax.web"/>
 
+  <service ref="httpClient" interface="org.opendaylight.infrautils.diagstatus.shell.HttpClientService"/>
+
   <bean id="httpClient" class="org.opendaylight.infrautils.diagstatus.shell.HttpClient">
     <argument ref="initialProperties" />
   </bean>

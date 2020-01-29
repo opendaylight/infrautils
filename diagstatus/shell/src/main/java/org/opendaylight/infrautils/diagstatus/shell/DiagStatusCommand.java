@@ -46,14 +46,14 @@ public class DiagStatusCommand implements org.apache.karaf.shell.commands.Action
 
     private final DiagStatusServiceMBean diagStatusServiceMBean;
     private final ClusterMemberInfo clusterMemberInfoProvider;
-    private final HttpClient httpClient;
+    private final HttpClientService httpClient;
 
     @Option(name = "-n", aliases = {"--node"})
     String nip;
 
     public DiagStatusCommand(DiagStatusServiceMBean diagStatusServiceMBean,
                              ClusterMemberInfo clusterMemberInfoProvider,
-                             HttpClient httpClient) {
+                             HttpClientService httpClient) {
         this.diagStatusServiceMBean = diagStatusServiceMBean;
         this.clusterMemberInfoProvider = clusterMemberInfoProvider;
         this.httpClient = httpClient;
