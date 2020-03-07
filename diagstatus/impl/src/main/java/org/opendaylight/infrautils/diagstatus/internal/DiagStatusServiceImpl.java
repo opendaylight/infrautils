@@ -11,7 +11,6 @@ import static org.opendaylight.infrautils.diagstatus.ServiceState.STARTING;
 
 import com.google.common.collect.ImmutableList;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
