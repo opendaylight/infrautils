@@ -12,7 +12,6 @@ import com.google.gson.GsonBuilder;
 import java.time.Instant;
 import java.util.Collection;
 import java.util.Objects;
-
 import org.opendaylight.infrautils.ready.SystemState;
 
 /**

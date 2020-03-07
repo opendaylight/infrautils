@@ -18,12 +18,10 @@ import java.nio.charset.Charset;
 import java.time.Duration;
 import java.util.Calendar;
 import java.util.List;
-
 import org.junit.Test;
 import org.opendaylight.infrautils.metrics.internal.MetricsFileReporter;
 
 public class MetricsFileReporterTest {
-
     @Test
     public void testReporter() throws IOException {
         MetricRegistry registry = new MetricRegistry();
