@@ -48,12 +48,6 @@
       <type>xml</type>
       <classifier>features</classifier>
     </dependency>
-
-    <dependency>
-      <groupId>org.osgi</groupId>
-      <!-- required due to https://jira.opendaylight.org/browse/ODLPARENT-136 -->
-      <artifactId>org.osgi.compendium</artifactId>
-    </dependency>
   </dependencies>
 
 </project>
