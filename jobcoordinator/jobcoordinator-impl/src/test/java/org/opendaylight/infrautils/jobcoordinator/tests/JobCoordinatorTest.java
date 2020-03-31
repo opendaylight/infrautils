@@ -7,8 +7,8 @@
  */
 package org.opendaylight.infrautils.jobcoordinator.tests;
 
-import static com.google.common.truth.Truth.assertThat;
 import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
 import com.google.common.util.concurrent.Futures;
@@ -169,7 +169,7 @@ public class JobCoordinatorTest {
         TestCallable testCallable = new TestCallable(false, -1);
         jobCoordinator.enqueueJob(getClass().getName(), testCallable);
         Awaitility.await().until(jobCoordinator::getIncompleteTaskCount, is(0L));
-        assertThat(testCallable.getTries()).isEqualTo(1);
+        assertEquals(1, testCallable.getTries());
     }
 
     @Test
@@ -177,7 +177,7 @@ public class JobCoordinatorTest {
         TestCallable testCallable = new TestCallable(false, 0);
         jobCoordinator.enqueueJob(getClass().getName(), testCallable);
         Awaitility.await().until(jobCoordinator::getIncompleteTaskCount, is(0L));
-        assertThat(testCallable.getTries()).isEqualTo(1);
+        assertEquals(1, testCallable.getTries());
     }
 
     @Test
@@ -196,7 +196,7 @@ public class JobCoordinatorTest {
     public void testTwoJobsSameKey() {
         WaitingCallable waitingCallable1 = new WaitingCallable();
         jobCoordinator.enqueueJob(getClass().getName(), waitingCallable1);
-        assertThat(jobCoordinator.getCreatedTaskCount()).isEqualTo(1);
+        assertEquals(1, jobCoordinator.getCreatedTaskCount());
         Awaitility.await().until(() -> waitingCallable1.isWaiting);
         WaitingCallable waitingCallable2 = new WaitingCallable();
         jobCoordinator.enqueueJob(getClass().getName(), waitingCallable2);
@@ -205,7 +205,7 @@ public class JobCoordinatorTest {
 
         assertIncomplete(2);
         assertPending(1);
-        assertThat(waitingCallable2.isWaiting).isFalse();
+        assertFalse(waitingCallable2.isWaiting);
         waitingCallable1.stopWaiting();
         Awaitility.await().until(jobCoordinator::getIncompleteTaskCount, is(1L));
         Awaitility.await().until(() -> waitingCallable2.isWaiting);
@@ -241,7 +241,7 @@ public class JobCoordinatorTest {
         jobCoordinator.enqueueJob(getClass().getName(), testCallable);
         Awaitility.await().until(jobCoordinator::getIncompleteTaskCount, is(0L));
         assertFailed(1);
-        assertThat(testCallable.getTries()).isEqualTo(1);
+        assertEquals(1, testCallable.getTries());
     }
 
     @Test
@@ -250,7 +250,7 @@ public class JobCoordinatorTest {
         jobCoordinator.enqueueJob(getClass().getName(), testCallable);
         Awaitility.await().until(jobCoordinator::getIncompleteTaskCount, is(0L));
         assertFailed(1);
-        assertThat(testCallable.getTries()).isEqualTo(3);
+        assertEquals(3, testCallable.getTries());
     }
 
     @Test
@@ -259,7 +259,7 @@ public class JobCoordinatorTest {
         jobCoordinator.enqueueJob(getClass().getName(), testCallable, 0);
         Awaitility.await().until(jobCoordinator::getIncompleteTaskCount, is(0L));
         assertFailed(1);
-        assertThat(testCallable.getTries()).isEqualTo(1);
+        assertEquals(1, testCallable.getTries());
     }
 
     @Test
@@ -267,7 +267,7 @@ public class JobCoordinatorTest {
         TestCallable testCallable = new TestCallable(true, 1);
         jobCoordinator.enqueueJob(getClass().getName(), testCallable, 3);
         Awaitility.await().until(jobCoordinator::getIncompleteTaskCount, is(0L));
-        assertThat(testCallable.getTries()).isEqualTo(3);
+        assertEquals(3, testCallable.getTries());
         assertRetry(3);
         assertFailed(1);
     }
@@ -281,7 +281,7 @@ public class JobCoordinatorTest {
         // ====================================================================================
         // NB: Contrary to failed futures, exceptions thrown from call() do NOT cause retries!
         // ====================================================================================
-        assertThat(testCallable.getTries()).isEqualTo(1);
+        assertEquals(1, testCallable.getTries());
         assertRetry(0);
     }
 
@@ -290,12 +290,12 @@ public class JobCoordinatorTest {
         TestCallable testCallable1 = new TestCallable(true, 1);
         jobCoordinator.enqueueJob("key1", testCallable1, 3);
         Awaitility.await().until(jobCoordinator::getIncompleteTaskCount, is(0L));
-        assertThat(testCallable1.getTries()).isEqualTo(3);
+        assertEquals(3, testCallable1.getTries());
 
         TestCallable testCallable2 = new TestCallable(true, 1);
         jobCoordinator.enqueueJob("key2", testCallable2, 3);
         Awaitility.await().until(jobCoordinator::getIncompleteTaskCount, is(0L));
-        assertThat(testCallable2.getTries()).isEqualTo(3);
+        assertEquals(3, testCallable2.getTries());
 
         assertRetry(6);
         assertFailed(2);
@@ -308,8 +308,8 @@ public class JobCoordinatorTest {
 
         jobCoordinator.enqueueJob(getClass().getName(), testCallable, rollbackCallable, 3);
         Awaitility.await().until(jobCoordinator::getIncompleteTaskCount, is(0L));
-        assertThat(testCallable.getTries()).isEqualTo(3);
-        assertThat(rollbackCallable.getRetries()).isEqualTo(1);
+        assertEquals(3, testCallable.getTries());
+        assertEquals(1, rollbackCallable.getRetries());
         assertRetry(3);
         assertFailed(1);
     }
@@ -324,26 +324,26 @@ public class JobCoordinatorTest {
     }
 
     private void assertCleared(int count) {
-        assertThat(jobCoordinator.getClearedTaskCount()).named("clearedTasks").isEqualTo(count);
+        assertEquals(count, jobCoordinator.getClearedTaskCount());
     }
 
     private void assertCreated(int count) {
-        assertThat(jobCoordinator.getCreatedTaskCount()).named("createdTasks").isEqualTo(count);
+        assertEquals(count, jobCoordinator.getCreatedTaskCount());
     }
 
     private void assertIncomplete(int count) {
-        assertThat(jobCoordinator.getIncompleteTaskCount()).named("incompleteTasks").isEqualTo(count);
+        assertEquals(count, jobCoordinator.getIncompleteTaskCount());
     }
 
     private void assertPending(int count) {
-        assertThat(jobCoordinator.getPendingTaskCount()).named("pendingTasks").isEqualTo(count);
+        assertEquals(count, jobCoordinator.getPendingTaskCount());
     }
 
     private void assertFailed(int count) {
-        assertThat(jobCoordinator.getFailedJobCount()).named("failedTasks").isEqualTo(count);
+        assertEquals(count, jobCoordinator.getFailedJobCount());
     }
 
     private void assertRetry(int count) {
-        assertThat(jobCoordinator.getRetriesCount()).named("retries").isEqualTo(count);
+        assertEquals(count, jobCoordinator.getRetriesCount());
     }
 }

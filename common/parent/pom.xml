@@ -13,7 +13,7 @@
   <parent>
     <groupId>org.opendaylight.odlparent</groupId>
     <artifactId>bundle-parent</artifactId>
-    <version>6.0.4</version>
+    <version>7.0.1</version>
     <relativePath/>
   </parent>
 
@@ -46,6 +46,16 @@
         <groupId>io.github.classgraph</groupId>
         <artifactId>classgraph</artifactId>
         <version>4.8.47</version>
+      </dependency>
+      <dependency>
+        <groupId>com.mycila.guice.extensions</groupId>
+        <artifactId>mycila-guice-jsr250</artifactId>
+        <version>4.0.rc1</version>
+      </dependency>
+      <dependency>
+        <groupId>com.google.inject</groupId>
+        <artifactId>guice</artifactId>
+        <version>4.2.2</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
