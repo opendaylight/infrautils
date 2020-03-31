@@ -5,11 +5,9 @@
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html
  */
-
 package org.opendaylight.infrautils.jobcoordinator.internal;
 
 import java.lang.management.ManagementFactory;
-
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import javax.management.InstanceAlreadyExistsException;
@@ -19,18 +17,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Singleton
-public final class  JcMXBeanRegistration {
+public final class JcMXBeanRegistration {
+    private static final Logger LOG = LoggerFactory.getLogger(JcMXBeanRegistration.class);
+    private static final String OBJ_ID = "org.opendaylight.infrautils.jobcoordinator.internal:type=JcServiceStatus";
 
     private final MBeanServer mbeanServer;
     private final JcServiceStatus jcServiceStatus;
-    private static final String OBJ_ID = "org.opendaylight.infrautils.jobcoordinator.internal:type=JcServiceStatus";
-
-    private static final Logger LOG = LoggerFactory.getLogger(JcMXBeanRegistration.class);
 
     @Inject
     @SuppressWarnings("checkstyle:IllegalCatch")
     public JcMXBeanRegistration(JcServiceStatus jcServiceStatus) {
-
         this.jcServiceStatus = jcServiceStatus;
         mbeanServer = ManagementFactory.getPlatformMBeanServer();
 
@@ -42,7 +38,6 @@ public final class  JcMXBeanRegistration {
     }
 
     private void createMXBeanForJcService() throws Exception {
-
         if (mbeanServer != null) {
             try {
                 mbeanServer.registerMBean(jcServiceStatus, new ObjectName(OBJ_ID));
@@ -54,6 +49,4 @@ public final class  JcMXBeanRegistration {
             }
         }
     }
-
-
 }
