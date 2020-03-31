@@ -59,7 +59,7 @@
       <!-- TODO remove this when we can use the WebServer/WebContext API,
            instead of directly the raw OSGi HttpService, in OsgiWebInitializer: -->
       <groupId>org.osgi</groupId>
-      <artifactId>org.osgi.compendium</artifactId>
+      <artifactId>osgi.cmpn</artifactId>
     </dependency>
 
     <dependency>
