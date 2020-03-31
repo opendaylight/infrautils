@@ -7,7 +7,7 @@
  */
 package org.opendaylight.infrautils.inject.guice.testutils.tests;
 
-import static com.google.common.truth.Truth.assertThat;
+import static org.junit.Assert.assertTrue;
 
 import javax.inject.Inject;
 import org.junit.Rule;
@@ -25,8 +25,9 @@ public class ExampleGuiceRuleTest {
 
     @Inject SomeInterfaceWithPostConstruct someService;
 
-    @Test public void testGuiceWithRule() {
-        assertThat(someService.isInit()).named("isInit()").isTrue();
+    @Test
+    public void testGuiceWithRule() {
+        assertTrue(someService.isInit());
     }
 
     public static class TestModule extends AbstractGuiceJsr250Module {
