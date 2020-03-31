@@ -7,7 +7,7 @@
  */
 package org.opendaylight.infrautils.inject.guice.testutils.tests;
 
-import static com.google.common.truth.Truth.assertThat;
+import static org.junit.Assert.assertTrue;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
@@ -29,7 +29,7 @@ public class ExamplePureGuiceTest {
     public void testPostConstruct() {
         Injector injector = Guice.createInjector(new TestModule());
         SomeClassWithPostConstruct someClass = injector.getInstance(SomeClassWithPostConstruct.class);
-        assertThat(someClass.isInit).named("isInit").isTrue();
+        assertTrue(someClass.isInit);
     }
 
     static class TestModule extends AbstractModule {
