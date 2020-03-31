@@ -13,7 +13,6 @@ import static org.opendaylight.infrautils.diagstatus.ServiceState.OPERATIONAL;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.net.InetAddresses;
-
 import java.io.IOException;
 import java.net.InetAddress;
 import java.util.Collections;
@@ -21,7 +20,6 @@ import javax.management.InstanceNotFoundException;
 import javax.management.MBeanRegistrationException;
 import javax.management.MalformedObjectNameException;
 import javax.servlet.ServletException;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
