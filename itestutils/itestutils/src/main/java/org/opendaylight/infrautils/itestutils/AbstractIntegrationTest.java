@@ -59,6 +59,7 @@ public abstract class AbstractIntegrationTest {
     private static final String MAVEN_REPO_LOCAL = "maven.repo.local";
     private static final String KARAF_DEBUG_PROP = "karaf.debug";
     private static final String KARAF_DEBUG_PORT = "5005";
+    private static final String ETC_ORG_OPS4J_PAX_URL_MVN_CFG = "etc/org.ops4j.pax.url.mvn.cfg";
 
     @Configuration
     public final Option[] config() {
@@ -82,12 +83,20 @@ public abstract class AbstractIntegrationTest {
         LOG.info("Karaf v{} used: {}", karafVersion, karafURL.toString());
 
         Option[] defaultOptions = new Option[] {
+            // Make sure karaf's default repository is consulted before anything else
+            editKarafConfigurationFile(MAVEN_REPO_LOCAL, ETC_ORG_OPS4J_PAX_URL_MVN_CFG,
+                "org.ops4j.pax.url.mvn.defaultRepositories",
+                "file:${karaf.home}/${karaf.default.repository}@id=system.repository"),
+            editKarafConfigurationFile(MAVEN_REPO_LOCAL, ETC_ORG_OPS4J_PAX_URL_MVN_CFG,
+                "org.ops4j.pax.url.mvn.repositories", "https://repo1.maven.org/maven2@id=central "),
+
+
             // We need this, for the moment, because the feature repo is read from the local Maven repo
             // TODO remove this, and make all ITs use a Karaf dist which has the feature already
             //      so there would be no need to access repo; that would lead to better isolation
-            editKarafConfigurationFile(MAVEN_REPO_LOCAL, "etc/org.ops4j.pax.url.mvn.cfg",
+            editKarafConfigurationFile(MAVEN_REPO_LOCAL, ETC_ORG_OPS4J_PAX_URL_MVN_CFG,
                     "org.ops4j.pax.url.mvn.localRepository", System.getProperty(MAVEN_REPO_LOCAL, "")),
-            editKarafConfigurationFile(MAVEN_REPO_LOCAL, "etc/org.ops4j.pax.url.mvn.cfg",
+            editKarafConfigurationFile(MAVEN_REPO_LOCAL, ETC_ORG_OPS4J_PAX_URL_MVN_CFG,
                     "org.ops4j.pax.url.mvn.disableAether", "true"),
 
             when(Boolean.getBoolean(KARAF_DEBUG_PROP))
@@ -167,13 +176,14 @@ public abstract class AbstractIntegrationTest {
     }
 
     @ProbeBuilder
-    public TestProbeBuilder probeConfiguration(TestProbeBuilder probe) {
+    public TestProbeBuilder probeConfiguration(final TestProbeBuilder probe) {
         probe.addTest(AbstractIntegrationTest.class);
         // TODO util to enumerate all inner classes; probe.addTest(LogRule.class);
         return probe;
     }
 
-    private static Option editKarafConfigurationFile(String source, String configFilePath, String key, String value) {
+    private static Option editKarafConfigurationFile(final String source, final String configFilePath, final String key,
+            final String value) {
         LOG.warn("{}: In {} change {} = {}", source, configFilePath, key, value);
         return KarafDistributionOption.editConfigurationFilePut(configFilePath, key, value);
     }
