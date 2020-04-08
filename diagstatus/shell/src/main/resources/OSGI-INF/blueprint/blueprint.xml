@@ -4,13 +4,7 @@
   <reference id="diagStatusServiceMBean" interface="org.opendaylight.infrautils.diagstatus.DiagStatusServiceMBean"/>
   <reference id="clusterMemberInfoProvider" interface="org.opendaylight.infrautils.diagstatus.ClusterMemberInfo"/>
 
-  <cm:cm-properties id="initialProperties" persistent-id="org.ops4j.pax.web"/>
-
-  <service ref="httpClient" interface="org.opendaylight.infrautils.diagstatus.shell.HttpClientService"/>
-
-  <bean id="httpClient" class="org.opendaylight.infrautils.diagstatus.shell.HttpClient">
-    <argument ref="initialProperties" />
-  </bean>
+  <reference id="httpClient" interface="org.opendaylight.infrautils.diagstatus.HttpClientService"/>
 
   <command-bundle xmlns="http://karaf.apache.org/xmlns/shell/v1.1.0">
     <command>
