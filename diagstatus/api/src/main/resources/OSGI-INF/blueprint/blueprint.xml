@@ -1,0 +1,11 @@
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+           xmlns:cm="http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.2.0">
+
+  <cm:cm-properties id="initialProperties" persistent-id="org.ops4j.pax.web"/>
+
+  <service ref="httpClient" interface="org.opendaylight.infrautils.diagstatus.HttpClientService"/>
+
+  <bean id="httpClient" class="org.opendaylight.infrautils.diagstatus.HttpClient">
+    <argument ref="initialProperties" />
+  </bean>
+</blueprint>
