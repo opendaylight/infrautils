@@ -33,6 +33,10 @@
             <artifactId>gson</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>osgi.cmpn</artifactId>
+        </dependency>
+        <dependency>
             <groupId>javax.inject</groupId>
             <artifactId>javax.inject</artifactId>
         </dependency>
@@ -40,12 +44,6 @@
             <groupId>org.opendaylight.infrautils</groupId>
             <artifactId>diagstatus-impl</artifactId>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.osgi</groupId>
-            <artifactId>org.osgi.service.cm</artifactId>
-            <version>1.5.0</version>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.opendaylight.infrautils</groupId>
