@@ -28,20 +28,20 @@ class JobEntry {
     private final String id = "J" + ID_GENERATOR.getAndIncrement();
     private final String key;
     private final String queueId;
-    private volatile @Nullable Callable<List<ListenableFuture<Void>>> mainWorker;
+    private volatile @Nullable Callable<List<? extends ListenableFuture<?>>> mainWorker;
     private final @Nullable RollbackCallable rollbackWorker;
     private final int maxRetries;
     private volatile int retryCount;
     private static final AtomicIntegerFieldUpdater<JobEntry> RETRY_COUNT_FIELD_UPDATER =
             AtomicIntegerFieldUpdater.newUpdater(JobEntry.class, "retryCount");
-    private volatile @Nullable List<ListenableFuture<Void>> futures;
+    private volatile @Nullable List<? extends ListenableFuture<?>> futures;
     private long startTime = -1;
     private long endTime = -1;
 
 
     @SuppressFBWarnings(value = "NP_NONNULL_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR",
             justification = "TYPE_USE and SpotBugs")
-    JobEntry(String key, String queueId, Callable<List<ListenableFuture<Void>>> mainWorker,
+    JobEntry(String key, String queueId, Callable<List<? extends ListenableFuture<?>>> mainWorker,
              @Nullable RollbackCallable rollbackWorker,
             int maxRetries) {
         this.key = key;
@@ -71,11 +71,11 @@ class JobEntry {
         return queueId;
     }
 
-    public @Nullable Callable<List<ListenableFuture<Void>>> getMainWorker() {
+    public @Nullable Callable<List<? extends ListenableFuture<?>>> getMainWorker() {
         return mainWorker;
     }
 
-    public void setMainWorker(@Nullable Callable<List<ListenableFuture<Void>>> mainWorker) {
+    public void setMainWorker(@Nullable Callable<List<? extends ListenableFuture<?>>> mainWorker) {
         this.mainWorker = mainWorker;
     }
 
@@ -99,8 +99,8 @@ class JobEntry {
         return RETRY_COUNT_FIELD_UPDATER.decrementAndGet(this);
     }
 
-    public List<ListenableFuture<Void>> getFutures() {
-        List<ListenableFuture<Void>> nullableFutures = futures;
+    public List<? extends ListenableFuture<?>> getFutures() {
+        List<? extends ListenableFuture<?>> nullableFutures = futures;
         return nullableFutures != null ? nullableFutures : emptyList();
     }
 
@@ -123,7 +123,7 @@ class JobEntry {
         this.endTime = endTime;
     }
 
-    public void setFutures(List<ListenableFuture<Void>> futures) {
+    public void setFutures(List<? extends ListenableFuture<?>> futures) {
         this.futures = futures;
     }
 

@@ -48,14 +48,14 @@ public class JobCoordinatorTest {
 
     private static final Exception JOB_EXCEPTION = new JobException("Job is failed intentionally");
 
-    private static class WaitingCallable implements Callable<List<ListenableFuture<Void>>> {
+    private static class WaitingCallable implements Callable<List<? extends ListenableFuture<?>>> {
 
         @GuardedBy("this")
         private boolean isNotified = false;
         public volatile boolean isWaiting = false;
 
         @Override
-        public @Nullable List<ListenableFuture<Void>> call() throws Exception {
+        public @Nullable List<? extends ListenableFuture<?>> call() throws Exception {
             synchronized (this) {
                 isWaiting = true;
                 while (!isNotified) {
@@ -83,11 +83,11 @@ public class JobCoordinatorTest {
         }
     }
 
-    private static class TestCallable implements Callable<List<ListenableFuture<Void>>> {
+    private static class TestCallable implements Callable<List<? extends ListenableFuture<?>>> {
 
         private final boolean isThrowingException;
         private final int returnedListSize;
-        private final @Nullable List<ListenableFuture<Void>> result;
+        private final @Nullable List<? extends ListenableFuture<?>> result;
         private final AtomicLong wasTried = new AtomicLong(0);
 
         TestCallable(boolean isThrowingException, int returnedListSize) {
@@ -107,7 +107,7 @@ public class JobCoordinatorTest {
         }
 
         @Override
-        public @Nullable List<ListenableFuture<Void>> call() throws Exception {
+        public @Nullable List<? extends ListenableFuture<?>> call() throws Exception {
             wasTried.incrementAndGet();
             if (isThrowingException && returnedListSize < 0) {
                 throw JOB_EXCEPTION;
@@ -124,7 +124,7 @@ public class JobCoordinatorTest {
         private final AtomicLong wasTried = new AtomicLong(0);
 
         @Override
-        public List<ListenableFuture<Void>> apply(List<ListenableFuture<Void>> failedFutures) {
+        public List<ListenableFuture<Void>> apply(List<? extends ListenableFuture<?>> failedFutures) {
             wasTried.incrementAndGet();
             return Collections.emptyList();
         }
@@ -318,7 +318,7 @@ public class JobCoordinatorTest {
     public void bug9238CallableListWithNull() {
         // This test didn't fail for https://bugs.opendaylight.org/show_bug.cgi?id=9238 even before its fix
         // but its point is to illustrate the error message in the LOG - before without but now with causing job's key
-        Callable<List<ListenableFuture<Void>>> callableListWithNull = () -> Collections.singletonList(null);
+        Callable<List<? extends ListenableFuture<?>>> callableListWithNull = () -> Collections.singletonList(null);
         jobCoordinator.enqueueJob(getClass().getName(), callableListWithNull);
         Awaitility.await().until(jobCoordinator::getIncompleteTaskCount, is(0L));
     }
