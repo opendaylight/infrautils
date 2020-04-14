@@ -38,7 +38,9 @@ public interface JobCoordinator { // do *NOT* extends JobCoordinatorMonitor
      * @param mainWorker
      *            The task that runs for the job.
      */
-    void enqueueJob(String key, Callable<List<? extends ListenableFuture<?>>> mainWorker);
+    default void enqueueJob(String key, Callable<List<? extends ListenableFuture<?>>> mainWorker) {
+        enqueueJob(key, mainWorker, null, DEFAULT_MAX_RETRIES);
+    }
 
     /**
      * Enqueues a job with a rollback task and DEFAULT_MAX_RETRIES (3) retries..
@@ -49,8 +51,10 @@ public interface JobCoordinator { // do *NOT* extends JobCoordinatorMonitor
      *            fails.
      * @see JobCoordinator#enqueueJob(String, Callable)
      */
-    void enqueueJob(String key, Callable<List<? extends ListenableFuture<?>>> mainWorker,
-            RollbackCallable rollbackWorker);
+    default void enqueueJob(String key, Callable<List<? extends ListenableFuture<?>>> mainWorker,
+            RollbackCallable rollbackWorker) {
+        enqueueJob(key, mainWorker, rollbackWorker, DEFAULT_MAX_RETRIES);
+    }
 
     /**
      * Enqueues a job with max retries. In case the job's main task fails, it
@@ -63,7 +67,9 @@ public interface JobCoordinator { // do *NOT* extends JobCoordinatorMonitor
      *            succeeds.
      * @see JobCoordinator#enqueueJob(String, Callable)
      */
-    void enqueueJob(String key, Callable<List<? extends ListenableFuture<?>>> mainWorker, int maxRetries);
+    default void enqueueJob(String key, Callable<List<? extends ListenableFuture<?>>> mainWorker, int maxRetries) {
+        enqueueJob(key, mainWorker, null, maxRetries);
+    }
 
     /**
      * Enqueues a job with a rollback task and max retries.
