@@ -23,6 +23,14 @@
       <version>${project.version}</version>
     </dependency>
     <dependency>
+      <!-- finalname="etc/org.opendaylight.infrautils.ready.cfg" -->
+      <groupId>${project.groupId}</groupId>
+      <artifactId>ready-impl</artifactId>
+      <version>${project.version}</version>
+      <type>cfg</type>
+      <classifier>config</classifier>
+    </dependency>
+    <dependency>
       <groupId>org.opendaylight.odlparent</groupId>
       <artifactId>odl-guava</artifactId>
       <classifier>features</classifier>

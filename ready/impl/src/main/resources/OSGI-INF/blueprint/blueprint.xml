@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright © 2020 PANTHEON.tech, s.r.o. and others.  All rights reserved.
+
+ This program and the accompanying materials are made available under the
+ terms of the Eclipse Public License v1.0 which accompanies this distribution,
+ and is available at http://www.eclipse.org/legal/epl-v10.html
+ -->
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+  xmlns:cm="http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.2.0">
+
+  <cm:property-placeholder persistent-id="org.opendaylight.infrautils.ready" update-strategy="none">
+    <cm:default-properties>
+      <cm:property name="system-ready-timeout" value="5"/>
+    </cm:default-properties>
+  </cm:property-placeholder>
+
+  <reference id="bundleService" interface="org.apache.karaf.bundle.core.BundleService"/>
+
+  <bean id="systemReady" class="org.opendaylight.infrautils.ready.karaf.internal.KarafSystemReady" init-method="init"
+    destroy-method="stop">
+    <argument ref="blueprintBundleContext" />
+    <argument ref="bundleService" />
+    <argument value="${system-ready-timeout}"/>
+  </bean>
+
+  <service ref="systemReady" interface="org.opendaylight.infrautils.ready.SystemReadyMonitor"/>
+</blueprint>

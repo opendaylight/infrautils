@@ -26,7 +26,7 @@ public class SystemReadyTest {
     @Test
     public void testMbeanRegistration() throws JMException {
         // Register the SystemState MBean
-        KarafSystemReady systemReady = new KarafSystemReady(null, null);
+        KarafSystemReady systemReady = new KarafSystemReady(null, null, 5);
 
         // Check via strong interface if initial value of BOOTING is assigned
         Assert.assertEquals(SystemState.BOOTING, systemReady.getSystemState());
