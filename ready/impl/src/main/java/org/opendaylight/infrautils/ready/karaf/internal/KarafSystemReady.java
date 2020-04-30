@@ -24,6 +24,9 @@ import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.metatype.annotations.AttributeDefinition;
+import org.osgi.service.metatype.annotations.Designate;
+import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,8 +38,14 @@ import org.slf4j.LoggerFactory;
  * @author Michael Vorburger.ch
  * @author Faseela K
  */
-@Component(immediate = true, service = SystemReadyMonitor.class)
+@Component(immediate = true, service = SystemReadyMonitor.class, configurationPid = "org.opendaylight.infrautils.ready")
+@Designate(ocd = KarafSystemReady.Config.class)
 public class KarafSystemReady extends SimpleSystemReadyMonitor {
+    @ObjectClassDefinition()
+    public @interface Config {
+        @AttributeDefinition(name = "system-ready-timeout")
+        int systemReadyTimeout() default 300;
+    }
 
     private static final Logger LOG = LoggerFactory.getLogger(KarafSystemReady.class);
 
@@ -47,13 +56,15 @@ public class KarafSystemReady extends SimpleSystemReadyMonitor {
 
     private final DelegatingSystemReadyMonitorMXBean mbean = new DelegatingSystemReadyMonitorMXBean(this);
 
+    private Config config;
     private TestBundleDiag testBundleDiag;
 
     @Reference
     BundleService bundleService = null;
 
     @Activate
-    public void activate(BundleContext bundleContext) {
+    public void activate(BundleContext bundleContext, Config newConfig) {
+        this.config = newConfig;
         mbean.registerMBean();
         testBundleDiag = new TestBundleDiag(bundleContext, bundleService);
         LOG.info("Now starting to provide full system readiness status updates (see TestBundleDiag's logs)...");
@@ -69,11 +80,14 @@ public class KarafSystemReady extends SimpleSystemReadyMonitor {
     private void runCheckBundleDiag() {
         try {
             // 5 minutes really ought to be enough for the whole circus to completely boot up?!
-            testBundleDiag.checkBundleDiagInfos(5, TimeUnit.MINUTES, (timeInfo, bundleDiagInfos) ->
-                LOG.info("checkBundleDiagInfos: Elapsed time {}s, remaining time {}s, {}",
-                    timeInfo.getElapsedTimeInMS() / 1000, timeInfo.getRemainingTimeInMS() / 1000,
-                    // INFRAUTILS-17: getSummaryText() instead getFullDiagnosticText() because ppl found log confusing
-                    bundleDiagInfos.getSummaryText()));
+            testBundleDiag.checkBundleDiagInfos(config.systemReadyTimeout(), TimeUnit.SECONDS,
+                (timeInfo, bundleDiagInfos) -> {
+                    LOG.info("checkBundleDiagInfos: Elapsed time {}s, remaining time {}s, {}",
+                        timeInfo.getElapsedTimeInMS() / 1000, timeInfo.getRemainingTimeInMS() / 1000,
+                        // INFRAUTILS-17: getSummaryText() instead getFullDiagnosticText() because people found log
+                        //                confusing
+                        bundleDiagInfos.getSummaryText());
+                });
 
         } catch (SystemStateFailureException e) {
             LOG.error("Failed, some bundles did not start (SystemReadyListeners are not called)", e);
