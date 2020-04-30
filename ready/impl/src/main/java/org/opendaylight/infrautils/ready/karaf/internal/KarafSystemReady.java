@@ -12,12 +12,6 @@ import static org.opendaylight.infrautils.ready.SystemState.FAILURE;
 import com.google.common.annotations.VisibleForTesting;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
-import javax.inject.Inject;
-import javax.inject.Singleton;
-import org.apache.aries.blueprint.annotation.service.Reference;
-import org.apache.aries.blueprint.annotation.service.Service;
 import org.apache.karaf.bundle.core.BundleService;
 import org.opendaylight.infrautils.ready.SystemReadyMonitor;
 import org.opendaylight.infrautils.ready.spi.DelegatingSystemReadyMonitorMXBean;
@@ -37,11 +31,10 @@ import org.slf4j.LoggerFactory;
  * @author Michael Vorburger.ch
  * @author Faseela K
  */
-@Singleton
-@Service(classes = SystemReadyMonitor.class)
 public class KarafSystemReady extends SimpleSystemReadyMonitor implements Runnable {
 
     private static final Logger LOG = LoggerFactory.getLogger(KarafSystemReady.class);
+    private static final int DEFAULT_SYSTEM_READY_TIMEOUT = 5;
 
     private final ThreadFactory threadFactory = ThreadFactoryProvider.builder()
                                                     .namePrefix("SystemReadyService")
@@ -51,21 +44,20 @@ public class KarafSystemReady extends SimpleSystemReadyMonitor implements Runnab
     private final TestBundleDiag testBundleDiag;
 
     private final DelegatingSystemReadyMonitorMXBean mbean;
+    private final int systemReadyTimeout;
 
-    @Inject
-    public KarafSystemReady(BundleContext bundleContext, @Reference BundleService bundleService) {
+    public KarafSystemReady(BundleContext bundleContext, BundleService bundleService, int systemReadyTimeout) {
         this.mbean = new DelegatingSystemReadyMonitorMXBean(this);
         this.mbean.registerMBean();
         this.testBundleDiag = new TestBundleDiag(bundleContext, bundleService);
+        this.systemReadyTimeout = systemReadyTimeout == 0 ? DEFAULT_SYSTEM_READY_TIMEOUT : systemReadyTimeout;
         LOG.info("Now starting to provide full system readiness status updates (see TestBundleDiag's logs)...");
     }
 
-    @PostConstruct
     public void init() {
         threadFactory.newThread(this).start();
     }
 
-    @PreDestroy
     public void stop() {
         this.mbean.unregisterMBean();
     }
@@ -75,7 +67,7 @@ public class KarafSystemReady extends SimpleSystemReadyMonitor implements Runnab
     public void run() {
         try {
             // 5 minutes really ought to be enough for the whole circus to completely boot up?!
-            testBundleDiag.checkBundleDiagInfos(5, TimeUnit.MINUTES, (timeInfo, bundleDiagInfos) ->
+            testBundleDiag.checkBundleDiagInfos(systemReadyTimeout, TimeUnit.MINUTES, (timeInfo, bundleDiagInfos) ->
                 LOG.info("checkBundleDiagInfos: Elapsed time {}s, remaining time {}s, {}",
                     timeInfo.getElapsedTimeInMS() / 1000, timeInfo.getRemainingTimeInMS() / 1000,
                     // INFRAUTILS-17: getSummaryText() instead getFullDiagnosticText() because ppl found log confusing
