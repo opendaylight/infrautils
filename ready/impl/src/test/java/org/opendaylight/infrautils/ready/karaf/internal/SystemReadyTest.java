@@ -9,10 +9,12 @@ package org.opendaylight.infrautils.ready.karaf.internal;
 
 import static org.junit.Assert.assertEquals;
 
+import java.lang.annotation.Annotation;
 import javax.management.JMException;
 import org.junit.Rule;
 import org.junit.Test;
 import org.opendaylight.infrautils.ready.SystemState;
+import org.opendaylight.infrautils.ready.karaf.internal.KarafSystemReady.Config;
 import org.opendaylight.infrautils.testutils.LogRule;
 
 /**
@@ -28,7 +30,17 @@ public class SystemReadyTest {
     public void testMbeanRegistration() throws JMException {
         // Register the SystemState MBean
         KarafSystemReady systemReady = new KarafSystemReady();
-        systemReady.activate(null);
+        systemReady.activate(null, new Config() {
+            @Override
+            public Class<? extends Annotation> annotationType() {
+                return Config.class;
+            }
+
+            @Override
+            public int systemReadyTimeout() {
+                return 300;
+            }
+        });
 
         // Check via strong interface if initial value of BOOTING is assigned
         assertEquals(SystemState.BOOTING, systemReady.getSystemState());
