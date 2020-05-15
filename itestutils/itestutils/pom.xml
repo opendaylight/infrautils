@@ -102,7 +102,7 @@
     <dependency>
       <groupId>org.opendaylight.odlparent</groupId>
       <artifactId>opendaylight-karaf-empty</artifactId>
-      <version>5.0.6</version>
+      <version>5.0.7</version>
       <type>tar.gz</type>
       <exclusions>
         <!-- The transitive dependencies are unnecessary, because PAX Exam uses the distribution.
