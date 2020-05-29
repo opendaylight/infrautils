@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c5c3b851_c28cf354",
+        "filename": "ready/impl/src/main/java/org/opendaylight/infrautils/ready/karaf/internal/KarafSystemReady.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2020-05-29T08:09:55Z",
+      "side": 1,
+      "message": "argh... hard-coding things. Can we make this configurable somehow?",
+      "range": {
+        "startLine": 78,
+        "startChar": 48,
+        "endLine": 78,
+        "endChar": 68
+      },
+      "revId": "bdcba8ba34528a60755255c036f067a3027e6c8f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81",
+      "unresolved": true
+    }
+  ]
+}
