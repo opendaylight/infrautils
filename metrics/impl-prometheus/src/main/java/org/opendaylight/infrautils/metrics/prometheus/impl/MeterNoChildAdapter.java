@@ -8,6 +8,7 @@
 package org.opendaylight.infrautils.metrics.prometheus.impl;
 
 import io.prometheus.client.CollectorRegistry;
+import io.prometheus.client.Counter;
 import java.util.List;
 import org.opendaylight.infrautils.metrics.Meter;
 import org.opendaylight.infrautils.metrics.MetricDescriptor;
@@ -21,10 +22,10 @@ import org.opendaylight.infrautils.metrics.MetricDescriptor;
 @SuppressWarnings("javadoc")
 class MeterNoChildAdapter implements Meter {
 
-    final io.prometheus.client.Counter prometheusCounter;
+    final Counter prometheusCounter;
 
     MeterNoChildAdapter(CollectorRegistry prometheusRegistry, MetricDescriptor descriptor, List<String> labelNames) {
-        this.prometheusCounter = io.prometheus.client.Counter.build()
+        this.prometheusCounter = Counter.build()
             // https://prometheus.io/docs/practices/naming/#metric-names: "application prefix relevant to
             // the domain the metric belongs to. The prefix is sometimes referred to as namespace by client
             // libraries. For metrics specific to an application, the prefix is usually the application name."

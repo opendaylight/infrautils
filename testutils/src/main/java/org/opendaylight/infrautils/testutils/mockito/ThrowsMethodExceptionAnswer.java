@@ -45,7 +45,7 @@ final class ThrowsMethodExceptionAnswer implements Answer<Object>, Serializable 
     }
 
     @Override
-    public Void answer(InvocationOnMock invocation) throws Throwable {
+    public Void answer(InvocationOnMock invocation) {
         throw new UnstubbedMethodException(invocation.getMethod());
     }
 
