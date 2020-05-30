@@ -176,14 +176,13 @@ public abstract class AbstractIntegrationTest {
     }
 
     @ProbeBuilder
-    public TestProbeBuilder probeConfiguration(final TestProbeBuilder probe) {
+    public TestProbeBuilder probeConfiguration(TestProbeBuilder probe) {
         probe.addTest(AbstractIntegrationTest.class);
         // TODO util to enumerate all inner classes; probe.addTest(LogRule.class);
         return probe;
     }
 
-    private static Option editKarafConfigurationFile(final String source, final String configFilePath, final String key,
-            final String value) {
+    private static Option editKarafConfigurationFile(String source, String configFilePath, String key, String value) {
         LOG.warn("{}: In {} change {} = {}", source, configFilePath, key, value);
         return KarafDistributionOption.editConfigurationFilePut(configFilePath, key, value);
     }

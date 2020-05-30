@@ -22,7 +22,6 @@ import org.opendaylight.infrautils.caches.CheckedCacheFunction;
  * @author Michael Vorburger.ch
  */
 final class CheckedNoopCache<K, V, E extends Exception> implements CheckedCache<K, V, E> {
-
     private final CheckedCacheConfig<K, V, E> config;
     private final CheckedCacheFunction<K, V, E> function;
     private final CacheManager cacheManager;
@@ -66,7 +65,7 @@ final class CheckedNoopCache<K, V, E extends Exception> implements CheckedCache<
     }
 
     @Override
-    public void close() throws Exception {
+    public void close() {
         // Nothing to do.
     }
 
@@ -74,5 +73,4 @@ final class CheckedNoopCache<K, V, E extends Exception> implements CheckedCache<
     public String toString() {
         return "NoopCache{config=" + config + "}";
     }
-
 }

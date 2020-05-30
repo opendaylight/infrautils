@@ -60,9 +60,8 @@ final class ProxyUtil {
 
     @SuppressWarnings("rawtypes")
     private static final class Delegator implements InvocationHandler {
-
         @Override
-        public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+        public Object invoke(Object proxy, Method method, Object[] args) {
             Class declaringClass = method.getDeclaringClass();
 
             if (declaringClass == Object.class) {
@@ -80,23 +79,21 @@ final class ProxyUtil {
             }
         }
 
-        protected Object invokeNotDelegated(Object proxy, Method method, Object[] args)
-                throws UnsupportedOperationException {
+        private static Object invokeNotDelegated(Object proxy, Method method, Object[] args) {
             throw new UnsupportedOperationException(
                     "FunctionalityReady interfaces should not have any methods: " + method);
         }
 
-        protected Integer proxyHashCode(Object proxy) {
-            return Integer.valueOf(System.identityHashCode(proxy));
+        private static int proxyHashCode(Object proxy) {
+            return System.identityHashCode(proxy);
         }
 
-        protected Boolean proxyEquals(Object proxy, Object other) {
+        private static Boolean proxyEquals(Object proxy, Object other) {
             return proxy == other ? Boolean.TRUE : Boolean.FALSE;
         }
 
-        protected String proxyToString(Object proxy) {
+        private static String proxyToString(Object proxy) {
             return proxy.getClass().getName() + '@' + Integer.toHexString(proxy.hashCode());
         }
     }
-
 }
