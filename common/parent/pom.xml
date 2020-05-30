@@ -69,7 +69,7 @@
       <groupId>com.google.errorprone</groupId>
       <artifactId>error_prone_annotations</artifactId>
       <!-- Keep this version in sync with annotationProcessorPaths declaration below -->
-      <version>2.3.4</version>
+      <version>2.4.0</version>
       <scope>provided</scope>
     </dependency>
   </dependencies>
@@ -98,8 +98,6 @@
         <property>
           <name>!m2e.version</name>
         </property>
-        <!-- Effectively disables error-prone, as it cannot deal with maven.compiler.release -->
-        <jdk>[99,)</jdk>
       </activation>
 
       <build>
@@ -125,10 +123,7 @@
                   -Xep:FieldMissingNullable:OFF
                   <!-- To "Use parameter comments to document ambiguous literals" is unrealistic on a large existing code base -->
                   -Xep:BooleanParameter:OFF
-                  -Xep:ReturnMissingNullable:ERROR
                   -Xep:InconsistentOverloads:ERROR
-                  <!-- TODO -Xep:ConstructorLeaksThis:ERROR after https://github.com/google/error-prone/pull/789 for https://github.com/google/error-prone/issues/655, and maybe also https://github.com/google/error-prone/issues/809? -->
-                  -Xep:ConstructorLeaksThis:OFF
                   -Xep:MethodCanBeStatic:ERROR
                   -Xep:ThrowsUncheckedException:OFF
                   <!-- TODO -Xep:TestExceptionChecker:ERROR once all @Test with expected use org.opendaylight.infrautils.testutils.Asserts.assertThrows() instead -->
@@ -152,7 +147,6 @@
                   -Xep:IntLongMath:ERROR
                   -Xep:FloatCast:ERROR
                   -Xep:ClassNewInstance:ERROR
-                  -Xep:ConstructorInvokesOverridable:ERROR
                   -Xep:ThreeLetterTimeZoneID:ERROR
                   -Xep:UnsafeFinalization:ERROR
                   -Xep:MutableMethodReturnType:ERROR
@@ -186,7 +180,7 @@
                   <groupId>com.google.errorprone</groupId>
                   <artifactId>error_prone_core</artifactId>
                   <!-- Keep this version in sync with dependency declaration above -->
-                  <version>2.3.4</version>
+                  <version>2.4.0</version>
                 </path>
               </annotationProcessorPaths>
             </configuration>
