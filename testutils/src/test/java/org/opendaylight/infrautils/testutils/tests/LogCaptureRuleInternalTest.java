@@ -38,7 +38,7 @@ public class LogCaptureRuleInternalTest {
     public void testLogCaptureRule() throws Throwable {
         new LogCaptureRule().apply(new Statement() {
             @Override
-            public void evaluate() throws Throwable {
+            public void evaluate() {
                 LOG.error("boum");
             }
         }, Description.EMPTY).evaluate();
@@ -49,7 +49,7 @@ public class LogCaptureRuleInternalTest {
     public void testLogCaptureRuleNoErrLoggedButExceptionThrown() throws Throwable {
         new LogCaptureRule().apply(new Statement() {
             @Override
-            public void evaluate() throws Throwable {
+            public void evaluate() {
                 // do not log any errors, only throw some exception:
                 throw new IllegalArgumentException("boum");
             }
@@ -103,7 +103,7 @@ public class LogCaptureRuleInternalTest {
         logCaptureRule.expectError("boum");
         logCaptureRule.apply(new Statement() {
             @Override
-            public void evaluate() throws Throwable {
+            public void evaluate() {
                 LOG.error("boum");
             }
         }, Description.EMPTY).evaluate();
@@ -116,7 +116,7 @@ public class LogCaptureRuleInternalTest {
         logCaptureRule.expectError("...");
         logCaptureRule.apply(new Statement() {
             @Override
-            public void evaluate() throws Throwable {
+            public void evaluate() {
                 // do not LOG.error("boum")
             }
         }, Description.EMPTY).evaluate();

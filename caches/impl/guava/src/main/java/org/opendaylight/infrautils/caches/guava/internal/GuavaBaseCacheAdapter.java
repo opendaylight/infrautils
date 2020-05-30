@@ -72,7 +72,7 @@ abstract class GuavaBaseCacheAdapter<K, V> implements BaseCache<K, V>, CacheMana
     }
 
     @Override
-    public final void close() throws Exception {
+    public final void close() {
         guavaCache().cleanUp();
     }
 
