@@ -25,7 +25,7 @@ public class MetricsFileReporterTest {
     @Test
     public void testReporter() throws IOException {
         MetricRegistry registry = new MetricRegistry();
-        MetricsFileReporter fileReporter = new MetricsFileReporter(registry, Duration.ofSeconds(120));
+        MetricsFileReporter fileReporter = new MetricsFileReporter(registry, Duration.ofMinutes(2));
         Counter counter = registry.counter("test.counter");
         counter.inc();
         Calendar calendar = Calendar.getInstance();

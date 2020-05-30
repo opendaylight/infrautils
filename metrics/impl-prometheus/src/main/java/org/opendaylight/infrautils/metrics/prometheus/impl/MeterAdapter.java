@@ -7,6 +7,7 @@
  */
 package org.opendaylight.infrautils.metrics.prometheus.impl;
 
+import io.prometheus.client.Counter;
 import io.prometheus.client.Counter.Child;
 import java.util.List;
 import org.opendaylight.infrautils.metrics.Meter;
@@ -21,7 +22,7 @@ class MeterAdapter implements Meter {
 
     private final Child prometheusChild;
 
-    MeterAdapter(io.prometheus.client.Counter prometheusCounter, List<String> labelValues) {
+    MeterAdapter(Counter prometheusCounter, List<String> labelValues) {
         if (labelValues.isEmpty()) {
             throw new IllegalArgumentException();
         }

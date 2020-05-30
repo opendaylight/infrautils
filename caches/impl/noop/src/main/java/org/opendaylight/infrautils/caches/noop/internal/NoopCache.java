@@ -22,7 +22,6 @@ import org.opendaylight.infrautils.caches.CacheManager;
  * @author Michael Vorburger.ch
  */
 final class NoopCache<K, V> implements Cache<K, V> {
-
     private final CacheConfig<K, V> config;
     private final CacheFunction<K, V> function;
     private final CacheManager manager;
@@ -66,7 +65,7 @@ final class NoopCache<K, V> implements Cache<K, V> {
     }
 
     @Override
-    public void close() throws Exception {
+    public void close() {
         // Nothing to do.
     }
 

@@ -9,6 +9,7 @@ package org.opendaylight.infrautils.utils.concurrent;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.concurrent.CancellationException;
 import org.slf4j.Logger;
 
 /**
@@ -17,7 +18,6 @@ import org.slf4j.Logger;
  */
 // package-local not public (for the time being)
 final class FailureMessageLoggingFutureCallback<V> extends FailureLoggingFutureCallbackBase<V> {
-
     private final String message;
 
     FailureMessageLoggingFutureCallback(Logger logger, String message) {
@@ -27,7 +27,7 @@ final class FailureMessageLoggingFutureCallback<V> extends FailureLoggingFutureC
 
     @Override
     public void onFailure(Throwable throwable) {
-        if (throwable instanceof java.util.concurrent.CancellationException) {
+        if (throwable instanceof CancellationException) {
             // CancellationException are (typically) no cause for alarm, and debug instead of error level is enough
             // as these can happen during shutdown when we interrupt running threads, and should not pollute logs.
             getLogger().debug("Future (eventually) failed with CancellationException: {}", message, throwable);
@@ -35,5 +35,4 @@ final class FailureMessageLoggingFutureCallback<V> extends FailureLoggingFutureC
             getLogger().error("Future (eventually) failed: {}", message, throwable);
         }
     }
-
 }

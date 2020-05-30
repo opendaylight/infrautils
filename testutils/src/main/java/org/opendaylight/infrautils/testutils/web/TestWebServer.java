@@ -27,17 +27,13 @@ import org.slf4j.LoggerFactory;
  *
  * @author Michael Vorburger.ch
  */
-// Jetty LifeCycle start() and stop() throws Exception
-@SuppressWarnings({ "checkstyle:IllegalCatch" })
 public class TestWebServer implements AutoCloseable {
-
     private static final Logger LOG = LoggerFactory.getLogger(TestWebServer.class);
 
     private static final int HTTP_SERVER_IDLE_TIMEOUT = 30000;
 
     private final int httpPort;
     private final Server server;
-    private final ContextHandlerCollection contextHandlerCollection;
     private final ServletContextHandler context;
     private final String testContext;
     private final String host;
@@ -56,7 +52,7 @@ public class TestWebServer implements AutoCloseable {
         http.setIdleTimeout(HTTP_SERVER_IDLE_TIMEOUT);
         server.addConnector(http);
 
-        this.contextHandlerCollection = new ContextHandlerCollection();
+        ContextHandlerCollection contextHandlerCollection = new ContextHandlerCollection();
         server.setHandler(contextHandlerCollection);
 
         context = new ServletContextHandler(contextHandlerCollection, testContext, ServletContextHandler.NO_SESSIONS);
@@ -70,6 +66,7 @@ public class TestWebServer implements AutoCloseable {
     }
 
     @Override
+    @SuppressWarnings({ "checkstyle:IllegalCatch" })
     public void close() throws ServletException {
         LOG.info("Stopping Jetty-based web server...");
         // NB server.stop() will call stop() on all ServletContextHandler/WebAppContext
@@ -93,6 +90,7 @@ public class TestWebServer implements AutoCloseable {
         start(context);
     }
 
+    @SuppressWarnings({ "checkstyle:IllegalCatch" })
     private static void start(AbstractLifeCycle lifecycle) throws ServletException {
         try {
             lifecycle.start();

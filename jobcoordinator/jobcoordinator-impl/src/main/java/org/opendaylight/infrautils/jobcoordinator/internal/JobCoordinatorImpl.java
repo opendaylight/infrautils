@@ -434,7 +434,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
                     LOG.error("Unexpected no (null) main worker on job: {}", jobEntry);
                 }
                 long jobExecutionTimeNanos = System.nanoTime() - jobStartTimestampNanos;
-                printJobs(jobEntry.getKey(), TimeUnit.NANOSECONDS.toMillis(jobExecutionTimeNanos));
+                printJobs(TimeUnit.NANOSECONDS.toMillis(jobExecutionTimeNanos));
             } catch (Throwable e) {
                 jobsFailed.mark();
                 LOG.error("Direct Exception (not failed Future) when executing job, won't even retry: {}", jobEntry, e);
@@ -460,7 +460,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
             Futures.addCallback(Futures.allAsList(futures), new JobCallback(jobEntry), MoreExecutors.directExecutor());
         }
 
-        private void printJobs(String key, long jobExecutionTime) {
+        private void printJobs(long jobExecutionTime) {
             if (jobExecutionTime > LONG_JOBS_THRESHOLD_MS) {
                 LOG.warn("Job with key {}, job {} from queue {} took {}ms to complete",
                         jobEntry.getKey(), jobEntry.getId(), jobEntry.getQueueId(), jobExecutionTime);

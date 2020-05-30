@@ -8,9 +8,9 @@
 package org.opendaylight.infrautils.testutils.concurrent;
 
 import static java.util.Objects.requireNonNull;
-import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
 import com.google.common.util.concurrent.Uninterruptibles;
+import java.time.Duration;
 import java.util.Random;
 import java.util.concurrent.Executor;
 import org.eclipse.jdt.annotation.Nullable;
@@ -34,7 +34,7 @@ public class SlowExecutor implements Executor {
     public void execute(@Nullable Runnable command) {
         requireNonNull(command);
         delegate.execute(() -> {
-            Uninterruptibles.sleepUninterruptibly(random(30, 100), MILLISECONDS);
+            Uninterruptibles.sleepUninterruptibly(Duration.ofMillis(random(30, 100)));
             command.run();
         });
     }
