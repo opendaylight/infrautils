@@ -49,12 +49,12 @@ public class GuavaCacheProvider extends AbstractProvider {
             new CacheGuavaAdapter<>(cacheConfig, initialPolicy, policy ->
                 newCacheBuilder(cacheConfig, policy).build(new CacheLoader<K, V>() {
                     @Override
-                    public V load(K key) throws Exception {
+                    public V load(K key) {
                         return cacheConfig.cacheFunction().get(key);
                     }
 
                     @Override
-                    public ImmutableMap<K, V> loadAll(Iterable<? extends K> keys) throws Exception {
+                    public ImmutableMap<K, V> loadAll(Iterable<? extends K> keys) {
                         return cacheConfig.cacheFunction().get(keys);
                     }
                 })));

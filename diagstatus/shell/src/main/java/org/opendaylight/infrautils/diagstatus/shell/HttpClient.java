@@ -51,13 +51,14 @@ public class HttpClient implements HttpClientService {
                         propertyValueAsString, nfe);
             }
         }
-
     }
 
+    @Override
     public int getHttpPort() {
         return httpPort;
     }
 
+    @Override
     public HttpResponse sendRequest(HttpRequest request) throws Exception {
         CloseableHttpClient httpclient = HttpClients.createDefault();
         if (httpclient == null) {

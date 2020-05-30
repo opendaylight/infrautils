@@ -14,8 +14,10 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.net.InetAddresses;
 import java.net.Inet6Address;
 import java.net.InetAddress;
+import java.util.Date;
 import java.util.List;
 import org.apache.felix.service.command.CommandSession;
+import org.apache.karaf.shell.commands.Action;
 import org.apache.karaf.shell.commands.Command;
 import org.apache.karaf.shell.commands.Option;
 import org.eclipse.jdt.annotation.Nullable;
@@ -32,8 +34,7 @@ import org.slf4j.LoggerFactory;
  * @author Faseela K
  */
 @Command(scope = "diagstatus", name = "showSvcStatus", description = "show the status of registered services")
-public class DiagStatusCommand implements org.apache.karaf.shell.commands.Action {
-
+public class DiagStatusCommand implements Action {
     private static final Logger LOG = LoggerFactory.getLogger(DiagStatusCommand.class);
 
     private static final int HTTP_TIMEOUT = 5000;
@@ -63,7 +64,7 @@ public class DiagStatusCommand implements org.apache.karaf.shell.commands.Action
     @SuppressWarnings("checkstyle:IllegalCatch")
     public @Nullable Object execute(CommandSession session) throws Exception {
         StringBuilder strBuilder = new StringBuilder();
-        strBuilder.append("Timestamp: ").append(new java.util.Date().toString()).append("\n");
+        strBuilder.append("Timestamp: ").append(new Date().toString()).append("\n");
 
         if (null != nip) {
             strBuilder.append(getNodeSpecificStatus(InetAddresses.forString(nip)));
