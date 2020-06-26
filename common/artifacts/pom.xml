@@ -45,16 +45,6 @@
             </dependency>
             <dependency>
               <groupId>${project.groupId}</groupId>
-              <artifactId>inject</artifactId>
-              <version>${project.version}</version>
-            </dependency>
-            <dependency>
-              <groupId>${project.groupId}</groupId>
-              <artifactId>inject.guice</artifactId>
-              <version>${project.version}</version>
-            </dependency>
-            <dependency>
-              <groupId>${project.groupId}</groupId>
               <artifactId>jobcoordinator-api</artifactId>
               <version>${project.version}</version>
             </dependency>
@@ -140,12 +130,6 @@
             </dependency>
             <dependency>
               <groupId>${project.groupId}</groupId>
-              <artifactId>inject.guice.testutils</artifactId>
-              <version>${project.version}</version>
-              <scope>test</scope>
-            </dependency>
-            <dependency>
-              <groupId>${project.groupId}</groupId>
               <artifactId>itestutils</artifactId>
               <version>${project.version}</version>
               <scope>test</scope>
@@ -176,13 +160,6 @@
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>odl-infrautils-diagstatus</artifactId>
-                <version>${project.version}</version>
-                <type>xml</type>
-                <classifier>features</classifier>
-            </dependency>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>odl-infrautils-inject</artifactId>
                 <version>${project.version}</version>
                 <type>xml</type>
                 <classifier>features</classifier>

@@ -26,8 +26,7 @@
         <module>infrautils-features</module>
         <module>odl-infrautils-all-with-samples</module>
         <module>odl-infrautils-all</module>
-        <module>odl-infrautils-jobcoordinator</module>
-        <module>odl-infrautils-inject</module>
+        <module>odl-infrautils-jobcoordinator</module>        
         <module>odl-infrautils-utils</module>
         <module>odl-infrautils-ready</module>
         <module>odl-infrautils-caches</module>

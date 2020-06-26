@@ -33,8 +33,7 @@
     <modules>
         <module>caches</module>
         <module>common</module>
-        <module>diagstatus</module>
-        <module>inject</module>
+        <module>diagstatus</module>        
         <module>itestutils</module>
         <module>jobcoordinator</module>
         <module>metrics</module>
