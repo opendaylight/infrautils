@@ -48,12 +48,6 @@
             </dependency>
             <dependency>
               <groupId>${project.groupId}</groupId>
-              <artifactId>inject.guice.testutils</artifactId>
-              <version>${project.version}</version>
-              <scope>test</scope>
-            </dependency>
-            <dependency>
-              <groupId>${project.groupId}</groupId>
               <artifactId>itestutils</artifactId>
               <version>${project.version}</version>
               <scope>test</scope>
@@ -172,18 +166,6 @@
               <version>${project.version}</version>
             </dependency>
 
-            <!-- APIs & runtime utilities -->
-            <dependency>
-              <groupId>${project.groupId}</groupId>
-              <artifactId>inject</artifactId>
-              <version>${project.version}</version>
-            </dependency>
-            <dependency>
-              <groupId>${project.groupId}</groupId>
-              <artifactId>inject.guice</artifactId>
-              <version>${project.version}</version>
-            </dependency>
-
             <!-- Karaf feature repositories -->
             <dependency>
                 <groupId>${project.groupId}</groupId>
@@ -260,13 +242,6 @@
             </dependency>
 
             <!-- Experimental Karaf features -->
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>odl-infrautils-inject</artifactId>
-                <version>${project.version}</version>
-                <type>xml</type>
-                <classifier>features</classifier>
-            </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>odl-infrautils-metrics-prometheus</artifactId>

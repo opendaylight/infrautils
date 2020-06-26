@@ -39,7 +39,6 @@
         <module>features-infrautils</module>
 
         <!-- Experimental features -->
-        <module>odl-infrautils-inject</module>
         <module>odl-infrautils-metrics-prometheus</module>
 
         <!-- Experimental feature repostitory -->
