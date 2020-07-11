@@ -1,0 +1,58 @@
+---
+project: 'infrautils'
+project_creation_date: '2016-03-17'
+project_category: ''
+lifecycle_state: 'Incubation'
+project_lead: &odl_infrautils_ptl
+    name: 'Faseela K'
+    email: 'k.faseela@gmail.com'
+    company: ''
+    id: 'k.faseela'
+    timezone: 'Asia/Kolkata'
+primary_contact: *odl_infrautils_ptl
+issue_tracking:
+    type: 'jira'
+    url: 'https://jira.opendaylight.org/projects/'
+    key: 'infrautils'
+mailing_list:
+    type: 'groups.io'
+    url: 'kernel-dev@lists.opendaylight.org'
+    tag: '[]'
+realtime_discussion:
+    type: 'irc'
+    server: 'freenode.net'
+    channel: '#opendaylight'
+meetings:
+    - type: 'gotomeeting+irc'
+      agenda: 'https://wiki.opendaylight.org'
+      url: ''
+      server: 'freenode.net'
+      channel: '#opendaylight'
+      repeats: ''
+      time: ''
+repositories:
+    - infrautils
+committers:
+    - <<: *odl_infrautils_ptl
+    - name: 'Robert Varga'
+      email: 'nite@hq.sk'
+      company: 'pantheon'
+      id: 'rovarga'
+      timezone: 'Unknown/Unknown'
+    - name: 'Michael Vorburger'
+      email: 'mike@vorburger.ch'
+      company: 'vorburger'
+      id: 'vorburger'
+      timezone: 'Unknown/Unknown'
+    - name: 'Tom Pantelis'
+      email: 'tompantelis@gmail.com'
+      company: ''
+      id: 'tpantelis'
+      timezone: 'Unknown/Unknown'
+tsc:
+    # yamllint disable rule:line-length
+    approval: 'https://meetings.opendaylight.org/meetings/opendaylight-meeting/2016/tsc/opendaylight-meeting-tsc.2016-03-17-17.00.html'
+    changes:
+        - type: ''
+          name: ''
+          link: ''
