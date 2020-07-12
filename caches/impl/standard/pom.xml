@@ -23,6 +23,12 @@
 
   <dependencies>
     <dependency>
+      <groupId>javax.inject</groupId>
+      <artifactId>javax.inject</artifactId>
+      <optional>true</optional>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
       <groupId>org.opendaylight.infrautils</groupId>
       <artifactId>caches-guava-impl</artifactId>
     </dependency>
