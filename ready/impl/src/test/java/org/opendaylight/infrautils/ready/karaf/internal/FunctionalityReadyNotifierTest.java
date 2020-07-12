@@ -13,6 +13,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.util.Dictionary;
+import org.junit.Before;
 import org.junit.Test;
 import org.opendaylight.infrautils.ready.order.FunctionalityReady;
 import org.opendaylight.infrautils.ready.order.FunctionalityReadyNotifier;
@@ -41,7 +42,12 @@ public class FunctionalityReadyNotifierTest {
     }
 
     private final BundleContext mockBundleContext = mock(AbstractBundleContextImpl.class);
-    private final FunctionalityReadyNotifier notifier = new FunctionalityReadyNotifierImpl(mockBundleContext);
+    private final FunctionalityReadyNotifierImpl notifier = new FunctionalityReadyNotifierImpl();
+
+    @Before
+    public void before() {
+        notifier.activate(mockBundleContext);
+    }
 
     @Test
     @SuppressWarnings("unchecked")

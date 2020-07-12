@@ -10,15 +10,15 @@ package org.opendaylight.infrautils.ready.karaf.internal;
 import static com.google.common.base.Preconditions.checkArgument;
 import static java.util.Objects.requireNonNull;
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
-import org.apache.aries.blueprint.annotation.service.Service;
+import org.eclipse.jdt.annotation.Nullable;
 import org.opendaylight.infrautils.ready.order.FunctionalityReady;
 import org.opendaylight.infrautils.ready.order.FunctionalityReadyNotifier;
 import org.opendaylight.infrautils.ready.order.FunctionalityReadyRegistration;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.InvalidSyntaxException;
 import org.osgi.framework.ServiceRegistration;
+import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,18 +27,11 @@ import org.slf4j.LoggerFactory;
  *
  * @author Michael Vorburger.ch
  */
-@Singleton
-@Service
+@Component(immediate = true)
 public class FunctionalityReadyNotifierImpl implements FunctionalityReadyNotifier {
-
     private static final Logger LOG = LoggerFactory.getLogger(FunctionalityReadyNotifierImpl.class);
 
-    private final BundleContext bundleContext;
-
-    @Inject
-    public FunctionalityReadyNotifierImpl(BundleContext bundleContext) {
-        this.bundleContext = bundleContext;
-    }
+    private @Nullable BundleContext bundleContext = null;
 
     @Override
     // synchronized because of the check below to make sure only 1 is ever registered
@@ -70,4 +63,8 @@ public class FunctionalityReadyNotifierImpl implements FunctionalityReadyNotifie
         };
     }
 
+    @Activate
+    synchronized void activate(BundleContext newBundleContext) {
+        this.bundleContext = newBundleContext;
+    }
 }
