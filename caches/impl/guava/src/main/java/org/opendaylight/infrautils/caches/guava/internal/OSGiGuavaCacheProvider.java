@@ -42,19 +42,9 @@ public final class OSGiGuavaCacheProvider implements CacheProvider {
     }
 
     @Override
-    public <K, V> Cache<K, V> newCache(CacheConfig<K, V> cacheConfig) {
-        return delegate().newCache(cacheConfig);
-    }
-
-    @Override
     public <K, V, E extends Exception> CheckedCache<K, V, E> newCheckedCache(CheckedCacheConfig<K, V, E> cacheConfig,
             CachePolicy initialPolicy) {
         return delegate().newCheckedCache(cacheConfig, initialPolicy);
-    }
-
-    @Override
-    public <K, V, E extends Exception> CheckedCache<K, V, E> newCheckedCache(CheckedCacheConfig<K, V, E> cacheConfig) {
-        return delegate().newCheckedCache(cacheConfig);
     }
 
     @Activate

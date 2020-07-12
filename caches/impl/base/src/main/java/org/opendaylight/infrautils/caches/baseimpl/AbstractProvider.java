@@ -10,6 +10,7 @@ package org.opendaylight.infrautils.caches.baseimpl;
 import org.opendaylight.infrautils.caches.Cache;
 import org.opendaylight.infrautils.caches.CacheConfig;
 import org.opendaylight.infrautils.caches.CachePolicy;
+import org.opendaylight.infrautils.caches.CacheProvider;
 import org.opendaylight.infrautils.caches.CheckedCache;
 import org.opendaylight.infrautils.caches.CheckedCacheConfig;
 
@@ -18,7 +19,7 @@ import org.opendaylight.infrautils.caches.CheckedCacheConfig;
  *
  * @author Michael Vorburger.ch
  */
-public abstract class AbstractProvider extends BaseProvider {
+public abstract class AbstractProvider implements CacheProvider {
 
     private final CacheManagersRegistry cachesMonitor;
 
