@@ -15,7 +15,6 @@ import org.opendaylight.infrautils.caches.CachePolicy;
 import org.opendaylight.infrautils.caches.CacheProvider;
 import org.opendaylight.infrautils.caches.CheckedCache;
 import org.opendaylight.infrautils.caches.CheckedCacheConfig;
-import org.opendaylight.infrautils.caches.baseimpl.BaseProvider;
 import org.opendaylight.infrautils.caches.baseimpl.CacheManagersRegistry;
 import org.opendaylight.infrautils.caches.guava.internal.GuavaCacheProvider;
 
@@ -31,8 +30,7 @@ import org.opendaylight.infrautils.caches.guava.internal.GuavaCacheProvider;
  * @author Michael Vorburger.ch
  */
 @Singleton
-public class StandardCacheProvider extends BaseProvider {
-
+public class StandardCacheProvider implements CacheProvider {
     private final CacheProvider delegate;
 
     @Inject
@@ -51,5 +49,4 @@ public class StandardCacheProvider extends BaseProvider {
             CheckedCacheConfig<K, V, E> cacheConfig, CachePolicy initialPolicy) {
         return delegate.newCheckedCache(cacheConfig, initialPolicy);
     }
-
 }
