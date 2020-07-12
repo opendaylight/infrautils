@@ -7,6 +7,8 @@
  */
 package org.opendaylight.infrautils.caches;
 
+import org.opendaylight.infrautils.caches.baseimpl.CachePolicyBuilder;
+
 /**
  * Provider (AKA factory) of {@link Cache}s.
  *
@@ -36,7 +38,9 @@ public interface CacheProvider {
      * the passed configuration and a default policy.
      * It is the caller's responsibility to {@link Cache#close()} a Cache obtained from this when they stop.
      */
-    <K, V> Cache<K, V> newCache(CacheConfig<K, V> cacheConfig);
+    default <K, V> Cache<K, V> newCache(CacheConfig<K, V> cacheConfig) {
+        return newCache(cacheConfig, new CachePolicyBuilder().build());
+    }
 
     /**
      * Creates a brand new {@link CheckedCache} (API for checked exceptions), based
@@ -51,6 +55,7 @@ public interface CacheProvider {
      * on the passed configuration and a default policy.
      * It is the caller's responsibility to {@link Cache#close()} a Cache obtained from this when they stop.
      */
-    <K, V, E extends Exception> CheckedCache<K, V, E> newCheckedCache(CheckedCacheConfig<K, V, E> cacheConfig);
-
+    default <K, V, E extends Exception> CheckedCache<K, V, E> newCheckedCache(CheckedCacheConfig<K, V, E> cacheConfig) {
+        return newCheckedCache(cacheConfig, new CachePolicyBuilder().build());
+    }
 }

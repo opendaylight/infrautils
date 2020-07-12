@@ -20,10 +20,8 @@ import org.opendaylight.infrautils.caches.CheckedCacheConfig;
  *
  * @author Michael Vorburger.ch
  */
+@Deprecated(forRemoval = true)
 public abstract class BaseProvider implements CacheProvider {
-
-    // This class was introduced to work around https://issues.apache.org/jira/browse/KARAF-5086
-
     @Override
     public <K, V> Cache<K, V> newCache(CacheConfig<K, V> cacheConfig) {
         return newCache(cacheConfig, new CachePolicyBuilder().build());
