@@ -7,8 +7,9 @@
  */
 package org.opendaylight.infrautils.ready.karaf.internal;
 
+import static org.junit.Assert.assertEquals;
+
 import javax.management.JMException;
-import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 import org.opendaylight.infrautils.ready.SystemState;
@@ -26,12 +27,13 @@ public class SystemReadyTest {
     @Test
     public void testMbeanRegistration() throws JMException {
         // Register the SystemState MBean
-        KarafSystemReady systemReady = new KarafSystemReady(null, null);
+        KarafSystemReady systemReady = new KarafSystemReady();
+        systemReady.activate(null);
 
         // Check via strong interface if initial value of BOOTING is assigned
-        Assert.assertEquals(SystemState.BOOTING, systemReady.getSystemState());
+        assertEquals(SystemState.BOOTING, systemReady.getSystemState());
 
         // Check via JMX if initial value of BOOTING is assigned after registration
-        Assert.assertEquals(SystemState.BOOTING.name(), systemReady.getMbean().readMBeanAttribute("SystemState"));
+        assertEquals(SystemState.BOOTING.name(), systemReady.getMbean().readMBeanAttribute("SystemState"));
     }
 }
