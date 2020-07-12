@@ -11,10 +11,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import javax.inject.Singleton;
-import org.apache.aries.blueprint.annotation.service.Service;
 import org.opendaylight.infrautils.caches.CacheManager;
 import org.opendaylight.infrautils.caches.CacheManagers;
 import org.opendaylight.infrautils.caches.baseimpl.CacheManagersRegistry;
+import org.osgi.service.component.annotations.Component;
 
 /**
  * Implementation of CachesMonitor. This class is thread-safe.
@@ -22,9 +22,8 @@ import org.opendaylight.infrautils.caches.baseimpl.CacheManagersRegistry;
  * @author Michael Vorburger.ch
  */
 @Singleton
-@Service(classes = { CacheManagers.class, CacheManagersRegistry.class })
+@Component(immediate = true, service = { CacheManagers.class, CacheManagersRegistry.class })
 public class CacheManagersRegistryImpl implements CacheManagersRegistry {
-
     private final List<CacheManager> managers = new CopyOnWriteArrayList<>();
     private final List<CacheManager> unmodifiableManagers = Collections.unmodifiableList(managers);
 

@@ -14,13 +14,10 @@ import com.google.common.collect.ImmutableMap;
 import java.util.Objects;
 import javax.inject.Inject;
 import javax.inject.Singleton;
-import org.apache.aries.blueprint.annotation.service.Reference;
-import org.apache.aries.blueprint.annotation.service.Service;
 import org.opendaylight.infrautils.caches.BaseCacheConfig;
 import org.opendaylight.infrautils.caches.Cache;
 import org.opendaylight.infrautils.caches.CacheConfig;
 import org.opendaylight.infrautils.caches.CachePolicy;
-import org.opendaylight.infrautils.caches.CacheProvider;
 import org.opendaylight.infrautils.caches.CheckedCache;
 import org.opendaylight.infrautils.caches.CheckedCacheConfig;
 import org.opendaylight.infrautils.caches.baseimpl.AbstractProvider;
@@ -34,49 +31,46 @@ import org.opendaylight.infrautils.caches.baseimpl.DelegatingNullSafeCheckedCach
  * @author Michael Vorburger.ch
  */
 @Singleton
-@Service(classes = CacheProvider.class)
 public class GuavaCacheProvider extends AbstractProvider {
 
     @Inject
-    public GuavaCacheProvider(@Reference CacheManagersRegistry cachesMonitor) {
+    public GuavaCacheProvider(CacheManagersRegistry cachesMonitor) {
         super(cachesMonitor);
     }
 
     @Override
     @SuppressWarnings("resource")
     public <K, V> Cache<K, V> newUnregisteredCache(CacheConfig<K, V> cacheConfig, CachePolicy initialPolicy) {
-        return new DelegatingNullSafeCache<>(
-            new CacheGuavaAdapter<>(cacheConfig, initialPolicy, policy ->
-                newCacheBuilder(cacheConfig, policy).build(new CacheLoader<K, V>() {
-                    @Override
-                    public V load(K key) {
-                        return cacheConfig.cacheFunction().get(key);
-                    }
+        return new DelegatingNullSafeCache<>(new CacheGuavaAdapter<>(cacheConfig, initialPolicy,
+            policy -> newCacheBuilder(cacheConfig, policy).build(new CacheLoader<K, V>() {
+                @Override
+                public V load(K key) {
+                    return cacheConfig.cacheFunction().get(key);
+                }
 
-                    @Override
-                    public ImmutableMap<K, V> loadAll(Iterable<? extends K> keys) {
-                        return cacheConfig.cacheFunction().get(keys);
-                    }
-                })));
+                @Override
+                public ImmutableMap<K, V> loadAll(Iterable<? extends K> keys) {
+                    return cacheConfig.cacheFunction().get(keys);
+                }
+            })));
     }
 
     @Override
     @SuppressWarnings("resource")
     public <K, V, E extends Exception> CheckedCache<K, V, E> newUnregisteredCheckedCache(
             CheckedCacheConfig<K, V, E> cacheConfig, CachePolicy initialPolicy) {
-        return new DelegatingNullSafeCheckedCache<>(
-            new CheckedCacheGuavaAdapter<>(cacheConfig, initialPolicy, policy ->
-                newCacheBuilder(cacheConfig, policy).build(new CacheLoader<K, V>() {
-                    @Override
-                    public V load(K key) throws Exception {
-                        return cacheConfig.cacheFunction().get(key);
-                    }
+        return new DelegatingNullSafeCheckedCache<>(new CheckedCacheGuavaAdapter<>(cacheConfig, initialPolicy,
+            policy -> newCacheBuilder(cacheConfig, policy).build(new CacheLoader<K, V>() {
+                @Override
+                public V load(K key) throws Exception {
+                    return cacheConfig.cacheFunction().get(key);
+                }
 
-                    @Override
-                    public ImmutableMap<K, V> loadAll(Iterable<? extends K> keys) throws Exception {
-                        return cacheConfig.cacheFunction().get(keys);
-                    }
-                })));
+                @Override
+                public ImmutableMap<K, V> loadAll(Iterable<? extends K> keys) throws Exception {
+                    return cacheConfig.cacheFunction().get(keys);
+                }
+            })));
     }
 
     private static <K, V> CacheBuilder<K, V> newCacheBuilder(BaseCacheConfig cacheConfig, CachePolicy initialPolicy) {
