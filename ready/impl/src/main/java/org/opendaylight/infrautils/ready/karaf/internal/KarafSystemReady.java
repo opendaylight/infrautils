@@ -12,12 +12,6 @@ import static org.opendaylight.infrautils.ready.SystemState.FAILURE;
 import com.google.common.annotations.VisibleForTesting;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
-import javax.inject.Inject;
-import javax.inject.Singleton;
-import org.apache.aries.blueprint.annotation.service.Reference;
-import org.apache.aries.blueprint.annotation.service.Service;
 import org.apache.karaf.bundle.core.BundleService;
 import org.opendaylight.infrautils.ready.SystemReadyMonitor;
 import org.opendaylight.infrautils.ready.spi.DelegatingSystemReadyMonitorMXBean;
@@ -26,6 +20,10 @@ import org.opendaylight.infrautils.utils.concurrent.ThreadFactoryProvider;
 import org.opendaylight.odlparent.bundlestest.lib.SystemStateFailureException;
 import org.opendaylight.odlparent.bundlestest.lib.TestBundleDiag;
 import org.osgi.framework.BundleContext;
+import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Deactivate;
+import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -37,9 +35,8 @@ import org.slf4j.LoggerFactory;
  * @author Michael Vorburger.ch
  * @author Faseela K
  */
-@Singleton
-@Service(classes = SystemReadyMonitor.class)
-public class KarafSystemReady extends SimpleSystemReadyMonitor implements Runnable {
+@Component(immediate = true, service = SystemReadyMonitor.class)
+public class KarafSystemReady extends SimpleSystemReadyMonitor {
 
     private static final Logger LOG = LoggerFactory.getLogger(KarafSystemReady.class);
 
@@ -48,31 +45,28 @@ public class KarafSystemReady extends SimpleSystemReadyMonitor implements Runnab
                                                     .logger(LOG)
                                                     .build().get();
 
-    private final TestBundleDiag testBundleDiag;
+    private final DelegatingSystemReadyMonitorMXBean mbean = new DelegatingSystemReadyMonitorMXBean(this);
 
-    private final DelegatingSystemReadyMonitorMXBean mbean;
+    private TestBundleDiag testBundleDiag;
 
-    @Inject
-    public KarafSystemReady(BundleContext bundleContext, @Reference BundleService bundleService) {
-        this.mbean = new DelegatingSystemReadyMonitorMXBean(this);
-        this.mbean.registerMBean();
-        this.testBundleDiag = new TestBundleDiag(bundleContext, bundleService);
+    @Reference
+    BundleService bundleService = null;
+
+    @Activate
+    public void activate(BundleContext bundleContext) {
+        mbean.registerMBean();
+        testBundleDiag = new TestBundleDiag(bundleContext, bundleService);
         LOG.info("Now starting to provide full system readiness status updates (see TestBundleDiag's logs)...");
+        threadFactory.newThread(this::runCheckBundleDiag).start();
     }
 
-    @PostConstruct
-    public void init() {
-        threadFactory.newThread(this).start();
-    }
-
-    @PreDestroy
-    public void stop() {
+    @Deactivate
+    void deactivate() {
         this.mbean.unregisterMBean();
     }
 
-    @Override
     @SuppressWarnings("checkstyle:IllegalCatch") // below
-    public void run() {
+    private void runCheckBundleDiag() {
         try {
             // 5 minutes really ought to be enough for the whole circus to completely boot up?!
             testBundleDiag.checkBundleDiagInfos(5, TimeUnit.MINUTES, (timeInfo, bundleDiagInfos) ->
