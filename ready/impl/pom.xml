@@ -91,10 +91,6 @@
           </instructions>
         </configuration>
       </plugin>
-      <plugin>
-        <groupId>org.apache.aries.blueprint</groupId>
-        <artifactId>blueprint-maven-plugin</artifactId>
-      </plugin>
     </plugins>
   </build>
 </project>
