@@ -43,5 +43,6 @@ public interface JobCoordinatorMonitor {
     long getRetriesCount();
 
     @Override
+    // FIXME: this is an extremely bad idea, this should be a separate method
     String toString();
 }

@@ -22,6 +22,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.ForkJoinWorkerThread;
@@ -34,11 +35,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.stream.Collectors;
+import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.inject.Inject;
 import javax.inject.Singleton;
-import org.apache.aries.blueprint.annotation.service.Reference;
-import org.apache.aries.blueprint.annotation.service.Service;
 import org.checkerframework.checker.lock.qual.GuardedBy;
 import org.opendaylight.infrautils.jobcoordinator.JobCoordinator;
 import org.opendaylight.infrautils.jobcoordinator.JobCoordinatorMonitor;
@@ -53,7 +53,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Singleton
-@Service(classes = {JobCoordinator.class, JobCoordinatorMonitor.class })
 public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor {
 
     private static final Logger LOG = LoggerFactory.getLogger(JobCoordinatorImpl.class);
@@ -72,9 +71,10 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
             Math.min(FJP_MAX_CAP, Runtime.getRuntime().availableProcessors()), factory,
             LoggingThreadUncaughtExceptionHandler.toLogger(LOG), false);
 
-    private final Map<String, JobQueue> jobQueueMap = new ConcurrentHashMap<>();
+    private final ConcurrentMap<String, JobQueue> jobQueueMap = new ConcurrentHashMap<>();
     private final ReentrantLock jobQueueMapLock = new ReentrantLock();
     private final Condition jobQueueMapCondition = jobQueueMapLock.newCondition();
+    private final JcServiceStatus mxBean = new JcServiceStatus(jobQueueMap);
 
     private final Meter jobsCreated;
     private final Meter jobsCleared;
@@ -95,7 +95,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
     private volatile boolean shutdown = false;
 
     @Inject
-    public JobCoordinatorImpl(@Reference MetricProvider metricProvider) {
+    public JobCoordinatorImpl(MetricProvider metricProvider) {
         jobsCreated = metricProvider.newMeter(this, "odl.infrautils.jobcoordinator.jobsCreated");
         jobsCleared = metricProvider.newMeter(this, "odl.infrautils.jobcoordinator.jobsCleared");
         jobsPending = metricProvider.newCounter(this, "odl.infrautils.jobcoordinator.jobsPending");
@@ -110,9 +110,15 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
             .newThread(new JobQueueHandler());
     }
 
+    @PostConstruct
+    public void initialize() {
+        mxBean.register();
+    }
+
     @PreDestroy
     public void destroy() {
         LOG.info("JobCoordinator shutting down... (tasks still running may be stopped/cancelled/interrupted)");
+        mxBean.unregister();
 
         jobQueueMapLock.lock();
         try {
@@ -510,11 +516,6 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
                 jobQueueMapLock.unlock();
             }
         }
-    }
-
-
-    public Map<String, JobQueue> getJobQueueMap() {
-        return jobQueueMap;
     }
 
     @Override
