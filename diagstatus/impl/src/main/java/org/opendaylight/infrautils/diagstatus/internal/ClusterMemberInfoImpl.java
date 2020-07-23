@@ -17,10 +17,12 @@ import java.util.Collections;
 import java.util.List;
 import javax.inject.Singleton;
 import javax.management.JMException;
-import org.apache.aries.blueprint.annotation.service.Service;
 import org.apache.commons.lang3.StringUtils;
 import org.opendaylight.infrautils.diagstatus.ClusterMemberInfo;
 import org.opendaylight.infrautils.diagstatus.MBeanUtils;
+import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Deactivate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -32,9 +34,8 @@ import org.slf4j.LoggerFactory;
  * @author Michael Vorburger converted former static utility to service (for testability)
  */
 @Singleton
-@Service(classes = ClusterMemberInfo.class)
+@Component(immediate = true)
 public class ClusterMemberInfoImpl implements ClusterMemberInfo {
-
     private static final Logger LOG = LoggerFactory.getLogger(ClusterMemberInfoImpl.class);
 
     @Override
@@ -77,6 +78,16 @@ public class ClusterMemberInfoImpl implements ClusterMemberInfo {
     @Override
     public boolean isLocalAddress(InetAddress ipAddress) {
         return ipAddress.equals(InetAddress.getLoopbackAddress()) || ipAddress.equals(getSelfAddress());
+    }
+
+    @Activate
+    void activate() {
+        LOG.info("ClusterMemberInfo activated");
+    }
+
+    @Deactivate
+    void deactivate() {
+        LOG.info("ClusterMemberInfo deactivated");
     }
 
     private static String extractAddressFromAkka(String clusterMember) {
