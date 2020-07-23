@@ -25,8 +25,10 @@ public interface DiagStatusServiceMBean {
 
     String acquireServiceStatusBrief();
 
-    @Deprecated
-    String acquireServiceStatusAsJSON(String outputType);
+    @Deprecated(forRemoval = true)
+    default String acquireServiceStatusAsJSON(String outputType) {
+        return acquireServiceStatusAsJSON();
+    }
 
     String acquireServiceStatusAsJSON();
 

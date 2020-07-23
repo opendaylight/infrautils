@@ -22,8 +22,6 @@ import javax.management.InstanceNotFoundException;
 import javax.management.JMException;
 import javax.management.MBeanRegistrationException;
 import javax.management.StandardMBean;
-import org.apache.aries.blueprint.annotation.service.Reference;
-import org.apache.aries.blueprint.annotation.service.Service;
 import org.opendaylight.infrautils.diagstatus.DiagStatusService;
 import org.opendaylight.infrautils.diagstatus.DiagStatusServiceMBean;
 import org.opendaylight.infrautils.diagstatus.MBeanUtils;
@@ -33,15 +31,13 @@ import org.opendaylight.infrautils.diagstatus.ServiceStatusSummary;
 import org.opendaylight.infrautils.ready.SystemReadyMonitor;
 
 @Singleton
-@Service(classes = DiagStatusServiceMBean.class)
 public class DiagStatusServiceMBeanImpl extends StandardMBean implements DiagStatusServiceMBean, AutoCloseable {
 
     private final DiagStatusService diagStatusService;
     private final SystemReadyMonitor systemReadyMonitor;
 
     @Inject
-    public DiagStatusServiceMBeanImpl(DiagStatusService diagStatusService,
-                                      @Reference SystemReadyMonitor systemReadyMonitor)
+    public DiagStatusServiceMBeanImpl(DiagStatusService diagStatusService, SystemReadyMonitor systemReadyMonitor)
             throws JMException {
         super(DiagStatusServiceMBean.class);
         this.diagStatusService = diagStatusService;
@@ -139,12 +135,6 @@ public class DiagStatusServiceMBeanImpl extends StandardMBean implements DiagSta
             }
         }
         return mapBuilder.build();
-    }
-
-    @Override
-    @Deprecated
-    public String acquireServiceStatusAsJSON(String outputType) {
-        return this.acquireServiceStatusAsJSON();
     }
 
     @Override
