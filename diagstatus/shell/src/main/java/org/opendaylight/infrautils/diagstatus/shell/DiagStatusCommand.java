@@ -9,11 +9,13 @@ package org.opendaylight.infrautils.diagstatus.shell;
 
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Strings;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableMap;
 import com.google.common.net.InetAddresses;
 import java.net.Inet6Address;
 import java.net.InetAddress;
+import java.net.URI;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.time.Duration;
 import java.util.Date;
 import java.util.List;
 import org.apache.felix.service.command.CommandSession;
@@ -37,7 +39,7 @@ import org.slf4j.LoggerFactory;
 public class DiagStatusCommand implements Action {
     private static final Logger LOG = LoggerFactory.getLogger(DiagStatusCommand.class);
 
-    private static final int HTTP_TIMEOUT = 5000;
+    private static final Duration HTTP_TIMEOUT = Duration.ofSeconds(5);
     private static final String DIAGSTATUS_URL_PREFIX = "http://";
 
     @VisibleForTesting
@@ -113,18 +115,19 @@ public class DiagStatusCommand implements Action {
     String invokeRemoteDiagStatus(InetAddress host) throws Exception {
         String restUrl = buildRemoteDiagStatusUrl(host);
         LOG.info("invokeRemoteDiagStatus() REST URL: {}", restUrl);
-        HttpRequest request = new HttpRequest();
-        request.setUri(restUrl);
-        request.setMethod("GET");
-        request.setTimeout(HTTP_TIMEOUT);
-        request.setHeaders(ImmutableMap.of("Accept", ImmutableList.of("application/json")));
-        request.setContentType("application/json");
+        HttpRequest request = HttpRequest.newBuilder(new URI(restUrl))
+                .GET()
+                .timeout(HTTP_TIMEOUT)
+                .header("Accept", "application/json")
+                .header("Content-Type", "application/json")
+                .build();
+
         LOG.debug("sending http request for accessing remote diagstatus");
-        HttpResponse response = httpClient.sendRequest(request);
+        HttpResponse<String> response = httpClient.sendRequest(request);
         // Response code for success should be 200
-        Integer httpResponseCode = response.getStatus();
+        int httpResponseCode = response.statusCode();
         LOG.debug("http response received for remote diagstatus {}", httpResponseCode);
-        String respStr = response.getBody();
+        String respStr = response.body();
         if (httpResponseCode > 299) {
             LOG.error("Non-200 http response code received {} for URL {}", httpResponseCode, restUrl);
             if (respStr == null) {

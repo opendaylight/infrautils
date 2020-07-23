@@ -7,9 +7,12 @@
  */
 package org.opendaylight.infrautils.diagstatus.shell;
 
+import java.io.IOException;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 
 public interface HttpClientService {
-    HttpResponse sendRequest(HttpRequest request) throws Exception ;
+    HttpResponse<String> sendRequest(HttpRequest request) throws IOException, InterruptedException;
 
     int getHttpPort();
 }

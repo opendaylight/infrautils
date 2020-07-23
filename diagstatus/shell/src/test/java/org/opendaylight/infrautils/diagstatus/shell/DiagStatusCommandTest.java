@@ -8,14 +8,13 @@
 package org.opendaylight.infrautils.diagstatus.shell;
 
 import static com.google.common.truth.Truth.assertThat;
-import static org.mockito.Mockito.mock;
 import static org.opendaylight.infrautils.diagstatus.ServiceState.OPERATIONAL;
 
-import com.google.common.collect.ImmutableMap;
 import com.google.common.net.InetAddresses;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.util.Collections;
+import java.util.Map;
 import javax.management.InstanceNotFoundException;
 import javax.management.MBeanRegistrationException;
 import javax.management.MalformedObjectNameException;
@@ -23,6 +22,9 @@ import javax.servlet.ServletException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
 import org.opendaylight.infrautils.diagstatus.ClusterMemberInfo;
 import org.opendaylight.infrautils.diagstatus.DiagStatusService;
 import org.opendaylight.infrautils.diagstatus.ServiceDescriptor;
@@ -40,16 +42,18 @@ import org.opendaylight.infrautils.testutils.web.TestWebServer;
  * @author Michael Vorburger.ch
  * @author Faseela K
  */
+@RunWith(MockitoJUnitRunner.StrictStubs.class)
 public class DiagStatusCommandTest {
 
     TestWebServer webServer;
     DiagStatusService diagStatusService;
     SystemReadyMonitor systemReadyMonitor = new TestSystemReadyMonitor(Behaviour.IMMEDIATE);
     DiagStatusCommand diagStatusCommand;
-    ClusterMemberInfo clusterMemberInfo = mock(ClusterMemberInfo.class);
+    @Mock
+    ClusterMemberInfo clusterMemberInfo;
     DiagStatusServiceMBeanImpl diagStatusServiceMBeanImpl;
 
-    HttpClient httpClient =  new HttpClient(ImmutableMap.of("org.osgi.service.http.port", "8181"));
+    DefaultHttpClientService httpClient = new DefaultHttpClientService(Map.of("org.osgi.service.http.port", "8181"));
 
     static String serviceStatusSummary = "Node IP Address: {node-ip}\n"
             + "System is operational: true\n"

@@ -8,7 +8,7 @@
 
   <service ref="httpClient" interface="org.opendaylight.infrautils.diagstatus.shell.HttpClientService"/>
 
-  <bean id="httpClient" class="org.opendaylight.infrautils.diagstatus.shell.HttpClient">
+  <bean id="httpClient" class="org.opendaylight.infrautils.diagstatus.shell.DefaultHttpClientService">
     <argument ref="initialProperties" />
   </bean>
 
