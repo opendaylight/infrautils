@@ -7,118 +7,31 @@
  */
 package org.opendaylight.infrautils.metrics.internal;
 
-import com.google.common.base.MoreObjects;
-import java.util.Map;
-import java.util.function.Consumer;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.osgi.service.metatype.annotations.AttributeDefinition;
+import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 
 /**
- * Configuration properties for the metrics implementation.
- *
- * <p>Karaf's OSGi ConfigAdmin service, via the cm blueprint extension, sets this
- * from the etc/org.opendaylight.infrautils.metrics.cfg configuration file.
+ * Configuration properties for the metrics implementation. Karaf's OSGi ConfigAdmin service, sets this from the
+ * etc/org.opendaylight.infrautils.metrics.cfg configuration file.
  *
  * @author Michael Vorburger.ch
  */
-public final class Configuration {
-
-    private static final Logger LOG = LoggerFactory.getLogger(Configuration.class);
-
-    private final MetricProviderImpl metricProvider;
-
+@ObjectClassDefinition
+public @interface Configuration {
     // Apply any change to these defaults also to org.opendaylight.infrautils.metrics.cfg
     // (Just for clarity; they are commented out there, so these are the real defaults.)
-    private int threadsWatcherIntervalMS = 0;
-    private int maxThreads = 1000;
-    private int fileReporterIntervalSecs = 0;
-    private int maxThreadsMaxLogIntervalSecs = 60;
-    private int deadlockedThreadsMaxLogIntervalSecs = 60;
+    @AttributeDefinition(name = "threadsWatcherIntervalMS")
+    int threadsWatcherIntervalMS() default 0;
 
-    public Configuration(MetricProviderImpl metricProvider, Map<String, String> initialProperties) {
-        this(metricProvider);
-        updateProperties(initialProperties);
-    }
+    @AttributeDefinition(name = "maxThreads")
+    int maxThreads() default 1000;
 
-    public Configuration(MetricProviderImpl metricProvider) {
-        this.metricProvider = metricProvider;
-    }
+    @AttributeDefinition(name = "fileReporterIntervalSecs")
+    int fileReporterIntervalSecs() default 0;
 
-    public void updateProperties(Map<String, String> properties) {
-        LOG.info("updateProperties({})", properties);
-        doIfIntPropertyIsPresent(properties, "threadsWatcherIntervalMS", this::setThreadsWatcherIntervalMS);
-        doIfIntPropertyIsPresent(properties, "maxThreads", this::setMaxThreads);
-        doIfIntPropertyIsPresent(properties, "fileReporterIntervalSecs", this::setFileReporterIntervalSecs);
-        doIfIntPropertyIsPresent(properties, "maxThreadsMaxLogIntervalSecs", this::setMaxThreadsMaxLogIntervalSecs);
-        doIfIntPropertyIsPresent(properties, "deadlockedThreadsMaxLogIntervalSecs",
-                this::setDeadlockedThreadsMaxLogIntervalSecs);
+    @AttributeDefinition(name = "maxThreadsMaxLogIntervalSecs")
+    int maxThreadsMaxLogIntervalSecs() default 60;
 
-        metricProvider.updateConfiguration(this);
-    }
-
-    public void setFileReporterIntervalSecs(int fileReporterIntervalSecs) {
-        this.fileReporterIntervalSecs = fileReporterIntervalSecs;
-    }
-
-    public int getFileReporterIntervalSecs() {
-        return fileReporterIntervalSecs;
-    }
-
-    public void setThreadsWatcherIntervalMS(int ms) {
-        this.threadsWatcherIntervalMS = ms;
-    }
-
-    public int getThreadsWatcherIntervalMS() {
-        return this.threadsWatcherIntervalMS;
-    }
-
-    public void setMaxThreads(int maxThreads) {
-        this.maxThreads = maxThreads;
-    }
-
-    public int getMaxThreads() {
-        return this.maxThreads;
-    }
-
-    public void setMaxThreadsMaxLogIntervalSecs(int maxThreadsMaxLogIntervalSecs) {
-        this.maxThreadsMaxLogIntervalSecs = maxThreadsMaxLogIntervalSecs;
-    }
-
-    public int getMaxThreadsMaxLogIntervalSecs() {
-        return maxThreadsMaxLogIntervalSecs;
-    }
-
-    public void setDeadlockedThreadsMaxLogIntervalSecs(int deadlockedThreadsMaxLogIntervalSecs) {
-        this.deadlockedThreadsMaxLogIntervalSecs = deadlockedThreadsMaxLogIntervalSecs;
-    }
-
-    public int getDeadlockedThreadsMaxLogIntervalSecs() {
-        return deadlockedThreadsMaxLogIntervalSecs;
-    }
-
-    @Override
-    public String toString() {
-        return MoreObjects.toStringHelper(this)
-                .add("threadsWatcherIntervalMS", threadsWatcherIntervalMS)
-                .add("maxThreads", maxThreads)
-                .add("maxThreadsMaxLogIntervalSecs", maxThreadsMaxLogIntervalSecs)
-                .add("deadlockedThreadsMaxLogIntervalSecs", deadlockedThreadsMaxLogIntervalSecs)
-                .add("fileReporterIntervalSecs", fileReporterIntervalSecs)
-                .toString();
-    }
-
-    // When any other project want to deal with Configuration like this, perhaps this could be moved somewhere re-usable
-    private static void doIfIntPropertyIsPresent(
-            Map<String, String> properties, String propertyName, Consumer<Integer> consumer) {
-        String propertyValueAsString = properties.get(propertyName);
-        if (propertyValueAsString != null) {
-            try {
-                Integer propertyValueAsInt = Integer.parseInt(propertyValueAsString);
-                consumer.accept(propertyValueAsInt);
-            } catch (NumberFormatException nfe) {
-                LOG.warn("Ignored property '{}' that was expected to be an Integer but was not: {}", propertyName,
-                        propertyValueAsString, nfe);
-            }
-        }
-    }
+    @AttributeDefinition(name = "deadlockedThreadsMaxLogIntervalSecs")
+    int deadlockedThreadsMaxLogIntervalSecs() default 60;
 }
