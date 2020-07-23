@@ -3,15 +3,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.opendaylight.odlparent</groupId>
+        <groupId>org.opendaylight.infrautils</groupId>
         <artifactId>single-feature-parent</artifactId>
-        <version>7.0.3</version>
-        <relativePath/>
+        <version>1.8.0-SNAPSHOT</version>
+        <relativePath>../parent</relativePath>
     </parent>
 
-    <groupId>org.opendaylight.infrautils</groupId>
     <artifactId>odl-infrautils-diagstatus</artifactId>
-    <version>1.8.0-SNAPSHOT</version>
     <packaging>feature</packaging>
 
     <name>OpenDaylight :: Infrautils :: DiagStatus</name>
@@ -56,29 +54,24 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>diagstatus-web</artifactId>
-            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>diagstatus-shell</artifactId>
-            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>diagstatus-impl</artifactId>
-            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>odl-infrautils-utils</artifactId>
-            <version>${project.version}</version>
             <classifier>features</classifier>
             <type>xml</type>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>odl-infrautils-ready</artifactId>
-            <version>${project.version}</version>
             <classifier>features</classifier>
             <type>xml</type>
         </dependency>
