@@ -44,7 +44,7 @@ public class ReadyModuleTest {
         }
     }
 
-    public @Rule GuiceRule guice = new GuiceRule(ReadyModule.class, AnnotationsModule.class);
+    @Rule public GuiceRule guice = new GuiceRule(ReadyModule.class, AnnotationsModule.class);
 
     @Inject TestBean testBean;
 
