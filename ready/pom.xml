@@ -27,6 +27,7 @@
 
   <modules>
     <module>api</module>
+    <module>guice</module>
     <module>impl</module>
     <!-- <module>impl-karaf3</module> -->
     <module>it</module>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- Copyright © 2019 Red Hat, Inc. and others. All rights reserved.
+ Copyright © 2020 PANTHEON.tech, s.r.o. and others. All rights reserved.
 
  This program and the accompanying materials are made available under the
  terms of the Eclipse Public License v1.0 which accompanies this distribution,
@@ -18,8 +18,8 @@
     <relativePath>../../common/parent</relativePath>
   </parent>
 
-  <artifactId>ready-api</artifactId>
-  <packaging>bundle</packaging>
+  <artifactId>ready-guice</artifactId>
+  <packaging>jar</packaging>
   <!-- <name> formatting is used by autorelease to parse and notify projects on
        build failure. Please do not modify this unless you have a good reason. -->
   <name>ODL :: infrautils :: ${project.artifactId}</name>
@@ -28,6 +28,20 @@
     <dependency>
       <groupId>org.opendaylight.infrautils</groupId>
       <artifactId>infrautils-util</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.opendaylight.infrautils</groupId>
+      <artifactId>ready-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.opendaylight.infrautils</groupId>
+      <artifactId>inject.guice</artifactId>
+      <optional>true</optional>
+    </dependency>
+
+    <dependency>
+      <groupId>org.opendaylight.infrautils</groupId>
+      <artifactId>inject.guice.testutils</artifactId>
     </dependency>
   </dependencies>
 </project>
