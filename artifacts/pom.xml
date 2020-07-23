@@ -27,17 +27,7 @@
 
     <dependencyManagement>
         <dependencies>
-            <!-- APIs & runtime utilities -->
-            <dependency>
-              <groupId>${project.groupId}</groupId>
-             <artifactId>caches-api</artifactId>
-              <version>${project.version}</version>
-            </dependency>
-            <dependency>
-              <groupId>${project.groupId}</groupId>
-              <artifactId>diagstatus-api</artifactId>
-              <version>${project.version}</version>
-            </dependency>
+            <!-- General utilities -->
             <dependency>
               <groupId>${project.groupId}</groupId>
               <artifactId>infrautils-util</artifactId>
@@ -45,100 +35,13 @@
             </dependency>
             <dependency>
               <groupId>${project.groupId}</groupId>
-              <artifactId>inject</artifactId>
-              <version>${project.version}</version>
-            </dependency>
-            <dependency>
-              <groupId>${project.groupId}</groupId>
-              <artifactId>inject.guice</artifactId>
-              <version>${project.version}</version>
-            </dependency>
-            <dependency>
-              <groupId>${project.groupId}</groupId>
-              <artifactId>jobcoordinator-api</artifactId>
-              <version>${project.version}</version>
-            </dependency>
-            <dependency>
-              <groupId>${project.groupId}</groupId>
-              <artifactId>metrics-api</artifactId>
-              <version>${project.version}</version>
-            </dependency>
-            <dependency>
-              <groupId>${project.groupId}</groupId>
-              <artifactId>ready-api</artifactId>
-              <version>${project.version}</version>
-            </dependency>
-
-            <!-- Implementations are typically not used as dependencies in normal ODL OSGi bundles,
-                 because normal application code should only depend on api artifacts and never impl.
-                 (The impl are loaded by Karaf at run-time and register services implementing api.)
-                 However, at last some of the implementations are often used with <scope>test,
-                 and e.g. by simple distribution; we therefore list them here. -->
-            <dependency>
-              <groupId>org.opendaylight.infrautils</groupId>
-              <artifactId>caches-impl-base</artifactId>
-              <version>${project.version}</version>
-            </dependency>
-            <dependency>
-              <groupId>org.opendaylight.infrautils</groupId>
-              <artifactId>caches-guava-impl</artifactId>
-              <version>${project.version}</version>
-            </dependency>
-            <dependency>
-              <groupId>org.opendaylight.infrautils</groupId>
-              <artifactId>caches-noop-impl</artifactId>
-              <version>${project.version}</version>
-            </dependency>
-            <dependency>
-              <groupId>org.opendaylight.infrautils</groupId>
-              <artifactId>caches-standard-impl</artifactId>
-              <version>${project.version}</version>
-            </dependency>
-            <dependency>
-              <groupId>org.opendaylight.infrautils</groupId>
-              <artifactId>caches-test</artifactId>
-              <version>${project.version}</version>
-              <scope>test</scope>
-            </dependency>
-            <dependency>
-              <groupId>org.opendaylight.infrautils</groupId>
-              <artifactId>diagstatus-impl</artifactId>
-              <version>${project.version}</version>
-            </dependency>
-            <dependency>
-              <groupId>org.opendaylight.infrautils</groupId>
-              <artifactId>diagstatus-web</artifactId>
-              <version>${project.version}</version>
-            </dependency>
-            <dependency>
-              <groupId>${project.groupId}</groupId>
-              <artifactId>jobcoordinator-impl</artifactId>
-              <version>${project.version}</version>
-            </dependency>
-            <dependency>
-              <groupId>${project.groupId}</groupId>
-              <artifactId>metrics-impl</artifactId>
-              <version>${project.version}</version>
-            </dependency>
-            <dependency>
-              <groupId>${project.groupId}</groupId>
-              <artifactId>metrics-impl-prometheus</artifactId>
-              <version>${project.version}</version>
-            </dependency>
-            <dependency>
-              <groupId>${project.groupId}</groupId>
-              <artifactId>ready-guice</artifactId>
-              <version>${project.version}</version>
-            </dependency>
-            <dependency>
-              <groupId>org.opendaylight.infrautils</groupId>
               <artifactId>shell</artifactId>
               <version>${project.version}</version>
             </dependency>
 
             <!-- Test utilities -->
             <dependency>
-              <groupId>org.opendaylight.infrautils</groupId>
+              <groupId>${project.groupId}</groupId>
               <artifactId>infrautils-testutils</artifactId>
               <version>${project.version}</version>
               <scope>test</scope>
@@ -156,21 +59,163 @@
               <scope>test</scope>
             </dependency>
 
-            <!-- Karaf features -->
+            <!-- Caches -->
             <dependency>
+              <groupId>${project.groupId}</groupId>
+              <artifactId>caches-api</artifactId>
+              <version>${project.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>${project.groupId}</groupId>
+              <artifactId>caches-cli</artifactId>
+              <version>${project.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>${project.groupId}</groupId>
+              <artifactId>caches-impl-base</artifactId>
+              <version>${project.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>${project.groupId}</groupId>
+              <artifactId>caches-guava-impl</artifactId>
+              <version>${project.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>${project.groupId}</groupId>
+              <artifactId>caches-noop-impl</artifactId>
+              <version>${project.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>${project.groupId}</groupId>
+              <artifactId>caches-standard-impl</artifactId>
+              <version>${project.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>${project.groupId}</groupId>
+              <artifactId>caches-test</artifactId>
+              <version>${project.version}</version>
+              <scope>test</scope>
+            </dependency>
+
+            <!-- Diagnostic Status -->
+            <dependency>
+              <groupId>${project.groupId}</groupId>
+              <artifactId>diagstatus-api</artifactId>
+              <version>${project.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>${project.groupId}</groupId>
+              <artifactId>diagstatus-impl</artifactId>
+              <version>${project.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>${project.groupId}</groupId>
+              <artifactId>diagstatus-shell</artifactId>
+              <version>${project.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>${project.groupId}</groupId>
+              <artifactId>diagstatus-web</artifactId>
+              <version>${project.version}</version>
+            </dependency>
+
+            <!-- Job Coordinator -->
+            <dependency>
+              <groupId>${project.groupId}</groupId>
+              <artifactId>jobcoordinator-api</artifactId>
+              <version>${project.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>${project.groupId}</groupId>
+              <artifactId>jobcoordinator-impl</artifactId>
+              <version>${project.version}</version>
+            </dependency>
+
+            <!-- Metrics -->
+            <dependency>
+              <groupId>${project.groupId}</groupId>
+              <artifactId>metrics-api</artifactId>
+              <version>${project.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>${project.groupId}</groupId>
+              <artifactId>metrics-impl</artifactId>
+              <version>${project.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>${project.groupId}</groupId>
+              <artifactId>metrics-impl</artifactId>
+              <version>${project.version}</version>
+              <classifier>config</classifier>
+              <type>cfg</type>
+            </dependency>
+            <dependency>
+              <groupId>${project.groupId}</groupId>
+              <artifactId>metrics-impl-prometheus</artifactId>
+              <version>${project.version}</version>
+            </dependency>
+
+            <!-- Platform Readiness -->
+            <dependency>
+              <groupId>${project.groupId}</groupId>
+              <artifactId>ready-api</artifactId>
+              <version>${project.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>${project.groupId}</groupId>
+              <artifactId>ready-impl</artifactId>
+              <version>${project.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>${project.groupId}</groupId>
+              <artifactId>ready-guice</artifactId>
+              <version>${project.version}</version>
+            </dependency>
+
+            <!-- APIs & runtime utilities -->
+            <dependency>
+              <groupId>${project.groupId}</groupId>
+              <artifactId>inject</artifactId>
+              <version>${project.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>${project.groupId}</groupId>
+              <artifactId>inject.guice</artifactId>
+              <version>${project.version}</version>
+            </dependency>
+
+            <!-- Karaf feature repositories -->
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>features-infrautils</artifactId>
+                <version>${project.version}</version>
+                <type>xml</type>
+                <classifier>features</classifier>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>features-infrautils-experimental</artifactId>
+                <version>${project.version}</version>
+                <type>xml</type>
+                <classifier>features</classifier>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>features-infrautils-samples</artifactId>
+                <version>${project.version}</version>
+                <type>xml</type>
+                <classifier>features</classifier>
+            </dependency>
+            <dependency>
+                <!-- FIXME: remove this declaration -->
                 <groupId>${project.groupId}</groupId>
                 <artifactId>infrautils-features</artifactId>
                 <version>${project.version}</version>
                 <type>xml</type>
                 <classifier>features</classifier>
             </dependency>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>odl-infrautils-all</artifactId>
-                <version>${project.version}</version>
-                <type>xml</type>
-                <classifier>features</classifier>
-            </dependency>
+
+            <!-- Stable Karaf features -->
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>odl-infrautils-caches</artifactId>
@@ -181,13 +226,6 @@
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>odl-infrautils-diagstatus</artifactId>
-                <version>${project.version}</version>
-                <type>xml</type>
-                <classifier>features</classifier>
-            </dependency>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>odl-infrautils-inject</artifactId>
                 <version>${project.version}</version>
                 <type>xml</type>
                 <classifier>features</classifier>
@@ -208,13 +246,6 @@
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>odl-infrautils-metrics-prometheus</artifactId>
-                <version>${project.version}</version>
-                <type>xml</type>
-                <classifier>features</classifier>
-            </dependency>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
                 <artifactId>odl-infrautils-ready</artifactId>
                 <version>${project.version}</version>
                 <type>xml</type>
@@ -223,6 +254,22 @@
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>odl-infrautils-utils</artifactId>
+                <version>${project.version}</version>
+                <type>xml</type>
+                <classifier>features</classifier>
+            </dependency>
+
+            <!-- Experimental Karaf features -->
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>odl-infrautils-inject</artifactId>
+                <version>${project.version}</version>
+                <type>xml</type>
+                <classifier>features</classifier>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>odl-infrautils-metrics-prometheus</artifactId>
                 <version>${project.version}</version>
                 <type>xml</type>
                 <classifier>features</classifier>

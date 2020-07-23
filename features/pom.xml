@@ -24,19 +24,36 @@
     <name>ODL :: infrautils :: ${project.artifactId}</name>
 
     <modules>
-        <module>infrautils-features</module>
-        <module>odl-infrautils-all-with-samples</module>
-        <module>odl-infrautils-all</module>
-        <module>odl-infrautils-jobcoordinator</module>
-        <module>odl-infrautils-inject</module>
-        <module>odl-infrautils-utils</module>
-        <module>odl-infrautils-ready</module>
+        <!-- Utility single-feature-parent -->
+        <module>parent</module>
+
+        <!-- Stable features -->
         <module>odl-infrautils-caches</module>
-        <module>odl-infrautils-caches-sample</module>
         <module>odl-infrautils-diagstatus</module>
+        <module>odl-infrautils-jobcoordinator</module>
         <module>odl-infrautils-metrics</module>
+        <module>odl-infrautils-ready</module>
+        <module>odl-infrautils-utils</module>
+
+        <!-- Stable feature repository -->
+        <module>features-infrautils</module>
+
+        <!-- Experimental features -->
+        <module>odl-infrautils-inject</module>
         <module>odl-infrautils-metrics-prometheus</module>
-       	<module>odl-infrautils-metrics-sample</module>
+
+        <!-- Experimental feature repostitory -->
+        <module>features-infrautils-experimental</module>
+
+        <!-- Sample features -->
+        <module>odl-infrautils-caches-sample</module>
+        <module>odl-infrautils-metrics-sample</module>
+
+        <!-- Sample feature repostitory -->
+        <module>features-infrautils-samples</module>
+
+        <!-- Legacy feature repository, contains all of above -->
+        <module>infrautils-features</module>
     </modules>
 
     <properties>
