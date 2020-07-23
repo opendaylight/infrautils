@@ -18,10 +18,8 @@ import javax.inject.Singleton;
  */
 @Singleton
 @Named("collectorRegistrySingleton")
-public class CollectorRegistrySingleton extends  CollectorRegistry {
-
+public class CollectorRegistrySingleton extends CollectorRegistry {
     public CollectorRegistrySingleton() {
         super(true);
     }
-
 }
