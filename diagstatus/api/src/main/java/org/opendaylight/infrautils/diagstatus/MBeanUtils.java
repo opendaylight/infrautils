@@ -38,33 +38,40 @@ public final class MBeanUtils {
     private MBeanUtils() {
     }
 
-    public static MBeanServer registerServerMBean(Object mxBeanImplementor, String objNameStr)
-            throws JMException {
-
-        LOG.debug("register MBean for {}", objNameStr);
+    public static MBeanServer registerServerMBean(Object mxBeanImplementor, ObjectName objName)
+            throws InstanceAlreadyExistsException, MBeanRegistrationException, NotCompliantMBeanException {
+        LOG.debug("register MBean for {}", objName);
         MBeanServer mbs = ManagementFactory.getPlatformMBeanServer();
         try {
-            ObjectName objName = new ObjectName(objNameStr);
             mbs.registerMBean(mxBeanImplementor, objName);
-            LOG.info("MBean registration for {} SUCCESSFUL.", objNameStr);
-        } catch (InstanceAlreadyExistsException | MBeanRegistrationException | NotCompliantMBeanException
-            | MalformedObjectNameException ex) {
-            LOG.error("MBean registration for {} FAILED.", objNameStr, ex);
+            LOG.info("MBean registration for {} SUCCESSFUL.", objName);
+        } catch (InstanceAlreadyExistsException | MBeanRegistrationException | NotCompliantMBeanException ex) {
+            LOG.error("MBean registration for {} FAILED.", objName, ex);
             throw ex;
         }
         return mbs;
     }
 
-    public static void unregisterServerMBean(Object mxBeanImplementor, String objNameStr)
-            throws MalformedObjectNameException, InstanceNotFoundException, MBeanRegistrationException {
-        LOG.debug("unregister MXBean for {}", objNameStr);
+    public static MBeanServer registerServerMBean(Object mxBeanImplementor, String objNameStr)
+            throws JMException {
+        return registerServerMBean(mxBeanImplementor, ObjectName.getInstance(objNameStr));
+    }
+
+    public static void unregisterServerMBean(Object mxBeanImplementor, ObjectName objName)
+            throws InstanceNotFoundException, MBeanRegistrationException {
+        LOG.debug("unregister MXBean for {}", objName);
         MBeanServer mplatformMbeanServer = ManagementFactory.getPlatformMBeanServer();
         try {
-            mplatformMbeanServer.unregisterMBean(new ObjectName(objNameStr));
-        } catch (InstanceNotFoundException | MalformedObjectNameException | MBeanRegistrationException e) {
-            LOG.error("Error while unregistering MBean {}", objNameStr, e);
+            mplatformMbeanServer.unregisterMBean(objName);
+        } catch (InstanceNotFoundException | MBeanRegistrationException e) {
+            LOG.error("Error while unregistering MBean {}", objName, e);
             throw e;
         }
+    }
+
+    public static void unregisterServerMBean(Object mxBeanImplementor, String objNameStr)
+            throws MalformedObjectNameException, InstanceNotFoundException, MBeanRegistrationException {
+        unregisterServerMBean(mxBeanImplementor, ObjectName.getInstance(objNameStr));
     }
 
     public static @Nullable Object getMBeanAttribute(String objName, String attribute) throws JMException {
@@ -82,5 +89,13 @@ public final class MBeanUtils {
 
     public static <T> T getMBean(String jmxName, Class<T> klass) throws MalformedObjectNameException {
         return getMBean(jmxName, klass, ManagementFactory.getPlatformMBeanServer());
+    }
+
+    static ObjectName objectNameOf(String name) {
+        try {
+            return ObjectName.getInstance(name);
+        } catch (MalformedObjectNameException e) {
+            throw new ExceptionInInitializerError(e);
+        }
     }
 }

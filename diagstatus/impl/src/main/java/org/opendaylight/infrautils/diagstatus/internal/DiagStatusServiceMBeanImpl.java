@@ -14,7 +14,6 @@ import com.google.common.base.Strings;
 import com.google.common.base.Throwables;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableMap.Builder;
-import java.io.IOException;
 import java.util.Map;
 import javax.annotation.PreDestroy;
 import javax.inject.Inject;
@@ -22,7 +21,6 @@ import javax.inject.Singleton;
 import javax.management.InstanceNotFoundException;
 import javax.management.JMException;
 import javax.management.MBeanRegistrationException;
-import javax.management.MalformedObjectNameException;
 import javax.management.StandardMBean;
 import org.apache.aries.blueprint.annotation.service.Reference;
 import org.apache.aries.blueprint.annotation.service.Service;
@@ -53,8 +51,7 @@ public class DiagStatusServiceMBeanImpl extends StandardMBean implements DiagSta
 
     @Override
     @PreDestroy
-    public void close() throws IOException, MalformedObjectNameException,
-            InstanceNotFoundException, MBeanRegistrationException {
+    public void close() throws InstanceNotFoundException, MBeanRegistrationException {
         MBeanUtils.unregisterServerMBean(this, JMX_OBJECT_NAME);
     }
 

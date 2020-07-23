@@ -8,6 +8,7 @@
 package org.opendaylight.infrautils.diagstatus;
 
 import java.util.Map;
+import javax.management.ObjectName;
 
 /**
  * DiagStatus MBean Operations.
@@ -16,7 +17,7 @@ import java.util.Map;
  */
 public interface DiagStatusServiceMBean {
 
-    String JMX_OBJECT_NAME = "org.opendaylight.infrautils.diagstatus:type=SvcStatus";
+    ObjectName JMX_OBJECT_NAME = MBeanUtils.objectNameOf("org.opendaylight.infrautils.diagstatus:type=SvcStatus");
 
     String acquireServiceStatus();
 
