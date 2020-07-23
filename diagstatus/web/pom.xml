@@ -23,23 +23,7 @@
     </dependency>
     <dependency>
       <groupId>org.osgi</groupId>
-      <!-- If aaa.web was in infrautils instead of AAA, we could use that instead here -->
       <artifactId>osgi.cmpn</artifactId>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>javax.inject</groupId>
-      <artifactId>javax.inject</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>javax.annotation</groupId>
-      <artifactId>javax.annotation-api</artifactId>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.aries.blueprint</groupId>
-      <artifactId>blueprint-maven-plugin-annotation</artifactId>
-      <optional>true</optional>
     </dependency>
 
     <dependency>
@@ -47,13 +31,4 @@
       <artifactId>infrautils-testutils</artifactId>
     </dependency>
   </dependencies>
-
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.aries.blueprint</groupId>
-        <artifactId>blueprint-maven-plugin</artifactId>
-      </plugin>
-    </plugins>
-  </build>
 </project>

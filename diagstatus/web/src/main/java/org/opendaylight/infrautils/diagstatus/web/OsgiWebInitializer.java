@@ -7,12 +7,12 @@
  */
 package org.opendaylight.infrautils.diagstatus.web;
 
-import javax.annotation.PreDestroy;
-import javax.inject.Inject;
-import javax.inject.Singleton;
 import javax.servlet.ServletException;
-import org.apache.aries.blueprint.annotation.service.Reference;
 import org.opendaylight.infrautils.diagstatus.DiagStatusService;
+import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Deactivate;
+import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.http.HttpService;
 import org.osgi.service.http.NamespaceException;
 import org.slf4j.Logger;
@@ -27,25 +27,26 @@ import org.slf4j.LoggerFactory;
  *
  * @author Michael Vorburger.ch
  */
-@Singleton
-public class OsgiWebInitializer {
-
+@Component(immediate = true)
+public final class OsgiWebInitializer {
     private static final Logger LOG = LoggerFactory.getLogger(OsgiWebInitializer.class);
-
     private static final String DIAGSTATUS_URL = "/diagstatus";
 
-    private final HttpService osgiHttpService;
+    @Reference
+    DiagStatusService diagStatusService = null;
 
-    @Inject
-    public OsgiWebInitializer(@Reference HttpService osgiHttpService,
-            @Reference DiagStatusService diagStatusService) throws ServletException, NamespaceException {
-        this.osgiHttpService = osgiHttpService;
+    @Reference
+    HttpService osgiHttpService = null;
+
+    @Activate
+    void activate() throws ServletException, NamespaceException {
         osgiHttpService.registerServlet(DIAGSTATUS_URL, new DiagStatusServlet(diagStatusService), null, null);
         LOG.info("DiagStatus now exposed on: {}", DIAGSTATUS_URL);
     }
 
-    @PreDestroy
-    public void close() {
+    @Deactivate
+    void deactivate() {
         osgiHttpService.unregister(DIAGSTATUS_URL);
+        LOG.info("Diagnostic Status Servlet unregistered");
     }
 }
