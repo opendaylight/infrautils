@@ -31,6 +31,8 @@
     </scm>
 
     <modules>
+        <module>features</module>
+
         <module>caches</module>
         <module>common</module>
         <module>diagstatus</module>

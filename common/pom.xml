@@ -28,7 +28,6 @@
     <modules>
         <module>artifacts</module>
         <module>util</module>
-        <module>features</module>
         <module>parent</module>
     </modules>
 
