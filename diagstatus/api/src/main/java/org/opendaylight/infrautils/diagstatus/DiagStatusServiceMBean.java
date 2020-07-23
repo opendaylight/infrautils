@@ -16,8 +16,6 @@ import java.util.Map;
  */
 public interface DiagStatusServiceMBean {
 
-    int RMI_REGISTRY_PORT = 6886;
-
     String JMX_OBJECT_NAME = "org.opendaylight.infrautils.diagstatus:type=SvcStatus";
 
     String acquireServiceStatus();
