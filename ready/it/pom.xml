@@ -27,7 +27,6 @@
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>ready-api</artifactId>
-      <version>${project.version}</version>
     </dependency>
 
     <dependency>
