@@ -27,13 +27,11 @@
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>caches-sample</artifactId>
-      <version>${project.version}</version>
     </dependency>
 <!--
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>infrautils-features</artifactId>
-      <version>${project.version}</version>
       <classifier>features</classifier>
       <type>xml</type>
     </dependency>

@@ -36,7 +36,9 @@
         <module>odl-infrautils-diagstatus</module>
         <module>odl-infrautils-metrics</module>
         <module>odl-infrautils-metrics-prometheus</module>
-       	<module>odl-infrautils-metrics-sample</module>
+        <module>odl-infrautils-metrics-sample</module>
+
+        <module>parent</module>
     </modules>
 
     <properties>

@@ -10,15 +10,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.opendaylight.odlparent</groupId>
+        <groupId>org.opendaylight.infrautils</groupId>
         <artifactId>single-feature-parent</artifactId>
-        <version>7.0.3</version>
-        <relativePath/>
+        <version>1.8.0-SNAPSHOT</version>
+        <relativePath>../parent</relativePath>
     </parent>
 
-    <groupId>org.opendaylight.infrautils</groupId>
     <artifactId>odl-infrautils-all-with-samples</artifactId>
-    <version>1.8.0-SNAPSHOT</version>
     <packaging>feature</packaging>
 
     <name>OpenDaylight :: Infrautils :: All with Samples</name>
@@ -27,21 +25,18 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>odl-infrautils-all</artifactId>
-            <version>${project.version}</version>
             <type>xml</type>
             <classifier>features</classifier>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>odl-infrautils-caches-sample</artifactId>
-            <version>${project.version}</version>
             <type>xml</type>
             <classifier>features</classifier>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>odl-infrautils-metrics-sample</artifactId>
-            <version>${project.version}</version>
             <type>xml</type>
             <classifier>features</classifier>
         </dependency>
