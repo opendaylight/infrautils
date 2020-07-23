@@ -56,8 +56,6 @@
       <version>0.9.0</version>
     </dependency>
     <dependency>
-      <!-- TODO remove this when we can use the WebServer/WebContext API,
-           instead of directly the raw OSGi HttpService, in OsgiWebInitializer: -->
       <groupId>org.osgi</groupId>
       <artifactId>osgi.cmpn</artifactId>
     </dependency>
@@ -69,15 +67,13 @@
     <dependency>
       <groupId>javax.inject</groupId>
       <artifactId>javax.inject</artifactId>
+      <scope>provided</scope>
+      <optional>true</optional>
     </dependency>
     <dependency>
       <groupId>javax.annotation</groupId>
       <artifactId>javax.annotation-api</artifactId>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.aries.blueprint</groupId>
-      <artifactId>blueprint-maven-plugin-annotation</artifactId>
+      <scope>provided</scope>
       <optional>true</optional>
     </dependency>
 
@@ -86,13 +82,4 @@
       <artifactId>infrautils-testutils</artifactId>
     </dependency>
   </dependencies>
-
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.aries.blueprint</groupId>
-        <artifactId>blueprint-maven-plugin</artifactId>
-      </plugin>
-    </plugins>
-  </build>
 </project>
