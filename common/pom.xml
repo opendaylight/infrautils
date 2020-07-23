@@ -26,7 +26,6 @@
     <name>ODL :: infrautils :: ${project.artifactId}</name>
 
     <modules>
-        <module>artifacts</module>
         <module>util</module>
         <module>parent</module>
     </modules>
