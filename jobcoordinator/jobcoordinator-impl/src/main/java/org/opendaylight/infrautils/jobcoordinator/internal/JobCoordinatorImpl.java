@@ -14,6 +14,7 @@ import com.google.common.base.MoreObjects;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
+import com.google.common.util.concurrent.ListeningScheduledExecutorService;
 import com.google.common.util.concurrent.MoreExecutors;
 import com.google.errorprone.annotations.Var;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
@@ -23,12 +24,9 @@ import java.util.Objects;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
-import java.util.concurrent.Executors;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.ForkJoinWorkerThread;
-import java.util.concurrent.Future;
 import java.util.concurrent.RejectedExecutionException;
-import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -46,7 +44,7 @@ import org.opendaylight.infrautils.jobcoordinator.RollbackCallable;
 import org.opendaylight.infrautils.metrics.Counter;
 import org.opendaylight.infrautils.metrics.Meter;
 import org.opendaylight.infrautils.metrics.MetricProvider;
-import org.opendaylight.infrautils.utils.concurrent.JdkFutures;
+import org.opendaylight.infrautils.utils.concurrent.Executors;
 import org.opendaylight.infrautils.utils.concurrent.LoggingThreadUncaughtExceptionHandler;
 import org.opendaylight.infrautils.utils.concurrent.ThreadFactoryProvider;
 import org.slf4j.Logger;
@@ -83,8 +81,8 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
     private final Meter jobsFailed;
     private final Meter jobsRetriesForFailure;
 
-    private final ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(5,
-            ThreadFactoryProvider.builder().namePrefix("jobcoordinator-onfailure-executor").logger(LOG).build().get());
+    private final ListeningScheduledExecutorService scheduledExecutorService =
+            Executors.newListeningScheduledThreadPool(5, "jobcoordinator-onfailure-executor", LOG);
 
     private final Thread jobQueueHandlerThread;
     private final AtomicBoolean jobQueueHandlerThreadStarted = new AtomicBoolean(false);
@@ -254,7 +252,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
 
     @SuppressFBWarnings(value = "UPM_UNCALLED_PRIVATE_METHOD",
             justification = "https://github.com/spotbugs/spotbugs/issues/811")
-    private Future<?> scheduleTask(Runnable task, long delay, TimeUnit unit) {
+    private ListenableFuture<?> scheduleTask(Runnable task, long delay, TimeUnit unit) {
         try {
             return scheduledExecutorService.schedule(task, delay, unit);
         } catch (RejectedExecutionException e) {
@@ -322,10 +320,10 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
 
             if (retryCount > 0) {
                 long waitTime = RETRY_WAIT_BASE_TIME_MILLIS / retryCount;
-                Futures.addCallback(JdkFutures.toListenableFuture(scheduleTask(() -> {
+                Futures.addCallback(scheduleTask(() -> {
                     MainTask worker = new MainTask(jobEntry);
                     executeTask(worker);
-                }, waitTime, TimeUnit.MILLISECONDS)), new FutureCallback<Object>() {
+                }, waitTime, TimeUnit.MILLISECONDS), new FutureCallback<Object>() {
                     @Override
                     public void onFailure(Throwable throwable) {
                         LOG.error("Retry of job failed; rolling back or clearing job: {}", jobEntry, throwable);
