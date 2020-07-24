@@ -65,7 +65,7 @@ public final class ListenableFutures {
      *
      * @deprecated Use {@link LoggingFutures#addErrorLogging(ListenableFuture, Logger, String, Object)} instead.
      */
-    @Deprecated
+    @Deprecated(forRemoval = true)
     @SuppressWarnings("FutureReturnValueIgnored")
     public static <V> void addErrorLogging(ListenableFuture<V> future, Logger logger, String format, Object arg) {
         LoggingFutures.addErrorLogging(future, logger, format, arg);
@@ -81,7 +81,7 @@ public final class ListenableFutures {
      *
      * @deprecated Use {@link LoggingFutures#addErrorLogging(ListenableFuture, Logger, String, Object...)} instead.
      */
-    @Deprecated
+    @Deprecated(forRemoval = true)
     @SuppressWarnings("FutureReturnValueIgnored")
     public static <V> void addErrorLogging(
             ListenableFuture<V> future, Logger logger, String format, Object... arguments) {

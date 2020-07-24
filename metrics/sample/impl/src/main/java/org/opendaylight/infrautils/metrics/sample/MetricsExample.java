@@ -8,7 +8,7 @@
 package org.opendaylight.infrautils.metrics.sample;
 
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
-import static org.opendaylight.infrautils.utils.concurrent.JdkFutures.addErrorLogging;
+import static org.opendaylight.infrautils.utils.concurrent.LoggingFutures.addErrorLogging;
 
 import java.util.Random;
 import java.util.concurrent.ScheduledExecutorService;
@@ -49,7 +49,7 @@ public class MetricsExample implements Runnable {
     private final Meter meterWithTwoFixedLabels;
     private final Labeled<Meter> meterWithOneDynamicLabel;
 
-    private final ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor("cron", LOG);
+    private final ScheduledExecutorService executor = Executors.newListeningSingleThreadScheduledExecutor("cron", LOG);
     private final Random random = new Random();
 
     @Inject
@@ -79,6 +79,7 @@ public class MetricsExample implements Runnable {
     }
 
     @PostConstruct
+    @SuppressWarnings("FutureReturnValueIgnored")
     public void init() {
         addErrorLogging(executor.scheduleWithFixedDelay(this, 0, 500, MILLISECONDS), LOG, "schedule interrupted");
     }
