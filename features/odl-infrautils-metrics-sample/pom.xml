@@ -37,12 +37,6 @@
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>odl-infrautils-inject</artifactId>
-      <classifier>features</classifier>
-      <type>xml</type>
-    </dependency>
-    <dependency>
-      <groupId>${project.groupId}</groupId>
       <artifactId>odl-infrautils-utils</artifactId>
       <classifier>features</classifier>
       <type>xml</type>
