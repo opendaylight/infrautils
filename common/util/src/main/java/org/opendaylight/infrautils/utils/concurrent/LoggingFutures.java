@@ -11,6 +11,7 @@ import com.google.common.annotations.Beta;
 import com.google.common.util.concurrent.FluentFuture;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
+import com.google.common.util.concurrent.JdkFutureAdapters;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.common.util.concurrent.MoreExecutors;
 import java.util.concurrent.Future;
@@ -38,7 +39,7 @@ public final class LoggingFutures {
      * @throws NullPointerException if any of the arguments is null
      */
     public static <V> ListenableFuture<V> addErrorLogging(Future<V> future, Logger logger, String message) {
-        return addErrorLogging(JdkFutures.toListenableFuture(future), logger, message);
+        return addErrorLogging(JdkFutureAdapters.listenInPoolThread(future), logger, message);
     }
 
     /**
@@ -52,7 +53,7 @@ public final class LoggingFutures {
      * @throws NullPointerException if any of the arguments is null
      */
     public static <V> ListenableFuture<V> addErrorLogging(Future<V> future, Logger logger, String format, Object arg) {
-        return addErrorLogging(JdkFutures.toListenableFuture(future), logger, format, arg);
+        return addErrorLogging(JdkFutureAdapters.listenInPoolThread(future), logger, format, arg);
     }
 
     /**
@@ -71,7 +72,7 @@ public final class LoggingFutures {
      */
     public static <V> ListenableFuture<V> addErrorLogging(Future<V> future, Logger logger, String format,
             Object... args) {
-        return addErrorLogging(JdkFutures.toListenableFuture(future), logger, format, args);
+        return addErrorLogging(JdkFutureAdapters.listenInPoolThread(future), logger, format, args);
     }
 
     /**
