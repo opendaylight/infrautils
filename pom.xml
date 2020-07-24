@@ -50,4 +50,17 @@
         <maven.deploy.skip>true</maven.deploy.skip>
         <maven.install.skip>true</maven.install.skip>
     </properties>
+
+    <profiles>
+        <profile>
+            <id>karaf</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+
+            <modules>
+                <module>karaf</module>
+            </modules>
+        </profile>
+    </profiles>
 </project>
