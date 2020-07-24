@@ -7,6 +7,7 @@
  */
 package org.opendaylight.infrautils.utils.concurrent;
 
+import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.JdkFutureAdapters;
 import com.google.common.util.concurrent.ListenableFuture;
 import java.util.concurrent.CompletionStage;
@@ -25,7 +26,10 @@ import org.slf4j.LoggerFactory;
  * but instead use either a Guava {@link ListenableFuture}, or a Java 8 {@link CompletionStage}.
  *
  * @author Michael Vorburger.ch
+ * @deprecated This class is not used anywhere in OpenDaylight proper. Most of the functionality is available from
+ *             {@link LoggingFutures} and Guava's {@link Futures}.
  */
+@Deprecated(forRemoval = true)
 public final class JdkFutures {
     private static final Logger LOG = LoggerFactory.getLogger(JdkFutures.class);
     private static final Executor DEFAULT_EXECUTOR = Executors.newListeningCachedThreadPool("JdkFutures", LOG);
