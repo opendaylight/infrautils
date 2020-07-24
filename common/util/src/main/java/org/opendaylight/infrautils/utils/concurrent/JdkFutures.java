@@ -75,7 +75,7 @@ public final class JdkFutures {
      * @see LoggingFutures#addErrorLogging(ListenableFuture, Logger, String)
      * @deprecated Use {@link LoggingFutures#addErrorLogging(Future, Logger, String)}
      */
-    @Deprecated
+    @Deprecated(forRemoval = true)
     @SuppressWarnings("FutureReturnValueIgnored")
     public static <V> void addErrorLogging(Future<V> future, Logger logger, String message) {
         LoggingFutures.addErrorLogging(future, logger, message);
@@ -87,7 +87,7 @@ public final class JdkFutures {
      * @see LoggingFutures#addErrorLogging(ListenableFuture, Logger, String, Object)
      * @deprecated Use {@link LoggingFutures#addErrorLogging(Future, Logger, String, Object)}
      */
-    @Deprecated
+    @Deprecated(forRemoval = true)
     @SuppressWarnings("FutureReturnValueIgnored")
     public static <V> void addErrorLogging(Future<V> future, Logger logger, String format, Object arg) {
         LoggingFutures.addErrorLogging(future, logger, format, arg);
@@ -99,7 +99,7 @@ public final class JdkFutures {
      * @see LoggingFutures#addErrorLogging(ListenableFuture, Logger, String, Object...)
      * @deprecated Use {@link LoggingFutures#addErrorLogging(Future, Logger, String, Object...)}
      */
-    @Deprecated
+    @Deprecated(forRemoval = true)
     @SuppressWarnings("FutureReturnValueIgnored")
     public static <V> void addErrorLogging(Future<V> future, Logger logger, String format, Object... args) {
         LoggingFutures.addErrorLogging(future, logger, format, args);

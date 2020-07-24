@@ -48,7 +48,7 @@ public final class Executors {
      * Deprecated single thread executor.
      * @deprecated Use {@link #newListeningSingleThreadExecutor(String, Logger)} instead.
      */
-    @Deprecated
+    @Deprecated(forRemoval = true)
     public static ExecutorService newSingleThreadExecutor(String namePrefix, Logger logger) {
         return java.util.concurrent.Executors.newSingleThreadExecutor(
                 ThreadFactoryProvider.builder()
@@ -75,7 +75,7 @@ public final class Executors {
      * Deprecated cached thread pool executor.
      * @deprecated Use {@link #newListeningCachedThreadPool(String, Logger)} instead.
      */
-    @Deprecated
+    @Deprecated(forRemoval = true)
     public static ExecutorService newCachedThreadPool(String namePrefix, Logger logger) {
         return java.util.concurrent.Executors.newCachedThreadPool(
                 ThreadFactoryProvider.builder()
@@ -94,7 +94,7 @@ public final class Executors {
      * Deprecated single thread executor.
      * @deprecated {@link #newListeningSingleThreadScheduledExecutor(String, Logger)} instead.
      */
-    @Deprecated
+    @Deprecated(forRemoval = true)
     public static ScheduledExecutorService newSingleThreadScheduledExecutor(String namePrefix, Logger logger) {
         return java.util.concurrent.Executors.unconfigurableScheduledExecutorService(
                    java.util.concurrent.Executors.newSingleThreadScheduledExecutor(
@@ -114,7 +114,7 @@ public final class Executors {
      * Deprecated scheduled executor.
      * @deprecated {@link #newListeningScheduledThreadPool(int, String, Logger)} instead.
      */
-    @Deprecated
+    @Deprecated(forRemoval = true)
     public static ScheduledExecutorService newScheduledThreadPool(int corePoolSize, String namePrefix,
             Logger logger) {
         return java.util.concurrent.Executors.newScheduledThreadPool(corePoolSize,
