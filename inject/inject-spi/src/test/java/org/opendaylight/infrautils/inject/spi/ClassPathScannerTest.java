@@ -5,7 +5,7 @@
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html
  */
-package org.opendaylight.infrautils.inject.guice.test;
+package org.opendaylight.infrautils.inject.spi;
 
 import static com.google.common.truth.Truth.assertThat;
 
@@ -14,11 +14,10 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import org.junit.Test;
-import org.opendaylight.infrautils.inject.ClassPathScanner;
 
 public class ClassPathScannerTest {
 
-    private static final String PREFIX = "org.opendaylight.infrautils.inject.guice.test";
+    private static final String PREFIX = ClassPathScannerTest.class.getPackageName();
 
     @Test
     public void testClasspathScanning() {

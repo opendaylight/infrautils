@@ -41,6 +41,10 @@
       <groupId>org.opendaylight.infrautils</groupId>
       <artifactId>inject</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.opendaylight.infrautils</groupId>
+      <artifactId>inject-spi</artifactId>
+    </dependency>
 
     <dependency>
       <groupId>org.opendaylight.infrautils</groupId>

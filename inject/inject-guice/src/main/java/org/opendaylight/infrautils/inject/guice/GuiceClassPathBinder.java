@@ -9,7 +9,7 @@ package org.opendaylight.infrautils.inject.guice;
 
 import com.google.inject.Binder;
 import javax.inject.Singleton;
-import org.opendaylight.infrautils.inject.ClassPathScanner;
+import org.opendaylight.infrautils.inject.spi.ClassPathScanner;
 
 /**
  * Binds interfaces to implementations in Guice by scanning the classpath.

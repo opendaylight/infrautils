@@ -5,10 +5,7 @@
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html
  */
-package org.opendaylight.infrautils.inject.guice.test;
+package org.opendaylight.infrautils.inject.spi;
 
-import javax.inject.Singleton;
-
-@Singleton
-public class ClassPathScannerTestNoInterfacesImplementation {
+public interface ClassPathScannerTestAnotherInterface {
 }

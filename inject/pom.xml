@@ -27,6 +27,7 @@
 
   <modules>
     <module>inject</module>
+    <module>inject-spi</module>
     <module>inject-guice</module>
     <module>inject-guice-testutils</module>
   </modules>
