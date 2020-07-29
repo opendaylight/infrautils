@@ -148,6 +148,12 @@
               <artifactId>metrics-impl-prometheus</artifactId>
               <version>${project.version}</version>
             </dependency>
+            <dependency>
+              <groupId>${project.groupId}</groupId>
+              <artifactId>metrics-impl-test</artifactId>
+              <version>${project.version}</version>
+              <scope>test</scope>
+            </dependency>
 
             <!-- Platform Readiness -->
             <dependency>
