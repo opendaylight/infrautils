@@ -18,10 +18,11 @@ import java.net.http.HttpResponse;
 import java.time.Duration;
 import java.util.Date;
 import java.util.List;
-import org.apache.felix.service.command.CommandSession;
-import org.apache.karaf.shell.commands.Action;
-import org.apache.karaf.shell.commands.Command;
-import org.apache.karaf.shell.commands.Option;
+import org.apache.karaf.shell.api.action.Action;
+import org.apache.karaf.shell.api.action.Command;
+import org.apache.karaf.shell.api.action.Option;
+import org.apache.karaf.shell.api.action.lifecycle.Reference;
+import org.apache.karaf.shell.api.action.lifecycle.Service;
 import org.eclipse.jdt.annotation.Nullable;
 import org.opendaylight.infrautils.diagstatus.ClusterMemberInfo;
 import org.opendaylight.infrautils.diagstatus.DiagStatusServiceMBean;
@@ -36,6 +37,7 @@ import org.slf4j.LoggerFactory;
  * @author Faseela K
  */
 @Command(scope = "diagstatus", name = "showSvcStatus", description = "show the status of registered services")
+@Service
 public class DiagStatusCommand implements Action {
     private static final Logger LOG = LoggerFactory.getLogger(DiagStatusCommand.class);
 
@@ -47,24 +49,22 @@ public class DiagStatusCommand implements Action {
     @VisibleForTesting
     static final char DIAGSTATUS_URL_SEPARATOR = '/';
 
-    private final DiagStatusServiceMBean diagStatusServiceMBean;
-    private final ClusterMemberInfo clusterMemberInfoProvider;
-    private final HttpClientService httpClient;
+    @Reference
+    @VisibleForTesting
+    DiagStatusServiceMBean diagStatusServiceMBean;
+    @Reference
+    @VisibleForTesting
+    ClusterMemberInfo clusterMemberInfoProvider;
+    @Reference
+    @VisibleForTesting
+    HttpClientService httpClient;
 
     @Option(name = "-n", aliases = {"--node"})
     String nip;
 
-    public DiagStatusCommand(DiagStatusServiceMBean diagStatusServiceMBean,
-                             ClusterMemberInfo clusterMemberInfoProvider,
-                             HttpClientService httpClient) {
-        this.diagStatusServiceMBean = diagStatusServiceMBean;
-        this.clusterMemberInfoProvider = clusterMemberInfoProvider;
-        this.httpClient = httpClient;
-    }
-
     @Override
-    @SuppressWarnings("checkstyle:IllegalCatch")
-    public @Nullable Object execute(CommandSession session) throws Exception {
+    @SuppressWarnings({ "checkstyle:IllegalCatch", "checkstyle:RegexpSinglelineJava" })
+    public @Nullable Object execute() throws Exception {
         StringBuilder strBuilder = new StringBuilder();
         strBuilder.append("Timestamp: ").append(new Date().toString()).append("\n");
 
@@ -94,7 +94,7 @@ public class DiagStatusCommand implements Action {
             }
         }
 
-        session.getConsole().println(strBuilder.toString());
+        System.out.print(strBuilder.toString());
         return null;
     }
 
