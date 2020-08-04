@@ -53,7 +53,7 @@ public class DiagStatusCommandTest {
     ClusterMemberInfo clusterMemberInfo;
     DiagStatusServiceMBeanImpl diagStatusServiceMBeanImpl;
 
-    DefaultHttpClientService httpClient = new DefaultHttpClientService(Map.of("org.osgi.service.http.port", "8181"));
+    DefaultHttpClientService httpClient;
 
     static String serviceStatusSummary = "Node IP Address: {node-ip}\n"
             + "System is operational: true\n"
@@ -69,8 +69,13 @@ public class DiagStatusCommandTest {
         diagStatusService.register(testService1);
         diagStatusService.report(new ServiceDescriptor("testService", OPERATIONAL,
                 "operational"));
+        httpClient = new DefaultHttpClientService();
+        httpClient.activate(Map.of("org.osgi.service.http.port", "8181"));
         diagStatusServiceMBeanImpl = new DiagStatusServiceMBeanImpl(diagStatusService, systemReadyMonitor);
-        diagStatusCommand = new DiagStatusCommand(diagStatusServiceMBeanImpl, clusterMemberInfo, httpClient);
+        diagStatusCommand = new DiagStatusCommand();
+        diagStatusCommand.clusterMemberInfoProvider = clusterMemberInfo;
+        diagStatusCommand.diagStatusServiceMBean = diagStatusServiceMBeanImpl;
+        diagStatusCommand.httpClient = httpClient;
     }
 
     @After
