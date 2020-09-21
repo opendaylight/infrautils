@@ -2,4 +2,3 @@
 #
 4a4691c61b9e3d708f934c87ae7da7389b2a95c8                                  	saml/odl-gerrit-infrautils-committers
 c9025ab9ddc1e3171919e085449f22c54f8f7b54                                  	GitHub Replication
-ldap:cn=odl-gerrit-infrautils-committers,ou=Groups,dc=freestandards,dc=org	ldap/odl-gerrit-infrautils-committers
