@@ -11,6 +11,6 @@
         <configfile finalname="etc/org.opendaylight.infrautils.metrics.cfg">
             mvn:org.opendaylight.infrautils/metrics-impl/${project.version}/cfg/config
         </configfile>
-        <feature version="[7,8)">odl-dropwizard-metrics</feature>
+        <feature version="[8,9)">odl-dropwizard-metrics</feature>
     </feature>
 </features>
