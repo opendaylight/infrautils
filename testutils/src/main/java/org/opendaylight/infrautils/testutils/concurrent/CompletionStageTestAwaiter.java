@@ -7,9 +7,8 @@
  */
 package org.opendaylight.infrautils.testutils.concurrent;
 
-import static java.util.concurrent.TimeUnit.MILLISECONDS;
-
 import com.google.common.base.Throwables;
+import java.time.Duration;
 import java.util.concurrent.CancellationException;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionException;
@@ -108,8 +107,8 @@ public final class CompletionStageTestAwaiter<T> {
     @SuppressWarnings("NullAway")
     private T wait(long timeout, TimeUnit unit) {
         Awaitility.await(getClass().getName())
-            .pollDelay(0, MILLISECONDS)
-            .pollInterval(100, MILLISECONDS)
+            .pollDelay(Duration.ZERO)
+            .pollInterval(Duration.ofMillis(100))
             .atMost(timeout, unit)
             .until(() -> eventualValue.get() != null || eventualThrowable.get() != null);
 
