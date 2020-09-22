@@ -7,9 +7,8 @@
  */
 package org.opendaylight.infrautils.testutils.concurrent;
 
-import static java.util.concurrent.TimeUnit.MILLISECONDS;
-
 import com.google.common.base.Preconditions;
+import java.time.Duration;
 import java.util.Queue;
 import java.util.concurrent.TimeUnit;
 import org.awaitility.Awaitility;
@@ -37,8 +36,8 @@ public final class TestableQueues {
         long pollIntervalMS = timeout <= 100 ? 10 : 50;
         try {
             Awaitility.await("TestableQueues.awaitEmpty()")
-                .pollDelay(0, MILLISECONDS)
-                .pollInterval(pollIntervalMS, MILLISECONDS)
+                .pollDelay(Duration.ZERO)
+                .pollInterval(Duration.ofMillis(pollIntervalMS))
                 .atMost(timeout, timeoutUnit)
                 .until(() -> queue.peek() == null);
         } catch (ConditionTimeoutException e) {
