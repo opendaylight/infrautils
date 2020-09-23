@@ -9,5 +9,7 @@
 /**
  * This package contains classes designed to help test concurrent aspects of target code.
  */
-@org.eclipse.jdt.annotation.NonNullByDefault
+@NonNullByDefault
 package org.opendaylight.infrautils.testutils.concurrent;
+
+import org.eclipse.jdt.annotation.NonNullByDefault;
