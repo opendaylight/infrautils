@@ -40,7 +40,7 @@ public interface MetricProvider {
      * Create new Meter metric.
      * @deprecated use {@link #newMeter(MetricDescriptor)} instead.
      */
-    @Deprecated
+    @Deprecated(forRemoval = true)
     Meter newMeter(Object anchor, String id);
 
     /**
@@ -114,7 +114,7 @@ public interface MetricProvider {
      * Create new Counter metric.
      * @deprecated use {@link #newCounter(MetricDescriptor)} instead.
      */
-    @Deprecated
+    @Deprecated(forRemoval = true)
     Counter newCounter(Object anchor, String id);
 
     /**
@@ -185,7 +185,7 @@ public interface MetricProvider {
                                                                 String secondLabelName, String thirdLabelName,
                                                                 String fourthLabelName, String fifthLabelName);
 
-    @Deprecated
+    @Deprecated(forRemoval = true)
     Timer newTimer(Object anchor, String id);
 
     /**
