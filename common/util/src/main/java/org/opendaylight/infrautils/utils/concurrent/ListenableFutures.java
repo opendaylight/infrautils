@@ -39,55 +39,6 @@ public final class ListenableFutures {
         return CompletionStageWrapper.wrap(ListenableToCompletableFutureWrapper.create(future));
     }
 
-    /**
-     * Adds a callback to a ListenableFuture which logs any failures.
-     *
-     * <p>Instead of using this helper, you should consider directly using
-     * {@link Futures#addCallback(ListenableFuture, com.google.common.util.concurrent.FutureCallback,
-     * java.util.concurrent.Executor)} to add a callback which does real error recovery in case of a failure instead
-     * of just logging an error, if you can.
-     *
-     * @deprecated Use {@link LoggingFutures#addErrorLogging(ListenableFuture, Logger, String)} instead.
-     */
-    @Deprecated
-    @SuppressWarnings("FutureReturnValueIgnored")
-    public static <V> void addErrorLogging(ListenableFuture<V> future, Logger logger, String message) {
-        LoggingFutures.addErrorLogging(future, logger, message);
-    }
-
-    /**
-     * Adds a callback to a ListenableFuture which logs any failures.
-     *
-     * <p>Instead of using this helper, you should consider directly using
-     * {@link Futures#addCallback(ListenableFuture, com.google.common.util.concurrent.FutureCallback,
-     * java.util.concurrent.Executor)} to add a callback which does real error recovery in case of a failure instead
-     * of just logging an error, if you can.
-     *
-     * @deprecated Use {@link LoggingFutures#addErrorLogging(ListenableFuture, Logger, String, Object)} instead.
-     */
-    @Deprecated(forRemoval = true)
-    @SuppressWarnings("FutureReturnValueIgnored")
-    public static <V> void addErrorLogging(ListenableFuture<V> future, Logger logger, String format, Object arg) {
-        LoggingFutures.addErrorLogging(future, logger, format, arg);
-    }
-
-    /**
-     * Adds a callback to a ListenableFuture which logs any failures.
-     *
-     * <p>Instead of using this helper, you should consider directly using
-     * {@link Futures#addCallback(ListenableFuture, com.google.common.util.concurrent.FutureCallback,
-     * java.util.concurrent.Executor)} to add a callback which does real error recovery in case of a failure instead
-     * of just logging an error, if you can.
-     *
-     * @deprecated Use {@link LoggingFutures#addErrorLogging(ListenableFuture, Logger, String, Object...)} instead.
-     */
-    @Deprecated(forRemoval = true)
-    @SuppressWarnings("FutureReturnValueIgnored")
-    public static <V> void addErrorLogging(
-            ListenableFuture<V> future, Logger logger, String format, Object... arguments) {
-        LoggingFutures.addErrorLogging(future, logger, format, arguments);
-    }
-
     public static <V, E extends Exception> V checkedGet(ListenableFuture<V> future,
             Function<? super Exception, E> mapper) throws E {
         try {
