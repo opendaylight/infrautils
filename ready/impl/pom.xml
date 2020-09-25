@@ -85,6 +85,7 @@
         <artifactId>maven-bundle-plugin</artifactId>
         <configuration>
           <instructions>
+            <Automatic-Module-Name>org.opendaylight.infrautils.ready.karaf</Automatic-Module-Name>
             <Embed-Dependency>bundles-test-lib,awaitility,hamcrest</Embed-Dependency>
             <!-- Do NOT <Embed-Transitive>true</Embed-Transitive> -->
           </instructions>
