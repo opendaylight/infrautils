@@ -54,6 +54,7 @@
                 <artifactId>maven-bundle-plugin</artifactId>
                 <configuration>
                     <instructions>
+                        <Automatic-Module-Name>org.opendaylight.infrautils.diagstatus.shell</Automatic-Module-Name>
                         <Karaf-Commands>*</Karaf-Commands>
                     </instructions>
                 </configuration>
