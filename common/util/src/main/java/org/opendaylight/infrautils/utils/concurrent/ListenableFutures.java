@@ -10,7 +10,6 @@ package org.opendaylight.infrautils.utils.concurrent;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 import java.util.concurrent.CancellationException;
-import java.util.concurrent.CompletionStage;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
@@ -26,19 +25,6 @@ import java.util.function.Function;
 public final class ListenableFutures {
     private ListenableFutures() {
 
-    }
-
-    /**
-     * Converts a Guava ListenableFuture to a Java 8 CompletionStage.
-     * Callers should not cast the returned CompletionStage by this method to CompletableFuture (as it may not be one).
-     * See {@link CompletionStages#toListenableFuture(CompletionStage)} for the inverse function of this.
-     * and {@link CompletableFutures#toListenableFuture(java.util.concurrent.CompletableFuture)} for a related function.
-     *
-     * @deprecated Use <a href="https://github.com/lukas-krecan/future-converter">Future Converter</a> instead.
-     */
-    @Deprecated(forRemoval = true)
-    public static <V> CompletionStage<V> toCompletionStage(ListenableFuture<V> future) {
-        return CompletionStageWrapper.wrap(ListenableToCompletableFutureWrapper.create(future));
     }
 
     public static <V, E extends Exception> V checkedGet(ListenableFuture<V> future,

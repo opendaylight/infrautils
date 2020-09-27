@@ -9,9 +9,7 @@ package org.opendaylight.infrautils.utils.concurrent.tests;
 
 import static com.google.common.truth.Truth.assertThat;
 
-import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CompletionException;
 import java.util.concurrent.CompletionStage;
 import java.util.concurrent.Executor;
 import java.util.concurrent.TimeoutException;
@@ -22,9 +20,6 @@ import org.opendaylight.infrautils.testutils.RunUntilFailureClassRule;
 import org.opendaylight.infrautils.testutils.RunUntilFailureRule;
 import org.opendaylight.infrautils.testutils.concurrent.CompletionStageTestAwaiter;
 import org.opendaylight.infrautils.testutils.concurrent.SlowExecutor;
-import org.opendaylight.infrautils.utils.concurrent.CompletableFutures;
-import org.opendaylight.infrautils.utils.concurrent.CompletionStageWrapper;
-import org.opendaylight.infrautils.utils.concurrent.CompletionStages;
 import org.opendaylight.infrautils.utils.concurrent.Executors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -66,33 +61,8 @@ public class CompletionStageAwaitExampleTest {
     // TODO testOneEventualExceptionalCompletionStage()
 
     @Test
-    public void testOneImmediateValueCompletionStageWrapper() throws TimeoutException {
-        CompletionStage<String> completionStage = CompletionStageWrapper
-                .wrap(CompletableFuture.completedFuture("hello"));
-        assertThat(CompletionStageTestAwaiter.await500ms(completionStage)).isEqualTo("hello");
-    }
-
-    @Test
     public void testOneImmediateValueCompletableFuture() throws TimeoutException {
         CompletionStage<String> completionStage = CompletableFuture.completedFuture("hello");
         assertThat(CompletionStageTestAwaiter.await500ms(completionStage)).isEqualTo("hello");
     }
-
-    @Test(expected = CompletionException.class)
-    public void testOneImmediateExceptionalCompletionStageWrapper() throws Exception {
-        CompletionStage<String> completionStage = CompletionStages
-                .completedExceptionally(new IOException("boum"));
-        CompletionStageTestAwaiter.await500ms(completionStage);
-    }
-
-    @Test(expected = CompletionException.class)
-    public void testOneImmediateExceptionalCompletableFuture() throws Exception {
-        CompletionStage<String> completionStage = CompletableFutures.completedExceptionally(new IOException("boum"));
-        CompletionStageTestAwaiter.await500ms(completionStage);
-    }
-
-    // TODO testTwoValueCompletionStages()
-
-    // TODO testTwoExceptionCompletionStages()
-
 }
