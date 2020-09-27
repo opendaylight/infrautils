@@ -14,7 +14,9 @@ import java.util.concurrent.CompletionStage;
  * Utilities for {@link CompletionStage}.
  *
  * @author Michael Vorburger.ch
+ * @deprecated Use <a href="https://github.com/lukas-krecan/future-converter">Future Converter</a> instead.
  */
+@Deprecated(forRemoval = true)
 public final class CompletionStages {
     private CompletionStages() {
 
