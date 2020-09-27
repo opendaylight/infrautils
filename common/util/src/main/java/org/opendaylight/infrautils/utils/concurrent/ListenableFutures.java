@@ -34,7 +34,10 @@ public final class ListenableFutures {
      * Callers should not cast the returned CompletionStage by this method to CompletableFuture (as it may not be one).
      * See {@link CompletionStages#toListenableFuture(CompletionStage)} for the inverse function of this.
      * and {@link CompletableFutures#toListenableFuture(java.util.concurrent.CompletableFuture)} for a related function.
+     *
+     * @deprecated Use <a href="https://github.com/lukas-krecan/future-converter">Future Converter</a> instead.
      */
+    @Deprecated(forRemoval = true)
     public static <V> CompletionStage<V> toCompletionStage(ListenableFuture<V> future) {
         return CompletionStageWrapper.wrap(ListenableToCompletableFutureWrapper.create(future));
     }
