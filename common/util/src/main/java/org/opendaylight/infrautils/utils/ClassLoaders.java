@@ -15,7 +15,9 @@ import org.opendaylight.infrautils.utils.function.CheckedRunnable;
  * Utilities related to {@link ClassLoader}.
  *
  * @author Michael Vorburger.ch
+ * @deprecated This class is not used anywhere and is schedule for removal.
  */
+@Deprecated(forRemoval = true)
 public final class ClassLoaders {
     private ClassLoaders() {
 
