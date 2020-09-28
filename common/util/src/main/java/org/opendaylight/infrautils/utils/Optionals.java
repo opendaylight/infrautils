@@ -14,7 +14,9 @@ import org.opendaylight.infrautils.utils.function.CheckedConsumer;
  * Utilities for Optionals.
  *
  * @author Michael Vorburger.ch
+ * @deprecated This class is not used anywhere and does not bring much to the table anyway.
  */
+@Deprecated(forRemoval = true)
 public final class Optionals {
 
     private Optionals() {
