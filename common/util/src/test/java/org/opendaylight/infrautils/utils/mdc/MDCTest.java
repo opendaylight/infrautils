@@ -8,6 +8,7 @@
 package org.opendaylight.infrautils.utils.mdc;
 
 import static com.google.common.truth.Truth.assertThat;
+import static org.junit.Assert.assertThrows;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 import org.junit.Ignore;
@@ -44,10 +45,10 @@ public class MDCTest {
     }
 
     @SuppressWarnings("NullAway") // The wrong null is the point of this test
-    @Test(expected = NullPointerException.class)
+    @Test
     public void testPutNullValueMDCs() {
         // Whereas this will throw an IllegalArgumentException
-        MDCs.put("yo", null);
+        assertThrows(NullPointerException.class, () -> MDCs.put("yo", null));
     }
 
     @Test

@@ -8,6 +8,7 @@
 package org.opendaylight.infrautils.utils.mdc;
 
 import static com.google.common.truth.Truth.assertThat;
+import static org.junit.Assert.assertThrows;
 
 import org.junit.Ignore;
 import org.junit.Test;
@@ -52,9 +53,9 @@ public class ExecutionOriginTest {
         assertThat(ExecutionOrigin.next().toString()).isEqualTo("0000000000000");
     }
 
-    @Test(expected = IllegalStateException.class)
+    @Test
     public void testFailingOriginsCurrentIdAPI() {
-        ExecutionOrigin.currentID();
+        assertThrows(IllegalStateException.class, ExecutionOrigin::currentID);
     }
 
     @Test

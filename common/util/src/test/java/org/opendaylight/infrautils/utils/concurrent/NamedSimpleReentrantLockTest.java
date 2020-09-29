@@ -29,17 +29,17 @@ public class NamedSimpleReentrantLockTest {
         public void run() {
             testLock.lock();
 
-            synchronized (lock) {
-                try {
+            try {
+                synchronized (lock) {
                     while (!shutdown) {
                         lock.wait();
                     }
-                } catch (InterruptedException e) {
-                    throw new IllegalStateException(e);
                 }
+            } catch (InterruptedException e) {
+                throw new IllegalStateException(e);
+            } finally {
+                testLock.unlock();
             }
-
-            testLock.unlock();
         }
 
         void unlock() {

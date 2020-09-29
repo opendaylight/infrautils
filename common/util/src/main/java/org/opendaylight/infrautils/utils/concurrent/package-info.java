@@ -8,5 +8,7 @@
 /**
  * General purpose concurrency related utilities.
  */
-@org.eclipse.jdt.annotation.NonNullByDefault
+@NonNullByDefault
 package org.opendaylight.infrautils.utils.concurrent;
+
+import org.eclipse.jdt.annotation.NonNullByDefault;

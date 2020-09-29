@@ -8,6 +8,7 @@
 package org.opendaylight.infrautils.utils.function.tests;
 
 import static com.google.common.truth.Truth.assertThat;
+import static org.junit.Assert.assertThrows;
 
 import java.io.FileNotFoundException;
 import org.junit.Test;
@@ -19,19 +20,18 @@ import org.opendaylight.infrautils.utils.function.CheckedCallable;
  * @author Michael Vorburger.ch
  */
 public class CheckedCallableTest {
-
-    @Test(expected = FileNotFoundException.class)
-    public void testCheckedCallableWithCheckedException() throws FileNotFoundException {
-        foo(() -> {
+    @Test
+    public void testCheckedCallableWithCheckedException() {
+        assertThrows(FileNotFoundException.class, () -> foo(() -> {
             throw new FileNotFoundException("boum");
-        });
+        }));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testCheckedCallableWithUncheckedException() {
-        foo(() -> {
+        assertThrows(IllegalArgumentException.class, () -> foo(() -> {
             throw new IllegalArgumentException("boum");
-        });
+        }));
     }
 
     @Test
