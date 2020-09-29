@@ -36,14 +36,14 @@ public class ExampleTest {
     @ClassRule public static ClasspathHellDuplicatesCheckRule jHades = new ClasspathHellDuplicatesCheckRule();
 
     @Test
-    public void testA() throws Exception {
+    public void testA() throws InterruptedException {
         LOG.info("doin' stuff in testA...");
         Thread.sleep(50);
         // LOG.error("boum");
     }
 
     @Test
-    public void testB() throws Exception {
+    public void testB() throws InterruptedException {
         LOG.info("doin' stuff in testB...");
         Thread.sleep(100);
         // fail("failure");

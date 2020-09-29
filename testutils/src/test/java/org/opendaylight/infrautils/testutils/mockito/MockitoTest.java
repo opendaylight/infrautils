@@ -7,9 +7,8 @@
  */
 package org.opendaylight.infrautils.testutils.mockito;
 
-import static com.google.common.truth.Truth.assertThat;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.assertThrows;
 import static org.mockito.Mockito.mock;
 
 import java.io.File;
@@ -46,12 +45,8 @@ public class MockitoTest {
     @Test
     public void usingMockitoToCallUnstubbedMethodAndExpectException() {
         MockSomeService service = mock(MockSomeService.class, MoreAnswers.realOrException());
-        try {
-            service.foo();
-            fail();
-        } catch (UnstubbedMethodException e) {
-            assertThat(e.getMessage()).isEqualTo("foo() is not implemented in mockSomeService");
-        }
+        UnstubbedMethodException ex = assertThrows(UnstubbedMethodException.class, () -> service.foo());
+        assertEquals("foo() is not implemented in mockSomeService", ex.getMessage());
     }
 
     abstract static class MockSomeService implements SomeService {

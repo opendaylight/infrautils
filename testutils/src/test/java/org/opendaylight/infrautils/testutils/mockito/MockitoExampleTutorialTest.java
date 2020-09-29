@@ -9,7 +9,7 @@ package org.opendaylight.infrautils.testutils.mockito;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.doReturn;
@@ -66,10 +66,10 @@ public class MockitoExampleTutorialTest {
         assertEquals(0, service.foobar(new File("belo.txt")));
     }
 
-    @Test(expected = UnstubbedMethodException.class)
+    @Test
     public void usingMockitoExceptionException() {
         SomeService service = mock(SomeService.class, MoreAnswers.exception());
-        service.foo();
+        assertThrows(UnstubbedMethodException.class, () -> service.foo());
     }
 
     @Test
@@ -78,12 +78,8 @@ public class MockitoExampleTutorialTest {
         // NOT when(s.foobar(any())).thenReturn(123) BUT must be like this:
         doReturn(123).when(service).foobar(any());
         assertEquals(123, service.foobar(new File("hello.txt")));
-        try {
-            service.foo();
-            fail("expected NotImplementedException");
-        } catch (UnstubbedMethodException e) {
-            // OK
-        }
+
+        assertThrows(UnstubbedMethodException.class, () -> service.foo());
     }
 
     @Test
@@ -98,5 +94,4 @@ public class MockitoExampleTutorialTest {
         assertEquals(123, service.foobar(new File("hello.txt")));
         assertEquals(0, service.foobar(new File("belo.txt")));
     }
-
 }

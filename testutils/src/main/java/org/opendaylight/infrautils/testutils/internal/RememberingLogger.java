@@ -7,7 +7,6 @@
  */
 package org.opendaylight.infrautils.testutils.internal;
 
-import static com.google.common.collect.ImmutableList.copyOf;
 import static java.util.Collections.synchronizedList;
 import static org.opendaylight.infrautils.testutils.LogCapture.Level.ERROR;
 
@@ -37,7 +36,7 @@ public class RememberingLogger extends DelegatingLogger {
     }
 
     public static ImmutableList<LogCapture> getErrorLogCaptures() {
-        return copyOf(ERRORS);
+        return ImmutableList.copyOf(ERRORS);
     }
 
     public static Optional<String> getLastErrorMessage() {

@@ -8,7 +8,7 @@
 package org.opendaylight.infrautils.testutils.tests;
 
 import static com.google.common.truth.Truth.assertThat;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.assertThrows;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -30,62 +30,57 @@ import org.slf4j.LoggerFactory;
  * @author Michael Vorburger.ch
  */
 public class LogCaptureRuleInternalTest {
-
     private static final Logger LOG = LoggerFactory.getLogger(LogCaptureRuleInternalTest.class);
 
-    @SuppressWarnings("checkstyle:IllegalThrows")
-    @Test(expected = LogCaptureRuleException.class)
-    public void testLogCaptureRule() throws Throwable {
-        new LogCaptureRule().apply(new Statement() {
+    @Test
+    public void testLogCaptureRule() {
+        Statement stmt = new LogCaptureRule().apply(new Statement() {
             @Override
             public void evaluate() {
                 LOG.error("boum");
             }
-        }, Description.EMPTY).evaluate();
+        }, Description.EMPTY);
+
+        assertThrows(LogCaptureRuleException.class, () -> stmt.evaluate());
     }
 
-    @SuppressWarnings("checkstyle:IllegalThrows")
-    @Test(expected = IllegalArgumentException.class)
-    public void testLogCaptureRuleNoErrLoggedButExceptionThrown() throws Throwable {
-        new LogCaptureRule().apply(new Statement() {
+    @Test
+    public void testLogCaptureRuleNoErrLoggedButExceptionThrown() {
+        Statement stmt = new LogCaptureRule().apply(new Statement() {
             @Override
             public void evaluate() {
                 // do not log any errors, only throw some exception:
                 throw new IllegalArgumentException("boum");
             }
-        }, Description.EMPTY).evaluate();
+        }, Description.EMPTY);
+
+        assertThrows(IllegalArgumentException.class, () -> stmt.evaluate());
     }
 
     @Test
-    @SuppressWarnings("checkstyle:IllegalCatch")
     public void testLogCaptureRuleExpectNoErrorButEncouterBothErrorLogAndException() {
-        try {
-            new LogCaptureRule().apply(new Statement() {
-                @Override
-                public void evaluate() throws Throwable {
-                    LOG.error("boum logged message", new IllegalStateException("boum logged cause"));
-                    throw new Throwable("boum thrown message", new IllegalArgumentException("boum thrown cause"));
-                }
-            }, Description.EMPTY).evaluate();
-            fail("This should have thrown an LogCaptureRuleException");
-        } catch (Throwable e) {
-            if (!(e instanceof LogCaptureRuleException)) {
-                fail("This should have thrown an AssertionFailedError, not: " + e.getClass());
+        Statement stmt = new LogCaptureRule().apply(new Statement() {
+            @Override
+            public void evaluate() throws Throwable {
+                LOG.error("boum logged message", new IllegalStateException("boum logged cause"));
+                throw new Throwable("boum thrown message", new IllegalArgumentException("boum thrown cause"));
             }
-            // The point here is that we get "boum logged message" and not "boum thrown message" as (main) message.
-            // That's useful because "boum logged" is typically the root cause of "boum thrown", and the developer
-            // is best served by seeing that, first - especially if that was logged in a background thread!
-            assertThat(e.getMessage()).contains("boum logged message");
-            // Likewise for any logged exceptions - that's what developers should see first in test failure cause
-            assertThat(e.getCause().toString()).isEqualTo(new IllegalStateException("boum logged cause").toString());
-            // But we don't actually completely loose the "boum thrown" message & cause either:
-            String stackTrace = getStackTrace(e);
-            assertThat(stackTrace).contains("boum thrown message");
-            assertThat(stackTrace).contains("Suppressed");
-            assertThat(stackTrace).contains(IllegalArgumentException.class.getName());
-            assertThat(stackTrace).contains("boum thrown cause");
-            // These x3 ^^^ asserts work because we preserved boum thrown in a suppressed exception!
-        }
+        }, Description.EMPTY);
+
+        LogCaptureRuleException ex = assertThrows(LogCaptureRuleException.class, () -> stmt.evaluate());
+        // The point here is that we get "boum logged message" and not "boum thrown message" as (main) message.
+        // That's useful because "boum logged" is typically the root cause of "boum thrown", and the developer
+        // is best served by seeing that, first - especially if that was logged in a background thread!
+        assertThat(ex.getMessage()).contains("boum logged message");
+        // Likewise for any logged exceptions - that's what developers should see first in test failure cause
+        assertThat(ex.getCause().toString()).isEqualTo(new IllegalStateException("boum logged cause").toString());
+        // But we don't actually completely loose the "boum thrown" message & cause either:
+        String stackTrace = getStackTrace(ex);
+        assertThat(stackTrace).contains("boum thrown message");
+        assertThat(stackTrace).contains("Suppressed");
+        assertThat(stackTrace).contains(IllegalArgumentException.class.getName());
+        assertThat(stackTrace).contains("boum thrown cause");
+        // These x3 ^^^ asserts work because we preserved boum thrown in a suppressed exception!
     }
 
     @SuppressWarnings("checkstyle:RegexpSingleLineJava") // because printStackTrace is used to PrintWriter, not STDOUT
@@ -109,17 +104,17 @@ public class LogCaptureRuleInternalTest {
         }, Description.EMPTY).evaluate();
     }
 
-    @Test(expected = LogCaptureRuleException.class)
-    @SuppressWarnings("checkstyle:IllegalThrows")
-    public void testLogCaptureRuleExpectErrorNegative() throws Throwable {
+    @Test
+    public void testLogCaptureRuleExpectErrorNegative() {
         LogCaptureRule logCaptureRule = new LogCaptureRule();
         logCaptureRule.expectError("...");
-        logCaptureRule.apply(new Statement() {
+        Statement stmt = logCaptureRule.apply(new Statement() {
             @Override
             public void evaluate() {
                 // do not LOG.error("boum")
             }
-        }, Description.EMPTY).evaluate();
-    }
+        }, Description.EMPTY);
 
+        assertThrows(LogCaptureRuleException.class, () -> stmt.evaluate());
+    }
 }
