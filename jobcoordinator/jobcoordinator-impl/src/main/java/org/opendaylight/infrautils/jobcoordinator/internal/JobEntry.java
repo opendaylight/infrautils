@@ -22,11 +22,11 @@ import org.opendaylight.infrautils.jobcoordinator.RollbackCallable;
  * JobEntry is the entity built per job submitted by the application and
  * enqueued to the book-keeping data structure.
  */
-class JobEntry {
-
+final class JobEntry {
     private static final AtomicLong ID_GENERATOR = new AtomicLong(1);
+
     private final String id = "J" + ID_GENERATOR.getAndIncrement();
-    private final String key;
+    private final Object key;
     private final String queueId;
     private volatile @Nullable Callable<List<? extends ListenableFuture<?>>> mainWorker;
     private final @Nullable RollbackCallable rollbackWorker;
@@ -41,7 +41,7 @@ class JobEntry {
 
     @SuppressFBWarnings(value = "NP_NONNULL_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR",
             justification = "TYPE_USE and SpotBugs")
-    JobEntry(String key, String queueId, Callable<List<? extends ListenableFuture<?>>> mainWorker,
+    JobEntry(Object key, String queueId, Callable<List<? extends ListenableFuture<?>>> mainWorker,
              @Nullable RollbackCallable rollbackWorker,
             int maxRetries) {
         this.key = key;
@@ -50,7 +50,6 @@ class JobEntry {
         this.rollbackWorker = rollbackWorker;
         this.maxRetries = maxRetries;
         this.retryCount = maxRetries;
-
     }
 
     /**
@@ -59,39 +58,39 @@ class JobEntry {
      * converted to Object where Object implementation should provide the
      * hashcode and equals methods.
      */
-    public String getKey() {
+    Object getKey() {
         return key;
     }
 
-    public String getId() {
+    String getId() {
         return id;
     }
 
-    public String getQueueId() {
+    String getQueueId() {
         return queueId;
     }
 
-    public @Nullable Callable<List<? extends ListenableFuture<?>>> getMainWorker() {
+    @Nullable Callable<List<? extends ListenableFuture<?>>> getMainWorker() {
         return mainWorker;
     }
 
-    public void setMainWorker(@Nullable Callable<List<? extends ListenableFuture<?>>> mainWorker) {
+    void setMainWorker(@Nullable Callable<List<? extends ListenableFuture<?>>> mainWorker) {
         this.mainWorker = mainWorker;
     }
 
-    public @Nullable RollbackCallable getRollbackWorker() {
+    @Nullable RollbackCallable getRollbackWorker() {
         return rollbackWorker;
     }
 
-    public int getRetryCount() {
+    int getRetryCount() {
         return retryCount;
     }
 
-    public int getMaxRetries() {
+    int getMaxRetries() {
         return maxRetries;
     }
 
-    public int decrementRetryCountAndGet() {
+    int decrementRetryCountAndGet() {
         if (this.retryCount == 0) {
             return 0;
         }
@@ -99,35 +98,33 @@ class JobEntry {
         return RETRY_COUNT_FIELD_UPDATER.decrementAndGet(this);
     }
 
-    public List<? extends ListenableFuture<?>> getFutures() {
+    List<? extends ListenableFuture<?>> getFutures() {
         List<? extends ListenableFuture<?>> nullableFutures = futures;
         return nullableFutures != null ? nullableFutures : emptyList();
     }
 
 
-    public long getStartTime() {
+    long getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(long startTime) {
+    void setStartTime(long startTime) {
         if (this.startTime < 0) {
             this.startTime = startTime;
         }
     }
 
-    public long getEndTime() {
+    long getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(long endTime) {
+    void setEndTime(long endTime) {
         this.endTime = endTime;
     }
 
-    public void setFutures(List<? extends ListenableFuture<?>> futures) {
+    void setFutures(List<? extends ListenableFuture<?>> futures) {
         this.futures = futures;
     }
-
-
 
     @Override
     public String toString() {
@@ -143,4 +140,5 @@ class JobEntry {
                 + '}';
 
     }
+
 }

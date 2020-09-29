@@ -69,7 +69,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
             Math.min(FJP_MAX_CAP, Runtime.getRuntime().availableProcessors()), factory,
             LoggingThreadUncaughtExceptionHandler.toLogger(LOG), false);
 
-    private final ConcurrentMap<String, JobQueue> jobQueueMap = new ConcurrentHashMap<>();
+    private final ConcurrentMap<Object, JobQueue> jobQueueMap = new ConcurrentHashMap<>();
     private final ReentrantLock jobQueueMapLock = new ReentrantLock();
     private final Condition jobQueueMapCondition = jobQueueMapLock.newCondition();
     private final JcServiceStatus mxBean = new JcServiceStatus(jobQueueMap);
@@ -139,7 +139,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
     }
 
     @Override
-    public void enqueueJob(String key, Callable<List<? extends ListenableFuture<?>>> mainWorker,
+    public void enqueueJob(Object key, Callable<List<? extends ListenableFuture<?>>> mainWorker,
             RollbackCallable rollbackWorker, int maxRetries) {
 
         jobQueueMapLock.lock();
@@ -147,8 +147,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
             JobQueue jobQueue = jobQueueMap.computeIfAbsent(key, mapKey -> new JobQueue());
             JobEntry jobEntry = new JobEntry(key, jobQueue.getQueueId(), mainWorker, rollbackWorker, maxRetries);
             jobQueue.addEntry(jobEntry);
-            LOG.trace("Added a job with key {}, job {} to the queue {}",
-                    key, jobEntry.getId(), jobQueue.getQueueId());
+            LOG.trace("Added a job with key {}, job {} to the queue {}", key, jobEntry.getId(), jobQueue.getQueueId());
         } finally {
             jobQueueMapLock.unlock();
         }
@@ -194,13 +193,11 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
      * Cleanup the submitted job from the job queue.
      **/
     private void clearJob(JobEntry jobEntry) {
-        String jobKey = jobEntry.getKey();
-        LOG.trace("About to clear job with key {}, job{} from queue {}",
-                jobKey, jobEntry.getId(), jobEntry.getQueueId());
+        Object jobKey = jobEntry.getKey();
+        LOG.trace("About to clear job with key {}, job{} from queue {}", jobKey, jobEntry.getId(),
+                jobEntry.getQueueId());
         JobQueue jobQueue = jobQueueMap.get(jobKey);
         if (jobQueue != null) {
-
-
             jobQueueMapLock.lock();
             try {
                 if (jobQueue.isEmpty()) {
@@ -466,7 +463,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
             LOG.info("Starting JobQueue Handler Thread");
             while (true) {
                 try {
-                    for (Map.Entry<String, JobQueue> entry : jobQueueMap.entrySet()) {
+                    for (Map.Entry<Object, JobQueue> entry : jobQueueMap.entrySet()) {
                         if (shutdown) {
                             break;
                         }

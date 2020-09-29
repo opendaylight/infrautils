@@ -38,11 +38,11 @@ final class JcServiceStatus implements JcServiceStatusMXBean {
         }
     }
 
-    private final ConcurrentMap<String, ? extends JobQueue> jobQueueMap;
+    private final ConcurrentMap<Object, ? extends JobQueue> jobQueueMap;
     private final @Nullable MBeanServer mbeanServer;
 
     @SuppressFBWarnings(value = "NP_STORE_INTO_NONNULL_FIELD", justification = "SpotBugs does not grok @Nullable")
-    JcServiceStatus(ConcurrentMap<String, ? extends JobQueue> jobQueueMap) {
+    JcServiceStatus(ConcurrentMap<Object, ? extends JobQueue> jobQueueMap) {
         this.jobQueueMap = jobQueueMap;
 
         @Var MBeanServer srv = null;
@@ -55,7 +55,7 @@ final class JcServiceStatus implements JcServiceStatusMXBean {
     }
 
     @Override
-    public ImmutableMap<String, JcState> jcStatus() {
+    public ImmutableMap<Object, JcState> jcStatus() {
         return ImmutableMap.copyOf(Maps.transformValues(jobQueueMap,
             value -> new JcState(value.getPendingJobCount(), value.getFinishedJobCount(),
                 value.getJobQueueMovingAverageExecutionTime())));
