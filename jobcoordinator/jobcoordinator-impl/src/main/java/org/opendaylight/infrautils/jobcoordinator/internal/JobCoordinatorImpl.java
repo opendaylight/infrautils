@@ -42,7 +42,9 @@ import org.opendaylight.infrautils.jobcoordinator.JobCoordinator;
 import org.opendaylight.infrautils.jobcoordinator.JobCoordinatorMonitor;
 import org.opendaylight.infrautils.jobcoordinator.RollbackCallable;
 import org.opendaylight.infrautils.metrics.Counter;
+import org.opendaylight.infrautils.metrics.ImmutableMetricDescriptor.IdBuildStage;
 import org.opendaylight.infrautils.metrics.Meter;
+import org.opendaylight.infrautils.metrics.MetricDescriptor;
 import org.opendaylight.infrautils.metrics.MetricProvider;
 import org.opendaylight.infrautils.utils.concurrent.Executors;
 import org.opendaylight.infrautils.utils.concurrent.LoggingThreadUncaughtExceptionHandler;
@@ -94,18 +96,22 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
 
     @Inject
     public JobCoordinatorImpl(MetricProvider metricProvider) {
-        jobsCreated = metricProvider.newMeter(this, "odl.infrautils.jobcoordinator.jobsCreated");
-        jobsCleared = metricProvider.newMeter(this, "odl.infrautils.jobcoordinator.jobsCleared");
-        jobsPending = metricProvider.newCounter(this, "odl.infrautils.jobcoordinator.jobsPending");
-        jobsIncomplete = metricProvider.newCounter(this, "odl.infrautils.jobcoordinator.jobsIncomplete");
-        jobsFailed = metricProvider.newMeter(this, "odl.infrautils.jobcoordinator.jobsFailed");
-        jobsRetriesForFailure = metricProvider.newMeter(this, "odl.infrautils.jobcoordinator.jobsRetriesForFailure");
+        jobsCreated = metricProvider.newMeter(descriptorBuilder().id("jobsCreated").build());
+        jobsCleared = metricProvider.newMeter(descriptorBuilder().id("jobsCleared").build());
+        jobsPending = metricProvider.newCounter(descriptorBuilder().id("jobsPending").build());
+        jobsIncomplete = metricProvider.newCounter(descriptorBuilder().id("jobsIncomplete").build());
+        jobsFailed = metricProvider.newMeter(descriptorBuilder().id("jobsFailed").build());
+        jobsRetriesForFailure = metricProvider.newMeter(descriptorBuilder().id("jobsRetriesForFailure").build());
 
         jobQueueHandlerThread = ThreadFactoryProvider.builder()
             .namePrefix("JobCoordinator-JobQueueHandler")
             .logger(LOG)
             .build().get()
             .newThread(new JobQueueHandler());
+    }
+
+    private IdBuildStage descriptorBuilder() {
+        return MetricDescriptor.builder().anchor(this).project("infrautils").module("jobcoordinator");
     }
 
     @PostConstruct
