@@ -12,6 +12,7 @@ import com.google.gson.GsonBuilder;
 import java.time.Instant;
 import java.util.Collection;
 import java.util.Objects;
+import java.util.Set;
 import org.opendaylight.infrautils.ready.SystemState;
 
 /**
@@ -30,14 +31,14 @@ public final class ServiceStatusSummary {
     private final boolean isOperational;
     private final SystemState systemReadyState;
     private final String systemReadyStateErrorCause;
-    private final Collection<ServiceDescriptor> statusSummary;
+    private final Set<ServiceDescriptor> statusSummary;
 
     public static ServiceStatusSummary fromJSON(String json) {
         return GSON.fromJson(json, ServiceStatusSummary.class);
     }
 
     public ServiceStatusSummary(boolean isOperational, SystemState systemState, String systemReadyErrorCause,
-                                Collection<ServiceDescriptor> statusSummary) {
+                                Set<ServiceDescriptor> statusSummary) {
         this.timeStamp = Instant.now();
         this.isOperational = isOperational;
         this.systemReadyState = systemState;

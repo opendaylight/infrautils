@@ -9,7 +9,7 @@ package org.opendaylight.infrautils.diagstatus.internal;
 
 import static org.opendaylight.infrautils.diagstatus.ServiceState.STARTING;
 
-import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableSet;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.Collection;
 import java.util.Map;
@@ -58,16 +58,16 @@ abstract class AbstractDiagStatusService implements DiagStatusService {
     }
 
     @Override
-    public final ImmutableList<ServiceDescriptor> getAllServiceDescriptors() {
+    public final ImmutableSet<ServiceDescriptor> getAllServiceDescriptors() {
         updateServiceStatusMap();
-        return ImmutableList.copyOf(statusMap.values());
+        return ImmutableSet.copyOf(statusMap.values());
     }
 
     @Override
     public final ServiceStatusSummary getServiceStatusSummary() {
         SystemReadyMonitor systemReadyMonitor = systemReadyMonitor();
         SystemState systemState = systemReadyMonitor.getSystemState();
-        Collection<ServiceDescriptor> serviceDescriptors = getAllServiceDescriptors();
+        ImmutableSet<ServiceDescriptor> serviceDescriptors = getAllServiceDescriptors();
         return new ServiceStatusSummary(isOperational(systemState, serviceDescriptors),
                 systemState, systemReadyMonitor.getFailureCause(), serviceDescriptors);
     }
