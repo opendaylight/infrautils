@@ -67,9 +67,9 @@ public final class OSGiJobCoordinator implements JobCoordinator, JobCoordinatorM
     }
 
     @Override
-    public void enqueueJob(Object key, Callable<List<? extends ListenableFuture<?>>> mainWorker,
+    public ListenableFuture<?> enqueueJob(Object key, Callable<List<? extends ListenableFuture<?>>> mainWorker,
             RollbackCallable rollbackWorker, int maxRetries) {
-        delegate().enqueueJob(key, mainWorker, rollbackWorker, maxRetries);
+        return delegate().enqueueJob(key, mainWorker, rollbackWorker, maxRetries);
     }
 
     @Override

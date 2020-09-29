@@ -10,6 +10,7 @@ package org.opendaylight.infrautils.jobcoordinator.internal;
 import static java.util.Collections.emptyList;
 
 import com.google.common.util.concurrent.ListenableFuture;
+import com.google.common.util.concurrent.SettableFuture;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -25,6 +26,7 @@ import org.opendaylight.infrautils.jobcoordinator.RollbackCallable;
 final class JobEntry {
     private static final AtomicLong ID_GENERATOR = new AtomicLong(1);
 
+    private final SettableFuture<Void> fateFuture = SettableFuture.create();
     private final String id = "J" + ID_GENERATOR.getAndIncrement();
     private final Object key;
     private final String queueId;
@@ -37,7 +39,6 @@ final class JobEntry {
     private volatile @Nullable List<? extends ListenableFuture<?>> futures;
     private long startTime = -1;
     private long endTime = -1;
-
 
     @SuppressFBWarnings(value = "NP_NONNULL_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR",
             justification = "TYPE_USE and SpotBugs")
@@ -118,12 +119,21 @@ final class JobEntry {
         return endTime;
     }
 
-    void setEndTime(long endTime) {
-        this.endTime = endTime;
+    void finishJob(Throwable lastFailure) {
+        this.endTime = System.currentTimeMillis();
+        if (lastFailure != null) {
+            fateFuture.setException(lastFailure);
+        } else {
+            fateFuture.set(null);
+        }
     }
 
     void setFutures(List<? extends ListenableFuture<?>> futures) {
         this.futures = futures;
+    }
+
+    ListenableFuture<?> fateFuture() {
+        return fateFuture;
     }
 
     @Override

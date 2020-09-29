@@ -139,15 +139,17 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
     }
 
     @Override
-    public void enqueueJob(Object key, Callable<List<? extends ListenableFuture<?>>> mainWorker,
+    public ListenableFuture<?> enqueueJob(Object key, Callable<List<? extends ListenableFuture<?>>> mainWorker,
             RollbackCallable rollbackWorker, int maxRetries) {
 
+        ListenableFuture<?> ret;
         jobQueueMapLock.lock();
         try {
             JobQueue jobQueue = jobQueueMap.computeIfAbsent(key, mapKey -> new JobQueue());
             JobEntry jobEntry = new JobEntry(key, jobQueue.getQueueId(), mainWorker, rollbackWorker, maxRetries);
             jobQueue.addEntry(jobEntry);
             LOG.trace("Added a job with key {}, job {} to the queue {}", key, jobEntry.getId(), jobQueue.getQueueId());
+            ret = jobEntry.fateFuture();
         } finally {
             jobQueueMapLock.unlock();
         }
@@ -157,6 +159,8 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
         jobsCreated.mark();
 
         signalForNextJob();
+
+        return ret;
     }
 
     @Override
@@ -192,7 +196,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
     /**
      * Cleanup the submitted job from the job queue.
      **/
-    private void clearJob(JobEntry jobEntry) {
+    private void clearJob(JobEntry jobEntry, Throwable lastFailure) {
         Object jobKey = jobEntry.getKey();
         LOG.trace("About to clear job with key {}, job{} from queue {}", jobKey, jobEntry.getId(),
                 jobEntry.getQueueId());
@@ -208,7 +212,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
             } finally {
                 jobQueueMapLock.unlock();
             }
-            jobEntry.setEndTime(System.currentTimeMillis());
+            jobEntry.finishJob(lastFailure);
             jobQueue.onJobFinished(jobEntry.getEndTime() - jobEntry.getStartTime());
             jobQueue.setExecutingEntry(null);
 
@@ -285,7 +289,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
         public void onSuccess(List<?> voids) {
             LOG.trace("Job completed successfully with key {}, job {} from queue {}",
                     jobEntry.getKey(), jobEntry.getId(), jobEntry.getQueueId());
-            clearJob(jobEntry);
+            clearJob(jobEntry, null);
         }
 
         /**
@@ -311,7 +315,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
             }
             if (jobEntry.getMainWorker() == null) {
                 LOG.error("Job failed with Double-Fault. Bailing Out: {}", jobEntry);
-                clearJob(jobEntry);
+                clearJob(jobEntry, throwable);
                 return;
             }
 
@@ -324,7 +328,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
                     @Override
                     public void onFailure(Throwable throwable) {
                         LOG.error("Retry of job failed; rolling back or clearing job: {}", jobEntry, throwable);
-                        rollbackOrClear(jobEntry);
+                        rollbackOrClear(jobEntry, throwable);
                     }
 
                     @Override
@@ -334,14 +338,14 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
                     }
                 }, MoreExecutors.directExecutor());
             } else {
-                rollbackOrClear(jobEntry);
+                rollbackOrClear(jobEntry, throwable);
             }
         }
     }
 
     @SuppressFBWarnings(value = "UPM_UNCALLED_PRIVATE_METHOD",
             justification = "https://github.com/spotbugs/spotbugs/issues/811")
-    private void rollbackOrClear(JobEntry jobEntry) {
+    private void rollbackOrClear(JobEntry jobEntry, Throwable cause) {
         jobsFailed.mark();
         if (jobEntry.getRollbackWorker() != null) {
             jobEntry.setMainWorker(null);
@@ -349,7 +353,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
             executeTask(rollbackTask);
             return;
         }
-        clearJob(jobEntry);
+        clearJob(jobEntry, cause);
     }
 
     /**
@@ -381,7 +385,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
             if (futures == null || futures.isEmpty()) {
                 LOG.trace("From RollbackTask: futures is null or empty. Clearing the jobQueue with key {},"
                         + " job {} from queue {}", jobEntry.getKey(), jobEntry.getId(), jobEntry.getQueueId());
-                clearJob(jobEntry);
+                clearJob(jobEntry, null);
                 return;
             }
 
@@ -428,7 +432,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
             if (futures == null || futures.isEmpty()) {
                 LOG.trace("From MainTask: futures is null or empty. Clearing the jobQueue with key {},"
                         + " job {} from queue {}", jobEntry.getKey(), jobEntry.getId(), jobEntry.getQueueId());
-                clearJob(jobEntry);
+                clearJob(jobEntry, null);
                 return;
             }
 
@@ -437,7 +441,7 @@ public class JobCoordinatorImpl implements JobCoordinator, JobCoordinatorMonitor
             if (nonNullFutures.isEmpty()) {
                 LOG.trace("From MainTask nonNullFutures: Clearing the jobQueue with key {}, job {} from queue {}",
                         jobEntry.getKey(), jobEntry.getId(), jobEntry.getQueueId());
-                clearJob(jobEntry);
+                clearJob(jobEntry, null);
                 return;
             }
 

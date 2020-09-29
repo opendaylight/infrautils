@@ -8,6 +8,7 @@
 package org.opendaylight.infrautils.jobcoordinator;
 
 import com.google.common.util.concurrent.ListenableFuture;
+import com.google.errorprone.annotations.CanIgnoreReturnValue;
 import java.util.List;
 import java.util.concurrent.Callable;
 
@@ -35,9 +36,12 @@ public interface JobCoordinator { // do *NOT* extends JobCoordinatorMonitor
      *            {@link java.util.Map}. Jobs with the same key are run sequentially. Jobs with different keys are run
      *            in parallel.
      * @param mainWorker The task that runs for the job.
+     * @return Fate future. This future completes, either successfully or exceptionally, when execution of the job
+     *         finishes.
      */
-    default void enqueueJob(Object key, Callable<List<? extends ListenableFuture<?>>> mainWorker) {
-        enqueueJob(key, mainWorker, null, DEFAULT_MAX_RETRIES);
+    @CanIgnoreReturnValue
+    default ListenableFuture<?> enqueueJob(Object key, Callable<List<? extends ListenableFuture<?>>> mainWorker) {
+        return enqueueJob(key, mainWorker, null, DEFAULT_MAX_RETRIES);
     }
 
     /**
@@ -49,11 +53,14 @@ public interface JobCoordinator { // do *NOT* extends JobCoordinatorMonitor
      *            in parallel.
      * @param mainWorker The task that runs for the job.
      * @param rollbackWorker The rollback task which runs in case the job's main task fails.
+     * @return Fate future. This future completes, either successfully or exceptionally, when execution of the job
+     *         finishes.
      * @see JobCoordinator#enqueueJob(Object, Callable)
      */
-    default void enqueueJob(Object key, Callable<List<? extends ListenableFuture<?>>> mainWorker,
+    @CanIgnoreReturnValue
+    default ListenableFuture<?> enqueueJob(Object key, Callable<List<? extends ListenableFuture<?>>> mainWorker,
             RollbackCallable rollbackWorker) {
-        enqueueJob(key, mainWorker, rollbackWorker, DEFAULT_MAX_RETRIES);
+        return enqueueJob(key, mainWorker, rollbackWorker, DEFAULT_MAX_RETRIES);
     }
 
     /**
@@ -66,10 +73,14 @@ public interface JobCoordinator { // do *NOT* extends JobCoordinatorMonitor
      *            in parallel.
      * @param mainWorker The task that runs for the job.
      * @param maxRetries The maximum number of retries for the job's main task until it succeeds.
+     * @return Fate future. This future completes, either successfully or exceptionally, when execution of the job
+     *         finishes.
      * @see JobCoordinator#enqueueJob(Object, Callable)
      */
-    default void enqueueJob(Object key, Callable<List<? extends ListenableFuture<?>>> mainWorker, int maxRetries) {
-        enqueueJob(key, mainWorker, null, maxRetries);
+    @CanIgnoreReturnValue
+    default ListenableFuture<?> enqueueJob(Object key, Callable<List<? extends ListenableFuture<?>>> mainWorker,
+            int maxRetries) {
+        return enqueueJob(key, mainWorker, null, maxRetries);
     }
 
     /**
@@ -82,9 +93,12 @@ public interface JobCoordinator { // do *NOT* extends JobCoordinatorMonitor
      * @param mainWorker The task that runs for the job.
      * @param rollbackWorker The rollback task which runs in case the job's main task fails.
      * @param maxRetries The maximum number of retries for the job's main task until it succeeds.
+     * @return Fate future. This future completes, either successfully or exceptionally, when execution of the job
+     *         finishes.
      * @see JobCoordinator#enqueueJob(Object, Callable, RollbackCallable)
      * @see JobCoordinator#enqueueJob(Object, Callable, int)
      */
-    void enqueueJob(Object key, Callable<List<? extends ListenableFuture<?>>> mainWorker,
+    @CanIgnoreReturnValue
+    ListenableFuture<?> enqueueJob(Object key, Callable<List<? extends ListenableFuture<?>>> mainWorker,
             RollbackCallable rollbackWorker, int maxRetries);
 }
