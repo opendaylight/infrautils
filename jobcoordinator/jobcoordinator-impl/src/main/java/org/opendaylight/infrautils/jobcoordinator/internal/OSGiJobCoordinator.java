@@ -10,6 +10,7 @@ package org.opendaylight.infrautils.jobcoordinator.internal;
 import static com.google.common.base.Verify.verifyNotNull;
 
 import com.google.common.annotations.Beta;
+import com.google.common.base.MoreObjects;
 import com.google.common.util.concurrent.ListenableFuture;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.List;
@@ -73,7 +74,7 @@ public final class OSGiJobCoordinator implements JobCoordinator, JobCoordinatorM
 
     @Override
     public String toString() {
-        return delegate == null ? super.toString() : delegate.toString();
+        return MoreObjects.toStringHelper(this).add("delegate", delegate).toString();
     }
 
     @Activate
