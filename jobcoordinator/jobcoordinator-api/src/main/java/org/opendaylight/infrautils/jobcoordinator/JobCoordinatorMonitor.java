@@ -41,8 +41,4 @@ public interface JobCoordinatorMonitor {
      * Returns the retry jobs count.
      */
     long getRetriesCount();
-
-    @Override
-    // FIXME: this is an extremely bad idea, this should be a separate method
-    String toString();
 }
