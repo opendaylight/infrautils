@@ -8,7 +8,6 @@
 package org.opendaylight.infrautils.caches;
 
 import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.ImmutableMap.Builder;
 import java.util.function.Function;
 
 /**
@@ -33,7 +32,7 @@ public interface CheckedCacheFunction<K, V, E extends Exception> {
      * See {@link CacheFunction#get(Iterable)}.
      */
     default ImmutableMap<K, V> get(Iterable<? extends K> keys) throws E {
-        Builder<K, V> mapBuilder = ImmutableMap.builder();
+        ImmutableMap.Builder<K, V> mapBuilder = ImmutableMap.builder();
         for (K key : keys) {
             mapBuilder.put(key, get(key));
         }

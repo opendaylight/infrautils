@@ -8,7 +8,6 @@
 package org.opendaylight.infrautils.caches;
 
 import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.ImmutableMap.Builder;
 import java.util.function.Function;
 import org.eclipse.jdt.annotation.NonNull;
 
@@ -41,7 +40,7 @@ public interface CacheFunction<K, V> {
      * @return Map of cache keys and values (neither ever null, but may be an Optional)
      */
     default ImmutableMap<K, V> get(Iterable<? extends K> keys) {
-        Builder<K, V> mapBuilder = ImmutableMap.builder();
+        ImmutableMap.Builder<K, V> mapBuilder = ImmutableMap.builder();
         for (K key : keys) {
             mapBuilder.put(key, get(key));
         }

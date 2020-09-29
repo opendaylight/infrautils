@@ -7,8 +7,11 @@
  */
 package org.opendaylight.infrautils.inject.guice.testutils.tests;
 
+import static org.junit.Assert.assertThrows;
+
 import com.google.inject.AbstractModule;
 import org.junit.Test;
+import org.junit.runners.model.Statement;
 import org.opendaylight.infrautils.inject.guice.testutils.GuiceRule;
 
 /**
@@ -17,15 +20,15 @@ import org.opendaylight.infrautils.inject.guice.testutils.GuiceRule;
  *
  * @author Michael Vorburger.ch
  */
-@SuppressWarnings("checkstyle:IllegalThrows")
 public class GuiceRuleForgotAnnotationsModuleTest {
 
     // This is intentional, with this it fails expectedly; remove to see how
     // public @Rule GuiceRule guice = new GuiceRule(TestModule.class);
 
-    @Test(expected = IllegalStateException.class)
-    public void testGuiceWithRule() throws Throwable {
-        new GuiceRule(TestModule.class).apply(null, null, null).evaluate();
+    @Test
+    public void testGuiceWithRule() {
+        Statement stmt = new GuiceRule(TestModule.class).apply(null, null, null);
+        assertThrows(IllegalStateException.class, () -> stmt.evaluate());
     }
 
     public static class TestModule extends AbstractModule {

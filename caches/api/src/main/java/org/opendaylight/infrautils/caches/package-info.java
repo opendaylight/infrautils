@@ -5,6 +5,9 @@
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html
  */
-@org.opendaylight.infrautils.caches.internal.OpenDaylightImmutableStyle
-@org.eclipse.jdt.annotation.NonNullByDefault
+@OpenDaylightImmutableStyle
+@NonNullByDefault
 package org.opendaylight.infrautils.caches;
+
+import org.eclipse.jdt.annotation.NonNullByDefault;
+import org.opendaylight.infrautils.caches.internal.OpenDaylightImmutableStyle;
