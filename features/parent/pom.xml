@@ -18,7 +18,7 @@
 
   <groupId>org.opendaylight.infrautils</groupId>
   <artifactId>single-feature-parent</artifactId>
-  <version>1.8.2-SNAPSHOT</version>
+  <version>1.8.3-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>OpenDaylight :: Infrautils :: ${project.artifactId}</name>
