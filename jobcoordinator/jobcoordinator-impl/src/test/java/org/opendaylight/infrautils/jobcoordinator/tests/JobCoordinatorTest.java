@@ -24,6 +24,7 @@ import org.awaitility.Awaitility;
 import org.checkerframework.checker.lock.qual.GuardedBy;
 import org.eclipse.jdt.annotation.Nullable;
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.opendaylight.infrautils.jobcoordinator.RollbackCallable;
@@ -55,7 +56,7 @@ public class JobCoordinatorTest {
         public volatile boolean isWaiting = false;
 
         @Override
-        public @Nullable List<? extends ListenableFuture<?>> call() throws Exception {
+        public @Nullable List<? extends ListenableFuture<?>> call() throws InterruptedException {
             synchronized (this) {
                 isWaiting = true;
                 while (!isNotified) {
@@ -157,8 +158,13 @@ public class JobCoordinatorTest {
         jobCoordinator = new TestJobCoordinatorImpl();
     }
 
+    @Before
+    public void before() {
+        jobCoordinator.initialize();
+    }
+
     @After
-    public void tearDown() {
+    public void after() {
         LOG.info("{}", jobCoordinator.toString());
         jobCoordinator.destroy();
         jobCoordinator.verifyJobQueueHandlerThreadStopped();
