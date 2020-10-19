@@ -24,6 +24,7 @@ import org.awaitility.Awaitility;
 import org.checkerframework.checker.lock.qual.GuardedBy;
 import org.eclipse.jdt.annotation.Nullable;
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.opendaylight.infrautils.jobcoordinator.RollbackCallable;
@@ -78,7 +79,7 @@ public class JobCoordinatorTest {
 
         private static final long serialVersionUID = 1L;
 
-        private JobException(String message) {
+        private JobException(final String message) {
             super(message);
         }
     }
@@ -90,7 +91,7 @@ public class JobCoordinatorTest {
         private final @Nullable List<? extends ListenableFuture<?>> result;
         private final AtomicLong wasTried = new AtomicLong(0);
 
-        TestCallable(boolean isThrowingException, int returnedListSize) {
+        TestCallable(final boolean isThrowingException, final int returnedListSize) {
             this.isThrowingException = isThrowingException;
             this.returnedListSize = returnedListSize;
             if (returnedListSize < 0) {
@@ -124,7 +125,7 @@ public class JobCoordinatorTest {
         private final AtomicLong wasTried = new AtomicLong(0);
 
         @Override
-        public List<ListenableFuture<Void>> apply(List<? extends ListenableFuture<?>> failedFutures) {
+        public List<ListenableFuture<Void>> apply(final List<? extends ListenableFuture<?>> failedFutures) {
             wasTried.incrementAndGet();
             return Collections.emptyList();
         }
@@ -157,8 +158,13 @@ public class JobCoordinatorTest {
         jobCoordinator = new TestJobCoordinatorImpl();
     }
 
+    @Before
+    public void before() {
+        jobCoordinator.initialize();
+    }
+
     @After
-    public void tearDown() {
+    public void after() {
         LOG.info("{}", jobCoordinator.toString());
         jobCoordinator.destroy();
         jobCoordinator.verifyJobQueueHandlerThreadStopped();
@@ -323,27 +329,27 @@ public class JobCoordinatorTest {
         Awaitility.await().until(jobCoordinator::getIncompleteTaskCount, is(0L));
     }
 
-    private void assertCleared(int count) {
+    private void assertCleared(final int count) {
         assertEquals(count, jobCoordinator.getClearedTaskCount());
     }
 
-    private void assertCreated(int count) {
+    private void assertCreated(final int count) {
         assertEquals(count, jobCoordinator.getCreatedTaskCount());
     }
 
-    private void assertIncomplete(int count) {
+    private void assertIncomplete(final int count) {
         assertEquals(count, jobCoordinator.getIncompleteTaskCount());
     }
 
-    private void assertPending(int count) {
+    private void assertPending(final int count) {
         assertEquals(count, jobCoordinator.getPendingTaskCount());
     }
 
-    private void assertFailed(int count) {
+    private void assertFailed(final int count) {
         assertEquals(count, jobCoordinator.getFailedJobCount());
     }
 
-    private void assertRetry(int count) {
+    private void assertRetry(final int count) {
         assertEquals(count, jobCoordinator.getRetriesCount());
     }
 }

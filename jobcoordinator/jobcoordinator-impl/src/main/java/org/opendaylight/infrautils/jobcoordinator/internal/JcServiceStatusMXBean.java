@@ -11,5 +11,5 @@ import java.util.Map;
 
 public interface JcServiceStatusMXBean {
 
-    Map<Object, JcState> jcStatus();
+    Map<String, JcState> jcStatus();
 }

@@ -8,10 +8,12 @@
 package org.opendaylight.infrautils.jobcoordinator.internal;
 
 import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Maps;
 import com.google.errorprone.annotations.Var;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.lang.management.ManagementFactory;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentMap;
 import javax.management.InstanceAlreadyExistsException;
 import javax.management.InstanceNotFoundException;
@@ -42,7 +44,7 @@ final class JcServiceStatus implements JcServiceStatusMXBean {
     private final @Nullable MBeanServer mbeanServer;
 
     @SuppressFBWarnings(value = "NP_STORE_INTO_NONNULL_FIELD", justification = "SpotBugs does not grok @Nullable")
-    JcServiceStatus(ConcurrentMap<Object, ? extends JobQueue> jobQueueMap) {
+    JcServiceStatus(final ConcurrentMap<Object, ? extends JobQueue> jobQueueMap) {
         this.jobQueueMap = jobQueueMap;
 
         @Var MBeanServer srv = null;
@@ -55,17 +57,46 @@ final class JcServiceStatus implements JcServiceStatusMXBean {
     }
 
     @Override
-    public ImmutableMap<Object, JcState> jcStatus() {
-        return ImmutableMap.copyOf(Maps.transformValues(jobQueueMap,
-            value -> new JcState(value.getPendingJobCount(), value.getFinishedJobCount(),
-                value.getJobQueueMovingAverageExecutionTime())));
+    public ImmutableMap<String, JcState> jcStatus() {
+        Map<String, JcState> strKeyed = new HashMap<>();
+        Map<Object, JcState> objKeyed = new HashMap<>();
+
+        for (Entry<Object, ? extends JobQueue> entry : jobQueueMap.entrySet()) {
+            JobQueue queue = entry.getValue();
+            JcState state = new JcState(queue.getPendingJobCount(), queue.getFinishedJobCount(),
+                queue.getJobQueueMovingAverageExecutionTime());
+            Object key = entry.getKey();
+            if (key instanceof String) {
+                strKeyed.put((String) key, state);
+            } else {
+                objKeyed.put(key, state);
+            }
+        }
+
+        if (!objKeyed.isEmpty()) {
+            // This is unfortunate: we have to encode Objects into Strings, and hope the toString() contract matches
+            // equals() in that distinct objects produce distinct values. For now just issue warnings if things go
+            // south.
+            for (Entry<Object, JcState> entry : objKeyed.entrySet()) {
+                Object key = entry.getKey();
+                String str = key.toString();
+                if (strKeyed.putIfAbsent(str, entry.getValue()) != null) {
+                    LOG.warn("Queue key {} resulted in conflicting string \"{}\", please fix the implemetation",
+                        key.getClass(), str);
+                }
+            }
+        }
+
+        return ImmutableMap.copyOf(strKeyed);
     }
 
     void register() {
         if (mbeanServer != null) {
             try {
                 mbeanServer.registerMBean(this, OBJECT_NAME);
-            } catch (InstanceAlreadyExistsException | MBeanRegistrationException | NotCompliantMBeanException e) {
+            } catch (NotCompliantMBeanException e) {
+                throw new IllegalStateException("Unexpected registration failure", e);
+            } catch (InstanceAlreadyExistsException | MBeanRegistrationException e) {
                 LOG.warn("Failed to register bean, continuing without it", e);
             }
         }
