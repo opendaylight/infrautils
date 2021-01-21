@@ -13,7 +13,7 @@
   <parent>
     <groupId>org.opendaylight.odlparent</groupId>
     <artifactId>bundle-parent</artifactId>
-    <version>8.0.3</version>
+    <version>8.1.0</version>
     <relativePath/>
   </parent>
 
@@ -46,7 +46,7 @@
     </dependency>
     <dependency>
       <groupId>org.osgi</groupId>
-      <artifactId>org.osgi.core</artifactId>
+      <artifactId>osgi.core</artifactId>
     </dependency>
     <dependency>
       <groupId>org.ops4j.pax.exam</groupId>
@@ -83,7 +83,7 @@
     <dependency>
       <groupId>org.opendaylight.odlparent</groupId>
       <artifactId>opendaylight-karaf4-empty</artifactId>
-      <version>8.0.3</version>
+      <version>8.1.0</version>
       <type>tar.gz</type>
       <exclusions>
         <!-- The transitive dependencies are unnecessary, because PAX Exam uses the distribution.
@@ -108,7 +108,7 @@
     <dependency>
       <groupId>org.apache.karaf.features</groupId>
       <artifactId>standard</artifactId>
-      <version>8.0.3</version>
+      <version>8.1.0</version>
       <classifier>features</classifier>
       <type>xml</type>
     </dependency>
@@ -147,7 +147,7 @@
                   <groupId>org.opendaylight.odlparent</groupId>
                   <!-- Pending https://ops4j1.jira.com/browse/PAXEXAM-813, this doesn't actually work, yet -->
                   <artifactId>opendaylight-karaf4-empty</artifactId>
-                  <version>8.0.3</version>
+                  <version>8.1.0</version>
                   <!-- NB the tar.gz is almost half the size of the zip, so use that, even for Windows (works fine) -->
                   <type>tar.gz</type>
                 </artifact>
