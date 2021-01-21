@@ -40,6 +40,16 @@ public class SystemReadyTest {
             public int systemReadyTimeout() {
                 return 300;
             }
+
+            @Override
+            public int hashCode() {
+                return 0;
+            }
+
+            @Override
+            public boolean equals(Object obj) {
+                return obj == this;
+            }
         });
 
         // Check via strong interface if initial value of BOOTING is assigned
