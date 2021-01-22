@@ -83,7 +83,7 @@ public class JobQueue {
         return this.movingAverage;
     }
 
-    private static double getMovingAverage(@Var double st, double yt) {
+    private static double getMovingAverage(double st, double yt) {
 
         return st <= 0D ? yt : 0.01D * yt + 0.99D * st;
     }
