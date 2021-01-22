@@ -8,7 +8,6 @@
 package org.opendaylight.infrautils.jobcoordinator.internal;
 
 import com.google.common.base.MoreObjects;
-import com.google.errorprone.annotations.Var;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
@@ -83,7 +82,7 @@ public class JobQueue {
         return this.movingAverage;
     }
 
-    private static double getMovingAverage(@Var double st, double yt) {
+    private static double getMovingAverage(double st, double yt) {
 
         return st <= 0D ? yt : 0.01D * yt + 0.99D * st;
     }
