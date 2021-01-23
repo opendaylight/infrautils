@@ -13,7 +13,7 @@
   <parent>
       <groupId>org.opendaylight.infrautils</groupId>
       <artifactId>parent</artifactId>
-      <version>1.9.5-SNAPSHOT</version>
+      <version>1.9.6-SNAPSHOT</version>
       <relativePath>../../../common/parent</relativePath>
   </parent>
 
