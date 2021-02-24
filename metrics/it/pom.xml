@@ -13,7 +13,7 @@
   <parent>
     <groupId>org.opendaylight.infrautils</groupId>
     <artifactId>itestutils-parent</artifactId>
-    <version>1.9.6-SNAPSHOT</version>
+    <version>1.9.7-SNAPSHOT</version>
     <relativePath>../../itestutils/parent/</relativePath>
   </parent>
 
