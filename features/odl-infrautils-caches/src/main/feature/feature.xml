@@ -8,6 +8,6 @@
  -->
 <features xmlns="http://karaf.apache.org/xmlns/features/v1.4.0" name="odl-infrautils-caches">
     <feature name="odl-infrautils-caches">
-        <feature version="[8.1,9)">odl-guava</feature>
+        <feature version="[9,10)">odl-guava</feature>
     </feature>
 </features>
