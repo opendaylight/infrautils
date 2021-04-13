@@ -24,9 +24,10 @@
 
   <dependencies>
     <dependency>
-      <groupId>javax.inject</groupId>
+      <groupId>com.guicedee.services</groupId>
       <artifactId>javax.inject</artifactId>
       <!-- Important to enforce false because in odlparent it's true (see gerrit/c/56723) -->
+      <scope>compile</scope>
       <optional>false</optional>
     </dependency>
     <dependency>

@@ -42,8 +42,9 @@
 
     <!-- Dependencies for PAX Exam karaf container -->
     <dependency>
-      <groupId>javax.inject</groupId>
+      <groupId>com.guicedee.services</groupId>
       <artifactId>javax.inject</artifactId>
+      <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>org.osgi</groupId>

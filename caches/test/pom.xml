@@ -22,8 +22,9 @@
 
   <dependencies>
     <dependency>
-      <groupId>javax.inject</groupId>
+      <groupId>com.guicedee.services</groupId>
       <artifactId>javax.inject</artifactId>
+      <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>org.opendaylight.infrautils</groupId>

@@ -27,10 +27,9 @@
       <artifactId>caches-api</artifactId>
     </dependency>
     <dependency>
-      <groupId>javax.inject</groupId>
+      <groupId>com.guicedee.services</groupId>
       <artifactId>javax.inject</artifactId>
       <optional>true</optional>
-      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.osgi</groupId>
