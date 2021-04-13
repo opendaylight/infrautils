@@ -30,7 +30,6 @@
         <!-- Stable features -->
         <module>odl-infrautils-caches</module>
         <module>odl-infrautils-diagstatus</module>
-        <module>odl-infrautils-jobcoordinator</module>
         <module>odl-infrautils-metrics</module>
         <module>odl-infrautils-ready</module>
         <module>odl-infrautils-utils</module>

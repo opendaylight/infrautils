@@ -113,18 +113,6 @@
               <version>${project.version}</version>
             </dependency>
 
-            <!-- Job Coordinator -->
-            <dependency>
-              <groupId>${project.groupId}</groupId>
-              <artifactId>jobcoordinator-api</artifactId>
-              <version>${project.version}</version>
-            </dependency>
-            <dependency>
-              <groupId>${project.groupId}</groupId>
-              <artifactId>jobcoordinator-impl</artifactId>
-              <version>${project.version}</version>
-            </dependency>
-
             <!-- Metrics -->
             <dependency>
               <groupId>${project.groupId}</groupId>

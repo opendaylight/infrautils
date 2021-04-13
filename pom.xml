@@ -40,7 +40,6 @@
         <module>diagstatus</module>
         <module>inject</module>
         <module>itestutils</module>
-        <module>jobcoordinator</module>
         <module>metrics</module>
         <module>ready</module>
         <module>testutils</module>
