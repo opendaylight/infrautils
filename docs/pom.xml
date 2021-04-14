@@ -41,10 +41,6 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>infrautils-util</artifactId>
         </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>shell</artifactId>
-        </dependency>
 
         <!-- Test utilities -->
         <dependency>
