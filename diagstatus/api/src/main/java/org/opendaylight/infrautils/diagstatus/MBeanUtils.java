@@ -11,14 +11,11 @@ import java.lang.management.ManagementFactory;
 import javax.management.InstanceAlreadyExistsException;
 import javax.management.InstanceNotFoundException;
 import javax.management.JMException;
-import javax.management.JMX;
 import javax.management.MBeanRegistrationException;
 import javax.management.MBeanServer;
-import javax.management.MBeanServerConnection;
 import javax.management.MalformedObjectNameException;
 import javax.management.NotCompliantMBeanException;
 import javax.management.ObjectName;
-import org.eclipse.jdt.annotation.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -72,23 +69,6 @@ public final class MBeanUtils {
     public static void unregisterServerMBean(Object mxBeanImplementor, String objNameStr)
             throws MalformedObjectNameException, InstanceNotFoundException, MBeanRegistrationException {
         unregisterServerMBean(mxBeanImplementor, ObjectName.getInstance(objNameStr));
-    }
-
-    public static @Nullable Object getMBeanAttribute(String objName, String attribute) throws JMException {
-        ObjectName objectName = new ObjectName(objName);
-        MBeanServer platformMbeanServer = ManagementFactory.getPlatformMBeanServer();
-        return platformMbeanServer.getAttribute(objectName, attribute);
-    }
-
-    private static <T> T getMBean(String jmxName, Class<T> klass, MBeanServerConnection mbsc)
-            throws MalformedObjectNameException {
-        ObjectName objectName = new ObjectName(jmxName);
-        return JMX.isMXBeanInterface(klass) ? JMX.newMXBeanProxy(mbsc, objectName, klass)
-                : JMX.newMBeanProxy(mbsc, objectName, klass);
-    }
-
-    public static <T> T getMBean(String jmxName, Class<T> klass) throws MalformedObjectNameException {
-        return getMBean(jmxName, klass, ManagementFactory.getPlatformMBeanServer());
     }
 
     static ObjectName objectNameOf(String name) {
