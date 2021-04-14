@@ -8,13 +8,10 @@
 package org.opendaylight.infrautils.diagstatus.test;
 
 import com.google.inject.TypeLiteral;
-import java.util.Collections;
 import java.util.List;
-import org.opendaylight.infrautils.diagstatus.ClusterMemberInfo;
 import org.opendaylight.infrautils.diagstatus.DiagStatusService;
 import org.opendaylight.infrautils.diagstatus.DiagStatusServiceMBean;
 import org.opendaylight.infrautils.diagstatus.ServiceStatusProvider;
-import org.opendaylight.infrautils.diagstatus.internal.ClusterMemberInfoImpl;
 import org.opendaylight.infrautils.diagstatus.internal.DiagStatusServiceImpl;
 import org.opendaylight.infrautils.diagstatus.internal.DiagStatusServiceMBeanImpl;
 import org.opendaylight.infrautils.inject.guice.testutils.AbstractGuiceJsr250Module;
@@ -25,15 +22,13 @@ import org.opendaylight.infrautils.ready.testutils.TestSystemReadyMonitor.Behavi
 /**
  * Dependency Injection Wiring for {@link DiagStatusTest}.
  *
- * @author Faseela K & Michael Vorburger.ch
+ * @author Faseela K &amp; Michael Vorburger.ch
  */
 public class DiagStatusTestModule extends AbstractGuiceJsr250Module {
-
     @Override
     protected void configureBindings() {
         bind(DiagStatusService.class).to(DiagStatusServiceImpl.class);
-        bind(ClusterMemberInfo.class).to(ClusterMemberInfoImpl.class);
-        bind(new TypeLiteral<List<ServiceStatusProvider>>() {}).toInstance(Collections.emptyList());
+        bind(new TypeLiteral<List<ServiceStatusProvider>>() {}).toInstance(List.of());
         bind(SystemReadyMonitor.class).toInstance(new TestSystemReadyMonitor(Behaviour.NEVER));
         bind(DiagStatusServiceMBean.class).to(DiagStatusServiceMBeanImpl.class);
     }
