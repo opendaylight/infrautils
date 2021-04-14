@@ -43,7 +43,6 @@
         <module>metrics</module>
         <module>ready</module>
         <module>testutils</module>
-        <module>shell</module>
     </modules>
 
     <properties>

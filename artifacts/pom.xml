@@ -33,11 +33,6 @@
               <artifactId>infrautils-util</artifactId>
               <version>${project.version}</version>
             </dependency>
-            <dependency>
-              <groupId>${project.groupId}</groupId>
-              <artifactId>shell</artifactId>
-              <version>${project.version}</version>
-            </dependency>
 
             <!-- Test utilities -->
             <dependency>
