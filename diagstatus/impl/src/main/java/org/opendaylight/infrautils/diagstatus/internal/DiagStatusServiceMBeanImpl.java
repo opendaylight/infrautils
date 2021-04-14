@@ -29,26 +29,40 @@ import org.opendaylight.infrautils.diagstatus.ServiceDescriptor;
 import org.opendaylight.infrautils.diagstatus.ServiceState;
 import org.opendaylight.infrautils.diagstatus.ServiceStatusSummary;
 import org.opendaylight.infrautils.ready.SystemReadyMonitor;
+import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Deactivate;
+import org.osgi.service.component.annotations.Reference;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Singleton
+@Component(immediate = true, service = DiagStatusServiceMBean.class)
+// In case you are wondering: yes, this is published to OSGi registry for the sake of diagstatus-shell. Not the grandest
+// of ideas but it works for now.
 public class DiagStatusServiceMBeanImpl extends StandardMBean implements DiagStatusServiceMBean, AutoCloseable {
+    private static final Logger LOG = LoggerFactory.getLogger(DiagStatusServiceMBeanImpl.class);
 
     private final DiagStatusService diagStatusService;
     private final SystemReadyMonitor systemReadyMonitor;
 
     @Inject
-    public DiagStatusServiceMBeanImpl(DiagStatusService diagStatusService, SystemReadyMonitor systemReadyMonitor)
-            throws JMException {
+    @Activate
+    public DiagStatusServiceMBeanImpl(@Reference DiagStatusService diagStatusService,
+            @Reference SystemReadyMonitor systemReadyMonitor) throws JMException {
         super(DiagStatusServiceMBean.class);
         this.diagStatusService = diagStatusService;
         this.systemReadyMonitor = systemReadyMonitor;
         MBeanUtils.registerServerMBean(this, JMX_OBJECT_NAME);
+        LOG.info("Diagnostic Status Service management started");
     }
 
     @Override
+    @Deactivate
     @PreDestroy
     public void close() throws InstanceNotFoundException, MBeanRegistrationException {
         MBeanUtils.unregisterServerMBean(this, JMX_OBJECT_NAME);
+        LOG.info("Diagnostic Status Service management stopped");
     }
 
     @Override
