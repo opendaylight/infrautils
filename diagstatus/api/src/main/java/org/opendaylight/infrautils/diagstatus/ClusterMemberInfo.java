@@ -15,6 +15,7 @@ import java.util.List;
  *
  * @author Michael Vorburger.ch
  */
+@Deprecated(forRemoval = true)
 public interface ClusterMemberInfo {
 
     InetAddress getSelfAddress();

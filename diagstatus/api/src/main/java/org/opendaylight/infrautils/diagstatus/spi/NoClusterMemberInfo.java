@@ -19,6 +19,7 @@ import org.opendaylight.infrautils.diagstatus.ClusterMemberInfo;
  *
  * @author Michael Vorburger
  */
+@Deprecated(forRemoval = true)
 public class NoClusterMemberInfo implements ClusterMemberInfo {
 
     private final InetAddress selfInetAddress;

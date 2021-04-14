@@ -33,6 +33,7 @@ import org.slf4j.LoggerFactory;
  * @author Faseela K
  * @author Michael Vorburger converted former static utility to service (for testability)
  */
+@Deprecated(forRemoval = true)
 @Singleton
 @Component(immediate = true)
 public final class ClusterMemberInfoImpl implements ClusterMemberInfo {
