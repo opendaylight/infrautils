@@ -82,6 +82,18 @@
         <artifactId>maven-bundle-plugin</artifactId>
         <extensions>true</extensions>
       </plugin>
+
+      <!-- FIXME: remove this with odlparent-8.1.3+ -->
+      <plugin>
+        <groupId>org.basepom.maven</groupId>
+        <artifactId>duplicate-finder-maven-plugin</artifactId>
+        <version>1.5.0</version>
+        <configuration>
+          <ignoredResourcePatterns combine.children="append">
+            <ignoredResourcePattern>.api_description</ignoredResourcePattern>
+          </ignoredResourcePatterns>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
 
