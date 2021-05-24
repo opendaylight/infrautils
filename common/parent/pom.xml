@@ -75,7 +75,7 @@
       <groupId>com.google.errorprone</groupId>
       <artifactId>error_prone_annotations</artifactId>
       <!-- Keep this version in sync with annotationProcessorPaths declaration below -->
-      <version>2.6.0</version>
+      <version>2.7.1</version>
       <optional>true</optional>
       <scope>provided</scope>
     </dependency>
@@ -105,8 +105,8 @@
         <property>
           <name>!m2e.version</name>
         </property>
-        <!-- JDK15 is EA as of this changing, so might break in future -->
-        <jdk>[8,15)</jdk>
+        <!-- JDK16 requires more tweaks, let's not bother just yet -->
+        <jdk>[8,16)</jdk>
       </activation>
 
       <build>
@@ -187,7 +187,7 @@
                   <groupId>com.google.errorprone</groupId>
                   <artifactId>error_prone_core</artifactId>
                   <!-- Keep this version in sync with dependency declaration above -->
-                  <version>2.6.0</version>
+                  <version>2.7.1</version>
                 </path>
               </annotationProcessorPaths>
             </configuration>
