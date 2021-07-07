@@ -19,7 +19,7 @@
 
   <groupId>org.opendaylight.infrautils</groupId>
   <artifactId>caches-sample-it</artifactId>
-  <version>1.9.9-SNAPSHOT</version>
+  <version>1.9.10-SNAPSHOT</version>
   <packaging>bundle</packaging>
 
   <dependencies>
