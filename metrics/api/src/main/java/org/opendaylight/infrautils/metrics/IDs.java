@@ -5,7 +5,7 @@
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html
  */
-package org.opendaylight.infrautils.utils.types;
+package org.opendaylight.infrautils.metrics;
 
 import java.util.regex.Pattern;
 
@@ -13,9 +13,7 @@ import java.util.regex.Pattern;
  * Validations for "ID" like simple types.
  *
  * @author Michael Vorburger.ch
- * @deprecated This class will be migrated to {@code infrautils.metrics}.
  */
-@Deprecated(since = "2.0.7", forRemoval = true)
 public final class IDs {
     private static final Pattern AZ09_LOWERCASE_REGEXP = Pattern.compile("[a-z][a-z0-9]*");
     private static final Pattern AZ09_REGEXP = Pattern.compile("[a-zA-Z][a-zA-Z0-9]*");

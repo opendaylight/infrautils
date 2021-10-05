@@ -9,7 +9,6 @@ package org.opendaylight.infrautils.metrics;
 
 import org.immutables.value.Value;
 import org.immutables.value.Value.Default;
-import org.opendaylight.infrautils.utils.types.IDs;
 
 /**
  * Descriptor of Metric.
