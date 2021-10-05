@@ -55,7 +55,9 @@ import org.opendaylight.infrautils.utils.concurrent.NamedSimpleReentrantLock.Acq
  *
  * @param <T> the name type, required to be effectively immutable where T.hashCode() and T.equals() is concerned
  * @author Robert Varga
+ * @deprecated This class is not used anywhere and is scheduled for removal
  */
+@Deprecated(since = "2.0.7", forRemoval = true)
 public final class NamedLocks<T> {
     private static final class WeakRef<T>
             extends FinalizableWeakReference<NamedSimpleReentrantLock<T>> {
