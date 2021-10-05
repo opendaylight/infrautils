@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2017 Red Hat, Inc. and others. All rights reserved.
+ * Copyright (c) 2020 PANTHEON.tech, s.r.o.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
@@ -18,26 +19,39 @@ import org.opendaylight.infrautils.caches.BaseCacheConfig;
 import org.opendaylight.infrautils.caches.Cache;
 import org.opendaylight.infrautils.caches.CacheConfig;
 import org.opendaylight.infrautils.caches.CachePolicy;
+import org.opendaylight.infrautils.caches.CacheProvider;
 import org.opendaylight.infrautils.caches.CheckedCache;
 import org.opendaylight.infrautils.caches.CheckedCacheConfig;
 import org.opendaylight.infrautils.caches.baseimpl.AbstractProvider;
 import org.opendaylight.infrautils.caches.baseimpl.CacheManagersRegistry;
 import org.opendaylight.infrautils.caches.baseimpl.DelegatingNullSafeCache;
 import org.opendaylight.infrautils.caches.baseimpl.DelegatingNullSafeCheckedCache;
+import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Deactivate;
+import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.RequireServiceComponentRuntime;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
- * Googgle Guava {@link LoadingCache} implementation of cache factory.
+ * Google Guava {@link LoadingCache} implementation of cache factory.
  *
  * @author Michael Vorburger.ch
  * @deprecated This interface will be retired as part of https://jira.opendaylight.org/browse/INFRAUTILS-82
  */
 @Deprecated(since = "2.0.7", forRemoval = true)
 @Singleton
+@Component(service = CacheProvider.class)
+@RequireServiceComponentRuntime
 public class GuavaCacheProvider extends AbstractProvider {
+    private static final Logger LOG = LoggerFactory.getLogger(GuavaCacheProvider.class);
 
     @Inject
-    public GuavaCacheProvider(CacheManagersRegistry cachesMonitor) {
+    @Activate
+    public GuavaCacheProvider(@Reference CacheManagersRegistry cachesMonitor) {
         super(cachesMonitor);
+        LOG.info("Guava cache provider activated");
     }
 
     @Override
@@ -73,6 +87,11 @@ public class GuavaCacheProvider extends AbstractProvider {
                     return cacheConfig.cacheFunction().get(keys);
                 }
             })));
+    }
+
+    @Deactivate
+    void deactivate() {
+        LOG.info("Guava cache provider deactivated");
     }
 
     private static <K, V> CacheBuilder<K, V> newCacheBuilder(BaseCacheConfig cacheConfig, CachePolicy initialPolicy) {
