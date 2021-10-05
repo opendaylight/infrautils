@@ -19,10 +19,11 @@ package org.opendaylight.infrautils.utils;
  * The infrautils metrics are an example of such objects.
  *
  * @author Michael Vorburger.ch
+ * @deprecated Use {@code org.opendaylight.yangtools.concepts.Registration} instead.
  */
+@Deprecated(since = "2.0.7", forRemoval = true}
 public interface UncheckedCloseable extends AutoCloseable {
 
     @Override
     void close();
-
 }
