@@ -10,12 +10,14 @@ package org.opendaylight.infrautils.caches.sample;
 import javax.annotation.PreDestroy;
 import javax.inject.Inject;
 import javax.inject.Singleton;
-import org.apache.aries.blueprint.annotation.service.Reference;
-import org.apache.aries.blueprint.annotation.service.Service;
 import org.opendaylight.infrautils.caches.Cache;
 import org.opendaylight.infrautils.caches.CacheConfigBuilder;
 import org.opendaylight.infrautils.caches.CachePolicyBuilder;
 import org.opendaylight.infrautils.caches.CacheProvider;
+import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Deactivate;
+import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,14 +28,15 @@ import org.slf4j.LoggerFactory;
  * @author Michael Vorburger.ch
  */
 @Singleton
-@Service(classes = SampleService.class)
-public class SampleServiceWithCachingImpl implements SampleService {
+@Component(immediate = true, service = SampleService.class)
+public class SampleServiceWithCachingImpl implements SampleService, AutoCloseable {
 
     private static final Logger LOG = LoggerFactory.getLogger(SampleServiceWithCachingImpl.class);
 
     private final Cache<String, String> hellosCache;
 
     @Inject
+    @Activate
     public SampleServiceWithCachingImpl(@Reference CacheProvider cacheProvider) {
         LOG.warn("SampleServiceWithCachingImpl() cacheProvider = {}", cacheProvider);
         hellosCache = cacheProvider.newCache(
@@ -48,6 +51,7 @@ public class SampleServiceWithCachingImpl implements SampleService {
     }
 
     @PreDestroy
+    @Deactivate
     public void close() throws Exception {
         hellosCache.close();
     }
