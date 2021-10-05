@@ -13,6 +13,7 @@ import org.opendaylight.infrautils.caches.testutils.CacheModule;
 import org.opendaylight.infrautils.inject.guice.testutils.AnnotationsModule;
 import org.opendaylight.infrautils.inject.guice.testutils.GuiceRule;
 
+@Deprecated(since = "2.0.7", forRemoval = true)
 public class GuavaCacheTest extends AbstractCacheProviderTest {
 
     @Rule public GuiceRule guice = new GuiceRule(new AnnotationsModule(), new CacheModule(GuavaCacheProvider.class));

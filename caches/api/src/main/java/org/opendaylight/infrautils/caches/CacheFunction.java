@@ -19,7 +19,9 @@ import org.eclipse.jdt.annotation.NonNull;
  * just use a {@link CheckedCacheFunction} instead.
  *
  * @author Michael Vorburger.ch
+ * @deprecated This interface will be retired as part of https://jira.opendaylight.org/browse/INFRAUTILS-82
  */
+@Deprecated(since = "2.0.7", forRemoval = true)
 @FunctionalInterface
 public interface CacheFunction<K, V> {
 

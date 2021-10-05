@@ -15,7 +15,9 @@ import org.opendaylight.infrautils.utils.types.IDs;
  * Base class for {@link CacheConfig} and {@link CheckedCacheConfig}.
  *
  * @author Michael Vorburger.ch
+ * @deprecated This interface will be retired as part of https://jira.opendaylight.org/browse/INFRAUTILS-82
  */
+@Deprecated(since = "2.0.7", forRemoval = true)
 public abstract class BaseCacheConfig {
 
     /**

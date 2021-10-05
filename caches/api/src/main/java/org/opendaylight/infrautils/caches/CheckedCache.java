@@ -21,7 +21,9 @@ import java.util.Arrays;
  * @param <E> exception type cache can throw
  *
  * @author Michael Vorburger.ch
+ * @deprecated This interface will be retired as part of https://jira.opendaylight.org/browse/INFRAUTILS-82
  */
+@Deprecated(since = "2.0.7", forRemoval = true)
 public interface CheckedCache<K, V, E extends Exception> extends BaseCache<K, V> {
 
     /**

@@ -14,7 +14,9 @@ import org.opendaylight.infrautils.caches.CacheStats;
  * No Operation ("NOOP") implementation of CacheStats.
  *
  * @author Michael Vorburger.ch
+ * @deprecated This interface will be retired as part of https://jira.opendaylight.org/browse/INFRAUTILS-82
  */
+@Deprecated(since = "2.0.7", forRemoval = true)
 final class NoopCacheStats implements CacheStats {
     static final CacheStats INSTANCE = new NoopCacheStats();
 

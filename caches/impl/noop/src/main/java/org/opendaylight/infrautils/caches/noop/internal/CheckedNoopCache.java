@@ -20,7 +20,9 @@ import org.opendaylight.infrautils.caches.CheckedCacheFunction;
  * No Operation ("NOOP") implementation of CheckedCache.
  *
  * @author Michael Vorburger.ch
+ * @deprecated This interface will be retired as part of https://jira.opendaylight.org/browse/INFRAUTILS-82
  */
+@Deprecated(since = "2.0.7", forRemoval = true)
 final class CheckedNoopCache<K, V, E extends Exception> implements CheckedCache<K, V, E> {
     private final CheckedCacheConfig<K, V, E> config;
     private final CheckedCacheFunction<K, V, E> function;

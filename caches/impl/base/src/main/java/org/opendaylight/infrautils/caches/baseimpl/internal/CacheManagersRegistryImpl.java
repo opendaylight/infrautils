@@ -20,7 +20,9 @@ import org.osgi.service.component.annotations.Component;
  * Implementation of CachesMonitor. This class is thread-safe.
  *
  * @author Michael Vorburger.ch
+ * @deprecated This interface will be retired as part of https://jira.opendaylight.org/browse/INFRAUTILS-82
  */
+@Deprecated(since = "2.0.7", forRemoval = true)
 @Singleton
 @Component(immediate = true, service = { CacheManagers.class, CacheManagersRegistry.class })
 public class CacheManagersRegistryImpl implements CacheManagersRegistry {

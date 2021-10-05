@@ -19,6 +19,7 @@ import org.opendaylight.infrautils.caches.BadCacheFunctionRuntimeException;
 import org.opendaylight.infrautils.caches.BaseCache;
 import org.opendaylight.infrautils.caches.CacheManager;
 
+@Deprecated(since = "2.0.7", forRemoval = true)
 @Beta
 public abstract class DelegatingNullSafeBaseCache<K, V> extends ForwardingObject implements BaseCache<K, V> {
     @Override

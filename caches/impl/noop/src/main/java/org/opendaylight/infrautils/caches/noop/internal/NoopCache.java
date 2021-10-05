@@ -20,7 +20,9 @@ import org.opendaylight.infrautils.caches.CacheManager;
  * No Operation ("NOOP") implementation of Cache.
  *
  * @author Michael Vorburger.ch
+ * @deprecated This interface will be retired as part of https://jira.opendaylight.org/browse/INFRAUTILS-82
  */
+@Deprecated(since = "2.0.7", forRemoval = true)
 final class NoopCache<K, V> implements Cache<K, V> {
     private final CacheConfig<K, V> config;
     private final CacheFunction<K, V> function;

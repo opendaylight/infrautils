@@ -24,7 +24,9 @@ import org.opendaylight.infrautils.caches.CacheStats;
  * CLI "cache:list" command.
  *
  * @author Michael Vorburger.ch
+ * @deprecated This interface will be retired as part of https://jira.opendaylight.org/browse/INFRAUTILS-82
  */
+@Deprecated(since = "2.0.7", forRemoval = true)
 @Command(scope = "cache", name = "list", description = "Lists all caches")
 @Service
 public class CacheListCommand implements Action {

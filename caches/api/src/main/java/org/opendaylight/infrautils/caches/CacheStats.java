@@ -15,7 +15,9 @@ import com.google.common.collect.ImmutableMap;
  * <p>The data returned by this interface may not be 100% accurate, due to concurrency optimizations in implementations.
  *
  * @author Michael Vorburger.ch
+ * @deprecated This interface will be retired as part of https://jira.opendaylight.org/browse/INFRAUTILS-82
  */
+@Deprecated(since = "2.0.7", forRemoval = true)
 public interface CacheStats {
 
     // Following are strongly typed getter for stats which all cache implementations will be able to provide

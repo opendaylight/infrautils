@@ -18,7 +18,9 @@ import java.util.Optional;
  * but let it propagate.
  *
  * @author Michael Vorburger.ch
+ * @deprecated This interface will be retired as part of https://jira.opendaylight.org/browse/INFRAUTILS-82
  */
+@Deprecated(since = "2.0.7", forRemoval = true)
 public class BadCacheFunctionRuntimeException extends RuntimeException {
 
     private static final long serialVersionUID = -7240903317644417618L;

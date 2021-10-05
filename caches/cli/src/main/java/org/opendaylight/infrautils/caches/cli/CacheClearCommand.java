@@ -20,7 +20,9 @@ import org.opendaylight.infrautils.caches.CacheManagers;
  * CLI "cache:clear" command.
  *
  * @author Michael Vorburger.ch
+ * @deprecated This interface will be retired as part of https://jira.opendaylight.org/browse/INFRAUTILS-82
  */
+@Deprecated(since = "2.0.7", forRemoval = true)
 @Command(scope = "cache", name = "clear", description = "Clear (evict) all entries of all caches")
 @Service
 public class CacheClearCommand implements Action {

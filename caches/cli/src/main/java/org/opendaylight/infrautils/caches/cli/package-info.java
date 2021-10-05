@@ -6,4 +6,5 @@
  * and is available at http://www.eclipse.org/legal/epl-v10.html
  */
 @org.eclipse.jdt.annotation.NonNullByDefault
+@Deprecated(since = "2.0.7", forRemoval = true)
 package org.opendaylight.infrautils.caches.cli;

@@ -22,7 +22,9 @@ import org.opendaylight.infrautils.caches.CacheStats;
  * Base class for {@link CacheGuavaAdapter} and {@link CheckedCacheGuavaAdapter}.
  *
  * @author Michael Vorburger.ch
+ * @deprecated This interface will be retired as part of https://jira.opendaylight.org/browse/INFRAUTILS-82
  */
+@Deprecated(since = "2.0.7", forRemoval = true)
 abstract class GuavaBaseCacheAdapter<K, V> implements BaseCache<K, V>, CacheManager {
 
     private final BaseCacheConfig config;

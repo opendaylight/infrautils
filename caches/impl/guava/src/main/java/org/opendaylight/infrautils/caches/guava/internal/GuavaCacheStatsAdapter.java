@@ -15,7 +15,9 @@ import org.opendaylight.infrautils.caches.CacheStats;
  * Adapts CacheStats to Guava.
  *
  * @author Michael Vorburger.ch
+ * @deprecated This interface will be retired as part of https://jira.opendaylight.org/browse/INFRAUTILS-82
  */
+@Deprecated(since = "2.0.7", forRemoval = true)
 final class GuavaCacheStatsAdapter implements CacheStats {
 
     private final Cache<?, ?> guavaCache;

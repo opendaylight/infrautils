@@ -16,7 +16,9 @@ import org.immutables.value.Value.Default;
  * Policy of a {@link Cache} (or {@link CheckedCache}).
  *
  * @author Michael Vorburger.ch
+ * @deprecated This interface will be retired as part of https://jira.opendaylight.org/browse/INFRAUTILS-82
  */
+@Deprecated(since = "2.0.7", forRemoval = true)
 @Value.Immutable
 @Value.Style(visibility = PRIVATE, strictBuilder = false)
 public interface CachePolicy {

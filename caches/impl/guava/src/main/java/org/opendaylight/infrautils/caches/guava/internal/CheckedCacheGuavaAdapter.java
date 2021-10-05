@@ -22,7 +22,9 @@ import org.opendaylight.infrautils.caches.CheckedCacheConfig;
  * Adapts {@link CheckedCache} to Guava.
  *
  * @author Michael Vorburger.ch
+ * @deprecated This interface will be retired as part of https://jira.opendaylight.org/browse/INFRAUTILS-82
  */
+@Deprecated(since = "2.0.7", forRemoval = true)
 final class CheckedCacheGuavaAdapter<K, V, E extends Exception>
     extends GuavaBaseCacheAdapter<K, V>
         implements CheckedCache<K, V, E> {

@@ -26,7 +26,9 @@ import org.slf4j.LoggerFactory;
  * Illustrates how to use the caches infrautils.
  *
  * @author Michael Vorburger.ch
+ * @deprecated This interface will be retired as part of https://jira.opendaylight.org/browse/INFRAUTILS-82
  */
+@Deprecated(since = "2.0.7", forRemoval = true)
 @Singleton
 @Component(immediate = true, service = SampleService.class)
 public class SampleServiceWithCachingImpl implements SampleService, AutoCloseable {

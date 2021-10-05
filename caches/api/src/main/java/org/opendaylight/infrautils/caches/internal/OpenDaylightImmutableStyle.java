@@ -19,7 +19,9 @@ import org.immutables.value.Value;
  * <a href="http://immutables.org">Immutables.org</a> style meta annotation.
  *
  * @author Michael Vorburger.ch
+ * @deprecated This interface will be retired as part of https://jira.opendaylight.org/browse/INFRAUTILS-82
  */
+@Deprecated(since = "2.0.7", forRemoval = true)
 @Target({ElementType.PACKAGE, ElementType.TYPE})
 @Retention(RetentionPolicy.CLASS) // Make it class retention for incremental compilation
 @Value.Style(visibility = PRIVATE, strictBuilder = true)

@@ -11,7 +11,9 @@ package org.opendaylight.infrautils.caches.sample;
  * Example service, with an expensive operation, which SampleCachingService will cache.
  *
  * @author Michael Vorburger.ch
+ * @deprecated This interface will be retired as part of https://jira.opendaylight.org/browse/INFRAUTILS-82
  */
+@Deprecated(since = "2.0.7", forRemoval = true)
 public interface SampleService {
 
     String sayHello(String toWho);

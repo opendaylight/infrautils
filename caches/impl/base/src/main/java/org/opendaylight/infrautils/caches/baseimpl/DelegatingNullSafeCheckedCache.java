@@ -17,7 +17,9 @@ import org.opendaylight.infrautils.caches.CheckedCache;
  * Cache with null handling, useful for API implementors (not users).
  *
  * @author Michael Vorburger.ch
+ * @deprecated This interface will be retired as part of https://jira.opendaylight.org/browse/INFRAUTILS-82
  */
+@Deprecated(since = "2.0.7", forRemoval = true)
 public final class DelegatingNullSafeCheckedCache<K, V, E extends Exception> extends DelegatingNullSafeBaseCache<K, V>
         implements CheckedCache<K, V, E> {
     private final CheckedCache<K, V, E> delegate;

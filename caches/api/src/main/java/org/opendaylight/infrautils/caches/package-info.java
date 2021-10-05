@@ -7,6 +7,7 @@
  */
 @OpenDaylightImmutableStyle
 @NonNullByDefault
+@Deprecated(since = "2.0.7", forRemoval = true)
 package org.opendaylight.infrautils.caches;
 
 import org.eclipse.jdt.annotation.NonNullByDefault;

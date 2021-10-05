@@ -22,7 +22,9 @@ import org.opendaylight.infrautils.caches.sample.SampleService;
  * Example CLI action calling a cached service.
  *
  * @author Michael Vorburger.ch
+ * @deprecated This interface will be retired as part of https://jira.opendaylight.org/browse/INFRAUTILS-82
  */
+@Deprecated(since = "2.0.7", forRemoval = true)
 @Command(scope = "cache-example", name = "hello", description = "Says hello")
 @Service
 @SuppressFBWarnings("NP_NONNULL_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR") // FB doesn't get that Karaf will set field

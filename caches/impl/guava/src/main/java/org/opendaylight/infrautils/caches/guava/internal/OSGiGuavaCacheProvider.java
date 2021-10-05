@@ -25,6 +25,7 @@ import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@Deprecated(since = "2.0.7", forRemoval = true)
 @Component(immediate = true)
 @SuppressFBWarnings(value = "NP_STORE_INTO_NONNULL_FIELD",
     justification = "SpotBugs does not grok @Nullable with @NonNullByDefault")
