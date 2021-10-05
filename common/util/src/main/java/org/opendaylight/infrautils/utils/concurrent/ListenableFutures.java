@@ -21,7 +21,9 @@ import java.util.function.Function;
  * @see Futures
  *
  * @author Michael Vorburger.ch
+ * @deprecated This class has no users and will be removed in the next release.
  */
+@Deprecated(since = "2.0.7", forRemoval = true)
 public final class ListenableFutures {
     private ListenableFutures() {
 
@@ -35,9 +37,7 @@ public final class ListenableFutures {
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
             throw mapper.apply(e);
-        } catch (CancellationException e) {
-            throw mapper.apply(e);
-        } catch (ExecutionException e) {
+        } catch (CancellationException | ExecutionException e) {
             throw mapper.apply(e);
         }
     }
@@ -50,9 +50,7 @@ public final class ListenableFutures {
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
             throw mapper.apply(e);
-        } catch (CancellationException e) {
-            throw mapper.apply(e);
-        } catch (ExecutionException e) {
+        } catch (CancellationException | ExecutionException e) {
             throw mapper.apply(e);
         }
     }
