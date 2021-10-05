@@ -13,7 +13,9 @@ package org.opendaylight.infrautils.utils.function;
  * @param <T> The type of the input to be processed.
  * @param <R> The type of the result to be returned.
  * @param <E> The type of the exception which may be thrown.
+ * @deprecated This class is going to be moved to {@code metrics.function}
  */
+@Deprecated(since = "2.0.7", forRemoval = true)
 @FunctionalInterface
 public interface CheckedFunction<T, R, E extends Exception> {
     R apply(T input) throws E;

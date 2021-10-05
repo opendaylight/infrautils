@@ -15,7 +15,9 @@ package org.opendaylight.infrautils.utils.function;
  * @param <E> the type of the Exception to the operation
  *
  * @author Michael Vorburger.ch
+ * @deprecated This class is going to be moved to {@code metrics.function}
  */
+@Deprecated(since = "2.0.7", forRemoval = true)
 @FunctionalInterface
 public interface CheckedRunnable<E extends Exception> {
 
