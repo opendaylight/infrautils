@@ -5,7 +5,7 @@
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html
  */
-package org.opendaylight.infrautils.utils.management;
+package org.opendaylight.infrautils.ready.spi;
 
 import com.google.errorprone.annotations.Var;
 import java.lang.management.ManagementFactory;
@@ -29,10 +29,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Thomas Pantelis
  * @author Faseela K
- * @deprecated This class has only a single user and it is tightly coupled to infrautils, hence it never should have
- *             been public.
  */
-@Deprecated(since = "2.0.7", forRemoval = true)
 public abstract class AbstractMXBean {
     private static final Logger LOG = LoggerFactory.getLogger(AbstractMXBean.class);
 
@@ -51,8 +48,7 @@ public abstract class AbstractMXBean {
      * @param mbeanType Used as the <code>type</code> property in the bean's ObjectName.
      * @param mbeanCategory Used as the <code>Category</code> property in the bean's ObjectName.
      */
-    protected AbstractMXBean(@NonNull String mbeanName, @NonNull String mbeanType,
-                             @Nullable String mbeanCategory) {
+    protected AbstractMXBean(@NonNull String mbeanName, @NonNull String mbeanType, @Nullable String mbeanCategory) {
         this.mbeanName = mbeanName;
         this.mbeanType = mbeanType;
         this.mbeanCategory = mbeanCategory;
