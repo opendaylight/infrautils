@@ -108,65 +108,9 @@ Diagstatus
 
 To be documented.
 
-Metrics
--------
-
-infrautils.metrics offers a simple back-end neutral API for all ODL applications to report technical as well as functional metrics.
-
-There are different implementations of this API allowing operators to exploit metrics in the usual ways - aggregate, query, alerts, etc.
-
-The odl-infrautils-metrics Karaf feature includes the API and the local Dropwizard implementation.
-
-The odl-infrautils-metrics-sample Karaf feature illustrates how to use metrics in application code, see metrics-sample sources in infrautils/metrics/sample/impl.
-
-Metrics API
-~~~~~~~~~~~
-
-Application code uses the org.opendaylight.infrautils.metrics.MetricProvider API, typically looked up from the
-OSGi service registry using e.g. Blueprint annotations @Inject @Reference, to register new Meters
-(to "tick/mark events" and measure their rate), Counters (for things that go up and down again), and Timers (to stop watch durations).
-Support for "Gauges" is to be added; contributions welcome.
-
-Each metric can be labeled, possibly along more than one dimension.
-
-The org.opendaylight.infrautils.metrics.testimpl.TestMetricProviderImpl is a suitable implementation of the MetricProvider for tests.
-
-Metrics Dropwizard Implementation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Based on Dropwizard Metrics (by Coda Hale at Yammer), see http://metrics.dropwizard.io, exposes metrics to JMX and
-can regularly dump stats into simple local files; background slide https://codahale.com/codeconf-2011-04-09-metrics-metrics-everywhere.pdf
-
-This implementation is "embedded" and requires no additional external systems.
-
-It is configured via the local configuration file at etc/org.opendaylight.infrautils.metrics.cfg.
-
-This includes a threads deadlock detection and maximum number of threads warning feature.
-
-Metrics Prometheus Implementation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Implementation based on Linux Foundation Cloud Native Computing Foundation Prometheus, see https://prometheus.io
-
-This implementation exposes metrics by HTTP on /metrics/prometheus from the local ODL to an external Prometheus set up to scrape that.
-
-This presentation given at the OpenDaylight Fluorine Developer Design Forum in March 2018 at ONS in LA
-gives a good overview about the infrautils.metrics.prometheus implementation.
-
-This implementation requires operators to separatly install Prometheus, which is not a Java OSGi application that
-can be feature:install into Karaf, but an external application (via Docker, RPM, tar.gz etc.).
-Prometheus is then configured with the URL of ODL nodes, and "scrapes" metrics from ODL in configurable regular intervals.
-Prometheus is extensibly configurable for typical metrics use cases, including alerting, and has existing integrations with other related systems.
-
-The odl-infrautils-metrics-prometheus Karaf feature install this. It has to be installed by feature:install or featuresBoot,
-BEFORE any ODL application feature which depends on the odl-infrautils-metrics feature (similarly to e.g. odl-mdsal-trace)
-
-
 
 References
 ==========
-
-[1] `Infrautils Metrics Prometheus Implementation <https://docs.google.com/presentation/d/1143hvgpFqqhQ-AcpC61AuW9-yV6B6iQUvCH7M5F1POs>`__
 
 [2] `ODL DDF - LA 2018 <https://docs.google.com/presentation/d/1C2jbZP8C8FwoR9yoFMrMs-kKt8Uiv8r8vtXc1bocb7c/>`__
 
