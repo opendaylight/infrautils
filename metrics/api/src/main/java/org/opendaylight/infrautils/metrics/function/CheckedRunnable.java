@@ -5,7 +5,7 @@
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html
  */
-package org.opendaylight.infrautils.utils.function;
+package org.opendaylight.infrautils.metrics.function;
 
 /**
  * Functional interface similar to {@link Runnable} (but not technically
@@ -15,9 +15,7 @@ package org.opendaylight.infrautils.utils.function;
  * @param <E> the type of the Exception to the operation
  *
  * @author Michael Vorburger.ch
- * @deprecated This class is going to be moved to {@code metrics.function}
  */
-@Deprecated(since = "2.0.7", forRemoval = true)
 @FunctionalInterface
 public interface CheckedRunnable<E extends Exception> {
 

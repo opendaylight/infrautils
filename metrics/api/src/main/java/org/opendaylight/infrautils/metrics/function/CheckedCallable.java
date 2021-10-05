@@ -5,7 +5,7 @@
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html
  */
-package org.opendaylight.infrautils.utils.function;
+package org.opendaylight.infrautils.metrics.function;
 
 import java.util.concurrent.Callable;
 
@@ -15,9 +15,7 @@ import java.util.concurrent.Callable;
  * extending Callable, because of a javac generics bug; that's OK, it doesn't have to.)
  *
  * @author Michael Vorburger.ch
- * @deprecated This class is going to be moved to {@code metrics.function}
  */
-@Deprecated(since = "2.0.7", forRemoval = true)
 @FunctionalInterface
 public interface CheckedCallable<V, E extends Exception> /* extends Callable<V> */ {
 

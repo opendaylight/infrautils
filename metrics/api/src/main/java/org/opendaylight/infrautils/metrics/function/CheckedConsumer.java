@@ -5,7 +5,7 @@
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html
  */
-package org.opendaylight.infrautils.utils.function;
+package org.opendaylight.infrautils.metrics.function;
 
 import java.util.function.Consumer;
 
@@ -18,9 +18,7 @@ import java.util.function.Consumer;
  * @see Consumer
  *
  * @author Michael Vorburger.ch
- * @deprecated This class is going to be moved to {@code metrics.function}
  */
-@Deprecated(since = "2.0.7", forRemoval = true)
 @FunctionalInterface
 public interface CheckedConsumer<T, E extends Exception> {
 

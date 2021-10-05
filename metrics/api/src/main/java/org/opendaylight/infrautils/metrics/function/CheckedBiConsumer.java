@@ -5,7 +5,7 @@
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html
  */
-package org.opendaylight.infrautils.utils.function;
+package org.opendaylight.infrautils.metrics.function;
 
 /**
  * Represents an operation that accepts two input arguments and returns no
@@ -23,9 +23,7 @@ package org.opendaylight.infrautils.utils.function;
  * @see CheckedConsumer
  * @see java.util.function.Consumer
  * @see java.util.function.BiConsumer
- * @deprecated This class is going to be moved to {@code metrics.function}
  */
-@Deprecated(since = "2.0.7", forRemoval = true)
 @FunctionalInterface
 public interface CheckedBiConsumer<T, U, E extends Exception> {
     /**
