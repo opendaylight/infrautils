@@ -29,9 +29,11 @@ import org.slf4j.LoggerFactory;
  *
  * @author Thomas Pantelis
  * @author Faseela K
+ * @deprecated This class has only a single user and it is tightly coupled to infrautils, hence it never should have
+ *             been public.
  */
+@Deprecated(since = "2.0.7", forRemoval = true)
 public abstract class AbstractMXBean {
-
     private static final Logger LOG = LoggerFactory.getLogger(AbstractMXBean.class);
 
     public static final String BASE_JMX_PREFIX = "org.opendaylight.infrautils:";
