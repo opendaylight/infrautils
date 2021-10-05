@@ -29,7 +29,6 @@
 
         <!-- Stable features -->
         <module>odl-infrautils-diagstatus</module>
-        <module>odl-infrautils-metrics</module>
         <module>odl-infrautils-ready</module>
         <module>odl-infrautils-utils</module>
 
@@ -38,14 +37,11 @@
 
         <!-- Experimental features -->
         <module>odl-infrautils-inject</module>
-        <module>odl-infrautils-metrics-prometheus</module>
 
         <!-- Experimental feature repostitory -->
         <module>features-infrautils-experimental</module>
 
         <!-- Sample features -->
-        <module>odl-infrautils-metrics-sample</module>
-
         <!-- Sample feature repostitory -->
         <module>features-infrautils-samples</module>
 
