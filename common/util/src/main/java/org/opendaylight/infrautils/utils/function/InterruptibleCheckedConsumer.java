@@ -16,7 +16,9 @@ import java.util.function.Consumer;
  * @param <E> the type of the Exception to the operation
  *
  * @see Consumer
+ * @deprecated This class is going to be moved to {@code metrics.function}
  */
+@Deprecated(since = "2.0.7", forRemoval = true)
 @FunctionalInterface
 public interface InterruptibleCheckedConsumer<T, E extends Exception> {
 

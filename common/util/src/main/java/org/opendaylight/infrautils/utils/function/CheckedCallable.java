@@ -15,7 +15,9 @@ import java.util.concurrent.Callable;
  * extending Callable, because of a javac generics bug; that's OK, it doesn't have to.)
  *
  * @author Michael Vorburger.ch
+ * @deprecated This class is going to be moved to {@code metrics.function}
  */
+@Deprecated(since = "2.0.7", forRemoval = true)
 @FunctionalInterface
 public interface CheckedCallable<V, E extends Exception> /* extends Callable<V> */ {
 

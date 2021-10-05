@@ -23,7 +23,9 @@ package org.opendaylight.infrautils.utils.function;
  * @see CheckedConsumer
  * @see java.util.function.Consumer
  * @see java.util.function.BiConsumer
+ * @deprecated This class is going to be moved to {@code metrics.function}
  */
+@Deprecated(since = "2.0.7", forRemoval = true)
 @FunctionalInterface
 public interface CheckedBiConsumer<T, U, E extends Exception> {
     /**
