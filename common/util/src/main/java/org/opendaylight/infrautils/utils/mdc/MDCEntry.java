@@ -15,8 +15,10 @@ import org.slf4j.MDC;
  * Marker for objects which get put into the {@link MDC}.
  *
  * @author Robert Varga
+ * @deprecated This class is not used anywhere and therefore cannot mature. It will be removed in a future release.
  */
 @Beta
+@Deprecated(since = "2.0.7", forRemoval = true)
 @SuppressWarnings("serial")
 public abstract class MDCEntry implements Serializable {
 

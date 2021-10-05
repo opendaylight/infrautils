@@ -19,8 +19,10 @@ import org.slf4j.MDC.MDCCloseable;
  * Utility methods for {@link MDC}.
  *
  * @author Michael Vorburger.ch
+ * @deprecated This class is not used anywhere and therefore cannot mature. It will be removed in a future release.
  */
 @Beta
+@Deprecated(since = "2.0.7", forRemoval = true)
 // Runnable as last argument is clearer to read, but interferes with vararg
 // in putRunRemove(Runnable runnable, MDCEntry... keysValues)
 @SuppressWarnings("InconsistentOverloads")

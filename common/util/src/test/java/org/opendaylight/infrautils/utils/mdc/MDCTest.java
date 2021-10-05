@@ -20,6 +20,7 @@ import org.slf4j.MDC;
  *
  * @author Michael Vorburger.ch
  */
+@Deprecated(since = "2.0.7", forRemoval = true)
 public class MDCTest {
 
     @Test
