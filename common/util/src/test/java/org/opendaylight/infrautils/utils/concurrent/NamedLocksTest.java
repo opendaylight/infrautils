@@ -14,6 +14,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.opendaylight.infrautils.utils.concurrent.NamedSimpleReentrantLock.Acquired;
 
+@Deprecated(since = "2.0.7", forRemoval = true)
 public class NamedLocksTest {
     private @Nullable NamedLocks<String> locks;
 

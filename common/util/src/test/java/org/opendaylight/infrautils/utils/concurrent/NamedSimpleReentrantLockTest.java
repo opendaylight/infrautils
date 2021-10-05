@@ -18,6 +18,7 @@ import org.junit.Test;
 import org.opendaylight.infrautils.utils.concurrent.NamedSimpleReentrantLock.AcquireResult;
 import org.opendaylight.infrautils.utils.concurrent.NamedSimpleReentrantLock.Acquired;
 
+@Deprecated(since = "2.0.7", forRemoval = true)
 public class NamedSimpleReentrantLockTest {
     private static class LockerThread extends Thread {
         final NamedSimpleReentrantLock<?> testLock = new NamedSimpleReentrantLock<>("foo");

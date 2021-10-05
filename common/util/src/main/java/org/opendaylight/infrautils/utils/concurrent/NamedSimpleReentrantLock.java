@@ -22,7 +22,9 @@ import org.slf4j.LoggerFactory;
  *
  * @param <T> the name type, required to be effectively immutable where T.hashCode() and T.equals() is concerned
  * @author Robert Varga
+ * @deprecated This class is not used anywhere and is scheduled for removal
  */
+@Deprecated(since = "2.0.7", forRemoval = true)
 public final class NamedSimpleReentrantLock<T> extends ReentrantLock {
     /**
      * Base result of a locking operation. It indicates whether the operation was successful via {@link #wasAcquired()}.
