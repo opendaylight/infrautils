@@ -37,6 +37,10 @@
       <scope>provided</scope>
       <optional>true</optional>
     </dependency>
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.service.component.annotations</artifactId>
+    </dependency>
 
     <dependency>
       <groupId>${project.groupId}</groupId>
@@ -67,20 +71,5 @@
       <groupId>com.google.truth</groupId>
       <artifactId>truth</artifactId>
     </dependency>
-    <dependency>
-      <groupId>org.apache.aries.blueprint</groupId>
-      <artifactId>blueprint-maven-plugin-annotation</artifactId>
-      <scope>provided</scope>
-      <optional>true</optional>
-    </dependency>
   </dependencies>
-
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.aries.blueprint</groupId>
-        <artifactId>blueprint-maven-plugin</artifactId>
-      </plugin>
-    </plugins>
-  </build>
 </project>

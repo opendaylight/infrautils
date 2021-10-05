@@ -28,15 +28,11 @@ public final class MetricsPrometheusExampleMain {
         // see also OsgiWebInitializer
         CollectorRegistry collectorRegistry = new CollectorRegistrySingleton();
         PrometheusMetricProviderImpl metricProvider = new PrometheusMetricProviderImpl(collectorRegistry);
-        MetricsExample metricsExample = new MetricsExample(metricProvider);
-        metricsExample.init();
-
-        HTTPServer server = new HTTPServer(new InetSocketAddress("localhost", 1234), collectorRegistry);
-
-        System.in.read();
-
-        server.stop();
-        metricsExample.close();
+        try (MetricsExample metricsExample = new MetricsExample(metricProvider)) {
+            HTTPServer server = new HTTPServer(new InetSocketAddress("localhost", 1234), collectorRegistry);
+            System.in.read();
+            server.stop();
+        }
         metricProvider.close();
     }
 }

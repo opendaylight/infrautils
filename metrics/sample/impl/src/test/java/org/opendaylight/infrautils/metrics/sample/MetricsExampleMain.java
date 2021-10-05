@@ -22,12 +22,9 @@ public final class MetricsExampleMain {
 
     public static void main(String[] args) throws IOException {
         MetricProviderImpl metricProvider = new MetricProviderImpl();
-        MetricsExample metricsExample = new MetricsExample(metricProvider);
-        metricsExample.init();
-
-        System.in.read();
-
-        metricsExample.close();
+        try (MetricsExample metricsExample = new MetricsExample(metricProvider)) {
+            System.in.read();
+        }
         metricProvider.close();
     }
 }

@@ -12,17 +12,19 @@ import static org.opendaylight.infrautils.utils.concurrent.LoggingFutures.addErr
 
 import java.util.Random;
 import java.util.concurrent.ScheduledExecutorService;
-import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.inject.Inject;
 import javax.inject.Singleton;
-import org.apache.aries.blueprint.annotation.service.Reference;
 import org.opendaylight.infrautils.metrics.Counter;
 import org.opendaylight.infrautils.metrics.Labeled;
 import org.opendaylight.infrautils.metrics.Meter;
 import org.opendaylight.infrautils.metrics.MetricDescriptor;
 import org.opendaylight.infrautils.metrics.MetricProvider;
 import org.opendaylight.infrautils.utils.concurrent.Executors;
+import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Deactivate;
+import org.osgi.service.component.annotations.Reference;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -39,7 +41,8 @@ import org.slf4j.LoggerFactory;
  * @author Michael Vorburger.ch
  */
 @Singleton
-public class MetricsExample implements Runnable {
+@Component(service = {})
+public class MetricsExample implements Runnable, AutoCloseable {
 
     private static final Logger LOG = LoggerFactory.getLogger(MetricsExample.class);
 
@@ -53,6 +56,8 @@ public class MetricsExample implements Runnable {
     private final Random random = new Random();
 
     @Inject
+    @Activate
+    @SuppressWarnings("FutureReturnValueIgnored")
     public MetricsExample(@Reference MetricProvider metricProvider) {
         counterWithoutLabel = metricProvider.newCounter(MetricDescriptor.builder().anchor(this)
                 .project("infrautils").module("metrics").id("example_counter_without_labels")
@@ -76,15 +81,12 @@ public class MetricsExample implements Runnable {
                 .project("infrautils").module("metrics").id("example_meter_1_dynlabel")
                 .description("Example meter metric with 1 label and label value set in using code").build(),
                 "jobKey");
-    }
-
-    @PostConstruct
-    @SuppressWarnings("FutureReturnValueIgnored")
-    public void init() {
         addErrorLogging(executor.scheduleWithFixedDelay(this, 0, 500, MILLISECONDS), LOG, "schedule interrupted");
     }
 
     @PreDestroy
+    @Deactivate
+    @Override
     public void close() {
         counterWithoutLabel.close();
         meterWithoutLabel.close();

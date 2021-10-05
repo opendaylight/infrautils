@@ -8,17 +8,22 @@
 package org.opendaylight.infrautils.metrics.sample;
 
 import javax.inject.Inject;
-import org.apache.aries.blueprint.annotation.service.Reference;
+import javax.inject.Singleton;
 import org.opendaylight.infrautils.metrics.Labeled;
 import org.opendaylight.infrautils.metrics.Meter;
 import org.opendaylight.infrautils.metrics.MetricDescriptor;
 import org.opendaylight.infrautils.metrics.MetricProvider;
+import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
 /**
  * Example illustrating advanced type safe usage of metrics API.
  *
  * @author Michael Vorburger.ch, based on an idea by Stephen Kitt
  */
+@Singleton
+@Component(service = { })
 public class MetricsAdvancedExample {
 
     public static class MacLabeledMeter {
@@ -48,6 +53,7 @@ public class MetricsAdvancedExample {
     private final PortLabeledMeter meter;
 
     @Inject
+    @Activate
     public MetricsAdvancedExample(@Reference MetricProvider metricProvider) {
         meter = new PortLabeledMeter(metricProvider.newMeter(MetricDescriptor.builder().anchor(this)
                 .project("infrautils").module("metrics").id("example_meter").build(),
