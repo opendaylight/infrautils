@@ -48,44 +48,6 @@
               <scope>test</scope>
             </dependency>
 
-            <!-- Caches -->
-            <dependency>
-              <groupId>${project.groupId}</groupId>
-              <artifactId>caches-api</artifactId>
-              <version>${project.version}</version>
-            </dependency>
-            <dependency>
-              <groupId>${project.groupId}</groupId>
-              <artifactId>caches-cli</artifactId>
-              <version>${project.version}</version>
-            </dependency>
-            <dependency>
-              <groupId>${project.groupId}</groupId>
-              <artifactId>caches-impl-base</artifactId>
-              <version>${project.version}</version>
-            </dependency>
-            <dependency>
-              <groupId>${project.groupId}</groupId>
-              <artifactId>caches-guava-impl</artifactId>
-              <version>${project.version}</version>
-            </dependency>
-            <dependency>
-              <groupId>${project.groupId}</groupId>
-              <artifactId>caches-noop-impl</artifactId>
-              <version>${project.version}</version>
-            </dependency>
-            <dependency>
-              <groupId>${project.groupId}</groupId>
-              <artifactId>caches-standard-impl</artifactId>
-              <version>${project.version}</version>
-            </dependency>
-            <dependency>
-              <groupId>${project.groupId}</groupId>
-              <artifactId>caches-test</artifactId>
-              <version>${project.version}</version>
-              <scope>test</scope>
-            </dependency>
-
             <!-- Diagnostic Status -->
             <dependency>
               <groupId>${project.groupId}</groupId>
@@ -210,13 +172,6 @@
             </dependency>
 
             <!-- Stable Karaf features -->
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>odl-infrautils-caches</artifactId>
-                <version>${project.version}</version>
-                <type>xml</type>
-                <classifier>features</classifier>
-            </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>odl-infrautils-diagstatus</artifactId>
