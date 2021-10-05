@@ -74,20 +74,6 @@
             <artifactId>diagstatus-web</artifactId>
         </dependency>
 
-        <!-- Metrics -->
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>metrics-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>metrics-impl</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>metrics-impl-prometheus</artifactId>
-        </dependency>
-
         <!-- Platform Readiness -->
         <dependency>
             <groupId>${project.groupId}</groupId>
