@@ -35,7 +35,6 @@
         <module>docs</module>
         <module>features</module>
 
-        <module>caches</module>
         <module>common</module>
         <module>diagstatus</module>
         <module>inject</module>

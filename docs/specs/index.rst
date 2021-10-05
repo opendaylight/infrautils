@@ -12,4 +12,3 @@ Contents:
 
    Design Specification Template <specs-template>
    status-and-diagnostics
-   caches

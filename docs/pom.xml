@@ -56,36 +56,6 @@
             <artifactId>itestutils</artifactId>
         </dependency>
 
-        <!-- Caches -->
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>caches-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>caches-cli</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>caches-impl-base</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>caches-guava-impl</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>caches-noop-impl</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>caches-standard-impl</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>caches-test</artifactId>
-        </dependency>
-
         <!-- Diagnostic Status -->
         <dependency>
             <groupId>${project.groupId}</groupId>

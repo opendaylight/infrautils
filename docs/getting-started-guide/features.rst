@@ -103,13 +103,6 @@ See https://bugs.opendaylight.org/show_bug.cgi?id=8438 and https://git.opendayli
 
 Used for non-regression self-testing of features in this project (and available to others).
 
-Caches
-------
-
-See https://www.youtube.com/watch?v=h4HOSRN2aFc and play with the example in infrautils/caches/sample installed
-by odl-infrautils-caches-sample; history in https://git.opendaylight.org/gerrit/#/c/48920/
-and https://bugs.opendaylight.org/show_bug.cgi?id=8300.
-
 Diagstatus
 ----------
 
