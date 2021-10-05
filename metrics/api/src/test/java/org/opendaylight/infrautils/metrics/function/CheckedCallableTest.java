@@ -5,41 +5,40 @@
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html
  */
-package org.opendaylight.infrautils.utils.function.tests;
+package org.opendaylight.infrautils.metrics.function;
 
+import static com.google.common.truth.Truth.assertThat;
 import static org.junit.Assert.assertThrows;
 
 import java.io.FileNotFoundException;
 import org.junit.Test;
-import org.opendaylight.infrautils.utils.function.CheckedCallable;
-import org.opendaylight.infrautils.utils.function.CheckedRunnable;
 
 /**
  * Unit Test for {@link CheckedCallable}.
  *
  * @author Michael Vorburger.ch
  */
-public class CheckedRunnableTest {
+public class CheckedCallableTest {
     @Test
-    public void testCheckedRunnableWithCheckedException() {
+    public void testCheckedCallableWithCheckedException() {
         assertThrows(FileNotFoundException.class, () -> foo(() -> {
             throw new FileNotFoundException("boum");
         }));
     }
 
     @Test
-    public void testCheckedRunnableWithUncheckedException() {
+    public void testCheckedCallableWithUncheckedException() {
         assertThrows(IllegalArgumentException.class, () -> foo(() -> {
             throw new IllegalArgumentException("boum");
         }));
     }
 
     @Test
-    public void testCheckedRunnableWithoutAnyException() {
-        foo(() -> { });
+    public void testCheckedCallableWithoutAnyException() {
+        assertThat(foo(() -> 43)).isEqualTo(43);
     }
 
-    private static <E extends Exception> void foo(CheckedRunnable<E> checkedCallable) throws E {
-        checkedCallable.run();
+    private static <T, E extends Exception> T foo(CheckedCallable<T, E> checkedCallable) throws E {
+        return checkedCallable.call();
     }
 }
