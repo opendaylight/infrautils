@@ -51,11 +51,5 @@
             <type>xml</type>
             <classifier>features</classifier>
         </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>odl-infrautils-metrics-prometheus</artifactId>
-            <type>xml</type>
-            <classifier>features</classifier>
-        </dependency>
     </dependencies>
 </project>

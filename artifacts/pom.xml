@@ -70,36 +70,6 @@
               <version>${project.version}</version>
             </dependency>
 
-            <!-- Metrics -->
-            <dependency>
-              <groupId>${project.groupId}</groupId>
-              <artifactId>metrics-api</artifactId>
-              <version>${project.version}</version>
-            </dependency>
-            <dependency>
-              <groupId>${project.groupId}</groupId>
-              <artifactId>metrics-impl</artifactId>
-              <version>${project.version}</version>
-            </dependency>
-            <dependency>
-              <groupId>${project.groupId}</groupId>
-              <artifactId>metrics-impl</artifactId>
-              <version>${project.version}</version>
-              <classifier>config</classifier>
-              <type>cfg</type>
-            </dependency>
-            <dependency>
-              <groupId>${project.groupId}</groupId>
-              <artifactId>metrics-impl-prometheus</artifactId>
-              <version>${project.version}</version>
-            </dependency>
-            <dependency>
-              <groupId>${project.groupId}</groupId>
-              <artifactId>metrics-impl-test</artifactId>
-              <version>${project.version}</version>
-              <scope>test</scope>
-            </dependency>
-
             <!-- Platform Readiness -->
             <dependency>
               <groupId>${project.groupId}</groupId>
@@ -181,13 +151,6 @@
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>odl-infrautils-metrics</artifactId>
-                <version>${project.version}</version>
-                <type>xml</type>
-                <classifier>features</classifier>
-            </dependency>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
                 <artifactId>odl-infrautils-ready</artifactId>
                 <version>${project.version}</version>
                 <type>xml</type>
@@ -205,13 +168,6 @@
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>odl-infrautils-inject</artifactId>
-                <version>${project.version}</version>
-                <type>xml</type>
-                <classifier>features</classifier>
-            </dependency>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>odl-infrautils-metrics-prometheus</artifactId>
                 <version>${project.version}</version>
                 <type>xml</type>
                 <classifier>features</classifier>

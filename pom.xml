@@ -39,7 +39,6 @@
         <module>diagstatus</module>
         <module>inject</module>
         <module>itestutils</module>
-        <module>metrics</module>
         <module>ready</module>
         <module>testutils</module>
     </modules>
