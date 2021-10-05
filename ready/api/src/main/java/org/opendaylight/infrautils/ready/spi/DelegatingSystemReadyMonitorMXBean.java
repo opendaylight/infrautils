@@ -9,7 +9,6 @@ package org.opendaylight.infrautils.ready.spi;
 
 import org.opendaylight.infrautils.ready.SystemReadyMonitorMXBean;
 import org.opendaylight.infrautils.ready.SystemState;
-import org.opendaylight.infrautils.utils.management.AbstractMXBean;
 
 /**
  * SystemReadyMonitorMXBean implementation.
