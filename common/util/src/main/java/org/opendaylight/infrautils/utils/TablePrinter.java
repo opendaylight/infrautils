@@ -16,6 +16,7 @@ import org.checkerframework.checker.regex.qual.Regex;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@Deprecated(since = "2.0.7", forRemoval = true)
 public class TablePrinter {
     private static final Logger LOG = LoggerFactory.getLogger(TablePrinter.class);
 
@@ -47,7 +48,7 @@ public class TablePrinter {
     private int ncols;
 
     public TablePrinter(int sortByColumn) {
-        this.comparator = new Comparator<String[]>() {
+        comparator = new Comparator<>() {
             @Override
             public int compare(String[] o1, String[] o2) {
                 for (int i = sortByColumn; i < o1.length && i < o2.length; i++) {
@@ -85,7 +86,7 @@ public class TablePrinter {
                 return 0;
             }
 
-            int extractInt(String str) {
+            private int extractInt(String str) {
                 String numStr = NON_DIGITS.matcher(str).replaceAll(""); // remove non-digits
                 // return 0 if no digits found
                 try {
@@ -104,7 +105,7 @@ public class TablePrinter {
     }
 
     public void setColumnNumber(int columnNumber) {
-        this.ncols = columnNumber;
+        ncols = columnNumber;
     }
 
     public void addRow(Object... array) {
