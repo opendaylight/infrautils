@@ -101,8 +101,7 @@ public class DiagStatusCommandTest {
 
     private void checkGetRemoteStatusSummary(InetAddress inetAddress) throws Exception {
         String actualServiceStatusSummary = diagStatusCommand.getRemoteStatusSummary(inetAddress);
-        assertThat(serviceStatusSummary.replaceAll(
-                ".*Node IP Address.*\\n", "Node IP Address: "
-                        + inetAddress.toString() + "\n")).isEqualTo(actualServiceStatusSummary);
+        assertThat(actualServiceStatusSummary).isEqualTo(serviceStatusSummary.replaceAll(
+            ".*Node IP Address.*\\n", "Node IP Address: " + inetAddress.getHostAddress() + "\n"));
     }
 }

@@ -100,16 +100,16 @@ public class DiagStatusCommand implements Action {
 
     @VisibleForTesting
     String getLocalStatusSummary(InetAddress memberAddress) {
-        return "Node IP Address: " + memberAddress.toString() + "\n"
+        return "Node IP Address: " + memberAddress.getHostAddress() + "\n"
                 + diagStatusServiceMBean.acquireServiceStatusDetailed();
     }
 
     @VisibleForTesting
     String getRemoteStatusSummary(InetAddress memberAddress) throws Exception {
-        StringBuilder strBuilder = new StringBuilder();
-        strBuilder.append("Node IP Address: ").append(memberAddress).append("\n");
-        strBuilder.append(invokeRemoteDiagStatus(memberAddress));
-        return strBuilder.toString();
+        return new StringBuilder()
+            .append("Node IP Address: ").append(memberAddress.getHostAddress()).append("\n")
+            .append(invokeRemoteDiagStatus(memberAddress))
+            .toString();
     }
 
     String invokeRemoteDiagStatus(InetAddress host) throws Exception {
@@ -139,9 +139,9 @@ public class DiagStatusCommand implements Action {
     }
 
     private static String buildServiceStatusSummaryString(ServiceStatusSummary serviceStatusSummary) {
-        StringBuilder statusSummary = new StringBuilder();
-        statusSummary.append("System is operational: ").append(serviceStatusSummary.isOperational()).append('\n');
-        statusSummary.append("System ready state: ").append(serviceStatusSummary.getSystemReadyState()).append('\n');
+        StringBuilder statusSummary = new StringBuilder()
+            .append("System is operational: ").append(serviceStatusSummary.isOperational()).append('\n')
+            .append("System ready state: ").append(serviceStatusSummary.getSystemReadyState()).append('\n');
         for (ServiceDescriptor status : serviceStatusSummary.getStatusSummary()) {
             statusSummary
                     .append("  ")
@@ -149,9 +149,7 @@ public class DiagStatusCommand implements Action {
                     .append(String.format("%-20s%-15s", status.getModuleServiceName(), ": "
                             + status.getServiceState()));
             if (!Strings.isNullOrEmpty(status.getStatusDesc())) {
-                statusSummary.append(" (");
-                statusSummary.append(status.getStatusDesc());
-                statusSummary.append(")");
+                statusSummary.append(" (").append(status.getStatusDesc()).append(')');
             }
             // intentionally using Throwable.toString() instead of Throwables.getStackTraceAsString to keep CLI brief
             status.getErrorCause().ifPresent(cause -> statusSummary.append(cause.toString()));
