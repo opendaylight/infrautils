@@ -37,9 +37,9 @@ import org.opendaylight.infrautils.metrics.Meter;
 import org.opendaylight.infrautils.metrics.MetricDescriptor;
 import org.opendaylight.infrautils.metrics.MetricProvider;
 import org.opendaylight.infrautils.metrics.Timer;
+import org.opendaylight.infrautils.metrics.function.CheckedCallable;
+import org.opendaylight.infrautils.metrics.function.CheckedRunnable;
 import org.opendaylight.infrautils.utils.UncheckedCloseable;
-import org.opendaylight.infrautils.utils.function.CheckedCallable;
-import org.opendaylight.infrautils.utils.function.CheckedRunnable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

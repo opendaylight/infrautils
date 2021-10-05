@@ -21,10 +21,10 @@ import org.opendaylight.infrautils.metrics.Meter;
 import org.opendaylight.infrautils.metrics.MetricDescriptor;
 import org.opendaylight.infrautils.metrics.MetricProvider;
 import org.opendaylight.infrautils.metrics.Timer;
+import org.opendaylight.infrautils.metrics.function.CheckedRunnable;
 import org.opendaylight.infrautils.metrics.internal.MetricProviderImpl;
 import org.opendaylight.infrautils.testutils.LogCaptureRule;
 import org.opendaylight.infrautils.testutils.LogRule;
-import org.opendaylight.infrautils.utils.function.CheckedRunnable;
 
 /**
  * Unit Test for MetricProviderImpl.

@@ -15,8 +15,8 @@ import org.opendaylight.infrautils.metrics.Meter;
 import org.opendaylight.infrautils.metrics.MetricDescriptor;
 import org.opendaylight.infrautils.metrics.MetricProvider;
 import org.opendaylight.infrautils.metrics.Timer;
-import org.opendaylight.infrautils.utils.function.CheckedCallable;
-import org.opendaylight.infrautils.utils.function.CheckedRunnable;
+import org.opendaylight.infrautils.metrics.function.CheckedCallable;
+import org.opendaylight.infrautils.metrics.function.CheckedRunnable;
 
 /**
  * Implementation of {@link MetricProvider} useful for unit and component tests.

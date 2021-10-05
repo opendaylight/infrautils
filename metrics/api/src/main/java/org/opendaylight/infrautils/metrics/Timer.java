@@ -7,9 +7,9 @@
  */
 package org.opendaylight.infrautils.metrics;
 
+import org.opendaylight.infrautils.metrics.function.CheckedCallable;
+import org.opendaylight.infrautils.metrics.function.CheckedRunnable;
 import org.opendaylight.infrautils.utils.UncheckedCloseable;
-import org.opendaylight.infrautils.utils.function.CheckedCallable;
-import org.opendaylight.infrautils.utils.function.CheckedRunnable;
 
 /**
  * A timer metric which aggregates timing durations.
