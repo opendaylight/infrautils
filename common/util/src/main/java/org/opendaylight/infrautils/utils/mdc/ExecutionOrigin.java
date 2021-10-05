@@ -39,6 +39,7 @@ import org.slf4j.MDC;
  * @author Michael Vorburger.ch
  */
 @Beta
+@Deprecated(since = "2.0.7", forRemoval = true)
 public final class ExecutionOrigin extends MDCEntry {
 
     private static final long serialVersionUID = 1L;
@@ -134,7 +135,7 @@ public final class ExecutionOrigin extends MDCEntry {
         if (idAsString == null) {
             String nextIdString = Long.toUnsignedString(id, RADIX).toUpperCase(Locale.ENGLISH);
             String paddedNextIdString = Strings.padStart(nextIdString, ID_STRING_MAX_LENGTH, '0');
-            this.idAsString = paddedNextIdString;
+            idAsString = paddedNextIdString;
         }
         return idAsString;
     }

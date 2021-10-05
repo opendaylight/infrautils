@@ -18,6 +18,7 @@ import org.junit.Test;
  *
  * @author Michael Vorburger.ch
  */
+@Deprecated(since = "2.0.7", forRemoval = true)
 public class ExecutionOriginTest {
 
     @Test
