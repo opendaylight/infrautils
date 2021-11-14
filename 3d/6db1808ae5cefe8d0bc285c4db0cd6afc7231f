@@ -1,0 +1,7 @@
+Verified+1: jenkins-releng
+Code-Review+2: Robert Varga <nite@hq.sk>
+Submitted-by: Robert Varga <nite@hq.sk>
+Submitted-at: Sun, 14 Nov 2021 17:50:56 +0000
+Reviewed-on: https://git.opendaylight.org/gerrit/c/infrautils/+/98148
+Project: infrautils
+Branch: refs/heads/2.0.x
