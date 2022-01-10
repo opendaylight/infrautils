@@ -50,12 +50,12 @@
       <dependency>
         <groupId>com.mycila.guice.extensions</groupId>
         <artifactId>mycila-guice-jsr250</artifactId>
-        <version>4.0.rc1</version>
+        <version>5.0</version>
       </dependency>
       <dependency>
         <groupId>com.google.inject</groupId>
         <artifactId>guice</artifactId>
-        <version>4.2.3</version>
+        <version>5.0.1</version>
         <exclusions>
           <exclusion>
             <groupId>javax.inject</groupId>
