@@ -7,6 +7,7 @@
  */
 package org.opendaylight.infrautils.testutils;
 
+import com.google.errorprone.annotations.Var;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import io.github.classgraph.ClassGraph;
 import io.github.classgraph.ResourceList;
@@ -16,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
+import org.eclipse.jdt.annotation.Nullable;
 
 /**
  * Check classpath for duplicates.
@@ -26,25 +28,22 @@ public class ClasspathHellDuplicatesChecker {
 
     public static final ClasspathHellDuplicatesChecker INSTANCE = new ClasspathHellDuplicatesChecker();
 
-    private final Map<String, List<String>> duplicates;
-
-    public ClasspathHellDuplicatesChecker() {
-        duplicates = recheck();
-    }
+    private @Nullable Map<String, List<String>> duplicates;
 
     public Map<String, List<String>> getDuplicates() {
-        return duplicates;
+        @Var Map<String, List<String>> local = duplicates;
+        if (local == null) {
+            duplicates = local = recheck();
+        }
+        return local;
     }
 
     public String toString(Map<String, List<String>> map) {
         StringBuilder sb = new StringBuilder();
         for (Entry<String, List<String>> entry : map.entrySet()) {
-            sb.append(entry.getKey());
-            sb.append('\n');
+            sb.append(entry.getKey()).append('\n');
             for (String location : entry.getValue()) {
-                sb.append("    ");
-                sb.append(location);
-                sb.append('\n');
+                sb.append("    ").append(location).append('\n');
             }
         }
         return sb.toString();
