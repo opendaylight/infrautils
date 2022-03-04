@@ -28,6 +28,7 @@ public class ClasspathHellDuplicatesChecker {
 
     private final Map<String, List<String>> duplicates;
 
+    @SuppressFBWarnings(value = "MC_OVERRIDABLE_METHOD_CALL_IN_CONSTRUCTOR", justification = "Poor original design")
     public ClasspathHellDuplicatesChecker() {
         duplicates = recheck();
     }
@@ -39,12 +40,9 @@ public class ClasspathHellDuplicatesChecker {
     public String toString(Map<String, List<String>> map) {
         StringBuilder sb = new StringBuilder();
         for (Entry<String, List<String>> entry : map.entrySet()) {
-            sb.append(entry.getKey());
-            sb.append('\n');
+            sb.append(entry.getKey()).append('\n');
             for (String location : entry.getValue()) {
-                sb.append("    ");
-                sb.append(location);
-                sb.append('\n');
+                sb.append("    ").append(location).append('\n');
             }
         }
         return sb.toString();
