@@ -7,7 +7,7 @@
  */
 package org.opendaylight.infrautils.ready.guice.test;
 
-import static com.google.common.truth.Truth.assertThat;
+import static org.junit.Assert.assertTrue;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
@@ -24,13 +24,12 @@ import org.opendaylight.infrautils.ready.guice.ReadyModule;
  * @author Michael Vorburger.ch
  */
 public class ReadyModuleTest {
-
     public static class TestBean {
         private final SystemReadyMonitor systemReadyMonitor;
         boolean invokedReadyCallbackRegisteredInConstructor = false;
         boolean invokedReadyCallbackRegisteredInPostConstruct = false;
 
-        @Inject public TestBean(SystemReadyMonitor systemReadyMonitor) {
+        @Inject public TestBean(final SystemReadyMonitor systemReadyMonitor) {
             this.systemReadyMonitor = systemReadyMonitor;
             systemReadyMonitor.registerListener(() -> {
                 invokedReadyCallbackRegisteredInConstructor = true;
@@ -48,9 +47,9 @@ public class ReadyModuleTest {
 
     @Inject TestBean testBean;
 
-    @Test public void testReadyListener() {
-        assertThat(testBean.invokedReadyCallbackRegisteredInConstructor).isTrue();
-        assertThat(testBean.invokedReadyCallbackRegisteredInPostConstruct).isTrue();
+    @Test
+    public void testReadyListener() {
+        assertTrue(testBean.invokedReadyCallbackRegisteredInConstructor);
+        assertTrue(testBean.invokedReadyCallbackRegisteredInPostConstruct);
     }
-
 }
