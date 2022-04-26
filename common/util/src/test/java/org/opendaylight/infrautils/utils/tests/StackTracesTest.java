@@ -7,9 +7,9 @@
  */
 package org.opendaylight.infrautils.utils.tests;
 
-import static com.google.common.truth.Truth.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.opendaylight.infrautils.utils.StackTraces;
 
 /**
@@ -18,16 +18,14 @@ import org.opendaylight.infrautils.utils.StackTraces;
  * @author Michael Vorburger.ch
  */
 public class StackTracesTest {
-
     @Test
     public void testGetCallerMethodName() {
         exampleMethodInsideSomeOtherUtility();
-        assertThat(StackTraces.getCallerMethodName(0)).isEqualTo("testGetCallerMethodName");
-        assertThat(StackTraces.getCallerMethodName(1)).isEqualTo("invoke0"); // JUnit internal method name
+        assertEquals("testGetCallerMethodName", StackTraces.getCallerMethodName(0));
+        assertEquals("invoke", StackTraces.getCallerMethodName(1)); // JUnit internal method name
     }
 
     private static void exampleMethodInsideSomeOtherUtility() {
-        assertThat(StackTraces.getCallersCallerMethodName()).isEqualTo("testGetCallerMethodName");
+        assertEquals("testGetCallerMethodName", StackTraces.getCallersCallerMethodName());
     }
-
 }
