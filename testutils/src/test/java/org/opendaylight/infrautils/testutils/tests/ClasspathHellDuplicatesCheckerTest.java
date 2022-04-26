@@ -7,8 +7,10 @@
  */
 package org.opendaylight.infrautils.testutils.tests;
 
-import static com.google.common.truth.Truth.assertThat;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
+import java.util.Map;
 import org.junit.Test;
 import org.opendaylight.infrautils.testutils.ClasspathHellDuplicatesChecker;
 
@@ -18,20 +20,19 @@ import org.opendaylight.infrautils.testutils.ClasspathHellDuplicatesChecker;
  * @author Michael Vorburger.ch
  */
 public class ClasspathHellDuplicatesCheckerTest {
-
     @Test
     public void testNoDuplicates() {
-        assertThat(new ClasspathHellDuplicatesChecker().getDuplicates()).isEmpty();
+        assertEquals(Map.of(), new ClasspathHellDuplicatesChecker().getDuplicates());
     }
 
     @Test
     public void testDuplicates() {
         // Just to make sure that is actually does something, if we were not to filter anything, there would be some:
-        assertThat(new ClasspathHellDuplicatesChecker() {
+        assertFalse(new ClasspathHellDuplicatesChecker() {
             @Override
             protected boolean isHarmlessDuplicate(String resourcePath) {
                 return false;
             }
-        }.getDuplicates()).isNotEmpty();
+        }.getDuplicates().isEmpty());
     }
 }

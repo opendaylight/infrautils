@@ -66,9 +66,10 @@ public abstract class AbstractIntegrationTest {
         // check that the Karaf distribution is not on the classpath:
         try {
             getClass().getClassLoader().loadClass("org.apache.karaf.main.Main");
-            fail("Found Karaf's main class on the test's classpath; remove <dependency> to Karaf JARs in the POM!"
-                    + " (just the zip/tar.gz distribution, with excludes, is fine however,"
-                    + " as that doesn't pollute the classpath)");
+            fail("""
+                Found Karaf's main class on the test's classpath; remove <dependency> to Karaf JARs in the POM!\
+                 (just the zip/tar.gz distribution, with excludes, is fine however,\
+                 as that doesn't pollute the classpath)""");
         } catch (ClassNotFoundException e) {
             // Good!
         }
@@ -145,7 +146,7 @@ public abstract class AbstractIntegrationTest {
         return OptionUtils.combine(defaultOptions, getAdditionalPaxExamOptions());
     }
 
-    protected final String getKarafVersion() {
+    protected static final String getKarafVersion() {
         // This karafVersion must match the exact minor version of Karaf due to
         // https://bugs.opendaylight.org/show_bug.cgi?id=8578
         // (see also https://ops4j1.jira.com/projects/PAXEXAM/issues/PAXEXAM-598)

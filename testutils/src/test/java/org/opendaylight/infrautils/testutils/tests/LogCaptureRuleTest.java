@@ -7,7 +7,8 @@
  */
 package org.opendaylight.infrautils.testutils.tests;
 
-import static com.google.common.truth.Truth.assertThat;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertSame;
 
 import org.junit.Ignore;
 import org.junit.Rule;
@@ -63,7 +64,7 @@ public class LogCaptureRuleTest {
         Exception ko = new IllegalArgumentException("KO");
         logCaptureRule.expectError("boum");
         LOG.error("boum", ko);
-        assertThat(logCaptureRule.getLastErrorThrowable()).isEqualTo(ko);
+        assertEquals(ko, logCaptureRule.getLastErrorThrowable());
     }
 
     @Test
@@ -100,13 +101,13 @@ public class LogCaptureRuleTest {
     public void logErrorExpectWithSpecificMatcher() {
         Exception ko = new IllegalArgumentException("KO");
         logCaptureRule.handleErrorLogs(logCaptures -> {
-            assertThat(logCaptures).hasSize(1);
-            assertThat(logCaptures.get(0).getMessage()).isEqualTo("boum");
-            assertThat(logCaptures.get(0).getCause().get() instanceof IllegalArgumentException).isTrue();
-            assertThat(logCaptures.get(0).getCause().get().getMessage()).isEqualTo("KO");
+            assertEquals(1, logCaptures.size());
+            final var first = logCaptures.get(0);
+            assertEquals("boum", first.getMessage());
+            assertSame(ko, first.getCause().orElseThrow());
         });
         LOG.error("boum", ko);
-        assertThat(logCaptureRule.getLastErrorThrowable()).isEqualTo(ko);
+        assertSame(ko, logCaptureRule.getLastErrorThrowable());
     }
 
     // TODO logErrorInBackgroundThread
