@@ -7,7 +7,10 @@
  */
 package org.opendaylight.infrautils.ready.karaf.internal;
 
-import static com.google.common.truth.Truth.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.greaterThan;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -58,11 +61,11 @@ public class FunctionalityReadyNotifierTest {
                 .thenCallRealMethod();
 
         FunctionalityReadyRegistration<?> registration = notifier.register(TestReady.class);
-        assertThat(registration).isNotNull();
-        assertThat(registeredService).isNotNull();
-        assertThat(registeredService.toString()).isNotNull();
-        assertThat(registeredService.hashCode()).isGreaterThan(0);
-        assertThat(registeredService.equals(null)).isFalse();
+        assertNotNull(registration);
+        assertNotNull(registeredService);
+        assertNotNull(registeredService.toString());
+        assertThat(registeredService.hashCode(), greaterThan(0));
+        assertFalse(registeredService.equals(null));
     }
 
     @Test(expected = NullPointerException.class)

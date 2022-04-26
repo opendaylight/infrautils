@@ -7,7 +7,7 @@
  */
 package org.opendaylight.infrautils.utils.concurrent.tests;
 
-import static com.google.common.truth.Truth.assertThat;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertSame;
 import static org.opendaylight.infrautils.utils.concurrent.LoggingFutures.addErrorLogging;
 
@@ -67,7 +67,7 @@ public class FutureListenerLogTest {
                 new ObjectWithToString("ho"),
                 new ObjectWithToString("he"),
                 new ObjectWithToString("do")));
-        assertThat(logCaptureRule.getLastErrorThrowable().getMessage()).isEqualTo("some problem");
+        assertEquals("some problem", logCaptureRule.getLastErrorThrowable().getMessage());
     }
 
     private static final class ObjectWithToString {

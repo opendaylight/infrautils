@@ -7,13 +7,15 @@
  */
 package org.opendaylight.infrautils.testutils.concurrent;
 
-import static com.google.common.truth.Truth.assertThat;
 import static java.lang.Boolean.FALSE;
-import static java.util.Collections.singletonList;
 import static java.util.concurrent.TimeUnit.SECONDS;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.greaterThanOrEqualTo;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import com.google.common.util.concurrent.Futures;
-import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -117,12 +119,12 @@ public class AwaitableExecutorServiceTest {
         };
         for (Future<Boolean> f : testAndVerifyTimeBounds(executorService -> {
             try {
-                return executorService.invokeAll(Arrays.asList(task, task));
+                return executorService.invokeAll(List.of(task, task));
             } catch (InterruptedException e) {
-                return singletonList(Futures.<Boolean>immediateCancelledFuture());
+                return List.of(Futures.<Boolean>immediateCancelledFuture());
             }
         }, millis, 1000)) {
-            assertThat(f.get(5, SECONDS)).isTrue();
+            assertTrue(f.get(5, SECONDS));
         }
     }
 
@@ -137,12 +139,12 @@ public class AwaitableExecutorServiceTest {
         };
         for (Future<Boolean> f : testAndVerifyTimeBounds(executorService -> {
             try {
-                return executorService.invokeAll(Arrays.asList(task, task), timeout, TimeUnit.MILLISECONDS);
+                return executorService.invokeAll(List.of(task, task), timeout, TimeUnit.MILLISECONDS);
             } catch (InterruptedException e) {
-                return singletonList(Futures.<Boolean>immediateCancelledFuture());
+                return List.of(Futures.<Boolean>immediateCancelledFuture());
             }
         }, millis, timeout)) {
-            assertThat(f.get(5, SECONDS)).isTrue();
+            assertTrue(f.get(5, SECONDS));
         }
     }
 
@@ -155,13 +157,13 @@ public class AwaitableExecutorServiceTest {
             Thread.sleep(millis);
             return true;
         };
-        assertThat((Boolean) testAndVerifyTimeBounds(executorService -> {
+        assertTrue(testAndVerifyTimeBounds(executorService -> {
             try {
-                return executorService.invokeAny(Arrays.asList(task, task));
+                return executorService.invokeAny(List.of(task, task));
             } catch (InterruptedException | ExecutionException e) {
                 return FALSE;
             }
-        }, millis, 1000)).isTrue();
+        }, millis, 1000));
     }
 
     @Test
@@ -174,13 +176,13 @@ public class AwaitableExecutorServiceTest {
             Thread.sleep(millis);
             return true;
         };
-        assertThat((Boolean) testAndVerifyTimeBounds(executorService -> {
+        assertTrue(testAndVerifyTimeBounds(executorService -> {
             try {
-                return executorService.invokeAny(Arrays.asList(task, task), timeout, TimeUnit.MILLISECONDS);
+                return executorService.invokeAny(List.of(task, task), timeout, TimeUnit.MILLISECONDS);
             } catch (InterruptedException | ExecutionException | TimeoutException e) {
                 return FALSE;
             }
-        }, millis, timeout)).isTrue();
+        }, millis, timeout));
     }
 
     private static <T> T testAndVerifyTimeBounds(Function<ExecutorService, T> test, long executionMS, long timeoutMS) {
@@ -188,16 +190,16 @@ public class AwaitableExecutorServiceTest {
         long start = System.currentTimeMillis();
         T future = test.apply(executorService);
         try {
-            assertThat(executorService.awaitCompletion(timeoutMS, TimeUnit.MILLISECONDS)).isEqualTo(
-                    executionMS < timeoutMS);
+            assertEquals(executionMS < timeoutMS,
+                executorService.awaitCompletion(timeoutMS, TimeUnit.MILLISECONDS));
         } catch (InterruptedException e) {
             // Ignored
         }
         long elapsed = System.currentTimeMillis() - start;
         if (executionMS < timeoutMS) {
-            assertThat(elapsed).isAtLeast(executionMS);
+            assertThat(elapsed, greaterThanOrEqualTo(executionMS));
         } else {
-            assertThat(elapsed).isAtLeast(timeoutMS);
+            assertThat(elapsed, greaterThanOrEqualTo(timeoutMS));
         }
         return future;
     }
