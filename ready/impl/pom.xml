@@ -76,10 +76,6 @@
       <groupId>org.opendaylight.infrautils</groupId>
       <artifactId>infrautils-testutils</artifactId>
     </dependency>
-    <dependency>
-      <groupId>com.google.truth</groupId>
-      <artifactId>truth</artifactId>
-    </dependency>
   </dependencies>
 
   <build>

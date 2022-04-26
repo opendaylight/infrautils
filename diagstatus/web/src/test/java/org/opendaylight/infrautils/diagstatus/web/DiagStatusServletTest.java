@@ -7,12 +7,12 @@
  */
 package org.opendaylight.infrautils.diagstatus.web;
 
-import static com.google.common.truth.Truth.assertThat;
-import static java.util.Collections.emptySet;
+import static org.junit.Assert.assertEquals;
 import static org.opendaylight.infrautils.ready.SystemState.ACTIVE;
 import static org.opendaylight.infrautils.ready.SystemState.BOOTING;
 
 import java.io.IOException;
+import java.util.Set;
 import javax.servlet.ServletException;
 import org.junit.After;
 import org.junit.Before;
@@ -30,7 +30,6 @@ import org.opendaylight.infrautils.testutils.web.TestWebServer;
  * @author Michael Vorburger.ch
  */
 public class DiagStatusServletTest {
-
     private TestWebServer webServer;
     private TestWebClient webClient;
     private final TestDiagStatusService testDiagStatusService = Partials.newPartial(TestDiagStatusService.class);
@@ -50,25 +49,25 @@ public class DiagStatusServletTest {
     @Test
     public void testGetWhenOk() throws IOException {
         testDiagStatusService.isOperational = true;
-        assertThat(getDiagStatusResponseCode(Method.GET)).isEqualTo(200);
+        assertEquals(200, getDiagStatusResponseCode(Method.GET));
     }
 
     @Test
     public void testHeadWhenOk() throws IOException {
         testDiagStatusService.isOperational = true;
-        assertThat(getDiagStatusResponseCode(Method.HEAD)).isEqualTo(200);
+        assertEquals(200, getDiagStatusResponseCode(Method.HEAD));
     }
 
     @Test
     public void testGetWhenNok() throws IOException {
         testDiagStatusService.isOperational = false;
-        assertThat(getDiagStatusResponseCode(Method.GET)).isEqualTo(503);
+        assertEquals(503, getDiagStatusResponseCode(Method.GET));
     }
 
     @Test
     public void testHeadWhenNok() throws IOException {
         testDiagStatusService.isOperational = false;
-        assertThat(getDiagStatusResponseCode(Method.HEAD)).isEqualTo(503);
+        assertEquals(503, getDiagStatusResponseCode(Method.HEAD));
     }
 
     private int getDiagStatusResponseCode(Method httpMethod) throws IOException {
@@ -81,7 +80,7 @@ public class DiagStatusServletTest {
 
         @Override
         public ServiceStatusSummary getServiceStatusSummary() {
-            return new ServiceStatusSummary(isOperational, isOperational ? ACTIVE : BOOTING, "", emptySet());
+            return new ServiceStatusSummary(isOperational, isOperational ? ACTIVE : BOOTING, "", Set.of());
         }
     }
 }

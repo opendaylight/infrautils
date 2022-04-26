@@ -7,7 +7,7 @@
  */
 package org.opendaylight.infrautils.diagstatus.shell;
 
-import static com.google.common.truth.Truth.assertThat;
+import static org.junit.Assert.assertEquals;
 import static org.opendaylight.infrautils.diagstatus.ServiceState.OPERATIONAL;
 
 import com.google.common.net.InetAddresses;
@@ -55,10 +55,12 @@ public class DiagStatusCommandTest {
 
     DefaultHttpClientService httpClient;
 
-    static String serviceStatusSummary = "Node IP Address: {node-ip}\n"
-            + "System is operational: true\n"
-            + "System ready state: ACTIVE\n"
-            + "  testService         : OPERATIONAL   (operational)\n";
+    static String serviceStatusSummary = """
+        Node IP Address: {node-ip}
+        System is operational: true
+        System ready state: ACTIVE
+          testService         : OPERATIONAL   (operational)
+        """;
 
     static String servletContext = DiagStatusCommand.DIAGSTATUS_URL_SEPARATOR + DiagStatusCommand.DIAGSTATUS_URL_SUFFIX;
 
@@ -100,8 +102,8 @@ public class DiagStatusCommandTest {
     }
 
     private void checkGetRemoteStatusSummary(InetAddress inetAddress) throws Exception {
-        String actualServiceStatusSummary = diagStatusCommand.getRemoteStatusSummary(inetAddress);
-        assertThat(actualServiceStatusSummary).isEqualTo(serviceStatusSummary.replaceAll(
-            ".*Node IP Address.*\\n", "Node IP Address: " + inetAddress.getHostAddress() + "\n"));
+        assertEquals(serviceStatusSummary.replaceAll(
+            ".*Node IP Address.*\\n", "Node IP Address: " + inetAddress.getHostAddress() + "\n"),
+            diagStatusCommand.getRemoteStatusSummary(inetAddress));
     }
 }
