@@ -7,7 +7,7 @@
  */
 package org.opendaylight.infrautils.inject.spi;
 
-import static com.google.common.truth.Truth.assertThat;
+import static org.junit.Assert.assertEquals;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -16,7 +16,6 @@ import java.util.Set;
 import org.junit.Test;
 
 public class ClassPathScannerTest {
-
     private static final String PREFIX = ClassPathScannerTest.class.getPackageName();
 
     @Test
@@ -24,10 +23,10 @@ public class ClassPathScannerTest {
         Set<Class<?>> singletons = new HashSet<>();
         Map<Class<?>, Class<?>> bindings = new HashMap<>();
         new ClassPathScanner(PREFIX).bindAllSingletons(PREFIX, bindings::put, singletons::add);
-        assertThat(bindings).containsExactly(
-                ClassPathScannerTestTopInterface.class, ClassPathScannerTestImplementation.class,
-                ClassPathScannerTestAnotherInterface.class, ClassPathScannerTestImplementation.class);
-        assertThat(singletons).containsExactly(ClassPathScannerTestNoInterfacesImplementation.class);
+        assertEquals(Map.of(
+            ClassPathScannerTestTopInterface.class, ClassPathScannerTestImplementation.class,
+            ClassPathScannerTestAnotherInterface.class, ClassPathScannerTestImplementation.class), bindings);
+        assertEquals(Set.of(ClassPathScannerTestNoInterfacesImplementation.class), singletons);
     }
 
     @Test
@@ -35,7 +34,7 @@ public class ClassPathScannerTest {
         Set<Class<?>> singletons = new HashSet<>();
         Map<Class<?>, Class<?>> bindings = new HashMap<>();
         new ClassPathScanner(PREFIX).bindAllSingletons("nope", bindings::put, singletons::add);
-        assertThat(bindings).isEmpty();
-        assertThat(singletons).isEmpty();
+        assertEquals(Map.of(), bindings);
+        assertEquals(Set.of(), singletons);
     }
 }

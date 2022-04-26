@@ -7,7 +7,9 @@
  */
 package org.opendaylight.infrautils.testutils.web;
 
-import static com.google.common.truth.Truth.assertThat;
+import static org.hamcrest.CoreMatchers.startsWith;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 
 import java.io.FileNotFoundException;
@@ -57,13 +59,13 @@ public class TestWebServerTest {
     public void testWebServerWithBrokenServlet() throws ServletException, IOException {
         try (TestWebServer webServer = new TestWebServer()) {
             webServer.registerServlet(new BrokenServlet(), "/brokenServlet");
-            assertThat(new TestWebClient(webServer).request(Method.GET, "brokenServlet").getStatus()).isEqualTo(500);
+            assertEquals(500, new TestWebClient(webServer).request(Method.GET, "brokenServlet").getStatus());
         }
     }
 
     private static void checkTestServlet(TestWebServer webServer, String urlSuffix) throws IOException {
         String body = new TestWebClient(webServer).request(Method.GET, urlSuffix).getBody();
-        assertThat(body).startsWith("hello, world");
+        assertThat(body, startsWith("hello, world"));
     }
 
     @SuppressWarnings("serial")

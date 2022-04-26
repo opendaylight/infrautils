@@ -7,7 +7,9 @@
  */
 package org.opendaylight.infrautils.testutils.tests;
 
-import static com.google.common.truth.Truth.assertThat;
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 
 import java.io.PrintWriter;
@@ -71,15 +73,15 @@ public class LogCaptureRuleInternalTest {
         // The point here is that we get "boum logged message" and not "boum thrown message" as (main) message.
         // That's useful because "boum logged" is typically the root cause of "boum thrown", and the developer
         // is best served by seeing that, first - especially if that was logged in a background thread!
-        assertThat(ex.getMessage()).contains("boum logged message");
+        assertThat(ex.getMessage(), containsString("boum logged message"));
         // Likewise for any logged exceptions - that's what developers should see first in test failure cause
-        assertThat(ex.getCause().toString()).isEqualTo(new IllegalStateException("boum logged cause").toString());
+        assertEquals(new IllegalStateException("boum logged cause").toString(), ex.getCause().toString());
         // But we don't actually completely loose the "boum thrown" message & cause either:
         String stackTrace = getStackTrace(ex);
-        assertThat(stackTrace).contains("boum thrown message");
-        assertThat(stackTrace).contains("Suppressed");
-        assertThat(stackTrace).contains(IllegalArgumentException.class.getName());
-        assertThat(stackTrace).contains("boum thrown cause");
+        assertThat(stackTrace, containsString("boum thrown message"));
+        assertThat(stackTrace, containsString("Suppressed"));
+        assertThat(stackTrace, containsString(IllegalArgumentException.class.getName()));
+        assertThat(stackTrace, containsString("boum thrown cause"));
         // These x3 ^^^ asserts work because we preserved boum thrown in a suppressed exception!
     }
 
