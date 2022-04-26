@@ -7,7 +7,7 @@
  */
 package org.opendaylight.infrautils.utils.concurrent.tests;
 
-import static com.google.common.truth.Truth.assertThat;
+import static org.junit.Assert.assertEquals;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
@@ -49,20 +49,19 @@ public class CompletionStageAwaitExampleTest {
         CompletionStage<Integer> completionStage = completableFuture;
 
         // so you cannot do this (because join(), and get(), are on CompletableFuture, not CompletionStage)
-        // assertThat(completionStage.join()).isEqualTo(123);
+        // assertEquals(123, completionStage.join());
 
         // and should not do this (because toCompletableFuture may throw an UnsupportedOperationException)
-        // assertThat(completionStage.toCompletableFuture().join()).isEqualTo(123);
+        // assertEquals(123, completionStage.toCompletableFuture().join());
 
         // This is the correct way to await and assert the expected result:
-        assertThat(CompletionStageTestAwaiter.await500ms(completionStage)).isEqualTo(123);
+        assertEquals(123, CompletionStageTestAwaiter.await500ms(completionStage).intValue());
     }
 
     // TODO testOneEventualExceptionalCompletionStage()
 
     @Test
     public void testOneImmediateValueCompletableFuture() throws TimeoutException {
-        CompletionStage<String> completionStage = CompletableFuture.completedFuture("hello");
-        assertThat(CompletionStageTestAwaiter.await500ms(completionStage)).isEqualTo("hello");
+        assertEquals("hello", CompletionStageTestAwaiter.await500ms(CompletableFuture.completedFuture("hello")));
     }
 }
