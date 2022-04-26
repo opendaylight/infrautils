@@ -7,9 +7,10 @@
  */
 package org.opendaylight.infrautils.diagstatus.web;
 
+import static java.util.Objects.requireNonNull;
+
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -33,7 +34,7 @@ public class DiagStatusServlet extends HttpServlet {
     private final DiagStatusService diagStatusService;
 
     public DiagStatusServlet(DiagStatusService diagStatusService) {
-        this.diagStatusService = diagStatusService;
+        this.diagStatusService = requireNonNull(diagStatusService);
     }
 
     @Override
@@ -51,9 +52,9 @@ public class DiagStatusServlet extends HttpServlet {
         response.setContentType("application/json");
         response.setCharacterEncoding("utf-8");
 
-        PrintWriter printWriter = response.getWriter();
-        printWriter.println(status.toJSON());
-        printWriter.close();
+        try (var printWriter = response.getWriter()) {
+            printWriter.println(status.toJSON());
+        }
     }
 
 }

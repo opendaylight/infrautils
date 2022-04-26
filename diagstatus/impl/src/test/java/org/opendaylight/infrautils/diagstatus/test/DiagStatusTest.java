@@ -7,11 +7,14 @@
  */
 package org.opendaylight.infrautils.diagstatus.test;
 
-import static com.google.common.truth.Truth.assertThat;
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Optional;
 import javax.inject.Inject;
-import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.MethodRule;
@@ -37,21 +40,22 @@ public class DiagStatusTest {
     @Inject DiagStatusService diagStatusService;
     @Inject DiagStatusServiceMBean diagStatusServiceMBean;
 
-    private static final String SERVICE_STATUS_SUMMARY = "{\n"
-            + "  \"timeStamp\": \"{DO-NOT-BOTHER}\",\n"
-            + "  \"isOperational\": false,\n"
-            + "  \"systemReadyState\": \"ACTIVE\",\n"
-            + "  \"systemReadyStateErrorCause\": \"\",\n"
-            + "  \"statusSummary\": [\n"
-            + "    {\n"
-            + "      \"serviceName\": \"testService\",\n"
-            + "      \"effectiveStatus\": \"UNREGISTERED\",\n"
-            + "      \"reportedStatusDescription\": \"service is Unregistered\",\n"
-            + "      \"statusTimestamp\": \"{DO-NOT-BOTHER}\",\n"
-            + "      \"errorCause\": null\n"
-            + "    }\n"
-            + "  ]\n"
-            + "}";
+    private static final String SERVICE_STATUS_SUMMARY = """
+        {
+          "timeStamp": "{DO-NOT-BOTHER}",
+          "isOperational": false,
+          "systemReadyState": "ACTIVE",
+          "systemReadyStateErrorCause": "",
+          "statusSummary": [
+            {
+              "serviceName": "testService",
+              "effectiveStatus": "UNREGISTERED",
+              "reportedStatusDescription": "service is Unregistered",
+              "statusTimestamp": "{DO-NOT-BOTHER}",
+              "errorCause": null
+            }
+          ]
+        }""";
 
     @Test
     public void testDiagStatus() {
@@ -59,37 +63,38 @@ public class DiagStatusTest {
         diagStatusService.register(testService1);
         // Verify if "testService" got registered with STARTING state.
         ServiceDescriptor serviceDescriptor1 = diagStatusService.getServiceDescriptor(testService1);
-        Assert.assertEquals(ServiceState.STARTING, serviceDescriptor1.getServiceState());
-        assertThat(diagStatusService.getServiceStatusSummary().isOperational()).isFalse();
+        assertEquals(ServiceState.STARTING, serviceDescriptor1.getServiceState());
+        assertFalse(diagStatusService.getServiceStatusSummary().isOperational());
 
         // JSON should be formatted
-        assertThat(diagStatusService.getServiceStatusSummary().toJSON()).contains("\n");
+        // FIXME: better assert
+        assertThat(diagStatusService.getServiceStatusSummary().toJSON(), containsString("\n"));
 
         // Verify that we get _something_ from getErrorCause()
-        assertThat(serviceDescriptor1.getErrorCause()).isEqualTo(Optional.empty());
+        assertEquals(Optional.empty(), serviceDescriptor1.getErrorCause());
 
         // Verify if "testService" status is updated as OPERATIONAL.
         ServiceDescriptor reportStatus = new ServiceDescriptor(testService1, ServiceState.OPERATIONAL,
                 "service is UP");
         diagStatusService.report(reportStatus);
         ServiceDescriptor serviceDescriptor2 = diagStatusService.getServiceDescriptor(testService1);
-        Assert.assertEquals(ServiceState.OPERATIONAL, serviceDescriptor2.getServiceState());
-        assertThat(diagStatusService.getServiceStatusSummary().isOperational()).isTrue();
+        assertEquals(ServiceState.OPERATIONAL, serviceDescriptor2.getServiceState());
+        assertTrue(diagStatusService.getServiceStatusSummary().isOperational());
 
         // Verify if "testService" status is updated as UNREGISTERED.
         diagStatusService.report(new ServiceDescriptor(testService1, ServiceState.UNREGISTERED,
                 "service is Unregistered"));
-        assertThat(diagStatusService.getServiceStatusSummary().isOperational()).isFalse();
+        assertFalse(diagStatusService.getServiceStatusSummary().isOperational());
 
         // JMX based Junits to see if the service state is getting retrieved properly.
-        Assert.assertEquals(ServiceState.UNREGISTERED.name(),
+        assertEquals(ServiceState.UNREGISTERED.name(),
                diagStatusServiceMBean.acquireServiceStatusMap().get(testService1));
 
         // Description must be shown
-        assertThat(diagStatusServiceMBean.acquireServiceStatusDetailed()).contains("service is Unregistered");
+        assertThat(diagStatusServiceMBean.acquireServiceStatusDetailed(), containsString("service is Unregistered"));
 
         String actualServiceStatusSummary = diagStatusService.getServiceStatusSummary().toJSON();
-        assertThat(SERVICE_STATUS_SUMMARY).isEqualTo(actualServiceStatusSummary.replaceAll(
+        assertEquals(SERVICE_STATUS_SUMMARY, actualServiceStatusSummary.replaceAll(
                 "\"timeStamp\":.*\\n", "\"timeStamp\": \"{DO-NOT-BOTHER}\",\n")
                 .replaceAll("\"statusTimestamp\":.*\\n",
                         "\"statusTimestamp\": \"{DO-NOT-BOTHER}\",\n"));
@@ -101,6 +106,6 @@ public class DiagStatusTest {
         ServiceDescriptor reportStatus = new ServiceDescriptor(testService1,
                 new NullPointerException("This is totally borked!"));
 
-        assertThat(reportStatus.getErrorCause().get().getMessage()).isEqualTo("This is totally borked!");
+        assertEquals("This is totally borked!", reportStatus.getErrorCause().get().getMessage());
     }
 }

@@ -7,7 +7,7 @@
  */
 package org.opendaylight.infrautils.testutils.mockito;
 
-import static com.google.common.truth.Truth.assertThat;
+import static org.junit.Assert.assertEquals;
 
 import java.lang.reflect.Method;
 import org.junit.Test;
@@ -20,7 +20,6 @@ public class MethodExtensionsTest {
     @Test
     public void betterToString() throws Exception {
         Method method = MethodExtensionsTest.class.getMethod("fooBar", Integer.TYPE, Object.class);
-        assertThat(MethodExtensions.toString(method)).isEqualTo("fooBar(int index, T element)");
+        assertEquals("fooBar(int index, T element)", MethodExtensions.toString(method));
     }
-
 }
