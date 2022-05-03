@@ -11,20 +11,28 @@ import static java.util.Objects.requireNonNull;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.io.IOException;
-import javax.servlet.ServletException;
+import javax.servlet.Servlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.opendaylight.infrautils.diagstatus.DiagStatusService;
 import org.opendaylight.infrautils.diagstatus.ServiceStatusSummary;
+import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.http.whiteboard.propertytypes.HttpWhiteboardServletName;
+import org.osgi.service.http.whiteboard.propertytypes.HttpWhiteboardServletPattern;
 
 /**
  * Web Servlet for diagstatus which returns JSON and HTTP status code.
  *
  * @author Michael Vorburger.ch
  */
-public class DiagStatusServlet extends HttpServlet {
-
+// FIXME: @WebServlet?
+@HttpWhiteboardServletPattern("/diagstatus")
+@HttpWhiteboardServletName("DiagStatusServlet")
+@Component(service = Servlet.class)
+public final class DiagStatusServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     // Suppress FindBugs warning, because DiagStatusService is not Serializable;
@@ -33,12 +41,18 @@ public class DiagStatusServlet extends HttpServlet {
     @SuppressFBWarnings("SE_BAD_FIELD")
     private final DiagStatusService diagStatusService;
 
-    public DiagStatusServlet(DiagStatusService diagStatusService) {
+    /**
+     * Construct a new servlet backed by specified {@link DiagStatusService}.
+     *
+     * @param diagStatusService backing instance
+     */
+    @Activate
+    public DiagStatusServlet(@Reference DiagStatusService diagStatusService) {
         this.diagStatusService = requireNonNull(diagStatusService);
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse response) throws IOException {
         // use setStatus() NOT sendError(), because we are providing the response
         // INFRAUTILS-47: MUST use setStatus() *BEFORE* response.getWriter()
 
@@ -56,5 +70,4 @@ public class DiagStatusServlet extends HttpServlet {
             printWriter.println(status.toJSON());
         }
     }
-
 }

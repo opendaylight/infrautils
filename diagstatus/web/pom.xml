@@ -27,12 +27,17 @@
     </dependency>
     <dependency>
       <groupId>org.osgi</groupId>
-      <artifactId>org.osgi.service.http</artifactId>
+      <artifactId>org.osgi.service.http.whiteboard</artifactId>
     </dependency>
 
     <dependency>
       <groupId>org.opendaylight.infrautils</groupId>
       <artifactId>infrautils-testutils</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.opendaylight.infrautils</groupId>
+      <artifactId>ready-api</artifactId>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 
