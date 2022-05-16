@@ -189,7 +189,8 @@
                   -Xep:FieldCanBeFinal:ERROR \
                   <!-- new in 2.3.2 --> \
                   -Xep:AndroidJdkLibsChecker:OFF \
-                  -Xep:Java7ApiChecker:OFF</arg>
+                  -Xep:Java7ApiChecker:OFF \
+                  -Xep:Java8ApiChecker:OFF</arg>
               </compilerArgs>
               <annotationProcessorPaths combine.children="append">
                 <path>
