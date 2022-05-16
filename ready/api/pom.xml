@@ -26,8 +26,8 @@
 
   <dependencies>
     <dependency>
-      <groupId>org.opendaylight.infrautils</groupId>
-      <artifactId>infrautils-util</artifactId>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
     </dependency>
   </dependencies>
 
