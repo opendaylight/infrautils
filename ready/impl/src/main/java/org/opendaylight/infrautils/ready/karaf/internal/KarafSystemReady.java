@@ -77,6 +77,7 @@ public class KarafSystemReady extends SimpleSystemReadyMonitor {
     }
 
     @SuppressWarnings("checkstyle:IllegalCatch") // below
+    @SuppressFBWarnings(value = "THROWS_METHOD_THROWS_RUNTIMEEXCEPTION", justification = "Re-thrown")
     private void runCheckBundleDiag() {
         try {
             // 5 minutes really ought to be enough for the whole circus to completely boot up?!
