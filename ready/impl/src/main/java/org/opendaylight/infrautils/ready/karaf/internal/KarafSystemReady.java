@@ -10,6 +10,7 @@ package org.opendaylight.infrautils.ready.karaf.internal;
 import static org.opendaylight.infrautils.ready.SystemState.FAILURE;
 
 import com.google.common.annotations.VisibleForTesting;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
 import org.apache.karaf.bundle.core.BundleService;
@@ -77,6 +78,7 @@ public class KarafSystemReady extends SimpleSystemReadyMonitor {
     }
 
     @SuppressWarnings("checkstyle:IllegalCatch") // below
+    @SuppressFBWarnings(value = "THROWS_METHOD_THROWS_RUNTIMEEXCEPTION", justification = "Re-thrown")
     private void runCheckBundleDiag() {
         try {
             // 5 minutes really ought to be enough for the whole circus to completely boot up?!
