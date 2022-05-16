@@ -70,6 +70,7 @@ public class LogCaptureRule implements TestRule {
 
             @Override
             @SuppressWarnings("checkstyle:IllegalCatch")
+            @SuppressFBWarnings(value = "THROWS_METHOD_THROWS_RUNTIMEEXCEPTION", justification = "Re-throws")
             public void evaluate() throws Throwable {
                 RememberingLogger.resetLastError();
                 @Var @Nullable Throwable testFailingThrowable = null;
