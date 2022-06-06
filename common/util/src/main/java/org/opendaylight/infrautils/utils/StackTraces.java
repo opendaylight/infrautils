@@ -11,7 +11,9 @@ package org.opendaylight.infrautils.utils;
  * Utilities for {@link StackTraceElement} &amp; Co.
  *
  * @author Michael Vorburger.ch, based on an idea by Stephen Kitt
+ * @deprecated This class is deprecated for removal.
  */
+@Deprecated(since = "4.0.0", forRemoval = true)
 public final class StackTraces {
     private StackTraces() {
 
