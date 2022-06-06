@@ -29,6 +29,7 @@ public final class Executors {
     public static final TimeUnit DEFAULT_TIMEOUT_UNIT_FOR_SHUTDOWN = TimeUnit.SECONDS;
 
     private Executors() {
+        // Hidden on purpose
     }
 
     /**
@@ -41,92 +42,38 @@ public final class Executors {
      * @return the newly created single-threaded Executor
      */
     public static ListeningExecutorService newListeningSingleThreadExecutor(String namePrefix, Logger logger) {
-        return MoreExecutors.listeningDecorator(newSingleThreadExecutor(namePrefix, logger));
-    }
-
-    /**
-     * Deprecated single thread executor.
-     * @deprecated Use {@link #newListeningSingleThreadExecutor(String, Logger)} instead.
-     */
-    @Deprecated(forRemoval = true)
-    public static ExecutorService newSingleThreadExecutor(String namePrefix, Logger logger) {
-        return java.util.concurrent.Executors.newSingleThreadExecutor(
-                ThreadFactoryProvider.builder()
-                        .namePrefix(namePrefix)
-                        .logger(logger)
-                        .build()
-                        .get());
+        return MoreExecutors.listeningDecorator(java.util.concurrent.Executors.newSingleThreadExecutor(
+            createThreadFactory(namePrefix, logger)));
     }
 
     public static ListeningExecutorService newFixedThreadPool(int size, String namePrefix, Logger logger) {
         return MoreExecutors.listeningDecorator(java.util.concurrent.Executors.newFixedThreadPool(size,
-                ThreadFactoryProvider.builder()
-                .namePrefix(namePrefix)
-                .logger(logger)
-                .build()
-                .get()));
+            createThreadFactory(namePrefix, logger)));
     }
 
     public static ListeningExecutorService newListeningCachedThreadPool(String namePrefix, Logger logger) {
-        return MoreExecutors.listeningDecorator(newCachedThreadPool(namePrefix, logger));
-    }
-
-    /**
-     * Deprecated cached thread pool executor.
-     * @deprecated Use {@link #newListeningCachedThreadPool(String, Logger)} instead.
-     */
-    @Deprecated(forRemoval = true)
-    public static ExecutorService newCachedThreadPool(String namePrefix, Logger logger) {
-        return java.util.concurrent.Executors.newCachedThreadPool(
-                ThreadFactoryProvider.builder()
-                        .namePrefix(namePrefix)
-                        .logger(logger)
-                        .build()
-                        .get());
+        return MoreExecutors.listeningDecorator(java.util.concurrent.Executors.newCachedThreadPool(
+            createThreadFactory(namePrefix, logger)));
     }
 
     public static ListeningScheduledExecutorService newListeningSingleThreadScheduledExecutor(String namePrefix,
             Logger logger) {
-        return MoreExecutors.listeningDecorator(newSingleThreadScheduledExecutor(namePrefix, logger));
-    }
-
-    /**
-     * Deprecated single thread executor.
-     * @deprecated {@link #newListeningSingleThreadScheduledExecutor(String, Logger)} instead.
-     */
-    @Deprecated(forRemoval = true)
-    public static ScheduledExecutorService newSingleThreadScheduledExecutor(String namePrefix, Logger logger) {
-        return java.util.concurrent.Executors.unconfigurableScheduledExecutorService(
-                   java.util.concurrent.Executors.newSingleThreadScheduledExecutor(
-                    ThreadFactoryProvider.builder()
-                            .namePrefix(namePrefix)
-                            .logger(logger)
-                            .build()
-                            .get()));
+        return MoreExecutors.listeningDecorator(java.util.concurrent.Executors.unconfigurableScheduledExecutorService(
+            java.util.concurrent.Executors.newSingleThreadScheduledExecutor(createThreadFactory(namePrefix, logger))));
     }
 
     public static ListeningScheduledExecutorService newListeningScheduledThreadPool(int corePoolSize, String namePrefix,
             Logger logger) {
-        return MoreExecutors.listeningDecorator(newScheduledThreadPool(corePoolSize, namePrefix, logger));
-    }
-
-    /**
-     * Deprecated scheduled executor.
-     * @deprecated {@link #newListeningScheduledThreadPool(int, String, Logger)} instead.
-     */
-    @Deprecated(forRemoval = true)
-    public static ScheduledExecutorService newScheduledThreadPool(int corePoolSize, String namePrefix,
-            Logger logger) {
-        return java.util.concurrent.Executors.newScheduledThreadPool(corePoolSize,
-                ThreadFactoryProvider.builder()
-                        .namePrefix(namePrefix)
-                        .logger(logger)
-                        .build()
-                        .get());
+        return MoreExecutors.listeningDecorator(java.util.concurrent.Executors.newScheduledThreadPool(corePoolSize,
+            createThreadFactory(namePrefix, logger)));
     }
 
     public static void shutdownAndAwaitTermination(ExecutorService executorService) {
         MoreExecutors.shutdownAndAwaitTermination(executorService, DEFAULT_TIMEOUT_FOR_SHUTDOWN,
                                                   DEFAULT_TIMEOUT_UNIT_FOR_SHUTDOWN);
+    }
+
+    private static ThreadFactory createThreadFactory(String namePrefix, Logger logger) {
+        return ThreadFactoryProvider.builder().namePrefix(namePrefix).logger(logger).build().get();
     }
 }
