@@ -82,24 +82,17 @@ public final class ServiceDescriptor {
                 .add("effectiveStatus", getServiceState())
                 .add("statusTimestamp", getStatusTimestamp().toString())
                 .add("statusDesc", getStatusDesc());
-        getErrorCause().ifPresent(cause -> toStringHelper.add("errorCause", cause));
+        if (errorCause != null) {
+            toStringHelper.add("errorCause", errorCause);
+        }
         return toStringHelper.toString();
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (!(obj instanceof ServiceDescriptor)) {
-            return false;
-        }
-        ServiceDescriptor other = (ServiceDescriptor) obj;
-        return serviceName.equals(other.serviceName)
-                && effectiveStatus == other.effectiveStatus
-                && statusDesc.equals(other.statusDesc)
-                && statusTimestamp.equals(other.statusTimestamp)
-                && Objects.equals(errorCause, other.errorCause);
+        return this == obj || obj instanceof ServiceDescriptor other && serviceName.equals(other.serviceName)
+                && effectiveStatus == other.effectiveStatus && statusDesc.equals(other.statusDesc)
+                && statusTimestamp.equals(other.statusTimestamp) && Objects.equals(errorCause, other.errorCause);
     }
 
     @Override

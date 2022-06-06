@@ -72,16 +72,7 @@ public final class ServiceStatusSummary {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (!(obj instanceof ServiceStatusSummary)) {
-            return false;
-        }
-
-        ServiceStatusSummary that = (ServiceStatusSummary) obj;
-
-        return this.isOperational == that.isOperational
+        return this == obj || obj instanceof ServiceStatusSummary that && this.isOperational == that.isOperational
                 && Objects.equals(this.systemReadyState, that.systemReadyState)
                 && Objects.equals(this.systemReadyStateErrorCause, that.systemReadyStateErrorCause)
                 && Objects.equals(this.statusSummary, that.statusSummary)
