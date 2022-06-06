@@ -256,8 +256,7 @@
                         <link>https://junit.org/junit4/javadoc/4.13/</link>
                         <link>http://hamcrest.org/JavaHamcrest/javadoc/2.2/</link>
                         <link>http://www.slf4j.org/apidocs/</link>
-                        <link>https://google.github.io/guava/releases/29.0-jre/api/docs/</link>
-                        <link>https://commons.apache.org/proper/commons-lang/javadocs/api-2.6/</link>
+                        <link>https://google.github.io/guava/releases/31.1-jre/api/docs/</link>
                         <link>https://commons.apache.org/proper/commons-lang/apidocs/</link>
 
                         <link>https://www.javadoc.io/doc/org.opendaylight.odlparent/odlparent-docs/11.0.0/</link>
