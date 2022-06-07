@@ -46,7 +46,9 @@ import org.eclipse.jdt.annotation.NonNull;
  * <p>See the <code>CompletionStageAwaitExampleTest</code> for an illustration how to use this.
  *
  * @author Michael Vorburger.ch
+ * @deprecated This class is not used anywhere and is scheduled for removal.
  */
+@Deprecated(since = "4.0.0", forRemoval = true)
 public final class CompletionStageTestAwaiter<T> {
 
     // TODO Variant to await eventually .. at end of test, while doing other things in the mean time; and @Rule for that

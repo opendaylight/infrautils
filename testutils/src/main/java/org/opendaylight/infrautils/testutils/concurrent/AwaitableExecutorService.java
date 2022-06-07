@@ -24,7 +24,9 @@ import java.util.stream.Collectors;
 
 /**
  * Executable service wrapper allowing callers to await completion.
+ * @deprecated This class is not used anywhere and is scheduled for removal.
  */
+@Deprecated(since = "4.0.0", forRemoval = true)
 @SuppressFBWarnings("JLM_JSR166_UTILCONCURRENT_MONITORENTER")
 public class AwaitableExecutorService extends ForwardingExecutorService {
     private final ExecutorService delegate;

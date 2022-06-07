@@ -29,7 +29,9 @@ import org.slf4j.LoggerFactory;
  * and unit Test for {@link CompletionStageTestAwaiter}.
  *
  * @author Michael Vorburger.ch
+ * @deprecated This class demonstrates deprecated functionality and is slated for removal.
  */
+@Deprecated(since = "4.0.0", forRemoval = true)
 public class CompletionStageAwaitExampleTest {
 
     private static final Logger LOG = LoggerFactory.getLogger(CompletionStageAwaitExampleTest.class);

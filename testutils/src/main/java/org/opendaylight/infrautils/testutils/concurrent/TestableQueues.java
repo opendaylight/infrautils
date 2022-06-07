@@ -18,7 +18,9 @@ import org.awaitility.core.ConditionTimeoutException;
  * Utility for tests to be able await a {@link Queue} becoming empty.
  *
  * @author Michael Vorburger.ch
+ * @deprecated This class is not used anywhere and is scheduled for removal.
  */
+@Deprecated(since = "4.0.0", forRemoval = true)
 public final class TestableQueues {
     private TestableQueues() {
 

@@ -19,7 +19,9 @@ import org.eclipse.jdt.annotation.Nullable;
  * An {@link Executor} that is intentionally slow. Useful for testing concurrency utilities.
  *
  * @author Michael Vorburger.ch
+ * @deprecated This class is not used anywhere and is scheduled for removal.
  */
+@Deprecated(since = "4.0.0", forRemoval = true)
 public class SlowExecutor implements Executor {
 
     private final Random random = new Random();
