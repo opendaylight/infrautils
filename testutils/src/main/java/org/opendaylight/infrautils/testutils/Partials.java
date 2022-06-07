@@ -14,10 +14,12 @@ import org.opendaylight.infrautils.testutils.mockito.MoreAnswers;
  * Creates instances of "partial" (abstract) test doubles.
  *
  * @author Michael Vorburger.ch
+ * @deprecated Use {@link MoreAnswers} directly.
  */
+@Deprecated(since = "4.0.0", forRemoval = true)
 public final class Partials {
     private Partials() {
-
+        // Hidden on purpose
     }
 
     public static <T> T newPartial(Class<T> abstractClass) {

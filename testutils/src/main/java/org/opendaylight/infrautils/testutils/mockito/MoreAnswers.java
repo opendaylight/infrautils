@@ -11,19 +11,16 @@ import org.mockito.AdditionalAnswers;
 import org.mockito.Answers;
 import org.mockito.Mockito;
 import org.mockito.stubbing.Answer;
-import org.opendaylight.infrautils.testutils.Partials;
 
 /**
  * More {@link Mockito} {@link Answer} variants, extending the its standard
- * {@link Answers} and {@link AdditionalAnswers}. Consider using the
- * {@link Partials#newPartial(Class)} short cut directly.
+ * {@link Answers} and {@link AdditionalAnswers}.
  *
  * @author Michael Vorburger
  */
-@SuppressWarnings("unchecked")
 public final class MoreAnswers {
     private MoreAnswers() {
-
+        // Hidden on purpose
     }
 
     /**
@@ -31,6 +28,7 @@ public final class MoreAnswers {
      *
      * @see CallsRealOrExceptionAnswer
      */
+    @SuppressWarnings("unchecked")
     public static <T> Answer<T> realOrException() {
         return (Answer<T>) CallsRealOrExceptionAnswer.INSTANCE;
     }
@@ -40,6 +38,7 @@ public final class MoreAnswers {
      *
      * @see ThrowsMethodExceptionAnswer
      */
+    @SuppressWarnings("unchecked")
     public static <T> Answer<T> exception() {
         return (Answer<T>) ThrowsMethodExceptionAnswer.INSTANCE;
     }

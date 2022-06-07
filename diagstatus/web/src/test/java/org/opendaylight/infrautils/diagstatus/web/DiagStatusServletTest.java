@@ -8,6 +8,7 @@
 package org.opendaylight.infrautils.diagstatus.web;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
 import static org.opendaylight.infrautils.ready.SystemState.ACTIVE;
 import static org.opendaylight.infrautils.ready.SystemState.BOOTING;
 
@@ -19,7 +20,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.opendaylight.infrautils.diagstatus.DiagStatusService;
 import org.opendaylight.infrautils.diagstatus.ServiceStatusSummary;
-import org.opendaylight.infrautils.testutils.Partials;
+import org.opendaylight.infrautils.testutils.mockito.MoreAnswers;
 import org.opendaylight.infrautils.testutils.web.TestWebClient;
 import org.opendaylight.infrautils.testutils.web.TestWebClient.Method;
 import org.opendaylight.infrautils.testutils.web.TestWebServer;
@@ -32,7 +33,8 @@ import org.opendaylight.infrautils.testutils.web.TestWebServer;
 public class DiagStatusServletTest {
     private TestWebServer webServer;
     private TestWebClient webClient;
-    private final TestDiagStatusService testDiagStatusService = Partials.newPartial(TestDiagStatusService.class);
+    private final TestDiagStatusService testDiagStatusService =
+        mock(TestDiagStatusService.class, MoreAnswers.realOrException());
 
     @Before
     public void beforeTest() throws ServletException {
