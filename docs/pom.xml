@@ -12,7 +12,7 @@
     <parent>
         <groupId>org.opendaylight.odlparent</groupId>
         <artifactId>bundle-parent</artifactId>
-        <version>11.0.1</version>
+        <version>11.0.2</version>
         <relativePath/>
     </parent>
 
@@ -259,7 +259,7 @@
                         <link>https://google.github.io/guava/releases/31.1-jre/api/docs/</link>
                         <link>https://commons.apache.org/proper/commons-lang/apidocs/</link>
 
-                        <link>https://www.javadoc.io/doc/org.opendaylight.odlparent/odlparent-docs/11.0.1/</link>
+                        <link>https://www.javadoc.io/doc/org.opendaylight.odlparent/odlparent-docs/11.0.2/</link>
                     </links>
                     <groups>
                         <group>
