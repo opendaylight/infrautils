@@ -18,7 +18,9 @@ import org.slf4j.Logger;
  * some kind of context which allows to better identify the root cause.
  *
  * @author Michael Vorburger.ch
+ * @deprecated This class is unused and untested. It will be removed in the next major release.
  */
+@Deprecated(since = "4.0.3", forRemoval)
 public abstract class LoggingUncaughtThreadDeathContextRunnable implements Runnable {
 
     private final Logger logger;
