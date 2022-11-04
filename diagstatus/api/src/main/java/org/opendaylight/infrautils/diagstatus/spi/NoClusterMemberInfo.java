@@ -7,8 +7,6 @@
  */
 package org.opendaylight.infrautils.diagstatus.spi;
 
-import static java.util.Collections.emptyList;
-
 import com.google.common.net.InetAddresses;
 import java.net.InetAddress;
 import java.util.List;
@@ -21,7 +19,6 @@ import org.opendaylight.infrautils.diagstatus.ClusterMemberInfo;
  */
 @Deprecated(forRemoval = true)
 public class NoClusterMemberInfo implements ClusterMemberInfo {
-
     private final InetAddress selfInetAddress;
 
     public NoClusterMemberInfo() {
@@ -39,7 +36,7 @@ public class NoClusterMemberInfo implements ClusterMemberInfo {
 
     @Override
     public List<InetAddress> getClusterMembers() {
-        return emptyList();
+        return List.of();
     }
 
     @Override

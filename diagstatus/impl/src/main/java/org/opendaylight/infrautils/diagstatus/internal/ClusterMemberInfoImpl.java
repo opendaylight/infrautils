@@ -12,9 +12,9 @@ import static java.util.Objects.requireNonNull;
 
 import com.google.common.net.InetAddresses;
 import java.net.InetAddress;
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.inject.Singleton;
 import javax.management.JMException;
 import org.apache.commons.lang3.StringUtils;
@@ -62,18 +62,16 @@ public final class ClusterMemberInfoImpl implements ClusterMemberInfo {
             clusterMemberMBeanValue = MBeanUtils.getMBeanAttribute("akka:type=Cluster", "Members");
         } catch (JMException e) {
             LOG.error("Problem to getMBeanAttribute(\"akka:type=Cluster\", \"Members\"); returning empty List", e);
-            return Collections.emptyList();
+            return List.of();
         }
 
-        List<InetAddress> clusterIPAddresses = new ArrayList<>();
-        if (clusterMemberMBeanValue != null) {
-            String[] clusterMembers = ((String)clusterMemberMBeanValue).split(",", -1);
-            for (String clusterMember : clusterMembers) {
-                String nodeIp = extractAddressFromAkka(clusterMember);
-                clusterIPAddresses.add(InetAddresses.forString(nodeIp));
-            }
+        if (clusterMemberMBeanValue == null) {
+            return List.of();
         }
-        return clusterIPAddresses;
+
+        return Arrays.stream(((String)clusterMemberMBeanValue).split(",", -1))
+            .map(clusterMember -> InetAddresses.forString(extractAddressFromAkka(clusterMember)))
+            .collect(Collectors.toUnmodifiableList());
     }
 
     @Override

@@ -13,7 +13,7 @@ import static org.opendaylight.infrautils.diagstatus.ServiceState.OPERATIONAL;
 import com.google.common.net.InetAddresses;
 import java.io.IOException;
 import java.net.InetAddress;
-import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import javax.management.InstanceNotFoundException;
 import javax.management.MBeanRegistrationException;
@@ -66,7 +66,7 @@ public class DiagStatusCommandTest {
 
     @Before
     public void start() throws Exception {
-        diagStatusService = new DiagStatusServiceImpl(Collections.emptyList(), systemReadyMonitor);
+        diagStatusService = new DiagStatusServiceImpl(List.of(), systemReadyMonitor);
         String testService1 = "testService";
         diagStatusService.register(testService1);
         diagStatusService.report(new ServiceDescriptor("testService", OPERATIONAL,

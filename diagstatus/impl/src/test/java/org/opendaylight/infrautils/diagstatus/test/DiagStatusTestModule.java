@@ -8,7 +8,6 @@
 package org.opendaylight.infrautils.diagstatus.test;
 
 import com.google.inject.TypeLiteral;
-import java.util.Collections;
 import java.util.List;
 import org.opendaylight.infrautils.diagstatus.ClusterMemberInfo;
 import org.opendaylight.infrautils.diagstatus.DiagStatusService;
@@ -33,7 +32,7 @@ public class DiagStatusTestModule extends AbstractGuiceJsr250Module {
     protected void configureBindings() {
         bind(DiagStatusService.class).to(DiagStatusServiceImpl.class);
         bind(ClusterMemberInfo.class).to(ClusterMemberInfoImpl.class);
-        bind(new TypeLiteral<List<ServiceStatusProvider>>() {}).toInstance(Collections.emptyList());
+        bind(new TypeLiteral<List<ServiceStatusProvider>>() {}).toInstance(List.of());
         bind(SystemReadyMonitor.class).toInstance(new TestSystemReadyMonitor(Behaviour.NEVER));
         bind(DiagStatusServiceMBean.class).to(DiagStatusServiceMBeanImpl.class);
     }
