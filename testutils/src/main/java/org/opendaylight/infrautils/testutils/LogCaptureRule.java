@@ -139,10 +139,10 @@ public class LogCaptureRule implements TestRule {
     }
 
     public Throwable getLastErrorThrowable() {
-        return RememberingLogger.getLastErrorThrowable().get();
+        return RememberingLogger.getLastErrorThrowable().orElseThrow();
     }
 
     public Throwable getErrorThrowable(int howManyMessagesBack) {
-        return RememberingLogger.getErrorThrowable(howManyMessagesBack).get();
+        return RememberingLogger.getErrorThrowable(howManyMessagesBack).orElseThrow();
     }
 }

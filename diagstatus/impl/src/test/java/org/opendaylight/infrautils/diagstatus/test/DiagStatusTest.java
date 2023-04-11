@@ -106,6 +106,6 @@ public class DiagStatusTest {
         ServiceDescriptor reportStatus = new ServiceDescriptor(testService1,
                 new NullPointerException("This is totally borked!"));
 
-        assertEquals("This is totally borked!", reportStatus.getErrorCause().get().getMessage());
+        assertEquals("This is totally borked!", reportStatus.getErrorCause().orElseThrow().getMessage());
     }
 }

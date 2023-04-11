@@ -86,7 +86,7 @@ public class DiagStatusServiceMBeanImpl extends StandardMBean implements DiagSta
             }
             if (status.getErrorCause() != null && status.getErrorCause().isPresent()) {
                 statusSummary.append("Error Cause          : ")
-                        .append(Throwables.getStackTraceAsString(status.getErrorCause().get())).append("\n");
+                        .append(Throwables.getStackTraceAsString(status.getErrorCause().orElseThrow())).append("\n");
             }
             statusSummary.append('\n');
         }
