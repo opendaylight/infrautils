@@ -22,6 +22,7 @@ import org.junit.rules.MethodRule;
 import org.opendaylight.infrautils.diagstatus.DiagStatusService;
 import org.opendaylight.infrautils.diagstatus.DiagStatusServiceMBean;
 import org.opendaylight.infrautils.diagstatus.ServiceDescriptor;
+import org.opendaylight.infrautils.diagstatus.ServiceRegistration;
 import org.opendaylight.infrautils.diagstatus.ServiceState;
 import org.opendaylight.infrautils.diagstatus.ServiceStatusSummary;
 import org.opendaylight.infrautils.inject.guice.testutils.GuiceRule;
@@ -82,7 +83,8 @@ public class DiagStatusTest {
     @Test
     public void testDiagStatus() {
         String testService1 = "testService";
-        diagStatusService.register(testService1);
+        ServiceRegistration reg = diagStatusService.register(testService1);
+        assertNotNull(reg);
         // Verify if "testService" got registered with STARTING state.
         ServiceDescriptor serviceDescriptor1 = diagStatusService.getServiceDescriptor(testService1);
         assertEquals(ServiceState.STARTING, serviceDescriptor1.getServiceState());
@@ -94,14 +96,13 @@ public class DiagStatusTest {
         // Verify if "testService" status is updated as OPERATIONAL.
         ServiceDescriptor reportStatus = new ServiceDescriptor(testService1, ServiceState.OPERATIONAL,
                 "service is UP");
-        diagStatusService.report(reportStatus);
+        reg.report(reportStatus);
         ServiceDescriptor serviceDescriptor2 = diagStatusService.getServiceDescriptor(testService1);
         assertEquals(ServiceState.OPERATIONAL, serviceDescriptor2.getServiceState());
         assertTrue(diagStatusService.getServiceStatusSummary().isOperational());
 
         // Verify if "testService" status is updated as UNREGISTERED.
-        diagStatusService.report(new ServiceDescriptor(testService1, ServiceState.UNREGISTERED,
-                "service is Unregistered"));
+        reg.report(new ServiceDescriptor(testService1, ServiceState.UNREGISTERED, "service is Unregistered"));
         assertFalse(diagStatusService.getServiceStatusSummary().isOperational());
 
         // JMX based Junits to see if the service state is getting retrieved properly.
@@ -130,9 +131,9 @@ public class DiagStatusTest {
     @Test
     public void testThrowable() {
         var testService1 = "testService";
-        diagStatusService.register(testService1);
+        var reg = diagStatusService.register(testService1);
         var reportStatus = new ServiceDescriptor(testService1, new Throwable("This is the problem"));
-        diagStatusService.report(reportStatus);
+        reg.report(reportStatus);
         var serializedServiceStatusSummary = diagStatusService.getServiceStatusSummary().toJSON();
         var deserializedServiceStatusSummary = ServiceStatusSummary.fromJSON(serializedServiceStatusSummary);
         assertNotNull(deserializedServiceStatusSummary);
