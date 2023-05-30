@@ -7,13 +7,14 @@
  */
 package org.opendaylight.infrautils.diagstatus.internal;
 
+import static java.util.Objects.requireNonNull;
 import static org.opendaylight.infrautils.diagstatus.ServiceState.STARTING;
 
 import com.google.common.collect.ImmutableSet;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.Collection;
-import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 import org.opendaylight.infrautils.diagstatus.DiagStatusService;
 import org.opendaylight.infrautils.diagstatus.ServiceDescriptor;
 import org.opendaylight.infrautils.diagstatus.ServiceRegistration;
@@ -33,22 +34,26 @@ import org.slf4j.LoggerFactory;
 abstract class AbstractDiagStatusService implements DiagStatusService {
     private static final Logger LOG = LoggerFactory.getLogger(AbstractDiagStatusService.class);
 
-    private final Map<String, ServiceDescriptor> statusMap = new ConcurrentHashMap<>();
+    private final ConcurrentMap<String, ServiceDescriptor> statusMap = new ConcurrentHashMap<>();
 
     @Override
     public final ServiceRegistration register(String serviceIdentifier) {
-        ServiceDescriptor serviceDescriptor = new ServiceDescriptor(serviceIdentifier, STARTING, "INITIALIZING");
-        statusMap.put(serviceIdentifier, serviceDescriptor);
-        return () -> {
-            if (statusMap.remove(serviceIdentifier) == null) {
-                throw new IllegalStateException("Service already unregistered");
+        statusMap.put(serviceIdentifier, new ServiceDescriptor(serviceIdentifier, STARTING, "INITIALIZING"));
+        return new ServiceRegistration() {
+            @Override
+            public void report(ServiceDescriptor serviceDescriptor) {
+                var checked = requireNonNull(serviceDescriptor);
+                var prev = statusMap.computeIfPresent(serviceIdentifier, (key, value) -> checked);
+                if (prev == null) {
+                    throw new IllegalStateException("Service already unregistered");
+                }
+            }
+
+            @Override
+            public void close() {
+                statusMap.remove(serviceIdentifier);
             }
         };
-    }
-
-    @Override
-    public final void report(ServiceDescriptor serviceDescriptor) {
-        statusMap.put(serviceDescriptor.getModuleServiceName(), serviceDescriptor);
     }
 
     @Override
