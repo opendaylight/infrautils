@@ -7,6 +7,8 @@
  */
 package org.opendaylight.infrautils.diagstatus.it;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.ops4j.pax.exam.CoreOptions.maven;
 
 import javax.inject.Inject;
@@ -14,6 +16,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.opendaylight.infrautils.diagstatus.DiagStatusService;
 import org.opendaylight.infrautils.diagstatus.ServiceDescriptor;
+import org.opendaylight.infrautils.diagstatus.ServiceRegistration;
 import org.opendaylight.infrautils.diagstatus.ServiceState;
 import org.opendaylight.infrautils.itestutils.AbstractIntegrationTest;
 import org.ops4j.pax.exam.options.UrlReference;
@@ -50,16 +53,15 @@ public class DiagStatusIT extends AbstractIntegrationTest {
     @Test
     public void testDiagStatusPushModel() {
         String testService1 = "testService";
-        diagStatusService.register(testService1);
+        ServiceRegistration reg = diagStatusService.register(testService1);
+        assertNotNull(reg);
         // Verify if "testService" got registered with STARTING state.
         ServiceDescriptor serviceDescriptor = diagStatusService.getServiceDescriptor(testService1);
-        Assert.assertEquals(serviceDescriptor.getServiceState(), ServiceState.STARTING);
+        assertEquals(serviceDescriptor.getServiceState(), ServiceState.STARTING);
 
         // Verify if "testService" status is updated as OPERATIONAL.
-        diagStatusService.report(new ServiceDescriptor(testService1, ServiceState.OPERATIONAL,
-                "service is UP"));
+        reg.report(new ServiceDescriptor(testService1, ServiceState.OPERATIONAL, "service is UP"));
         serviceDescriptor = diagStatusService.getServiceDescriptor(testService1);
-        Assert.assertEquals(serviceDescriptor.getServiceState(), ServiceState.OPERATIONAL);
+        assertEquals(serviceDescriptor.getServiceState(), ServiceState.OPERATIONAL);
     }
-
 }
