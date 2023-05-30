@@ -28,6 +28,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.opendaylight.infrautils.diagstatus.ClusterMemberInfo;
 import org.opendaylight.infrautils.diagstatus.DiagStatusService;
 import org.opendaylight.infrautils.diagstatus.ServiceDescriptor;
+import org.opendaylight.infrautils.diagstatus.ServiceRegistration;
 import org.opendaylight.infrautils.diagstatus.internal.DiagStatusServiceImpl;
 import org.opendaylight.infrautils.diagstatus.internal.DiagStatusServiceMBeanImpl;
 import org.opendaylight.infrautils.diagstatus.web.DiagStatusServlet;
@@ -68,9 +69,8 @@ public class DiagStatusCommandTest {
     public void start() throws Exception {
         diagStatusService = new DiagStatusServiceImpl(List.of(), systemReadyMonitor);
         String testService1 = "testService";
-        diagStatusService.register(testService1);
-        diagStatusService.report(new ServiceDescriptor("testService", OPERATIONAL,
-                "operational"));
+        ServiceRegistration reg = diagStatusService.register(testService1);
+        reg.report(new ServiceDescriptor("testService", OPERATIONAL, "operational"));
         httpClient = new DefaultHttpClientService();
         httpClient.activate(Map.of("org.osgi.service.http.port", "8181"));
         diagStatusServiceMBeanImpl = new DiagStatusServiceMBeanImpl(diagStatusService, systemReadyMonitor);

@@ -10,15 +10,20 @@ package org.opendaylight.infrautils.diagstatus;
 /**
  * A registration of a diagstatus "Service".
  *
- * <p>Not to be confused with an org.osgi.framework.ServiceRegistration, which this has nothing to do with.
+ * <p>Not to be confused with an {@code org.osgi.framework.ServiceRegistration}, which this has nothing to do with.
  *
  * @author Michael Vorburger.ch
  */
-public interface ServiceRegistration {
+public interface ServiceRegistration extends AutoCloseable {
     /**
-     * Unregisters a service.
+     * Report the status of the registered service.
      *
-     * @throws IllegalStateException If this {@code ServiceRegistration} object has already been unregistered.
+     * @param serviceDescriptor description of the service state
+     * @throws NullPointerException if {@code serviceDescriptor} is {@code null}
+     * @throws IllegalStateException if this registration has been {@link #close()}d
      */
-    void unregister();
+    void report(ServiceDescriptor serviceDescriptor);
+
+    @Override
+    void close();
 }

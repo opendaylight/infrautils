@@ -21,7 +21,6 @@ import java.util.Collection;
  * @author Michael Vorburger
  */
 public interface DiagStatusService {
-
     /**
      * Register a service for status monitoring.
      *
@@ -31,14 +30,6 @@ public interface DiagStatusService {
      * @return Registration status
      */
     ServiceRegistration register(String serviceIdentifier);
-
-    /**
-     * Report the status of a service specified by the identifier.
-     *
-     * @param serviceDescriptor
-     *            description of the service state
-     */
-    void report(ServiceDescriptor serviceDescriptor);
 
     /**
      * Retrieve the status of a service specified by the identifier.
