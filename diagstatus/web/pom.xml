@@ -12,11 +12,6 @@
   <artifactId>diagstatus-web</artifactId>
   <packaging>bundle</packaging>
 
-  <!-- FIXME: INFRAUTILS-100: remove this workaround -->
-  <properties>
-    <jacoco.version>0.8.8</jacoco.version>
-  </properties>
-
   <dependencies>
     <dependency>
       <groupId>org.opendaylight.infrautils</groupId>
