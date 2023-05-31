@@ -57,6 +57,26 @@ public class DiagStatusTest {
           ]
         }""";
 
+    private static final String SERVICE_STATUS_SUMMARY_THROWABLE = """
+        {
+          "timeStamp": "{DO-NOT-BOTHER}",
+          "isOperational": false,
+          "systemReadyState": "ACTIVE",
+          "systemReadyStateErrorCause": "",
+          "statusSummary": [
+            {
+              "serviceName": "testService",
+              "effectiveStatus": "ERROR",
+              "reportedStatusDescription": "",
+              "statusTimestamp": "{DO-NOT-BOTHER}",
+              "errorCause": {
+                "type": "Throwable",
+                "message": "This is the problem"
+              }
+            }
+          ]
+        }""";
+
     @Test
     public void testDiagStatus() {
         String testService1 = "testService";
@@ -65,10 +85,6 @@ public class DiagStatusTest {
         ServiceDescriptor serviceDescriptor1 = diagStatusService.getServiceDescriptor(testService1);
         assertEquals(ServiceState.STARTING, serviceDescriptor1.getServiceState());
         assertFalse(diagStatusService.getServiceStatusSummary().isOperational());
-
-        // JSON should be formatted
-        // FIXME: better assert
-        assertThat(diagStatusService.getServiceStatusSummary().toJSON(), containsString("\n"));
 
         // Verify that we get _something_ from getErrorCause()
         assertEquals(Optional.empty(), serviceDescriptor1.getErrorCause());
@@ -107,5 +123,18 @@ public class DiagStatusTest {
                 new NullPointerException("This is totally borked!"));
 
         assertEquals("This is totally borked!", reportStatus.getErrorCause().orElseThrow().getMessage());
+    }
+
+    @Test
+    public void testThrowable() {
+        String testService1 = "testService";
+        diagStatusService.register(testService1);
+        ServiceDescriptor reportStatus = new ServiceDescriptor(testService1, new Throwable("This is the problem"));
+        diagStatusService.report(reportStatus);
+        String actualServiceStatusSummary = diagStatusService.getServiceStatusSummary().toJSON();
+        assertEquals(SERVICE_STATUS_SUMMARY_THROWABLE, actualServiceStatusSummary.replaceAll(
+                        "\"timeStamp\":.*\\n", "\"timeStamp\": \"{DO-NOT-BOTHER}\",\n")
+                .replaceAll("\"statusTimestamp\":.*\\n",
+                        "\"statusTimestamp\": \"{DO-NOT-BOTHER}\",\n"));
     }
 }
