@@ -19,7 +19,7 @@
 
     <groupId>org.opendaylight.infrautils</groupId>
     <artifactId>common-aggregator</artifactId>
-    <version>5.0.5</version>
+    <version>5.0.6-SNAPSHOT</version>
     <packaging>pom</packaging>
     <!-- <name> formatting is used by autorelease to parse and notify projects on
          build failure. Please do not modify this unless you have a good reason. -->
