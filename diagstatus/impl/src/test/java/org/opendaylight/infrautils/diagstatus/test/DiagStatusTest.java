@@ -11,6 +11,7 @@ import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Optional;
@@ -22,6 +23,7 @@ import org.opendaylight.infrautils.diagstatus.DiagStatusService;
 import org.opendaylight.infrautils.diagstatus.DiagStatusServiceMBean;
 import org.opendaylight.infrautils.diagstatus.ServiceDescriptor;
 import org.opendaylight.infrautils.diagstatus.ServiceState;
+import org.opendaylight.infrautils.diagstatus.ServiceStatusSummary;
 import org.opendaylight.infrautils.inject.guice.testutils.GuiceRule;
 import org.opendaylight.infrautils.testutils.LogCaptureRule;
 import org.opendaylight.infrautils.testutils.LogRule;
@@ -57,6 +59,26 @@ public class DiagStatusTest {
           ]
         }""";
 
+    private static final String SERVICE_STATUS_SUMMARY_THROWABLE = """
+        {
+          "timeStamp": "{DO-NOT-BOTHER}",
+          "isOperational": false,
+          "systemReadyState": "ACTIVE",
+          "systemReadyStateErrorCause": "",
+          "statusSummary": [
+            {
+              "serviceName": "testService",
+              "effectiveStatus": "ERROR",
+              "reportedStatusDescription": "",
+              "statusTimestamp": "{DO-NOT-BOTHER}",
+              "errorCause": {
+                "type": "Throwable",
+                "message": "This is the problem"
+              }
+            }
+          ]
+        }""";
+
     @Test
     public void testDiagStatus() {
         String testService1 = "testService";
@@ -65,10 +87,6 @@ public class DiagStatusTest {
         ServiceDescriptor serviceDescriptor1 = diagStatusService.getServiceDescriptor(testService1);
         assertEquals(ServiceState.STARTING, serviceDescriptor1.getServiceState());
         assertFalse(diagStatusService.getServiceStatusSummary().isOperational());
-
-        // JSON should be formatted
-        // FIXME: better assert
-        assertThat(diagStatusService.getServiceStatusSummary().toJSON(), containsString("\n"));
 
         // Verify that we get _something_ from getErrorCause()
         assertEquals(Optional.empty(), serviceDescriptor1.getErrorCause());
@@ -107,5 +125,22 @@ public class DiagStatusTest {
                 new NullPointerException("This is totally borked!"));
 
         assertEquals("This is totally borked!", reportStatus.getErrorCause().get().getMessage());
+    }
+
+    @Test
+    public void testThrowable() {
+        var testService1 = "testService";
+        diagStatusService.register(testService1);
+        var reportStatus = new ServiceDescriptor(testService1, new Throwable("This is the problem"));
+        diagStatusService.report(reportStatus);
+        var serializedServiceStatusSummary = diagStatusService.getServiceStatusSummary().toJSON();
+        var deserializedServiceStatusSummary = ServiceStatusSummary.fromJSON(serializedServiceStatusSummary);
+        assertNotNull(deserializedServiceStatusSummary);
+
+        var actualStatusSummary = deserializedServiceStatusSummary.toJSON();
+        assertEquals(SERVICE_STATUS_SUMMARY_THROWABLE, actualStatusSummary.replaceAll(
+                        "\"timeStamp\":.*\\n", "\"timeStamp\": \"{DO-NOT-BOTHER}\",\n")
+                .replaceAll("\"statusTimestamp\":.*\\n",
+                        "\"statusTimestamp\": \"{DO-NOT-BOTHER}\",\n"));
     }
 }
