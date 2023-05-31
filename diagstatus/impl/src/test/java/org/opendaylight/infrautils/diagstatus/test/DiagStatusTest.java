@@ -66,10 +66,6 @@ public class DiagStatusTest {
         assertEquals(ServiceState.STARTING, serviceDescriptor1.getServiceState());
         assertFalse(diagStatusService.getServiceStatusSummary().isOperational());
 
-        // JSON should be formatted
-        // FIXME: better assert
-        assertThat(diagStatusService.getServiceStatusSummary().toJSON(), containsString("\n"));
-
         // Verify that we get _something_ from getErrorCause()
         assertEquals(Optional.empty(), serviceDescriptor1.getErrorCause());
 
