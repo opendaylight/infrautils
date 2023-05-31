@@ -23,6 +23,8 @@ import org.opendaylight.infrautils.ready.SystemState;
 public final class ServiceStatusSummary {
 
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().serializeNulls()
+            .registerTypeAdapter(Throwable.class, new ThrowableSerializer())
+            .registerTypeAdapter(Throwable.class, new ThrowableDeserializer())
             .registerTypeAdapter(Instant.class, new InstantSerializer())
             .registerTypeAdapter(Instant.class, new InstantDeserializer())
             .create();
