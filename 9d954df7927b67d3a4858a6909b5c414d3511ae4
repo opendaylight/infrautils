@@ -18,6 +18,24 @@
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b61616b_e0b7b6e5",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ThrowableDeserializer.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 9173
+      },
+      "writtenOn": "2023-06-01T12:57:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "66b52ca6_010f2d70",
+      "revId": "9d954df7927b67d3a4858a6909b5c414d3511ae4",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0320ba04_a07f4bda",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-06-01T10:28:17Z",
       "side": 1,
       "message": "Add one empty line here.",
+      "revId": "9d954df7927b67d3a4858a6909b5c414d3511ae4",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc1b5617_ea3a3ce2",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ThrowableDeserializer.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 9173
+      },
+      "writtenOn": "2023-06-01T12:57:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0320ba04_a07f4bda",
       "revId": "9d954df7927b67d3a4858a6909b5c414d3511ae4",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
     },
@@ -52,6 +88,24 @@
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "431c338f_5241ee15",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ThrowableDeserializer.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 9173
+      },
+      "writtenOn": "2023-06-01T12:57:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9c7440fc_7a223e8a",
+      "revId": "9d954df7927b67d3a4858a6909b5c414d3511ae4",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b9af141e_608642be",
@@ -65,6 +119,24 @@
       "writtenOn": "2023-06-01T10:28:17Z",
       "side": 1,
       "message": "Delete empty line.",
+      "revId": "9d954df7927b67d3a4858a6909b5c414d3511ae4",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e363b91_8f0b068e",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ThrowableSerializer.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 9173
+      },
+      "writtenOn": "2023-06-01T12:57:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b9af141e_608642be",
       "revId": "9d954df7927b67d3a4858a6909b5c414d3511ae4",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
     },
@@ -86,6 +158,24 @@
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ff9fb9a_70eba46d",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ThrowableSerializer.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 9173
+      },
+      "writtenOn": "2023-06-01T12:57:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d2365f35_dcb95c9d",
+      "revId": "9d954df7927b67d3a4858a6909b5c414d3511ae4",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9ba7500d_c21f227c",
@@ -99,6 +189,24 @@
       "writtenOn": "2023-06-01T10:28:17Z",
       "side": 1,
       "message": "Improve code style.",
+      "revId": "9d954df7927b67d3a4858a6909b5c414d3511ae4",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d4615ae_8a9dd896",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ThrowableSerializer.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 9173
+      },
+      "writtenOn": "2023-06-01T12:57:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9ba7500d_c21f227c",
       "revId": "9d954df7927b67d3a4858a6909b5c414d3511ae4",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
     }
