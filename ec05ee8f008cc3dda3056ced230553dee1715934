@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "939d2715_f8e1f7f6",
+        "filename": "diagstatus/impl/src/test/java/org/opendaylight/infrautils/diagstatus/test/DiagStatusTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 8144
+      },
+      "writtenOn": "2023-06-01T10:31:18Z",
+      "side": 1,
+      "message": "Please check if here we should not assert for /n?",
+      "revId": "ec05ee8f008cc3dda3056ced230553dee1715934",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
+    }
+  ]
+}
