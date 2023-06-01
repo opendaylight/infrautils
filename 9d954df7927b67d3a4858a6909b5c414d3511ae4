@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66b52ca6_010f2d70",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ThrowableDeserializer.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 8144
+      },
+      "writtenOn": "2023-06-01T10:28:17Z",
+      "side": 1,
+      "message": "We do not add empty line after copyright - check setting of your IDE.",
+      "revId": "9d954df7927b67d3a4858a6909b5c414d3511ae4",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0320ba04_a07f4bda",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ThrowableDeserializer.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 8144
+      },
+      "writtenOn": "2023-06-01T10:28:17Z",
+      "side": 1,
+      "message": "Add one empty line here.",
+      "revId": "9d954df7927b67d3a4858a6909b5c414d3511ae4",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c7440fc_7a223e8a",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ThrowableDeserializer.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 8144
+      },
+      "writtenOn": "2023-06-01T10:28:17Z",
+      "side": 1,
+      "message": "Please, improve code style, final, var, etc.",
+      "revId": "9d954df7927b67d3a4858a6909b5c414d3511ae4",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9af141e_608642be",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ThrowableSerializer.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 8144
+      },
+      "writtenOn": "2023-06-01T10:28:17Z",
+      "side": 1,
+      "message": "Delete empty line.",
+      "revId": "9d954df7927b67d3a4858a6909b5c414d3511ae4",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2365f35_dcb95c9d",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ThrowableSerializer.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 8144
+      },
+      "writtenOn": "2023-06-01T10:28:17Z",
+      "side": 1,
+      "message": "Here we can add one empty line.",
+      "revId": "9d954df7927b67d3a4858a6909b5c414d3511ae4",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ba7500d_c21f227c",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ThrowableSerializer.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 8144
+      },
+      "writtenOn": "2023-06-01T10:28:17Z",
+      "side": 1,
+      "message": "Improve code style.",
+      "revId": "9d954df7927b67d3a4858a6909b5c414d3511ae4",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
+    }
+  ]
+}
