@@ -12,7 +12,7 @@
     <parent>
         <groupId>org.opendaylight.odlparent</groupId>
         <artifactId>bundle-parent</artifactId>
-        <version>12.0.6</version>
+        <version>13.0.0</version>
         <relativePath/>
     </parent>
 
@@ -99,6 +99,11 @@
         </dependency>
 
         <!-- Also add dependencies we are using -->
+        <dependency>
+            <groupId>com.github.spotbugs</groupId>
+            <artifactId>spotbugs-annotations</artifactId>
+            <scope>provided</scope>
+        </dependency>
         <dependency>
             <groupId>jakarta.annotation</groupId>
             <artifactId>jakarta.annotation-api</artifactId>
@@ -259,7 +264,7 @@
                         <link>https://google.github.io/guava/releases/31.1-jre/api/docs/</link>
                         <link>https://commons.apache.org/proper/commons-lang/apidocs/</link>
 
-                        <link>https://www.javadoc.io/doc/org.opendaylight.odlparent/odlparent-docs/12.0.6/</link>
+                        <link>https://www.javadoc.io/doc/org.opendaylight.odlparent/odlparent-docs/13.0.0/</link>
                     </links>
                     <groups>
                         <group>
