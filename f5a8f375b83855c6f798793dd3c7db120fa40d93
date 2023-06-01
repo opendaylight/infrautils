@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b43b8a40_4a05eb29",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 8144
+      },
+      "writtenOn": "2023-06-01T10:30:19Z",
+      "side": 1,
+      "message": "We should say here that we are improving previous solution.",
+      "revId": "f5a8f375b83855c6f798793dd3c7db120fa40d93",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd480afe_bc597adc",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ThrowableAdapterFactory.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 8144
+      },
+      "writtenOn": "2023-06-01T10:30:19Z",
+      "side": 1,
+      "message": "Delete this line",
+      "revId": "f5a8f375b83855c6f798793dd3c7db120fa40d93",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9180bfa7_c782abf4",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ThrowableAdapterFactory.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 8144
+      },
+      "writtenOn": "2023-06-01T10:30:19Z",
+      "side": 1,
+      "message": "Empty line before.\n\nAdd comment into constructor: // Hidden on purpose",
+      "revId": "f5a8f375b83855c6f798793dd3c7db120fa40d93",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6911c66b_5455e838",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ThrowableAdapterFactory.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 8144
+      },
+      "writtenOn": "2023-06-01T10:30:19Z",
+      "side": 1,
+      "message": "Please follow code style.",
+      "revId": "f5a8f375b83855c6f798793dd3c7db120fa40d93",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
+    }
+  ]
+}
