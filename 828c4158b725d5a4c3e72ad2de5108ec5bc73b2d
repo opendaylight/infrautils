@@ -1,0 +1,106 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a0d807a_6aae943f",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ThrowableDeserializer.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 8144
+      },
+      "writtenOn": "2023-06-06T12:25:37Z",
+      "side": 1,
+      "message": "Why suppress?",
+      "revId": "828c4158b725d5a4c3e72ad2de5108ec5bc73b2d",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2fc1e5b_000e7279",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ThrowableDeserializer.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 8144
+      },
+      "writtenOn": "2023-06-06T12:25:37Z",
+      "side": 1,
+      "message": "public final class",
+      "revId": "828c4158b725d5a4c3e72ad2de5108ec5bc73b2d",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6d2f128_650c7509",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ThrowableDeserializer.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 8144
+      },
+      "writtenOn": "2023-06-06T12:25:37Z",
+      "side": 1,
+      "message": "final var...",
+      "revId": "828c4158b725d5a4c3e72ad2de5108ec5bc73b2d",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ec599b2_7c523446",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ThrowableDeserializer.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 8144
+      },
+      "writtenOn": "2023-06-06T12:25:37Z",
+      "side": 1,
+      "message": "final var...",
+      "revId": "828c4158b725d5a4c3e72ad2de5108ec5bc73b2d",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd70a507_728b6c10",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ThrowableSerializer.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 8144
+      },
+      "writtenOn": "2023-06-06T12:25:37Z",
+      "side": 1,
+      "message": "Why suppress?",
+      "revId": "828c4158b725d5a4c3e72ad2de5108ec5bc73b2d",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14cb201f_b279bcef",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ThrowableSerializer.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 8144
+      },
+      "writtenOn": "2023-06-06T12:25:37Z",
+      "side": 1,
+      "message": "public final class",
+      "revId": "828c4158b725d5a4c3e72ad2de5108ec5bc73b2d",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
+    }
+  ]
+}
