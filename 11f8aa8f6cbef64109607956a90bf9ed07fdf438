@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "23e968bf_b77f98eb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 8144
+      },
+      "writtenOn": "2023-06-06T12:26:10Z",
+      "side": 1,
+      "message": "I see no test that assume what is the content of Throwable.",
+      "revId": "11f8aa8f6cbef64109607956a90bf9ed07fdf438",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
+    }
+  ]
+}
