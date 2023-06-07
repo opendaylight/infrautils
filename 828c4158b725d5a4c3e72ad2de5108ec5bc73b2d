@@ -18,6 +18,24 @@
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8b150ad_351067e9",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ThrowableDeserializer.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 9173
+      },
+      "writtenOn": "2023-06-07T06:44:33Z",
+      "side": 1,
+      "message": "We need to suppress this because the GSON library recognizes final variables as constants. In another case, we would need to mark @Var for every variable or parameter in this package.",
+      "parentUuid": "6a0d807a_6aae943f",
+      "revId": "828c4158b725d5a4c3e72ad2de5108ec5bc73b2d",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c2fc1e5b_000e7279",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-06-06T12:25:37Z",
       "side": 1,
       "message": "public final class",
+      "revId": "828c4158b725d5a4c3e72ad2de5108ec5bc73b2d",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f55e2e5_198c2abd",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ThrowableDeserializer.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 9173
+      },
+      "writtenOn": "2023-06-07T06:44:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c2fc1e5b_000e7279",
       "revId": "828c4158b725d5a4c3e72ad2de5108ec5bc73b2d",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
     },
@@ -52,6 +88,24 @@
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a43280d5_9e99e2d0",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ThrowableDeserializer.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 9173
+      },
+      "writtenOn": "2023-06-07T06:44:33Z",
+      "side": 1,
+      "message": "Cannot declare it as \u0027var\u0027 due to a mixture of variables declared as \u0027var\u0027 and variables declared with explicit types.",
+      "parentUuid": "e6d2f128_650c7509",
+      "revId": "828c4158b725d5a4c3e72ad2de5108ec5bc73b2d",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6ec599b2_7c523446",
@@ -65,6 +119,24 @@
       "writtenOn": "2023-06-06T12:25:37Z",
       "side": 1,
       "message": "final var...",
+      "revId": "828c4158b725d5a4c3e72ad2de5108ec5bc73b2d",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2f838ec_c4d96526",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ThrowableDeserializer.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 9173
+      },
+      "writtenOn": "2023-06-07T06:44:33Z",
+      "side": 1,
+      "message": "Cannot declare it as \u0027var\u0027 due to a mixture of variables declared as \u0027var\u0027 and variables declared with explicit types.",
+      "parentUuid": "6ec599b2_7c523446",
       "revId": "828c4158b725d5a4c3e72ad2de5108ec5bc73b2d",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
     },
@@ -86,6 +158,24 @@
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f145e4dd_a8ac10b1",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ThrowableSerializer.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 9173
+      },
+      "writtenOn": "2023-06-07T06:44:33Z",
+      "side": 1,
+      "message": "We need to suppress this because the GSON library recognizes final variables as constants. In another case, we would need to mark @Var for every variable or parameter in this package.",
+      "parentUuid": "dd70a507_728b6c10",
+      "revId": "828c4158b725d5a4c3e72ad2de5108ec5bc73b2d",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "14cb201f_b279bcef",
@@ -99,6 +189,24 @@
       "writtenOn": "2023-06-06T12:25:37Z",
       "side": 1,
       "message": "public final class",
+      "revId": "828c4158b725d5a4c3e72ad2de5108ec5bc73b2d",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2d5323b_c09ddb32",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ThrowableSerializer.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 9173
+      },
+      "writtenOn": "2023-06-07T06:44:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "14cb201f_b279bcef",
       "revId": "828c4158b725d5a4c3e72ad2de5108ec5bc73b2d",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
     }
