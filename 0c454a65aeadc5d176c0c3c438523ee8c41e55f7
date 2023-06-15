@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "640741be_6118e3f2",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ThrowableAdapterFactory.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 8449
+      },
+      "writtenOn": "2023-06-15T12:26:20Z",
+      "side": 1,
+      "message": "final var adapter",
+      "revId": "0c454a65aeadc5d176c0c3c438523ee8c41e55f7",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9cdbe474_f146f5e6",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ThrowableAdapterFactory.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 8449
+      },
+      "writtenOn": "2023-06-15T12:26:20Z",
+      "side": 1,
+      "message": "final var suppressed \u003d new ArrayList\u003cThrowable\u003e();",
+      "revId": "0c454a65aeadc5d176c0c3c438523ee8c41e55f7",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
+    }
+  ]
+}
