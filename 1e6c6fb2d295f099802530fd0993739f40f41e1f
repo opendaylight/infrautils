@@ -35,6 +35,24 @@
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a72d3197_ca090522",
+        "filename": "diagstatus/impl/src/test/java/org/opendaylight/infrautils/diagstatus/test/DiagStatusTest.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 9173
+      },
+      "writtenOn": "2023-06-16T07:53:22Z",
+      "side": 1,
+      "message": "[130,21] error: [Var] Unnecessary \u0027final\u0027 modifier.",
+      "parentUuid": "3c089b08_57199d0b",
+      "revId": "1e6c6fb2d295f099802530fd0993739f40f41e1f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c3e8ae44_a8b189e2",
