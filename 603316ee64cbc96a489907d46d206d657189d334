@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "41bc0517_7417325d",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ThrowableAdapterFactory.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 8449
+      },
+      "writtenOn": "2023-06-16T12:52:24Z",
+      "side": 1,
+      "message": "In other classes in this project it is used like this:\n`@Var String exceptionType \u003d null;`\n\nPlease fix this.",
+      "revId": "603316ee64cbc96a489907d46d206d657189d334",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
+    }
+  ]
+}
