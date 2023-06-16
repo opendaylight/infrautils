@@ -18,6 +18,24 @@
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c16e58e_16bb390e",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ThrowableDeserializer.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 9173
+      },
+      "writtenOn": "2023-06-16T14:23:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "42d48621_0c27a575",
+      "revId": "93492e22def47a4ed55c7479dfaccefeca4782e0",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d0a271d5_8113ce25",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-06-16T12:54:22Z",
       "side": 1,
       "message": "Remove this `@SuppressWarnings(\"Var\")`.\n\nIf my information is correct there it is still chance to use this implementation.",
+      "revId": "93492e22def47a4ed55c7479dfaccefeca4782e0",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6af22e23_c3cce92e",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ThrowableSerializer.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 9173
+      },
+      "writtenOn": "2023-06-16T14:23:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d0a271d5_8113ce25",
       "revId": "93492e22def47a4ed55c7479dfaccefeca4782e0",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
     }
