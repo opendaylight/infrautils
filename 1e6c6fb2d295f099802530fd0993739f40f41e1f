@@ -68,6 +68,24 @@
       "message": "Please add here also test for deserialization.\nFor example:\nServiceStatusSummary serviceStatusSummary \u003d ServiceStatusSummary.fromJSON(actualServiceStatusSummary);",
       "revId": "1e6c6fb2d295f099802530fd0993739f40f41e1f",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a27d5ab_94c931ec",
+        "filename": "diagstatus/impl/src/test/java/org/opendaylight/infrautils/diagstatus/test/DiagStatusTest.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 9173
+      },
+      "writtenOn": "2023-06-16T10:38:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c3e8ae44_a8b189e2",
+      "revId": "1e6c6fb2d295f099802530fd0993739f40f41e1f",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
     }
   ]
 }
