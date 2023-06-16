@@ -18,6 +18,24 @@
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "112e3674_ec80a8f9",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ThrowableAdapterFactory.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 9173
+      },
+      "writtenOn": "2023-06-16T07:43:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "640741be_6118e3f2",
+      "revId": "0c454a65aeadc5d176c0c3c438523ee8c41e55f7",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9cdbe474_f146f5e6",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-06-15T12:26:20Z",
       "side": 1,
       "message": "final var suppressed \u003d new ArrayList\u003cThrowable\u003e();",
+      "revId": "0c454a65aeadc5d176c0c3c438523ee8c41e55f7",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a54ffa18_b0a8cdb1",
+        "filename": "diagstatus/api/src/main/java/org/opendaylight/infrautils/diagstatus/ThrowableAdapterFactory.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 9173
+      },
+      "writtenOn": "2023-06-16T07:43:27Z",
+      "side": 1,
+      "message": "This will lead to a compilation error",
+      "parentUuid": "9cdbe474_f146f5e6",
       "revId": "0c454a65aeadc5d176c0c3c438523ee8c41e55f7",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
     }
