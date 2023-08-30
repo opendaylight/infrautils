@@ -63,25 +63,28 @@ public class TestWebServerTest {
         }
     }
 
-    private static void checkTestServlet(TestWebServer webServer, String urlSuffix) throws IOException {
+    private static void checkTestServlet(final TestWebServer webServer, final String urlSuffix) throws IOException {
         String body = new TestWebClient(webServer).request(Method.GET, urlSuffix).getBody();
         assertThat(body, startsWith("hello, world"));
     }
 
-    @SuppressWarnings("serial")
-    private static class TestServlet extends HttpServlet {
+    private static final class TestServlet extends HttpServlet {
+        @java.io.Serial
+        private static final long serialVersionUID = 1L;
+
         @Override
-        protected void doGet(HttpServletRequest req, HttpServletResponse response) throws IOException {
+        protected void doGet(final HttpServletRequest req, final HttpServletResponse response) throws IOException {
             response.getOutputStream().println("hello, world");
         }
     }
 
-    @SuppressWarnings("serial")
-    private static class BrokenServlet extends HttpServlet {
+    private static final class BrokenServlet extends HttpServlet {
+        @java.io.Serial
+        private static final long serialVersionUID = 1L;
+
         @Override
-        protected void doGet(HttpServletRequest req, HttpServletResponse response) throws IOException {
+        protected void doGet(final HttpServletRequest req, final HttpServletResponse response) throws IOException {
             throw new IOException();
         }
     }
-
 }
