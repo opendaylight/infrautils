@@ -82,7 +82,7 @@ public class FunctionalityReadyNotifierTest {
 
     }
 
-    private static class TestClassReady implements FunctionalityReady {
+    private static final class TestClassReady implements FunctionalityReady {
 
     }
 }
