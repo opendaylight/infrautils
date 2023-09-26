@@ -15,10 +15,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.opendaylight.infrautils.testutils.LogCapture;
+import org.opendaylight.infrautils.testutils.LogExtension;
 import org.opendaylight.infrautils.testutils.LogRule;
 import org.slf4j.Logger;
 import org.slf4j.Marker;
-import org.slf4j.helpers.FormattingTuple;
 import org.slf4j.helpers.MessageFormatter;
 
 /**
@@ -73,21 +73,21 @@ public class RememberingLogger extends DelegatingLogger {
 
     @Override
     public void error(String format, Object arg) {
-        FormattingTuple mf = MessageFormatter.format(format, arg);
+        var mf = MessageFormatter.format(format, arg);
         ERRORS.add(new LogCapture(ERROR, mf.getMessage(), mf.getThrowable()));
         super.error(format, arg);
     }
 
     @Override
     public void error(String format, Object arg1, Object arg2) {
-        FormattingTuple mf = MessageFormatter.format(format, arg1, arg2);
+        var mf = MessageFormatter.format(format, arg1, arg2);
         ERRORS.add(new LogCapture(ERROR, mf.getMessage(), mf.getThrowable()));
         super.error(format, arg1, arg2);
     }
 
     @Override
     public void error(String format, Object... arguments) {
-        FormattingTuple mf = MessageFormatter.arrayFormat(format, arguments);
+        var mf = MessageFormatter.arrayFormat(format, arguments);
         ERRORS.add(new LogCapture(ERROR, mf.getMessage(), mf.getThrowable()));
         super.error(format, arguments);
     }
@@ -100,7 +100,7 @@ public class RememberingLogger extends DelegatingLogger {
 
     @Override
     public void error(Marker marker, String msg) {
-        if (!LogRule.getMarker().equals(marker)) {
+        if (!LogRule.getMarker().equals(marker) && !LogExtension.marker().equals(marker)) {
             ERRORS.add(new LogCapture(ERROR, msg, null));
         }
         super.error(marker, msg);
@@ -108,8 +108,8 @@ public class RememberingLogger extends DelegatingLogger {
 
     @Override
     public void error(Marker marker, String format, Object arg) {
-        if (!LogRule.getMarker().equals(marker)) {
-            FormattingTuple mf = MessageFormatter.format(format, arg);
+        if (!LogRule.getMarker().equals(marker) && !LogExtension.marker().equals(marker)) {
+            var mf = MessageFormatter.format(format, arg);
             ERRORS.add(new LogCapture(ERROR, mf.getMessage(), mf.getThrowable()));
         }
         super.error(marker, format, arg);
@@ -117,8 +117,8 @@ public class RememberingLogger extends DelegatingLogger {
 
     @Override
     public void error(Marker marker, String format, Object arg1, Object arg2) {
-        if (!LogRule.getMarker().equals(marker)) {
-            FormattingTuple mf = MessageFormatter.format(format, arg1, arg2);
+        if (!LogRule.getMarker().equals(marker) && !LogExtension.marker().equals(marker)) {
+            var mf = MessageFormatter.format(format, arg1, arg2);
             ERRORS.add(new LogCapture(ERROR, mf.getMessage(), mf.getThrowable()));
         }
         super.error(marker, format, arg1, arg2);
@@ -126,8 +126,8 @@ public class RememberingLogger extends DelegatingLogger {
 
     @Override
     public void error(Marker marker, String format, Object... arguments) {
-        if (!LogRule.getMarker().equals(marker)) {
-            FormattingTuple mf = MessageFormatter.arrayFormat(format, arguments);
+        if (!LogRule.getMarker().equals(marker) && !LogExtension.marker().equals(marker)) {
+            var mf = MessageFormatter.arrayFormat(format, arguments);
             ERRORS.add(new LogCapture(ERROR, mf.getMessage(), mf.getThrowable()));
         }
         super.error(marker, format, arguments);
@@ -135,7 +135,7 @@ public class RememberingLogger extends DelegatingLogger {
 
     @Override
     public void error(Marker marker, String msg, Throwable throwable) {
-        if (!LogRule.getMarker().equals(marker)) {
+        if (!LogRule.getMarker().equals(marker) && !LogExtension.marker().equals(marker)) {
             ERRORS.add(new LogCapture(ERROR, msg, throwable));
         }
         super.error(marker, msg, throwable);

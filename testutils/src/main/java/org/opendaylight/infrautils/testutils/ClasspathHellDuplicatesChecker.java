@@ -23,21 +23,20 @@ import java.util.stream.Collectors;
  * @author Michael Vorburger.ch
  */
 public class ClasspathHellDuplicatesChecker {
-
     public static final ClasspathHellDuplicatesChecker INSTANCE = new ClasspathHellDuplicatesChecker();
 
     private final Map<String, List<String>> duplicates;
 
     @SuppressFBWarnings(value = "MC_OVERRIDABLE_METHOD_CALL_IN_CONSTRUCTOR", justification = "Poor original design")
     public ClasspathHellDuplicatesChecker() {
-        duplicates = recheck();
+        duplicates = check();
     }
 
     public Map<String, List<String>> getDuplicates() {
         return duplicates;
     }
 
-    public String toString(Map<String, List<String>> map) {
+    public static final String toString(Map<String, List<String>> map) {
         StringBuilder sb = new StringBuilder();
         for (Entry<String, List<String>> entry : map.entrySet()) {
             sb.append(entry.getKey()).append('\n');
@@ -48,7 +47,7 @@ public class ClasspathHellDuplicatesChecker {
         return sb.toString();
     }
 
-    private Map<String, List<String>> recheck() {
+    final Map<String, List<String>> check() {
         Map<String, List<String>> dupes = new HashMap<>();
         // To debug this scanner, use ClassGraph().verbose()
         // We intentionally do not use .classFilesOnly(), or .nonClassFilesOnly(), to check both
