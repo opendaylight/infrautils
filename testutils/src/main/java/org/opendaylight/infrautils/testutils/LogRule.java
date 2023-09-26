@@ -29,11 +29,11 @@ import org.slf4j.MarkerFactory;
  *   {@literal @}Test ...
  * </pre>
  *
+ * @deprecated Please migrate to JUnit5 and use {@link LogExtension}.
  * @author Michael Vorburger
  */
+@Deprecated
 public class LogRule implements TestRule {
-
-    private static final String HEADER = "-".repeat(120);
     private static final String MESSAGE = "{} ({}ms) @Test {}()";
     private static final Marker MARKER = MarkerFactory.getMarker(LogRule.class.getName());
 
@@ -53,7 +53,7 @@ public class LogRule implements TestRule {
             @SuppressWarnings("checkstyle:IllegalCatch")
             @SuppressFBWarnings("SLF4J_FORMAT_SHOULD_BE_CONST")
             public void evaluate() throws Throwable {
-                testLog.info(MARKER, HEADER);
+                testLog.info(MARKER, LogExtension.HEADER);
                 testLog.info(MARKER, "BEGIN @Test {}()", description.getMethodName());
                 long startTimeInMS = System.currentTimeMillis();
                 @Var Throwable caughtThrowable = null;
@@ -74,5 +74,4 @@ public class LogRule implements TestRule {
             }
         };
     }
-
 }

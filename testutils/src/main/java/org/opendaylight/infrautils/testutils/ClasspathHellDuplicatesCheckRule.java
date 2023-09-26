@@ -7,8 +7,6 @@
  */
 package org.opendaylight.infrautils.testutils;
 
-import java.util.List;
-import java.util.Map;
 import junit.framework.AssertionFailedError;
 import org.junit.rules.TestRule;
 import org.junit.runner.Description;
@@ -26,10 +24,10 @@ import org.junit.runners.model.Statement;
  * which non-regression with a clear failure message in case of future similar problems is important.
  * (This provides more details at runtime than duplicate-finder-maven-plugin does at build time.)
  *
+ * @deprecated Please migrate to JUnit 5 and use {@link ClasspathHellDuplicatesCheckExtension} instead.
  * @author Michael Vorburger.ch
  */
 public class ClasspathHellDuplicatesCheckRule implements TestRule {
-
     private final ClasspathHellDuplicatesChecker checker;
 
     public ClasspathHellDuplicatesCheckRule(ClasspathHellDuplicatesChecker checker) {
@@ -47,7 +45,7 @@ public class ClasspathHellDuplicatesCheckRule implements TestRule {
     }
 
     protected void checkClasspath() {
-        Map<String, List<String>> dupes = checker.getDuplicates();
+        var dupes = checker.getDuplicates();
         if (!dupes.isEmpty()) {
             throw new AssertionFailedError("Classpath duplicates detected: " + checker.toString(dupes));
         }
