@@ -21,7 +21,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Michael Vorburger
  */
-public class RunUntilFailureClassRule implements TestRule {
+public final class RunUntilFailureClassRule implements TestRule {
 
     private static final String HEADER = "=".repeat(120);
 

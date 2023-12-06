@@ -27,7 +27,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Michael Vorburger.ch
  */
-public class TestWebServer implements AutoCloseable {
+public final class TestWebServer implements AutoCloseable {
     private static final Logger LOG = LoggerFactory.getLogger(TestWebServer.class);
 
     private static final int HTTP_SERVER_IDLE_TIMEOUT = 30000;

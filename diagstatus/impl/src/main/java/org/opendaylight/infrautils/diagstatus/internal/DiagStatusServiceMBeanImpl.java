@@ -40,7 +40,7 @@ import org.slf4j.LoggerFactory;
 @Component(immediate = true, service = DiagStatusServiceMBean.class)
 // In case you are wondering: yes, this is published to OSGi registry for the sake of diagstatus-shell. Not the grandest
 // of ideas but it works for now.
-public class DiagStatusServiceMBeanImpl extends StandardMBean implements DiagStatusServiceMBean, AutoCloseable {
+public final class DiagStatusServiceMBeanImpl extends StandardMBean implements DiagStatusServiceMBean, AutoCloseable {
     private static final Logger LOG = LoggerFactory.getLogger(DiagStatusServiceMBeanImpl.class);
 
     private final DiagStatusService diagStatusService;
