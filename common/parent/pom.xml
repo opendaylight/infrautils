@@ -101,8 +101,8 @@
         <property>
           <name>!m2e.version</name>
         </property>
-        <!-- JDK18 is an unknown, let's not activate with it just now -->
-        <jdk>[8,18)</jdk>
+        <!-- JDK22 is an unknown, let's not activate with it just now -->
+        <jdk>[9,22)</jdk>
       </activation>
 
       <build>
