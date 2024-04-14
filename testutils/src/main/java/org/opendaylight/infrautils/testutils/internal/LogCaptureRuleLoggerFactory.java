@@ -9,7 +9,7 @@ package org.opendaylight.infrautils.testutils.internal;
 
 import org.opendaylight.infrautils.testutils.LogCaptureRule;
 import org.slf4j.Logger;
-import org.slf4j.impl.SimpleLoggerFactory;
+import org.slf4j.simple.SimpleLoggerFactory;
 
 /**
  * ILoggerFactory for {@link LogCaptureRule}.
@@ -17,10 +17,8 @@ import org.slf4j.impl.SimpleLoggerFactory;
  * @author Michael Vorburger.ch
  */
 public class LogCaptureRuleLoggerFactory extends SimpleLoggerFactory {
-
     @Override
     public Logger getLogger(String name) {
         return new RememberingLogger(super.getLogger(name));
     }
-
 }
