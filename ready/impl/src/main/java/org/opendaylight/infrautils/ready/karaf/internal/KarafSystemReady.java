@@ -41,7 +41,7 @@ import org.slf4j.LoggerFactory;
  */
 @Component(immediate = true, service = SystemReadyMonitor.class, configurationPid = "org.opendaylight.infrautils.ready")
 @Designate(ocd = KarafSystemReady.Config.class)
-public class KarafSystemReady extends SimpleSystemReadyMonitor {
+public final class KarafSystemReady extends SimpleSystemReadyMonitor {
     @ObjectClassDefinition()
     public @interface Config {
         @AttributeDefinition(name = "system-ready-timeout-seconds")
@@ -57,14 +57,11 @@ public class KarafSystemReady extends SimpleSystemReadyMonitor {
 
     private final DelegatingSystemReadyMonitorMXBean mbean = new DelegatingSystemReadyMonitorMXBean(this);
 
-    private Config config;
-    private TestBundleDiag testBundleDiag;
-
-    @Reference
-    BundleService bundleService = null;
+    private final Config config;
+    private final TestBundleDiag testBundleDiag;
 
     @Activate
-    public void activate(BundleContext bundleContext, Config newConfig) {
+    public KarafSystemReady(@Reference BundleService bundleService, BundleContext bundleContext, Config newConfig) {
         this.config = newConfig;
         mbean.registerMBean();
         testBundleDiag = new TestBundleDiag(bundleContext, bundleService);
