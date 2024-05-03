@@ -9,48 +9,39 @@ package org.opendaylight.infrautils.ready.karaf.internal;
 
 import static org.junit.Assert.assertEquals;
 
-import java.lang.annotation.Annotation;
-import javax.management.JMException;
+import org.apache.karaf.bundle.core.BundleService;
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Answers;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
 import org.opendaylight.infrautils.ready.SystemState;
 import org.opendaylight.infrautils.ready.karaf.internal.KarafSystemReady.Config;
 import org.opendaylight.infrautils.testutils.LogRule;
+import org.opendaylight.odlparent.bundles.diag.ri.DefaultDiagProvider;
+import org.osgi.framework.BundleContext;
 
 /**
  * Component tests for system ready.
  *
  * @author Faseela K
  */
+@RunWith(MockitoJUnitRunner.StrictStubs.class)
 public class SystemReadyTest {
+    @Mock
+    private BundleContext bundleContext;
+    @Mock
+    private BundleService bundleService;
+    @Mock(answer = Answers.CALLS_REAL_METHODS)
+    private Config config;
 
     @Rule public LogRule logRule = new LogRule();
 
     @Test
-    public void testMbeanRegistration() throws JMException {
+    public void testMbeanRegistration() throws Exception {
         // Register the SystemState MBean
-        KarafSystemReady systemReady = new KarafSystemReady();
-        systemReady.activate(null, new Config() {
-            @Override
-            public Class<? extends Annotation> annotationType() {
-                return Config.class;
-            }
-
-            @Override
-            public int systemReadyTimeout() {
-                return 300;
-            }
-
-            @Override
-            public int hashCode() {
-                return 0;
-            }
-
-            @Override
-            public boolean equals(Object obj) {
-                return obj == this;
-            }
-        });
+        var systemReady = new KarafSystemReady(new DefaultDiagProvider(bundleService, bundleContext), config);
 
         // Check via strong interface if initial value of BOOTING is assigned
         assertEquals(SystemState.BOOTING, systemReady.getSystemState());

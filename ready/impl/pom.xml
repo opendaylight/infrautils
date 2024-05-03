@@ -54,6 +54,11 @@
     </dependency>
     <dependency>
       <groupId>org.opendaylight.odlparent</groupId>
+      <artifactId>bundles-diag</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.opendaylight.odlparent</groupId>
       <artifactId>bundles-test-lib</artifactId>
       <scope>provided</scope>
     </dependency>
@@ -89,6 +94,12 @@
       <groupId>org.opendaylight.infrautils</groupId>
       <artifactId>infrautils-testutils</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.resource</artifactId>
+      <version>1.0.1</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 
   <build>
@@ -99,7 +110,7 @@
         <configuration>
           <instructions>
             <Automatic-Module-Name>org.opendaylight.infrautils.ready.karaf</Automatic-Module-Name>
-            <Embed-Dependency>bundles-test-lib,awaitility,hamcrest</Embed-Dependency>
+            <Embed-Dependency>bundles-diag,bundles-test-lib,awaitility,hamcrest</Embed-Dependency>
             <!-- Do NOT <Embed-Transitive>true</Embed-Transitive> -->
           </instructions>
         </configuration>
