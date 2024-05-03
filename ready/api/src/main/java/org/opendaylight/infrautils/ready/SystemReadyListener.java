@@ -15,7 +15,6 @@ package org.opendaylight.infrautils.ready;
  * @author Michael Vorburger.ch
  */
 public interface SystemReadyListener {
-
     /**
      * Called back once when the system has become "fully ready" after the
      * initial boot up. In an OSGi context like a Karaf container environment,
@@ -28,22 +27,21 @@ public interface SystemReadyListener {
      */
     void onSystemBootReady() throws Exception;
 
-    /**
-     * Called back when the system becomes (temporarily, hopefully) 'un-ready'.
-     * In an OSGi context like a Karaf container environment, this typically happens
-     * the moment the end user operator types in e.g. 'feature:install oh-i-forgot-this-feature'
-     * (or even 'bundle:install', as well as feature or bundle uninstall).
-     * In a plain Java Environment, this typically does not occur.
-     * <i>This is not yet implemented.</i>
-     */
-    // default void onSystemIsChanging() { }
+    // /**
+    //  * Called back when the system becomes (temporarily, hopefully) 'un-ready'.
+    //  * In an OSGi context like a Karaf container environment, this typically happens
+    //  * the moment the end user operator types in e.g. 'feature:install oh-i-forgot-this-feature'
+    //  * (or even 'bundle:install', as well as feature or bundle uninstall).
+    //  * In a plain Java Environment, this typically does not occur.
+    //  * <i>This is not yet implemented.</i>
+    //  */
+    //  default void onSystemIsChanging() { }
 
-    /**
-     * Called back when the system has successfully converged to a stable state
-     * and become 'ready again', following
-     * {@link SystemReadyListener#onSystemIsChanging()}.
-     * <i>This is not yet implemented.</i>
-     */
+    // /**
+    //  * Called back when the system has successfully converged to a stable state
+    //  * and become 'ready again', following
+    //  * {@link SystemReadyListener#onSystemIsChanging()}.
+    //  * <i>This is not yet implemented.</i>
+    //  */
     // default void onSystemReadyAgain() { }
-
 }
