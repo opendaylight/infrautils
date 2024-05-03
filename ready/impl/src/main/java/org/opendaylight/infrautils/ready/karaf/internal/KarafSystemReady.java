@@ -13,14 +13,13 @@ import com.google.common.annotations.VisibleForTesting;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
-import org.apache.karaf.bundle.core.BundleService;
 import org.opendaylight.infrautils.ready.SystemReadyMonitor;
 import org.opendaylight.infrautils.ready.spi.DelegatingSystemReadyMonitorMXBean;
 import org.opendaylight.infrautils.ready.spi.SimpleSystemReadyMonitor;
 import org.opendaylight.infrautils.utils.concurrent.ThreadFactoryProvider;
+import org.opendaylight.odlparent.bundles.diag.DiagProvider;
 import org.opendaylight.odlparent.bundlestest.lib.SystemStateFailureException;
 import org.opendaylight.odlparent.bundlestest.lib.TestBundleDiag;
-import org.osgi.framework.BundleContext;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
@@ -41,7 +40,7 @@ import org.slf4j.LoggerFactory;
  */
 @Component(immediate = true, service = SystemReadyMonitor.class, configurationPid = "org.opendaylight.infrautils.ready")
 @Designate(ocd = KarafSystemReady.Config.class)
-public class KarafSystemReady extends SimpleSystemReadyMonitor {
+public final class KarafSystemReady extends SimpleSystemReadyMonitor {
     @ObjectClassDefinition()
     public @interface Config {
         @AttributeDefinition(name = "system-ready-timeout-seconds")
@@ -57,17 +56,14 @@ public class KarafSystemReady extends SimpleSystemReadyMonitor {
 
     private final DelegatingSystemReadyMonitorMXBean mbean = new DelegatingSystemReadyMonitorMXBean(this);
 
-    private Config config;
-    private TestBundleDiag testBundleDiag;
-
-    @Reference
-    BundleService bundleService = null;
+    private final Config config;
+    private final TestBundleDiag testBundleDiag;
 
     @Activate
-    public void activate(BundleContext bundleContext, Config newConfig) {
+    public KarafSystemReady(@Reference DiagProvider diagProvider, Config newConfig) {
         this.config = newConfig;
         mbean.registerMBean();
-        testBundleDiag = new TestBundleDiag(bundleContext, bundleService);
+        testBundleDiag = new TestBundleDiag(diagProvider);
         LOG.info("Now starting to provide full system readiness status updates (see TestBundleDiag's logs)...");
         threadFactory.newThread(this::runCheckBundleDiag).start();
     }
