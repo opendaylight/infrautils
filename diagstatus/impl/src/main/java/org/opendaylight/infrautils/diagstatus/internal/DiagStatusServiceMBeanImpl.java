@@ -13,8 +13,6 @@ import static org.opendaylight.infrautils.diagstatus.ServiceState.UNREGISTERED;
 import com.google.common.base.Strings;
 import com.google.common.base.Throwables;
 import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.ImmutableMap.Builder;
-import java.util.Map;
 import javax.annotation.PreDestroy;
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -67,81 +65,74 @@ public final class DiagStatusServiceMBeanImpl extends StandardMBean implements D
 
     @Override
     public String acquireServiceStatus() {
-        StringBuilder statusSummary = new StringBuilder();
+        var sb = new StringBuilder();
         ServiceStatusSummary summary = diagStatusService.getServiceStatusSummary();
-        statusSummary.append("System is operational: ").append(summary.isOperational()).append('\n');
-        statusSummary.append("System ready state: ").append(summary.getSystemReadyState()).append('\n');
+        sb.append("System is operational: ").append(summary.isOperational()).append('\n');
+        sb.append("System ready state: ").append(summary.getSystemReadyState()).append('\n');
         for (ServiceDescriptor status : summary.getStatusSummary()) {
-            statusSummary.append("ServiceName          : ").append(status.getModuleServiceName()).append('\n');
+            sb.append("ServiceName          : ").append(status.getModuleServiceName()).append('\n');
             if (status.getServiceState() != null) {
-                statusSummary.append("Last Reported Status : ")
-                        .append(status.getServiceState().name()).append('\n');
+                sb.append("Last Reported Status : ").append(status.getServiceState().name()).append('\n');
             }
             if (status.getStatusDesc() != null) {
-                statusSummary.append("Reported Status Desc : ").append(status.getStatusDesc())
-                        .append('\n');
+                sb.append("Reported Status Desc : ").append(status.getStatusDesc()).append('\n');
             }
             if (status.getStatusTimestamp() != null) {
-                statusSummary.append("Status Timestamp     : ").append(status.getStatusTimestamp()).append("\n");
+                sb.append("Status Timestamp     : ").append(status.getStatusTimestamp()).append('\n');
             }
             if (status.getErrorCause() != null && status.getErrorCause().isPresent()) {
-                statusSummary.append("Error Cause          : ")
-                        .append(Throwables.getStackTraceAsString(status.getErrorCause().orElseThrow())).append("\n");
+                sb.append("Error Cause          : ")
+                    .append(Throwables.getStackTraceAsString(status.getErrorCause().orElseThrow()))
+                    .append('\n');
             }
-            statusSummary.append('\n');
+            sb.append('\n');
         }
-        statusSummary.append('\n');
-
-        return statusSummary.toString();
+        return sb.append('\n').toString();
     }
 
     @Override
     public String acquireServiceStatusDetailed() {
         // not so detailed as acquireServiceStatus()
-        StringBuilder statusSummary = new StringBuilder();
+        var sb = new StringBuilder();
         ServiceStatusSummary summary = diagStatusService.getServiceStatusSummary();
-        statusSummary.append("System is operational: ").append(summary.isOperational()).append('\n');
-        statusSummary.append("System ready state: ").append(systemReadyMonitor.getSystemState()).append('\n');
+        sb.append("System is operational: ").append(summary.isOperational()).append('\n');
+        sb.append("System ready state: ").append(systemReadyMonitor.getSystemState()).append('\n');
         for (ServiceDescriptor status : summary.getStatusSummary()) {
-            statusSummary
-                    .append("  ")
-                    // the magic is the max String length of ServiceState enum values, plus padding
-                    .append(String.format("%-20s%-15s", status.getModuleServiceName(), ": "
-                            + status.getServiceState()));
+            sb.append("  ")
+                // the magic is the max String length of ServiceState enum values, plus padding
+                .append("%-20s%-15s".formatted(status.getModuleServiceName(), ": " + status.getServiceState()));
             if (!Strings.isNullOrEmpty(status.getStatusDesc())) {
-                statusSummary.append(" (");
-                statusSummary.append(status.getStatusDesc());
-                statusSummary.append(")");
+                sb.append(" (").append(status.getStatusDesc()).append(")");
             }
             // intentionally using Throwable.toString() instead of Throwables.getStackTraceAsString to keep CLI brief
-            status.getErrorCause().ifPresent(cause -> statusSummary.append(cause.toString()));
-            statusSummary.append("\n");
+            status.getErrorCause().ifPresent(cause -> sb.append(cause.toString()));
+            sb.append('\n');
         }
-        return statusSummary.toString();
+        return sb.toString();
     }
 
     @Override
     public String acquireServiceStatusBrief() {
         String errorState = "ERROR - ";
-        StringBuilder statusSummary = new StringBuilder();
+        var sb = new StringBuilder();
         ServiceStatusSummary summary = diagStatusService.getServiceStatusSummary();
-        statusSummary.append("System is operational: ").append(summary.isOperational()).append('\n');
-        statusSummary.append("System ready state: ").append(summary.getSystemReadyState()).append('\n');
+        sb.append("System is operational: ").append(summary.isOperational()).append('\n');
+        sb.append("System ready state: ").append(summary.getSystemReadyState()).append('\n');
         for (ServiceDescriptor stat : summary.getStatusSummary()) {
             ServiceState state = stat.getServiceState();
             if (state.equals(ERROR) || state.equals(UNREGISTERED)) {
-                statusSummary.append(errorState).append(stat.getModuleServiceName()).append(" ");
+                sb.append(errorState).append(stat.getModuleServiceName()).append(" ");
             }
         }
-        return statusSummary.toString();
+        return sb.toString();
     }
 
     @Override
-    public Map<String, String> acquireServiceStatusMap() {
-        Builder<String, String> mapBuilder = ImmutableMap.builder();
-        ServiceStatusSummary summary = diagStatusService.getServiceStatusSummary();
-        for (ServiceDescriptor status : summary.getStatusSummary()) {
-            ServiceState state = status.getServiceState();
+    public ImmutableMap<String, String> acquireServiceStatusMap() {
+        var mapBuilder = ImmutableMap.<String, String>builder();
+        var summary = diagStatusService.getServiceStatusSummary();
+        for (var status : summary.getStatusSummary()) {
+            var state = status.getServiceState();
             if (state == null) {
                 mapBuilder.put(status.getModuleServiceName(), ServiceState.UNREGISTERED.name());
             } else {

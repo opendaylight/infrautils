@@ -94,8 +94,7 @@ public class DiagStatusTest {
         assertEquals(Optional.empty(), serviceDescriptor1.getErrorCause());
 
         // Verify if "testService" status is updated as OPERATIONAL.
-        ServiceDescriptor reportStatus = new ServiceDescriptor(testService1, ServiceState.OPERATIONAL,
-                "service is UP");
+        var reportStatus = new ServiceDescriptor(testService1, ServiceState.OPERATIONAL, "service is UP");
         reg.report(reportStatus);
         ServiceDescriptor serviceDescriptor2 = diagStatusService.getServiceDescriptor(testService1);
         assertEquals(ServiceState.OPERATIONAL, serviceDescriptor2.getServiceState());
@@ -122,8 +121,7 @@ public class DiagStatusTest {
     @Test
     public void testErrorCause() {
         String testService1 = "testService";
-        ServiceDescriptor reportStatus = new ServiceDescriptor(testService1,
-                new NullPointerException("This is totally borked!"));
+        var reportStatus = new ServiceDescriptor(testService1, new NullPointerException("This is totally borked!"));
 
         assertEquals("This is totally borked!", reportStatus.getErrorCause().orElseThrow().getMessage());
     }

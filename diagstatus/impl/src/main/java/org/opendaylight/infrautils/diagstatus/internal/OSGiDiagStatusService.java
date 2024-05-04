@@ -33,7 +33,7 @@ public final class OSGiDiagStatusService extends AbstractDiagStatusService {
     SystemReadyMonitor systemReadyMonitor = null;
 
     @Override
-    Iterable<? extends ServiceStatusProvider> serviceStatusProviders() {
+    List<ServiceStatusProvider> serviceStatusProviders() {
         return verifyNotNull(serviceStatusProviders);
     }
 
