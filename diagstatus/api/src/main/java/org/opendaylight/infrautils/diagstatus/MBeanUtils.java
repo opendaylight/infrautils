@@ -75,14 +75,12 @@ public final class MBeanUtils {
     }
 
     public static @Nullable Object getMBeanAttribute(String objName, String attribute) throws JMException {
-        ObjectName objectName = new ObjectName(objName);
-        MBeanServer platformMbeanServer = ManagementFactory.getPlatformMBeanServer();
-        return platformMbeanServer.getAttribute(objectName, attribute);
+        return ManagementFactory.getPlatformMBeanServer().getAttribute(new ObjectName(objName), attribute);
     }
 
     private static <T> T getMBean(String jmxName, Class<T> klass, MBeanServerConnection mbsc)
             throws MalformedObjectNameException {
-        ObjectName objectName = new ObjectName(jmxName);
+        var objectName = new ObjectName(jmxName);
         return JMX.isMXBeanInterface(klass) ? JMX.newMXBeanProxy(mbsc, objectName, klass)
                 : JMX.newMBeanProxy(mbsc, objectName, klass);
     }
