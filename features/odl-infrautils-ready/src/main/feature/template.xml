@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<features xmlns="http://karaf.apache.org/xmlns/features/v1.6.0" name="odl-infrautils-ready">
+    <repository>mvn:org.opendaylight.odlparent/odl-guava/{{versionAsInProject}}/xml/features</repository>
+    <repository>mvn:org.opendaylight.infrautils/odl-infrautils-utils/{{versionAsInProject}}/xml/features</repository>
+    <feature name="odl-infrautils-ready">
+        <feature version="[13,14)">odl-guava</feature>
+        <feature version="{{semVerRange}}">odl-infrautils-utils</feature>
+        <bundle>mvn:org.opendaylight.infrautils/ready-api/{{versionAsInProject}}</bundle>
+        <bundle>mvn:org.opendaylight.infrautils/ready-impl/{{versionAsInProject}}</bundle>
+        <bundle>mvn:org.opendaylight.odlparent/bundles-diag/{{versionAsInProject}}</bundle>
+    </feature>
+</features>

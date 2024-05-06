@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<features xmlns="http://karaf.apache.org/xmlns/features/v1.6.0" name="odl-infrautils-all">
+    <repository>mvn:org.opendaylight.infrautils/odl-infrautils-inject/{{versionAsInProject}}/xml/features</repository>
+    <repository>mvn:org.opendaylight.infrautils/odl-infrautils-ready/{{versionAsInProject}}/xml/features</repository>
+    <repository>mvn:org.opendaylight.infrautils/odl-infrautils-diagstatus/{{versionAsInProject}}/xml/features</repository>
+    <feature name="odl-infrautils-all">
+        <feature version="{{semVerRange}}">odl-infrautils-inject</feature>
+        <feature version="{{semVerRange}}">odl-infrautils-ready</feature>
+        <feature version="{{semVerRange}}">odl-infrautils-diagstatus</feature>
+    </feature>
+</features>

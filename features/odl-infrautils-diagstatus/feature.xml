@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<features xmlns="http://karaf.apache.org/xmlns/features/v1.6.0" name="odl-infrautils-diagstatus">
+    <repository>mvn:org.opendaylight.odlparent/odl-apache-commons-lang3/13.1.2/xml/features</repository>
+    <repository>mvn:org.opendaylight.odlparent/odl-gson/13.1.2/xml/features</repository>
+    <repository>mvn:org.opendaylight.odlparent/odl-guava/13.1.2/xml/features</repository>
+    <repository>mvn:org.opendaylight.odlparent/odl-karaf-feat-jetty/13.1.2/xml/features</repository>
+    <repository>mvn:org.opendaylight.odlparent/odl-servlet-api/13.1.2/xml/features</repository>
+    <repository>mvn:org.opendaylight.infrautils/odl-infrautils-utils/6.0.8-SNAPSHOT/xml/features</repository>
+    <repository>mvn:org.opendaylight.infrautils/odl-infrautils-ready/6.0.8-SNAPSHOT/xml/features</repository>
+    <feature name="odl-infrautils-diagstatus" description="OpenDaylight :: Infrautils :: DiagStatus" version="6.0.8.SNAPSHOT">
+        <details>odl-infrautils-diagstatus</details>
+        <feature version="[13,14)">odl-apache-commons-lang3</feature>
+        <feature version="[13,14)">odl-gson</feature>
+        <feature version="[13,14)">odl-guava</feature>
+        <feature version="[13,14)">odl-karaf-feat-jetty</feature>
+        <feature version="[13,14)">odl-servlet-api</feature>
+        <feature version="6.0.8.SNAPSHOT" prerequisite="false" dependency="false">odl-infrautils-utils</feature>
+        <feature version="6.0.8.SNAPSHOT" prerequisite="false" dependency="false">odl-infrautils-ready</feature>
+        <bundle>mvn:org.opendaylight.infrautils/diagstatus-web/6.0.8-SNAPSHOT</bundle>
+        <bundle>mvn:org.opendaylight.infrautils/diagstatus-api/6.0.8-SNAPSHOT</bundle>
+        <bundle>mvn:org.opendaylight.infrautils/diagstatus-shell/6.0.8-SNAPSHOT</bundle>
+        <bundle>mvn:org.opendaylight.infrautils/diagstatus-impl/6.0.8-SNAPSHOT</bundle>
+    </feature>
+</features>
