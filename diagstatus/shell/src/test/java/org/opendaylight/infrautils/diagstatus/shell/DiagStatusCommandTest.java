@@ -67,7 +67,7 @@ public class DiagStatusCommandTest {
 
     @Before
     public void start() throws Exception {
-        diagStatusService = new DiagStatusServiceImpl(List.of(), systemReadyMonitor);
+        diagStatusService = new DiagStatusServiceImpl(systemReadyMonitor, List.of());
         String testService1 = "testService";
         ServiceRegistration reg = diagStatusService.register(testService1);
         reg.report(new ServiceDescriptor("testService", OPERATIONAL, "operational"));
