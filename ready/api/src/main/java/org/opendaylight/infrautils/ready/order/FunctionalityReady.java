@@ -47,7 +47,11 @@ package org.opendaylight.infrautils.ready.order;
  * find them all by type, as well as directly refer to this documentation.
  *
  * @see FunctionalityReadyNotifier
- *
+ * @deprecated Contract of this interface describes a valid value to {@code Component( service = ... )}. It is
+ *             deprecated without a replacement.
  * @author Michael Vorburger.ch
  */
-public interface FunctionalityReady { }
+@Deprecated(since = "6.0.9", forRemoval = true)
+public interface FunctionalityReady {
+    // Marker interface
+}
