@@ -9,20 +9,23 @@ package org.opendaylight.infrautils.ready.karaf.internal;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.greaterThan;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doAnswer;
+import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
-import java.util.Dictionary;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.opendaylight.infrautils.ready.order.FunctionalityReady;
 import org.opendaylight.infrautils.ready.order.FunctionalityReadyNotifier;
 import org.opendaylight.infrautils.ready.order.FunctionalityReadyRegistration;
 import org.osgi.framework.BundleContext;
-import org.osgi.framework.InvalidSyntaxException;
 import org.osgi.framework.ServiceReference;
 import org.osgi.framework.ServiceRegistration;
 
@@ -31,34 +34,30 @@ import org.osgi.framework.ServiceRegistration;
  *
  * @author Michael Vorburger.ch
  */
-public class FunctionalityReadyNotifierTest {
+@ExtendWith(MockitoExtension.class)
+class FunctionalityReadyNotifierTest {
+    @Mock
+    private BundleContext mockBundleContext;
+    @Mock
+    private ServiceRegistration<?> serviceRegistration;
 
-    private static Object registeredService;
+    private FunctionalityReadyNotifierImpl notifier;
+    private Object registeredService;
 
-    private abstract static class AbstractBundleContextImpl implements BundleContext {
-        @Override
-        @SuppressWarnings("unchecked")
-        public <S> ServiceRegistration<S> registerService(Class<S> clazz, S service, Dictionary<String, ?> properties) {
-            registeredService = service;
-            return mock(ServiceRegistration.class);
-        }
-    }
-
-    private final BundleContext mockBundleContext = mock(AbstractBundleContextImpl.class);
-    private final FunctionalityReadyNotifierImpl notifier = new FunctionalityReadyNotifierImpl();
-
-    @Before
-    public void before() {
-        notifier.activate(mockBundleContext);
+    @BeforeEach
+    void beforeEach() {
+        notifier = new FunctionalityReadyNotifierImpl(mockBundleContext);
     }
 
     @Test
-    @SuppressWarnings("unchecked")
-    public void testRegisterTestReady() throws InvalidSyntaxException {
-        when(mockBundleContext.getAllServiceReferences(TestReady.class.getName(), null))
-                .thenReturn(new ServiceReference[] {});
-        when(mockBundleContext.registerService((Class<TestReady>) any(), any(TestReady.class), any()))
-                .thenCallRealMethod();
+    void testRegisterTestReady() throws Exception {
+        doAnswer(invocation -> {
+            registeredService = invocation.getArgument(1);
+            return mock(ServiceRegistration.class);
+        }).when(mockBundleContext).registerService(any(Class.class), any(Object.class), any());
+
+        doReturn(new ServiceReference[] {}).when(mockBundleContext)
+            .getAllServiceReferences(TestReady.class.getName(), null);
 
         FunctionalityReadyRegistration<?> registration = notifier.register(TestReady.class);
         assertNotNull(registration);
@@ -68,14 +67,14 @@ public class FunctionalityReadyNotifierTest {
         assertFalse(registeredService.equals(null));
     }
 
-    @Test(expected = NullPointerException.class)
-    public void testRegisterNull() {
-        notifier.register(null);
+    @Test
+    void testRegisterNull() {
+        assertThrows(NullPointerException.class, () -> notifier.register(null));
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void testTestClassReadyInsteadOfInterface() {
-        notifier.register(TestClassReady.class);
+    @Test
+    void testTestClassReadyInsteadOfInterface() {
+        assertThrows(IllegalArgumentException.class, () -> notifier.register(TestClassReady.class));
     }
 
     private interface TestReady extends FunctionalityReady {
