@@ -18,9 +18,10 @@ package org.opendaylight.infrautils.ready.order;
  * an otherwise unnecessary dependency of ready-api to the OSGi Core API.
  *
  * @author Michael Vorburger.ch
+ * @deprecated This interface mirrors exactly {@code ComponentInstance}. It is deprecated without replacement.
  */
+@Deprecated(since = "6.0.9", forRemoval = true)
 public interface FunctionalityReadyRegistration<S> {
 
     void unregister();
-
 }

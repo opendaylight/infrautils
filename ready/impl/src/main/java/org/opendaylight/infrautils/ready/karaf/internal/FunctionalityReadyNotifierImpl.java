@@ -15,7 +15,6 @@ import org.opendaylight.infrautils.ready.order.FunctionalityReadyNotifier;
 import org.opendaylight.infrautils.ready.order.FunctionalityReadyRegistration;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.InvalidSyntaxException;
-import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
@@ -25,9 +24,11 @@ import org.slf4j.LoggerFactory;
  * Implementation of {@link FunctionalityReadyNotifier}.
  *
  * @author Michael Vorburger.ch
+ * @deprecated Use OSGi Declarative Services instead.
  */
 @Component(immediate = true)
-public class FunctionalityReadyNotifierImpl implements FunctionalityReadyNotifier {
+@Deprecated(since = "6.0.9", forRemoval = true)
+public final class FunctionalityReadyNotifierImpl implements FunctionalityReadyNotifier {
     private static final Logger LOG = LoggerFactory.getLogger(FunctionalityReadyNotifierImpl.class);
 
     private final BundleContext bundleContext;
@@ -53,8 +54,8 @@ public class FunctionalityReadyNotifierImpl implements FunctionalityReadyNotifie
             throw new IllegalStateException("InvalidSyntaxException should never happen for 'null' filter?!", e);
         }
 
-        T uselessInstance = ProxyUtil.newInstance(markerInterface);
-        ServiceRegistration<T> registration = bundleContext.registerService(markerInterface, uselessInstance, null);
+        var uselessInstance = ProxyUtil.newInstance(markerInterface);
+        var registration = bundleContext.registerService(markerInterface, uselessInstance, null);
 
         LOG.info("FunctionalityReady now registered as (pseudo) OSGi service: {}", markerInterface.getName());
 
