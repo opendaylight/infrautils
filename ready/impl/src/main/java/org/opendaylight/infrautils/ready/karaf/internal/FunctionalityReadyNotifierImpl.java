@@ -10,7 +10,6 @@ package org.opendaylight.infrautils.ready.karaf.internal;
 import static com.google.common.base.Preconditions.checkArgument;
 import static java.util.Objects.requireNonNull;
 
-import org.eclipse.jdt.annotation.Nullable;
 import org.opendaylight.infrautils.ready.order.FunctionalityReady;
 import org.opendaylight.infrautils.ready.order.FunctionalityReadyNotifier;
 import org.opendaylight.infrautils.ready.order.FunctionalityReadyRegistration;
@@ -31,7 +30,12 @@ import org.slf4j.LoggerFactory;
 public class FunctionalityReadyNotifierImpl implements FunctionalityReadyNotifier {
     private static final Logger LOG = LoggerFactory.getLogger(FunctionalityReadyNotifierImpl.class);
 
-    private @Nullable BundleContext bundleContext = null;
+    private final BundleContext bundleContext;
+
+    @Activate
+    public FunctionalityReadyNotifierImpl(BundleContext bundleContext) {
+        this.bundleContext = requireNonNull(bundleContext);
+    }
 
     @Override
     // synchronized because of the check below to make sure only 1 is ever registered
@@ -61,10 +65,5 @@ public class FunctionalityReadyNotifierImpl implements FunctionalityReadyNotifie
                 LOG.debug("org.osgi.framework.ServiceRegistration.unregister() failed", e);
             }
         };
-    }
-
-    @Activate
-    synchronized void activate(BundleContext newBundleContext) {
-        this.bundleContext = newBundleContext;
     }
 }

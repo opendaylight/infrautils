@@ -46,8 +46,7 @@ class FunctionalityReadyNotifierTest {
 
     @BeforeEach
     void beforeEach() {
-        notifier = new FunctionalityReadyNotifierImpl();
-        notifier.activate(mockBundleContext);
+        notifier = new FunctionalityReadyNotifierImpl(mockBundleContext);
     }
 
     @Test
