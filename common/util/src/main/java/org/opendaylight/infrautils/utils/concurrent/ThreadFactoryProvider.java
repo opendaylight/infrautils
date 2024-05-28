@@ -8,7 +8,6 @@
 package org.opendaylight.infrautils.utils.concurrent;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.Optional;
 import java.util.concurrent.ThreadFactory;
 import org.immutables.value.Value;
@@ -54,8 +53,6 @@ public abstract class ThreadFactoryProvider {
         return true;
     }
 
-    @SuppressFBWarnings(value = "RV_RETURN_VALUE_IGNORED",
-            justification = "OK to ignore guavaBuilder.setPriority's return this in ifPresent()")
     public ThreadFactory get() {
         ThreadFactoryBuilder guavaBuilder = new ThreadFactoryBuilder()
             .setNameFormat(namePrefix() + "-%d")

@@ -12,7 +12,6 @@ import static java.util.Objects.requireNonNull;
 import static org.opendaylight.infrautils.diagstatus.ServiceState.STARTING;
 
 import com.google.common.collect.ImmutableSet;
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
@@ -113,7 +112,6 @@ public final class DiagStatusServiceImpl implements DiagStatusService, AutoClose
     }
 
     // because other projects implementing ServiceStatusProvider may not run FindBugs, we null check anyway
-    @SuppressFBWarnings("RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE")
     private void updateServiceStatusMap() {
         for (var serviceStatusProvider : serviceStatusProviders) {
             var serviceDescriptor = serviceStatusProvider.getServiceDescriptor();
