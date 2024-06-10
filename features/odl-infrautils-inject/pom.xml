@@ -20,6 +20,7 @@
     <packaging>feature</packaging>
 
     <name>OpenDaylight :: Infrautils :: @Inject</name>
+    <description>InfraUtils Inject Features</description>
 
     <dependencies>
         <dependency>

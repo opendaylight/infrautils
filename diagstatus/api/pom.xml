@@ -12,6 +12,7 @@
 
     <artifactId>diagstatus-api</artifactId>
     <packaging>bundle</packaging>
+    <description>infrautils-diagstatus-api</description>
 
     <dependencies>
         <dependency>
