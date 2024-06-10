@@ -13,6 +13,7 @@
     <packaging>feature</packaging>
 
     <name>OpenDaylight :: Infrautils :: DiagStatus</name>
+    <description>InfraUtils Diagstatus Features</description>
 
     <dependencies>
         <dependency>

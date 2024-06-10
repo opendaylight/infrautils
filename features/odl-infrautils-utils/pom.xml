@@ -13,6 +13,7 @@
     <packaging>feature</packaging>
 
     <name>OpenDaylight :: Infrautils :: Utils</name>
+    <description>InfraUtils Utils Features</description>
 
     <dependencies>
         <dependency>

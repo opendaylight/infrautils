@@ -12,6 +12,7 @@
 
     <artifactId>diagstatus-shell</artifactId>
     <packaging>bundle</packaging>
+    <description>infrautils-diagstatus-shell</description>
 
     <dependencies>
         <dependency>

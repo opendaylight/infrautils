@@ -11,6 +11,7 @@
 
     <artifactId>diagstatus-impl</artifactId>
     <packaging>bundle</packaging>
+    <description>infrautils-diagstatus-impl</description>
 
     <dependencies>
         <dependency>

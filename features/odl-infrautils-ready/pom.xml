@@ -13,6 +13,7 @@
     <packaging>feature</packaging>
 
     <name>OpenDaylight :: Infrautils :: Ready</name>
+    <description>InfraUtils Ready Features</description>
 
     <dependencies>
         <dependency>

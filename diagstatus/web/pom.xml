@@ -11,6 +11,7 @@
 
   <artifactId>diagstatus-web</artifactId>
   <packaging>bundle</packaging>
+  <description>infrautils-diagstatus-web</description>
 
   <dependencies>
     <dependency>
