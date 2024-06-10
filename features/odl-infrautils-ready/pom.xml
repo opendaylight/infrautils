@@ -13,6 +13,7 @@
     <packaging>feature</packaging>
 
     <name>OpenDaylight :: Infrautils :: Ready</name>
+    <description>Monitors system readiness state with listener registration and MBean exposure</description>
 
     <dependencies>
         <dependency>
