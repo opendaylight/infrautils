@@ -13,6 +13,7 @@
     <packaging>feature</packaging>
 
     <name>OpenDaylight :: Infrautils :: Utils</name>
+    <description>Provides utilities for thread management, logging, and futures handling</description>
 
     <dependencies>
         <dependency>

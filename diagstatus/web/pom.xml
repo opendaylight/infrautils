@@ -11,6 +11,7 @@
 
   <artifactId>diagstatus-web</artifactId>
   <packaging>bundle</packaging>
+  <description>Provides a web servlet for displaying diagnostic status in JSON format</description>
 
   <dependencies>
     <dependency>

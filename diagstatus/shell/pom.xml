@@ -12,6 +12,7 @@
 
     <artifactId>diagstatus-shell</artifactId>
     <packaging>bundle</packaging>
+    <description>CLI for showing registered service status</description>
 
     <dependencies>
         <dependency>
