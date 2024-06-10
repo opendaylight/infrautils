@@ -12,6 +12,7 @@
 
     <artifactId>diagstatus-api</artifactId>
     <packaging>bundle</packaging>
+    <description>Provides services for monitoring and retrieving system diagnostic statuses</description>
 
     <dependencies>
         <dependency>

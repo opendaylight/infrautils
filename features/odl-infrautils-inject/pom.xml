@@ -20,6 +20,7 @@
     <packaging>feature</packaging>
 
     <name>OpenDaylight :: Infrautils :: @Inject</name>
+    <description>Includes utilities for dependency injection, lifecycle management, and classpath scanning</description>
 
     <dependencies>
         <dependency>
