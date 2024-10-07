@@ -1,0 +1,8 @@
+Verified+1: jenkins-releng ODL
+Verified+1: ODL Required.GHA <releng+odl.required.gha@linuxfoundation.org>
+Code-Review+2: Robert Varga <nite@hq.sk>
+Submitted-by: Robert Varga <nite@hq.sk>
+Submitted-at: Mon, 07 Oct 2024 12:18:46 +0000
+Reviewed-on: https://git.opendaylight.org/gerrit/c/infrautils/+/113862
+Project: infrautils
+Branch: refs/heads/6.0.x
