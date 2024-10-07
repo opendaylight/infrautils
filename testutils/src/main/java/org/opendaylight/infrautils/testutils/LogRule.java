@@ -20,8 +20,7 @@ import org.slf4j.MarkerFactory;
 /**
  * JUnit Rule which nicely separates {@literal @}Test/s in the log.
  *
- * <p>
- * Usage (NB the use of {@literal @}Rule instead of {@literal @}ClassRule):
+ * <p>Usage (NB the use of {@literal @}Rule instead of {@literal @}ClassRule):
  *
  * <pre>
  *   public {@literal @}Rule LogRule logRule = new LogRule();
