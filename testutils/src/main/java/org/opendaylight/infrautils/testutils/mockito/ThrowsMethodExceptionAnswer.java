@@ -17,9 +17,7 @@ import org.mockito.stubbing.Answer;
  * Mockito Answer which for un-stubbed methods throws an
  * UnstubbedMethodException (instead of Mockito's default of returning null).
  *
- * <p>
- * Usage:
- *
+ * <p>Usage:
  * <pre>
  * import static ...testutils.mockito.MoreAnswers.exception;
  *
@@ -27,7 +25,6 @@ import org.mockito.stubbing.Answer;
  * </pre>
  *
  * @see Mockito#mock(Class, Answer)
- *
  * @see ThrowsException
  *
  * @author Michael Vorburger
