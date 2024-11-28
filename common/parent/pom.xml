@@ -71,7 +71,7 @@
       <groupId>com.google.errorprone</groupId>
       <artifactId>error_prone_annotations</artifactId>
       <!-- Keep this version in sync with annotationProcessorPaths declaration below -->
-      <version>2.33.0</version>
+      <version>2.36.0</version>
       <optional>true</optional>
       <scope>provided</scope>
     </dependency>
@@ -114,6 +114,7 @@
               <fork>true</fork>
               <compilerArgs combine.children="append">
                 <arg>-XDcompilePolicy=simple</arg>
+                <arg>--should-stop=ifError=FLOW</arg>
 
                 <!-- Needed until EP uses something else than private APIs -->
                 <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED</arg>
@@ -126,6 +127,7 @@
                 <arg>-J--add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED</arg>
                 <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED</arg>
                 <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED</arg>
+
                 <arg>-Xplugin:ErrorProne \
                   <!-- TODO evaluate further which other non-default error prone bug patterns could also be enabled... \
                        http://errorprone.info/bugpatterns --> \
@@ -197,7 +199,7 @@
                   <groupId>com.google.errorprone</groupId>
                   <artifactId>error_prone_core</artifactId>
                   <!-- Keep this version in sync with dependency declaration above -->
-                  <version>2.33.0</version>
+                  <version>2.36.0</version>
                 </path>
               </annotationProcessorPaths>
             </configuration>
