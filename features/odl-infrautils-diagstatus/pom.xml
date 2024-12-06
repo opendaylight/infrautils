@@ -35,20 +35,16 @@
             <type>xml</type>
         </dependency>
         <dependency>
-            <groupId>org.opendaylight.odlparent</groupId>
-            <artifactId>odl-karaf-feat-jetty</artifactId>
-            <type>xml</type>
-            <classifier>features</classifier>
-        </dependency>
-        <dependency>
-            <groupId>org.opendaylight.odlparent</groupId>
-            <artifactId>odl-servlet-api</artifactId>
+            <groupId>org.opendaylight.infrautils</groupId>
+            <artifactId>odl-infrautils-utils</artifactId>
             <classifier>features</classifier>
             <type>xml</type>
         </dependency>
         <dependency>
             <groupId>org.opendaylight.infrautils</groupId>
-            <artifactId>diagstatus-web</artifactId>
+            <artifactId>odl-infrautils-ready</artifactId>
+            <classifier>features</classifier>
+            <type>xml</type>
         </dependency>
         <dependency>
             <groupId>org.opendaylight.infrautils</groupId>
@@ -62,18 +58,5 @@
             <groupId>org.opendaylight.infrautils</groupId>
             <artifactId>diagstatus-shell</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.opendaylight.infrautils</groupId>
-            <artifactId>odl-infrautils-utils</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-        </dependency>
-        <dependency>
-            <groupId>org.opendaylight.infrautils</groupId>
-            <artifactId>odl-infrautils-ready</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-        </dependency>
     </dependencies>
-
 </project>

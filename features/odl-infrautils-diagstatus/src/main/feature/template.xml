@@ -3,21 +3,16 @@
     <repository>mvn:org.opendaylight.odlparent/odl-apache-commons-lang3/{{versionAsInProject}}/xml/features</repository>
     <repository>mvn:org.opendaylight.odlparent/odl-gson/{{versionAsInProject}}/xml/features</repository>
     <repository>mvn:org.opendaylight.odlparent/odl-guava/{{versionAsInProject}}/xml/features</repository>
-    <repository>mvn:org.opendaylight.odlparent/odl-karaf-feat-jetty/{{versionAsInProject}}/xml/features</repository>
-    <repository>mvn:org.opendaylight.odlparent/odl-servlet-api/{{versionAsInProject}}/xml/features</repository>
     <repository>mvn:org.opendaylight.infrautils/odl-infrautils-ready/{{versionAsInProject}}/xml/features</repository>
     <repository>mvn:org.opendaylight.infrautils/odl-infrautils-utils/{{versionAsInProject}}/xml/features</repository>
     <feature name="odl-infrautils-diagstatus">
         <feature version="[13,15)">odl-apache-commons-lang3</feature>
         <feature version="[13,15)">odl-gson</feature>
         <feature version="[14,15)">odl-guava</feature>
-        <feature version="[13,15)">odl-karaf-feat-jetty</feature>
-        <feature version="[13,15)">odl-servlet-api</feature>
         <feature version="{{semVerRange}}">odl-infrautils-ready</feature>
         <feature version="{{semVerRange}}">odl-infrautils-utils</feature>
         <bundle>mvn:org.opendaylight.infrautils/diagstatus-api/{{versionAsInProject}}</bundle>
         <bundle>mvn:org.opendaylight.infrautils/diagstatus-impl/{{versionAsInProject}}</bundle>
         <bundle>mvn:org.opendaylight.infrautils/diagstatus-shell/{{versionAsInProject}}</bundle>
-        <bundle>mvn:org.opendaylight.infrautils/diagstatus-web/{{versionAsInProject}}</bundle>
     </feature>
 </features>

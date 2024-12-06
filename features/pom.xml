@@ -29,6 +29,7 @@
 
         <!-- Stable features -->
         <module>odl-infrautils-diagstatus</module>
+        <module>odl-infrautils-diagstatus-web</module>
         <module>odl-infrautils-ready</module>
         <module>odl-infrautils-utils</module>
 

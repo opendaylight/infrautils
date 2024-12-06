@@ -46,6 +46,12 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
+            <artifactId>odl-infrautils-diagstatus-web</artifactId>
+            <type>xml</type>
+            <classifier>features</classifier>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
             <artifactId>odl-infrautils-ready</artifactId>
             <type>xml</type>
             <classifier>features</classifier>
