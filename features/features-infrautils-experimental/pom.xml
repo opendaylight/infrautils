@@ -23,7 +23,7 @@
     <!-- <name> formatting is used by autorelease to parse and notify projects on
          build failure. Please do not modify this unless you have a good reason. -->
     <name>ODL :: infrautils :: ${project.artifactId}</name>
-    <description>YANG Tools Experimental Features</description>
+    <description>InfraUtils Experimental Features</description>
 
     <dependencyManagement>
         <dependencies>
