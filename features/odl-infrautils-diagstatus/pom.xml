@@ -18,12 +18,6 @@
     <dependencies>
         <dependency>
             <groupId>org.opendaylight.odlparent</groupId>
-            <artifactId>odl-apache-commons-lang3</artifactId>
-            <classifier>features</classifier>
-            <type>xml</type>
-        </dependency>
-        <dependency>
-            <groupId>org.opendaylight.odlparent</groupId>
             <artifactId>odl-guava</artifactId>
             <classifier>features</classifier>
             <type>xml</type>

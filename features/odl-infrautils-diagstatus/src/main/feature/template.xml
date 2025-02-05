@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <features xmlns="http://karaf.apache.org/xmlns/features/v1.6.0" name="odl-infrautils-diagstatus">
-    <repository>mvn:org.opendaylight.odlparent/odl-apache-commons-lang3/{{versionAsInProject}}/xml/features</repository>
     <repository>mvn:org.opendaylight.odlparent/odl-gson/{{versionAsInProject}}/xml/features</repository>
     <repository>mvn:org.opendaylight.odlparent/odl-guava/{{versionAsInProject}}/xml/features</repository>
     <repository>mvn:org.opendaylight.infrautils/odl-infrautils-ready/{{versionAsInProject}}/xml/features</repository>
     <repository>mvn:org.opendaylight.infrautils/odl-infrautils-utils/{{versionAsInProject}}/xml/features</repository>
     <feature name="odl-infrautils-diagstatus">
-        <feature version="[13,15)">odl-apache-commons-lang3</feature>
         <feature version="[13,15)">odl-gson</feature>
         <feature version="[14,15)">odl-guava</feature>
         <feature version="{{semVerRange}}">odl-infrautils-ready</feature>
