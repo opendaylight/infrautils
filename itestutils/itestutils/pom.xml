@@ -27,6 +27,7 @@
   <properties>
     <!-- TODO Figure out and fix the Found duplicate and different classes in [org.ops4j.pax.url:pax-url-aether:2.5.3, org.ops4j.pax.url:pax-url-commons:2.5.3] -->
     <duplicate-finder.skip>true</duplicate-finder.skip>
+    <odlparent.modernizer.enforce>false</odlparent.modernizer.enforce>
   </properties>
 
   <dependencies>
@@ -98,7 +99,7 @@
     <dependency>
       <groupId>org.opendaylight.odlparent</groupId>
       <artifactId>opendaylight-karaf-empty</artifactId>
-      <version>14.0.5</version>
+      <version>14.0.6</version>
       <type>tar.gz</type>
       <exclusions>
         <!-- The transitive dependencies are unnecessary, because PAX Exam uses the distribution.
