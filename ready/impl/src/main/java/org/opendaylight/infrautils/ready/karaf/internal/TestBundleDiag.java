@@ -5,7 +5,7 @@
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html
  */
-package org.opendaylight.odlparent.bundlestest.lib;
+package org.opendaylight.infrautils.ready.karaf.internal;
 
 import static java.util.Objects.requireNonNull;
 
@@ -20,12 +20,12 @@ import org.slf4j.LoggerFactory;
  *
  * @author Michael Vorburger.ch, based on guidance from Christian Schneider
  */
-public class TestBundleDiag {
+class TestBundleDiag {
     private static final Logger LOG = LoggerFactory.getLogger(TestBundleDiag.class);
 
     private final DiagProvider diagProvider;
 
-    public TestBundleDiag(DiagProvider diagProvider) {
+    TestBundleDiag(DiagProvider diagProvider) {
         this.diagProvider = requireNonNull(diagProvider);
     }
 
@@ -42,7 +42,7 @@ public class TestBundleDiag {
      * @param timeoutUnit time unit of timeout
      * @throws SystemStateFailureException if all bundles do not settle within the timeout period
      */
-    public void checkBundleDiagInfos(long timeout, TimeUnit timeoutUnit)
+    void checkBundleDiagInfos(long timeout, TimeUnit timeoutUnit)
             throws SystemStateFailureException {
         checkBundleDiagInfos(timeout, timeoutUnit, (timeInfo, bundleDiagInfos) ->
             LOG.info("checkBundleDiagInfos: Elapsed time {}s, remaining time {}s, {}",
@@ -50,7 +50,7 @@ public class TestBundleDiag {
                 bundleDiagInfos.getFullDiagnosticText()));
     }
 
-    public void checkBundleDiagInfos(long timeout, TimeUnit timeoutUnit,
+    void checkBundleDiagInfos(long timeout, TimeUnit timeoutUnit,
             BiConsumer<TimeInfo, BundleDiagInfos> awaitingListener) throws SystemStateFailureException {
         LOG.info("checkBundleDiagInfos() started...");
 

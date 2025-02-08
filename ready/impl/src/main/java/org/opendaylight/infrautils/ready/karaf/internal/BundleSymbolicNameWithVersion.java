@@ -5,12 +5,13 @@
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html
  */
-package org.opendaylight.odlparent.bundlestest.lib;
+package org.opendaylight.infrautils.ready.karaf.internal;
 
 import static java.util.Objects.requireNonNull;
 
 import java.io.Serializable;
 import java.util.Objects;
+import org.eclipse.jdt.annotation.NonNullByDefault;
 import org.eclipse.jdt.annotation.Nullable;
 
 /**
@@ -18,23 +19,24 @@ import org.eclipse.jdt.annotation.Nullable;
  *
  * @author Michael Vorburger.ch
  */
-public final class BundleSymbolicNameWithVersion implements Serializable {
+@NonNullByDefault
+final class BundleSymbolicNameWithVersion implements Serializable {
     @java.io.Serial
     private static final long serialVersionUID = 1L;
 
     private final String symbolicName;
     private final String version;
 
-    public BundleSymbolicNameWithVersion(String symbolicName, String version) {
+    BundleSymbolicNameWithVersion(String symbolicName, String version) {
         this.symbolicName = requireNonNull(symbolicName, "symbolicName");
         this.version = requireNonNull(version, "version");
     }
 
-    public String getSymbolicName() {
+    String getSymbolicName() {
         return symbolicName;
     }
 
-    public String getVersion() {
+    String getVersion() {
         return version;
     }
 
