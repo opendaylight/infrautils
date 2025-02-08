@@ -18,8 +18,6 @@ import org.opendaylight.infrautils.ready.spi.DelegatingSystemReadyMonitorMXBean;
 import org.opendaylight.infrautils.ready.spi.SimpleSystemReadyMonitor;
 import org.opendaylight.infrautils.utils.concurrent.ThreadFactoryProvider;
 import org.opendaylight.odlparent.bundles.diag.DiagProvider;
-import org.opendaylight.odlparent.bundlestest.lib.SystemStateFailureException;
-import org.opendaylight.odlparent.bundlestest.lib.TestBundleDiag;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;

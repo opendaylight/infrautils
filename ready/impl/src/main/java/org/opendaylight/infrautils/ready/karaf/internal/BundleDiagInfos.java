@@ -5,7 +5,7 @@
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html
  */
-package org.opendaylight.odlparent.bundlestest.lib;
+package org.opendaylight.infrautils.ready.karaf.internal;
 
 import java.io.Serializable;
 import java.util.List;
@@ -17,7 +17,7 @@ import org.opendaylight.odlparent.bundles.diag.ContainerState;
  *
  * @author Michael Vorburger.ch
  */
-public interface BundleDiagInfos extends Serializable {
+interface BundleDiagInfos extends Serializable {
 
     SystemState getSystemState();
 

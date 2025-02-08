@@ -5,9 +5,24 @@
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html
  */
+package org.opendaylight.infrautils.ready.karaf.internal;
+
+import org.apache.karaf.bundle.core.BundleState;
+
 /**
- * Library of various utilies for check bundle state.
+ * Karaf OSGi System State.
+ *
+ * @see BundleState
+ *
+ * @author Michael Vorburger.ch
  */
-@org.eclipse.jdt.annotation.NonNullByDefault
-@org.osgi.annotation.bundle.Export
-package org.opendaylight.odlparent.bundlestest.lib;
+enum SystemState {
+
+    Booting,
+
+    Active,
+
+    Stopping,
+
+    Failure
+}

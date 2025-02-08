@@ -5,7 +5,7 @@
  * terms of the Eclipse Public License v1.0 which accompanies this distribution,
  * and is available at http://www.eclipse.org/legal/epl-v10.html
  */
-package org.opendaylight.odlparent.bundlestest.lib;
+package org.opendaylight.infrautils.ready.karaf.internal;
 
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleActivator;
@@ -22,17 +22,18 @@ import org.osgi.framework.BundleActivator;
  *
  * @author Michael Vorburger.ch
  */
-public class SystemStateFailureException extends Exception {
+class SystemStateFailureException extends Exception {
+    @java.io.Serial
     private static final long serialVersionUID = 1L;
 
     private final BundleDiagInfos bundleDiagInfos;
 
-    public SystemStateFailureException(String message, BundleDiagInfos bundleDiagInfos, Throwable cause) {
+    SystemStateFailureException(String message, BundleDiagInfos bundleDiagInfos, Throwable cause) {
         super(getExtendedMessage(message, bundleDiagInfos), cause);
         this.bundleDiagInfos = bundleDiagInfos;
     }
 
-    public SystemStateFailureException(String message, BundleDiagInfos bundleDiagInfos) {
+    SystemStateFailureException(String message, BundleDiagInfos bundleDiagInfos) {
         super(getExtendedMessage(message, bundleDiagInfos));
         this.bundleDiagInfos = bundleDiagInfos;
     }
