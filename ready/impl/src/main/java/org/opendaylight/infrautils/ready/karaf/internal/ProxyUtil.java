@@ -11,8 +11,6 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import org.opendaylight.infrautils.ready.order.FunctionalityReady;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Utility for java.lang.reflect.Proxy.
@@ -20,36 +18,25 @@ import org.slf4j.LoggerFactory;
  * @author Michael Vorburger.ch
  */
 final class ProxyUtil {
-    private static final Logger LOG = LoggerFactory.getLogger(ProxyUtil.class);
-
     // inspired by https://docs.oracle.com/javase/8/docs/technotes/guides/reflection/proxy.html
 
     // pre-loaded Method objects for the hashCode(), equals() and toString() methods in java.lang.Object
-    private static Method hashCodeMethod;
-    private static Method equalsMethod;
-    private static Method toStringMethod;
+    private static final Method HASH_CODE_METHOD;
+    private static final Method EQUALS_METHOD;
+    private static final Method TO_STRING_METHOD;
 
     static {
-        initializeMethods();
+        try {
+            HASH_CODE_METHOD = Object.class.getMethod("hashCode");
+            EQUALS_METHOD = Object.class.getMethod("equals", new Class[] { Object.class });
+            TO_STRING_METHOD = Object.class.getMethod("toString");
+        } catch (NoSuchMethodException e) {
+            throw new ExceptionInInitializerError(e);
+        }
     }
 
     private ProxyUtil() {
-
-    }
-
-    @SuppressWarnings("checkstyle:AvoidHidingCauseException")
-    private static void initializeMethods() {
-        try {
-            hashCodeMethod = Object.class.getMethod("hashCode");
-            equalsMethod =
-                Object.class.getMethod("equals", new Class[] { Object.class });
-            toStringMethod = Object.class.getMethod("toString");
-        } catch (NoSuchMethodException e) {
-            LOG.error("getMethod() failed", e);
-            NoSuchMethodError noSuchMethodError = new NoSuchMethodError(e.getMessage());
-            noSuchMethodError.initCause(e);
-            throw noSuchMethodError;
-        }
+        // Hidden on purpose
     }
 
     @SuppressWarnings("unchecked")
@@ -65,11 +52,11 @@ final class ProxyUtil {
             Class declaringClass = method.getDeclaringClass();
 
             if (declaringClass == Object.class) {
-                if (method.equals(hashCodeMethod)) {
+                if (method.equals(HASH_CODE_METHOD)) {
                     return proxyHashCode(proxy);
-                } else if (method.equals(equalsMethod)) {
+                } else if (method.equals(EQUALS_METHOD)) {
                     return proxyEquals(proxy, args[0]);
-                } else if (method.equals(toStringMethod)) {
+                } else if (method.equals(TO_STRING_METHOD)) {
                     return proxyToString(proxy);
                 } else {
                     throw new InternalError("unexpected Object method dispatched: " + method);
