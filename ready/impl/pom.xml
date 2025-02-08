@@ -34,16 +34,13 @@
       <artifactId>guava</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.osgi</groupId>
-      <artifactId>org.osgi.framework</artifactId>
+      <groupId>org.apache.karaf.bundle</groupId>
+      <artifactId>org.apache.karaf.bundle.core</artifactId>
+      <scope>provided</scope>
     </dependency>
     <dependency>
-      <groupId>org.osgi</groupId>
-      <artifactId>org.osgi.service.metatype.annotations</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.osgi</groupId>
-      <artifactId>org.osgi.service.component.annotations</artifactId>
+      <groupId>org.eclipse.jdt</groupId>
+      <artifactId>org.eclipse.jdt.annotation</artifactId>
     </dependency>
     <dependency>
       <groupId>org.opendaylight.infrautils</groupId>
@@ -58,38 +55,18 @@
       <artifactId>bundles-diag</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.opendaylight.odlparent</groupId>
-      <artifactId>bundles-test-lib</artifactId>
-      <scope>provided</scope>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.framework</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.apache.karaf.bundle</groupId>
-      <artifactId>org.apache.karaf.bundle.core</artifactId>
-      <scope>provided</scope>
-    </dependency>
-    <!-- We HAVE to list hamcrest and awaitility as dependencies here,
-         not because we need to compile against it, but so that the Embed-Dependency
-         in the maven-bundle-plugin below works! -->
-    <dependency>
-      <groupId>org.hamcrest</groupId>
-      <artifactId>hamcrest</artifactId>
-      <scope>compile</scope>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.service.metatype.annotations</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.awaitility</groupId>
-      <artifactId>awaitility</artifactId>
-      <scope>compile</scope>
-      <exclusions>
-        <exclusion>
-          <groupId>cglib</groupId>
-          <artifactId>cglib-nodep</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>org.objenesis</groupId>
-          <artifactId>objenesis</artifactId>
-        </exclusion>
-      </exclusions>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.service.component.annotations</artifactId>
     </dependency>
+
     <dependency>
       <groupId>org.opendaylight.infrautils</groupId>
       <artifactId>infrautils-testutils</artifactId>
@@ -110,8 +87,6 @@
         <configuration>
           <instructions>
             <Automatic-Module-Name>org.opendaylight.infrautils.ready.karaf</Automatic-Module-Name>
-            <Embed-Dependency>bundles-test-lib,awaitility,hamcrest</Embed-Dependency>
-            <!-- Do NOT <Embed-Transitive>true</Embed-Transitive> -->
           </instructions>
         </configuration>
       </plugin>
