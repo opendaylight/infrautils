@@ -99,6 +99,7 @@ public final class KarafSystemReady extends SimpleSystemReadyMonitor {
                 var bundleInfos = BundleDiagInfosImpl.ofDiag(diag);
 
                 var systemState = bundleInfos.getSystemState();
+                SystemStateFailureException cause;
                 switch (systemState) {
                     case Active -> {
                         // Inform the developer of the green SystemState.Active
@@ -111,13 +112,11 @@ public final class KarafSystemReady extends SimpleSystemReadyMonitor {
                         ready();
                         return;
                     }
-                    case Failure, Stopping -> {
-                        LOG.error("""
-                            diag failure; BundleService reports bundle(s) which failed or are already stopping \
-                            (details in following INFO and ERROR log messages...)""");
-                        diag.logState(LOG);
-                        throw new SystemStateFailureException("diag failed; some bundles failed to start", bundleInfos);
-                    }
+                    case Failure ->
+                        cause = new SystemStateFailureException("diag failed; some bundles failed to start",
+                            bundleInfos);
+                    case Stopping ->
+                        cause = new SystemStateFailureException("diag failed; some bundles are stopping", bundleInfos);
 
                     // FIXME: a.k.a Booting, but the combination of checkstyle and error-prone requires us to use this
                     //        ugly construct. Reasons:
@@ -127,30 +126,29 @@ public final class KarafSystemReady extends SimpleSystemReadyMonitor {
                     //          https://github.com/google/error-prone/issues/4721
                     //        So when we have fixed error-prone, we need to go back to 'case Booting' and 'case null'.
                     default -> {
-                        if (remainingNanos <= 0) {
+                        if (remainingNanos > 0) {
+                            try {
+                                Thread.sleep(1000);
+                                continue;
+                            } catch (InterruptedException e) {
+                                cause = new SystemStateFailureException("Interrupted waiting for a retry", bundleInfos,
+                                    e);
+                            }
+                        } else {
                             // This typically happens due to bundles still in BundleState GracePeriod or Waiting
-                            LOG.error("""
-                                diag failure; BundleService reports bundle(s) which are still not active (details in \
-                                following INFO and ERROR log messages...)""");
-                            diag.logState(LOG);
-                            throw new SystemStateFailureException("diag timeout; some bundles are still not active:",
+                            cause = new SystemStateFailureException("diag timeout; some bundles are still not active:",
                                 bundleInfos);
-                        }
-
-                        try {
-                            Thread.sleep(1000);
-                        } catch (InterruptedException e) {
-                            throw new SystemStateFailureException("Interrupted waiting for a retry", bundleInfos, e);
                         }
                     }
                 }
+
+                LOG.error("Failed, some bundles did not start (SystemReadyListeners are not called)", cause);
+                diag.logState(LOG);
+                setSystemState(FAILURE);
+                setSystemFailureCause(cause);
+                ready();
+                return;
             }
-        } catch (SystemStateFailureException e) {
-            LOG.error("Failed, some bundles did not start (SystemReadyListeners are not called)", e);
-            setSystemState(FAILURE);
-            setSystemFailureCause(e);
-            // We do not re-throw this, but signal ready
-            ready();
         } catch (RuntimeException throwable) {
             // It's exceptionally OK to catch RuntimeException here,
             // because we do want to set the currentFullSystemStatus
