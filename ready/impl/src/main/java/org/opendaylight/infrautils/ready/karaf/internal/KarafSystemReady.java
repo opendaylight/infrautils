@@ -14,7 +14,6 @@ import com.google.common.annotations.VisibleForTesting;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
-import java.util.function.BiConsumer;
 import org.opendaylight.infrautils.ready.SystemReadyMonitor;
 import org.opendaylight.infrautils.ready.spi.DelegatingSystemReadyMonitorMXBean;
 import org.opendaylight.infrautils.ready.spi.SimpleSystemReadyMonitor;
@@ -81,23 +80,77 @@ public final class KarafSystemReady extends SimpleSystemReadyMonitor {
     @SuppressWarnings("checkstyle:IllegalCatch") // below
     @SuppressFBWarnings(value = "THROWS_METHOD_THROWS_RUNTIMEEXCEPTION", justification = "Re-thrown")
     private void runCheckBundleDiag() {
-        try {
-            // 5 minutes really ought to be enough for the whole circus to completely boot up?!
-            checkBundleDiagInfos(config.systemReadyTimeout(), TimeUnit.SECONDS,
-                (timeInfo, bundleDiagInfos) -> {
-                    LOG.info("checkBundleDiagInfos: Elapsed time {}s, remaining time {}s, {}",
-                        timeInfo.getElapsedTimeInMS() / 1000, timeInfo.getRemainingTimeInMS() / 1000,
-                        // INFRAUTILS-17: getSummaryText() instead getFullDiagnosticText() because people found log
-                        //                confusing
-                        bundleDiagInfos.getSummaryText());
-                });
+        // Does something similar to Karaf's "diag" CLI command, and throws a {@link SystemStateFailureException} if
+        // anything including bundle wiring is not OK.
+        //
+        // The implementation is based on Karaf's BundleService, and not the BundleStateService, because each Karaf
+        // supported DI system (such as Blueprint and Declarative Services, see String constants in BundleStateService),
+        // will have a separate BundleStateService.  The BundleService however will contain the combined status of all
+        // BundleStateServices.
+        var timeoutNanos = TimeUnit.SECONDS.toNanos(config.systemReadyTimeout());
+        var started = System.nanoTime();
+        LOG.info("checkBundleDiagInfos() started...");
 
+        try {
+            while (true) {
+                var elapsedNanos = System.nanoTime() - started;
+                var remainingNanos = timeoutNanos - elapsedNanos;
+                var diag = diagProvider.currentDiag();
+                var bundleInfos = BundleDiagInfosImpl.ofDiag(diag);
+
+                var systemState = bundleInfos.getSystemState();
+                switch (systemState) {
+                    case Active -> {
+                        // Inform the developer of the green SystemState.Active
+                        LOG.info("checkBundleDiagInfos: Elapsed time {}s, remaining time {}s, {}",
+                            TimeUnit.NANOSECONDS.toSeconds(elapsedNanos),
+                            TimeUnit.NANOSECONDS.toSeconds(remainingNanos),
+                            // Note:: getSummaryText() instead getFullDiagnosticText() because people found log
+                            //        confusing
+                            bundleInfos.getSummaryText());
+                        ready();
+                        return;
+                    }
+                    case Failure, Stopping -> {
+                        LOG.error("""
+                            diag failure; BundleService reports bundle(s) which failed or are already stopping \
+                            (details in following INFO and ERROR log messages...)""");
+                        diag.logState(LOG);
+                        throw new SystemStateFailureException("diag failed; some bundles failed to start", bundleInfos);
+                    }
+
+                    // FIXME: a.k.a Booting, but the combination of checkstyle and error-prone requires us to use this
+                    //        ugly construct. Reasons:
+                    //        - we need either a 'default' or 'case null' for checkstyle
+                    //        - using a catch-all 'default' is hated by error-prone
+                    //        - using a 'case null' without 'default' results in
+                    //          https://github.com/google/error-prone/issues/4721
+                    //        So when we have fixed error-prone, we need to go back to 'case Booting' and 'case null'.
+                    default -> {
+                        if (remainingNanos <= 0) {
+                            // This typically happens due to bundles still in BundleState GracePeriod or Waiting
+                            LOG.error("""
+                                diag failure; BundleService reports bundle(s) which are still not active (details in \
+                                following INFO and ERROR log messages...)""");
+                            diag.logState(LOG);
+                            throw new SystemStateFailureException("diag timeout; some bundles are still not active:",
+                                bundleInfos);
+                        }
+
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            throw new SystemStateFailureException("Interrupted waiting for a retry", bundleInfos, e);
+                        }
+                    }
+                }
+            }
         } catch (SystemStateFailureException e) {
             LOG.error("Failed, some bundles did not start (SystemReadyListeners are not called)", e);
             setSystemState(FAILURE);
             setSystemFailureCause(e);
-            // We do not re-throw this
-
+            // We do not re-throw this, but signal ready
+            ready();
         } catch (RuntimeException throwable) {
             // It's exceptionally OK to catch RuntimeException here,
             // because we do want to set the currentFullSystemStatus
@@ -106,79 +159,6 @@ public final class KarafSystemReady extends SimpleSystemReadyMonitor {
             setSystemFailureCause(throwable);
             // and now we do re-throw it!
             throw throwable;
-        }
-
-        ready();
-    }
-
-    /**
-     * Does something similar to Karaf's "diag" CLI command, and throws a {@link SystemStateFailureException} if
-     * anything including bundle wiring is not OK.
-     *
-     * <p>The implementation is based on Karaf's BundleService, and not the BundleStateService, because each Karaf
-     * supported DI system (such as Blueprint and Declarative Services, see String constants in BundleStateService),
-     * will have a separate BundleStateService.  The BundleService however will contain the combined status of all
-     * BundleStateServices.
-     *
-     * @param timeout maximum time to wait for bundles to settle
-     * @param timeoutUnit time unit of timeout
-     * @throws SystemStateFailureException if all bundles do not settle within the timeout period
-     */
-    private void checkBundleDiagInfos(long timeout, TimeUnit timeoutUnit,
-            BiConsumer<TimeInfo, BundleDiagInfos> awaitingListener) throws SystemStateFailureException {
-        LOG.info("checkBundleDiagInfos() started...");
-
-        var timeoutNanos = timeoutUnit.toNanos(timeout);
-        var started = System.nanoTime();
-
-        while (true) {
-            var elapsedNanos = System.nanoTime() - started;
-            var remainingNanos = timeoutNanos - elapsedNanos;
-            var diag = diagProvider.currentDiag();
-            var bundleInfos = BundleDiagInfosImpl.ofDiag(diag);
-
-            var systemState = bundleInfos.getSystemState();
-            switch (systemState) {
-                case Active -> {
-                    // Inform the developer of the green SystemState.Active
-                    awaitingListener.accept(new TimeInfo(TimeUnit.NANOSECONDS.toMillis(elapsedNanos),
-                        TimeUnit.NANOSECONDS.toMillis(remainingNanos)), bundleInfos);
-                    LOG.info("diag successful; system state active ({})", bundleInfos.getFullDiagnosticText());
-                    return;
-                }
-                case Failure, Stopping -> {
-                    LOG.error("""
-                        diag failure; BundleService reports bundle(s) which failed or are already stopping (details in \
-                        following INFO and ERROR log messages...)""");
-                    diag.logState(LOG);
-                    throw new SystemStateFailureException("diag failed; some bundles failed to start", bundleInfos);
-                }
-
-                // FIXME: a.k.a Booting, but the combination of checkstyle and error-prone requires us to use this ugly
-                //        construct. Reasons:
-                //        - we need either a 'default' or 'case null' for checkstyle
-                //        - using a catch-all 'default' is hated by error-prone
-                //        - using a 'case null' without 'default' results in
-                //          https://github.com/google/error-prone/issues/4721
-                //        So when we have fixed error-prone, we need to go back to 'case Booting' and 'case null'.
-                default -> {
-                    if (remainingNanos <= 0) {
-                        // This typically happens due to bundles still in BundleState GracePeriod or Waiting
-                        LOG.error("""
-                            diag failure; BundleService reports bundle(s) which are still not active (details in \
-                            following INFO and ERROR log messages...)""");
-                        diag.logState(LOG);
-                        throw new SystemStateFailureException("diag timeout; some bundles are still not active:",
-                            bundleInfos);
-                    }
-
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        throw new SystemStateFailureException("Interrupted waiting for a retry", bundleInfos, e);
-                    }
-                }
-            }
         }
     }
 }
