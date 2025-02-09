@@ -91,15 +91,16 @@ public final class KarafSystemReady extends SimpleSystemReadyMonitor {
         var started = System.nanoTime();
         LOG.info("checkBundleDiagInfos() started...");
 
-        try {
-            while (true) {
-                var elapsedNanos = System.nanoTime() - started;
-                var remainingNanos = timeoutNanos - elapsedNanos;
-                var diag = diagProvider.currentDiag();
+        while (true) {
+            var elapsedNanos = System.nanoTime() - started;
+            var remainingNanos = timeoutNanos - elapsedNanos;
+            var diag = diagProvider.currentDiag();
+
+            SystemStateFailureException cause;
+            try {
                 var bundleInfos = BundleDiagInfosImpl.ofDiag(diag);
 
                 var systemState = bundleInfos.getSystemState();
-                SystemStateFailureException cause;
                 switch (systemState) {
                     case Active -> {
                         // Inform the developer of the green SystemState.Active
@@ -141,22 +142,22 @@ public final class KarafSystemReady extends SimpleSystemReadyMonitor {
                         }
                     }
                 }
-
-                LOG.error("Failed, some bundles did not start (SystemReadyListeners are not called)", cause);
-                diag.logState(LOG);
+            } catch (RuntimeException e) {
+                // It's exceptionally OK to catch RuntimeException here,
+                // because we do want to set the currentFullSystemStatus
+                LOG.error("Boot failed; not all SystemReadyListeners were not called, SystemState FAILURE", e);
                 setSystemState(FAILURE);
-                setSystemFailureCause(cause);
-                ready();
-                return;
+                setSystemFailureCause(e);
+                // and now we do re-throw it!
+                throw e;
             }
-        } catch (RuntimeException throwable) {
-            // It's exceptionally OK to catch RuntimeException here,
-            // because we do want to set the currentFullSystemStatus
-            LOG.error("Boot failed; not all SystemReadyListeners were not called, SystemState FAILURE", throwable);
+
+            LOG.error("Failed, some bundles did not start (SystemReadyListeners are not called)", cause);
+            diag.logState(LOG);
             setSystemState(FAILURE);
-            setSystemFailureCause(throwable);
-            // and now we do re-throw it!
-            throw throwable;
+            setSystemFailureCause(cause);
+            ready();
+            return;
         }
     }
 }
