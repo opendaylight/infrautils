@@ -35,7 +35,6 @@ final class BundleDiagInfosImpl implements BundleDiagInfos {
     private final List<String> nokBundleStateInfoTexts;
     private final List<String> whitelistedBundleStateInfoTexts;
     private final Map<ContainerState, Integer> bundleStatesCounters;
-    private final Map<BundleSymbolicNameWithVersion, ContainerState> bundlesStateMap;
 
     /**
      * Create an instance. The collections provided as arguments will be kept as-is; it’s up to the caller
@@ -45,16 +44,13 @@ final class BundleDiagInfosImpl implements BundleDiagInfos {
      * @param nokBundleStateInfoTexts information about bundles not in OK state.
      * @param whitelistedBundleStateInfoTexts information about whitelisted bundles.
      * @param bundleStatesCounters bundle state counters.
-     * @param bundlesStateMap bundle state map (state of each bundle).
      */
     private BundleDiagInfosImpl(List<String> okBundleStateInfoTexts, List<String> nokBundleStateInfoTexts,
-            List<String> whitelistedBundleStateInfoTexts, Map<ContainerState, Integer> bundleStatesCounters,
-            Map<BundleSymbolicNameWithVersion, ContainerState> bundlesStateMap) {
+            List<String> whitelistedBundleStateInfoTexts, Map<ContainerState, Integer> bundleStatesCounters) {
         this.okBundleStateInfoTexts = okBundleStateInfoTexts;
         this.nokBundleStateInfoTexts = nokBundleStateInfoTexts;
         this.whitelistedBundleStateInfoTexts = whitelistedBundleStateInfoTexts;
         this.bundleStatesCounters = bundleStatesCounters;
-        this.bundlesStateMap = bundlesStateMap;
     }
 
     static BundleDiagInfosImpl ofDiag(Diag diag) {
@@ -95,8 +91,8 @@ final class BundleDiagInfosImpl implements BundleDiagInfos {
         }
 
         return new BundleDiagInfosImpl(List.copyOf(okBundleStateInfoTexts), List.copyOf(nokBundleStateInfoTexts),
-            List.copyOf(whitelistedBundleStateInfoTexts), Collections.unmodifiableMap(diag.containerStateFrequencies()),
-            Map.copyOf(bundlesStateMap));
+            List.copyOf(whitelistedBundleStateInfoTexts),
+            Collections.unmodifiableMap(diag.containerStateFrequencies()));
     }
 
     @Override
@@ -133,11 +129,6 @@ final class BundleDiagInfosImpl implements BundleDiagInfos {
     @Override
     public String getSummaryText() {
         return "diag: " + getSystemState() + " " + bundleStatesCounters.toString();
-    }
-
-    @Override
-    public Map<BundleSymbolicNameWithVersion, ContainerState> getBundlesStateMap() {
-        return bundlesStateMap;
     }
 
     @Override
