@@ -9,8 +9,6 @@ package org.opendaylight.infrautils.ready.karaf.internal;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Map;
-import org.opendaylight.odlparent.bundles.diag.ContainerState;
 
 /**
  * System readiness diagnostic summary information.
@@ -24,8 +22,6 @@ interface BundleDiagInfos extends Serializable {
     String getFullDiagnosticText();
 
     String getSummaryText();
-
-    Map<BundleSymbolicNameWithVersion, ContainerState> getBundlesStateMap();
 
     List<String> getNokBundleStateInfoTexts();
 
