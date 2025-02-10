@@ -98,7 +98,7 @@ public final class KarafSystemReady extends SimpleSystemReadyMonitor {
 
             SystemStateFailureException cause;
             try {
-                var bundleInfos = BundleDiagInfosImpl.ofDiag(diag);
+                var bundleInfos = BundleDiagInfos.ofDiag(diag);
 
                 var systemState = bundleInfos.getSystemState();
                 switch (systemState) {
