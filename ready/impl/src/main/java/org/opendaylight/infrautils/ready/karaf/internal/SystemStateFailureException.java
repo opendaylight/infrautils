@@ -11,14 +11,14 @@ import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleActivator;
 
 /**
- * Exception thrown (only) by
- * {@link TestBundleDiag#checkBundleDiagInfos(long, java.util.concurrent.TimeUnit)}
- * if there are any OSGi bundles that failed to start.  This is based on not only {@link Bundle#getState()}'s
- * {@link Bundle#ACTIVE}, but also DI wiring systems such as blueprint containers.  The Exceptions' message
- * will likely contain a longer multi-line String with extensive technical details including all failed
- * bundles' states, detailed technical information related to OSGi bundle and blueprint resolution,
- * and possibly exceptions incl. stack traces thrown by {@link BundleActivator} start() methods and
- * dependency injection object wiring {@literal @}PostConstruct "init" type methods.
+ * Exception used (only) by {@link KarafSystemReady} if there are any OSGi bundles that failed to start. This is based
+ * on not only {@link Bundle#getState()}'s {@link Bundle#ACTIVE}, but also DI wiring systems such as blueprint
+ * containers.
+ *
+ * <p>The {@link #getMessage() message} will likely contain a longer multi-line String with extensive technical details
+ * including all failed bundles' states, detailed technical information related to OSGi bundle and blueprint resolution,
+ * and possibly exceptions incl. stack traces thrown by {@link BundleActivator} start() methods and dependency injection
+ * object wiring {@code PostConstruct} "init" type methods.
  *
  * @author Michael Vorburger.ch
  */
