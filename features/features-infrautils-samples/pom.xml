@@ -12,7 +12,7 @@
     <parent>
         <groupId>org.opendaylight.infrautils</groupId>
         <artifactId>feature-parent</artifactId>
-        <version>7.1.2</version>
+        <version>7.1.3-SNAPSHOT</version>
         <relativePath>../parent</relativePath>
     </parent>
 
