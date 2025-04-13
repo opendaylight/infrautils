@@ -12,7 +12,6 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 import java.lang.reflect.Type;
 import java.util.regex.Pattern;
-import org.checkerframework.checker.regex.qual.Regex;
 
 /**
  * Nicer shorter toString() for {@link Method} than it's default.
@@ -22,18 +21,16 @@ import org.checkerframework.checker.regex.qual.Regex;
  * @author Michael Vorburger
  */
 final class MethodExtensions {
-
     // Intentionally just package local; if this is of interest elsewhere,
     // then move it to org.opendaylight.infrautils.utils instead of keeping it here.
 
-    @Regex
-    private static final String PARAM_PATTERN_STR = "\\[\\]$";
-    private static final Pattern PARAM_PATTERN = Pattern.compile(PARAM_PATTERN_STR);
+    private static final Pattern PARAM_PATTERN = Pattern.compile("\\[\\]$");
 
     private MethodExtensions() {
+        // Hidden on purpose
     }
 
-    public static String toString(Method method) {
+    static String toString(Method method) {
         StringBuilder sb = new StringBuilder();
         sb.append(method.getName());
 
@@ -65,5 +62,4 @@ final class MethodExtensions {
 
         return sb.toString();
     }
-
 }
