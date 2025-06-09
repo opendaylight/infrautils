@@ -97,6 +97,7 @@ public class ClasspathHellDuplicatesChecker {
             || resourcePath.equals("META-INF/BC2048KE.SF")
             || resourcePath.equals("META-INF/BC1024KE.SF")
             || resourcePath.equals("OSGI-INF/bundle.info")
+            || resourcePath.equals("OSGI-INF/MANIFEST.MF")
             // Something doesn't to be a perfectly clean in Maven Surefire:
             || resourcePath.startsWith("META-INF/maven/")
             || resourcePath.contains("surefire")
