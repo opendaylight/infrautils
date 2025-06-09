@@ -129,6 +129,8 @@ public class ClasspathHellDuplicatesChecker {
             || resourcePath.startsWith("org/checkerframework/dataflow/qual/")
             // bundle.properties are perfectly fine
             || resourcePath.equals("bundle.properties")
+            // Multi-release JARs: this would need a lot of analysis, use a hammer
+            || resourcePath.startsWith("META-INF/versions/")
             ;
     }
 }
