@@ -7,16 +7,14 @@
  */
 package org.opendaylight.infrautils.utils.concurrent;
 
-import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import java.util.Optional;
 import java.util.concurrent.ThreadFactory;
 import org.immutables.value.Value;
 import org.slf4j.Logger;
 
 /**
- * Builder for {@link ThreadFactory}. Easier to use than the
- * {@link com.google.common.util.concurrent.ThreadFactoryBuilder}, because it
- * enforces setting all required properties through a staged builder.
+ * Builder for {@link ThreadFactory}. Easier to use than other alternatives because it enforces setting all required
+ * properties through a staged builder.
  *
  * @author Michael Vorburger.ch
  */
@@ -54,12 +52,13 @@ public abstract class ThreadFactoryProvider {
     }
 
     public ThreadFactory get() {
-        ThreadFactoryBuilder guavaBuilder = new ThreadFactoryBuilder()
-            .setNameFormat(namePrefix() + "-%d")
-            .setUncaughtExceptionHandler(LoggingThreadUncaughtExceptionHandler.toLogger(logger()))
-            .setDaemon(daemon());
-        priority().ifPresent(guavaBuilder::setPriority);
-        logger().info("ThreadFactory created: {}", namePrefix());
-        return guavaBuilder.build();
+        var prefix = namePrefix();
+        var builder = Thread.ofPlatform()
+            .name(prefix + '-', 0)
+            .daemon(true)
+            .uncaughtExceptionHandler(LoggingThreadUncaughtExceptionHandler.toLogger(logger()));
+        priority().ifPresent(builder::priority);
+        logger().info("ThreadFactory for {} created", prefix);
+        return builder.factory();
     }
 }
