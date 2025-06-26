@@ -6,7 +6,7 @@
         <groupId>org.opendaylight.infrautils</groupId>
         <artifactId>parent</artifactId>
         <version>7.1.5-SNAPSHOT</version>
-        <relativePath>../../common/parent</relativePath>
+        <relativePath>../../common/parent/pom.xml</relativePath>
     </parent>
 
     <artifactId>diagstatus-impl</artifactId>
