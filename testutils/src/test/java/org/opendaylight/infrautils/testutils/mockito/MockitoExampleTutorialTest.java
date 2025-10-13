@@ -16,7 +16,7 @@ import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import java.io.File;
+import java.nio.file.Path;
 import org.junit.Test;
 
 /**
@@ -38,7 +38,7 @@ public class MockitoExampleTutorialTest {
         String bar(String arg);
 
         // Most methods on real world services have complex input (and output objects), not just int or String
-        int foobar(File file);
+        int foobar(Path file);
     }
 
     @Test
@@ -51,19 +51,14 @@ public class MockitoExampleTutorialTest {
     public void usingMockitoToStubSimpleCase() {
         SomeService service = mock(SomeService.class);
         when(service.foobar(any())).thenReturn(123);
-        assertEquals(123, service.foobar(new File("hello.txt")));
+        assertEquals(123, service.foobar(Path.of("hello.txt")));
     }
 
     @Test
     public void usingMockitoToStubComplexCase() {
         SomeService service = mock(SomeService.class);
-        when(service.foobar(any())).thenAnswer(invocation -> {
-            // Urgh! This is ugly.. (Mockito 2.0 may be better,
-            // see http://site.mockito.org/mockito/docs/current/org/mockito/ArgumentMatcher.html)
-            File file = invocation.getArgument(0);
-            return "hello.txt".equals(file.getName()) ? 123 : 0;
-        });
-        assertEquals(0, service.foobar(new File("belo.txt")));
+        when(service.foobar(any())).thenAnswer(inv -> inv.getArgument(0).equals(Path.of("hello.txt")) ? 123 : 0);
+        assertEquals(0, service.foobar(Path.of("belo.txt")));
     }
 
     @Test
@@ -77,7 +72,7 @@ public class MockitoExampleTutorialTest {
         SomeService service = mock(SomeService.class, MoreAnswers.exception());
         // NOT when(s.foobar(any())).thenReturn(123) BUT must be like this:
         doReturn(123).when(service).foobar(any());
-        assertEquals(123, service.foobar(new File("hello.txt")));
+        assertEquals(123, service.foobar(Path.of("hello.txt")));
 
         assertThrows(UnstubbedMethodException.class, () -> service.foo());
     }
@@ -85,13 +80,8 @@ public class MockitoExampleTutorialTest {
     @Test
     public void usingMockitoToStubComplexCaseAndExceptionIfNotStubbed() {
         SomeService service = mock(SomeService.class, MoreAnswers.exception());
-        doAnswer(invocation -> {
-            // Urgh! This is ugly. Mockito may be better,
-            // see http://site.mockito.org/mockito/docs/current/org/mockito/ArgumentMatcher.html
-            File file = (File) invocation.getArguments()[0];
-            return "hello.txt".equals(file.getName()) ? 123 : 0;
-        }).when(service).foobar(any());
-        assertEquals(123, service.foobar(new File("hello.txt")));
-        assertEquals(0, service.foobar(new File("belo.txt")));
+        doAnswer(inv -> inv.getArgument(0).equals(Path.of("hello.txt")) ? 123 : 0).when(service).foobar(any());
+        assertEquals(123, service.foobar(Path.of("hello.txt")));
+        assertEquals(0, service.foobar(Path.of("belo.txt")));
     }
 }

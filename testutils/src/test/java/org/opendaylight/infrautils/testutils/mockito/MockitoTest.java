@@ -11,7 +11,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 import static org.mockito.Mockito.mock;
 
-import java.io.File;
+import java.nio.file.Path;
 import org.junit.Test;
 
 /**
@@ -32,14 +32,14 @@ public class MockitoTest {
         String bar(String arg);
 
         // Most methods on real world services have complex input (and output objects), not just int or String
-        int foobar(File file);
+        int foobar(Path file);
     }
 
     @Test
     public void usingMockitoToCallStubbedMethod() {
         SomeService service = mock(MockSomeService.class, MoreAnswers.realOrException());
-        assertEquals(123, service.foobar(new File("hello.txt")));
-        assertEquals(0, service.foobar(new File("belo.txt")));
+        assertEquals(123, service.foobar(Path.of("hello.txt")));
+        assertEquals(0, service.foobar(Path.of("belo.txt")));
     }
 
     @Test
@@ -51,8 +51,8 @@ public class MockitoTest {
 
     abstract static class MockSomeService implements SomeService {
         @Override
-        public int foobar(File file) {
-            return "hello.txt".equals(file.getName()) ? 123 : 0;
+        public int foobar(Path file) {
+            return file.equals(Path.of("hello.txt")) ? 123 : 0;
         }
     }
 }
