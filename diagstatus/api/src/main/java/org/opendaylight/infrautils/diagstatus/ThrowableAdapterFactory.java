@@ -53,26 +53,27 @@ final class ThrowableAdapterFactory implements TypeAdapterFactory {
                 while (in.hasNext()) {
                     var name = in.nextName();
                     switch (name) {
-                        case "type":
+                        case "type" -> {
                             exceptionType = in.nextString();
-                            break;
-                        case "message":
+                        }
+                        case "message" -> {
                             message = in.nextString();
-                            break;
-                        case "cause":
+                        }
+                        case "cause" -> {
                             // Recursively read the cause
                             cause = read(in);
-                            break;
-                        case "suppressed":
+                        }
+                        case "suppressed" -> {
                             in.beginArray();
                             while (in.hasNext()) {
                                 // Recursively read each suppressed exception
                                 suppressed.add(read(in));
                             }
                             in.endArray();
-                            break;
-                        default:
-                            break;
+                        }
+                        default -> {
+                            // no-op
+                        }
                     }
                 }
                 in.endObject();
