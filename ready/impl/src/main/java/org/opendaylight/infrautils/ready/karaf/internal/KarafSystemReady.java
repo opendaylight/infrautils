@@ -40,7 +40,7 @@ import org.slf4j.LoggerFactory;
 @Component(immediate = true, service = SystemReadyMonitor.class, configurationPid = "org.opendaylight.infrautils.ready")
 @Designate(ocd = KarafSystemReady.Config.class)
 public final class KarafSystemReady extends SimpleSystemReadyMonitor {
-    @ObjectClassDefinition()
+    @ObjectClassDefinition
     public @interface Config {
         @AttributeDefinition(name = "system-ready-timeout-seconds")
         int systemReadyTimeout() default 300;
