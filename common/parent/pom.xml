@@ -30,6 +30,7 @@
     <pmd.cpd.fail>true</pmd.cpd.fail>                    <!-- Fails build for copy/pasted code -->
     <duplicate-finder.skip>false</duplicate-finder.skip> <!-- Fails build if duplicate classpath entries on dependencies (odlparent 3.0.0) -->
     <odlparent.modernizer.enforce>true</odlparent.modernizer.enforce>
+    <odl.ep.fork>false</odl.ep.fork>
   </properties>
 
   <dependencyManagement>
