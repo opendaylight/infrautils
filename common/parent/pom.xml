@@ -72,7 +72,7 @@
       <groupId>com.google.errorprone</groupId>
       <artifactId>error_prone_annotations</artifactId>
       <!-- Keep this version in sync with annotationProcessorPaths declaration below -->
-      <version>2.45.0</version>
+      <version>2.46.0</version>
       <optional>true</optional>
       <scope>provided</scope>
     </dependency>
@@ -114,6 +114,8 @@
               <compilerArgs combine.children="append">
                 <arg>-XDcompilePolicy=simple</arg>
                 <arg>--should-stop=ifError=FLOW</arg>
+                <!-- https://github.com/google/error-prone/issues/5426 needed for javac==21 -->
+                <arg>-XDaddTypeAnnotationsToSymbol=true</arg>
 
                 <arg>-Xplugin:ErrorProne \
                   <!-- TODO evaluate further which other non-default error prone bug patterns could also be enabled... \
@@ -171,7 +173,7 @@
                   <groupId>com.google.errorprone</groupId>
                   <artifactId>error_prone_core</artifactId>
                   <!-- Keep this version in sync with dependency declaration above -->
-                  <version>2.45.0</version>
+                  <version>2.46.0</version>
                 </path>
               </annotationProcessorPaths>
             </configuration>
