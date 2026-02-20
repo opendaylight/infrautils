@@ -87,6 +87,12 @@
       <artifactId>pax-url-aether</artifactId>
       <scope>compile</scope>
     </dependency>
+    <!-- Needed with pax-uril-aether-2.7.0: unlike 2.6.17, it does not shade commons-logging,
+         but also does not expose Maven-visible dependency on it -->
+    <dependency>
+      <groupId>commons-logging</groupId>
+      <artifactId>commons-logging</artifactId>
+    </dependency>
 
  <!--
     <dependency>
@@ -98,7 +104,7 @@
     <dependency>
       <groupId>org.opendaylight.odlparent</groupId>
       <artifactId>opendaylight-karaf-empty</artifactId>
-      <version>14.2.1</version>
+      <version>14.3.1</version>
       <type>tar.gz</type>
       <exclusions>
         <!-- The transitive dependencies are unnecessary, because PAX Exam uses the distribution.
