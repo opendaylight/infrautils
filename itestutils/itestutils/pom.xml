@@ -70,6 +70,7 @@
     <dependency>
       <groupId>org.ops4j.pax.url</groupId>
       <artifactId>pax-url-link</artifactId>
+      <version>2.6.17</version>
       <scope>compile</scope>
     </dependency>
 
@@ -85,6 +86,7 @@
     <dependency>
       <groupId>org.ops4j.pax.url</groupId>
       <artifactId>pax-url-aether</artifactId>
+      <version>2.6.17</version>
       <scope>compile</scope>
     </dependency>
 
