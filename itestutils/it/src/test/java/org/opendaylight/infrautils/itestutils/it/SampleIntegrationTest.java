@@ -7,9 +7,15 @@
  */
 package org.opendaylight.infrautils.itestutils.it;
 
+import java.util.Arrays;
+import java.util.Set;
+import java.util.TreeSet;
+import javax.inject.Inject;
 import org.junit.Test;
 import org.opendaylight.infrautils.itestutils.AbstractIntegrationTest;
 import org.ops4j.pax.exam.options.UrlReference;
+import org.osgi.framework.Bundle;
+import org.osgi.framework.BundleContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,11 +25,22 @@ import org.slf4j.LoggerFactory;
  */
 // @ExamReactorStrategy(PerClass.class) IFF the default PerMethod (which provides better isolation!) really is too slow?
 public class SampleIntegrationTest extends AbstractIntegrationTest {
-
     private static final Logger LOG = LoggerFactory.getLogger(SampleIntegrationTest.class);
+
+    @Inject
+    protected BundleContext context;
 
     @Test
     public void testEmptyJustToMakeSureKarafStartedOK() {
+        Set<Bundle> bundles = new TreeSet<>((b1, b2) -> (int) (b1.getBundleId() - b2.getBundleId()));
+        bundles.addAll(Arrays.asList(context.getBundles()));
+        for (Bundle b : bundles) {
+            String info = String.format("#%02d: %s/%s (%s)",
+                    b.getBundleId(), b.getSymbolicName(), b.getVersion(), b.getLocation());
+            LOG.info(info);
+        }
+
+
         LOG.info("info log is not visible, as not enabled");
         LOG.warn("warn log is visible");
     }
