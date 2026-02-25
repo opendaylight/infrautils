@@ -16,7 +16,7 @@ import static org.ops4j.pax.exam.karaf.options.KarafDistributionOption.configure
 import static org.ops4j.pax.exam.karaf.options.KarafDistributionOption.features;
 import static org.ops4j.pax.exam.karaf.options.KarafDistributionOption.keepRuntimeFolder;
 
-import java.io.File;
+import java.nio.file.Path;
 import org.junit.runner.RunWith;
 import org.ops4j.io.FileUtils;
 import org.ops4j.pax.exam.Configuration;
@@ -74,7 +74,7 @@ public abstract class AbstractIntegrationTest {
             // Good!
         }
 
-        File targetPaxExam = new File("target/paxexam/");
+        var targetPaxExam = Path.of("target", "paxexam").toFile();
         FileUtils.delete(targetPaxExam);
 
         String karafVersion = getKarafVersion();
