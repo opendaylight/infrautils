@@ -87,6 +87,10 @@
       <artifactId>pax-url-aether</artifactId>
       <scope>compile</scope>
     </dependency>
+    <dependency>
+      <groupId>commons-logging</groupId>
+      <artifactId>commons-logging</artifactId>
+    </dependency>
 
  <!--
     <dependency>
