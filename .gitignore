@@ -13,3 +13,13 @@ target-ide/
 .vscode/
 .factorypath
 .apt_generated_tests/
+
+# pre-commit / linting
+.pre-commit-log*
+node_modules/
+
+# Python
+__pycache__/
+*.py[cod]
+.tox/
+*.egg-info/
