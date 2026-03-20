@@ -99,7 +99,6 @@ jobs:
           mvn-opts: >-
             -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
             -Dmaven.repo.local=/tmp/r -Dorg.ops4j.pax.url.mvn.localRepository=/tmp/r
-            -DaltDeploymentRepository=staging::default::file:"${GITHUB_WORKSPACE}"/m2repo
             -Dkaraf.keep.unpack
           # yamllint enable rule:line-length
           env-vars: ${{ toJSON(vars) }}
