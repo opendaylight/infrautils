@@ -129,6 +129,7 @@ jobs:
           nexus_username: ${{ secrets.NEXUS_USERNAME }}
           nexus_password: ${{ secrets.NEXUS_PASSWORD }}
           repository_name: ${{ vars.NEXUS_REPO }}
+          permit_fail: false
           files_path: "${{ github.workspace }}/m2repo"
 
   vote:
