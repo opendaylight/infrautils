@@ -123,15 +123,15 @@ jobs:
           path: "${{ github.workspace }}/m2repo"
       - name: Publish to Nexus
         # yamllint disable-line rule:line-length
-        uses: lfreleng-actions/nexus-publish-action@b53a4638789cba03279c97aeab7f0ce10dbfa991 # v0.1.4
+        uses: lfreleng-actions/nexus-publish-action@1459938e4a6d52ac6ce7e5fb566ff80b4660b371 # v0.1.5
         with:
           nexus_server: ${{ vars.NEXUS_SERVER }}
           nexus_username: ${{ secrets.NEXUS_USERNAME }}
           nexus_password: ${{ secrets.NEXUS_PASSWORD }}
           repository_name: ${{ vars.NEXUS_REPO }}
-          permit_fail: false
-          files_path: "${{ github.workspace }}/m2repo/org/opendaylight/infrautils"
-          upload_path: "/org/opendaylight/infrautils"
+          repository_format: maven2_upload
+          files_path: "${{ github.workspace }}/m2repo"
+          permit_fail: "false"
 
   vote:
     if: ${{ always() }}
