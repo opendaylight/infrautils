@@ -131,7 +131,7 @@ jobs:
           repository_name: ${{ vars.NEXUS_REPO }}
           permit_fail: false
           files_path: "${{ github.workspace }}/m2repo/org/opendaylight/infrautils"
-          upload_path: "org/opendaylight/infrautils"
+          upload_path: "/org/opendaylight/infrautils"
 
   vote:
     if: ${{ always() }}
