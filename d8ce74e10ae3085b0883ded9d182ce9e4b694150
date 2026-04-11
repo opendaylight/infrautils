@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81b0a7eb_8e29f7a2",
+        "filename": ".github/workflows/gerrit-maven-merge.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2026-04-11T04:34:54Z",
+      "side": 0,
+      "message": "we also need this part somehow: infrautils.git should only be allowed to publish groupId~\u003dorg.opendaylight.infrautils(\\..*)?",
+      "range": {
+        "startLine": 134,
+        "startChar": 42,
+        "endLine": 134,
+        "endChar": 52
+      },
+      "revId": "d8ce74e10ae3085b0883ded9d182ce9e4b694150",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
+    }
+  ]
+}
