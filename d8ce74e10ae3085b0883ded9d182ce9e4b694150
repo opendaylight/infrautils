@@ -22,6 +22,30 @@
       },
       "revId": "d8ce74e10ae3085b0883ded9d182ce9e4b694150",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff6acfae_cd7da15c",
+        "filename": ".github/workflows/gerrit-maven-merge.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 6258
+      },
+      "writtenOn": "2026-05-10T22:13:24Z",
+      "side": 0,
+      "message": "Missed this valid concern:\n\n`files_path` is set to the entire `m2repo` directory with `maven2_upload`, it would upload everything there, potentially including artifacts from other groupIds. \n\nmight need a fix to the nexus publish actoin",
+      "parentUuid": "81b0a7eb_8e29f7a2",
+      "range": {
+        "startLine": 134,
+        "startChar": 42,
+        "endLine": 134,
+        "endChar": 52
+      },
+      "revId": "d8ce74e10ae3085b0883ded9d182ce9e4b694150",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
     }
   ]
 }
