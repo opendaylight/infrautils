@@ -46,6 +46,30 @@
       },
       "revId": "d8ce74e10ae3085b0883ded9d182ce9e4b694150",
       "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "24763691_0c7bde1b",
+        "filename": ".github/workflows/gerrit-maven-merge.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 6258
+      },
+      "writtenOn": "2026-05-10T22:22:45Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "ff6acfae_cd7da15c",
+      "range": {
+        "startLine": 134,
+        "startChar": 42,
+        "endLine": 134,
+        "endChar": 52
+      },
+      "revId": "d8ce74e10ae3085b0883ded9d182ce9e4b694150",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
     }
   ]
 }
