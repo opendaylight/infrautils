@@ -1,0 +1,341 @@
+---
+# SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2026 The Linux Foundation
+
+# Maven release, triggered by a maintainer's signed tag.
+#
+# Replaces the JJB {project}-maven-stage-{stream} and
+# {project}-release-merge jobs. A release needs no Gerrit comment, no
+# releases/*.yaml file, and no CI write access to Gerrit:
+#
+#   1. A committer signs a tag on a merged commit and pushes it:
+#        git tag -s v8.0.4 -m "infrautils v8.0.4" <merged-sha>
+#        git push gerrit v8.0.4
+#      Gerrit's refs/tags/* ACL (createSignedTag) limits who can push
+#      it; replication then carries it to this GitHub mirror.
+#   2. validate: the tag must be vX.Y.Z, GPG-signed by a key in
+#      .github/release-signers/ on the default branch, and point at a
+#      commit on master or stable/* whose root POM is X.Y.Z-SNAPSHOT.
+#   3. stage: de-SNAPSHOT, build, sign with Sigul, stage to Nexus.
+#   4. release: promote the staging repository.
+#
+# The tag is the maintainer's signed record of the source; CI never
+# creates or pushes a tag. Bump the branch to the next -SNAPSHOT with
+# a normal Gerrit change afterwards.
+#
+# The filename must not contain "gerrit": gerrit-to-platform dispatches
+# any workflow whose name does, and this one must never run on a
+# Gerrit event.
+
+name: Maven Release on Tag
+
+# yamllint disable-line rule:truthy
+on:
+  push:
+    tags:
+      - "v*"
+  # Rehearsal: run from the Actions UI or
+  #   gh workflow run maven-release-on-tag.yaml --ref v8.0.4
+  # Validates and stages, but never promotes; drop the staging
+  # repository afterwards.
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: maven-release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    name: Validate tag
+    # Deleting a tag also fires a push event.
+    if: github.event_name != 'push' || !github.event.deleted
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    outputs:
+      tag: ${{ steps.check.outputs.tag }}
+      version: ${{ steps.check.outputs.version }}
+      branch: ${{ steps.check.outputs.branch }}
+      sha: ${{ steps.check.outputs.sha }}
+    steps:
+      - name: Require a tag ref
+        env:
+          REF_TYPE: ${{ github.ref_type }}
+          REF: ${{ github.ref }}
+        run: |
+          set -euo pipefail
+          if [ "$REF_TYPE" != "tag" ]; then
+            echo "::error::Run this workflow on a tag, not $REF"
+            exit 1
+          fi
+
+      - name: Checkout
+        # yamllint disable-line rule:line-length
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.ref }}
+          fetch-depth: 0
+          fetch-tags: true
+          persist-credentials: false
+
+      - name: Check tag, branch and version
+        id: check
+        env:
+          TAG: ${{ github.ref_name }}
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+        run: |
+          set -euo pipefail
+          if ! [[ "$TAG" =~ ^v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$ ]]; then
+            echo "::error::Tag '$TAG' is not vMAJOR.MINOR.PATCH"
+            exit 1
+          fi
+          VERSION="${TAG#v}"
+          # actions/checkout can rewrite an annotated tag as lightweight;
+          # fetch the real object before inspecting it.
+          git fetch --no-tags origin \
+            "+refs/tags/${TAG}:refs/tags/${TAG}"
+          if [ "$(git cat-file -t "refs/tags/${TAG}")" != "tag" ]; then
+            echo "::error::Tag '$TAG' is lightweight; push a signed tag"
+            exit 1
+          fi
+          SHA="$(git rev-parse "refs/tags/${TAG}^{commit}")"
+
+          mapfile -t BRANCHES < <(
+            git for-each-ref --contains "$SHA" \
+              --format='%(refname:lstrip=3)' refs/remotes/origin \
+              | grep -E '^(master|main|stable/.+)$' || true)
+          BRANCH=""
+          for b in "${BRANCHES[@]}"; do
+            if [ "$b" = "$DEFAULT_BRANCH" ]; then BRANCH="$b"; break; fi
+          done
+          if [ -z "$BRANCH" ] && [ "${#BRANCHES[@]}" -gt 0 ]; then
+            BRANCH="${BRANCHES[0]}"
+          fi
+          if [ -z "$BRANCH" ]; then
+            echo "::error::$SHA is not on $DEFAULT_BRANCH or stable/*"
+            exit 1
+          fi
+
+          POM_VERSION="$(git show "${SHA}:pom.xml" | python3 -c '
+          import sys, xml.etree.ElementTree as ET
+          root = ET.parse(sys.stdin).getroot()
+          print((root.findtext("{*}version") or "").strip())')"
+          if [ "$POM_VERSION" != "${VERSION}-SNAPSHOT" ]; then
+            echo "::error::Root POM at $SHA is '$POM_VERSION';" \
+              "tag $TAG needs ${VERSION}-SNAPSHOT"
+            exit 1
+          fi
+
+          {
+            echo "tag=$TAG"
+            echo "version=$VERSION"
+            echo "branch=$BRANCH"
+            echo "sha=$SHA"
+          } >> "$GITHUB_OUTPUT"
+          echo "Release $VERSION from $BRANCH at $SHA"
+
+      # Keys come from the default branch head, not the tagged commit:
+      # adding or removing a signer is a reviewed change, and a removal
+      # applies at once to every branch.
+      - name: Import release signer keys
+        env:
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+        run: |
+          set -euo pipefail
+          GNUPGHOME="${RUNNER_TEMP}/release-signers"
+          install -d -m 700 "$GNUPGHOME"
+          export GNUPGHOME
+          COUNT=0
+          while IFS= read -r key; do
+            git show "origin/${DEFAULT_BRANCH}:${key}" \
+              | gpg --batch --import
+            COUNT=$((COUNT + 1))
+          done < <(git ls-tree --name-only \
+            "origin/${DEFAULT_BRANCH}" .github/release-signers/ \
+            | grep -E '\.asc$' || true)
+          if [ "$COUNT" -eq 0 ]; then
+            echo "::error::No keys in .github/release-signers/ on" \
+              "$DEFAULT_BRANCH; add one before releasing"
+            exit 1
+          fi
+          echo "GNUPGHOME=$GNUPGHOME" >> "$GITHUB_ENV"
+
+      - name: Verify tag signature
+        # yamllint disable-line rule:line-length
+        uses: lfreleng-actions/tag-validate-action@63470621b8ebc5c4fc86ebb616727dd0a7285dd9 # v1.1.7
+        with:
+          token: ${{ github.token }}
+          require_type: semver
+          require_signed: gpg
+          reject_development: "true"
+          require_branch: ${{ steps.check.outputs.branch }}
+
+  stage:
+    name: Stage
+    # Org secrets are reachable from any job; an environment lets
+    # admins also restrict them to v* tags and add reviewers.
+    environment: release
+    needs: validate
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    permissions:
+      contents: read
+    outputs:
+      staging_repo_id: ${{ steps.nexus-stage.outputs.staging_repo_id }}
+      staging_repo_url: ${{ steps.nexus-stage.outputs.staging_repo_url }}
+    steps:
+      # Check out the validated commit, not the tag, so a tag moved
+      # after validation cannot change what is built.
+      - name: Checkout
+        # yamllint disable-line rule:line-length
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ needs.validate.outputs.sha }}
+          fetch-depth: 0
+          submodules: "true"
+          persist-credentials: false
+
+      # De-SNAPSHOT the POMs and commit locally (JJB:
+      # maven-patch-release.sh); the patch and bundle are kept below.
+      - name: Prepare release version
+        id: prep
+        # yamllint disable-line rule:line-length
+        uses: lfreleng-actions/maven-stage-prep-action@38910a7d296b081b622ca2d59d24249e45b47c75 # v0.1.2
+        with:
+          project-name: ${{ github.event.repository.name }}
+          gerrit-branch: ${{ needs.validate.outputs.branch }}
+          version-method: sed
+
+      - name: Check release version matches tag
+        env:
+          WANT: ${{ needs.validate.outputs.version }}
+          GOT: ${{ steps.prep.outputs.release_version }}
+        run: |
+          set -euo pipefail
+          if [ "$GOT" != "$WANT" ]; then
+            echo "::error::Prepared version '$GOT' is not '$WANT'"
+            exit 1
+          fi
+
+      # Deploys to ${GITHUB_WORKSPACE}/m2repo (file://), never to Nexus,
+      # so the artifacts are signed before upload.
+      - name: Maven build + deploy to local m2repo
+        # yamllint disable-line rule:line-length
+        uses: lfreleng-actions/maven-build-action@22149998fae8dd5ef1ffc8890ec0ce3785683983 # v0.5.5
+        with:
+          java-version: "21"
+          mvn-version: "3.9.5"
+          mvn-phases: "clean deploy"
+          mvn-profiles: "docker"
+          # yamllint disable rule:line-length
+          mvn-opts: >-
+            -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
+            -Dmaven.repo.local=/tmp/r -Dorg.ops4j.pax.url.mvn.localRepository=/tmp/r
+            -DskipTests
+          # yamllint enable rule:line-length
+          env-vars: ${{ toJSON(vars) }}
+          global-settings: ${{ vars.GLOBAL_SETTINGS }}
+          run-jacoco: "false"
+          artifact-upload: "false"
+
+      # ODL's signing key is on the legacy Sigul 0.207 bridge, which only
+      # the legacy client image speaks. allow-legacy records consent to
+      # that unsupported client under LF RelEng's risk exception; switch
+      # to container: modern once ODL's key moves to the new stack.
+      - name: Sign artifacts with Sigul
+        # yamllint disable-line rule:line-length
+        uses: lfreleng-actions/sigul-sign-action@5a5ed200605e16e838cdff621225ae9d23cd1bd0 # v0.1.0
+        with:
+          container: legacy
+          allow-legacy: "true"
+          sign-type: sign-data
+          sign-object: m2repo
+          sigul-ip: ${{ vars.SIGUL_IP }}
+          sigul-uri: ${{ vars.SIGUL_URI }}
+          sigul-conf: ${{ secrets.SIGUL_CONF }}
+          sigul-key-name: ${{ vars.SIGUL_KEY_NAME }}
+          sigul-pass: ${{ secrets.SIGUL_PASS }}
+          sigul-pki: ${{ secrets.SIGUL_PKI }}
+
+      - name: Stage to Nexus
+        id: nexus-stage
+        # yamllint disable-line rule:line-length
+        uses: lfreleng-actions/nexus-staging-action@6cb2d38d9aa209c178d3c97a3edd90ac516f5fb6 # v0.1.2
+        with:
+          nexus-server: ${{ vars.NEXUS_SERVER }}
+          nexus-username: ${{ secrets.NEXUS_USERNAME }}
+          nexus-password: ${{ secrets.NEXUS_PASSWORD }}
+          staging-profile-id: ${{ vars.STAGING_PROFILE_ID }}
+          mode: stage
+          m2repo-path: m2repo
+          description: >-
+            ${{ github.event.repository.name }}
+            ${{ needs.validate.outputs.tag }} (run ${{ github.run_id }})
+
+      - name: Keep release patch and bundle
+        if: always() && steps.prep.outcome == 'success'
+        # yamllint disable-line rule:line-length
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: release-${{ needs.validate.outputs.version }}
+          path: archives/patches/
+          if-no-files-found: error
+
+  release:
+    name: Release
+    environment: release
+    # A rehearsal (workflow_dispatch) stops at a closed staging repo.
+    if: github.event_name == 'push'
+    needs: [validate, stage]
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions: {}
+    steps:
+      - name: Release Nexus staging repository
+        # yamllint disable-line rule:line-length
+        uses: lfreleng-actions/nexus-staging-action@6cb2d38d9aa209c178d3c97a3edd90ac516f5fb6 # v0.1.2
+        with:
+          nexus-server: ${{ vars.NEXUS_SERVER }}
+          nexus-username: ${{ secrets.NEXUS_USERNAME }}
+          nexus-password: ${{ secrets.NEXUS_PASSWORD }}
+          staging-profile-id: ${{ vars.STAGING_PROFILE_ID }}
+          mode: release
+          staging-repo-id: ${{ needs.stage.outputs.staging_repo_id }}
+          description: >-
+            ${{ github.event.repository.name }}
+            ${{ needs.validate.outputs.tag }} (run ${{ github.run_id }})
+
+  summary:
+    name: Summary
+    if: always() && needs.validate.result != 'skipped'
+    needs: [validate, stage, release]
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions: {}
+    steps:
+      - name: Summary
+        env:
+          TAG: ${{ needs.validate.outputs.tag }}
+          BRANCH: ${{ needs.validate.outputs.branch }}
+          SHA: ${{ needs.validate.outputs.sha }}
+          REPO_ID: ${{ needs.stage.outputs.staging_repo_id }}
+          REPO_URL: ${{ needs.stage.outputs.staging_repo_url }}
+          VALIDATE: ${{ needs.validate.result }}
+          STAGE: ${{ needs.stage.result }}
+          RELEASE: ${{ needs.release.result }}
+        run: |
+          set -euo pipefail
+          {
+            echo "### Maven Release: \`${TAG:-unknown}\`"
+            echo ""
+            echo "| Item | Value |"
+            echo "|------|-------|"
+            echo "| Branch | \`${BRANCH:-}\` |"
+            echo "| Commit | \`${SHA:-}\` |"
+            echo "| Staging repo | \`${REPO_ID:-}\` ${REPO_URL:-} |"
+            echo "| validate / stage / release" \
+              "| $VALIDATE / $STAGE / $RELEASE |"
+          } >> "$GITHUB_STEP_SUMMARY"
