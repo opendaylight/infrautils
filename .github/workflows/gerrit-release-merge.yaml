@@ -1,0 +1,321 @@
+---
+# SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2026 The Linux Foundation
+
+# Ported from JJB job: {project}-release-merge-{stream}
+# (global-jjb lf-release-jobs / release-job.sh tag-git-repo()).
+#
+# Trigger model (gerrit-to-platform):
+#   gerrit-to-platform dispatches workflows whose filename contains "gerrit" plus
+#   the "merge" search-filter on a change-merged event. This file therefore runs
+#   on EVERY merge (alongside gerrit-maven-merge.yaml) and MUST self-gate:
+#     1. only act on a genuine change-merged event (the "merge" filter is also
+#        used by the "remerge" comment mapping, so guard on GERRIT_EVENT_TYPE);
+#     2. only act when the merged commit added/changed a releases/<version>.yaml
+#        (or .releases/<version>.yaml) file.
+#
+# Release file schema (committers add this file; merging it IS the release
+# authorization — it requires Gerrit +2 / merge ACL, i.e. committers only):
+#   releases/7.1.14.yaml
+#     project: infrautils
+#     version: "7.1.14"
+#     git_tag: "v7.1.14"                # optional, defaults to v<version>
+#     nexus_staging_repo_id: "orgopendaylightinfrautils-1234"   # from the stage run
+#     log_dir: "<optional>"
+#
+# The reviewed release file is how the staging repo id and version cross the
+# stage->release boundary (the two runs are separate triggers and cannot share
+# job outputs). This also replaces the JJB Jenkins build parameters.
+
+name: Gerrit Release Merge
+
+# yamllint disable-line rule:truthy
+on:
+  workflow_dispatch:
+    inputs:
+      GERRIT_BRANCH:
+        description: "Branch that change is against"
+        required: true
+        type: string
+      GERRIT_CHANGE_ID:
+        description: "The ID for the change"
+        required: true
+        type: string
+      GERRIT_CHANGE_NUMBER:
+        description: "The Gerrit number"
+        required: true
+        type: string
+      GERRIT_CHANGE_URL:
+        description: "URL to the change"
+        required: true
+        type: string
+      GERRIT_EVENT_TYPE:
+        description: "Type of Gerrit event"
+        required: true
+        type: string
+      GERRIT_PATCHSET_NUMBER:
+        description: "The patch number for the change"
+        required: true
+        type: string
+      GERRIT_PATCHSET_REVISION:
+        description: "The revision sha"
+        required: true
+        type: string
+      GERRIT_PROJECT:
+        description: "Project in Gerrit"
+        required: true
+        type: string
+      GERRIT_REFSPEC:
+        description: "Gerrit refspec of change"
+        required: true
+        type: string
+
+concurrency:
+  # yamllint disable-line rule:line-length
+  group: gerrit-release-merge-${{ github.workflow }}-${{ github.event.inputs.GERRIT_BRANCH }}
+  cancel-in-progress: false
+
+jobs:
+  # --------------------------------------------------------------------------
+  # Gate: only continue for a real merge that introduced a release file.
+  # --------------------------------------------------------------------------
+  check-release:
+    if: ${{ inputs.GERRIT_EVENT_TYPE == 'change-merged' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      should-release: ${{ steps.detect.outputs.should_release }}
+      release-file: ${{ steps.detect.outputs.release_file }}
+      version: ${{ steps.detect.outputs.version }}
+      git-tag: ${{ steps.detect.outputs.git_tag }}
+      staging-repo-id: ${{ steps.detect.outputs.staging_repo_id }}
+    steps:
+      - name: Checkout
+        # yamllint disable-line rule:line-length
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          ref: ${{ inputs.GERRIT_BRANCH }}
+          fetch-depth: 0
+
+      - name: Detect release file in merged commit
+        id: detect
+        env:
+          REV: ${{ inputs.GERRIT_PATCHSET_REVISION }}
+        run: |
+          set -euo pipefail
+
+          # Prefer the exact merged revision; fall back to branch tip if the
+          # mirror has not replicated that sha yet.
+          if ! git cat-file -e "${REV}^{commit}" 2>/dev/null; then
+            echo "::warning::Revision ${REV} not present; falling back to HEAD"
+            REV="$(git rev-parse HEAD)"
+          fi
+
+          files="$(git diff-tree --no-commit-id --name-only -r "${REV}")"
+          echo "Files in ${REV}:"
+          echo "${files}"
+
+          release_file="$(echo "${files}" \
+            | grep -E '^(\.)?releases/.+\.ya?ml$' | head -1 || true)"
+
+          if [ -z "${release_file}" ]; then
+            echo "No release file in this merge; nothing to release."
+            echo "should_release=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          if [ ! -f "${release_file}" ]; then
+            echo "::error::Release file ${release_file} not found in tree"
+            exit 1
+          fi
+
+          version="$(yq -r '.version' "${release_file}")"
+          git_tag="$(yq -r '.git_tag // ("v" + .version)' "${release_file}")"
+          staging_repo_id="$(yq -r '.nexus_staging_repo_id // ""' "${release_file}")"
+
+          if [ -z "${version}" ] || [ "${version}" = "null" ]; then
+            echo "::error::release file ${release_file} missing .version"
+            exit 1
+          fi
+
+          {
+            echo "release_file=${release_file}"
+            echo "version=${version}"
+            echo "git_tag=${git_tag}"
+            echo "staging_repo_id=${staging_repo_id}"
+            echo "should_release=true"
+          } >> "$GITHUB_OUTPUT"
+          echo "Release requested: version=${version} tag=${git_tag} staging=${staging_repo_id}"
+
+  # --------------------------------------------------------------------------
+  # Release: sign + push the git tag to Gerrit, then promote the Nexus2 repo.
+  # --------------------------------------------------------------------------
+  release:
+    needs: check-release
+    if: ${{ needs.check-release.outputs.should-release == 'true' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      GIT_TAG: ${{ needs.check-release.outputs.git-tag }}
+      RELEASE_VERSION: ${{ needs.check-release.outputs.version }}
+      STAGING_REPO_ID: ${{ needs.check-release.outputs.staging-repo-id }}
+    steps:
+      - name: Checkout
+        # yamllint disable-line rule:line-length
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          ref: ${{ inputs.GERRIT_BRANCH }}
+          fetch-depth: 0
+          submodules: "true"
+
+      # Configure SSH so the signed tag can be pushed to Gerrit (NOT GitHub).
+      - name: Configure Gerrit SSH remote
+        env:
+          GERRIT_SSH_PRIVKEY: ${{ secrets.GERRIT_SSH_PRIVKEY }}
+          GERRIT_KNOWN_HOSTS: ${{ vars.GERRIT_KNOWN_HOSTS }}
+          GERRIT_SSH_USER: ${{ vars.GERRIT_SSH_USER }}
+          GERRIT_SERVER: ${{ vars.GERRIT_SERVER }}
+          GERRIT_PROJECT: ${{ inputs.GERRIT_PROJECT }}
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          printf '%s\n' "${GERRIT_KNOWN_HOSTS}" > ~/.ssh/known_hosts
+          printf '%s\n' "${GERRIT_SSH_PRIVKEY}" > ~/.ssh/gerrit_key
+          chmod 600 ~/.ssh/gerrit_key ~/.ssh/known_hosts
+          cat > ~/.ssh/config <<EOF
+          Host gerrit-review
+            HostName ${GERRIT_SERVER}
+            Port 29418
+            User ${GERRIT_SSH_USER}
+            IdentityFile ~/.ssh/gerrit_key
+            IdentitiesOnly yes
+          EOF
+          chmod 600 ~/.ssh/config
+          git remote add gerrit \
+            "ssh://gerrit-review/${GERRIT_PROJECT}.git" 2>/dev/null \
+            || git remote set-url gerrit "ssh://gerrit-review/${GERRIT_PROJECT}.git"
+
+      # Fail fast if the runner cannot reach Gerrit over SSH (network/ACL check).
+      - name: Verify Gerrit connectivity
+        run: |
+          set -euo pipefail
+          echo "Checking SSH access to Gerrit..."
+          ssh -p 29418 gerrit-review gerrit version
+          git ls-remote --tags gerrit >/dev/null
+          echo "Gerrit SSH reachable."
+
+      - name: Create annotated tag
+        run: |
+          set -euo pipefail
+          git config user.name "OpenDaylight Release"
+          git config user.email "releng@opendaylight.org"
+
+          if git rev-parse "${GIT_TAG}" >/dev/null 2>&1; then
+            t="$(git cat-file -t "${GIT_TAG}" 2>/dev/null || echo unknown)"
+            if [ "${t}" = "tag" ]; then
+              echo "INFO: signed tag ${GIT_TAG} already exists locally"
+            else
+              echo "::error::lightweight tag ${GIT_TAG} exists, blocks signed tag"
+              exit 1
+            fi
+          else
+            git tag -am "${GERRIT_PROJECT:-infrautils} ${GIT_TAG}" "${GIT_TAG}"
+            echo "Created annotated tag ${GIT_TAG}"
+          fi
+        env:
+          GERRIT_PROJECT: ${{ inputs.GERRIT_PROJECT }}
+
+      # Sign the annotated tag with Sigul. NOTE: sigul-sign-action's sign-git-tag
+      # additionally force-pushes the tag to a "github" remote, which is wrong for
+      # this Gerrit-first repo and will fail against the read-only mirror; that
+      # push is tolerated (continue-on-error) because the signing happens first
+      # and lands in the shared workspace .git. The explicit Gerrit push below is
+      # what actually publishes the signed tag. TODO: switch to a sign-only mode
+      # if/when sigul-sign-action gains one upstream.
+      - name: Sign git tag with Sigul
+        continue-on-error: true
+        # yamllint disable-line rule:line-length
+        uses: lfit/sigul-sign-action@6921b6b0e6cc572967729a7ce562553c641d8d19 # v1.1.0
+        with:
+          sign-type: "sign-git-tag"
+          sign-object: ${{ env.GIT_TAG }}
+          sigul-ip: ${{ vars.SIGUL_IP }}
+          sigul-uri: ${{ vars.SIGUL_URI }}
+          sigul-conf: ${{ secrets.SIGUL_CONF }}
+          sigul-key-name: ${{ vars.SIGUL_KEY_NAME }}
+          sigul-pass: ${{ secrets.SIGUL_PASS }}
+          sigul-pki: ${{ secrets.SIGUL_PKI }}
+          gh-user: ${{ github.actor }}
+          gh-key: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Verify signed tag is present
+        run: |
+          set -euo pipefail
+          t="$(git cat-file -t "${GIT_TAG}" 2>/dev/null || echo missing)"
+          if [ "${t}" != "tag" ]; then
+            echo "::error::${GIT_TAG} is not an annotated/signed tag object (${t})"
+            exit 1
+          fi
+          if git cat-file -p "${GIT_TAG}" | grep -q "BEGIN PGP SIGNATURE"; then
+            echo "Signed tag object present."
+          else
+            echo "::error::${GIT_TAG} has no PGP signature"
+            exit 1
+          fi
+
+      - name: Push signed tag to Gerrit
+        run: |
+          set -euo pipefail
+          git push gerrit "refs/tags/${GIT_TAG}:refs/tags/${GIT_TAG}"
+          echo "Pushed signed tag ${GIT_TAG} to Gerrit."
+
+      # Promote (release) the closed Nexus2 staging repository created by the
+      # gerrit-maven-stage run, identified via the release file.
+      - name: Promote Nexus2 staging repository
+        if: ${{ env.STAGING_REPO_ID != '' }}
+        # yamllint disable-line rule:line-length
+        uses: lfreleng-actions/nexus-staging-action@2617d35a4949b30581a407d24327626f62499020 # main (no release yet)
+        with:
+          nexus-server: ${{ vars.NEXUS_SERVER }}
+          nexus-username: ${{ secrets.NEXUS_USERNAME }}
+          nexus-password: ${{ secrets.NEXUS_PASSWORD }}
+          staging-profile-id: ${{ vars.STAGING_PROFILE_ID }}
+          mode: release
+          staging-repo-id: ${{ env.STAGING_REPO_ID }}
+
+      - name: Release summary
+        if: always()
+        run: |
+          {
+            echo "### Release Merge"
+            echo ""
+            echo "- Project: \`${{ inputs.GERRIT_PROJECT }}\`"
+            echo "- Version: \`${RELEASE_VERSION}\`"
+            echo "- Tag: \`${GIT_TAG}\` (signed, pushed to Gerrit)"
+            echo "- Promoted staging repo: \`${STAGING_REPO_ID:-<none>}\`"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+  # --------------------------------------------------------------------------
+  # Status back to Gerrit (comment only; merged changes are not re-voted).
+  # --------------------------------------------------------------------------
+  report:
+    if: ${{ always() && needs.check-release.outputs.should-release == 'true' }}
+    needs: [check-release, release]
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Get conclusion
+        # yamllint disable-line rule:line-length
+        uses: im-open/workflow-conclusion@7b146947e59eaf7fc3328822357861ab1758c088 # v2.2.5
+      - name: Comment on Gerrit change
+        # yamllint disable-line rule:line-length
+        uses: lfit/gerrit-review-action@537251ec667665b386f70b330b05446e3fc29087 # v0.9
+        with:
+          host: ${{ vars.GERRIT_SERVER }}
+          username: ${{ vars.GERRIT_SSH_USER }}
+          key: ${{ secrets.GERRIT_SSH_PRIVKEY }}
+          known_hosts: ${{ vars.GERRIT_KNOWN_HOSTS }}
+          gerrit-change-number: ${{ inputs.GERRIT_CHANGE_NUMBER }}
+          gerrit-patchset-number: ${{ inputs.GERRIT_PATCHSET_NUMBER }}
+          vote-type: ${{ env.WORKFLOW_CONCLUSION }}
+          comment-only: true
