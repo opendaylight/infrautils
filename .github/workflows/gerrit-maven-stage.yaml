@@ -1,0 +1,238 @@
+---
+# SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2026 The Linux Foundation
+
+# Ported from JJB job: {project}-maven-stage-{stream} (global-jjb lf-maven-stage).
+#
+# Trigger model (gerrit-to-platform):
+#   gerrit-to-platform dispatches workflows whose filename contains "gerrit" plus
+#   a search-filter substring.  A Gerrit "stage-release" comment maps (server-side,
+#   LF RelEng managed) to the "stage" filter, so this file MUST keep "gerrit" and
+#   "stage" in its name and MUST NOT contain "required".
+#
+#   REQUIRED INFRA DEPENDENCY: LF RelEng must add the comment mapping on the
+#   Gerrit server, e.g.:
+#       [mapping "comment-added"]
+#       stage-release = stage
+#       stage-maven-release = stage
+#   Until that mapping exists, this workflow can only be run via the Actions UI
+#   (workflow_dispatch) for testing.
+#
+# Access control: the staging trigger is a Gerrit comment; gerrit-to-platform does
+# NOT pass the comment author, so committer gating cannot be enforced inside this
+# workflow.  It must be enforced server-side (Gerrit ACL / g2p comment mapping
+# restricted to the committers group).  Staging is low risk (artifacts land in a
+# closed Nexus2 staging repo and are only promoted by the separate, merge-gated
+# release workflow).
+
+name: Gerrit Maven Stage
+
+# yamllint disable-line rule:truthy
+on:
+  workflow_dispatch:
+    inputs:
+      GERRIT_BRANCH:
+        description: "Branch that change is against"
+        required: true
+        type: string
+      GERRIT_CHANGE_ID:
+        description: "The ID for the change"
+        required: true
+        type: string
+      GERRIT_CHANGE_NUMBER:
+        description: "The Gerrit number"
+        required: true
+        type: string
+      GERRIT_CHANGE_URL:
+        description: "URL to the change"
+        required: true
+        type: string
+      GERRIT_EVENT_TYPE:
+        description: "Type of Gerrit event"
+        required: true
+        type: string
+      GERRIT_PATCHSET_NUMBER:
+        description: "The patch number for the change"
+        required: true
+        type: string
+      GERRIT_PATCHSET_REVISION:
+        description: "The revision sha"
+        required: true
+        type: string
+      GERRIT_PROJECT:
+        description: "Project in Gerrit"
+        required: true
+        type: string
+      GERRIT_REFSPEC:
+        description: "Gerrit refspec of change"
+        required: true
+        type: string
+
+concurrency:
+  # yamllint disable-line rule:line-length
+  group: gerrit-maven-stage-${{ github.workflow }}-${{ github.event.inputs.GERRIT_BRANCH }}
+  cancel-in-progress: false
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Clear votes
+        # yamllint disable-line rule:line-length
+        uses: lfit/gerrit-review-action@537251ec667665b386f70b330b05446e3fc29087 # v0.9
+        with:
+          host: ${{ vars.GERRIT_SERVER }}
+          username: ${{ vars.GERRIT_SSH_USER }}
+          key: ${{ secrets.GERRIT_SSH_PRIVKEY }}
+          known_hosts: ${{ vars.GERRIT_KNOWN_HOSTS }}
+          gerrit-change-number: ${{ inputs.GERRIT_CHANGE_NUMBER }}
+          gerrit-patchset-number: ${{ inputs.GERRIT_PATCHSET_NUMBER }}
+          vote-type: clear
+          comment-only: true
+      - name: Allow replication
+        run: sleep 10s
+
+  stage:
+    needs: prepare
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    outputs:
+      release-version: ${{ steps.prep.outputs.release_version }}
+      staging-repo-id: ${{ steps.nexus-stage.outputs.staging_repo_id }}
+      staging-repo-url: ${{ steps.nexus-stage.outputs.staging_repo_url }}
+    steps:
+      - name: Checkout
+        # yamllint disable-line rule:line-length
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          ref: ${{ inputs.GERRIT_BRANCH }}
+          submodules: "true"
+
+      # De-SNAPSHOT the project version (JJB: lf-maven-versions-plugin /
+      # maven-patch-release.sh).
+      - name: Prepare release version
+        id: prep
+        # yamllint disable-line rule:line-length
+        uses: lfreleng-actions/maven-stage-prep-action@97970cb2a21c7f42c247db4f654a4723969c177d # main (no release yet)
+        with:
+          project-name: ${{ inputs.GERRIT_PROJECT }}
+          gerrit-branch: ${{ inputs.GERRIT_BRANCH }}
+          version-method: sed
+
+      # Build + deploy to a LOCAL m2repo (file://) so artifacts can be signed
+      # before they are uploaded to the Nexus2 staging repo. Never deploy
+      # directly to Nexus here (JJB stages a closed repo, then promotes later).
+      # Uses the same maven-build-action as gerrit-maven-merge so the ODL global
+      # settings (Nexus mirror) and env-vars are applied consistently.
+      - name: Maven build + deploy to local m2repo
+        # yamllint disable-line rule:line-length
+        uses: lfreleng-actions/maven-build-action@3e8765bbc2685951fb7c2be03964304179106b70 # v0.2.1
+        with:
+          java-version: "21"
+          mvn-version: "3.9.5"
+          mvn-phases: "clean deploy"
+          mvn-profiles: "docker"
+          # yamllint disable rule:line-length
+          mvn-opts: >-
+            -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
+            -Dmaven.repo.local=/tmp/r -Dorg.ops4j.pax.url.mvn.localRepository=/tmp/r
+            -DskipTests
+            -DaltDeploymentRepository=staging::default::file:"${GITHUB_WORKSPACE}"/m2repo
+          # yamllint enable rule:line-length
+          env-vars: ${{ toJSON(vars) }}
+          global-settings: ${{ vars.GLOBAL_SETTINGS }}
+
+      # Build the list of artifacts to sign, mirroring global-jjb sigul-sign.sh
+      # (sign everything except checksums, repository markers and metadata).
+      - name: Build sigul sign list
+        id: signlist
+        run: |
+          set -euo pipefail
+          {
+            echo "SIGN_LIST<<SIGEOF"
+            find "${GITHUB_WORKSPACE}/m2repo" -type f \
+              ! -name "*.asc" \
+              ! -name "*.md5" \
+              ! -name "*.sha1" \
+              ! -name "*.sha256" \
+              ! -name "*.sha512" \
+              ! -name "_maven.repositories" \
+              ! -name "_remote.repositories" \
+              ! -name "*.lastUpdated" \
+              ! -name "maven-metadata-local.xml" \
+              ! -name "maven-metadata.xml"
+            echo "SIGEOF"
+          } >> "$GITHUB_ENV"
+
+      # Artifact signing with Sigul (JJB: lf-sigul-sign-dir / sign-data, armored).
+      # The action is based on docker.io/lfreleng/sigul (built/published from the
+      # releng/sigul-docker project on gerrit.linuxfoundation.org) and adds the
+      # armored (-a) sign-data output that Maven Central requires.
+      - name: Sign artifacts with Sigul
+        # yamllint disable-line rule:line-length
+        uses: lfit/sigul-sign-action@6921b6b0e6cc572967729a7ce562553c641d8d19 # v1.1.0
+        with:
+          sign-type: "sign-data"
+          sign-object: ${{ env.SIGN_LIST }}
+          sigul-ip: ${{ vars.SIGUL_IP }}
+          sigul-uri: ${{ vars.SIGUL_URI }}
+          sigul-conf: ${{ secrets.SIGUL_CONF }}
+          sigul-key-name: ${{ vars.SIGUL_KEY_NAME }}
+          sigul-pass: ${{ secrets.SIGUL_PASS }}
+          sigul-pki: ${{ secrets.SIGUL_PKI }}
+
+      # Upload to a Nexus2 staging repository and close it (JJB: lf-maven-stage).
+      # The staging_repo_id is recorded so a committer can reference it in the
+      # releases/<version>.yaml file that drives the release (promote) workflow.
+      - name: Stage to Nexus2
+        id: nexus-stage
+        # yamllint disable-line rule:line-length
+        uses: lfreleng-actions/nexus-staging-action@2617d35a4949b30581a407d24327626f62499020 # main (no release yet)
+        with:
+          nexus-server: ${{ vars.NEXUS_SERVER }}
+          nexus-username: ${{ secrets.NEXUS_USERNAME }}
+          nexus-password: ${{ secrets.NEXUS_PASSWORD }}
+          staging-profile-id: ${{ vars.STAGING_PROFILE_ID }}
+          mode: stage
+          m2repo-path: m2repo
+          description: >-
+            ${{ inputs.GERRIT_PROJECT }} ${{ steps.prep.outputs.release_version }}
+            (change ${{ inputs.GERRIT_CHANGE_NUMBER }}, run ${{ github.run_id }})
+
+      - name: Stage summary
+        if: always()
+        run: |
+          {
+            echo "### Maven Stage"
+            echo ""
+            echo "- Project: \`${{ inputs.GERRIT_PROJECT }}\`"
+            echo "- Version: \`${{ steps.prep.outputs.release_version }}\`"
+            echo "- Staging repo id: \`${{ steps.nexus-stage.outputs.staging_repo_id }}\`"
+            echo "- Staging repo url: ${{ steps.nexus-stage.outputs.staging_repo_url }}"
+            echo ""
+            echo "Add the staging repo id to \`releases/${{ steps.prep.outputs.release_version }}.yaml\`"
+            echo "to release these artifacts via the gerrit-release-merge workflow."
+          } >> "$GITHUB_STEP_SUMMARY"
+
+  vote:
+    if: ${{ always() }}
+    needs: [prepare, stage]
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Get conclusion
+        # yamllint disable-line rule:line-length
+        uses: im-open/workflow-conclusion@7b146947e59eaf7fc3328822357861ab1758c088 # v2.2.5
+      - name: Set vote
+        # yamllint disable-line rule:line-length
+        uses: lfit/gerrit-review-action@537251ec667665b386f70b330b05446e3fc29087 # v0.9
+        with:
+          host: ${{ vars.GERRIT_SERVER }}
+          username: ${{ vars.GERRIT_SSH_USER }}
+          key: ${{ secrets.GERRIT_SSH_PRIVKEY }}
+          known_hosts: ${{ vars.GERRIT_KNOWN_HOSTS }}
+          gerrit-change-number: ${{ inputs.GERRIT_CHANGE_NUMBER }}
+          gerrit-patchset-number: ${{ inputs.GERRIT_PATCHSET_NUMBER }}
+          vote-type: ${{ env.WORKFLOW_CONCLUSION }}
+          comment-only: true
