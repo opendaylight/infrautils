@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "554ed247_9c6b9d26",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1
+      },
+      "writtenOn": "2026-06-17T23:14:09Z",
+      "side": 1,
+      "message": "Please think about how this is triggered and the fact anyone can leave a comment. I do not currently see anything that validates that the one leaving a comment has maintainer rights. This means that it would be possible for drive-by releases when not expected.\n\nThe best way that we\u0027ve found for triggering release workflows in GHA is to have them triggered on tags. The process would be that a maintainer creates an annotated and signed tag that is pushed to the repository. After Gerrit syncs the change to GitHub this would then trigger a workflow that watches for changes to tags. The workflow would then validate that the tag meets tagging requirements (semver, calver, or something) and that it is signed and if everything was good would continue with the release process.",
+      "revId": "492f2d50c0fde671f8baee863173fda5e61dc1a3",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
+    }
+  ]
+}
