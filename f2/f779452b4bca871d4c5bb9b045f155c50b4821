@@ -1,0 +1,8 @@
+Verified+1: Robert Varga <nite@hq.sk>
+Code-Review+2: Robert Varga <nite@hq.sk>
+Verified+1: ODL Required.GHA <releng+odl.required.gha@linuxfoundation.org>
+Submitted-by: Robert Varga <nite@hq.sk>
+Submitted-at: Tue, 04 Aug 2026 00:43:56 +0000
+Reviewed-on: https://git.opendaylight.org/gerrit/c/infrautils/+/124418
+Project: infrautils
+Branch: refs/heads/master
