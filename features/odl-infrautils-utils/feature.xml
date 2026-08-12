@@ -4,6 +4,6 @@
     <feature name="odl-infrautils-utils" description="OpenDaylight :: Infrautils :: Utils" version="6.0.8.SNAPSHOT">
         <details>odl-infrautils-utils</details>
         <feature version="[13,14)">odl-guava</feature>
-        <bundle>mvn:org.opendaylight.infrautils/infrautils-util/6.0.8</bundle>
+        <bundle>mvn:org.opendaylight.infrautils/infrautils-util/6.0.8-SNAPSHOT</bundle>
     </feature>
 </features>
