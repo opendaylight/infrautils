@@ -12,8 +12,8 @@ import com.mycila.guice.ext.closeable.CloseableModule;
 import com.mycila.guice.ext.jsr250.Jsr250Module;
 
 /**
- * Guice module with built-in Mycila Guice Extensions for JSR-250 &amp;
- * Closeable support for {@literal @}PreDestroy &amp; {@literal @}PostConstruct.
+ * Guice module with built-in Mycila Guice Extensions for JSR-250 and
+ * Closeable support for {@code @PreDestroy} and {@code @PostConstruct}.
  *
  * @author Michael Vorburger.ch
  */

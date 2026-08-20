@@ -30,7 +30,7 @@ public abstract class AbstractGuiceJsr250Module extends AbstractCheckedModule {
      *
      * @param interfaceClass class type of an interface
      * @param implementationClass class type of implementing class
-     * @param instance an instance implementing both interfaceClass &amp; implementationClass
+     * @param instance an instance implementing both interfaceClass and implementationClass
      * @param <T> type of interfaceClass
      */
     @SuppressWarnings("unchecked")

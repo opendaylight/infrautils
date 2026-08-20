@@ -16,8 +16,8 @@ import org.slf4j.LoggerFactory;
 /**
  * Support class for {@link Lifecycle}. Provides a convenient base
  * implementation including correct thread safety, exception handling and check
- * for accidental unnecessary re-start &amp; stop. Subclasses must implement
- * {@link #start()} &amp; {@link #stop()}.
+ * for accidental unnecessary re-start and stop. Subclasses must implement
+ * {@link #start()} and {@link #stop()}.
  *
  * @author Michael Vorburger (with guidance re. AtomicReference from Tom Pantelis)
  */

@@ -26,7 +26,7 @@ import org.slf4j.LoggerFactory;
  * {@link SystemReadyMonitor} implementation for a "simple" (standalone, Java SE) environment.
  * Also used as the base class for the Karaf/OSGi specific implementation.
  *
- * @author Michael Vorburger.ch, based on code from myself, Tom (concurrency) &amp; Faseela in KarafSystemReadyImpl
+ * @author Michael Vorburger.ch, based on code from myself, Tom (concurrency) and Faseela in KarafSystemReadyImpl
  */
 public class SimpleSystemReadyMonitor implements SystemReadyMonitor {
 
