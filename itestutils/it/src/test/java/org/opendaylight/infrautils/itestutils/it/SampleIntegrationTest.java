@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * Example Integration Test.
+ *
  * @author Michael Vorburger.ch
  */
 // @ExamReactorStrategy(PerClass.class) IFF the default PerMethod (which provides better isolation!) really is too slow?

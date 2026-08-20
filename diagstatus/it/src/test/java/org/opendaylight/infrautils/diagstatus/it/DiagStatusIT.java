@@ -23,6 +23,7 @@ import org.ops4j.pax.exam.options.UrlReference;
 
 /**
  * DiagStatus Integration Test.
+ *
  * @author Faseela K
  */
 public class DiagStatusIT extends AbstractIntegrationTest {
