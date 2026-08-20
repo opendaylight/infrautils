@@ -37,6 +37,7 @@ import org.slf4j.LoggerFactory;
 /**
  * DiagStatusServiceImpl is the core class having the functionality for tracking the registered services
  * and aggregating the status of the same.
+ *
  * @author Faseela K
  */
 @Singleton

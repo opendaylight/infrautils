@@ -14,6 +14,7 @@ import org.slf4j.Logger;
 
 /**
  * Failure logging future callback with a message format String and 1 argument.
+ *
  * @author Michael Vorburger.ch
  */
 // package-local not public (for the time being)
