@@ -8,17 +8,17 @@
 package org.opendaylight.infrautils.diagstatus.shell;
 
 import static org.junit.Assert.assertEquals;
-import static org.opendaylight.infrautils.diagstatus.ServiceState.OPERATIONAL;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import com.google.common.net.InetAddresses;
 import java.net.InetAddress;
 import java.util.List;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.opendaylight.infrautils.diagstatus.DiagStatusService;
 import org.opendaylight.infrautils.diagstatus.ServiceDescriptor;
-import org.opendaylight.infrautils.diagstatus.ServiceRegistration;
+import org.opendaylight.infrautils.diagstatus.ServiceState;
 import org.opendaylight.infrautils.diagstatus.internal.DiagStatusServiceImpl;
 import org.opendaylight.infrautils.diagstatus.internal.DiagStatusServiceMBeanImpl;
 import org.opendaylight.infrautils.ready.SystemReadyMonitor;
@@ -31,46 +31,46 @@ import org.opendaylight.infrautils.ready.testutils.TestSystemReadyMonitor.Behavi
  * @author Michael Vorburger.ch
  * @author Faseela K
  */
-public class DiagStatusCommandTest {
+class DiagStatusCommandTest {
     private final SystemReadyMonitor systemReadyMonitor = new TestSystemReadyMonitor(Behaviour.IMMEDIATE);
 
     private DiagStatusService diagStatusService;
     private DiagStatusCommand diagStatusCommand;
     private DiagStatusServiceMBeanImpl diagStatusServiceMBeanImpl;
 
-    @Before
-    public void start() throws Exception {
+    @BeforeEach
+    void beforeEach() {
         diagStatusService = new DiagStatusServiceImpl(systemReadyMonitor, List.of());
-        String testService1 = "testService";
-        ServiceRegistration reg = diagStatusService.register(testService1);
-        reg.report(new ServiceDescriptor("testService", OPERATIONAL, "operational"));
-        diagStatusServiceMBeanImpl = new DiagStatusServiceMBeanImpl(diagStatusService, systemReadyMonitor);
+        var reg = diagStatusService.register("testService");
+        reg.report(new ServiceDescriptor("testService", ServiceState.OPERATIONAL, "operational"));
+        diagStatusServiceMBeanImpl = assertDoesNotThrow(
+            () -> new DiagStatusServiceMBeanImpl(diagStatusService, systemReadyMonitor));
         diagStatusCommand = new DiagStatusCommand();
         diagStatusCommand.diagStatusServiceMBean = diagStatusServiceMBeanImpl;
     }
 
-    @After
-    public void afterTest() throws Exception {
-        diagStatusServiceMBeanImpl.close();
+    @AfterEach
+    void afterEach() throws Exception {
+        assertDoesNotThrow(diagStatusServiceMBeanImpl::close);
     }
 
     @Test
-    public void testGetRemoteStatusSummary_IPv4() throws Exception {
+    void testGetRemoteStatusSummary_IPv4() {
         checkGetRemoteStatusSummary(InetAddresses.forString("127.0.0.1"));
     }
 
     @Test
-    public void testGetRemoteStatusSummary_IPv6() throws Exception {
+    void testGetRemoteStatusSummary_IPv6() {
         checkGetRemoteStatusSummary(InetAddresses.forString("::1"));
     }
 
-    private void checkGetRemoteStatusSummary(InetAddress inetAddress) throws Exception {
+    private void checkGetRemoteStatusSummary(InetAddress inetAddress) {
         assertEquals("""
             Node IP Address: {node-ip}
             System is operational: true
             System ready state: ACTIVE
               testService         : OPERATIONAL   (operational)
             """.replaceAll(".*Node IP Address.*\\n", "Node IP Address: " + inetAddress.getHostAddress() + "\n"),
-            diagStatusCommand.getLocalStatusSummary(inetAddress));
+            assertDoesNotThrow(() -> diagStatusCommand.getLocalStatusSummary(inetAddress)));
     }
 }
