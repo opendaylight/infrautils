@@ -9,12 +9,12 @@ package org.opendaylight.infrautils.testutils.web;
 
 import static org.hamcrest.CoreMatchers.startsWith;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import javax.servlet.ServletException;
+import java.net.URISyntaxException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,23 +31,23 @@ public class TestWebServerTest {
     // This class is a simpler version of code inspired by org.opendaylight.aaa.web.test
 
     @Test
-    public void testWebServerWithoutServlet() throws ServletException, IOException {
-        try (TestWebServer webServer = new TestWebServer()) {
+    public void testWebServerWithoutServlet() throws Exception {
+        try (var webServer = new TestWebServer()) {
             assertThrows(FileNotFoundException.class, () -> checkTestServlet(webServer, "nada"));
         }
     }
 
     @Test
-    public void testWebServerWithOneServlet() throws ServletException, IOException {
-        try (TestWebServer webServer = new TestWebServer()) {
+    public void testWebServerWithOneServlet() throws Exception {
+        try (var webServer = new TestWebServer()) {
             webServer.registerServlet(new TestServlet(), "/testServlet");
             checkTestServlet(webServer, "testServlet");
         }
     }
 
     @Test
-    public void testWebServerWithTwoServlets() throws ServletException, IOException {
-        try (TestWebServer webServer = new TestWebServer()) {
+    public void testWebServerWithTwoServlets() throws Exception {
+        try (var webServer = new TestWebServer()) {
             webServer.registerServlet(new TestServlet(), "/firstServlet");
             webServer.registerServlet(new TestServlet(), "/secondServlet");
             checkTestServlet(webServer, "secondServlet");
@@ -56,16 +56,18 @@ public class TestWebServerTest {
     }
 
     @Test
-    public void testWebServerWithBrokenServlet() throws ServletException, IOException {
-        try (TestWebServer webServer = new TestWebServer()) {
+    public void testWebServerWithBrokenServlet() throws Exception {
+        try (var webServer = new TestWebServer()) {
             webServer.registerServlet(new BrokenServlet(), "/brokenServlet");
             assertEquals(500, new TestWebClient(webServer).request(Method.GET, "brokenServlet").getStatus());
         }
     }
 
-    private static void checkTestServlet(TestWebServer webServer, String urlSuffix) throws IOException {
-        String body = new TestWebClient(webServer).request(Method.GET, urlSuffix).getBody();
-        assertThat(body, startsWith("hello, world"));
+    private static void checkTestServlet(TestWebServer webServer, String urlSuffix)
+            throws IOException, URISyntaxException {
+        var client = new TestWebClient(webServer);
+        var request = client.request(Method.GET, urlSuffix);
+        assertThat(request.getBody(), startsWith("hello, world"));
     }
 
     private static final class TestServlet extends HttpServlet {

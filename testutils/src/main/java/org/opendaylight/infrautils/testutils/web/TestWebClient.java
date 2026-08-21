@@ -13,7 +13,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.URL;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
 
 /**
@@ -39,9 +40,10 @@ public class TestWebClient {
         this.baseURL = baseURL.endsWith("/") ? baseURL : baseURL + "/";
     }
 
-    public HttpResponse request(Method httpMethod, String path) throws IOException {
-        URL url = new URL(baseURL + (path.startsWith("/") ? path.substring(1) : path));
-        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+    public HttpResponse request(Method httpMethod, String path) throws IOException, URISyntaxException {
+        // FIXME: use HttpClient instead
+        var url = new URI(baseURL + (path.startsWith("/") ? path.substring(1) : path)).toURL();
+        var conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod(httpMethod.name());
         int status = conn.getResponseCode();
 
