@@ -12,9 +12,7 @@ import static org.mockito.Mockito.mock;
 import static org.opendaylight.infrautils.ready.SystemState.ACTIVE;
 import static org.opendaylight.infrautils.ready.SystemState.BOOTING;
 
-import java.io.IOException;
 import java.util.Set;
-import javax.servlet.ServletException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -37,42 +35,42 @@ public class DiagStatusServletTest {
         mock(TestDiagStatusService.class, MoreAnswers.realOrException());
 
     @Before
-    public void beforeTest() throws ServletException {
+    public void beforeTest() throws Exception {
         webServer = new TestWebServer();
         webClient = new TestWebClient(webServer);
         webServer.registerServlet(new DiagStatusServlet(testDiagStatusService), "/*");
     }
 
     @After
-    public void afterTest() throws ServletException {
+    public void afterTest() throws Exception {
         webServer.close();
     }
 
     @Test
-    public void testGetWhenOk() throws IOException {
+    public void testGetWhenOk() throws Exception {
         testDiagStatusService.isOperational = true;
         assertEquals(200, getDiagStatusResponseCode(Method.GET));
     }
 
     @Test
-    public void testHeadWhenOk() throws IOException {
+    public void testHeadWhenOk() throws Exception {
         testDiagStatusService.isOperational = true;
         assertEquals(200, getDiagStatusResponseCode(Method.HEAD));
     }
 
     @Test
-    public void testGetWhenNok() throws IOException {
+    public void testGetWhenNok() throws Exception {
         testDiagStatusService.isOperational = false;
         assertEquals(503, getDiagStatusResponseCode(Method.GET));
     }
 
     @Test
-    public void testHeadWhenNok() throws IOException {
+    public void testHeadWhenNok() throws Exception {
         testDiagStatusService.isOperational = false;
         assertEquals(503, getDiagStatusResponseCode(Method.HEAD));
     }
 
-    private int getDiagStatusResponseCode(Method httpMethod) throws IOException {
+    private int getDiagStatusResponseCode(Method httpMethod) throws Exception {
         return webClient.request(httpMethod, "").getStatus();
     }
 
