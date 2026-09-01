@@ -75,124 +75,32 @@ jobs:
 
   maven-merge:
     needs: prepare
-    runs-on: ubuntu-latest
-    timeout-minutes: 180
-    steps:
-      - name: Checkout
-        # yamllint disable-line rule:line-length
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          ref: ${{ inputs.GERRIT_BRANCH }}
-          submodules: "true"
-      # yamllint disable-line rule:line-length
-      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
-        id: setup-python
-        with:
-          python-version: "3.10"
-      - name: Fetch existing SNAPSHOT metadata from Nexus
-        shell: bash
-        env:
-          NEXUS_URL: ${{ vars.NEXUS_SERVER }}
-          NEXUS_REPO: ${{ vars.NEXUS_REPO }}
-        run: |
-          set -eu -o pipefail
-          # Extract groupId from pom.xml and convert to path.
-          # Must read the project's own groupId, falling back to the
-          # parent's (Maven's inheritance rule). A plain grep for the
-          # first <groupId> returns the *parent* groupId instead.
-          group_id=$(python3 -c '
-          import xml.etree.ElementTree as ET
-          ns = {"m": "http://maven.apache.org/POM/4.0.0"}
-          root = ET.parse("pom.xml").getroot()
-          group = root.findtext("m:groupId", namespaces=ns) or \
-              root.findtext("m:parent/m:groupId", namespaces=ns)
-          print(group.strip().replace(".", "/"))
-          ')
-          nexus_url="${NEXUS_URL}/content/repositories/${NEXUS_REPO}/${group_id}/"
-          m2repo="${GITHUB_WORKSPACE}/m2repo/${group_id}"
-
-          echo "Fetching maven-metadata.xml from: ${nexus_url}"
-          mkdir -p "${m2repo}"
-
-          # Compute cut-dirs for wget:
-          # URL path (no host): content/repositories/<repo>/<group segments...>
-          # For org/opendaylight/infrautils: 3 + 3 = 6
-          segments=$(echo "${group_id}" | tr '/' '\n' | wc -l)
-          cut_dirs=$((3 + segments))
-
-          # Fetch existing metadata into the m2repo group directory
-          # Ignore failures (404 = new project with no prior publishes)
-          pushd "${m2repo}"
-          wget -nv --recursive \
-               --accept maven-metadata.xml \
-               -R "index.html*" \
-               --execute robots=off \
-               --no-parent \
-               --no-host-directories \
-               --cut-dirs="${cut_dirs}" \
-               "${nexus_url}" 2>&1 || true
-          popd
-
-          metadata_count=$(find "${m2repo}" -name "maven-metadata.xml" | wc -l)
-          echo "Pre-fetched ${metadata_count} maven-metadata.xml files"
-          if [ "${metadata_count}" -eq 0 ]; then
-            # Expected only for a project with no prior publishes.
-            # Otherwise the build restarts at buildNumber 1 and the
-            # published metadata clobbers the real SNAPSHOT history.
-            echo "::warning::No existing metadata found under" \
-              "${nexus_url} — SNAPSHOT buildNumber will restart at 1"
-          fi
-      - name: Run Maven
-        # yamllint disable-line rule:line-length
-        uses: lfreleng-actions/maven-build-action@6a687d420895015a60abd139e37ba1ae7e78e8e8 # v0.3.1
-        with:
-          java-version: "21"
-          mvn-version: "3.9.5"
-          mvn-phases: "clean deploy"
-          mvn-params: "-Dmerge"
-          mvn-profiles: "docker"
-          # yamllint disable rule:line-length
-          mvn-opts: >-
-            -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
-            -Dmaven.repo.local=/tmp/r -Dorg.ops4j.pax.url.mvn.localRepository=/tmp/r
-            -Dkaraf.keep.unpack
-          # yamllint enable rule:line-length
-          env-vars: ${{ toJSON(vars) }}
-          global-settings: ${{ vars.GLOBAL_SETTINGS }}
-      - name: Upload build artifacts
-        # yamllint disable-line rule:line-length
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
-        with:
-          name: merge-artifact
-          path: "${{ github.workspace }}/m2repo"
-
-  publish-nexus:
-    needs: maven-merge
-    runs-on: ubuntu-latest
-    timeout-minutes: 30
-    steps:
-      - name: Download build artifacts
-        # yamllint disable-line rule:line-length
-        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
-        with:
-          name: merge-artifact
-          path: "${{ github.workspace }}/m2repo"
-      - name: Publish to Nexus
-        # yamllint disable-line rule:line-length
-        uses: lfreleng-actions/nexus-publish-action@749030f756e5625d1efff260f731dbba92b1f347 # v1.1.2
-        with:
-          nexus_server: ${{ vars.NEXUS_SERVER }}
-          nexus_username: ${{ secrets.NEXUS_USERNAME }}
-          nexus_password: ${{ secrets.NEXUS_PASSWORD }}
-          repository_name: ${{ vars.NEXUS_REPO }}
-          repository_format: maven2_upload
-          files_path: "${{ github.workspace }}/m2repo/org/opendaylight/infrautils"
-          upload_path: "org/opendaylight/infrautils"
-          permit_fail: "false"
+    # yamllint disable-line rule:line-length
+    uses: lfit/releng-reusable-workflows/.github/workflows/compose-maven-merge.yaml@main
+    # compose-maven-merge reads secrets.NEXUS_USERNAME / NEXUS_PASSWORD but
+    # declares no secrets block, so they have to be inherited.
+    secrets: inherit
+    with:
+      GERRIT_BRANCH: ${{ inputs.GERRIT_BRANCH }}
+      JDK_VERSION: "21"
+      MVN_VERSION: "3.9.5"
+      MVN_PHASES: "clean deploy"
+      MVN_PARAMS: "-Dmerge"
+      MVN_PROFILES: "docker"
+      # Intentionally omits -DaltDeploymentRepository; maven-build-action
+      # already supplies it, and repeating it duplicates the flag.
+      # yamllint disable rule:line-length
+      MVN_OPTS: >-
+        -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn
+        -Dmaven.repo.local=/tmp/r -Dorg.ops4j.pax.url.mvn.localRepository=/tmp/r
+        -Dkaraf.keep.unpack
+      # yamllint enable rule:line-length
+      ENV_VARS: ${{ toJSON(vars) }}
+      PUSH_NEXUS: true
 
   vote:
     if: ${{ always() }}
-    needs: [prepare, maven-merge, publish-nexus]
+    needs: [prepare, maven-merge]
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
