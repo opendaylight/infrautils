@@ -96,9 +96,18 @@ jobs:
           NEXUS_REPO: ${{ vars.NEXUS_REPO }}
         run: |
           set -eu -o pipefail
-          # Extract groupId from pom.xml and convert to path
-          group_id=$(grep -m1 '<groupId>' pom.xml \
-            | sed 's/.*<groupId>\(.*\)<\/groupId>.*/\1/' | tr '.' '/')
+          # Extract groupId from pom.xml and convert to path.
+          # Must read the project's own groupId, falling back to the
+          # parent's (Maven's inheritance rule). A plain grep for the
+          # first <groupId> returns the *parent* groupId instead.
+          group_id=$(python3 -c '
+          import xml.etree.ElementTree as ET
+          ns = {"m": "http://maven.apache.org/POM/4.0.0"}
+          root = ET.parse("pom.xml").getroot()
+          group = root.findtext("m:groupId", namespaces=ns) or \
+              root.findtext("m:parent/m:groupId", namespaces=ns)
+          print(group.strip().replace(".", "/"))
+          ')
           nexus_url="${NEXUS_URL}/content/repositories/${NEXUS_REPO}/${group_id}/"
           m2repo="${GITHUB_WORKSPACE}/m2repo/${group_id}"
 
@@ -126,6 +135,13 @@ jobs:
 
           metadata_count=$(find "${m2repo}" -name "maven-metadata.xml" | wc -l)
           echo "Pre-fetched ${metadata_count} maven-metadata.xml files"
+          if [ "${metadata_count}" -eq 0 ]; then
+            # Expected only for a project with no prior publishes.
+            # Otherwise the build restarts at buildNumber 1 and the
+            # published metadata clobbers the real SNAPSHOT history.
+            echo "::warning::No existing metadata found under" \
+              "${nexus_url} — SNAPSHOT buildNumber will restart at 1"
+          fi
       - name: Run Maven
         # yamllint disable-line rule:line-length
         uses: lfreleng-actions/maven-build-action@6a687d420895015a60abd139e37ba1ae7e78e8e8 # v0.3.1
