@@ -77,9 +77,11 @@ jobs:
     needs: prepare
     # yamllint disable-line rule:line-length
     uses: lfit/releng-reusable-workflows/.github/workflows/compose-maven-merge.yaml@main
-    # compose-maven-merge reads secrets.NEXUS_USERNAME / NEXUS_PASSWORD but
-    # declares no secrets block, so they have to be inherited.
-    secrets: inherit
+    # "secrets: inherit" does not cross organisations, and this workflow
+    # lives in the lfit org, so the secrets have to be passed by name.
+    secrets:
+      NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
+      NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
     with:
       GERRIT_BRANCH: ${{ inputs.GERRIT_BRANCH }}
       JDK_VERSION: "21"
