@@ -6,6 +6,12 @@ name: Gerrit Composed Maven Merge
 
 # yamllint disable-line rule:truthy
 on:
+  # Daily SNAPSHOT rebuild. The Jenkins job this replaced ran @daily
+  # (02:49 UTC), which kept SNAPSHOTs fresh against upstream dependency
+  # updates even when nothing merged here. Disabling that job removed
+  # the rebuild, so it is restored on the same slot.
+  schedule:
+    - cron: "49 2 * * *"
   workflow_dispatch:
     inputs:
       GERRIT_BRANCH:
@@ -46,8 +52,11 @@ on:
         type: string
 
 concurrency:
+  # Scheduled runs carry no inputs, so they must fall back to the same
+  # key a master merge uses, or the two triggers land in different
+  # groups and publish to Nexus concurrently.
   # yamllint disable-line rule:line-length
-  group: gerrit-maven-merge-${{ github.workflow }}-${{ github.event.inputs.GERRIT_BRANCH }}
+  group: gerrit-maven-merge-${{ github.workflow }}-${{ github.event.inputs.GERRIT_BRANCH || 'master' }}
   cancel-in-progress: false
 
 permissions:
@@ -59,6 +68,10 @@ jobs:
     timeout-minutes: 5
     steps:
       - name: Clear votes
+        # A scheduled rebuild has no change to clear votes on. Guarding
+        # the step rather than the job keeps this job succeeding, so the
+        # needs: chain below is unaffected.
+        if: github.event_name != 'schedule'
         # yamllint disable-line rule:line-length
         uses: lfit/gerrit-review-action@a1c036a59b94c8ab89de26d378f6a28cc7378b13 # v1.1.2
         with:
@@ -83,7 +96,9 @@ jobs:
       NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
       NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
     with:
-      GERRIT_BRANCH: ${{ inputs.GERRIT_BRANCH }}
+      # Empty on a scheduled run, where master is the only branch a
+      # schedule can fire on.
+      GERRIT_BRANCH: ${{ inputs.GERRIT_BRANCH || 'master' }}
       JDK_VERSION: "21"
       MVN_VERSION: "3.9.5"
       MVN_PHASES: "clean deploy"
@@ -101,7 +116,8 @@ jobs:
       PUSH_NEXUS: true
 
   vote:
-    if: ${{ always() }}
+    # A scheduled rebuild has no change to vote on.
+    if: ${{ always() && github.event_name != 'schedule' }}
     needs: [prepare, maven-merge]
     runs-on: ubuntu-latest
     timeout-minutes: 5
