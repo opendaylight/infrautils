@@ -57,7 +57,10 @@ concurrency:
   # groups and publish to Nexus concurrently.
   # yamllint disable-line rule:line-length
   group: gerrit-maven-merge-${{ github.workflow }}-${{ github.event.inputs.GERRIT_BRANCH || 'master' }}
-  cancel-in-progress: false
+  # A newer merge supersedes the one it replaces rather than queueing
+  # behind it. Every run checks out the branch head, not the commit that
+  # triggered it, so queued runs would rebuild identical source.
+  cancel-in-progress: true
 
 permissions:
   contents: read
