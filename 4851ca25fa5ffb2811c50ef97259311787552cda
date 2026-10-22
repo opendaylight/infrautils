@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fccc3513_e7de209c",
+        "filename": ".github/release-signers/README.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 649
+      },
+      "writtenOn": "2026-10-22T09:26:07Z",
+      "side": 1,
+      "message": "since it is this workflow that is the entity generating/committing the patch from X.Y.Z-SNAPSHOT to X.Y.Z, it should also be generating/committing the patch from X.Y.Z to X.Y.(Z+1)-SNAPSHOT",
+      "range": {
+        "startLine": 32,
+        "startChar": 24,
+        "endLine": 33,
+        "endChar": 32
+      },
+      "revId": "4851ca25fa5ffb2811c50ef97259311787552cda",
+      "serverId": "7fc14799-209e-464c-9743-7a06c2c21a81"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "161caa17_b2b01942",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 6
