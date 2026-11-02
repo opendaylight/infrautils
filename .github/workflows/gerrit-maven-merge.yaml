@@ -52,7 +52,7 @@ concurrency:
 
 jobs:
   prepare:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
       - name: Clear votes
@@ -72,7 +72,7 @@ jobs:
 
   maven-merge:
     needs: prepare
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 180
     steps:
       - name: Checkout
@@ -149,7 +149,7 @@ jobs:
 
   publish-nexus:
     needs: maven-merge
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 30
     steps:
       - name: Download build artifacts
@@ -174,7 +174,7 @@ jobs:
   vote:
     if: ${{ always() }}
     needs: [prepare, maven-merge, publish-nexus]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 5
     steps:
       - name: Get conclusion
