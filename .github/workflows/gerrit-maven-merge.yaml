@@ -57,7 +57,7 @@ jobs:
     steps:
       - name: Clear votes
         # yamllint disable-line rule:line-length
-        uses: lfit/gerrit-review-action@264fe205361cbb2ee8f26280998a75680ee33b53 # v1.3.0
+        uses: lfit/gerrit-review-action@31093af31cec3755c34d8563ee54e2b7eb3a4eac # v1.3.1
         with:
           host: ${{ vars.GERRIT_SERVER }}
           username: ${{ vars.GERRIT_SSH_USER }}
@@ -125,7 +125,7 @@ jobs:
           echo "Pre-fetched ${metadata_count} maven-metadata.xml files"
       - name: Run Maven
         # yamllint disable-line rule:line-length
-        uses: lfreleng-actions/maven-build-action@22149998fae8dd5ef1ffc8890ec0ce3785683983 # v0.5.5
+        uses: lfreleng-actions/maven-build-action@1de87fd734620335eeae65933795f226c0d8a24e # v0.5.6
         with:
           java-version: "21"
           mvn-version: "3.9.5"
@@ -160,7 +160,7 @@ jobs:
           path: "${{ github.workspace }}/m2repo"
       - name: Publish to Nexus
         # yamllint disable-line rule:line-length
-        uses: lfreleng-actions/nexus-publish-action@d929e9053da8383d47c1ae857e8aa4e47f6b1bd9 # v1.3.2
+        uses: lfreleng-actions/nexus-publish-action@7051db42beb4b1d22d2f51e557a9497976af6642 # v1.3.3
         with:
           nexus_server: ${{ vars.NEXUS_SERVER }}
           nexus_username: ${{ secrets.NEXUS_USERNAME }}
@@ -182,7 +182,7 @@ jobs:
         uses: im-open/workflow-conclusion@8eac7f17381a6917bc04fec3e2c92e70ebc37526 # v3.0.0
       - name: Set vote
         # yamllint disable-line rule:line-length
-        uses: lfit/gerrit-review-action@264fe205361cbb2ee8f26280998a75680ee33b53 # v1.3.0
+        uses: lfit/gerrit-review-action@31093af31cec3755c34d8563ee54e2b7eb3a4eac # v1.3.1
         with:
           host: ${{ vars.GERRIT_SERVER }}
           username: ${{ vars.GERRIT_SSH_USER }}
